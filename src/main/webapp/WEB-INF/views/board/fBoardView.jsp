@@ -52,7 +52,7 @@ $(document).ready(function(){
 					}
 					else if(response.code == 400)
 					{
-						alert("파라미터 값이 올바르지 않습니다.");
+						alert("로그인이 되어있지 않습니다.");
 						//이동할 필요 없음
 					}
 					else if(response.code == 404)
@@ -209,7 +209,13 @@ $(document).ready(function(){
 			<c:if test="${!empty commentList}">
             <c:forEach items="${commentList}" var="comment" >
             <tr>
-            <td>${comment.wdFBoardComment }</td><td>작성자 : ${comment.uNickName } <br>${comment.regDate }</td>
+            <td>${comment.wdFBoardComment }</td>
+            <td>작성자 : ${comment.uNickName } <br>${comment.regDate }
+            <c:if test="${cookieUserId eq comment.userId }">
+            <button type="button" id="commentD" class="btn btn-secondary">삭제</button>
+            <button type="button" id="commentU" class="btn btn-secondary">수정</button>    
+            </c:if>        
+            </td>
             </tr>
             </c:forEach>
             </c:if>

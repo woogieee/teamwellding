@@ -4998,7 +4998,7 @@ responsive
     padding: 5px 15px;
     border-radius: 15px;
     font-family: "paybooc-Light", sans-serif;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     font-weight: 600;
     transition: 0.25s;
@@ -5168,22 +5168,22 @@ responsive
 
 .w-btn:hover {
     letter-spacing: 2px;
-    transform: scale(1.2);
+    transform: scale(1.0);
     cursor: pointer;
 }
 
 .w-btn-outline:hover {
-    letter-spacing: 2px;
-    transform: scale(1.2);
+    letter-spacing: 1px;
+    transform: scale(1.0);
     cursor: pointer;
 }
 
 .w-btn:active {
-    transform: scale(1.5);
+    transform: scale(1.0);
 }
 
 .w-btn-outline:active {
-    transform: scale(1.5);
+    transform: scale(1.0);
 }
 
 .w-btn-gra1 {

@@ -1,263 +1,192 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/taglib.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-	<%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
-<style>
-.Wtitle{
-font-family: 'Gamja Flower', cursive;
-font-size: 64px;
-text-align: center;
-}
-</style>
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
 <script>
 $(document).ready(function(){
-	$("#btnList").on("click", function(){
+	
+	//우선 페이지 로딩되었을 때 해당 란에 커서가 가게 해야 함.
+	$("#hiBbsTitle").focus();
+	
+	$("#btnList").on("click",function(){
 		document.bbsForm.action = "/board/fBoard";
-		document.bbsForm.submit();
+		document.bbsForm.submit();			
 	});
 	
-	
-	<c:if test="${boardMe eq 'Y'}">
-	$("#btnUpdate").on("click", function(){
-		document.bbsForm.action = "/board/fUpdateForm";
-		document.bbsForm.submit();
-	});
-	
-	$("#btnDelete").on("click", function(){
-		if(confirm("정말 삭제 하시겠습니까?") == true)
+	$("#btnWrite").on("click",function(){
+		$("#btnWrite").prop("disabled", true);
+		//클릭 후 비활성화하기
+		//똑같은걸 두번 눌러서 서버에 두 개 들어가는 것을 방지하기 위함.
+		//버튼을 빠르게 눌러서 데이터가 db에 두번 들어가는 것을 막음.
+		//대신 밑에서 입력값이 올바르지 않은 경우 반드시 버튼을 다시 돌려놔야 함.
+		
+		if($.trim($("#hiBbsTitle").val()).length <=0 )
 		{
-			//정말 삭제하겠다고 했을 때, ajax 통신
-			$.ajax({
-				type:"POST",
-				url:"/board/delete",
-				data:
-				{
-					bSeq: <c:out value="${wdFBoard.bSeq}" />
-				},
-				datatype:"JSON",
-				beforeSend:function(xhr){
-					xhr.setRequestHeader("AJAX", "true");
-				},
-				success:function(response){
-					if(response.code == 0)
-					{
-						alert("게시물이 삭제되었습니다.");
-						location.href = "/board/fBoard";
-					}
-					else if(response.code == 400)
-					{
-						alert("로그인이 되어있지 않습니다.");
-						//이동할 필요 없음
-					}
-					else if(response.code == 404)
-					{
-						alert("게시물을 찾을 수 없습니다.");
-						location.href = "/board/fBoard";
-					}
-					else if(response.code == 405)
-					{
-						alert("사용자의 게시물이 아닙니다.");
-						location.href = "/board/fBoard";
-					}
-					else
-					{
-						alert("게시물 삭제 중 오류가 발생했습니다.");
-					}
-				},
-				complete:function(data){
-					icia.common.log(data);
-				},
-				error:function(xhr, status, error)
-				{
-					icia.common.error(error);
-				}
-			});
+			//값이 없음
+			alert("제목을 입력하세요.");
+			$("#hiBbsTitle").val("");
+			$("#hiBbsTitle").focus();
 			
+			$("#btnWrite").prop("disabled", false);
+			return;
 		}
-	});	
-	</c:if>
+		
+		if($.trim($("#hiBbsContent").val()).length <=0)
+		{
+			alert("내용을 입력하세요");
+			$("#hiBbsContent").val("");
+			$("#hiBbsContent").focus();
+			
+			$("#btnWrite").prop("disabled", false);
+			return;
+		}
+		
+		//ajax 통신으로 갈 것!
+		//기존에는 키와 속성을 쌍으로 보냈음. 근데 이제는 form객체를 통으로 보낼 것
+		//id가 writeForm이라고 하는 애의 0번째 값 여러개의 writeForm이 있을 수 있으니깐
+		var form = $("#writeForm")[0];
+		//폼 자체의 타입으로 보내기 위한 객체 생성.
+		var formData = new FormData(form);
+		
+		$.ajax({
+			type:"POST",
+			enctype:'multipart/form-data',
+			url:"/board/writeProc",
+			data:formData,
+			processData:false,		//formData를 String으로 변환하지 않음
+			contentType:false,		//content-type 헤더가 multipart/form-data로 전송한다는 것
+			cache:false,
+			timeout:600000,
+			beforeSend:function(xhr)
+			{
+				xhr.setRequestHeader("AJAX", "true");
+			},
+			success:function(response)
+			{
+				if(response.code == 0)
+				{
+					alert("게시물이 등록되었습니다.");
+					//리스트 페이지로 돌아갈 때는 가져온 값을 가져가야 하지만,
+					//글쓰기를 눌렀을 때는, 가져온 값을 가져가면 내가 쓴 글이 안보임
+					//그래서 넣어줘서 보내지 않음
+					location.href = "/board/fBoard";
+				}
+				else if(response.code == 400)
+				{
+					alert("파라미터값이 올바르지 않습니다.");
+					//버튼 활성화 처리
+					$("#btnWrite").prop("disabled", false);
+				}
+				else
+				{
+					alert("게시물 등록 중 오류가 발생했습니다.");
+					$("#btnWrite").prop("disabled", false);
+				}
+			},
+			error:function(error)
+			{
+				icia.common.error(error);
+				alert("게시물 등록 중 오류가 발생했습니다. Ajax");
+				$("#btnWrite").prop("disabled", false);
+			}
+		});
+		//ajax 통신 끝
+	});
 	
-	
-    $("#btnComment").on("click",function(){
-  	  
-  	  $("#btnComment").prop("disabled", true);// 수정 버튼 비활성화 
-  	  
-  	  if($.trim($("#wdFBoardComment").val()).length <= 0){
-  		  alert("댓글내용을 입력하세요.");
-  		  $("#wdFBoardComment").val("");
-  		  $("#wdFBoardComment").focus();
-  		  $("#btnComment").prop("disabled", false);
-  		  return;
-  	  }
-  	  
-  	  var form = $("#commentForm")[0];
-   	  var formData = new FormData(form);
-   	 
-  	  $.ajax({
-	            type:"POST",
-	            url:"/board/CommentProc",
-	            data:formData,
-	            processData:false,
-	  			contentType:false,
-	  		    cache:false,
-	  		    timeout:600000,
-	            beforeSend:function(xhr){
-	               xhr.setRequestHeader("AJAX", "true");
-	            },
-	            success:function(response){
-	               if(response.code == 0)
-	               {
-	                  alert("댓글이 등록 되었습니다.");
-	                  document.bbsForm.action = "/board/fBoardView";
-	                  document.bbsForm.submit();
-	                  $("#btnComment").prop("disabled", false);
-	               }
-	               else if(response.code == 400)
-	               {
-	                  alert("파라미터 값이 올바르지 않습니다.");
-	                  $("#btnComment").prop("disabled", false);
-	               }
-	               else if(response.code == 404)
-	               {
-	                  alert("게시물을 찾을수 없습니다.");
-	                  location.href = "/board/fBoard";
-	               }
-	               else
-	               {
-	                  alert("댓글 등록 중 오류가 발생했습니다.");
-	                  $("#btnComment").prop("disabled", false);
-	               }
-	            },
-	            complete:function(data){
-	               icia.common.log(data);
-	            },
-	            error:function(xhr, status, error){
-	               icia.common.error(error);
-	            }
-	         });
-    });
 });
 </script>
 </head>
 <body>
-   	<jsp:include page="/WEB-INF/views/include/navigation.jsp" >
-       <jsp:param name="userName" value="${wdUser.userNickname}" />
-       </jsp:include>
-       
-    <div class="page-heading-rent-venue">
+<jsp:include page="/WEB-INF/views/include/navigation.jsp" >
+    <jsp:param name="userName" value="${wdUser.userNickname}" />
+</jsp:include>
+
+<div class="page-heading-rent-venuefW">
         <div class="container">
             <div class="row">
+                <div class="col-lg-12">
+                </div>
+            </div>
+        </div>
+</div>
+<div class="shows-events-scheduleW">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <div class="category2">
+                            <h2>Sharing your experiences</h2>
+                            <p>WRITING</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <br />
-    <h2 class="Wtitle">Know-How</h2>
-    <p style="text-align:center">여러분들의 노하우를 공유해보세요</p>
-    <br />
 
-<div class="container">
-   <div class="row" style="margin-right:0; margin-left:0;">
-   	  <div class="col-lg-12">
-      <table class="table" style="width: 100%;">
-         <thead>
-            <tr class="table-active dongdong">
-               <td scope="col" style="width:60%">
-                  <c:out value="${wdFBoard.bTitle}"/>
-               </td>
-               <td scope="col" style="width:40%" class="text-right">
-                                         조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdFBoard.bReadCnt}" />
-               </td>
-            </tr>
-               <td scope="col" style="width:60%">
-               	작성자 : <c:out value="${wdFBoard.userNickname}"/>
-               </td>
-               <td scope="col" style="width:40%" class="text-right">
-                  <div>${wdFBoard.regDate}</div>
-               </td>
-               
+<div class="row" id="divB">
 
-         </thead>
-         <tbody>
-             <tr>
-             <!-- 첨부파일은 있을 때만 보여주면 됨 -->
-				<c:if test="${!empty wdFBoard.wdBoardFile}">
-                <!-- GET방식으로 넘어감 -->
-                  &nbsp;&nbsp;&nbsp;<a href="/board/download?bSeq=${wdFBoard.wdBoardFile.bSeq}" style="color:#000;">[첨부파일]${wdFBoard.wdBoardFile.fileOrgName}</a>
-                </c:if>
-            </tr>
-            <tr>
-               <td colspan="2" style="text-align:center">
-               <div style="padding:10px"><pre><c:out value="${wdFBoard.bContent}" /></pre></div></td>
-            </tr>
-            <div>
-            </div>
-         </tbody>
-         <form name="commentForm" id="commentForm" method="post">
-         <tbody>
-            <tr>
-               <td colspan="2">
-               <textarea class="form-control" rows="3" name="wdFBoardComment" id="wdFBoardComment" style="ime-mode:active;resize: none;" placeholder="댓글을 입력해주세요" required></textarea><br>
-               <button type="button" id="btnComment" class="btn btn-secondary">댓글등록</button></td>
-            </tr>
-			<!-- 댓글 내용이 들어갈 곳 -->
-			<c:if test="${!empty commentList}">
-            <c:forEach items="${commentList}" var="comment" >
-            <tr>
-            <td>${comment.wdFBoardComment }</td>
-            <td>작성자 : ${comment.uNickName } <br>${comment.regDate }
-            <c:if test="${cookieUserId eq comment.userId }">
-            <button type="button" id="commentD" class="btn btn-secondary">삭제</button>
-            <button type="button" id="commentU" class="btn btn-secondary">수정</button>    
-            </c:if>        
-            </td>
-            </tr>
-            </c:forEach>
-            </c:if>
-         </tbody>
-         <input type="hidden" name="bSeq" value="${bSeq}" />
-         <input type="hidden" name="searchType" value="${searchType}" />
-         <input type="hidden" name="searchValue" value="${searchValue}" />
-         <input type="hidden" name="curPage" value="${curPage}" />
-         </form>
-         <tfoot>
-         <tr>
-         <td colspan="2">
-         
-         </td>
-         </tr>
-         <tr>
-               	<td colspan="2">
-         <c:if test="${boardMe eq 'Y'}">
-               		<button type="button" id="btnDelete" class="w-btn w-btn-red">삭제</button>
-         </c:if>
-               		<button type="button" id="btnList" class="w-btn w-btn-green2" style="float: right">리스트</button>
-         <c:if test="${boardMe eq 'Y'}">
-               		<button type="button" id="btnUpdate" class="w-btn w-btn-green" style="margin-right: 10px;">수정</button>
-         </c:if>      	
-               	</td>
-         </tr>
-         </tfoot>
-      </table>
-      </div>
-   </div>
+	<div class="col-lg-1">
+	</div>
+	<div class="col-lg-10">
+	
+		<div class="containerfW">
+		   <h2></h2>
+		   <form name="writeForm" id="writeForm" method="post" enctype="multipart/form-data">
+		      <div class="row">
+		      	<div class="col-lg-6">
+			      <input type="text" name="userName" id="userName" maxlength="20" value="${wdUser.userNickname}" style="ime-mode:active;" class="form-control mb-2 nickInput" placeholder="" readonly />		      	
+		      	</div>
+		      	<div class="col-lg-6">
+			      <input type="text" name="userEmail" id="userEmail" maxlength="30" value="${wdUser.userEmail}" style="ime-mode:inactive;" class="form-control mb-2 emailInput" placeholder="" readonly />		      	
+		      	</div>
+		      </div>
+		      
+		      
+		      <input type="text" name="hiBbsTitle" id="hiBbsTitle" maxlength="100" style="ime-mode:active;" class="form-control mb-2" placeholder="제목을 입력해주세요." required />
+		      <div class="form-group">
+		         <textarea class="form-control" rows="10" name="hiBbsContent" id="hiBbsContent" style="ime-mode:active;" placeholder="내용을 입력해주세요" required></textarea>
+		      </div>
+		      <input type="file" id="hiBbsFile" name="hiBbsFile" class="form-control mb-2"  placeholder="파일을 선택하세요." required style="/*display: none;*/"/>		      
+		      
+		      <div class="form-group row">
+		         <div class="col-sm-12">
+		            <button type="button" id="btnList" class="w-btn w-btn-green2" title="리스트">리스트</button>
+		            <button type="button" id="btnWrite" class="w-btn w-btn-green" title="저장">저장</button>
+		         </div>
+		      </div>
+		      
+		      <!-- div class="row">
+			      <div class="col-lg-6">
+			      	<div class="fileButton">
+			      	  <!-- class="form-control mb-2" >
+			      	  <label class="w-btn-outline w-btn-skin" for="hiBbsFile">
+			      	  	파일을 선택해주세요
+			      	  </label>
+				      <input type="file" id="hiBbsFile" name="hiBbsFile" class="form-control mb-2"  placeholder="파일을 선택하세요." required style="/*display: none;*/"/>		      
+			      	</div>
+			      </div>
+			      <div class="col-lg-6">
+			      </div>		      
+		      </div-->
+		      <br>
+
+		   </form>
+		   <form name="bbsForm" id="bbsForm" method="post">
+		      <input type="hidden" name="searchType" value="${searchType}" />
+		      <input type="hidden" name="searchValue" value="${searchValue}" />
+		      <input type="hidden" name="curPage" value="${curPage}" />
+		   </form>
+		</div>
+			
+	</div>
+	<div class="col-lg-1">
+	</div>
 </div>
 
 
-<form name="bbsForm" id="bbsForm" method="post">
-   <input type="hidden" name="bSeq" value="${bSeq}" />
-   <input type="hidden" name="searchType" value="${searchType}" />
-   <input type="hidden" name="searchValue" value="${searchValue}" />
-   <input type="hidden" name="curPage" value="${curPage}" />
-</form>
-
- <!-- *** 욱채수정Footer 시작 *** -->
-	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
- <!-- *** 욱채수정Footer 종료 *** -->
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
 </html>
