@@ -115,7 +115,7 @@ $(document).ready(function(){
 
 function movePage()
 {
-   location.href = "/board/list";
+   location.href = "/";
 }
 </script>
 </head>

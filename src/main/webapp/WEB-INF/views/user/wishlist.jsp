@@ -1,0 +1,494 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/taglib.jsp" %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    	<%@ include file="/WEB-INF/views/include/head.jsp" %>
+    	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital@0;1&family=The+Nautigal&display=swap" rel="stylesheet">
+<script>
+    $(document).ready(function(){
+
+//장바구니에서 홀 삭제
+<c:if test="${!empty wdRez.whCode}">
+    	$("#delBtnWishH").on("click", function(){
+    		if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
+    		{
+    			//ajax통신 시작
+    			$.ajax({
+				type:"POST",
+				url:"/user/updateHproc",
+				data:
+				{
+					rezNo: <c:out value="${wdRez.rezNo}" />
+				},
+				datatype:"JSON",
+				beforeSend:function(xhr){
+					xhr.setRequestHeader("AJAX", "true");
+				},
+				success:function(response){
+					if(response.code == 0)
+					{
+						alert("장바구니에서 해당 상품을 제거했습니다.");
+						//업데이트가 성공하면 해당 tr 삭제
+		    			$("#wishH").remove();
+					}
+					else
+					{
+						alert("게시물 삭제 중 오류가 발생했습니다.");
+					}
+				},
+				complete:function(data){
+					icia.common.log(data);
+				},
+				error:function(xhr, status, error)
+				{
+					icia.common.error(error);
+				}
+				});
+    			//ajax통신 종료
+    		}
+		});
+    	//삭제버튼 클릭 종료
+</c:if>
+//장바구니에서 홀 삭제
+
+//장바구니에서 스튜디오 삭제
+<c:if test="${!empty wdRez.sCode}">
+    	$("#delBtnWishS").on("click", function(){
+    		if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
+    		{
+    			//ajax통신 시작
+    			$.ajax({
+				type:"POST",
+				url:"/user/updateSproc",
+				data:
+				{
+					rezNo: <c:out value="${wdRez.rezNo}" />
+				},
+				datatype:"JSON",
+				beforeSend:function(xhr){
+					xhr.setRequestHeader("AJAX", "true");
+				},
+				success:function(response){
+					if(response.code == 0)
+					{
+						alert("장바구니에서 해당 상품을 제거했습니다.");
+						//업데이트가 성공하면 해당 tr 삭제
+		    			$("#wishS").remove();
+					}
+					else
+					{
+						alert("게시물 삭제 중 오류가 발생했습니다.");
+					}
+				},
+				complete:function(data){
+					icia.common.log(data);
+				},
+				error:function(xhr, status, error)
+				{
+					icia.common.error(error);
+				}
+				});
+    			//ajax통신 종료
+    		}
+		});
+    	//삭제버튼 클릭 종료
+</c:if>
+//장바구니에서 스튜디오 삭제 종료
+
+
+//장바구니에서 드레스 삭제
+<c:if test="${!empty wdRez.dNo}">
+    	$("#delBtnWishD").on("click", function(){
+    		if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
+    		{
+    			//ajax통신 시작
+    			$.ajax({
+				type:"POST",
+				url:"/user/updateDproc",
+				data:
+				{
+					rezNo: <c:out value="${wdRez.rezNo}" />
+				},
+				datatype:"JSON",
+				beforeSend:function(xhr){
+					xhr.setRequestHeader("AJAX", "true");
+				},
+				success:function(response){
+					if(response.code == 0)
+					{
+						alert("장바구니에서 해당 상품을 제거했습니다.");
+						//업데이트가 성공하면 해당 tr 삭제
+		    			$("#wishD").remove();
+					}
+					else
+					{
+						alert("게시물 삭제 중 오류가 발생했습니다.");
+					}
+				},
+				complete:function(data){
+					icia.common.log(data);
+				},
+				error:function(xhr, status, error)
+				{
+					icia.common.error(error);
+				}
+				});
+    			//ajax통신 종료
+    		}
+		});
+    	//삭제버튼 클릭 종료
+</c:if>
+//장바구니에서 드레스 삭제 종료
+
+//장바구니에서 메이크업 삭제
+<c:if test="${!empty wdRez.mCode}">
+    	$("#delBtnWishM").on("click", function(){
+    		if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
+    		{
+    			//ajax통신 시작
+    			$.ajax({
+				type:"POST",
+				url:"/user/updateMproc",
+				data:
+				{
+					rezNo: <c:out value="${wdRez.rezNo}" />
+				},
+				datatype:"JSON",
+				beforeSend:function(xhr){
+					xhr.setRequestHeader("AJAX", "true");
+				},
+				success:function(response){
+					if(response.code == 0)
+					{
+						alert("장바구니에서 해당 상품을 제거했습니다.");
+						//업데이트가 성공하면 해당 tr 삭제
+		    			$("#wishM").remove();
+					}
+					else
+					{
+						alert("게시물 삭제 중 오류가 발생했습니다.");
+					}
+				},
+				complete:function(data){
+					icia.common.log(data);
+				},
+				error:function(xhr, status, error)
+				{
+					icia.common.error(error);
+				}
+				});
+    			//ajax통신 종료
+    		}
+		});
+    	//삭제버튼 클릭 종료
+</c:if>
+//장바구니에서 메이크업 삭제 종료
+    	
+    });
+    
+    function fn_view1(whCode, hCode)
+    {
+   	document.rezForm.WHCode.value = whCode; 
+       document.rezForm.HCode.value = hCode;
+       document.rezForm.action = "/hsdm/HallView";  
+       document.rezForm.submit();
+    } 
+    function fn_view2(sCode)
+    {
+    	document.rezForm.sCode.value = sCode; 
+    	document.rezForm.action = "/hsdm/studioView";
+    	document.rezForm.submit();
+    }
+    function fn_view3(dNo)
+    {
+    	document.rezForm.dNo.value = dNo;
+    	document.rezForm.action = "/hsdm/dressView";
+    	document.rezForm.submit();
+    }
+    function fn_view4(mCode)
+    {
+    	document.rezForm.mCode.value = mCode; 
+    	document.rezForm.action = "/hsdm/makeupView";	
+    	document.rezForm.submit();
+    }
+    
+    
+    
+    
+    
+</script>
+    
+    
+</head>
+    
+<body>
+    <jsp:include page="/WEB-INF/views/include/navigation.jsp" >
+    <jsp:param name="userName" value="${wdUser.userNickname}" />
+    </jsp:include>
+    
+    <div class="page-heading-rent-venue2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 bcline">
+				
+				<div class="row">
+					<div class="col-lg-1">
+					</div>
+					<div class="col-lg-10">
+						<h2 style="font-family: 'Bitter', serif; margin-top: 10px; padding-left: 10px;">My Page</h2>
+						<nav class="bcItem">
+							<ol class="breadcrumb bc" >
+								<li class="breadcrumb-item active">
+									<h5>장바구니</h5>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="#">결제내역</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="#">쿠폰보유현황</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/modify">회원정보수정</a>
+								</li>
+							</ol>
+						</nav>
+					
+					</div>
+					<div class="col-lg-1">
+					</div>
+					
+					<!-- 다음 라인 -->
+					<div class="col-lg-1">
+					
+					</div>
+					<!-- 경계선 및 내용 -->
+					<div class="col-lg-10 lineListMypage">
+					
+						
+                        <table class="table tableWish">
+							<tr>
+							<h5 style="font-family: 'Bitter', serif; margin-top: 10px; padding-left: 10px;">예약번호: ${wdRez.rezNo}</h5>
+							</tr>
+                            <tr>
+                                <th>이미지</th>
+                                <th>상품정보</th>
+                                <th>참고사항</th>
+                                <th>총가격</th>
+                                <th>삭제</th>
+                            </tr>
+                            
+                            <!-- 홀 -->
+<c:if test="${!empty wdRez.whCode}">
+                            
+                            <tr id="wishH">
+                                <td class="image-prod">
+                                	<a href="javascript:void(0)" onclick="fn_view1('${wdRez.whCode}','${wdRez.hCode}')">
+                                		<img src="../resources/images/hallrepimage/${wdRez.hImgName}" id="prod" class="wishImg">
+                                	</a>
+                                </td>
+                                
+                                <td class="product-name">
+						        	<p><c:out value="${wdRez.whName}" />&nbsp;&nbsp;&nbsp;></p>
+						        	<p><h4>&nbsp;<c:out value="${wdRez.hName}" /></h4></p>
+						        	<!-- 주소 넣어야 할까유?? -->
+						        </td>
+                                
+                                <td class="HpriceTd">
+                                	<p class="Hpc">홀대관비: <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01)}" />원</p>
+                                	<p>식비: <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hFood * wdRez.hMin}" />원</p>
+                                	<p class="sangsaeP">
+	                                	<span class="chamgo">
+	                                		대관료할인: <span id="discountSpan">${wdRez.hDiscount}%</span> &nbsp;&nbsp;</span>
+	                                		<span id="xPrice"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice}" />원 </span>&nbsp;&nbsp;
+	                                		<span id="nPrice"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01)}" />원</span>
+	                                	
+                                	</p>	
+                                	<p class="sangsaeP">
+	                                	<span class="chamgo">	                               		
+	                                		1인당 식비: ${wdRez.hFood}원 x ${wdRez.hMin}명 = ${wdRez.hFood * wdRez.hMin}원
+	                                	</span>
+                                	</p>
+                                </td>
+                                
+                                <td class="HpriceTotal">
+                                	<h4>
+                                		<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin)}" />원
+                                	</h4>
+                                </td>
+                                
+                                <td>
+                                    <input type="button" value="x" class="w-btn-red delBtnWish" id="delBtnWishH">
+                                </td>
+                            </tr>
+</c:if>
+                            <!-- 스 -->
+<c:if test="${!empty wdRez.sCode}">
+                         
+                            <tr id="wishS">
+                                <td class="image-prod">
+                                	<a href="javascript:void(0)" onclick="fn_view2('${wdRez.sCode}')">
+                                		<img src="../resources/images/studio/${wdRez.sImgName}" id="prod" class="wishImg">
+                                	</a>
+                                </td>
+                                
+                                <td class="product-name">
+						        	<p>&nbsp;&nbsp;&nbsp;<p>
+						        	<p><h4>&nbsp;<c:out value="${wdRez.sName}" /></h4></p>
+						        	<!-- 주소 넣어야 할까유?? -->
+						        </td>
+                                
+                                <td class="HpriceTd">
+                                	<p class="Spc">스튜디오 예약일:<c:out value="${wdRez.sDate}"/></p>
+                                	
+                                	<p class="sangsaeP">
+	                                	<span class="chamgo">
+	                                		할인: <span id="discountSpan">${wdRez.sDiscount}%</span> &nbsp;&nbsp;</span>
+	                                		<span id="xPrice"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.sPrice}" />원 </span>&nbsp;&nbsp;
+	                                		<span id="nPrice"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.sPrice *(1- wdRez.sDiscount*0.01)}" />원</span>
+	                                	
+                                	</p>
+                                	<p><span class="chamgo">
+                                		예약일 변경 시 스튜디오와 직접 상의하시면 더 빠르게 처리가 가능합니다.
+                                	</span></p>
+                                </td>
+                                
+                                <td class="HpriceTotal">
+                                	<h4>
+                                		<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.sPrice *(1- wdRez.sDiscount*0.01)}" />원
+                                	</h4>
+                                </td>
+                                
+                                <td>
+                                    <input type="button" value="x" class="w-btn-red delBtnWish" id="delBtnWishS">
+                                </td>
+                            </tr>
+</c:if>
+
+                            <!-- 드 -->
+<c:if test="${!empty wdRez.dNo}">
+                            <tr id="wishD">
+                                <td class="image-prod">
+                                	<a href="javascript:void(0)" onclick="fn_view3('${wdRez.dNo}')">
+                                		<img src="../resources/images/dress/${wdRez.dImgName}" id="prod" class="wishImg">
+                                	</a>
+                                </td>
+                                
+                                <td class="product-name">
+						        	<p>&nbsp;&nbsp;&nbsp;<p>
+						        	<p><h4>&nbsp;<c:out value="${wdRez.dName}" /></h4></p>
+						        	<!-- 주소 넣어야 할까유?? -->
+						        </td>
+                                
+                                <td class="HpriceTd">
+                                	<p class="Dpc"><c:out value="${wdRez.dContent}" /></p>
+                                	                                	<p class="sangsaeP">
+	                                <span class="chamgo">
+                                		할인: <span id="discountSpan">${wdRez.dDiscount}%</span> &nbsp;&nbsp;</span>
+                                		<span id="xPrice"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.dPrice}" />원 </span>&nbsp;&nbsp;
+                                		<span id="nPrice"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.dPrice *(1- wdRez.dDiscount*0.01)}" />원</span>	
+                                	</p>
+                                	<p><span class="chamgo">
+                                	</span></p>
+                                </td>
+                                
+                                <td class="HpriceTotal">
+                                	<h4>
+                                		<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.dPrice *(1- wdRez.dDiscount*0.01)}" />원
+                                	</h4>
+                                </td>
+                                
+                                <td>
+                                    <input type="button" value="x" class="w-btn-red delBtnWish" id="delBtnWishD">
+                                </td>
+                            </tr>
+</c:if>
+
+                            <!-- 메 -->
+<c:if test="${!empty wdRez.mCode}">
+                            <tr id="wishM">
+                                <td class="image-prod">
+                                	<a href="javascript:void(0)" onclick="fn_view4('${wdRez.mCode}')">
+                                		<img src="../resources/images/makeup/${wdRez.mImgName}" id="prod" class="wishImg">
+                                	</a>
+                                </td>
+                                
+                                <td class="product-name">
+						        	<p>&nbsp;&nbsp;&nbsp;<p>
+						        	<p><h4>&nbsp;<c:out value="${wdRez.mName}" /></h4></p>
+						        	<!-- 주소 넣어야 할까유?? -->
+						        </td>
+                                
+                                <td class="HpriceTd">
+                                	<p class="Hpc">비용: <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPrice *(1- wdRez.mDiscount*0.01)}" />원</p>
+<c:if test="${!empty wdRez.mPlusNum}"> 
+                                	<p>추가비용: <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPlus * wdRez.mPlusNum}" />원</p>
+</c:if>                                	
+                                	<p class="sangsaeP">
+	                                	<span class="chamgo">
+	                                		할인: <span id="discountSpan">${wdRez.mDiscount}% &nbsp;&nbsp;</span></span>
+	                                		<span id="xPrice"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPrice}" />원 </span>&nbsp;&nbsp;
+	                                		<span id="nPrice"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPrice *(1- wdRez.mDiscount*0.01)}" />원</span>
+	                                	
+                                	</p>	
+<c:if test="${!empty wdRez.mPlusNum}"> 
+                                	<p class="sangsaeP">
+	                                	<span class="chamgo">	                               		
+	                                		추가비용: ${wdRez.mPlus}원 x ${wdRez.mPlusNum}명 = ${wdRez.mPlus * wdRez.mPlusNum}원
+	                                	</span>
+                                	</p>
+</c:if>
+                                </td>
+                                
+                                <td class="HpriceTotal">
+                                	<h4>
+                                		<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)}" />원
+                                	</h4>
+                                </td>
+                                
+                                <td>
+                                    <input type="button" value="x" class="w-btn-red delBtnWish" id="delBtnWishM">
+                                </td>
+                            </tr>
+</c:if>
+
+                        </table>
+
+					
+					</div>
+					<!-- 경계선 종료 -->
+
+					<div class="col-lg-1">
+						
+					</div>
+				
+				</div>
+			</div>			
+		</div>
+	</div>	
+
+
+<form name="rezForm" id="rezForm" method="post">
+	  <input type="hidden" name="WHCode" value="" /> 
+      <input type="hidden" name="HCode" value="" /> 
+      <input type="hidden" name="sCode" value="" />
+      <input type="hidden" name="dNo" value="" />
+      <input type="hidden" name="mCode" value="" /> 
+</form>    
+	
+		<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+  </body>
+
+</html>

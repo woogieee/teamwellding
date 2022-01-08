@@ -138,7 +138,8 @@ public class WDRezService {
 	//예약 총 가격 
 	public long rezFullPriceInsert(WDRez wdRez)
 	{
-			long count = 0;
+		long count = 0;
+		
 		try
 		{
 			count = wdRezDao.rezFullPriceInsert(wdRez);
@@ -150,4 +151,74 @@ public class WDRezService {
 		
 		return count;
 	}
+	
+	//장바구니에서 홀 제거
+	public int rezHallUpdate(WDRez wdRez) 
+	{
+		int cnt = 0;
+		
+		try 
+		{
+			cnt = wdRezDao.rezHallUpdate(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] rezHallUpdate Exception", e);			
+		}
+		
+		return cnt;
+	}
+	
+	//장바구니에서 스튜디오 제거
+	public int rezStudioUpdate(WDRez wdRez) 
+	{
+		int cnt = 0;
+		
+		try 
+		{
+			cnt = wdRezDao.rezStudioUpdate(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] rezStudioUpdate Exception", e);
+		}
+		
+		return cnt;
+	}
+	
+	//장바구니에서 드레스 제거
+	public int rezDressUpdate(WDRez wdRez) 
+	{
+		int cnt = 0;
+		
+		try 
+		{
+			cnt = wdRezDao.rezDressUpdate(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] rezDressUpdate Exception", e);
+		}
+		
+		return cnt;
+	}
+	
+	//장바구니에서 메이크업 제거
+	public int rezMakeupUpdate(WDRez wdRez) 
+	{
+		int cnt = 0;
+		
+		try 
+		{
+			cnt = wdRezDao.rezMakeupUpdate(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] rezMakeupUpdate Exception", e);
+		}
+		
+		return cnt;
+	}
+	
+
 }

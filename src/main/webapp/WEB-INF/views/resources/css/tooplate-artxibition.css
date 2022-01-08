@@ -5699,7 +5699,118 @@ responsive
 	border-bottom: 5px solid gray;
 }
 
+.lineListMypage
+{
+    background-color: #fff;
+    border-bottom: 4px solid lightgray;
+    border-radius: 5px 5px;
+}
+
+.wishImg
+{
+	width: 100px;
+	height: 100px;
+}
+
+.tableWish
+{
+	border-collapse: collapse;
+	border-bottom: 3px dashed lightgray;
+}
+
+.tableWish th
+{
+	text-align: center;
+	border-right: 1px solid lightgray;
+}
+
+.tableWish td
+{
+	padding: 0px;
+	text-align: center;
+	border-right: 1px solid lightgray;
+}
+
+.tableWish .image-prod
+{
+	/*width: 100px;*/
+}
+
+.delBtnWish
+{
+	margin-top: 35px;
+	margin-bottom: 0px;
+}
+
+.chamgo
+{
+	font-size: 10px;
+	color: #a8a8a8;
+}
+
+.HpriceTd p
+{
+	font-size: 16px;
+	font-weight: bold; 
+}
+
+.HpriceTd .sangsaeP
+{
+	line-height: 0.8;
+}
+
+#xPrice
+{
+	font-weight: none;
+	font-size: 10px;
+	color: #a8a8a8;
+	text-decoration: line-through;
+}
+
+#nPrice
+{
+	color: red;
+}
+
+#discountSpan
+{
+	color: red;
+}
+
+.HpriceTd .Hpc
+{
+	margin-top: 13px;
+}
+
+.HpriceTd .Spc
+{
+	margin-top: 15px;
+}
+
+.HpriceTd .Dpc
+{
+	margin-top: 30px;
+}
+
+.HpriceTotal h4
+{
+	margin-top: 35px;
+}
+
+.product-name h4
+{
+	margin-top: 10px;
+}
+
+.bcItem h5
+{
+	color: black;
+	font-weight: bold;
+}
+
 /* 마이페이지 관련 종료 */
+
+
 
 /* 의수 추가 내용  종료==========*/
 

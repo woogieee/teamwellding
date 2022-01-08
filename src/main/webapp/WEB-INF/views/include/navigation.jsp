@@ -18,7 +18,7 @@
                 <div class="col-lg-6 col-sm-6">
                     <div class="text-button ourperson">
 
-                        <a href="/user/myPage">마이페이지</a>
+                        <a href="/user/wishlist">마이페이지</a>
                         <a href="/loginOut">로그아웃</a>
                         <a href="javascript:void(0)" target="_blank" onclick="openPop()">내 쿠폰</a>
                     </div>

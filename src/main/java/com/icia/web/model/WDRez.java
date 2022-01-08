@@ -48,6 +48,8 @@ public class WDRez implements Serializable
 	private String dImgName;
 	private String dContent;
 	
+	private String sDate;
+	
 	public WDRez() {
 		  rezNo = "";
 		  whCode = "";
@@ -89,6 +91,7 @@ public class WDRez implements Serializable
 		  dDiscount = 0;
 		  dImgName = "";
 		  dContent = "";
+		  sDate = "";
 	}
 
 	
@@ -512,7 +515,14 @@ public class WDRez implements Serializable
 	public void setRezPoint(long rezPoint) {
 		this.rezPoint = rezPoint;
 	}
-	
-	
 
+	public String getsDate() {
+		return sDate;
+	}
+
+	public void setsDate(String sDate) {
+		this.sDate = sDate;
+	}
+	
+	
 }
