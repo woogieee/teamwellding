@@ -188,7 +188,7 @@ public class WDFBoardController
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
 		
 		model.addAttribute("wdUser", wdUser);
-		
+		model.addAttribute("cookieUserId",cookieUserId);
 		model.addAttribute("bSeq", bSeq);
 		model.addAttribute("searchType", searchType);
 		model.addAttribute("searchValue", searchValue);

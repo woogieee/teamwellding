@@ -56,7 +56,16 @@ html, body
 	overflow-x:hidden;
 }
 
+/*욱채 자유게시판*/
+#commentD{
+	float : right;
+}
+/*욱채 자유게시판*/
 
+#commentU{
+	float : right;
+	margin-right:5px;
+}
 
 #closebtn{
 	float : right;
