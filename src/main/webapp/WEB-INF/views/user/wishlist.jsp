@@ -347,7 +347,7 @@
 						        </td>
                                 
                                 <td class="HpriceTd alignleft">
-                                	<p class="Spc">스튜디오 예약일자 &nbsp <span style="font-weight:700;"><c:out value="${wdRez.sDate}"/></span></p>
+                                	<p class="Spc">스튜디오 예약일자 &nbsp <span style="font-weight:700; font-size:18px; color: #333;"><c:out value="${wdRez.sDate}"/></span></p>
                                 	<p class="sangsaeP">
 	                                	<span class="chamgo">
 	                                		할인: <span id="discountSpan">${wdRez.sDiscount}%</span> &nbsp;&nbsp;</span>
@@ -468,7 +468,7 @@
 				
 					<div class="col-lg-1"></div>
 					<div class="col-lg-10">
-<c:if test="${!empty wdRez.whCode || !empty wdRez.sCode || !empty wdRez.dNo || !empty wdRez.mCode || !empty wdRez.mPlusNum}">
+<c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
 						<div class="rez_sum">
 							<dl class="sumbox1">
 								<dt class="sumsec">총상품금액</dt>
