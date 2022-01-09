@@ -35,7 +35,7 @@
 	   $("#btnEmailCheck").prop("disabled", true);
 	   
 	   if(!$("#checkinput").length > 0){
-	   $("#dd").append("<div class='input2' style='margin-bottom: 25px;'><input type='text' id='checkinput' name='checkinput' placeholder='인증번호를 입력해주세요'><button onclick='imnotok()' class='btn_check2'>인증확인</button><br><p class='msg'></p></div>");
+	   $("#dd").append("<div class='input2' style='margin-bottom: 35px; margin-top: 5px;'><input type='text' id='checkinput' name='checkinput' placeholder='인증번호를 입력해주세요'><button onclick='imnotok()' class='btn_check2'>인증확인</button><br><p class='msg2'></p></div>");
 	   document.contact.receiveMail.value = $("#email").val();
        //document.contact.action = "/board/check.do";
        //document.contact.submit();
@@ -499,7 +499,7 @@ function fn_validateEmail(value)
 	               </form>
                </div>
               <input type="button" value="인증하기" id="btnEmailCheck" class="btn_check">
-              <p class="msg"></p>  
+              <p class="msg2"></p>  
 			</dd>
 	         <div class="button_area">
 			      <button class="btn_type1" id="btnReg">가입하기</button>
