@@ -35,7 +35,7 @@
 	   $("#btnEmailCheck").prop("disabled", true);
 	   
 	   if(!$("#checkinput").length > 0){
-	   $("#dd").append("<div class='input2'><input type='text' id='checkinput' name='checkinput' placeholder='인증번호를 입력해주세요'><button onclick='imnotok()' class='btn_check'>인증하기</button><br><p class='msg'></p></div>");
+	   $("#dd").append("<div class='input2' style='margin-bottom: 25px;'><input type='text' id='checkinput' name='checkinput' placeholder='인증번호를 입력해주세요'><button onclick='imnotok()' class='btn_check2'>인증확인</button><br><p class='msg'></p></div>");
 	   document.contact.receiveMail.value = $("#email").val();
        //document.contact.action = "/board/check.do";
        //document.contact.submit();
@@ -491,28 +491,21 @@ function fn_validateEmail(value)
             <dt>이메일</dt>
             <dd id="dd">
                <div class="input2" id="emaildiv">
-               <form id="contact" name="contact" method="post">
-               <input id="email" name="email" data-bind="email" type="text" placeholder="이메일을 입력해주세요" value="">
-               <input name="senderName" type="hidden" id="senderName" value="웰딩" />
-               <input name="senderMail" type="hidden" id="senderMail" value="wellding@gmail.com" />
-               <input type="hidden" name="receiveMail" id="receiveMail" value=""/> <!-- 메일을 받을 사용자의 메일주소 -->
-               </form>
+	               <form id="contact" name="contact" method="post">
+		               <input id="email" name="email" data-bind="email" type="text" placeholder="이메일을 입력해주세요" value="">
+		               <input name="senderName" type="hidden" id="senderName" value="웰딩" />
+		               <input name="senderMail" type="hidden" id="senderMail" value="wellding@gmail.com" />
+		               <input type="hidden" name="receiveMail" id="receiveMail" value=""/> <!-- 메일을 받을 사용자의 메일주소 -->
+	               </form>
                </div>
               <input type="button" value="인증하기" id="btnEmailCheck" class="btn_check">
-               <p class="msg"></p>  
+              <p class="msg"></p>  
 			</dd>
-         <div class="button_area">
-      <button class="btn_type1" id="btnReg">가입하기</button>
-      <button class="btn_type2" id="btnCC">취소</button>
-      <input type="hidden" id="pwd" name="pwd" value="" />
-
-   
-      
-         </div>
-                     </div>
-                  </div>
-               </dd>
-            </div>
+	         <div class="button_area">
+			      <button class="btn_type1" id="btnReg">가입하기</button>
+			      <button class="btn_type2" id="btnCC">취소</button>
+			      <input type="hidden" id="pwd" name="pwd" value="" />
+	         </div>
       </dl>
    </div>
 
