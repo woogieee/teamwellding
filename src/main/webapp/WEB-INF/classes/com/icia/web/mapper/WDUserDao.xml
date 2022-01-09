@@ -53,7 +53,7 @@ SET
     U_MARRYDATE = #{marrytDate},
     U_POINT = 0
 WHERE
-        USER_ID = '%%%%%%%%%%%%%%%%%%'
+        U_CHECK = #{uCheck}
 </update>
 
 
@@ -90,22 +90,22 @@ INSERT INTO WD_USER (
     U_EMAIL,
     U_CHECK
 ) VALUES (
-    '%%%%%%%%%%%%%%%%%%',
-    '%%%%%%%%%%%%%%%%%%',
-    '%%%%%%%%%%%%%%%%%%',
+    #{userId},
+    #{userNickname},
+    #{userEmail},
     #{uCheck}
 )
 </insert>
 <!-- 이메일 인증을 위한 임시 데이터 삽입 종료 -->
 
 <!-- 이메일 인증 값 체크 -->
-<select id="checkSelect" resultMap="userResultMap">
+<select id="checkSelect" parameterType="int" resultMap="userResultMap">
 SELECT
-    U_CHECK
+    NVL(U_CHECK, 0) U_CHECK
 FROM
     WD_USER
 WHERE
-    USER_ID = '%%%%%%%%%%%%%%%%%%'
+    U_CHECK = #{value}
 </select>
 <!-- 이메일 인증 값 체크 -->
     

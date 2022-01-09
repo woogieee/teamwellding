@@ -263,7 +263,8 @@ $("#name").keyup(function(){
                day : $("#day").val(),
                gender : $("#gender").val(),
                nickname : $("#nickname").val(),
-               email : $("#email").val()
+               email : $("#email").val(),
+               uCheck : $("#checkinput").val()
             },
             datatype: "JSON",
             beforeSend: function(xhr){

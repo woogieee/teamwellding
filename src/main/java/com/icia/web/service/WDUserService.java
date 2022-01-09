@@ -104,12 +104,12 @@ public class WDUserService
 	}
 	
 	//아이디 인증번호 체크
-	public WDUser checkSelect() {
+	public WDUser checkSelect(int uCheck) {
 		
 		WDUser wduser = null;
 		
 		try {
-			wduser = wdUserDao.checkSelect();
+			wduser = wdUserDao.checkSelect(uCheck);
 		}
 		catch(Exception e) 
 		{
