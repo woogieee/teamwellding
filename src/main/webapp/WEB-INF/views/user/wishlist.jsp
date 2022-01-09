@@ -217,13 +217,7 @@
     	document.rezForm.submit();
     }
     
-    
-    
-    
-    
-</script>
-    
-    
+</script>  
 </head>
     
 <body>
@@ -248,7 +242,7 @@
 					<div class="col-lg-1">
 					</div>
 					<div class="col-lg-10">
-						<h2 style="font-family: 'Bitter', serif; margin-top: 10px; padding-left: 10px;">My Page</h2>
+						<h2 style="font-family: 'Bitter', serif; margin-top: 50px; padding-left: 10px;">My Page</h2>
 						<nav class="bcItem">
 							<ol class="breadcrumb bc" >
 								<li class="breadcrumb-item active">
@@ -280,9 +274,12 @@
 						
                         <table class="table tableWish">
 							<tr>
-							<h5 style="font-family: 'Bitter', serif; margin-top: 10px; padding-left: 10px;">예약번호: ${wdRez.rezNo}</h5>
+								<div class="rez_sta">
+									<h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
+									<h5 class="rez_number">예약번호&nbsp;&nbsp; <span>${wdRez.rezNo}</span></h5>
+								</div>
 							</tr>
-                            <tr>
+                            <tr style="border-top: 3px solid #444;">
                                 <th>이미지</th>
                                 <th>상품정보</th>
                                 <th>참고사항</th>
@@ -295,20 +292,20 @@
                             
                             <tr id="wishH">
                                 <td class="image-prod">
-                                	<a href="javascript:void(0)" onclick="fn_view1('${wdRez.whCode}','${wdRez.hCode}')">
+                                	<div class="imgbox" onclick="fn_view1('${wdRez.whCode}','${wdRez.hCode}')">
                                 		<img src="../resources/images/hallrepimage/${wdRez.hImgName}" id="prod" class="wishImg">
-                                	</a>
+                                	</div>
                                 </td>
                                 
-                                <td class="product-name">
-						        	<p><c:out value="${wdRez.whName}" />&nbsp;&nbsp;&nbsp;></p>
+                                <td class="product-name alignleft">
+						        	<p class="my_hall"><c:out value="${wdRez.whName}" /></p>
 						        	<p><h4>&nbsp;<c:out value="${wdRez.hName}" /></h4></p>
-						        	<!-- 주소 넣어야 할까유?? -->
+						        	<!-- 주소 넣어야 할까유?? ㄴㄴㄴㄴ무쓸모 -->
 						        </td>
                                 
-                                <td class="HpriceTd">
-                                	<p class="Hpc">홀대관비: <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01)}" />원</p>
-                                	<p>식비: <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hFood * wdRez.hMin}" />원</p>
+                                <td class="HpriceTd alignleft">
+                                	<p class="Hpc">홀대관비&nbsp; <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01)}" />원
+                                	&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;식비&nbsp; <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hFood * wdRez.hMin}" />원</p>
                                 	<p class="sangsaeP">
 	                                	<span class="chamgo">
 	                                		대관료할인: <span id="discountSpan">${wdRez.hDiscount}%</span> &nbsp;&nbsp;</span>
@@ -318,7 +315,7 @@
                                 	</p>	
                                 	<p class="sangsaeP">
 	                                	<span class="chamgo">	                               		
-	                                		1인당 식비: ${wdRez.hFood}원 x ${wdRez.hMin}명 = ${wdRez.hFood * wdRez.hMin}원
+	                                		1인당 식비: <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hFood}" />원 x ${wdRez.hMin}명 = <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hFood * wdRez.hMin}" />원
 	                                	</span>
                                 	</p>
                                 </td>
@@ -339,20 +336,18 @@
                          
                             <tr id="wishS">
                                 <td class="image-prod">
-                                	<a href="javascript:void(0)" onclick="fn_view2('${wdRez.sCode}')">
+                                	<div class="imgbox"  onclick="fn_view2('${wdRez.sCode}')">
                                 		<img src="../resources/images/studio/${wdRez.sImgName}" id="prod" class="wishImg">
-                                	</a>
+                                	</div>
                                 </td>
                                 
-                                <td class="product-name">
-						        	<p>&nbsp;&nbsp;&nbsp;<p>
+                                <td class="product-name alignleft">
 						        	<p><h4>&nbsp;<c:out value="${wdRez.sName}" /></h4></p>
-						        	<!-- 주소 넣어야 할까유?? -->
+						        	<!-- 주소 넣어야 할까유?? ㄴㄴ필요없을듯-->
 						        </td>
                                 
-                                <td class="HpriceTd">
-                                	<p class="Spc">스튜디오 예약일:<c:out value="${wdRez.sDate}"/></p>
-                                	
+                                <td class="HpriceTd alignleft">
+                                	<p class="Spc">스튜디오 예약일자 &nbsp <span style="font-weight:700;"><c:out value="${wdRez.sDate}"/></span></p>
                                 	<p class="sangsaeP">
 	                                	<span class="chamgo">
 	                                		할인: <span id="discountSpan">${wdRez.sDiscount}%</span> &nbsp;&nbsp;</span>
@@ -381,19 +376,19 @@
 <c:if test="${!empty wdRez.dNo}">
                             <tr id="wishD">
                                 <td class="image-prod">
-                                	<a href="javascript:void(0)" onclick="fn_view3('${wdRez.dNo}')">
+                                	<div class="imgbox" onclick="fn_view3('${wdRez.dNo}')">
                                 		<img src="../resources/images/dress/${wdRez.dImgName}" id="prod" class="wishImg">
-                                	</a>
+                                	</div>
                                 </td>
                                 
-                                <td class="product-name">
-						        	<p>&nbsp;&nbsp;&nbsp;<p>
+                                <td class="product-name alignleft">
+                                	<p class="my_hall"><c:out value="${wdRez.dcName}" /></p>
 						        	<p><h4>&nbsp;<c:out value="${wdRez.dName}" /></h4></p>
 						        	<!-- 주소 넣어야 할까유?? -->
 						        </td>
                                 
-                                <td class="HpriceTd">
-                                	<p class="Dpc"><c:out value="${wdRez.dContent}" /></p>
+                                <td class="HpriceTd alignleft">
+                                	<p class="Dpc Hpc"><c:out value="${wdRez.dContent}" /></p>
                                 	                                	<p class="sangsaeP">
 	                                <span class="chamgo">
                                 		할인: <span id="discountSpan">${wdRez.dDiscount}%</span> &nbsp;&nbsp;</span>
@@ -420,21 +415,20 @@
 <c:if test="${!empty wdRez.mCode}">
                             <tr id="wishM">
                                 <td class="image-prod">
-                                	<a href="javascript:void(0)" onclick="fn_view4('${wdRez.mCode}')">
+                                	<div class="imgbox"  onclick="fn_view4('${wdRez.mCode}')">
                                 		<img src="../resources/images/makeup/${wdRez.mImgName}" id="prod" class="wishImg">
-                                	</a>
+                                	</div>
                                 </td>
                                 
-                                <td class="product-name">
-						        	<p>&nbsp;&nbsp;&nbsp;<p>
+                                <td class="product-name alignleft">
 						        	<p><h4>&nbsp;<c:out value="${wdRez.mName}" /></h4></p>
 						        	<!-- 주소 넣어야 할까유?? -->
 						        </td>
                                 
-                                <td class="HpriceTd">
-                                	<p class="Hpc">비용: <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPrice *(1- wdRez.mDiscount*0.01)}" />원</p>
+                                <td class="HpriceTd alignleft">
+                                	<p class="Hpc">비용&nbsp; <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPrice *(1- wdRez.mDiscount*0.01)}" />원
 <c:if test="${!empty wdRez.mPlusNum}"> 
-                                	<p>추가비용: <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPlus * wdRez.mPlusNum}" />원</p>
+                                	&nbsp;&nbsp;/&nbsp;&nbsp; 추가비용&nbsp; <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPlus * wdRez.mPlusNum}" />원</p>
 </c:if>                                	
                                 	<p class="sangsaeP">
 	                                	<span class="chamgo">
@@ -446,7 +440,7 @@
 <c:if test="${!empty wdRez.mPlusNum}"> 
                                 	<p class="sangsaeP">
 	                                	<span class="chamgo">	                               		
-	                                		추가비용: ${wdRez.mPlus}원 x ${wdRez.mPlusNum}명 = ${wdRez.mPlus * wdRez.mPlusNum}원
+	                                		추가비용: <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPlus}" />원 x ${wdRez.mPlusNum}명 = <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPlus * wdRez.mPlusNum}" />원
 	                                	</span>
                                 	</p>
 </c:if>
@@ -470,9 +464,45 @@
 					</div>
 					<!-- 경계선 종료 -->
 
-					<div class="col-lg-1">
-						
+					<div class="col-lg-1"></div>
+				
+					<div class="col-lg-1"></div>
+					<div class="col-lg-10">
+<c:if test="${!empty wdRez.whCode || !empty wdRez.sCode || !empty wdRez.dNo || !empty wdRez.mCode || !empty wdRez.mPlusNum}">
+						<div class="rez_sum">
+							<dl class="sumbox1">
+								<dt class="sumsec">총상품금액</dt>
+								<dd class="sumpay1">
+									<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice + wdRez.dPrice + wdRez.mPrice + (wdRez.mPlus*wdRez.mPlusNum)}" />원
+								</dd>
+							</dl>
+							
+							<dl class="sumbox3">
+								<dt class="pam">-</dt>
+							</dl>
+							
+							<dl class="sumbox1">
+								<dt class="sumsec">예상할인금액</dt>
+								<dd class="sumpay2"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + (wdRez.mPrice *(1- wdRez.mDiscount*0.01))}" />원</dd>
+							</dl>
+							
+							<dl class="sumbox3">
+								<dt class="pam">=</dt>
+							</dl>
+							
+							<div class="sumbox2">
+								<h5>총 주문금액 
+									<span>
+										<fmt:formatNumber type="number" maxFractionDigits="0" 
+										value="${(wdRez.hPrice + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice + wdRez.dPrice + wdRez.mPrice + (wdRez.mPlus*wdRez.mPlusNum)) - ((wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + (wdRez.mPrice *(1- wdRez.mDiscount*0.01)))}"
+										 />원
+									</span>
+								</h5>
+							</div>
+						</div>
+</c:if>
 					</div>
+					<div class="col-lg-1"></div>
 				
 				</div>
 			</div>			

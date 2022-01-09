@@ -5102,8 +5102,14 @@ responsive
 }
 
 .w-btn-red {
-    background-color: #f00000;
-    color: #e1eef6;
+    color: #f85151;
+    font-size: 22px;
+    border: none;
+    outline: none;
+    background: #fff;
+    font-weight: 300;
+    padding: 0;
+    margin: 0;
 }
 
 .w-btn-skin {
@@ -5670,21 +5676,21 @@ responsive
 
 .bcItem
 {
-	margin-top: 2%;
+	margin-top: 10px;
 	text-align: center;
-    align-items: center;
+    /*align-items: center;*/
 }
 
 .bcItem a
 {
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .bcItem .bc
 {
     background-color: #fff;
     border-top: 4px solid lightgray;
-    border-radius: 5px 5px; 
+    /*border-radius: 5px 5px; */
 }
 
 .bc a
@@ -5706,14 +5712,16 @@ responsive
 
 .bcline
 {
-	border-bottom: 5px solid gray;
+	/*border-bottom: 5px solid gray;*/
+	padding-bottom: 40px;
 }
 
 .lineListMypage
 {
-    background-color: #fff;
-    border-bottom: 4px solid lightgray;
+    /*background-color: #fff;
+    border-bottom: 4px solid #dedede;
     border-radius: 5px 5px;
+    padding: 0 40px;*/
 }
 
 .wishImg
@@ -5725,31 +5733,41 @@ responsive
 .tableWish
 {
 	border-collapse: collapse;
-	border-bottom: 3px dashed lightgray;
+	border-bottom: 2px solid #888!important;
 }
 
 .tableWish th
 {
 	text-align: center;
-	border-right: 1px solid lightgray;
+	/*border-right: 1px solid lightgray;*/
+	font-size: 13px;
+	font-weight: 600;
+	color: #555;
+	padding: 10px;
 }
 
 .tableWish td
 {
-	padding: 0px;
+	padding: 10px 0;
 	text-align: center;
-	border-right: 1px solid lightgray;
+	border-right: 1px solid #efefef;
+}
+
+.tableWish td:last-child
+{
+	border-right: none;
 }
 
 .tableWish .image-prod
 {
-	/*width: 100px;*/
+	width: 120px;
+	border-right: none;
 }
 
 .delBtnWish
 {
-	margin-top: 35px;
-	margin-bottom: 0px;
+	/*margin-top: 35px;
+	margin-bottom: 0px;*/
 }
 
 .chamgo
@@ -5758,10 +5776,17 @@ responsive
 	color: #a8a8a8;
 }
 
+.HpriceTd
+{
+	width:550px;
+}
+
 .HpriceTd p
 {
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: bold; 
+	width: 100%;
+	padding: 0 25px;
 }
 
 .HpriceTd .sangsaeP
@@ -5779,37 +5804,49 @@ responsive
 
 #nPrice
 {
-	color: red;
+	color: #f85151;
 }
 
 #discountSpan
 {
-	color: red;
+	color: #f85151;
 }
 
 .HpriceTd .Hpc
 {
-	margin-top: 13px;
+	/*margin-top: 13px;*/
+	width: 100%;
+	color: #333;
+	font-weight: 300;
 }
 
 .HpriceTd .Spc
 {
 	margin-top: 15px;
+	width: 100%;
+	color: #333;
+	font-weight: 300;
 }
 
 .HpriceTd .Dpc
 {
-	margin-top: 30px;
+	/*margin-top: 30px;*/
 }
 
 .HpriceTotal h4
 {
-	margin-top: 35px;
+	/*margin-top: 35px;*/
+	font-size: 18px;
+	font-weight: 700;
 }
 
 .product-name h4
 {
-	margin-top: 10px;
+	/*margin-top: 10px;*/
+	font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    padding-left: 10px;
 }
 
 .bcItem h5
@@ -6106,3 +6143,164 @@ responsive
 }
 
 /* 동욱 추가 민트테마 끝 */
+
+/*보현추가 : 마이페이지 시작*/
+.rez_sta
+{
+	border: 3px solid #ececec;
+	width: 100%;
+	height: 78px;
+	padding: 10px;
+	margin-bottom: 35px;
+	text-align: center;
+}
+
+.rez_sta h5
+{
+	font-size: 15px;
+	padding: 0 50px;
+	margin: 16px 0;
+	line-height: 22px;
+	/*margin-bottom: 35px;*/
+	letter-spacing: 0.2px;
+	color: #333;
+}
+
+.rez_date
+{
+	display: inline-block;
+	/*float: left;*/
+	margin-right: 10px; 
+	border-right: 1px solid #ccc;
+	
+}
+
+.rez_number
+{
+	display: inline-block;
+	/*float: left;*/
+	margin-left: 10px;
+}
+
+.rez_sta h5 > span
+{
+	font-weight: 600;
+	font-size: 17px;
+	font-family: 'Bitter';
+}
+
+.rez_number span
+{
+	color: green;
+}
+
+.my_hall
+{
+	font-size:12px; 
+	font-weight:600; 
+	color:#777;
+	text-decoration: underline;
+	margin-left: 7px;
+	padding-left: 10px;
+}
+
+.alignleft
+{
+	text-align: left!important;
+}
+
+.imgbox
+{
+	width: 120px;
+	height: 120px;
+}
+
+.imgbox img
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 10%;
+}
+
+.rez_sum
+{
+	margin-top: 30px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+	width: 100%;
+	height: 100px;
+	padding: 24px 0;
+	margin-bottom: 40px;
+}
+
+.Rez_s1
+{
+	width: 50%;
+}
+
+.sumbox1
+{
+	display: inline-block;
+	margin: 0 25px;
+}
+
+.sumsec
+{
+	color: #333;
+	font-size: 14px;
+}
+
+.sumpay1
+{
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: 3px;
+	color: #333;
+}
+
+.sumpay2
+{
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: 3px;
+	color: #f85151
+}
+
+.sumbox2
+{
+	display: inline-block;
+	margin: 0 20px;
+	position: relative;
+	top: -10px;
+}
+
+.sumbox3
+{
+	display: inline-block;
+	margin: 0 20px;
+	position: relative;
+	top: -5px;
+}
+
+.pam
+{
+	font-size: 34px;
+	font-family: monospace;
+}
+
+.sumbox2 h5
+{
+	font-weight: 400;
+	font-size: 22px;
+}
+
+.sumbox2 h5 span
+{
+	color: #ff502d;
+    font-weight: 800;
+    font-size: 25px;
+}
+
+
+/*보현추가 끝*/
