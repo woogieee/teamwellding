@@ -57,15 +57,16 @@ html, body
 }
 
 /*욱채 자유게시판*/
-#commentD{
+.btnCommentD{
 	float : right;
+}
+
+.btnCommentU{
+	float : right;
+	margin-right : 5px;
 }
 /*욱채 자유게시판*/
 
-#commentU{
-	float : right;
-	margin-right:5px;
-}
 
 #closebtn{
 	float : right;

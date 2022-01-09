@@ -14,4 +14,8 @@ public interface WDCommentDao {
 	public int WDCommentInsert(WDComment wdComment);
 	
 	public int WDCommentMax(long parentSeq);
+	
+	public int commentDelete(WDComment wdComment);
+	
+	public int commentBoardDelete(long parentSeq);
 }

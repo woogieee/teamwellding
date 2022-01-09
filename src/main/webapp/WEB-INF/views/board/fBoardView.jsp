@@ -142,7 +142,55 @@ $(document).ready(function(){
 	            }
 	         });
     });
+    
 });
+
+function commentDelete(cSeq){
+	var parentSeq = {"parentSeq":<c:out value="${wdFBoard.bSeq}" />};
+	var commentSeq = {"commentSeq":cSeq}
+	
+	$.ajax({
+		type:"POST",
+		url:"/board/commentDelete",
+		data:
+		{
+			//parentSeq,
+			//commentSeq
+		},
+		datatype:"JSON",
+		beforeSend:function(xhr){
+			xhr.setRequestHeader("AJAX", "true");
+		},
+		success:function(response){
+			if(response.code == 0)
+			{
+				alert("댓글이 삭제되었습니다.");
+				location.href = "/board/fBoard";
+			}
+			else if(response.code == 400)
+			{
+				alert("로그인이 되어있지 않습니다.");
+				location.href = "/board/fBoard";
+			}
+			else if(response.code == 404)
+			{
+				alert("댓글을 찾을 수 없습니다.");
+				location.href = "/board/fBoard";
+			}
+			else
+			{
+				alert("댓글 삭제 중 오류가 발생했습니다.");
+			}
+		},
+		complete:function(data){
+			icia.common.log(data);
+		},
+		error:function(xhr, status, error)
+		{
+			icia.common.error(error);
+		}
+	});	
+}
 </script>
 </head>
 <body>
@@ -205,6 +253,7 @@ $(document).ready(function(){
                <textarea class="form-control" rows="3" name="wdFBoardComment" id="wdFBoardComment" style="ime-mode:active;resize: none;" placeholder="댓글을 입력해주세요" required></textarea><br>
                <button type="button" id="btnComment" class="btn btn-secondary">댓글등록</button></td>
             </tr>
+
 			<!-- 댓글 내용이 들어갈 곳 -->
 			<c:if test="${!empty commentList}">
             <c:forEach items="${commentList}" var="comment" >
@@ -212,19 +261,20 @@ $(document).ready(function(){
             <td>${comment.wdFBoardComment }</td>
             <td>작성자 : ${comment.uNickName } <br>${comment.regDate }
             <c:if test="${cookieUserId eq comment.userId }">
-            <button type="button" id="commentD" class="btn btn-secondary">삭제</button>
-            <button type="button" id="commentU" class="btn btn-secondary">수정</button>    
+            <button type="button" class="btn btn-secondary btnCommentD" onclick="commentDelete(${comment.commentSeq})">삭제</button>
+            <button type="button" class="btn btn-secondary btnCommentU">수정</button>    
             </c:if>        
             </td>
             </tr>
             </c:forEach>
             </c:if>
          </tbody>
-         <input type="hidden" name="bSeq" value="${bSeq}" />
-         <input type="hidden" name="searchType" value="${searchType}" />
-         <input type="hidden" name="searchValue" value="${searchValue}" />
-         <input type="hidden" name="curPage" value="${curPage}" />
-         </form>
+             <input type="hidden" name="bSeq" value="${bSeq}" />
+             <input type="hidden" name="cSeq" value="" />
+	         <input type="hidden" name="searchType" value="${searchType}" />
+	         <input type="hidden" name="searchValue" value="${searchValue}" />
+	         <input type="hidden" name="curPage" value="${curPage}" />
+	     </form>
          <tfoot>
          <tr>
          <td colspan="2">

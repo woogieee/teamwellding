@@ -57,5 +57,31 @@ public class WDCommentService {
 		
 		return count;
 	}
+	
+	public int commentDelete(WDComment wdComment) {
+		
+		int count = 0;
+		try {
+			count = wdCommentDao.commentDelete(wdComment);
+		}
+		catch(Exception e) {
+			logger.error("[WDCommentService] commentDelete Exception", e);
+		}	
+		
+		return count;
+	}
+	
+	public int commentBoardDelete(long parentSeq) {
+		int count = 0;
+		
+		try {
+			count = wdCommentDao.commentBoardDelete(parentSeq);
+		}
+		catch(Exception e) {
+			logger.error("[WDCommentService] commenBoardDelete Exception", e);
+		}	
+		
+		return count;
+	}
 
 }

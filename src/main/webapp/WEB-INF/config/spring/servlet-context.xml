@@ -83,6 +83,7 @@
             			<value>/popUpRoad</value>
             			<value>/board/fUpdateForm</value>
             			<value>/board/updateProc</value>
+            			<value>/board/commentDelete</value>
             			
 
             			<value>/include/PrivacyPolicy</value>
