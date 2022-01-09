@@ -19,6 +19,6 @@ public interface WDUserDao
 	
 	public int checkInsert(WDUser wduser);
 	
-	public WDUser checkSelect();
+	public WDUser checkSelect(int uCheck);
 	
 }

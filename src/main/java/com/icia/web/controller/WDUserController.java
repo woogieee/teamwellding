@@ -163,6 +163,7 @@ public class WDUserController
 		String gender = HttpUtil.get(request, "gender", "");
 		String nickName = HttpUtil.get(request, "nickname", "");
 		String email = HttpUtil.get(request, "email", "");
+		int uCheck = HttpUtil.get(request, "uCheck", 0);
 		
 		WDUser wdUser = new WDUser();
 		
@@ -175,8 +176,10 @@ public class WDUserController
 		wdUser.setUserNickname(nickName);
 		wdUser.setUserEmail(email);
 		wdUser.setStatus("Y");
+		wdUser.setuCheck(uCheck);
 		if(!StringUtil.isEmpty(userId) && !StringUtil.isEmpty(userPwd) && !StringUtil.isEmpty(userName) && !StringUtil.isEmpty(phone) &&
-			!StringUtil.isEmpty(marry) && !StringUtil.isEmpty(gender) && !StringUtil.isEmpty(nickName) && !StringUtil.isEmpty(email)) 
+			!StringUtil.isEmpty(marry) && !StringUtil.isEmpty(gender) && !StringUtil.isEmpty(nickName) && !StringUtil.isEmpty(email) &&
+			!StringUtil.isEmpty(uCheck)) 
 		{
 			System.out.println("다 들어왔어용 : "+userId );
 			if(wduserService.userInsert(wdUser) > 0) {
@@ -253,7 +256,7 @@ public class WDUserController
 		
 		WDUser wduser = null;
 		
-		wduser = wduserService.checkSelect();
+		wduser = wduserService.checkSelect(uCheck);
 		
 		if(uCheck == wduser.getuCheck()) {
 			ajaxResponse.setResponse(0, "Success");
