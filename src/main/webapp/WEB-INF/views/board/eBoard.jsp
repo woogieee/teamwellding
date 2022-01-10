@@ -185,4 +185,7 @@ function fn_view(eBSeq)
 		</div>
 
 		<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+
 </body>
+</html>
+
