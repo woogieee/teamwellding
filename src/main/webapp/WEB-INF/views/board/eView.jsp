@@ -18,6 +18,7 @@
 		});
 	});
 </script>
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navigation.jsp">
