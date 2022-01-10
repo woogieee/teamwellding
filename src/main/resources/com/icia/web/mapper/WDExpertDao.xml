@@ -92,8 +92,7 @@ FROM (SELECT
 		</when>
 	</choose>
 </if>
-		)
-        ORDER BY E_CODE ASC)
+        ORDER BY E_CODE ASC))
 WHERE
     RNUM <![CDATA[>=]]> #{startRow}
 AND
