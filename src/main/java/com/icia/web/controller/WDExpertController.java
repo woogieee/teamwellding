@@ -130,52 +130,27 @@ public class WDExpertController
 	@RequestMapping(value="/board/gosu")
 	public String expertView(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
-		String searchType = HttpUtil.get(request, "searchType", "");
-		String searchValue = HttpUtil.get(request, "searchValue", "");
-		long curPage = HttpUtil.get(request, "curPage", (long)1);
-		
+		//상세페이지에 필요한거 가져오기
 		String eCode = HttpUtil.get(request, "eCode", "");
 		
-		long totalCount = 0;
+		//List<WDExpert> list = null;
 		
-		List<WDExpert> list = null;
+		WDExpert wdExpert = null;
 		
-		Paging paging = null;
+		System.out.println("이거다 : "+eCode);
 		
-		WDExpert search = new WDExpert();
-		
-		if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue))
+		if(eCode != "")
 		{
-			search.setSearchType(searchType);
-			search.setSearchValue(searchValue);
-		}
-		else
-		{
-			searchType = "";
-			searchValue = "";
-		}
-		
-		totalCount = wdExpertService.expertListCount(search);
-		
-		if(totalCount > 0)
-		{
-			paging = new Paging("/board/specialist", totalCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage");
 			
-			paging.addParam("searchType", searchType);
-			paging.addParam("searchValue", searchValue);
-			paging.addParam("curPage", curPage);
-
-			search.setStartRow(paging.getStartRow());
-			search.setEndRow(paging.getEndRow());
+			wdExpert = wdExpertService.expertSelect(eCode);
 			
-			list = wdExpertService.expertList(search);
+			model.addAttribute("wdExpert", wdExpert);
+			
+			String eImgname = wdExpert.geteImgname();
 		}
 		
-		model.addAttribute("list", list);
-		model.addAttribute("searchType", searchType);
-		model.addAttribute("searchValue", searchValue);
-		model.addAttribute("curPage", curPage);
-		model.addAttribute("paging", paging);
+		model.addAttribute("eCode", eCode);
+		model.addAttribute("wdExpert", wdExpert);
 		
 		return "/board/gosu";
 	}

@@ -22,6 +22,64 @@ $(document).ready(function(){
 		document.hallForm.submit();
 	});
 	
+	
+	//홀 담기 버튼 시작
+	$("#chae").on("click",function(){
+		if(confirm("해당 홀을 장바구니에 담으시겠습니까?"))
+		{
+			//ajax통신 시작
+			$.ajax({
+			type:"POST",
+			url:"/hsdm/hallRezProc",
+			data:
+			{
+				whCode: $("#WHCode").val(),
+				hCode: $("#HCode").val()
+			},
+			datatype:"JSON",
+			beforeSend:function(xhr){
+				xhr.setRequestHeader("AJAX", "true");
+			},
+			success:function(response){
+				if(response.code == 0)
+				{
+					alert("장바구니에 해당 상품을 담았습니다.");
+					if(confirm("장바구니로 이동하시겠습니까?"))
+					{
+						location.href = "/user/wishlist";
+					}
+				}
+				else if(response.code == 403)
+				{
+					alert("서버와의 연결 상태를 확인해주세요.");
+				}
+				else if(response.code == 502)
+				{
+					alert("장바구니에 이미 다른 홀이 담겨 있습니다.");
+					if(confirm("장바구니로 이동하시겠습니까?"))
+					{
+						location.href = "/user/wishlist";
+					}
+				}
+				else
+				{
+					alert("장바구니에 상품을 담는 중 오류가 발생했습니다.");
+				}
+			},
+			complete:function(data){
+				icia.common.log(data);
+			},
+			error:function(xhr, status, error)
+			{
+				icia.common.error(error);
+			}
+			});
+			//ajax통신 종료
+		}
+		
+	});
+	//홀 담기 버튼 종료
+	
 });
 
 function fn_view(whCode, hCode)
@@ -166,8 +224,8 @@ function fn_view(whCode, hCode)
     </div>
     
    <form name="hallForm" id="hallForm" method="post">
-      <input type="hidden" name="WHCode" value="" /> 
-      <input type="hidden" name="HCode" value="" />
+      <input type="hidden" name="WHCode" id="WHCode" value="${wdHall.WHCode}" /> 
+      <input type="hidden" name="HCode" id="HCode" value="${wdHall.HCode}" />
       <input type="hidden" name="searchType" value="${searchType}" />
    	  <input type="hidden" name="searchValue" value="${searchValue}" />
       <input type="hidden" name="curPage" value="${curPage}" /> 

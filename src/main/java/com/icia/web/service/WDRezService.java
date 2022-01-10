@@ -18,14 +18,31 @@ public class WDRezService {
 	@Autowired
 	private WDRezDao wdRezDao;
 	
+	//예약 테이블 값 가져오기
+	public WDRez rezSelect(String userId) 
+	{
+		WDRez wdRez = null;
+		
+		try 
+		{
+			wdRez = wdRezDao.rezSelect(userId);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] rezSelect Exception", e);
+		}
+		
+		return wdRez;
+	}
+	
 	//예약 게시물 총 수 
-	public long rezListCount(WDRez wdRez)
+	public long rezListCount()
 	{
 		long count = 0;
 		
 		try
 		{
-			count = wdRezDao.rezListCount(wdRez);
+			count = wdRezDao.rezListCount();
 		}
 		catch(Exception e)
 		{
@@ -34,14 +51,47 @@ public class WDRezService {
 		return count;
 	}
 	
-	//예약 현황 조회
-	public WDRez rezList(String userId)
+	//아이디를 통해 예약건수가 있는지 확인
+	public int checkRez(String userId) 
 	{
-		WDRez wdRez = null;
+		int count = 0;
+		
+		try 
+		{
+			count = wdRezDao.checkRez(userId);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] checkRez");
+		}
+		
+		return count;
+	}
+	
+	//예약 번호를 부여함.
+	public long rezNoInsert(WDRez wdRez) 
+	{
+		long cnt = 0;
+		
+		try 
+		{
+			cnt = wdRezDao.rezNoInsert(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] rezNoInsert Exception", e);
+		}
+		
+		return cnt;
+	}
+	
+	//예약 현황 조회
+	public WDRez rezList(WDRez wdRez)
+	{
 		
 		try
 		{
-			wdRez = wdRezDao.rezList(userId);
+			wdRez = wdRezDao.rezList(wdRez);
 		}
 		catch(Exception e)
 		{
@@ -219,6 +269,7 @@ public class WDRezService {
 		
 		return cnt;
 	}
+	
 	
 
 }
