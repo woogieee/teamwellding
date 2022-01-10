@@ -73,7 +73,7 @@ function fn_view(eBSeq)
 	</div>
 
 	<div class="tickets-page">
-<<<<<<< HEAD
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" id="search-box">
@@ -192,7 +192,6 @@ function fn_view(eBSeq)
                       
        <%@ include file="/WEB-INF/views/include/footer.jsp" %>
      </body>                                    
-=======
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12" id="search-box" style="margin-bottom: 30px;">
@@ -301,4 +300,4 @@ function fn_view(eBSeq)
 
 		<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
->>>>>>> 0cfdc205abee60cd23bf301856f809b59dac29b8
+
