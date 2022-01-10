@@ -6,9 +6,11 @@
 
   	<head>
     	<%@ include file="/WEB-INF/views/include/head.jsp" %>
+
     	<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital@0;1&family=The+Nautigal&display=swap" rel="stylesheet">
+
     </head>
     
     <body>
@@ -72,9 +74,9 @@
 								<li class="breadcrumb-item">
 									<a href="#">결제내역</a>
 								</li>
-								<li class="breadcrumb-item">
-									<a href="#">쿠폰보유현황</a>
-								</li>
+								<!-- li class="breadcrumb-item" id="coupon">
+									<a href="javascript:void(0)" >쿠폰보유현황</a>
+								</li -->
 								<li class="breadcrumb-item">
 									<a href="/user/modify">회원정보수정</a>
 								</li>
@@ -109,7 +111,7 @@
 		</div>
 	</div>	
 	
-		<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>
   </body>
 
 </html>

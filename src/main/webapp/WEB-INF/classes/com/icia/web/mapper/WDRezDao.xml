@@ -184,7 +184,7 @@ FROM
 
 
 <!-- 해당 유저의 예약 내역이 존재하는지 확인 시작 -->
-<select id="checkRez" parameterType="string" resultType="integer">
+<select id="checkRez" parameterType="string" resultType="int">
 SELECT
     COUNT(REZ_NO) AS COUNT
 FROM
@@ -207,10 +207,12 @@ AND
 <!-- ###### 선행처리기(시퀀스번호 생성 끝) ###### -->
 INSERT INTO WD_REZ (
     REZ_NO,
-    USER_ID
+    USER_ID,
+    REZ_STATUS
 ) VALUES (
     #{rezNo},
-    #{userId}
+    #{userId},
+    'N'
 )
 </insert>
 <!-- 작성중이던 예약 기록이 없거나 예약이 결제완료 상태면 예약번호 생성 끝 -->
