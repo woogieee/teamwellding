@@ -106,7 +106,9 @@
 	                    <value>/kakao/paySuccess</value>
 	                    <value>/kakao/payFail</value>
 	                    <value>/kakao/payCancel</value>
-	                    <value>/kakao</value>			
+	                    <value>/kakao</value>	
+	                    <value>/user/payMent</value>
+	                    <value>/user/payComplete</value>		
 	                    
 
 						<value>/board/testtest</value>

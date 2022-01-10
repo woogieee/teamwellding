@@ -124,10 +124,10 @@ function movePage()
 <div class="container">
    <h2>카카오페이</h2>
    <form name="payForm" id="payForm" method="post">
-      상품코드<input type="text" name="itemCode" id="itemCode" maxlength="32" class="form-control mb-2" placeholder="상품코드" value="0123456789" />
-      상품명<input type="text" name="itemName" id="itemName" maxlength="50" class="form-control mb-2" placeholder="상품명" value="비타민씨" />
-      수량<input type="text" name="quantity" id="quantity" maxlength="3" class="form-control mb-2" placeholder="수량" value="1" />
-      금액<input type="text" name="totalAmount" id="totalAmount" maxlength="10" class="form-control mb-2" placeholder="금액" value="30000" />
+      상품코드<input type="text" name="itemCode" id="itemCode" maxlength="32" class="form-control mb-2" placeholder="상품코드" value="" />
+      상품명<input type="text" name="itemName" id="itemName" maxlength="50" class="form-control mb-2" placeholder="상품명" value="" />
+      수량<input type="text" name="quantity" id="quantity" maxlength="3" class="form-control mb-2" placeholder="수량" value="" />
+      금액<input type="text" name="totalAmount" id="totalAmount" maxlength="10" class="form-control mb-2" placeholder="금액" value="" />
       <div class="form-group row">
          <div class="col-sm-12">
             <button type="button" id="btnPay" class="btn btn-primary" title="카카오페이">카카오페이</button>
