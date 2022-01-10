@@ -316,7 +316,7 @@ $(document).ready(function(){
                                 	</div>
                                 </td>
                                 
-                                <td class="product-name alignleft">
+                                <td class="product-name alignleft" style="width: 18%;">
 						        	<p class="my_hall"><c:out value="${wdRez.whName}" /></p>
 						        	<p><h4>&nbsp;<c:out value="${wdRez.hName}" /></h4></p>
 						        	<!-- 주소 넣어야 할까유?? ㄴㄴㄴㄴ무쓸모 -->
@@ -339,13 +339,14 @@ $(document).ready(function(){
                                 	</p>
                                 </td>
                                 
+
                                 <td class="HpriceTotal" id="hollprice">
                                 	<h4>
                                 		<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin)}" />원
                                 	</h4>
                                 </td>
                                 
-                                <td>
+                                <td style="width: 5%;">
                                     <input type="button" value="x" class="w-btn-red delBtnWish" id="delBtnWishH">
                                 </td>
                             </tr>

@@ -2948,7 +2948,7 @@ Shows Events Page
 	background-image: url(../images/eboard.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
-	padding: 70px 0px;
+	padding: 150px 0px;
 	text-align: center;
 	background-position: center 64%;
 }
@@ -2983,7 +2983,6 @@ Shows Events Page
     font-size: 30px;
     font-weight: 600;
     font-family: inherit;
-    color: #222;
 }
 
 #search-box{padding:0px;}
@@ -5030,10 +5029,10 @@ responsive
     position: relative;
     border: none;
     display: inline-block;
-    padding: 5px 15px;
-    border-radius: 15px;
+    padding: 8px 18px;
+    border-radius: 20px;
     font-family: "paybooc-Light", sans-serif;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);*/
     text-decoration: none;
     font-weight: 600;
     transition: 0.25s;
@@ -5072,7 +5071,7 @@ responsive
 }
 
 .w-btn-green2 {
-    background-color: #519d9e;
+    background-color: #ff957d;
     color: #fff;
 }
 
@@ -5789,6 +5788,7 @@ responsive
 {
 	width: 120px;
 	border-right: none;
+	text-align: center;
 }
 
 .delBtnWish
@@ -5874,7 +5874,7 @@ responsive
 	font-size: 20px;
     font-weight: 500;
     letter-spacing: -1px;
-    padding-left: 10px;
+    /*padding-left: 10px;*/
 }
 
 .bcItem h5
@@ -5897,7 +5897,9 @@ responsive
 
 .container .dongdong2
 {
-	background-color: #edacb1;;
+	background-color: rgba(255, 149, 125, 0.2);
+	height: 70px;
+	border-top: 2px solid #333;
 }
 /* 동욱 추가 끝 */
 
@@ -6236,7 +6238,7 @@ responsive
 	color:#777;
 	text-decoration: underline;
 	margin-left: 7px;
-	padding-left: 10px;
+	/*padding-left: 10px;*/
 }
 
 .alignleft
@@ -6248,6 +6250,7 @@ responsive
 {
 	width: 120px;
 	height: 120px;
+	display: inline-block;
 }
 
 .imgbox img
@@ -6373,6 +6376,27 @@ responsive
 	cursor: pointer;
 	border-bottom: 1px solid #ddd;
 	padding: 20px 0;
+}
+
+
+.e_title
+{
+	text-align: center;
+	margin-top: 60px;
+	font-size: 38px;
+	font-weight: 600;
+}
+
+.e_imgbox
+{
+	padding-bottom: 30px;
+}
+
+.e_imgbox img
+{
+	width: 80%;
+	height: auto;
+	margin: 20px;
 }
 
 /*보현추가 끝*/
