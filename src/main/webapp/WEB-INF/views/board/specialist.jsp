@@ -8,7 +8,26 @@
 <script>
 $(document).ready(function(){
 	//모달 스크립트
-   $(".gosu_modal").colorbox({
+     $(".gosu_modal").colorbox({
+	      iframe:true, 
+	      innerWidth:1235,
+	      innerHeight:720,
+	      scrolling:false,
+	      onComplete:function()
+	      {
+	         $("#colorbox").css("width", "1235px");
+	         $("#colorbox").css("height", "720px");
+	         $("#colorbox").css("border-radius", "10px");
+	         
+	         $('html').css("overflow","hidden");
+	      } , 
+   		  onClosed: function()
+		 {
+			$('html').css("overflow","auto");
+		 }
+	});
+	
+	 /*$("#exView").colorbox({
 	      iframe:true, 
 	      innerWidth:1235,
 	      innerHeight:700,
@@ -21,11 +40,11 @@ $(document).ready(function(){
 	         
 	         $('html').css("overflow","hidden");
 	      } , 
-   		  onClosed: function()
+  		  onClosed: function()
 		 {
 			$('html').css("overflow","auto");
 		 }
-	});
+	});*/
 	
    $('html').css("overflow","auto");
    
@@ -49,6 +68,10 @@ function fn_list(curPage)
    document.bbsForm.action = "/board/specialist";
    document.bbsForm.submit();
 }
+function expertView(eCo){
+	document.exView.eCode.value = "";
+}
+
 </script>
 </head>
 <body>
@@ -119,7 +142,7 @@ function fn_list(curPage)
 <c:if test="${!empty list}">
 	<c:forEach var="wdExpert" items="${list}" varStatus="status">
                  <div class="col-lg-3">
-                    <div class="ticket-item2 gosu_modal" href="/board/gosu">
+                    <div class="ticket-item2 gosu_modal" href="/board/gosu?eCode=${wdExpert.eCode }">
                         <div class="thumb_go">
                             <img src="../resources/images/gosu/${wdExpert.eImgname}" alt="">
                         </div>
@@ -130,13 +153,16 @@ function fn_list(curPage)
                         		<div class="hashtag"><c:out value="${wdExpert.eHashtag}" /> </div>
                             </ul>
                             <div class="main-dark-button btn_go">
-                                <a href="/board/gosu" class="gosu_modal">자세히 보기</a>
+                                <a href="/board/gosu?eCode=${wdExpert.eCode }" class="gosu_modal" >자세히 보기</a>
                             </div>
                                 
                          </div>
                     </div>
                 </div> 
 	</c:forEach>
+	<form name="exView" id="exView">
+	<input type="hidden" name="eCode" id="eCode" value="">
+	</form>
 </c:if>
 				<!-- 전문가 목록 끝 -->
 				
