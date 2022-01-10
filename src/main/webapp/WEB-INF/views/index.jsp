@@ -293,7 +293,7 @@
       </section>
 보현수정 끝 : 커뮤니티 및 위치 -->
 
-    <!-- *** Subscribe *** -->
+    <!-- *** Subscribe ***
    <div class="subscribe">
         <div class="container">
             <div class="row">
@@ -318,7 +318,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     
     <!-- 홀 랭킹 뷰를 위한 폼 -->
     <form name="hallForm" id="hallForm" method="post">

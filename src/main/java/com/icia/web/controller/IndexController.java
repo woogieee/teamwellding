@@ -263,5 +263,11 @@ public class IndexController
 	{
 		return "/popUpRoad";
 	}
+	
+	@RequestMapping(value="/board/testtest")
+	public String testing() {
+		
+		return "/board/testtest";
+	}
 }
 
