@@ -40,6 +40,13 @@ reset
   src: url('../fonts/nether.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'OTWelcomeRA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
@@ -484,12 +491,13 @@ a{ text-decoration: none; color: inherit; }
   display: inline-block;
   font-size: 13px;
   padding: 12px 18px;
-  background-color: #103148;
-  color: #fff;
+  background-color: #f5a4aa;
+  color:  #fff;
   text-align: center;
-  font-weight: 500;
+  font-weight: 700;
   text-transform: capitalize;
   transition: all .3s;
+  border-radius: 12px;
 }
 
 .main-dark-button2 a {
@@ -1261,7 +1269,7 @@ Amazing Venues 보현수정
 
 .amazing-venues {
   padding: 100px 0px;
-  background-color: #ffefe5;
+  background-color: #fcf0e8; /*#ffefe5;*/
 }
 
 .amazing-venues .left-content h4 {
@@ -1862,18 +1870,21 @@ footer span{
 footer {
   padding-top: 60px;
   padding-bottom: 30px;
-  background-color: #a08472;
+  margin-top: 50px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #bbb;
 }
 
 footer h4 {
   font-size: 20px;
-  color: #ffffff;
+  color: #333;
   font-weight: 700;
 }
 
 footer .address span {
   font-size: 14px;
-  color: #efefef;
+  color: #333;
+  font-weight: 400;
   /*line-height: 24px;
   font-weight: 800;*/
 }
@@ -1917,12 +1928,12 @@ footer p.copyright {
 .sub-footer .logo span {
   font-size: 28px;
   font-weight: 800;
-  color: #ffb6ad;
+  color: #f96a6a;
 }
 
 .sub-footer .logo span em {
   font-style: normal;
-  color: #fff;
+  color: #aaa;
 }
 
 .sub-footer .menu {
@@ -2782,7 +2793,7 @@ Rent Venue Page
 
 .rent-venue-application {
   margin: 50px 0px;
-  padding: 90px 0 48px 0;
+  padding: 90px 0 64px 0;
   margin-left: 20px;
   padding-left: 50px;
   border-left: 2px dashed #ccc;
@@ -2934,12 +2945,12 @@ Shows Events Page
 
 /*이벤트 리스트*/
 .page-heading-shows-events5 {
-	background-image: url(../images/eBoard\ banner.jpg);
+	background-image: url(../images/eboard.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	padding: 70px 0px;
 	text-align: center;
-	background-position: center 36%;
+	background-position: center 64%;
 }
 
 .page-heading-shows-events5 h2 {
@@ -2951,20 +2962,28 @@ Shows Events Page
 	text-shadow: 2px 3px 15px #82623b;
 }
 
-#eback {
-	background-color: #efefef;
-	font-family: 'Jua', sans-serif;
+#eback 
+{
+	/*background-color: #efefef;
+	font-family: 'Jua', sans-serif;*/
 	display: flex;
 	justify-content: center;
 	align-items:center;
-	padding:0px;
+	/*padding:0px;
+	border-right: 1px solid #ddd;*/
 }
 
-#eback2 {padding:0px;}
+#eback2 {/*padding:0px;*/}
 
-#etitle {
-	text-align: center;
-	font-family: 'Jua', sans-serif;
+#etitle 
+{
+	/*text-align: center;
+	font-family: 'Jua', sans-serif;*/
+	padding-bottom: 24px;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: inherit;
+    color: #222;
 }
 
 #search-box{padding:0px;}
@@ -3207,57 +3226,59 @@ Shows Events Page
 
 .tickets-page {
   /*margin-bottom: 100px;*/
-  padding-bottom: 100px;
+  /*padding-bottom: 100px;*/
 }
 
 .tickets-page .search-box {
-  background-color: #edacb1;
+ 
   padding: 30px;
+  
 }
 
 .tickets-page .search-box h4 {
-  color: #fff;
-  font-weight: 700;
+  color: rgba(40,30,25,1);
+  font-weight: 500;
   font-size: 20px;
-  margin-top: 8px;
+  margin-top: 15px;
+  font-family: 'OTWelcomeRA';
 }
 
 .tickets-page .search-box select {
   margin-top: 10px;
   background-color: transparent;
-  border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+  border-bottom: 1px solid #666666;
   border-top: none;
   border-right: none;
   border-left: none;
   outline: none;
-  color: #fff;
+  color: #666666; /*조회 항목*/
   font-size: 14px;
   width: 100%;
   padding: 5px;
 }
 
 .tickets-page .search-box option {
-  background-color: #343a3e;
+  /*background-color: #343a3e; 옵션 색 */
 }
 
 .svalue
 {
 	margin-top: 10px;
 	background-color: transparent;
-	border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+	border-bottom: 1px solid #666666;
 	border-top: none;
 	border-right: none;
 	border-left: none;
 	outline: none;
-	color: #fff;
+	color: #666666;
 	font-size: 14px;
 	width: 100%;
 	padding: 5px;
 }
-.svalue::placeholder
+/*.svalue::placeholder
 {
-	color: #fff;
-}
+	color: #red;
+}*/
 
 /** 여기저기 보현 수정 ,,, **/
 
@@ -3275,6 +3296,8 @@ Shows Events Page
   outline: none;
   width: 100%;
 }
+
+
 
 
 .tickets-page .search-box .main-dark-button:hover {
@@ -4578,7 +4601,6 @@ responsive
   text-align: center;
   cursor: pointer;
   border-top: 1px solid black;
-  border-bottom: 1px solid black;
 }
 
 
@@ -6102,7 +6124,7 @@ responsive
   text-transform: capitalize;
   transition: all .3s;
   width: 100%;
-  margin-top: 35px;
+  margin-top: 25px;
 }
 
 .main-dark-button4
@@ -6119,6 +6141,13 @@ responsive
 .com_detail8 span
 {
 	color: #444;
+	height: 98px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    line-height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* 동욱 추가 민트테마 */
@@ -6305,5 +6334,42 @@ responsive
     font-size: 25px;
 }
 
+/*이벤트보드 보현추가*/
+#eback .e_write
+{
+    float: left;
+    margin-right: 20px;
+   /* margin-top: 50px;*/
+   font-size: 14px;
+    color: #666;
+}
+
+#eback .e_date
+{
+	float: left;
+    /*margin-top: 50px;*/
+    font-size: 14px;
+    color: #666;
+}
+
+.caption_desc 
+{
+    height: 80px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 26px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.event-item
+{
+	cursor: pointer;
+	border-bottom: 1px solid #ddd;
+	padding: 20px 0;
+}
 
 /*보현추가 끝*/

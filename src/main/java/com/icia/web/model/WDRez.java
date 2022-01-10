@@ -50,6 +50,8 @@ public class WDRez implements Serializable
 	
 	private String sDate;
 	
+	
+	
 	public WDRez() {
 		  rezNo = "";
 		  whCode = "";

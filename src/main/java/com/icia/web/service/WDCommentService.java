@@ -83,5 +83,18 @@ public class WDCommentService {
 		
 		return count;
 	}
+	
+	public int commentUpdate(WDComment wdComment) {
+		int count = 0;
+		
+		try {
+			count = wdCommentDao.commentUpdate(wdComment);
+		}
+		catch(Exception e) {
+			logger.error("[WDCommentService] commentUpdate Exception", e);
+		}	
+		
+		return count;
+	}
 
 }

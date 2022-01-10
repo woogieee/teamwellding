@@ -188,6 +188,12 @@
     	//삭제버튼 클릭 종료
 </c:if>
 //장바구니에서 메이크업 삭제 종료
+
+$("#cou").on("click",function(){
+    var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
+    window.open("/board/Coupon", "PopUP", option); 
+});    
+
     	
     });
     
@@ -261,7 +267,7 @@ $(document).ready(function(){
 									<a href="#">결제내역</a>
 								</li>
 								<li class="breadcrumb-item">
-									<a href="#">쿠폰보유현황</a>
+									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="/user/modify">회원정보수정</a>

@@ -65,8 +65,8 @@
             </div>
         </div>
     </div>
-
-    <div class="tickets-page">
+    
+        <div class="tickets-page">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -92,7 +92,8 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <fieldset>
-                                            <button type="button" id="form-submit" class="main-dark-button">Submit</button>
+                                            <button type="button" id="form-submit" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                     
                                             </fieldset>
                                         </div>
                                         
@@ -102,6 +103,18 @@
                         </form>
                     </div>
                 </div>
+              </div>
+           </div>
+           <div style="border-bottom:1px solid #dadada; width: 100%;"></div>
+         </div>
+         
+
+
+    <div class="tickets-page">
+        <div class="container">
+            <div class="row">
+            
+                
                 <div class="col-lg-12" style="text-align: center;">
                     <div class="heading">
                         <h2>Wedding Hall</h2>
@@ -127,7 +140,7 @@
                                 <li class="dis_price"><span class="discount"><c:out value="${wdHall.hDiscount}" />%</span> <span class="dis-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice * (1-wdHall.hDiscount*0.01)}" />원</span></li>
                             </ul>
                             <div class="main-dark-button">
-                                <a href="javascript:void(0)" onclick="fn_view('${wdHall.WHCode}', '${wdHall.HCode}')">홀 자세히보기</a>
+                                <a href="javascript:void(0)" onclick="fn_view('${wdHall.WHCode}', '${wdHall.HCode}')"> 자세히보기</a>
                             </div>
                         </div>
                     </div>

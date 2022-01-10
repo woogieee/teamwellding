@@ -70,7 +70,7 @@ function fn_list(curPage)
                             <div class="row">
                                 <div class="col-lg-5">
                                     <div class="search-heading">
-                                        <h4> 예약하고 싶은 드레스샵을 찾아보세요.</h4>
+                                        <h4> 예약하고 싶은 드레스샵이나 지역이 있으신가요?</h4>
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
@@ -87,7 +87,7 @@ function fn_list(curPage)
                                         </div>
                                         <div class="col-lg-3">
                                             <fieldset>
-                                            <button type="button" id="btnSearch" class="main-dark-button">Submit</button>
+                                            <button type="button" id="form-submit" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                             </fieldset>
                                         </div>
                                         
@@ -95,8 +95,15 @@ function fn_list(curPage)
                                 </div>
                             </div>
                         </form>
-                    </div>
+                     </div>
                 </div>
+              </div>
+           </div>
+                    <div style="border-bottom:1px solid #dadada; width: 100%;"></div>
+                </div>
+                <div class="tickets-page">
+        			<div class="container">
+            			<div class="row">
                 <div class="col-lg-12">
                     <div class="heading">
                         <h2><!-- Dress --></h2>
