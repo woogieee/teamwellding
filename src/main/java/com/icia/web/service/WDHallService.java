@@ -6,11 +6,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.icia.web.dao.WDHallDao;
+import com.icia.web.dao.WDRezDao;
 import com.icia.web.model.WDDress;
 import com.icia.web.model.WDHall;
 import com.icia.web.model.WDHallFile;
+import com.icia.web.model.WDRez;
 
 @Service("WDHallService")
 public class WDHallService {
@@ -19,6 +23,9 @@ public class WDHallService {
    
    @Autowired
    private WDHallDao wdHallDao;
+   
+   @Autowired
+   private WDRezDao wdRezDao;
    
    //랭킹은 인덱스 컨트롤러에서 불러오자!!
    public List<WDHall> WDHallRanking(){
@@ -90,7 +97,7 @@ public class WDHallService {
    }
    
 	//동일 업체 홀 정보 가져오기.
-   public List<WDHall> hallSameCom(WDHall wdHall)
+   	public List<WDHall> hallSameCom(WDHall wdHall)
 	{
 		List<WDHall> sameCom = null;
 	
@@ -106,6 +113,19 @@ public class WDHallService {
 		return sameCom;
 	}
 	
-   
-
+   	
+   	//아이디로 조회했는데, 예약번호도 없고, 홀 코드도 없음. 트랜잭션으로 인서트 업데이트 한번에 진행
+   	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+   	public long rezNoHallTotalInsert(WDRez wdRez) throws Exception
+   	{
+   		long cnt = 0;
+   		//인서트
+   		if( wdRezDao.rezNoInsert(wdRez) > 0) 
+   		{
+   			//예약번호 부여됨.
+   			//홀 업데이트
+   			cnt = wdRezDao.rezHallInsert(wdRez);
+   		}
+   		return cnt;
+   	}
 }
