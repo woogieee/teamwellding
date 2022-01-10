@@ -35,6 +35,7 @@
 						alert("장바구니에서 해당 상품을 제거했습니다.");
 						//업데이트가 성공하면 해당 tr 삭제
 		    			$("#wishH").remove();
+						
 					}
 					else
 					{
@@ -168,6 +169,9 @@
 						alert("장바구니에서 해당 상품을 제거했습니다.");
 						//업데이트가 성공하면 해당 tr 삭제
 		    			$("#wishM").remove();
+						$("#preP").remove();
+						$("#saleP").remove();
+						$("#aftP").remove();
 					}
 					else
 					{
@@ -488,7 +492,7 @@ $(document).ready(function(){
 						<div class="rez_sum">
 							<dl class="sumbox1">
 								<dt class="sumsec">총상품금액</dt>
-								<dd class="sumpay1">
+								<dd class="sumpay1" id="preP">
 									<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice + wdRez.dPrice + wdRez.mPrice + (wdRez.mPlus*wdRez.mPlusNum)}" />원
 								</dd>
 							</dl>
@@ -499,7 +503,9 @@ $(document).ready(function(){
 							
 							<dl class="sumbox1">
 								<dt class="sumsec">예상할인금액</dt>
-								<dd class="sumpay2"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))}" />원</dd>
+
+								<dd class="sumpay2" id="saleP"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + (wdRez.mPrice *(1- wdRez.mDiscount*0.01))}" />원</dd>
+
 							</dl>
 							
 							<dl class="sumbox3">
@@ -508,10 +514,10 @@ $(document).ready(function(){
 							
 							<div class="sumbox2">
 								<h5>총 주문금액 
-									<span>
-										<fmt:formatNumber type="number" maxFractionDigits="0"
-										value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)}"
-										 />원
+
+									<span id="aftP">
+										<fmt:formatNumber type="number" maxFractionDigits="0" 
+										value="${(wdRez.hPrice + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice + wdRez.dPrice + wdRez.mPrice + (wdRez.mPlus*wdRez.mPlusNum)) - ((wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + (wdRez.mPrice *(1- wdRez.mDiscount*0.01)))}" />원
 									</span>
 								</h5>
 							</div>
