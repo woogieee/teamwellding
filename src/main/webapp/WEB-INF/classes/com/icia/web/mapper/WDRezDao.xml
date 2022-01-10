@@ -4,49 +4,49 @@
 
 <!-- 예약 resultMap 시작 -->
 <resultMap id="WDRezDaoResultMap" type="com.icia.web.model.WDRez">
-	<id column="REZ_NO" property="rezNo" />
-	<id column="USER_ID" property="userId" />
-	<result column="WH_CODE" property="whCode" />
-	<result column="H_CODE" property="hCode" />
-	<result column="S_CODE" property="sCode" />
-	<result column="DC_CODE" property="dcCode" />
-	<result column="D_NO" property="dNo" />
-	<result column="M_CODE" property="mCode" />
-	<result column="M_PLUS_NUM" property="mPlusNum" />
-	<result column="REZ_STATUS" property="rezStatus" />
-	<result column="REZ_DATE" property="rezDate" />
-	<result column="WDATE" property="wDate" />
-	<result column="REZ_FULL_PRICE" property="rezFullPrice" />
-	<result column="C_CODE" property="cCode" />
-	<result column="REZ_POINT" property="rezPoint" />
-	
-	<result column="S_DATE" property="sDate" />
-	
-	<result column="WH_NAME" property="whName" />
-	<result column="H_NAME" property="hName" />
-	<result column="H_PRICE" property="hPrice" />
-	<result column="H_FOOD" property="hFood" />
-	<result column="H_MIN" property="hMin" />
-	<result column="H_IMGNAME" property="hImgName" />
-	<result column="H_CONTENT" property="hContent" />
-	<result column="H_DISCOUNT" property="hDiscount" />
-	<result column="S_NAME" property="sName" />
-	<result column="S_PRICE" property="sPrice" />
-	<result column="S_DISCOUNT" property="sDiscount" />
-	<result column="S_IMGNAME" property="sImgName" />
-	<result column="S_CONTENT" property="sContent" />
-	<result column="M_NAME" property="mName" />
-	<result column="M_PRICE" property="mPrice" />
-	<result column="M_PLUS" property="mPlus" />
-	<result column="M_DISCOUNT" property="mDiscount" />
-	<result column="M_IMGNAME" property="mImgName" />
-	<result column="M_CONTENT" property="mContent" />
-	<result column="DC_NAME" property="dcName" />
-	<result column="D_NAME" property="dName" />
-	<result column="D_PRICE" property="dPrice" />
-	<result column="D_DISCOUNT" property="dDiscount" />
-	<result column="D_IMGNAME" property="dImgName" />
-	<result column="D_CONTENT" property="dContent" />
+   <id column="REZ_NO" property="rezNo" />
+   <id column="USER_ID" property="userId" />
+   <result column="WH_CODE" property="whCode" />
+   <result column="H_CODE" property="hCode" />
+   <result column="S_CODE" property="sCode" />
+   <result column="DC_CODE" property="dcCode" />
+   <result column="D_NO" property="dNo" />
+   <result column="M_CODE" property="mCode" />
+   <result column="M_PLUS_NUM" property="mPlusNum" />
+   <result column="REZ_STATUS" property="rezStatus" />
+   <result column="REZ_DATE" property="rezDate" />
+   <result column="WDATE" property="wDate" />
+   <result column="REZ_FULL_PRICE" property="rezFullPrice" />
+   <result column="C_CODE" property="cCode" />
+   <result column="REZ_POINT" property="rezPoint" />
+   
+   <result column="S_DATE" property="sDate" />
+   
+   <result column="WH_NAME" property="whName" />
+   <result column="H_NAME" property="hName" />
+   <result column="H_PRICE" property="hPrice" />
+   <result column="H_FOOD" property="hFood" />
+   <result column="H_MIN" property="hMin" />
+   <result column="H_IMGNAME" property="hImgName" />
+   <result column="H_CONTENT" property="hContent" />
+   <result column="H_DISCOUNT" property="hDiscount" />
+   <result column="S_NAME" property="sName" />
+   <result column="S_PRICE" property="sPrice" />
+   <result column="S_DISCOUNT" property="sDiscount" />
+   <result column="S_IMGNAME" property="sImgName" />
+   <result column="S_CONTENT" property="sContent" />
+   <result column="M_NAME" property="mName" />
+   <result column="M_PRICE" property="mPrice" />
+   <result column="M_PLUS" property="mPlus" />
+   <result column="M_DISCOUNT" property="mDiscount" />
+   <result column="M_IMGNAME" property="mImgName" />
+   <result column="M_CONTENT" property="mContent" />
+   <result column="DC_NAME" property="dcName" />
+   <result column="D_NAME" property="dName" />
+   <result column="D_PRICE" property="dPrice" />
+   <result column="D_DISCOUNT" property="dDiscount" />
+   <result column="D_IMGNAME" property="dImgName" />
+   <result column="D_CONTENT" property="dContent" />
 </resultMap>
 
 <!-- 예약 테이블 값을 가져오기 위한 셀렉트문 시작 -->
@@ -162,7 +162,7 @@ AND
 AND
     D.DC_CODE = C.DC_CODE
 AND
-	R.DC_CODE = D.DC_CODE
+   R.DC_CODE = D.DC_CODE
 AND
     R.D_NO = D.D_NO
 </if>    
@@ -184,7 +184,7 @@ FROM
 
 
 <!-- 해당 유저의 예약 내역이 존재하는지 확인 시작 -->
-<select id="checkRez" parameterType="string" resultType="integer">
+<select id="checkRez" parameterType="string" resultType="int">
 SELECT
     COUNT(REZ_NO) AS COUNT
 FROM
@@ -207,10 +207,12 @@ AND
 <!-- ###### 선행처리기(시퀀스번호 생성 끝) ###### -->
 INSERT INTO WD_REZ (
     REZ_NO,
-    USER_ID
+    USER_ID,
+    REZ_STATUS
 ) VALUES (
     #{rezNo},
-    #{userId}
+    #{userId},
+    'N'
 )
 </insert>
 <!-- 작성중이던 예약 기록이 없거나 예약이 결제완료 상태면 예약번호 생성 끝 -->
@@ -366,7 +368,5 @@ AND
     USER_ID = #{userId}
 </update>
 <!-- 장바구니 스튜디오 취소 -->
-
-
 
 </mapper>

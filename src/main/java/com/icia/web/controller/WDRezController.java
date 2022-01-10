@@ -58,7 +58,7 @@ public class WDRezController {
 		@Autowired
 		private WDRezService wdRezService;
 	
-	@RequestMapping(value="/cart")
+	/*@RequestMapping(value="/cart")
 	public String cart(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
@@ -79,7 +79,7 @@ public class WDRezController {
 		model.addAttribute("wdRez", wdRez);
 		
 		return "/cart";
-	}
+	}*/
 	
 	
 	@RequestMapping(value="/user/wishlist")
@@ -89,12 +89,16 @@ public class WDRezController {
 		
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
 		
-		WDRez wdRez = null;
-		
 		if(wdUser != null) 
 		{
 			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
 			{
+				WDRez wdRez = new WDRez();
+				
+				wdRez.setUserId(wdUser.getUserId());
+				
+				wdRez = wdRezService.rezList(wdRez);
+	
 				WDRez search = new WDRez();
 				search = wdRezService.rezSelect(wdUser.getUserId());
 				
