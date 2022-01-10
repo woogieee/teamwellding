@@ -127,12 +127,12 @@ function fn_list(curPage)
                                                         <c:out value="${hiBoard.bSeq}" />
                                                     </a>
                                                 </td>
-                                                	<td style="text-align:left">
-                                                		<a href="javascript:void(0)" onclick="fn_view(${hiBoard.bSeq})">${hiBoard.bTitle}</a>
-                                                	</td>
-                                                	<td style="text-align:center">${hiBoard.adminId}</td>
-                                                    <td style="text-align:center">${hiBoard.regDate}</td>
-                                                    <td style="text-align:center"><fmt:formatNumber type="number" maxFractionDigits="3" value="${hiBoard.bReadCnt}" /></td>
+                                               	<td style="text-align:left">
+                                               		<a href="javascript:void(0)" onclick="fn_view(${hiBoard.bSeq})">${hiBoard.bTitle}</a>
+                                               	</td>
+                                               	<td style="text-align:center">${hiBoard.adminId}</td>
+                                                <td style="text-align:center">${hiBoard.regDate}</td>
+                                                <td style="text-align:center"><fmt:formatNumber type="number" maxFractionDigits="3" value="${hiBoard.bReadCnt}" /></td>
                                             </tr>
                                        </c:forEach>
                                     </c:if>      
