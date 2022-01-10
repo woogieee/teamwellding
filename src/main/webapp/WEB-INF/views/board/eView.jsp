@@ -67,9 +67,7 @@
 								style="width: 40%; padding-right: 20px; font-size: 15px; color: #666;"
 								class="text-right">
 								<div>
-									조회 :
-									<fmt:formatNumber type="number" maxFractionDigits="3"
-										value="${eBoard.eBReadCnt}" />
+									
 								</div>
 							</td>
 						</tr>

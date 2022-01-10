@@ -9,10 +9,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
 <style>
-.Wtitle{
-font-family: 'Gamja Flower', cursive;
-font-size: 64px;
-text-align: center;
+.Wtitle
+{
+	/*font-family: 'Gamja Flower', cursive;*/
+	font-size: 40px;
+	text-align: center;
+	padding-top: 20px;
+
 }
 </style>
 <script>
@@ -43,25 +46,25 @@ $(document).ready(function(){
    <div class="row" style="margin-right:0; margin-left:0;">
       <table class="table">
          <thead>
-            <tr class="table-active dongdong">
-               <td scope="col" style="width:60%">
+            <tr class="dongdong">
+               <td style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600;">
                   <c:out value="${nBoard.bTitle}"/>
                </td>
-               <td scope="col" style="width:40%" class="text-right">
+               <td scope="col" style="width: 40%; padding-right: 25px; color: #444; font-size: 16px;" class="text-right">
                                          조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${nBoard.bReadCnt}" />
                </td>
             </tr>
-               <td scope="col" style="width:60%">
+               <td style="width: 60%; padding-left: 20px; font-size: 15px; color: #666;">
                	작성자 : <c:out value="${nBoard.adminId}"/>
                </td>
-               <td scope="col" style="width:40%" class="text-right">
+               <td style="width: 40%; padding-right: 20px; font-size: 15px; color: #666;" class="text-right">
                   <div>${nBoard.regDate}</div>
                </td>
          </thead>
          <tbody>
             <tr>
                <td colspan="2" style="text-align:center">
-               <div style="padding:10px"><pre><c:out value="${nBoard.bContent}" /></pre></div></td>
+               <div style="padding:10px"><div><c:out value="${nBoard.bContent}" /></div></div></td>
             </tr>
          </tbody>
          <tfoot>
