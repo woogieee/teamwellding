@@ -1,5 +1,7 @@
 package com.icia.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,8 +14,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.icia.common.util.StringUtil;
+import com.icia.web.model.WDCoupon;
 import com.icia.web.model.WDRez;
 import com.icia.web.model.WDUser;
+import com.icia.web.service.WDCouponService;
 import com.icia.web.service.WDRezService;
 import com.icia.web.service.WDUserService;
 import com.icia.web.util.CookieUtil;
@@ -38,6 +42,10 @@ public class PayMentController
 	@Autowired
 	private WDRezService wdRezService;
 	
+	//쿠폰 서비스
+	@Autowired
+	private WDCouponService wdCouponService;
+	
 	
 	@RequestMapping(value="/user/payMent")
 	public String payMent(ModelMap model, HttpServletRequest request, HttpServletResponse response)
@@ -46,13 +54,26 @@ public class PayMentController
 		
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
 		
-		WDRez wdRez = null;
+		WDRez wdRez = new WDRez();
+		List<WDCoupon> couponList = null;
+		
+		couponList = wdCouponService.couponSelectList(wdUser.getUserId());
+		
+		if(couponList != null) {
+			model.addAttribute("couponList",couponList);
+		}
+		
+		wdRez.setUserId(cookieUserId);
 		
 		if(wdUser != null) 
 		{
+
 			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
 			{
-				wdRez = wdRezService.rezList(wdUser.getUserId());
+				
+				wdRez = wdRezService.rezSelect(wdUser.getUserId());
+				wdRez = wdRezService.rezList(wdRez);
+				System.out.println("난들어갓다 " + wdRez.gethImgName());
 				model.addAttribute("wdRez", wdRez);
 				model.addAttribute("wdUser",wdUser);
 			}
@@ -78,13 +99,15 @@ public class PayMentController
 		
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
 		
-		WDRez wdRez = null;
+		WDRez wdRez = new WDRez();
+		
+		wdRez.setUserId(wdUser.getUserId());
 		
 		if(wdUser != null) 
 		{
 			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
 			{
-				wdRez = wdRezService.rezList(wdUser.getUserId());
+				wdRez = wdRezService.rezList(wdRez);
 				model.addAttribute("wdRez", wdRez);
 				model.addAttribute("wdUser",wdUser);
 			}
