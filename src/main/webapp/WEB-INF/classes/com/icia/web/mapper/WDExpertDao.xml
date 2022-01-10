@@ -24,7 +24,7 @@ WHERE 1=1
 	<choose>
 		<when test='searchType == "1"'>
 AND
-    E_NAME = ${searchValue}
+    E_NAME = #{searchValue}
 		</when>
 		<when test='searchType == "2"'>	
 AND
