@@ -113,8 +113,7 @@ AND
     R.S_CODE = S.S_CODE
 AND
     D.DC_CODE = C.DC_CODE
-AND
-    R.DC_CODE = D.DC_CODE
+
 AND
     R.D_NO = D.D_NO
 AND
