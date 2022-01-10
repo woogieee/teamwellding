@@ -9,12 +9,21 @@ import com.icia.web.model.WDRez;
 @Repository("wdRezDao")
 public interface WDRezDao {
 	
-	public WDRez rezList(String userId);
+	//예약테이블 값 조회
+	public WDRez rezSelect(String userId);
 	
-	public long rezListCount(WDRez wdRez);
+	//예약 내역 조회를 위한 셀렉트 메소드
+	public WDRez rezList(WDRez wdRez);
 	
+	public long rezListCount();
+	
+	//아이디로 예약현황 확인. 1개라도 있으면 추가 예약번호 부여하지 않음.
+	public int checkRez(String userId);
+	
+	//작성중이던 예약 기록이 없거나 예약이 결제완료 상태면 예약번호 생성
 	public long rezNoInsert(WDRez wdRez);
 	
+	//예약번호와 아이디를 비교하여 홀 데이터 삽입 시작
 	public long rezHallInsert(WDRez wdRez);
 	
 	public long rezStudioInsert(WDRez wdRez);
@@ -35,5 +44,6 @@ public interface WDRezDao {
 	public int rezMakeupUpdate(WDRez wdRez);
 	   
 	public int rezHallUpdate(WDRez wdRez);
-	 
+	
+	
 }
