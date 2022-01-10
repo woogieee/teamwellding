@@ -3209,6 +3209,7 @@ Shows Events Page
 .shows-events-tabs .tabs-content .pagination ul li a:hover,
 .shows-events-tabs .tabs-content .pagination ul li.active a {
   background-color: #343a3e;
+ 
   color: #fff!important;
 }
 
@@ -3754,7 +3755,7 @@ Shows Events Page
   display: inline-block;
   font-size: 14px;
   padding: 12px 20px;
-  background-color: #e6e7e8;
+  /*background-color: #e6e7e8;*/
   color: #2a2a2a;
   text-align: center;
   font-weight: 500;
@@ -3764,8 +3765,10 @@ Shows Events Page
 
 .tickets-page .pagination ul li a:hover,
 .tickets-page .pagination ul li.active a {
-  background-color: #343a3e;
-  color: #fff!important;
+  /*background-color: none;
+  color: #fff!important;*/
+  border: 1px solid rgba(240,119,129);
+  color: rgba(240,119,129);
 }
 
 
