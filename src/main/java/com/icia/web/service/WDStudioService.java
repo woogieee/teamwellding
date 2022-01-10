@@ -7,8 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.icia.web.dao.WDRezDao;
 import com.icia.web.dao.WDStudioDao;
+import com.icia.web.model.WDRez;
 import com.icia.web.model.WDStudio;
 
 @Service("WDStudioService")
@@ -18,6 +22,9 @@ public class WDStudioService
 
 	@Autowired
 	private WDStudioDao wdStudioDao;
+	
+	@Autowired
+	private WDRezDao wdRezDao;
 	
 	//파일저장 디렉토리
 	@Value("#{env['upload.save.dir']}")
@@ -90,5 +97,20 @@ public class WDStudioService
 		
 		return studioRandom;
 	}
+	
+	//아이디로 조회했는데, 예약번호도 없고, 홀 코드도 없음. 트랜잭션으로 인서트 업데이트 한번에 진행
+   	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+   	public long rezStudioTotalInsert(WDRez wdRez) throws Exception
+   	{
+   		long cnt = 0;
+   		//인서트
+   		if( wdRezDao.rezNoInsert(wdRez) > 0) 
+   		{
+   			//예약번호 부여됨.
+   			//홀 업데이트
+   			cnt = wdRezDao.rezStudioInsert(wdRez);
+   		}
+   		return cnt;
+   	}
 	
 }

@@ -10,10 +10,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
 <style>
-.Wtitle{
-font-family: 'Gamja Flower', cursive;
-font-size: 64px;
-text-align: center;
+.Wtitle
+{
+	/*font-family: 'Gamja Flower', cursive;*/
+	font-size: 40px;
+	text-align: center;
+	padding-top: 20px;
+
 }
 </style>
 <script>
@@ -62,8 +65,8 @@ function fn_list(curPage)
         </div>
     </div>
 	<br />
-	<h2 class="Wtitle">Wellding Notice</h2>
-	<p style="text-align:center">우리들의 웨딩이야기를 지금 들려드려요</p>
+	<h2 class="Wtitle">WELLDING NOTICE</h2>
+	<p style="text-align:center; padding-bottom: 10px;">웰딩이야기를 지금 들려드려요</p>
 	<br />
     <div class="tickets-page">
         <div class="container">
@@ -124,12 +127,12 @@ function fn_list(curPage)
                                                         <c:out value="${hiBoard.bSeq}" />
                                                     </a>
                                                 </td>
-                                                	<td style="text-align:left">
-                                                		<a href="javascript:void(0)" onclick="fn_view(${hiBoard.bSeq})">${hiBoard.bTitle}</a>
-                                                	</td>
-                                                	<td style="text-align:center">${hiBoard.adminId}</td>
-                                                    <td style="text-align:center">${hiBoard.regDate}</td>
-                                                    <td style="text-align:center"><fmt:formatNumber type="number" maxFractionDigits="3" value="${hiBoard.bReadCnt}" /></td>
+                                               	<td style="text-align:left">
+                                               		<a href="javascript:void(0)" onclick="fn_view(${hiBoard.bSeq})">${hiBoard.bTitle}</a>
+                                               	</td>
+                                               	<td style="text-align:center">${hiBoard.adminId}</td>
+                                                <td style="text-align:center">${hiBoard.regDate}</td>
+                                                <td style="text-align:center"><fmt:formatNumber type="number" maxFractionDigits="3" value="${hiBoard.bReadCnt}" /></td>
                                             </tr>
                                        </c:forEach>
                                     </c:if>      

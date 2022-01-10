@@ -23,6 +23,86 @@ $(document).ready(function(){
 		document.bbsForm.submit();
 	});
 	
+	//홀 담기 버튼 시작
+	$("#chae").on("click",function(){
+		
+		if($("#year").val() == "")
+		{
+			alert("예약할 연도를 입력해주세요.");
+			return;
+		}
+		else if($("#month").val() == "")
+		{
+			alert("예약할 달을 입력해주세요.");
+			return;
+		}
+		else if($("#day").val() == "")
+		{
+			alert("예약할 날짜를 입력해주세요.");
+			return;
+		}
+		
+		else if(confirm("해당 스튜디오를 장바구니에 담으시겠습니까?"))
+		{
+			//ajax통신 시작
+			$.ajax({
+			type:"POST",
+			url:"/hsdm/studioRezProc",
+			data:
+			{
+				sCode: $("#sCode").val(),
+				year: $("#year").val(),
+				month:$("#month").val(),
+				day:$("#day").val()
+			},
+			datatype:"JSON",
+			beforeSend:function(xhr){
+				xhr.setRequestHeader("AJAX", "true");
+			},
+			success:function(response){
+				if(response.code == 0)
+				{
+					alert("장바구니에 해당 상품을 담았습니다.");
+					if(confirm("장바구니로 이동하시겠습니까?"))
+					{
+						location.href = "/user/wishlist";
+					}
+				}
+				else if(response.code == 402)
+				{
+					alert("스튜디오 예약날짜를 입력해주세요.");
+				}
+				else if(response.code == 403)
+				{
+					alert("서버와의 연결 상태를 확인해주세요.");
+				}
+				else if(response.code == 502)
+				{
+					alert("장바구니에 이미 다른 홀이 담겨 있습니다.");
+					if(confirm("장바구니로 이동하시겠습니까?"))
+					{
+						location.href = "/user/wishlist";
+					}
+				}
+				else
+				{
+					alert("장바구니에 상품을 담는 중 오류가 발생했습니다.");
+				}
+			},
+			complete:function(data){
+				icia.common.log(data);
+			},
+			error:function(xhr, status, error)
+			{
+				icia.common.error(error);
+			}
+			});
+			//ajax통신 종료
+		}
+		
+	});
+	//홀 담기 버튼 종료
+	
 });
 </script>
 </head> 
@@ -68,8 +148,64 @@ $(document).ready(function(){
                             <div class="banner2">
                                 <!--img src="../resources/images/tour.png" width="100%"-->
                             </div>
-                           
-                            <div class="main-dark-button3"><a href="#">이 스튜디오 담기</a></div>
+                  <dt>스튜디오 예약일</dt>
+                  <dd class="date">
+					<select id="year" class="year">
+						<option value="">년도</option>
+						<option value="2022">2022</option>
+						<option value="2023">2023</option>
+
+
+					</select> <select id="month" class="month">
+						<option value="">월</option>
+						<option value="01">1</option>
+						<option value="02">2</option>
+						<option value="03">3</option>
+						<option value="04">4</option>
+						<option value="05">5</option>
+						<option value="06">6</option>
+						<option value="07">7</option>
+						<option value="08">8</option>
+						<option value="09">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+					</select> <select id="day" class="day">
+						<option value="">일</option>
+						<option value="01">1</option>
+						<option value="02">2</option>
+						<option value="03">3</option>
+						<option value="04">4</option>
+						<option value="05">5</option>
+						<option value="06">6</option>
+						<option value="07">7</option>
+						<option value="08">8</option>
+						<option value="09">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="26">26</option>
+						<option value="27">27</option>
+						<option value="28">28</option>
+						<option value="29">29</option>
+						<option value="30">30</option>
+						<option value="31">31</option>
+					</select>
+				</dd>
+                            <div class="main-dark-button3"><a href="#" id="chae">이 스튜디오 담기</a></div>
                         </div>
                     </div>
                 </div>
@@ -99,7 +235,7 @@ $(document).ready(function(){
 </c:if>
 
 <form name="bbsForm" id="bbsForm" method="post">
-   <input type="hidden" name="sCode" value="${sCode}" />
+   <input type="hidden" name="sCode" id="sCode" value="${sCode}" />
    <input type="hidden" name="searchType" value="${searchType}" />
    <input type="hidden" name="searchValue" value="${searchValue}" />
    <input type="hidden" name="curPage" value="${curPage}" />

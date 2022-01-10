@@ -311,10 +311,13 @@ function movePage()
 				
 					<div class="col-lg-1"></div>
 					<div class="col-lg-10">
-					<!-- 쿠폰 가져오기 -->
 					<div class="col-lg-10">
+					<!-- 쿠폰 가져오기 -->
 					<select>
-						<option value=""></option>
+						<option value="">쿠폰 선택</option>
+					<c:forEach var="coupon" items="${couponList}" varStatus="status">
+						<option value="${coupon.cCode }">${coupon.cName }</option>
+					</c:forEach>
 					</select>
 					</div>
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
