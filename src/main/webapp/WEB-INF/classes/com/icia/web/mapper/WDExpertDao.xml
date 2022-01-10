@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icia.web.dao.WDExpertDao">
+
+<resultMap id="WDExpertMap" type="com.icia.web.model.WDExpert">
+	<id column="E_ID" property="eId" />
+	<id column="E_CODE" property="eCode" />
+	<result column="E_PWD" property="ePwd" />
+	<result column="E_NAME" property="eName" />
+	<result column="E_LOCATION" property="eLocation" />
+	<result column="E_GENDER" property="eGender" />
+	<result column="REG_DATE" property="regDate" />
+	<result column="E_IMGNAME" property="eImgname" />
+	<result column="E_HASHTAG" property="eHashtag" />
+	<result column="E_CONTENT" property="eContent" />
+</resultMap>
+
+<!-- 전문가 총 수 시작 -->
+<select id="expertListCount" parameterType="com.icia.web.model.WDExpert" resultType="long">
+SELECT COUNT(E_CODE)
+FROM WD_EXPERT
+WHERE 1=1
+<if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
+	<choose>
+		<when test='searchType == "1"'>
+AND
+    E_NAME = #{searchValue}
+		</when>
+		<when test='searchType == "2"'>	
+AND
+    E_LOCATION LIKE '%' || #{searchValue} || '%'
+		</when>
+	</choose>
+</if>
+</select>
+<!-- 전문가 총 수 끝 -->
+
+<!-- 전문가 목록 불러오기 시작 -->
+<select id ="expertList" parameterType="com.icia.web.model.WDExpert" resultMap="WDExpertMap">
+SELECT
+    E_ID,
+    E_CODE,
+    E_PWD,
+    E_NAME,
+    E_EMAIL,
+    E_LOCATION,
+    E_GENDER,
+    E_STATUS,
+    REG_DATE,
+    E_IMGNAME,
+    E_HASHTAG,
+    E_CONTENT
+FROM (SELECT
+            ROWNUM AS RNUM,
+            E_ID,
+            E_CODE,
+            E_PWD,
+            E_NAME,
+            E_EMAIL,
+            E_LOCATION,
+            E_GENDER,
+            E_STATUS,
+            REG_DATE,
+            E_IMGNAME,
+            E_HASHTAG,
+            E_CONTENT
+        FROM (SELECT
+                    E_ID AS E_ID,
+                    E_CODE AS E_CODE,
+                    NVL(E_PWD, '') AS E_PWD,
+                    NVL(E_NAME, '') AS E_NAME,
+                    NVL(E_EMAIL, '') AS E_EMAIL,
+                    NVL(E_LOCATION, '') AS E_LOCATION,
+                    NVL(E_GENDER, '') AS E_GENDER,
+                    NVL(E_STATUS, '') AS E_STATUS,
+                    NVL(REG_DATE, '') AS REG_DATE,
+                    NVL(E_IMGNAME, '') AS E_IMGNAME,
+                    NVL(E_HASHTAG, '') AS E_HASHTAG,
+                    NVL(E_CONTENT, '') AS E_CONTENT
+                FROM
+                    WD_EXPERT
+                WHERE 1=1
+<if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
+	<choose>
+		<when test='searchType == "1"'>
+                AND
+                    E_NAME = #{searchValue}
+        </when>    
+        <when test='searchType == "2"'> 
+                AND
+                    E_LOCATION LIKE '%' || #{searchValue} || '%'
+		</when>
+	</choose>
+</if>
+		)
+        ORDER BY E_CODE ASC)
+WHERE
+    RNUM <![CDATA[>=]]> #{startRow}
+AND
+    RNUM <![CDATA[<=]]> #{endRow}
+</select>
+<!-- 전문가 목록 불러오기 끝 -->
+
+<!-- 전문가 상세보기ㅏ 시작 -->
+<select id="expertSelect" parameterType="string" resultMap="WDExpertMap">
+SELECT
+    E_ID AS E_ID,
+    E_CODE AS E_CODE,
+    NVL(E_PWD, '') AS E_PWD,
+    NVL(E_NAME, '') AS E_NAME,
+    NVL(E_EMAIL, '') AS E_EMAIL,
+    NVL(E_LOCATION, '') AS E_LOCATION,
+    NVL(E_GENDER, '') AS E_GENDER,
+    NVL(E_STATUS, '') AS E_STATUS,
+    NVL(REG_DATE, '') AS REG_DATE,
+    NVL(E_IMGNAME, '') AS E_IMGNAME,
+    NVL(E_HASHTAG, '') AS E_HASHTAG,
+    NVL(E_CONTENT, '') AS E_CONTENT
+FROM
+    WD_EXPERT
+WHERE 
+    E_CODE = #{value}
+</select>
+<!-- 전문가 상세보기 끝 -->
+
+
+</mapper>

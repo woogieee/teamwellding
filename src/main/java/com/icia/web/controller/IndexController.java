@@ -188,11 +188,11 @@ public class IndexController
 		return "/Termsofuse";
 	}
 	
-	/** 전문가매칭 페이지 불러오기 **/
+	/** 전문가매칭 페이지 불러오기
 	@RequestMapping(value="/board/specialist", method=RequestMethod.GET)
 	public String specialist(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
-		/*********상단에 닉넴 보여주기 시작*********/
+		
 		//쿠키 확인
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		
@@ -216,7 +216,6 @@ public class IndexController
 		{
 			loginS = 0;
 		}
-		/**********상단에 닉넴 보여주기 끝***********/
 		
 		return "/board/specialist";
 	}
@@ -226,7 +225,7 @@ public class IndexController
 	{
 		
 		return "/board/gosu";
-	}
+	}*/
 
 	@RequestMapping(value="/include/PrivacyPolicy")
 	public String policy(ModelMap model, HttpServletRequest request, HttpServletResponse response)

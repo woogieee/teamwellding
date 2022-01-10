@@ -34,7 +34,7 @@ $(document).ready(function(){
 
 function fn_list(curPage)
 {
-   document.bbsForm.dNo.value = "";
+   document.bbsForm.eCode.value = "";
    document.bbsForm.curPage.value = curPage;
    document.bbsForm.action = "/board/specialist";
    document.bbsForm.submit();
@@ -104,8 +104,33 @@ function fn_list(curPage)
 				<div class="col-lg-12">
 					<div class="boxx"></div>
 				</div>
-                <!-- 전문가목록 시작 -->
-                <!-- 01 -->
+				
+				<!-- 전문가 목록 시작 -->
+<c:if test="${!empty list}">
+	<c:forEach var="wdExpert" items="${list}" varStatus="status">
+                 <div class="col-lg-3">
+                    <div class="ticket-item2 gosu_modal" href="/board/gosu">
+                        <div class="thumb_go">
+                            <img src="../resources/images/gosu/${wdExpert.eImgname}" alt="">
+                        </div>
+                        <div class="down-content2">
+                        	<div class="title_go"><c:out value="${wdExpert.eName}" /> 플래너</div>
+                            <ul>
+                                <li class="adress_go"><c:out value="${wdExpert.eLocation}" /> </li>
+                        		<div class="hashtag"><c:out value="${wdExpert.eHashtag}" /> </div>
+                            </ul>
+                            <div class="main-dark-button btn_go">
+                                <a href="/board/gosu" class="gosu_modal">자세히 보기</a>
+                            </div>
+                                
+                         </div>
+                    </div>
+                </div> 
+	</c:forEach>
+</c:if>
+				<!-- 전문가 목록 끝 -->
+				
+                <!-- 전문가목록 시작 
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -125,7 +150,6 @@ function fn_list(curPage)
                     </div>
                 </div> 
                 
-                <!-- 02 -->
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -144,7 +168,6 @@ function fn_list(curPage)
                     </div>
                 </div> 
                 
-                <!-- 03 -->
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -163,7 +186,6 @@ function fn_list(curPage)
                     </div>
                 </div> 
                 
-                <!-- 04 -->
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -182,7 +204,6 @@ function fn_list(curPage)
                     </div>
                 </div> 
                 
-                <!-- 05 -->
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -201,7 +222,6 @@ function fn_list(curPage)
                     </div>
                 </div> 
                 
-                <!-- 06 -->
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -220,8 +240,7 @@ function fn_list(curPage)
                     </div>
                 </div> 
                 
-                <!-- 7번째부터는 다시반복 ㅎㅎ -->
-                <!-- 01 -->
+                
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -240,7 +259,6 @@ function fn_list(curPage)
                     </div>
                 </div> 
                 
-                <!-- 02 -->
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -259,7 +277,6 @@ function fn_list(curPage)
                     </div>
                 </div> 
                 
-                <!-- 03 -->
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -278,7 +295,6 @@ function fn_list(curPage)
                     </div>
                 </div> 
                 
-                <!-- 04 -->
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -297,7 +313,6 @@ function fn_list(curPage)
                     </div>
                 </div> 
                 
-                <!-- 05 -->
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -316,7 +331,6 @@ function fn_list(curPage)
                     </div>
                 </div> 
                 
-                <!-- 06 -->
                  <div class="col-lg-3">
                     <div class="ticket-item2 gosu_modal" href="/board/gosu">
                         <div class="thumb_go">
@@ -340,16 +354,31 @@ function fn_list(curPage)
 				 <div class="col-lg-12">
                     <div class="pagination">
                         <ul>                       
+				<c:if test="${!empty paging}">
+					<c:if test="${paging.prevBlockPage gt 0}">                         
                             <li><a  class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">Prev</a></li>
-							<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default;">1</a></li>
+					</c:if>
+				    <c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+				    	<c:choose>
+				    		<c:when test="${i ne curPage}">
+    		         		<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+							</c:when>
+							<c:otherwise>
+											<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default;">${i}</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				 	<c:if test="${paging.nextBlockPage gt 0}">        
          					<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">Next</a></li>
+					</c:if>
+				</c:if>
                         </ul>
                     </div>
                 </div> 
                 <!-- 페이징처리 끝 -->
 		</div>
 			<form name="bbsForm" id="bbsForm" method="post">
-			<input type="hidden" name="gosuNo" value="" />
+			<input type="hidden" name="eCode" value="" />
 			<input type="hidden" name="searchType" value="${searchType}" />
 			<input type="hidden" name="searchValue" value="${searchValue}" />
 			<input type="hidden" name="curPage" value="${curPage}" />
