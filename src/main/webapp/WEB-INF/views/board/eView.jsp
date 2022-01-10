@@ -17,12 +17,7 @@
 			document.eBoardForm.submit();
 		});
 	});
-
-</script> 	
-<style>
-#img{width:100%;}
-</style>
-
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navigation.jsp">
@@ -33,52 +28,16 @@
 		<div class="back"></div>
 	</section>
 
-    <!-- ***** About Us Page ***** -->
-    <div class="page-heading-shows-events5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Event</h2>
-                    <!-- span>Check out upcoming and past shows & events and grab your ticket right now.</span -->
-                </div>
-            </div>
-        </div>
-    </div>
-    
-<div class="container">
-   <div class="row" style="margin-right:0; margin-left:0;">
-      <table class="table">
-         <thead>
-            <tr class="table-active dongdong2">
-               <td scope="col" style="width:60%">
-                  <c:out value="${eBoard.eBTitle}"/>
-               </td>
-               
-               <td scope="col" style="width:40%" class="text-right">
-                                         조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${eBoard.eBReadCnt}" />
-               </td>
-            </tr>
-               <td scope="col" style="width:60%">
-               	작성자 : <c:out value="${eBoard.adminId}"/>
-               </td>
-               <td scope="col" style="width:40%" class="text-right">
-                  <div>${eBoard.regDate}</div>
-               </td>
-         </thead>
-         <tbody>
-            <tr>
-               <td colspan="2" style="text-align:center">
-               <div style="padding:10px"><pre><img src="/resources/board/${eBoard.eBImgName}" id="img"><br /><br /><c:out value="${eBoard.eBContent}" /></pre></div></td>
-            </tr>
-         </tbody>
-         <tfoot>
-         <tr>
-               <td colspan="2"><button type="button" id="btnList" class="w-btn w-btn-green2" style="float: right">리스트</button></td>
-         </tr>
-         </tfoot>
-      </table>
-   </div>
-</div>
+	<!-- ***** About Us Page ***** -->
+	<div class="page-heading-shows-events5">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h2></h2>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<h2 class="e_title">EVENT</h2>
 	<p style="text-align: center; margin-bottom: 20px;">웰딩 이벤트를 확인해보세요!</p>
