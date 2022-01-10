@@ -10,187 +10,6 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital@0;1&family=The+Nautigal&display=swap" rel="stylesheet">
 <script>
-    $(document).ready(function(){
-
-//장바구니에서 홀 삭제
-<c:if test="${!empty wdRez.whCode}">
-    	$("#delBtnWishH").on("click", function(){
-    		if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
-    		{
-    			//ajax통신 시작
-    			$.ajax({
-				type:"POST",
-				url:"/user/updateHproc",
-				data:
-				{
-					rezNo: <c:out value="${wdRez.rezNo}" />
-				},
-				datatype:"JSON",
-				beforeSend:function(xhr){
-					xhr.setRequestHeader("AJAX", "true");
-				},
-				success:function(response){
-					if(response.code == 0)
-					{
-						alert("장바구니에서 해당 상품을 제거했습니다.");
-						//업데이트가 성공하면 해당 tr 삭제
-		    			$("#wishH").remove();
-					}
-					else
-					{
-						alert("게시물 삭제 중 오류가 발생했습니다.");
-					}
-				},
-				complete:function(data){
-					icia.common.log(data);
-				},
-				error:function(xhr, status, error)
-				{
-					icia.common.error(error);
-				}
-				});
-    			//ajax통신 종료
-    		}
-		});
-    	//삭제버튼 클릭 종료
-</c:if>
-//장바구니에서 홀 삭제
-
-//장바구니에서 스튜디오 삭제
-<c:if test="${!empty wdRez.sCode}">
-    	$("#delBtnWishS").on("click", function(){
-    		if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
-    		{
-    			//ajax통신 시작
-    			$.ajax({
-				type:"POST",
-				url:"/user/updateSproc",
-				data:
-				{
-					rezNo: <c:out value="${wdRez.rezNo}" />
-				},
-				datatype:"JSON",
-				beforeSend:function(xhr){
-					xhr.setRequestHeader("AJAX", "true");
-				},
-				success:function(response){
-					if(response.code == 0)
-					{
-						alert("장바구니에서 해당 상품을 제거했습니다.");
-						//업데이트가 성공하면 해당 tr 삭제
-		    			$("#wishS").remove();
-					}
-					else
-					{
-						alert("게시물 삭제 중 오류가 발생했습니다.");
-					}
-				},
-				complete:function(data){
-					icia.common.log(data);
-				},
-				error:function(xhr, status, error)
-				{
-					icia.common.error(error);
-				}
-				});
-    			//ajax통신 종료
-    		}
-		});
-    	//삭제버튼 클릭 종료
-</c:if>
-//장바구니에서 스튜디오 삭제 종료
-
-
-//장바구니에서 드레스 삭제
-<c:if test="${!empty wdRez.dNo}">
-    	$("#delBtnWishD").on("click", function(){
-    		if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
-    		{
-    			//ajax통신 시작
-    			$.ajax({
-				type:"POST",
-				url:"/user/updateDproc",
-				data:
-				{
-					rezNo: <c:out value="${wdRez.rezNo}" />
-				},
-				datatype:"JSON",
-				beforeSend:function(xhr){
-					xhr.setRequestHeader("AJAX", "true");
-				},
-				success:function(response){
-					if(response.code == 0)
-					{
-						alert("장바구니에서 해당 상품을 제거했습니다.");
-						//업데이트가 성공하면 해당 tr 삭제
-		    			$("#wishD").remove();
-					}
-					else
-					{
-						alert("게시물 삭제 중 오류가 발생했습니다.");
-					}
-				},
-				complete:function(data){
-					icia.common.log(data);
-				},
-				error:function(xhr, status, error)
-				{
-					icia.common.error(error);
-				}
-				});
-    			//ajax통신 종료
-    		}
-		});
-    	//삭제버튼 클릭 종료
-</c:if>
-//장바구니에서 드레스 삭제 종료
-
-//장바구니에서 메이크업 삭제
-<c:if test="${!empty wdRez.mCode}">
-    	$("#delBtnWishM").on("click", function(){
-    		if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
-    		{
-    			//ajax통신 시작
-    			$.ajax({
-				type:"POST",
-				url:"/user/updateMproc",
-				data:
-				{
-					rezNo: <c:out value="${wdRez.rezNo}" />
-				},
-				datatype:"JSON",
-				beforeSend:function(xhr){
-					xhr.setRequestHeader("AJAX", "true");
-				},
-				success:function(response){
-					if(response.code == 0)
-					{
-						alert("장바구니에서 해당 상품을 제거했습니다.");
-						//업데이트가 성공하면 해당 tr 삭제
-		    			$("#wishM").remove();
-					}
-					else
-					{
-						alert("게시물 삭제 중 오류가 발생했습니다.");
-					}
-				},
-				complete:function(data){
-					icia.common.log(data);
-				},
-				error:function(xhr, status, error)
-				{
-					icia.common.error(error);
-				}
-				});
-    			//ajax통신 종료
-    		}
-		});
-    	//삭제버튼 클릭 종료
-</c:if>
-//장바구니에서 메이크업 삭제 종료
-    	
-    });
-    
     function fn_view1(whCode, hCode)
     {
    	document.rezForm.WHCode.value = whCode; 
@@ -216,15 +35,59 @@
     	document.rezForm.action = "/hsdm/makeupView";	
     	document.rezForm.submit();
     }
-    
+
+//카카오페이 추가
 $(document).ready(function(){
-	$("#payMent").on("click", function(){
-		
-		document.rezForm.action = "/user/payMent";
-		document.rezForm.submit();
-	});
+   $("#btnPay").on("click", function(){
+      $("#btnPay").prop("disabled", true); //버튼비활성화
+      
+      ///////ajax
+      icia.ajax.post({
+         url: "/kakao/payReady",
+         data:{
+            itemCode: $("#itemCode").val(),
+            itemName: $("#itemName").val(),
+            quantity: $("#quantity").val(),
+            totalAmount: $("#totalAmount").val()
+         },
+         success: function(response)
+         {
+            icia.common.log(response);
+            
+            if(response.code == 0)
+            {
+               var orderId = response.data.orderId;
+               var tId = response.data.tId;
+               var pcUrl = response.data.pcUrl;
+               
+               $("#orderId").val(orderId);
+               $("#tId").val(tId);
+               $("#pcUrl").val(pcUrl);
+               
+               var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=700,left=100,top=100');
+               
+               $("#kakaoForm").submit();
+               $("#btnPay").prop("disabled", false);
+            }
+            else
+            {
+               alert("오류가 발생하였습니다.");
+               $("#btnPay").prop("disabled", false);
+            }
+         },
+         error: function(error)
+         {
+            icia.common.error(error);
+            $("#btnPay").prop("disabled", false);
+         }
+      });
+   });
 });
 
+function movePage()
+{
+   location.href = "/user/payComplete";
+}
 
 </script>  
 </head>
@@ -251,20 +114,10 @@ $(document).ready(function(){
 					<div class="col-lg-1">
 					</div>
 					<div class="col-lg-10">
-						<h2 style="font-family: 'Bitter', serif; margin-top: 50px; padding-left: 10px;">My Page</h2>
+						<h2 style="font-family: 'Bitter'; margin-top: 50px; padding-left: 10px;">주문/결제</h2>
 						<nav class="bcItem">
 							<ol class="breadcrumb bc" >
 								<li class="breadcrumb-item active">
-									<h5>장바구니</h5>
-								</li>
-								<li class="breadcrumb-item">
-									<a href="#">결제내역</a>
-								</li>
-								<li class="breadcrumb-item">
-									<a href="#">쿠폰보유현황</a>
-								</li>
-								<li class="breadcrumb-item">
-									<a href="/user/modify">회원정보수정</a>
 								</li>
 							</ol>
 						</nav>
@@ -293,9 +146,7 @@ $(document).ready(function(){
                                 <th>상품정보</th>
                                 <th>참고사항</th>
                                 <th>총가격</th>
-                                <th>삭제</th>
-                            </tr>
-                            
+                            </tr>                           
                             <!-- 홀 -->
 <c:if test="${!empty wdRez.whCode}">
                             
@@ -334,10 +185,6 @@ $(document).ready(function(){
                                 		<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin)}" />원
                                 	</h4>
                                 </td>
-                                
-                                <td>
-                                    <input type="button" value="x" class="w-btn-red delBtnWish" id="delBtnWishH">
-                                </td>
                             </tr>
 </c:if>
                             <!-- 스 -->
@@ -374,10 +221,6 @@ $(document).ready(function(){
                                 		<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.sPrice *(1- wdRez.sDiscount*0.01)}" />원
                                 	</h4>
                                 </td>
-                                
-                                <td>
-                                    <input type="button" value="x" class="w-btn-red delBtnWish" id="delBtnWishS">
-                                </td>
                             </tr>
 </c:if>
 
@@ -412,10 +255,6 @@ $(document).ready(function(){
                                 	<h4>
                                 		<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.dPrice *(1- wdRez.dDiscount*0.01)}" />원
                                 	</h4>
-                                </td>
-                                
-                                <td>
-                                    <input type="button" value="x" class="w-btn-red delBtnWish" id="delBtnWishD">
                                 </td>
                             </tr>
 </c:if>
@@ -460,10 +299,6 @@ $(document).ready(function(){
                                 		<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)}" />원
                                 	</h4>
                                 </td>
-                                
-                                <td>
-                                    <input type="button" value="x" class="w-btn-red delBtnWish" id="delBtnWishM">
-                                </td>
                             </tr>
 </c:if>
 
@@ -472,11 +307,16 @@ $(document).ready(function(){
 					
 					</div>
 					<!-- 경계선 종료 -->
-
 					<div class="col-lg-1"></div>
 				
 					<div class="col-lg-1"></div>
 					<div class="col-lg-10">
+					<!-- 쿠폰 가져오기 -->
+					<div class="col-lg-10">
+					<select>
+						<option value=""></option>
+					</select>
+					</div>
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
 						<div class="rez_sum">
 							<dl class="sumbox1">
@@ -511,7 +351,7 @@ $(document).ready(function(){
 							<!-- 총 주문금액 변수 i에 넣어서  totalAmount 에 넣어주기-->
 							<fmt:parseNumber var="i" type="number" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)}" />
 							<!-- 카카오 페이 버튼 추가 -->
-							<button type="button" id="payMent" style="border: solid 1px black; background:white; position:relative; top:-18px; color:black;" class="btn btn-primary" title="결제페이지로 이동">결제페이지로 이동</button>
+							<button type="button" id="btnPay" style="border:0px; background:none; position:relative; top:-18px;" title="카카오페이"><img src="../resources/images/icons/kakaoPay.png"></button>
 						</div>
 </c:if>
 					</div>
@@ -530,6 +370,22 @@ $(document).ready(function(){
       <input type="hidden" name="dNo" value="" />
       <input type="hidden" name="mCode" value="" /> 
 </form>
+
+<div class="container">
+   <form name="payForm" id="payForm" method="post">
+      <input type="hidden" name="itemCode" id="itemCode" maxlength="32" class="form-control mb-2" placeholder="상품코드" value="${wdRez.rezNo}" />
+      <input type="hidden" name="itemName" id="itemName" maxlength="50" class="form-control mb-2" placeholder="상품명" value="${wdRez.hName}" />
+      <input type="hidden" name="quantity" id="quantity" maxlength="3" class="form-control mb-2" placeholder="수량" value="1" />
+      <input type="hidden" name="totalAmount" id="totalAmount" maxlength="15" class="form-control mb-2" placeholder="금액" value="<c:out value='${i}' />" />
+   </form>
+   <form name="kakaoForm" id="kakaoForm" method="post" target="kakaoPopUp" action="/kakao/payPopUp">
+      <input type="hidden" name="orderId" id="orderId" value="" />
+      <input type="hidden" name="tId" id="tId" value="" />
+      <input type="hidden" name="pcUrl" id="pcUrl" value="" />
+   </form>
+   
+</div>
+
 		<%@ include file="/WEB-INF/views/include/footer.jsp" %>
   </body>
 
