@@ -504,7 +504,7 @@ $(document).ready(function(){
 							<dl class="sumbox1">
 								<dt class="sumsec">예상할인금액</dt>
 
-								<dd class="sumpay2" id="saleP"><fmt:formatNumber type="number" maxFractionDigits="0" value="${(wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + (wdRez.mPrice *(1- wdRez.mDiscount*0.01))}" />원</dd>
+								<dd class="sumpay2" id="saleP"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))}" />원</dd>
 
 							</dl>
 							
@@ -517,7 +517,7 @@ $(document).ready(function(){
 
 									<span id="aftP">
 										<fmt:formatNumber type="number" maxFractionDigits="0" 
-										value="${(wdRez.hPrice + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice + wdRez.dPrice + wdRez.mPrice + (wdRez.mPlus*wdRez.mPlusNum)) - ((wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + (wdRez.mPrice *(1- wdRez.mDiscount*0.01)))}" />원
+										value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)}" />원
 									</span>
 								</h5>
 							</div>
