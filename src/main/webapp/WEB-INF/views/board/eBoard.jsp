@@ -54,7 +54,9 @@ function fn_view(eBSeq)
 </script>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/include/navigation.jsp"%>
+	  <jsp:include page="/WEB-INF/views/include/navigation.jsp" >
+       <jsp:param name="userName" value="${wdUser.userNickname}" />
+       </jsp:include>
 
 	<section class="top">
 		<div class="back"></div>
@@ -65,14 +67,18 @@ function fn_view(eBSeq)
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h2>Event</h2>
-					<!-- span>Check out upcoming and past shows & events and grab your ticket right now.</span -->
+					<h2></h2>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<h2 class="e_title">EVENT</h2>
+	<p style="text-align: center; margin-bottom: 20px;">웰딩 이벤트를 확인해보세요!</p>
+	<br />
 
 	<div class="tickets-page">
+<<<<<<< HEAD
 
         <div class="container">
             <div class="row">
@@ -299,5 +305,6 @@ function fn_view(eBSeq)
 		</div>
 
 		<%@ include file="/WEB-INF/views/include/footer.jsp"%>
-</body>
 
+</body>
+</html>

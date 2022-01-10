@@ -40,13 +40,6 @@ reset
   src: url('../fonts/nether.ttf') format('truetype');
 }
 
-@font-face {
-    font-family: 'OTWelcomeRA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
@@ -491,13 +484,12 @@ a{ text-decoration: none; color: inherit; }
   display: inline-block;
   font-size: 13px;
   padding: 12px 18px;
-  background-color: #f5a4aa;
-  color:  #fff;
+  background-color: #103148;
+  color: #fff;
   text-align: center;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: capitalize;
   transition: all .3s;
-  border-radius: 12px;
 }
 
 .main-dark-button2 a {
@@ -1870,7 +1862,6 @@ footer span{
 footer {
   padding-top: 60px;
   padding-bottom: 30px;
-  margin-top: 50px;
   background-color: #f5f5f5;
   border-top: 1px solid #bbb;
 }
@@ -2948,7 +2939,7 @@ Shows Events Page
 	background-image: url(../images/eboard.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
-	padding: 70px 0px;
+	padding: 150px 0px;
 	text-align: center;
 	background-position: center 64%;
 }
@@ -2983,7 +2974,6 @@ Shows Events Page
     font-size: 30px;
     font-weight: 600;
     font-family: inherit;
-    color: #222;
 }
 
 #search-box{padding:0px;}
@@ -3209,7 +3199,6 @@ Shows Events Page
 .shows-events-tabs .tabs-content .pagination ul li a:hover,
 .shows-events-tabs .tabs-content .pagination ul li.active a {
   background-color: #343a3e;
- 
   color: #fff!important;
 }
 
@@ -3227,59 +3216,57 @@ Shows Events Page
 
 .tickets-page {
   /*margin-bottom: 100px;*/
-  /*padding-bottom: 100px;*/
+  padding-bottom: 100px;
 }
 
 .tickets-page .search-box {
- 
+  background-color: #edacb1;
   padding: 30px;
-  
 }
 
 .tickets-page .search-box h4 {
-  color: rgba(40,30,25,1);
-  font-weight: 500;
+  color: #fff;
+  font-weight: 700;
   font-size: 20px;
-  margin-top: 15px;
-  font-family: 'OTWelcomeRA';
+  margin-top: 8px;
 }
 
 .tickets-page .search-box select {
   margin-top: 10px;
   background-color: transparent;
-  border-bottom: 1px solid #666666;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.5);
   border-top: none;
   border-right: none;
   border-left: none;
   outline: none;
-  color: #666666; /*조회 항목*/
+  color: #fff;
   font-size: 14px;
   width: 100%;
   padding: 5px;
 }
 
 .tickets-page .search-box option {
-  /*background-color: #343a3e; 옵션 색 */
+  background-color: #343a3e;
 }
 
 .svalue
 {
 	margin-top: 10px;
 	background-color: transparent;
-	border-bottom: 1px solid #666666;
+	border-bottom: 1px solid rgba(250, 250, 250, 0.5);
 	border-top: none;
 	border-right: none;
 	border-left: none;
 	outline: none;
-	color: #666666;
+	color: #fff;
 	font-size: 14px;
 	width: 100%;
 	padding: 5px;
 }
-/*.svalue::placeholder
+.svalue::placeholder
 {
-	color: #red;
-}*/
+	color: #fff;
+}
 
 /** 여기저기 보현 수정 ,,, **/
 
@@ -3297,8 +3284,6 @@ Shows Events Page
   outline: none;
   width: 100%;
 }
-
-
 
 
 .tickets-page .search-box .main-dark-button:hover {
@@ -3755,7 +3740,7 @@ Shows Events Page
   display: inline-block;
   font-size: 14px;
   padding: 12px 20px;
-  /*background-color: #e6e7e8;*/
+  background-color: #e6e7e8;
   color: #2a2a2a;
   text-align: center;
   font-weight: 500;
@@ -3765,10 +3750,8 @@ Shows Events Page
 
 .tickets-page .pagination ul li a:hover,
 .tickets-page .pagination ul li.active a {
-  /*background-color: none;
-  color: #fff!important;*/
-  border: 1px solid rgba(240,119,129);
-  color: rgba(240,119,129);
+  background-color: #343a3e;
+  color: #fff!important;
 }
 
 
@@ -4604,6 +4587,7 @@ responsive
   text-align: center;
   cursor: pointer;
   border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 
@@ -5030,10 +5014,10 @@ responsive
     position: relative;
     border: none;
     display: inline-block;
-    padding: 5px 15px;
-    border-radius: 15px;
+    padding: 8px 18px;
+    border-radius: 20px;
     font-family: "paybooc-Light", sans-serif;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);*/
     text-decoration: none;
     font-weight: 600;
     transition: 0.25s;
@@ -5072,7 +5056,7 @@ responsive
 }
 
 .w-btn-green2 {
-    background-color: #519d9e;
+    background-color: #ff957d;
     color: #fff;
 }
 
@@ -5789,6 +5773,7 @@ responsive
 {
 	width: 120px;
 	border-right: none;
+	text-align: center;
 }
 
 .delBtnWish
@@ -5874,7 +5859,7 @@ responsive
 	font-size: 20px;
     font-weight: 500;
     letter-spacing: -1px;
-    padding-left: 10px;
+    /*padding-left: 10px;*/
 }
 
 .bcItem h5
@@ -5897,7 +5882,9 @@ responsive
 
 .container .dongdong2
 {
-	background-color: #edacb1;;
+	background-color: rgba(255, 149, 125, 0.2);
+	height: 70px;
+	border-top: 2px solid #333;
 }
 /* 동욱 추가 끝 */
 
@@ -6236,7 +6223,7 @@ responsive
 	color:#777;
 	text-decoration: underline;
 	margin-left: 7px;
-	padding-left: 10px;
+	/*padding-left: 10px;*/
 }
 
 .alignleft
@@ -6248,6 +6235,7 @@ responsive
 {
 	width: 120px;
 	height: 120px;
+	display: inline-block;
 }
 
 .imgbox img
@@ -6373,6 +6361,27 @@ responsive
 	cursor: pointer;
 	border-bottom: 1px solid #ddd;
 	padding: 20px 0;
+}
+
+
+.e_title
+{
+	text-align: center;
+	margin-top: 60px;
+	font-size: 38px;
+	font-weight: 600;
+}
+
+.e_imgbox
+{
+	padding-bottom: 30px;
+}
+
+.e_imgbox img
+{
+	width: 80%;
+	height: auto;
+	margin: 20px;
 }
 
 /*보현추가 끝*/
