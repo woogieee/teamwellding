@@ -310,8 +310,16 @@ function fn_view(eBSeq)
                                 </div>
                             </div>
                         </form>
-                    </div>
+                     </div>
                 </div>
+              </div>
+           </div>
+                     <div style="border-bottom:1px solid #dadada; width: 100%;"></div>
+                </div>
+                
+                <div class="tickets-page">
+       			 <div class="container">
+          		  <div class="row">
                 <div class="col-lg-12">
                     <div class="heading">
                         <h2><!-- Event --></h2>
