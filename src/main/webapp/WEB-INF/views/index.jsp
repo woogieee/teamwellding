@@ -13,6 +13,13 @@
 	      document.hallForm.submit();
 	   }
 	   
+	   function fn_view3(bSeq)
+	   {
+	   	document.fBoardForm.bSeq.value = bSeq;
+	   	document.fBoardForm.action = "/board/fBoardView";
+	   	document.fBoardForm.submit();
+	   }
+	   
        $(document).ready(function(){
        	var cookieData = document.cookie;
        	if(cookieData.indexOf("close=Yes") < 0)
@@ -211,7 +218,7 @@
                                <c:forEach var="fboard" items="${wdFBoard}" varStatus="status"> 
                                 <li>
                                     <div class="board">
-                                        <div class="btitle active"><a href="#"><c:out value="${fboard.bTitle}"/></a></div>
+                                        <div class="btitle active"><a href="javascript:void(0)" onclick="fn_view3(${fboard.bSeq})"><c:out value="${fboard.bTitle}"/></a></div>
                                         <div class="bwriter"><p><c:out value="${fboard.userId}"/></p></div>
                                         <div class="bdate"><p><c:out value="${fboard.regDate}"/></p></div>
                                     </div>
@@ -318,6 +325,20 @@
       <input type="hidden" name="HCode" value="" /> 
    </form>
    <!-- 홀 랭킹 뷰를 위한 폼 -->
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <!-- 게시글 상세 페이지를 위한 폼 -->
+   <form name="fBoardForm" id="fBoardForm" method="post">
+			<input type="hidden" name="bSeq" value="" />
+	</form>
+   <!-- 게시글 상세 페이지를 위한 폼 -->
 
  <!-- *** 욱채수정Footer 시작 *** -->
  	<%@ include file="/WEB-INF/views/include/footer.jsp" %>

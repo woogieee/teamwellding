@@ -12,15 +12,20 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.icia.common.util.StringUtil;
 import com.icia.web.model.Paging;
+import com.icia.web.model.Response;
 import com.icia.web.model.WDDress;
 import com.icia.web.model.WDMakeUp;
+import com.icia.web.model.WDRez;
 import com.icia.web.model.WDStudio;
 import com.icia.web.model.WDUser;
 import com.icia.web.service.WDDressService;
 import com.icia.web.service.WDMakeUpService;
+import com.icia.web.service.WDRezService;
 import com.icia.web.service.WDStudioService;
 import com.icia.web.service.WDUserService;
 import com.icia.web.util.CookieUtil;
@@ -47,6 +52,9 @@ public class WDMakeUpController
 	
 	@Autowired
 	private WDDressService wdDressService;
+	
+	@Autowired
+	private WDRezService wdRezService;
 	
 	//유저서비스
 	@Autowired
@@ -202,5 +210,132 @@ public class WDMakeUpController
 		
 		return "/hsdm/makeupView";
 	}
+	
+	
+	
+	
+	
+	//홀 장바구니 담기 버튼 누르면 실행되는 컨트롤러 정의
+   @RequestMapping(value="/hsdm/makeUpRezProc", method=RequestMethod.POST)
+   @ResponseBody
+   public Response<Object> hallRezProc(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+   {
+	   Response<Object> ajaxResponse = new Response<Object>();
+	   
+	   String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+	   String mCode = HttpUtil.get(request, "mCode", "");
+	   int mPlusNum = HttpUtil.get(request, "mPlusNum", 0);
+	   
+	   //존재하는 유저인지부터 체크
+	   WDUser wdUser = null;
+	   
+	   WDRez wdRez = null;
+	   
+	   wdUser = wdUserService.userSelect(cookieUserId);
+	   
+	   if(wdUser != null) 
+	   {
+		   System.out.println("여긴타니 11");
+		   //유저 정보 존재함
+		   if(StringUtil.equals(wdUser.getStatus(), "Y")) 
+		   {
+			   System.out.println("여긴타니 22");
+			   //유저 상태 정상
+			   //유저 아이디를 통해 예약번호가 있는지 확인
+			   if(wdRezService.checkRez(wdUser.getUserId()) <= 0) 
+			   {
+				   System.out.println("여긴타니 33");
+				   //예약번호 없음.
+				   //예약번호 부여와 홀코드 부여를 한번에 해야 함. 트랜젝션을 서비스단에서 구현
+				   wdRez = new WDRez();
+				   wdRez.setUserId(wdUser.getUserId());
+				   wdRez.setmCode(mCode);
+				   wdRez.setmPlusNum(mPlusNum);
+				   
+				   //한번에 인서트->업데이트!
+				   try 
+				   {
+					   System.out.println("여긴타니 44");
+					   if(wdMakeUpService.rezNoMakeupTotalInsert(wdRez)>0) 
+					   {
+						   System.out.println("여긴타니 55");
+						   ajaxResponse.setResponse(0, "Success");
+					   }
+					   else 
+					   {
+						   System.out.println("여긴타니 66");
+						   ajaxResponse.setResponse(403, "Internal server Error");
+					   }
+				   }
+				   catch(Exception e) 
+				   {
+					   System.out.println("여긴타니 77");
+					   ajaxResponse.setResponse(403, "Internal server Error");
+					   logger.error("[WDMakeUpController] rezNoMakeupTotalInsert Transactional Exception", e);
+				   }
+				   
+			   }
+			   else 
+			   {
+				   System.out.println("여긴타니 88");
+				   //예약번호 있음
+				   //예약번호는 있는데, 스드메만 예약하고 홀은 아직 예약 안 한 경우일 수도 있음.
+				   //그럴 경우 홀 코드가 비어있다면 업데이트 해줘야 함.
+				   //홀 코드 존재하는지 체크
+				   WDRez search = new WDRez();
+				   
+				   search = wdRezService.rezSelect(wdUser.getUserId());
+				   
+				   wdRez = wdRezService.rezList(search);
+				   
+				   if(wdRez != null) 
+				   {
+					   System.out.println("여긴타니 99");
+					   if(StringUtil.isEmpty(wdRez.getmCode())) 
+					   {
+						   System.out.println("여긴타니 10101010");
+						   //메이크업 코드 존재하지 않음. 메이크업은 안담았어!!
+						   //wdRez객체에 홀코드 예식장코드 담음.
+						   wdRez.setmCode(mCode);
+						   wdRez.setmPlusNum(mPlusNum);
+						   if(wdRezService.rezMakeupInsert(wdRez) >0 ) 
+						   {
+							   System.out.println("여긴타니 11,11,11,11");
+							   //업데이트! 0보다 크면 성공!
+							   ajaxResponse.setResponse(0, "Success");
+						   }
+						   else 
+						   {
+							   System.out.println("여긴타니 12,12,12,12");
+							   //업데이트문 실행 안됨.
+							   ajaxResponse.setResponse(403, "Internal server Error");
+						   }
+					   }
+					   else 
+					   {
+						   System.out.println("여긴타니 13,13,13,13");
+						   //아니 저기요. 홀 메이크업 업체 이미 담으셨잖아요. 화장 두 번 하시려고 하네 이분.. 가부키 매니아세요?
+						   ajaxResponse.setResponse(502, "Stupid");
+					   }	   
+				   }
+				   
+			   }
+			   
+		   }
+		   else 
+		   {
+			   System.out.println("여긴타니 14,14,14,14");
+			   ajaxResponse.setResponse(501, "Banned User");
+		   }
+	   }
+	   else 
+	   {
+		   System.out.println("여긴타니 15,15,15,15");
+		   ajaxResponse.setResponse(500, "User Not Exist");
+	   }
+	   
+	   return ajaxResponse;
+   }
+	
 	
 }
