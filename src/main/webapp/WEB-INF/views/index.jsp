@@ -13,6 +13,13 @@
 	      document.hallForm.submit();
 	   }
 	   
+	   function fn_view2(eBSeq)
+	   {
+	   	document.eBoardForm.eBSeq.value = eBSeq;
+	   	document.eBoardForm.action = "/board/eView";
+	   	document.eBoardForm.submit();
+	   }
+	   
        $(document).ready(function(){
        	var cookieData = document.cookie;
        	if(cookieData.indexOf("close=Yes") < 0)
@@ -59,7 +66,7 @@
 	                <div class="col-lg-4" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')">
 	                    <div class="event-item2">
 	                        <div class="thumb2">
-	                            <a href="event-details.html"><img src="/resources/hsdm/${hallList.HImgName}" alt=""></a>	              
+	                             <a href="javascript:void(0)" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')" ><img src="/resources/hsdm/${hallList.HImgName}" alt=""></a>	              
 	                        </div>
 	                        <div class="down-content2">
 	                            <a href="event-details.html"><h4>${hallList.HName}</h4></a>
@@ -177,7 +184,8 @@
         <div class="innerbox">
             <ul class="bxslider" style="text-align: center;"> 
              <c:forEach var="eboard" items="${wdEBoard}" varStatus="status">
-                <li><img src="/resources/board/${eboard.eBImgName}" style="width: 80%; height: 350px;" /></li> 
+                <li><a href=""><a href="javascript:void(0)" onclick="fn_view2(${eboard.eBSeq})">
+                <img src="/resources/board/${eboard.eBImgName}" style="width: 80%; height: 350px;" /></a></li> 
              </c:forEach>
                 <!--li><img src="resources/images/305.jpg" style="width: 80%; height: 350px;" /></li> 
                 <li><img src="resources/images/608.jpg" style="width: 80%; height: 350px;" /></li--> 
@@ -318,6 +326,9 @@
       <input type="hidden" name="HCode" value="" /> 
    </form>
    <!-- 홀 랭킹 뷰를 위한 폼 -->
+   <form name="eBoardForm" id="eBoardForm" method="post">
+   <input type="hidden" name="eBSeq" value="" />
+   </form>
 
  <!-- *** 욱채수정Footer 시작 *** -->
  	<%@ include file="/WEB-INF/views/include/footer.jsp" %>

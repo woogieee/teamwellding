@@ -15,6 +15,9 @@ $(document).ready(function(){
 	});
 });
 </script> 	
+<style>
+#img{width:100%;}
+</style>
 </head>
 <body>
 	  <%@ include file="/WEB-INF/views/include/navigation.jsp" %>
@@ -58,7 +61,7 @@ $(document).ready(function(){
          <tbody>
             <tr>
                <td colspan="2" style="text-align:center">
-               <div style="padding:10px"><pre><img src="/resources/board/${eBoard.eBImgName}"><br /><br /><c:out value="${eBoard.eBContent}" /></pre></div></td>
+               <div style="padding:10px"><pre><img src="/resources/board/${eBoard.eBImgName}" id="img"><br /><br /><c:out value="${eBoard.eBContent}" /></pre></div></td>
             </tr>
          </tbody>
          <tfoot>

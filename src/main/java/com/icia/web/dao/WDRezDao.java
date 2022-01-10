@@ -9,7 +9,7 @@ import com.icia.web.model.WDRez;
 @Repository("wdRezDao")
 public interface WDRezDao {
 	
-	public WDRez rezList(String userId);
+	public WDRez rezList(WDRez wdRez);
 	
 	public long rezListCount(WDRez wdRez);
 	

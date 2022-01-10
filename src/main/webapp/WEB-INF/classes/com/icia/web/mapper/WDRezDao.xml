@@ -50,7 +50,7 @@
 </resultMap>
 
 <!-- 예약 여부 확인을 위한 셀렉트문 시작 -->
-<select id="rezList" parameterType="string" resultMap="WDRezDaoResultMap" >
+<select id="rezList" parameterType="com.icia.web.model.WDRez" resultMap="WDRezDaoResultMap" >
 SELECT
     R.REZ_NO,
     NVL(R.WH_CODE,'')AS WH_CODE ,
@@ -61,13 +61,12 @@ SELECT
     NVL(R.M_CODE,'')AS M_CODE,
     NVL(R.M_PLUS_NUM,'')AS M_PLUS_NUM,
     NVL(R.REZ_STATUS,'N')AS REZ_STATUS,
-    NVL(TO_CHAR(R.REZ_DATE,'YYYY.MM.DD'), '')AS REZ_DATE,
+    NVL(TO_CHAR(R.REZ_DATE,'YYYY.MM.DD HH24:MI:SS'), '')AS REZ_DATE,
     R.WDATE,
     R.USER_ID,
     R.REZ_FULL_PRICE,
     NVL(R.C_CODE,'')AS C_CODE,
     NVL(R.REZ_POINT, 0)AS REZ_POINT,
-    NVL(R.S_DATE, '') AS S_DATE,
     NVL(W.WH_NAME,'')AS WH_NAME,
     NVL(H.H_NAME,'')AS H_NAME,
     NVL(H.H_PRICE, 0)AS H_PRICE,
@@ -95,30 +94,46 @@ SELECT
     NVL(D.D_CONTENT,'')AS D_CONTENT
 FROM
     WD_REZ R, WD_HALL H, WD_STUDIO S, WD_MAKEUP M, WD_DRESS D, WD_WEDDINGHALL W, WD_DRESS_COM C
-WHERE
-	USER_ID = #{value}
-AND    
-     <!-- USER_ID = #{userId}
+WHERE    
+    R.USER_ID = #{userId}
  <if test='userId != null and userId != ""'>
 AND
     R.REZ_STATUS = 'Y'
- </if>   
-AND  -->
+  
+AND
+</if>
+<if test='whCode != null and whCode != ""'>
     H.WH_CODE = W.WH_CODE
 AND    
     R.WH_CODE = H.WH_CODE
+  
 AND
+</if>
+<if test='hCode != null and hCode != ""'>
     R.H_CODE = H.H_CODE
+    
 AND
+</if>
+<if test='sCode != null and sCode != ""'>
     R.S_CODE = S.S_CODE
+
 AND
+</if>
+<if test='dcCode != null and dcCode != ""'>
     D.DC_CODE = C.DC_CODE
 AND
     R.DC_CODE = D.DC_CODE
+    
 AND
+</if>
+<if test='dNo != null and dNo != ""'>
     R.D_NO = D.D_NO
+    
 AND
+</if>
+<if test='mCode != null and mCode != ""'>
     R.M_CODE = M.M_CODE
+</if>    
 </select>
 <!-- 예약 여부 확인을 위한 셀렉트문 끝 -->
 

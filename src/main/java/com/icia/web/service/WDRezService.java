@@ -35,13 +35,12 @@ public class WDRezService {
 	}
 	
 	//예약 현황 조회
-	public WDRez rezList(String userId)
+	public WDRez rezList(WDRez wdRez)
 	{
-		WDRez wdRez = null;
 		
 		try
 		{
-			wdRez = wdRezDao.rezList(userId);
+			wdRez = wdRezDao.rezList(wdRez);
 		}
 		catch(Exception e)
 		{
