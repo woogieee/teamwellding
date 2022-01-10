@@ -17,6 +17,7 @@ import com.icia.common.util.StringUtil;
 import com.icia.web.model.Paging;
 import com.icia.web.model.WDExpert;
 import com.icia.web.model.WDUser;
+import com.icia.web.service.WDExpertService;
 import com.icia.web.service.WDUserService;
 import com.icia.web.util.CookieUtil;
 import com.icia.web.util.HttpUtil;
@@ -76,7 +77,7 @@ public class WDExpertController
 		
 		String searchType = HttpUtil.get(request, "searchType", "");
 		String searchValue = HttpUtil.get(request, "searchValue", "");
-		long curPage = HttpUtil.get(request, "curPage", (long)0);
+		long curPage = HttpUtil.get(request, "curPage", (long)1);
 		
 		String eCode = HttpUtil.get(request, "eCode", "");
 		
@@ -108,7 +109,7 @@ public class WDExpertController
 			paging.addParam("searchType", searchType);
 			paging.addParam("searchValue", searchValue);
 			paging.addParam("curPage", curPage);
-			
+
 			search.setStartRow(paging.getStartRow());
 			search.setEndRow(paging.getEndRow());
 			
@@ -129,6 +130,53 @@ public class WDExpertController
 	@RequestMapping(value="/board/gosu")
 	public String expertView(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
+		String searchType = HttpUtil.get(request, "searchType", "");
+		String searchValue = HttpUtil.get(request, "searchValue", "");
+		long curPage = HttpUtil.get(request, "curPage", (long)1);
 		
+		String eCode = HttpUtil.get(request, "eCode", "");
+		
+		long totalCount = 0;
+		
+		List<WDExpert> list = null;
+		
+		Paging paging = null;
+		
+		WDExpert search = new WDExpert();
+		
+		if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue))
+		{
+			search.setSearchType(searchType);
+			search.setSearchValue(searchValue);
+		}
+		else
+		{
+			searchType = "";
+			searchValue = "";
+		}
+		
+		totalCount = wdExpertService.expertListCount(search);
+		
+		if(totalCount > 0)
+		{
+			paging = new Paging("/board/specialist", totalCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage");
+			
+			paging.addParam("searchType", searchType);
+			paging.addParam("searchValue", searchValue);
+			paging.addParam("curPage", curPage);
+
+			search.setStartRow(paging.getStartRow());
+			search.setEndRow(paging.getEndRow());
+			
+			list = wdExpertService.expertList(search);
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchValue", searchValue);
+		model.addAttribute("curPage", curPage);
+		model.addAttribute("paging", paging);
+		
+		return "/board/gosu";
 	}
 }

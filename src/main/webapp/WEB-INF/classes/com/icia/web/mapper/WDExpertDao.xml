@@ -16,7 +16,7 @@
 </resultMap>
 
 <!-- 전문가 총 수 시작 -->
-<select id="expertListCount" parameterType="com.icia.web.model.WDExpert" resultMap="long">
+<select id="expertListCount" parameterType="com.icia.web.model.WDExpert" resultType="long">
 SELECT COUNT(E_CODE)
 FROM WD_EXPERT
 WHERE 1=1
@@ -31,6 +31,7 @@ AND
     E_LOCATION LIKE '%' || #{searchValue} || '%'
 		</when>
 	</choose>
+</if>
 </select>
 <!-- 전문가 총 수 끝 -->
 
@@ -87,15 +88,16 @@ FROM (SELECT
         </when>    
         <when test='searchType == "2"'> 
                 AND
-                    E_LOCATION LIKE '%' || #{searchValue} || '%')
+                    E_LOCATION LIKE '%' || #{searchValue} || '%'
 		</when>
 	</choose>
 </if>
+		)
         ORDER BY E_CODE ASC)
 WHERE
-    RNUM <![CDATA[>=]]> 1
+    RNUM <![CDATA[>=]]> #{startRow}
 AND
-    RNUM <![CDATA[<=]]> 5
+    RNUM <![CDATA[<=]]> #{endRow}
 </select>
 <!-- 전문가 목록 불러오기 끝 -->
 

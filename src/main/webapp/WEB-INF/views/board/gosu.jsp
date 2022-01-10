@@ -12,26 +12,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
+<c:if test="${!empty list}">
+	<c:forEach var="wdExpert" items="${list}" varStatus="status">
                     <div class="left-side">
-                        <img src="../resources/images/gosu/gosu1.jpg" alt="">
+                        <img src="../resources/images/gosu/${wdExpert.eImgname}" alt="">
                         
                         <div class="com_detail8">
 	                        <div class="right-content2">
-	                            <h4 class="h44">한지민 플래너</h4>
-	                            <span>웨딩드레스 디자이너, 드레스샵 부원장 출신 한지민 플래너입니다. 웨딩경력 15년 이상의 노하우로 센스있는 웨딩 플래닝을 경험하실 수 있습니다.</span>
+	                            <h4 class="h44"><c:out value="${wdExpert.eName}" />  플래너</h4>
+	                            <span><c:out value="${wdExpert.eContent}" /> </span>
 	                            <!--ul  class="loc_li">
 				                    <li>입력</li>
 				                    <li><p style="margin-right:7px">Tel.</p><p style="font-weight:700">플래너 연락처?</p></li>
 				                </ul>-->
 	                           
-	                            <div class="main-dark-button4"><a href="mailto:bohyong2@gmail.com">직접 문의하기</a></div>
+	                            <div class="main-dark-button4"><a href="mailto:${wdExpert.eEmail}">직접 문의하기</a></div>
 	                        </div>
                     	</div>
-                    	
                     </div>
+	</c:forEach>
+</c:if>                    
                 </div>
                 
-                 <div class="col-lg-8">
+               <div class="col-lg-8">
                  <div class="rent-venue-application">
                     <div class="heading-text">
                         <h4>견적 요청하기</h4>
@@ -66,7 +69,7 @@
                             </div>
                             <div class="col-lg-12">
                               <fieldset>
-                              	<input type="hidden" name="receiveMail" id="receiveMail" value="bohyong2@gmail.com"/> <!-- 메일을 받을 플래너의 메일주소 -->
+                              	<input type="hidden" name="receiveMail" id="receiveMail" value="${wdExpert.eEmail}"/> <!-- 메일을 받을 플래너의 메일주소 -->
                                 <button type="submit" id="form-submit" class="main-dark-button">견적 요청하기</button>
                               	<span style="color:red">${message}</span>
                               </fieldset>
@@ -74,7 +77,7 @@
                           </div>
                         </form>
                     </div>
-                    </div>
+                   </div>
                 </div>
                 
                 
