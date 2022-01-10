@@ -17,5 +17,5 @@ public interface WDExpertDao
 	
 	//상세보기
 	public WDExpert expertSelect(String eCode);
-	//커밋하기위한 글쓰기..
+	//커밋하기위한 글쓰기2..
 }
