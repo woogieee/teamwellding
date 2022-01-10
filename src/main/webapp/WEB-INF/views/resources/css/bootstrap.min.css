@@ -5043,7 +5043,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .page-item.active .page-link {
 	z-index: 3;
 	color: #fff;
-	background-color: #007bff;
+	/*background-color: #007bff;*/
 }
 
 .page-item.disabled .page-link {
