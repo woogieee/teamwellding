@@ -114,4 +114,16 @@ WHERE
 </delete>
 <!-- 게시글이 삭제되면 댓글 전부 삭제 -->
 
+<!-- 댓글 수정 시작 -->
+<update id="commentUpdate" parameterType="com.icia.web.model.WDComment">
+UPDATE WD_COMMENT
+SET
+    WD_FBOARD_COMMENT = #{wdFBoardComment}
+WHERE
+        PARENT_SEQ = #{parentSeq}
+    AND COMMENT_SEQ = #{commentSeq}
+    AND USER_ID = #{userId}
+</update>
+<!-- 댓글 수정 끝 -->
+
 </mapper>

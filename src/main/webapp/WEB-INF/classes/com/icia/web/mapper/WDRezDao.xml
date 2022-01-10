@@ -49,6 +49,33 @@
 	<result column="D_CONTENT" property="dContent" />
 </resultMap>
 
+<!-- 예약 테이블 값을 가져오기 위한 셀렉트문 시작 -->
+<select id="rezSelect" parameterType="string" resultMap="WDRezDaoResultMap">
+SELECT
+    REZ_NO,
+    WH_CODE,
+    H_CODE,
+    S_CODE,
+    DC_CODE,
+    D_NO,
+    M_CODE,
+    M_PLUS_NUM,
+    REZ_STATUS,
+    REZ_DATE,
+    WDATE,
+    USER_ID,
+    REZ_FULL_PRICE,
+    C_CODE,
+    REZ_POINT,
+    S_DATE
+FROM
+    WD_REZ
+WHERE
+    USER_ID = #{value}
+</select>
+<!-- 예약 테이블 값을 가져오기 위한 셀렉트문 종료 -->
+
+
 <!-- 예약 여부 확인을 위한 셀렉트문 시작 -->
 <select id="rezList" parameterType="com.icia.web.model.WDRez" resultMap="WDRezDaoResultMap" >
 SELECT
@@ -63,10 +90,12 @@ SELECT
     NVL(R.REZ_STATUS,'N')AS REZ_STATUS,
     NVL(TO_CHAR(R.REZ_DATE,'YYYY.MM.DD HH24:MI:SS'), '')AS REZ_DATE,
     R.WDATE,
+    NVL(R.WDATE, '') AS WDATE,
     R.USER_ID,
-    R.REZ_FULL_PRICE,
+    NVL(R.REZ_FULL_PRICE, 0) AS REZ_FULL_PRICE,
     NVL(R.C_CODE,'')AS C_CODE,
     NVL(R.REZ_POINT, 0)AS REZ_POINT,
+<if test='whCode != null and whCode != "" and hCode != null and hCode != ""'>
     NVL(W.WH_NAME,'')AS WH_NAME,
     NVL(H.H_NAME,'')AS H_NAME,
     NVL(H.H_PRICE, 0)AS H_PRICE,
@@ -75,23 +104,31 @@ SELECT
     NVL(H.H_IMGNAME,'')AS H_IMGNAME,
     NVL(H.H_CONTENT,'')AS H_CONTENT,
     NVL(H.H_DISCOUNT, 0)AS H_DISCOUNT,
+</if>    
+<if test='sCode != null and sCode != ""'>
     NVL(S.S_NAME,'')AS S_NAME,
     NVL(S.S_PRICE, 0)AS S_PRICE,
     NVL(S.S_DISCOUNT, 0)AS S_DISCOUNT,
     NVL(S.S_IMGNAME,'')AS S_IMGNAME,
     NVL(S.S_CONTENT,'')AS S_CONTENT,
+    NVL(R.S_DATE, '') AS S_DATE,
+</if>    
+<if test='mCode != null and mCode != ""'>
     NVL(M.M_NAME,'')AS M_NAME,
     NVL(M.M_PRICE, 0)AS M_PRICE,
     NVL(M.M_PLUS, 0)AS M_PLUS,
     NVL(M.M_DISCOUNT, 0)AS M_DISCOUNT,
     NVL(M.M_IMGNAME,'')AS M_IMGNAME,
     NVL(M.M_CONTENT,'')AS M_CONTENT,
+</if>
+<if test='dcCode != null and dcCode != "" and dNo != null and dNo != ""'>        
     NVL(C.DC_NAME,'')AS DC_NAME,
     NVL(D.D_NAME,'')AS D_NAME,
     NVL(D.D_PRICE, 0)AS D_PRICE,
     NVL(D.D_DISCOUNT, 0)AS D_DISCOUNT,
     NVL(D.D_IMGNAME,'')AS D_IMGNAME,
     NVL(D.D_CONTENT,'')AS D_CONTENT
+</if>    
 FROM
     WD_REZ R, WD_HALL H, WD_STUDIO S, WD_MAKEUP M, WD_DRESS D, WD_WEDDINGHALL W, WD_DRESS_COM C
 WHERE    
@@ -103,6 +140,29 @@ AND
 AND
 </if>
 <if test='whCode != null and whCode != ""'>
+    NVL(D.D_CONTENT,'')AS D_CONTENT,
+</if>
+    NVL(R.REZ_POINT, 0)AS REZ_POINT
+FROM 
+<if test='whCode != null and whCode != "" and hCode != null and hCode != ""'>    
+    WD_HALL H, 
+    WD_WEDDINGHALL W, 
+</if>
+<if test='sCode != null and sCode != ""'>
+    WD_STUDIO S, 
+</if>    
+<if test='mCode != null and mCode != ""'>
+    WD_MAKEUP M, 
+</if>
+<if test='dcCode != null and dcCode != "" and dNo != null and dNo != ""'>    
+    WD_DRESS D, 
+    WD_DRESS_COM C,
+</if>
+    WD_REZ R
+WHERE    
+      USER_ID = #{userId}
+<if test='whCode != null and whCode != "" and hCode != null and hCode != ""'>
+AND
     H.WH_CODE = W.WH_CODE
 AND    
     R.WH_CODE = H.WH_CODE
@@ -112,10 +172,15 @@ AND
 <if test='hCode != null and hCode != ""'>
     R.H_CODE = H.H_CODE
     
+</if>    
+<if test='sCode != null and sCode != ""'>
 AND
 </if>
 <if test='sCode != null and sCode != ""'>
     R.S_CODE = S.S_CODE
+
+</if>
+<if test='dcCode != null and dcCode != "" and dNo != null and dNo != ""'>
 
 AND
 </if>
@@ -123,12 +188,14 @@ AND
     D.DC_CODE = C.DC_CODE
 AND
     R.DC_CODE = D.DC_CODE
-    
+AND    
+	R.DC_CODE = D.DC_CODE
 AND
 </if>
 <if test='dNo != null and dNo != ""'>
     R.D_NO = D.D_NO
-    
+</if>    
+<if test='mCode != null and mCode != ""'>
 AND
 </if>
 <if test='mCode != null and mCode != ""'>
@@ -137,14 +204,30 @@ AND
 </select>
 <!-- 예약 여부 확인을 위한 셀렉트문 끝 -->
 
-<!-- 예약  수 확인 -->
-<select id ="rezListCount" parameterType="com.icia.web.dao.WDRezDao" resultType ="long">
+<!-- 예약  수 확인 시작(관리자 페이지 페이징을 위한 총 수 체크)-->
+<select id ="rezListCount" resultType ="long">
 SELECT
     COUNT(REZ_NO) AS CNT
 FROM
     WD_REZ
 </select>    
+<!-- 예약  수 확인 종료-->
 
+
+<!-- 해당 유저의 예약 내역이 존재하는지 확인 시작 -->
+<select id="checkRez" parameterType="string" resultType="integer">
+SELECT
+    COUNT(REZ_NO) AS COUNT
+FROM
+    WD_REZ R, WD_USER U
+WHERE
+    R.USER_ID = U.USER_ID
+AND
+    R.USER_ID = #{value}
+AND
+    R.REZ_STATUS = 'N'
+</select>
+<!-- 해당 유저의 에약 내역이 존재하는지 확인 종료 -->
 
 <!-- 작성중이던 예약 기록이 없거나 예약이 결제완료 상태면 예약번호 생성 시작 -->
 <insert id="rezNoInsert" parameterType="com.icia.web.model.WDRez">
@@ -314,5 +397,7 @@ AND
     USER_ID = #{userId}
 </update>
 <!-- 장바구니 스튜디오 취소 -->
+
+
 
 </mapper>

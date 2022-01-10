@@ -70,7 +70,8 @@ public class WDRezController {
 			WDUser wdUser = wdUserService.userSelect(cookieUserId);
 			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
 			{
-				wdRez = wdRezService.rezList(wdUser.getUserId());
+				wdRez.setUserId(cookieUserId);
+				wdRez = wdRezService.rezList(wdRez);
 				model.addAttribute("wdUser", wdUser);
 			}
 		}
@@ -98,6 +99,15 @@ public class WDRezController {
 				
 				wdRez = wdRezService.rezList(wdRez);
 	
+				WDRez search = new WDRez();
+				search = wdRezService.rezSelect(wdUser.getUserId());
+				
+				System.out.println("search.dcCode : "+ search.getDcCode());
+				
+				wdRez = wdRezService.rezList(search);
+				
+				
+				System.out.println("여기는 타는거니 제발 타줬으면 하는데.");
 				model.addAttribute("wdRez", wdRez);
 				model.addAttribute("wdUser",wdUser);
 			}

@@ -18,4 +18,6 @@ public interface WDCommentDao {
 	public int commentDelete(WDComment wdComment);
 	
 	public int commentBoardDelete(long parentSeq);
+	
+	public int commentUpdate(WDComment wdComment);
 }
