@@ -57,6 +57,22 @@ public class EmailController
 		System.out.println("EamilDTO : " + dto );
 		System.out.println("==============================================");
 		
+        char[] tmp = new char[10];
+			for(int i=0; i<tmp.length; i++) {
+				int div = (int) Math.floor( Math.random() * 2 );
+				
+				if(div == 0) { // 0이면 숫자로
+					tmp[i] = (char) (Math.random() * 10 + '0') ;
+				}else { //1이면 알파벳
+					tmp[i] = (char) (Math.random() * 26 + 'A') ;
+				}
+			}
+		String ran = new String(tmp);
+		
+		wdUser.setUserId(ran);
+		wdUser.setUserNickname(ran);
+		wdUser.setUserEmail(ran);
+		
 		try
 		{
 			uCheck = emailService.checkMail(dto); //이메일발송
@@ -72,4 +88,7 @@ public class EmailController
 		
 		return ajaxResponse;
 	}
+	
+	
+	
 }

@@ -276,6 +276,7 @@ public class WDFBoardController
 		
 		System.out.println("bSeq"+ bSeq);
 		
+		
 		if(bSeq > 0) 
 		{
 			WDFBoard wdFBoard = wdFBoardService.wdFBoardView(bSeq);
@@ -288,6 +289,7 @@ public class WDFBoardController
 					{
 						if(wdFBoardService.fBoardDelete(bSeq) > 0) 
 						{
+							wdCommentService.commentBoardDelete(bSeq);
 							ajaxResponse.setResponse(0, "Success");
 						}
 						else 

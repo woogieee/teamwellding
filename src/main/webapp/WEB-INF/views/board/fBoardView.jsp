@@ -142,7 +142,136 @@ $(document).ready(function(){
 	            }
 	         });
     });
+    
 });
+
+function commentDelete(cSeq){
+	
+	document.commentForm.cSeq.value = cSeq;
+	
+	  var form = $("#commentForm")[0];
+ 	  var formData = new FormData(form);
+ 	 
+	  $.ajax({
+	            type:"POST",
+	            url:"/board/commentDelete",
+	            data:formData,
+	            processData:false,
+	  			contentType:false,
+	  		    cache:false,
+	  		    timeout:600000,
+	            beforeSend:function(xhr){
+	               xhr.setRequestHeader("AJAX", "true");
+	            },
+	            success:function(response){
+	                if(response.code == 0)
+	                {
+	                   alert("댓글이 삭제되었습니다.");
+	                   document.bbsForm.action = "/board/fBoardView";
+		               document.bbsForm.submit();
+	                }
+	                else if(response.code == 400)
+	                {
+	                   alert("로그인이 되어있지 않습니다.");
+	                   location.href = "/board/fBoard";
+	                }
+	                else if(response.code == 404)
+	                {
+	                   alert("댓글을 찾을 수 없습니다.");
+	                   location.href = "/board/fBoard";
+	                }
+	                else
+	                {
+	                   alert("댓글 삭제 중 오류가 발생했습니다.");
+	                }
+	             },
+	            complete:function(data){
+	               icia.common.log(data);
+	            },
+	            error:function(xhr, status, error){
+	               icia.common.error(error);
+	            }
+	         });
+}
+
+function commentUpdate(cSeq,tagId){
+	
+
+	
+	if (!$("#updateComment").length > 0) 
+	{
+	    // textarea 추가
+	    var nCareer = document.createElement("textarea");
+	    nCareer.setAttribute("rows", 3);
+	    nCareer.setAttribute("cols", 120);
+	    nCareer.setAttribute("name", "updateComment");
+	    nCareer.setAttribute("id", "updateComment");
+	    nCareer.setAttribute("class", "form-control");
+	    nCareer.setAttribute("style", "ime-mode:active;resize: none;");
+	    nCareer.setAttribute("placeholder", "댓글을 입력해주세요");
+	    document.getElementById(tagId).appendChild(nCareer)
+	}
+	else{
+		  document.commentForm.cSeq.value = cSeq;
+		  
+	  	  if($.trim($("#updateComment").val()).length <= 0){
+	  		  alert("댓글내용을 입력하세요.");
+	  		  $("#updateComment").val("");
+	  		  $("#updateComment").focus();
+	  		  return;
+	  	  }
+		  
+	  	document.commentForm.upComment.value = $("#updateComment").val();
+	  	  
+		  var form = $("#commentForm")[0];
+	 	  var formData = new FormData(form);
+	 	 
+		  $.ajax({
+		            type:"POST",
+		            url:"/board/commentUpdate",
+		            data:formData,
+		            processData:false,
+		  			contentType:false,
+		  		    cache:false,
+		  		    timeout:600000,
+		            beforeSend:function(xhr){
+		               xhr.setRequestHeader("AJAX", "true");
+		            },
+		            success:function(response){
+		                if(response.code == 0)
+		                {
+		                   alert("댓글이 수정되었습니다.");
+		                   document.bbsForm.action = "/board/fBoardView";
+			               document.bbsForm.submit();
+		                }
+		                else if(response.code == 400)
+		                {
+		                   alert("로그인이 되어있지 않습니다.");
+		                   document.bbsForm.action = "/board/fBoardView";
+			               document.bbsForm.submit();
+		                }
+		                else if(response.code == 404)
+		                {
+		                   alert("댓글을 찾을 수 없습니다.");
+		                   document.bbsForm.action = "/board/fBoardView";
+			               document.bbsForm.submit();
+		                }
+		                else
+		                {
+		                   alert("댓글 수정 중 오류가 발생했습니다.");
+		                   location.href = "/board/fBoard";
+		                }
+		             },
+		            complete:function(data){
+		               icia.common.log(data);
+		            },
+		            error:function(xhr, status, error){
+		               icia.common.error(error);
+		            }
+		         });
+	}
+    
+}
 </script>
 </head>
 <body>
@@ -174,7 +303,7 @@ $(document).ready(function(){
                                          조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdFBoard.bReadCnt}" />
                </td>
             </tr>
-               <td scope="col" style="width:60%">
+               <td scope="col" style="width:60%" />
                	작성자 : <c:out value="${wdFBoard.userNickname}"/>
                </td>
                <td scope="col" style="width:40%" class="text-right">
@@ -205,26 +334,32 @@ $(document).ready(function(){
                <textarea class="form-control" rows="3" name="wdFBoardComment" id="wdFBoardComment" style="ime-mode:active;resize: none;" placeholder="댓글을 입력해주세요" required></textarea><br>
                <button type="button" id="btnComment" class="btn btn-secondary">댓글등록</button></td>
             </tr>
+
 			<!-- 댓글 내용이 들어갈 곳 -->
 			<c:if test="${!empty commentList}">
             <c:forEach items="${commentList}" var="comment" >
-            <tr>
-            <td>${comment.wdFBoardComment }</td>
-            <td>작성자 : ${comment.uNickName } <br>${comment.regDate }
-            <c:if test="${cookieUserId eq comment.userId }">
-            <button type="button" id="commentD" class="btn btn-secondary">삭제</button>
-            <button type="button" id="commentU" class="btn btn-secondary">수정</button>    
-            </c:if>        
-            </td>
-            </tr>
+	            <tr>
+	            <td>${comment.wdFBoardComment }</td>
+	            <td>작성자 : ${comment.uNickName } <br>${comment.regDate }
+	            <c:if test="${cookieUserId eq comment.userId }">
+	            <button type="button" class="btn btn-secondary btnCommentD" onclick="commentDelete(${comment.commentSeq})">삭제</button>
+	            <button type="button" class="btn btn-secondary btnCommentU" onclick="commentUpdate(${comment.commentSeq},'update${comment.commentSeq }')">수정</button>    
+	            </c:if>        
+	            </td>
+	            </tr>
+	            <tr>
+	            <td id="update${comment.commentSeq }" colspan="2"></td>
+	            </tr>
             </c:forEach>
             </c:if>
          </tbody>
-         <input type="hidden" name="bSeq" value="${bSeq}" />
-         <input type="hidden" name="searchType" value="${searchType}" />
-         <input type="hidden" name="searchValue" value="${searchValue}" />
-         <input type="hidden" name="curPage" value="${curPage}" />
-         </form>
+             <input type="hidden" name="bSeq" value="${bSeq}" />
+             <input type="hidden" name="cSeq" value="" />
+             <input type="hidden" name="upComment" value="" />
+	         <input type="hidden" name="searchType" value="${searchType}" />
+	         <input type="hidden" name="searchValue" value="${searchValue}" />
+	         <input type="hidden" name="curPage" value="${curPage}" />
+	     </form>
          <tfoot>
          <tr>
          <td colspan="2">

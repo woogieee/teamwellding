@@ -13,16 +13,18 @@ body
 
 .date
 {
-  margin-right: 93px;
+  /*margin-right: 93px;*/
+  float: left;
 }
+
 dt
 {
-  font-weight: 600;
-    margin-top: 30px;
-    margin-left: 40px;
-    font-size: 16px;
-    line-height: 30px;
-    color: #000;
+  	font-weight: 600;
+    margin-top: 15px;
+    /*margin-left: 40px;*/
+    font-size: 14px;
+    line-height: 22px;
+    color: #222;
     letter-spacing: -.25px;
     text-align: left;
 }
@@ -31,15 +33,12 @@ dt
 
 dd {
     display: block;
-    margin-inline-start: 40px;
-    
-    
+    /*margin-inline-start: 40px;*/
 }
 
 
 .msg {
   margin-top: 5px;
- 
   font-size: 11px;
   line-height: 14px;
   color: #666;
@@ -47,35 +46,39 @@ dd {
 }
 
 h1{
-  text-align: center;
-  margin: 20px;
+  /*text-align: center;
+  margin: 20px;*/
+  font-size: 32px;
+  font-weight: 600;
+  color: #333;
 }
 
 .join_write
 {
-
-  width: 700px;
-    height: 1000px;
+ 	width: 650px;
+    /*height: 1000px;*/
     background: #fff;
     border-radius: 10px;
     border-radius: 1px;
-    padding: 77px 55px 33px 55px;
+    padding: 50px 90px 40px;
     box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
     -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
     -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
     -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
     display: inline-block;
-    
+    margin: 85px 0;
+    border-radius: 12px;
 }
 /*------------------------------------------------------------------
 [ Form ]*/
 
 .join_header {
- height: 100px;
+ /*height: 100px;
  border-bottom: 1px solid #dfe2e6;
  text-align: center;
- margin-bottom: 30px;
+ margin-bottom: 30px;*/
+     padding-bottom: 30px;
 }
 
 .join_form
@@ -91,12 +94,13 @@ text-align: center;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 84%;
-  height: 50px;
-  padding: 0 40px 0 4px;
-  border: 1px solid #ccd2d8;
-  background-color: #fff;
-  margin-right: 110px;
+  width: 100%;
+  /*height: 40px;*/
+  padding: 6px 5px;
+  border: 1px solid #d0b7ad;
+  border-radius: 4px;
+  /*background-color: #fff;
+  margin-right: 110px;*/
 }
 
 
@@ -108,7 +112,7 @@ text-align: center;
   width: 100%;
   height: 100%;
   border: 0 none;
-  font-size: 16px;
+  font-size: 14px;
   color: #000;
   letter-spacing: -.25px;
   outline: 0 none;
@@ -124,16 +128,16 @@ select{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    width: 150px;
-    height: 50px;
+    width: 155px;
+    /*height: 42px;*/
     margin: 0 -1px;
-    
-    border: 1px solid #ccd2d8;
-    border-radius: 0;
+    border: 1px solid #d0b7ad;
+    border-radius: 4px;
     background-color: #fff;
-    font-size: 15px;
-    color: rgb(10, 10, 10);
-    padding-left: 13px;
+    font-size: 14px;
+    color: #555;
+    padding: 8px;
+    outline-color: #f29886;
     
     
 }
@@ -179,27 +183,26 @@ label.selector {
 
 .button_area
 {
-  padding: 30px;
+  /*padding: 30px;*/
   text-align: center;
- 
+  margin-top: 90px;
   
 }
 
 .button_area .btn_type{
-  width: 40%;
+  	width: 40%;
     height: 53px;
     font-weight: 700;
     font-size: 14px;
     color: #fff;
-    border-radius: 25px;
-    background: -webkit-linear-gradient(right, #f5a4aa, #f3c4c7 ,#f5a4aa, #f3c4c7);
-    background: -o-linear-gradient(right, #f5a4aa, #f3c4c7,#f5a4aa, #f3c4c7);
-    background: -moz-linear-gradient(right, #f5a4aa, #f3c4c7,#f5a4aa, #f3c4c7);
-    background: linear-gradient(right, #f5a4aa, #f3c4c7,#f5a4aa, #f3c4c7);
+    border-radius: 30px;
+    /*background: linear-gradient(-45deg, #F3C4C4 ,#F5A4AB 80%);*/
+    background: linear-gradient(45deg, #f29886 45%, #ffe0d4);
     letter-spacing: -.28px;
     float: none;
     cursor: pointer;
     border: none;
+    margin: 0 3px;
     
 }
 
@@ -212,7 +215,7 @@ label.selector {
 
 .footer
 {
-  padding: 60px;
+  padding: 25px;
 }
 
 .msg
@@ -224,4 +227,9 @@ label.selector {
     color: #666;
     letter-spacing: -.17px;
     text-align: left;
+}
+
+.section
+{
+	background-color: rgba(255,224,212, 0.4);
 }

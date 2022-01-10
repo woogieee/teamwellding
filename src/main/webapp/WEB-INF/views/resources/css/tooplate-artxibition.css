@@ -57,15 +57,16 @@ html, body
 }
 
 /*욱채 자유게시판*/
-#commentD{
+.btnCommentD{
 	float : right;
+}
+
+.btnCommentU{
+	float : right;
+	margin-right : 5px;
 }
 /*욱채 자유게시판*/
 
-#commentU{
-	float : right;
-	margin-right:5px;
-}
 
 #closebtn{
 	float : right;
@@ -2781,7 +2782,7 @@ Rent Venue Page
 
 .rent-venue-application {
   margin: 50px 0px;
-  padding: 90px 0 48px 0;
+  padding: 90px 0 64px 0;
   margin-left: 20px;
   padding-left: 50px;
   border-left: 2px dashed #ccc;
@@ -5101,8 +5102,14 @@ responsive
 }
 
 .w-btn-red {
-    background-color: #f00000;
-    color: #e1eef6;
+    color: #f85151;
+    font-size: 22px;
+    border: none;
+    outline: none;
+    background: #fff;
+    font-weight: 300;
+    padding: 0;
+    margin: 0;
 }
 
 .w-btn-skin {
@@ -5543,13 +5550,15 @@ responsive
 .about .content ul {
   list-style: none;
   padding: 0;
+  font-size: 15px;
+  font-weight: 300;
 }
 .about .content ul li {
   padding-bottom: 10px;
 }
 .about .content ul i {
   font-size: 20px;
-  padding-right: 4px;
+  padding-right: 8px;
   color: #cda45e;
 }
 .about .content p:last-child {
@@ -5577,24 +5586,24 @@ responsive
   padding: 50px 30px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   transition: all ease-in-out 0.3s;
-  background: #1a1814;
-  background-color: #7D7D83;
+  /*background: #1a1814;*/
+  background-color: #dedede;
 }
 .why-us .box span {
   display: block;
   font-size: 28px;
   font-weight: 700;
-  color: #ffffff;
+  color: #666;
 }
 .why-us .box h4 {
   font-size: 24px;
   font-weight: 600;
   padding: 0;
   margin: 20px 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(95, 95, 95);
 }
 .why-us .box p {
-  color: #ffffff;
+  color: #666;
   font-size: 14px;
   margin: 0;
   padding: 0;
@@ -5669,21 +5678,21 @@ responsive
 
 .bcItem
 {
-	margin-top: 2%;
+	margin-top: 10px;
 	text-align: center;
-    align-items: center;
+    /*align-items: center;*/
 }
 
 .bcItem a
 {
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .bcItem .bc
 {
     background-color: #fff;
     border-top: 4px solid lightgray;
-    border-radius: 5px 5px; 
+    /*border-radius: 5px 5px; */
 }
 
 .bc a
@@ -5705,14 +5714,16 @@ responsive
 
 .bcline
 {
-	border-bottom: 5px solid gray;
+	/*border-bottom: 5px solid gray;*/
+	padding-bottom: 40px;
 }
 
 .lineListMypage
 {
-    background-color: #fff;
-    border-bottom: 4px solid lightgray;
+    /*background-color: #fff;
+    border-bottom: 4px solid #dedede;
     border-radius: 5px 5px;
+    padding: 0 40px;*/
 }
 
 .wishImg
@@ -5724,31 +5735,41 @@ responsive
 .tableWish
 {
 	border-collapse: collapse;
-	border-bottom: 3px dashed lightgray;
+	border-bottom: 2px solid #888!important;
 }
 
 .tableWish th
 {
 	text-align: center;
-	border-right: 1px solid lightgray;
+	/*border-right: 1px solid lightgray;*/
+	font-size: 13px;
+	font-weight: 600;
+	color: #555;
+	padding: 10px;
 }
 
 .tableWish td
 {
-	padding: 0px;
+	padding: 10px 0;
 	text-align: center;
-	border-right: 1px solid lightgray;
+	border-right: 1px solid #efefef;
+}
+
+.tableWish td:last-child
+{
+	border-right: none;
 }
 
 .tableWish .image-prod
 {
-	/*width: 100px;*/
+	width: 120px;
+	border-right: none;
 }
 
 .delBtnWish
 {
-	margin-top: 35px;
-	margin-bottom: 0px;
+	/*margin-top: 35px;
+	margin-bottom: 0px;*/
 }
 
 .chamgo
@@ -5757,15 +5778,23 @@ responsive
 	color: #a8a8a8;
 }
 
+.HpriceTd
+{
+	width:550px;
+}
+
 .HpriceTd p
 {
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: bold; 
+	width: 100%;
+	padding: 0 25px;
 }
 
 .HpriceTd .sangsaeP
 {
 	line-height: 0.8;
+	margin-top: 5px;
 }
 
 #xPrice
@@ -5778,37 +5807,49 @@ responsive
 
 #nPrice
 {
-	color: red;
+	color: #f85151;
 }
 
 #discountSpan
 {
-	color: red;
+	color: #f85151;
 }
 
 .HpriceTd .Hpc
 {
-	margin-top: 13px;
+	/*margin-top: 13px;*/
+	width: 100%;
+	color: #333;
+	font-weight: 300;
 }
 
 .HpriceTd .Spc
 {
 	margin-top: 15px;
+	width: 100%;
+	color: #333;
+	font-weight: 300;
 }
 
 .HpriceTd .Dpc
 {
-	margin-top: 30px;
+	/*margin-top: 30px;*/
 }
 
 .HpriceTotal h4
 {
-	margin-top: 35px;
+	/*margin-top: 35px;*/
+	font-size: 18px;
+	font-weight: 700;
 }
 
 .product-name h4
 {
-	margin-top: 10px;
+	/*margin-top: 10px;*/
+	font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    padding-left: 10px;
 }
 
 .bcItem h5
@@ -6061,7 +6102,7 @@ responsive
   text-transform: capitalize;
   transition: all .3s;
   width: 100%;
-  margin-top: 35px;
+  margin-top: 25px;
 }
 
 .main-dark-button4
@@ -6078,6 +6119,13 @@ responsive
 .com_detail8 span
 {
 	color: #444;
+	height: 98px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    line-height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* 동욱 추가 민트테마 */
@@ -6105,3 +6153,164 @@ responsive
 }
 
 /* 동욱 추가 민트테마 끝 */
+
+/*보현추가 : 마이페이지 시작*/
+.rez_sta
+{
+	border: 3px solid #ececec;
+	width: 100%;
+	height: 78px;
+	padding: 10px;
+	margin-bottom: 35px;
+	text-align: center;
+}
+
+.rez_sta h5
+{
+	font-size: 15px;
+	padding: 0 50px;
+	margin: 16px 0;
+	line-height: 22px;
+	/*margin-bottom: 35px;*/
+	letter-spacing: 0.2px;
+	color: #333;
+}
+
+.rez_date
+{
+	display: inline-block;
+	/*float: left;*/
+	margin-right: 10px; 
+	border-right: 1px solid #ccc;
+	
+}
+
+.rez_number
+{
+	display: inline-block;
+	/*float: left;*/
+	margin-left: 10px;
+}
+
+.rez_sta h5 > span
+{
+	font-weight: 600;
+	font-size: 17px;
+	font-family: 'Bitter';
+}
+
+.rez_number span
+{
+	color: #ff502d;
+}
+
+.my_hall
+{
+	font-size:12px; 
+	font-weight:600; 
+	color:#777;
+	text-decoration: underline;
+	margin-left: 7px;
+	padding-left: 10px;
+}
+
+.alignleft
+{
+	text-align: left!important;
+}
+
+.imgbox
+{
+	width: 120px;
+	height: 120px;
+}
+
+.imgbox img
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 10%;
+}
+
+.rez_sum
+{
+	margin-top: 30px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+	width: 100%;
+	height: 100px;
+	padding: 24px 0;
+	margin-bottom: 40px;
+}
+
+.Rez_s1
+{
+	width: 50%;
+}
+
+.sumbox1
+{
+	display: inline-block;
+	margin: 0 25px;
+}
+
+.sumsec
+{
+	color: #333;
+	font-size: 14px;
+}
+
+.sumpay1
+{
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: 3px;
+	color: #333;
+}
+
+.sumpay2
+{
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: 3px;
+	color: #f85151
+}
+
+.sumbox2
+{
+	display: inline-block;
+	margin: 0 20px;
+	position: relative;
+	top: -10px;
+}
+
+.sumbox3
+{
+	display: inline-block;
+	margin: 0 20px;
+	position: relative;
+	top: -5px;
+}
+
+.pam
+{
+	font-size: 34px;
+	font-family: monospace;
+}
+
+.sumbox2 h5
+{
+	font-weight: 400;
+	font-size: 22px;
+}
+
+.sumbox2 h5 span
+{
+	color: #ff502d;
+    font-weight: 800;
+    font-size: 25px;
+}
+
+
+/*보현추가 끝*/

@@ -113,7 +113,7 @@ select
     font-size: 14px;
     color: #666;
     padding: 4px 10px;
-    
+    outline-color: #f29886;
 }
 
 .selector input
@@ -207,16 +207,6 @@ label.selector
   /*padding: 60px;*/
 }
 
-.msg
-{
-  
-    margin-top: 5px;
-    font-size: 11px;
-    line-height: 14px;
-    color: #666;
-    letter-spacing: -.17px;
-}
-
 .btn_check
 {
 	display: inline-block;
@@ -224,7 +214,7 @@ label.selector
 	height: 41px;
 	padding: 4px 14px;
 	border: none;
-	background: linear-gradient(60deg, #f29886 30%, #ffe0d4);
+	background: linear-gradient(45deg, #f29886 45%, #ffe0d4);
 	color: #fff;
 	top:-1px;
 	font-size: 13px;
@@ -274,4 +264,37 @@ input::placeholder {
 input::focus
 {
 	outline: 1px solid red;
+}
+
+.btn_check2
+{
+	display: inline-block;
+	position: relative;
+	height: 41px;
+	padding: 4px 14px;
+	border: none;
+	background: linear-gradient(60deg, #f29886 30%, #ffe0d4);
+	color: #fff;
+	top:-38px;
+	left: 318px;
+	font-size: 13px;
+	font-weight: 600;
+	border-radius: 5px;
+}
+
+
+.msg2
+{
+  
+    margin-top: 5px;
+    font-size: 11px;
+    line-height: 14px;
+    color: #666;
+    letter-spacing: -.17px;
+    display: inline-block;
+    color: green;
+    position: relative;
+    top: -40px;
+    left: -5px;
+    font-weight: bold;
 }

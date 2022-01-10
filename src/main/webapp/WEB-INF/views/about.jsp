@@ -12,6 +12,10 @@
     <jsp:include page="/WEB-INF/views/include/navigation.jsp" >
     <jsp:param name="userName" value="${wdUser.userNickname}" />
     </jsp:include>
+
+<section class="top">
+	<div class="back"></div>
+</section>
     
     <div class="page-heading-shows-eventsAb">
         <div class="container">

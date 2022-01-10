@@ -162,7 +162,7 @@ AND
 AND
     D.DC_CODE = C.DC_CODE
 AND
-    R.DC_CODE = D.DC_CODE
+	R.DC_CODE = D.DC_CODE
 AND
     R.D_NO = D.D_NO
 </if>    

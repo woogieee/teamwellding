@@ -64,6 +64,8 @@
             			<value>/user/regProc</value>
             			<value>/user/idCheck</value>
             			<value>/user/modify</value>
+            			<value>/board/check.do</value>
+            			<value>/user/emailCheck</value>
             			
 
             			<value>/board/nBoard</value>
@@ -83,7 +85,8 @@
             			<value>/popUpRoad</value>
             			<value>/board/fUpdateForm</value>
             			<value>/board/updateProc</value>
-            			
+            			<value>/board/commentDelete</value>
+            			<value>/board/commentUpdate</value>
 
             			<value>/include/PrivacyPolicy</value>
             			<value>/include/Terms</value>
@@ -104,6 +107,7 @@
 	                    <value>/kakao/payFail</value>
 	                    <value>/kakao/payCancel</value>
 	                    <value>/kakao</value>			
+	                    
 
 
 
