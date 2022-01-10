@@ -95,7 +95,7 @@ SELECT
                 NVL(A.B_CONTENT,'') AS B_CONTENT,
                 NVL(A.B_READ_CNT,'') AS B_READ_CNT,
                 NVL(A.B_IMGNAME,'') AS B_IMGNAME,
-                NVL(TO_CHAR(A.REG_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') AS REG_DATE
+                NVL(TO_CHAR(A.REG_DATE, 'YYYY.MM.DD'), '') AS REG_DATE
             FROM
                 WD_EBOARD A, WD_ADMIN B
             WHERE 

@@ -9,9 +9,7 @@ import com.icia.web.model.WDRez;
 @Repository("wdRezDao")
 public interface WDRezDao {
 	
-	//예약테이블 값 조회
 	public WDRez rezSelect(String userId);
-	
 	//예약 내역 조회를 위한 셀렉트 메소드
 	public WDRez rezList(WDRez wdRez);
 	
