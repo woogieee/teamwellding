@@ -28,6 +28,16 @@ $(document).ready(function(){
 	});
 	
    $('html').css("overflow","auto");
+   
+   //검색버튼클릭
+   $("#btnSearch").on("click", function(){
+	   document.bbsForm.eCode.value = "";
+	   document.bbsForm.searchType.value = $("#_searchType").val();
+	   document.bbsForm.searchValue.value = $("#_searchValue").val();
+	   document.bbsForm.curPage.value = 1;
+	   document.bbsForm.action = "/board/specialist";
+	   document.bbsForm.submit();
+   });
 	
 });
 

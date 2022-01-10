@@ -33,12 +33,15 @@ public class WDCommentController {
 
 	//댓글 삭제
 	@RequestMapping(value="/board/commentDelete", method=RequestMethod.POST)
+	@ResponseBody
 	public Response<Object> commentDelete(MultipartHttpServletRequest request, HttpServletResponse response){
 		
 		Response<Object> ajaxResponse = new Response<Object>();
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		long parentSeq = HttpUtil.get(request, "bSeq", (long)0);
 		long commentSeq = HttpUtil.get(request, "cSeq", (long)0);
+		
+		System.out.println("실행이 됐어요");
 		
 		WDComment wdComment = new WDComment();
 		
@@ -62,6 +65,49 @@ public class WDCommentController {
 		}
 		
 	
+		return ajaxResponse;
+	}
+	
+	//댓글 수청
+	@RequestMapping(value="/board/commentUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public Response<Object> commentUpdate(MultipartHttpServletRequest request, HttpServletResponse response){
+		
+		Response<Object> ajaxResponse = new Response<Object>();
+		
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		long parentSeq = HttpUtil.get(request, "bSeq", (long)0);
+		long commentSeq = HttpUtil.get(request, "cSeq", (long)0);
+		String updateComment = HttpUtil.get(request, "upComment", "");
+		
+		WDComment wdComment = new WDComment();
+		
+		wdComment.setParentSeq(parentSeq);
+		wdComment.setCommentSeq(commentSeq);
+		wdComment.setUserId(cookieUserId);
+		wdComment.setWdFBoardComment(updateComment);
+
+		if(!StringUtil.isEmpty(cookieUserId)) {
+			if(wdComment.getParentSeq() != 0 && wdComment.getCommentSeq() != 0) {
+				if(wdCommentService.commentUpdate(wdComment) > 0) {
+					ajaxResponse.setResponse(0, "Success");
+				}
+				else {
+					ajaxResponse.setResponse(-1, "Internal Server Error");
+				}
+			}
+			else {
+				ajaxResponse.setResponse(404, "Bad Request: No parameter");
+			}
+		}
+		else {
+			ajaxResponse.setResponse(400, "Bad Request");
+		}
+		
+		
+		
+		
+		
 		return ajaxResponse;
 	}
 }
