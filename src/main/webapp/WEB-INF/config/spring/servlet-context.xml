@@ -109,7 +109,7 @@
 	                    <value>/kakao</value>			
 	                    
 
-
+						<value>/board/testtest</value>
 
             		</list>
             	</constructor-arg>
