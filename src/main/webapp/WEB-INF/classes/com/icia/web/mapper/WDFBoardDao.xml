@@ -98,7 +98,7 @@ FROM(
    </choose>                 
 </if>                 
 				ORDER BY
-					B_SEQ ASC))
+					B_SEQ DESC))
 WHERE 
     RNUM <![CDATA[>=]]> #{startRow}
 AND 
