@@ -392,7 +392,7 @@ function commentUpdate(cSeq,tagId){
 						<tr>
 							<td colspan="2">
 
-								<button type="button" id="btnList" class="w-btn w-btn-green2" style="float: right; margin: 10px 0 40px;">리스트</button>
+								<button type="button" id="btnList" class="w-btn w-btn-green2" style="float: right; margin: 20px 0 40px;">리스트</button>
 								<c:if test="${boardMe eq 'Y'}">
 									<button type="button" id="btnDelete" class="w-btn w-btn-green3" style="float: right; margin-right: 10px; margin-top: 20px; margin-bottom: 40px;">삭제</button>
 								</c:if>
