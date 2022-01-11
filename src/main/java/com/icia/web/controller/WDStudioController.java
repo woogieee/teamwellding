@@ -273,10 +273,7 @@ public class WDStudioController
 				   else 
 				   {
 					   System.out.println("여긴타니 88");
-					   //예약번호 있음
-					   //예약번호는 있는데, 스드메만 예약하고 홀은 아직 예약 안 한 경우일 수도 있음.
-					   //그럴 경우 홀 코드가 비어있다면 업데이트 해줘야 함.
-					   //홀 코드 존재하는지 체크
+					   
 					   WDRez search = new WDRez();
 					   
 					   search = wdRezService.rezSelect(wdUser.getUserId());
@@ -289,8 +286,6 @@ public class WDStudioController
 						   if(StringUtil.isEmpty(wdRez.getsCode())) 
 						   {
 							   System.out.println("여긴타니 10101010");
-							   //홀 코드 존재하지 않음. 홀은 안담았어!!
-							   //wdRez객체에 홀코드 예식장코드 담음.
 							   wdRez.setsCode(sCode);
 							   wdRez.setsDate(sDate);
 							   if(wdRezService.rezStudioInsert(wdRez) > 0 ) 
