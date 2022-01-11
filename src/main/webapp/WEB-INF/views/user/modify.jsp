@@ -128,6 +128,14 @@
 			 alert("회원정보수정이 취소되었습니다.");
 			 location.href = "/user/wishlist";
 	   });
+	   
+ 		$(".modify").on("click", function(){
+		   
+ 			$('this').css("color", "green");
+			
+		   
+	   }); 
+	  
 	});
 </script>
 
@@ -168,7 +176,7 @@
 									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
 								</li>
 								<li class="breadcrumb-item">
-									<a href="/user/modify">회원정보수정</a>
+									<a href="/user/modify" class="modify">회원정보수정</a>
 								</li>
 							</ol>
 						</nav>
