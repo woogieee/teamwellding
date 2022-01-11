@@ -3230,13 +3230,14 @@ Shows Events Page
 .tickets-page .search-box {
  
   padding: 30px;
+      border: 3px solid #cecece;
 }
 
 .tickets-page .search-box h4 {
   color: #fff;
   font-weight: 500;
   font-size: 20px;
-  margin-top: 8px;
+  margin-top: 13px;
    font-family: 'OTWelcomeRA';
    color: rgba(40,30,25,1);
 }
@@ -6409,7 +6410,7 @@ responsive
 .event-item
 {
 	cursor: pointer;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 2px solid #ddd;
 	padding: 20px 0;
 }
 
