@@ -30,9 +30,6 @@ public class PayMentController
 	//쿠키명
 	@Value("#{env['auth.cookie.name']}")
 	private String AUTH_COOKIE_NAME;
-   
-	@Autowired
-	private PayMentController payMentController;
 	
 	//유저서비스
 	@Autowired
@@ -74,7 +71,6 @@ public class PayMentController
 				
 				wdRez = wdRezService.rezSelect(wdUser.getUserId());
 				wdRez = wdRezService.rezList(wdRez);
-				System.out.println("난들어갓다 " + wdRez.gethImgName());
 				model.addAttribute("wdRez", wdRez);
 				model.addAttribute("wdUser",wdUser);
 			}

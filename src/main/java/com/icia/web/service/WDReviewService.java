@@ -55,25 +55,43 @@ public class WDReviewService {
 		
 		return list;
 	}
-	//리뷰 게시글 조회
-	public WDReview ReviewSelect(long RSeq) {
-		
+	
+	//리뷰게시물 조회 , 파일 포함
+	public WDReview ReviewSelect(long RSeq)
+	{
 		WDReview wdReview = null;
 		
-		try {
+		try 
+		{
 			wdReview = wdReviewDao.ReviewSelect(RSeq);
+			
+			if(wdReview != null) 
+			{
+				wdReviewDao.ReviewReadCntPlus(RSeq);
+				
+				WDReviewFile wdReviewFile = wdReviewDao.ReviewFileSelect(RSeq);
+				
+				if(wdReviewFile != null) 
+				{
+					wdReview.setReviewFile(wdReviewFile);
+				}
+			}
 		}
-		catch(Exception e) {
-			logger.error("[WDReviewService] ReviewSelect Exception", e);
+		catch(Exception e) 
+		{
+			logger.error("[WDFBoardService] wdFBoardView Exception", e);
 		}
 		
 		return wdReview;
-	}
+		}
+		
 	//리뷰 첨부파일 조회
-	public WDReviewFile ReviewFileSelect(WDReviewFile wdReviewFile) {
+	public WDReviewFile ReviewFileSelect(long RSeq) {
+			
+			WDReviewFile wdReviewFile = null;
 		
 		try {
-			wdReviewFile = wdReviewDao.ReviewFileSelect(wdReviewFile);
+			wdReviewFile = wdReviewDao.ReviewFileSelect(RSeq);
 		}
 		catch(Exception e) {
 			logger.error("[WDReviewService] ReviewFileSelect Exception", e);
@@ -83,20 +101,20 @@ public class WDReviewService {
 		
 	}
 	//리뷰 게시글 조회수 증가
-	public int ReviewReadCntPlus(long RSeq) {
-		
-		int count = 0;
-		
-		try {
-			count = wdReviewDao.ReviewReadCntPlus(RSeq);
-		}
-		catch(Exception e) {
-			logger.error("[WDReviewService] ReviewReadCntPlus Exception", e);
-		}
-		
-		return count;
-		
-	}
+//	public int ReviewReadCntPlus(long RSeq) {
+//		
+//		int count = 0;
+//		
+//		try {
+//			count = wdReviewDao.ReviewReadCntPlus(RSeq);
+//		}
+//		catch(Exception e) {
+//			logger.error("[WDReviewService] ReviewReadCntPlus Exception", e);
+//		}
+//		
+//		return count;
+//		
+//	}
 
 	//리뷰 작성 가능여부 조회
 	public String ReviewRezCheck(String userId) {

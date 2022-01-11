@@ -21,6 +21,7 @@ import com.icia.common.util.StringUtil;
 import com.icia.web.model.Paging;
 import com.icia.web.model.Response;
 import com.icia.web.model.WDBoardFile;
+import com.icia.web.model.WDComment;
 import com.icia.web.model.WDFBoard;
 import com.icia.web.model.WDReview;
 import com.icia.web.model.WDReviewFile;
@@ -202,6 +203,49 @@ public class WDReviewController {
 		}
 		
 		return ajaxResponse;
+	}
+	
+	//상세 뷰페이지
+	@RequestMapping(value="/board/reviewInfo")
+	public String reviewInfo(ModelMap model, HttpServletRequest request, HttpServletResponse response) 
+	{
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		
+		long RSeq = HttpUtil.get(request, "RSeq", (long)0);
+		String searchValue = HttpUtil.get(request, "searchValue", "");
+		long curPage = HttpUtil.get(request, "curPage", (long)1);
+		
+		String boardMe = "N";
+		WDReview wdReview = null;
+		
+		if(RSeq > 0) 
+		{
+			wdReview = wdReviewService.ReviewSelect(RSeq);			
+			
+			if(wdReview != null && StringUtil.equals(wdReview.getUserId(), cookieUserId)) 
+			{
+				boardMe = "Y";
+			}		
+			
+		}
+		
+		if(wdReview.getReviewFile() != null) 
+		{
+			String url = wdReview.getReviewFile().getrFileName();
+			model.addAttribute("url", url);
+		}
+		
+		WDUser wdUser = wdUserService.userSelect(cookieUserId);
+		
+		model.addAttribute("wdUser", wdUser);
+		model.addAttribute("cookieUserId",cookieUserId);
+		model.addAttribute("RSeq", RSeq);
+		model.addAttribute("searchValue", searchValue);
+		model.addAttribute("curPage", curPage);
+		model.addAttribute("wdReview", wdReview);
+		model.addAttribute("boardMe", boardMe);
+		
+		return "/board/reviewInfo";
 	}
 
 }

@@ -38,38 +38,43 @@ $(document).ready(function(){
             </div>
         </div>
     </div>
-    <br />
-    <h2 class="Wtitle">Wellding Notice</h2>
-    <p style="text-align:center">우리들의 웨딩이야기를 지금 들려드려요</p>
+	<div class="category2" style="padding-top: 70px; padding-bottom: 8px;">
+		<p>WELLDING NOTICE</p>
+	</div>
+    <p style="text-align:center; padding-bottom: 30px;">우리들의 웨딩이야기를 지금 들려드려요</p>
     <br />
 <div class="container">
    <div class="row" style="margin-right:0; margin-left:0;">
       <table class="table">
          <thead>
-            <tr class="dongdong">
+            <tr class="dongdong2">
                <td style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600;">
                   <c:out value="${nBoard.bTitle}"/>
                </td>
                <td scope="col" style="width: 40%; padding-right: 25px; color: #444; font-size: 16px;" class="text-right">
-                                         조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${nBoard.bReadCnt}" />
+                                        ${nBoard.regDate}
                </td>
             </tr>
+            <tr style="height: 46px;">
                <td style="width: 60%; padding-left: 20px; font-size: 15px; color: #666;">
                	작성자 : <c:out value="${nBoard.adminId}"/>
                </td>
                <td style="width: 40%; padding-right: 20px; font-size: 15px; color: #666;" class="text-right">
-                  <div>${nBoard.regDate}</div>
+                  <div> 조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${nBoard.bReadCnt}" /></div>
                </td>
+              </tr>
          </thead>
          <tbody>
             <tr>
                <td colspan="2" style="text-align:center">
-               <div style="padding:10px"><div><c:out value="${nBoard.bContent}" /></div></div></td>
+               <div style="padding: 30px 20px; text-align: left; font-size: 16px;"><div><c:out value="${nBoard.bContent}" /></div></div></td>
             </tr>
          </tbody>
          <tfoot>
          <tr>
-               <td colspan="2"><button type="button" id="btnList" class="w-btn w-btn-green2" style="float: right">목록</button></td>
+               <td colspan="2">
+               <button type="button" id="btnList" class="w-btn w-btn-green2" style="float: right; margin: 10px 0 40px;">리스트</button>
+               </td>
          </tr>
          </tfoot>
       </table>

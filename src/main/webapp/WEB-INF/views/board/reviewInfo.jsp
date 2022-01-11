@@ -18,7 +18,7 @@ text-align: center;
 <script>
 $(document).ready(function(){
 	$("#btnList").on("click", function(){
-		document.bbsForm.action = "/board/fBoard";
+		document.bbsForm.action = "/board/reviews";
 		document.bbsForm.submit();
 	});
 	
@@ -35,10 +35,10 @@ $(document).ready(function(){
 			//정말 삭제하겠다고 했을 때, ajax 통신
 			$.ajax({
 				type:"POST",
-				url:"/board/delete",
+				url:"/board/reviewDelete",
 				data:
 				{
-					bSeq: <c:out value="${wdFBoard.bSeq}" />
+					bSeq: <c:out value="${wdReview.RSeq}" />
 				},
 				datatype:"JSON",
 				beforeSend:function(xhr){
@@ -48,22 +48,23 @@ $(document).ready(function(){
 					if(response.code == 0)
 					{
 						alert("게시물이 삭제되었습니다.");
-						location.href = "/board/fBoard";
+						location.href = "/board/reviews";
 					}
 					else if(response.code == 400)
 					{
 						alert("로그인이 되어있지 않습니다.");
-						//이동할 필요 없음
+						location.href = "/board/reviews";
+						
 					}
 					else if(response.code == 404)
 					{
 						alert("게시물을 찾을 수 없습니다.");
-						location.href = "/board/fBoard";
+						location.href = "/board/reviews";
 					}
 					else if(response.code == 405)
 					{
 						alert("사용자의 게시물이 아닙니다.");
-						location.href = "/board/fBoard";
+						location.href = "/board/reviews";
 					}
 					else
 					{
@@ -82,196 +83,8 @@ $(document).ready(function(){
 		}
 	});	
 	</c:if>
-	
-	
-    $("#btnComment").on("click",function(){
-  	  
-  	  $("#btnComment").prop("disabled", true);// 수정 버튼 비활성화 
-  	  
-  	  if($.trim($("#wdFBoardComment").val()).length <= 0){
-  		  alert("댓글내용을 입력하세요.");
-  		  $("#wdFBoardComment").val("");
-  		  $("#wdFBoardComment").focus();
-  		  $("#btnComment").prop("disabled", false);
-  		  return;
-  	  }
-  	  
-  	  var form = $("#commentForm")[0];
-   	  var formData = new FormData(form);
-   	 
-  	  $.ajax({
-	            type:"POST",
-	            url:"/board/CommentProc",
-	            data:formData,
-	            processData:false,
-	  			contentType:false,
-	  		    cache:false,
-	  		    timeout:600000,
-	            beforeSend:function(xhr){
-	               xhr.setRequestHeader("AJAX", "true");
-	            },
-	            success:function(response){
-	               if(response.code == 0)
-	               {
-	                  alert("댓글이 등록 되었습니다.");
-	                  document.bbsForm.action = "/board/fBoardView";
-	                  document.bbsForm.submit();
-	                  $("#btnComment").prop("disabled", false);
-	               }
-	               else if(response.code == 400)
-	               {
-	                  alert("파라미터 값이 올바르지 않습니다.");
-	                  $("#btnComment").prop("disabled", false);
-	               }
-	               else if(response.code == 404)
-	               {
-	                  alert("게시물을 찾을수 없습니다.");
-	                  location.href = "/board/fBoard";
-	               }
-	               else
-	               {
-	                  alert("댓글 등록 중 오류가 발생했습니다.");
-	                  $("#btnComment").prop("disabled", false);
-	               }
-	            },
-	            complete:function(data){
-	               icia.common.log(data);
-	            },
-	            error:function(xhr, status, error){
-	               icia.common.error(error);
-	            }
-	         });
-    });
     
 });
-
-function commentDelete(cSeq){
-	
-	document.commentForm.cSeq.value = cSeq;
-	
-	  var form = $("#commentForm")[0];
- 	  var formData = new FormData(form);
- 	 
-	  $.ajax({
-	            type:"POST",
-	            url:"/board/commentDelete",
-	            data:formData,
-	            processData:false,
-	  			contentType:false,
-	  		    cache:false,
-	  		    timeout:600000,
-	            beforeSend:function(xhr){
-	               xhr.setRequestHeader("AJAX", "true");
-	            },
-	            success:function(response){
-	                if(response.code == 0)
-	                {
-	                   alert("댓글이 삭제되었습니다.");
-	                   document.bbsForm.action = "/board/fBoardView";
-		               document.bbsForm.submit();
-	                }
-	                else if(response.code == 400)
-	                {
-	                   alert("로그인이 되어있지 않습니다.");
-	                   location.href = "/board/fBoard";
-	                }
-	                else if(response.code == 404)
-	                {
-	                   alert("댓글을 찾을 수 없습니다.");
-	                   location.href = "/board/fBoard";
-	                }
-	                else
-	                {
-	                   alert("댓글 삭제 중 오류가 발생했습니다.");
-	                }
-	             },
-	            complete:function(data){
-	               icia.common.log(data);
-	            },
-	            error:function(xhr, status, error){
-	               icia.common.error(error);
-	            }
-	         });
-}
-
-function commentUpdate(cSeq,tagId){
-	
-
-	
-	if (!$("#updateComment").length > 0) 
-	{
-	    // textarea 추가
-	    var nCareer = document.createElement("textarea");
-	    nCareer.setAttribute("rows", 3);
-	    nCareer.setAttribute("cols", 120);
-	    nCareer.setAttribute("name", "updateComment");
-	    nCareer.setAttribute("id", "updateComment");
-	    nCareer.setAttribute("class", "form-control");
-	    nCareer.setAttribute("style", "ime-mode:active;resize: none;");
-	    nCareer.setAttribute("placeholder", "댓글을 입력해주세요");
-	    document.getElementById(tagId).appendChild(nCareer)
-	}
-	else{
-		  document.commentForm.cSeq.value = cSeq;
-		  
-	  	  if($.trim($("#updateComment").val()).length <= 0){
-	  		  alert("댓글내용을 입력하세요.");
-	  		  $("#updateComment").val("");
-	  		  $("#updateComment").focus();
-	  		  return;
-	  	  }
-		  
-	  	document.commentForm.upComment.value = $("#updateComment").val();
-	  	  
-		  var form = $("#commentForm")[0];
-	 	  var formData = new FormData(form);
-	 	 
-		  $.ajax({
-		            type:"POST",
-		            url:"/board/commentUpdate",
-		            data:formData,
-		            processData:false,
-		  			contentType:false,
-		  		    cache:false,
-		  		    timeout:600000,
-		            beforeSend:function(xhr){
-		               xhr.setRequestHeader("AJAX", "true");
-		            },
-		            success:function(response){
-		                if(response.code == 0)
-		                {
-		                   alert("댓글이 수정되었습니다.");
-		                   document.bbsForm.action = "/board/fBoardView";
-			               document.bbsForm.submit();
-		                }
-		                else if(response.code == 400)
-		                {
-		                   alert("로그인이 되어있지 않습니다.");
-		                   document.bbsForm.action = "/board/fBoardView";
-			               document.bbsForm.submit();
-		                }
-		                else if(response.code == 404)
-		                {
-		                   alert("댓글을 찾을 수 없습니다.");
-		                   document.bbsForm.action = "/board/fBoardView";
-			               document.bbsForm.submit();
-		                }
-		                else
-		                {
-		                   alert("댓글 수정 중 오류가 발생했습니다.");
-		                   location.href = "/board/fBoard";
-		                }
-		             },
-		            complete:function(data){
-		               icia.common.log(data);
-		            },
-		            error:function(xhr, status, error){
-		               icia.common.error(error);
-		            }
-		         });
-	}
-    
-}
 </script>
 </head>
 <body>
@@ -286,7 +99,7 @@ function commentUpdate(cSeq,tagId){
         </div>
     </div>
     <br />
-    <h2 class="Wtitle">Know-How</h2>
+    <h2 class="Wtitle">Review</h2>
     <p style="text-align:center">여러분들의 노하우를 공유해보세요</p>
     <br />
 
@@ -297,58 +110,39 @@ function commentUpdate(cSeq,tagId){
          <thead>
             <tr class="table-active dongdong">
                <td style="width:60%">
-                  <c:out value="${wdFBoard.bTitle}"/>
+                  <c:out value="${wdReview.RTitle}"/>
                </td>
                <td style="width:40%" class="text-right">
-                                         조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdFBoard.bReadCnt}" />
+                                         조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdReview.RReadCnt}" />
                </td>
             </tr>
             <tr>
                <td style="width:60%">
-               	작성자 : <c:out value="${wdFBoard.userNickname}"/>
+               	작성자 : <c:out value="${wdReview.UNickName}"/>
                </td>
                <td style="width:40%" class="text-right">
-                  <div>${wdFBoard.regDate}</div>
+                  <div>${wdReview.regDate}</div>
                </td>
             </tr>   
 
          </thead>
          <tbody>
              <tr>
-             <!-- 첨부파일은 있을 때만 보여주면 됨 -->
-				<c:if test="${!empty wdFBoard.wdBoardFile}">
-                <!-- GET방식으로 넘어감 -->
-                  &nbsp;&nbsp;&nbsp;<a href="/board/download?bSeq=${wdFBoard.wdBoardFile.bSeq}" style="color:#000;">[첨부파일]${wdFBoard.wdBoardFile.fileOrgName}</a>
-                </c:if>
+             <!-- 첨부파일 다운 안해요 -->
             </tr>
             <tr>
                <td colspan="2" style="text-align:center">
 	               <div style="padding:10px">
 	               	<div>
-	               		<c:out value="${wdFBoard.bContent}" />
+	               	<img src="../resources/upload/${url }">
+	               		<br>
+	               		<c:out value="${wdReview.RContent}" />
 	               	</div>
 	               </div>
                </td>
             </tr>
             <div></div>
          </tbody>
-         
-         <form name="commentForm" id="commentForm" method="post">
-         <tbody>
-            <tr>
-               <td colspan="2">
-               <textarea class="form-control" rows="3" name="wdFBoardComment" id="wdFBoardComment" style="ime-mode:active;resize: none;" placeholder="댓글을 입력해주세요" required></textarea><br>
-               <button type="button" id="btnComment" class="btn btn-secondary">댓글등록</button></td>
-            </tr>
-
-         </tbody>
-             <input type="hidden" name="bSeq" value="${bSeq}" />
-             <input type="hidden" name="cSeq" value="" />
-             <input type="hidden" name="upComment" value="" />
-	         <input type="hidden" name="searchType" value="${searchType}" />
-	         <input type="hidden" name="searchValue" value="${searchValue}" />
-	         <input type="hidden" name="curPage" value="${curPage}" />
-	     </form>
          <tfoot>
          <tr>
          <td colspan="2">
@@ -374,8 +168,7 @@ function commentUpdate(cSeq,tagId){
 
 
 <form name="bbsForm" id="bbsForm" method="post">
-   <input type="hidden" name="bSeq" value="${bSeq}" />
-   <input type="hidden" name="searchType" value="${searchType}" />
+   <input type="hidden" name="RSeq" value="${RSeq}" />
    <input type="hidden" name="searchValue" value="${searchValue}" />
    <input type="hidden" name="curPage" value="${curPage}" />
 </form>

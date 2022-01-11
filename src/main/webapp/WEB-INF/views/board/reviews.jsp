@@ -71,13 +71,13 @@ $(document).ready(function(){
 
 });
 
-function fn_view(bSeq)
+function fn_view(RSeq)
 {
-   document.bbsForm.bSeq.value = bSeq;
+   document.bbsForm.RSeq.value = RSeq;
    //searchType, searchValue는 안가져가나요?
    //조회 버튼을 안눌렀다면 굳이 가져갈 필요가 없음
    //조회 버튼을 눌렀다면 히든 타입 bbsForm에는 이미 값이 들어가 있음
-   document.bbsForm.action = "/board/fBoardView";
+   document.bbsForm.action = "/board/reviewInfo";
    document.bbsForm.submit();
 }
 
@@ -103,8 +103,7 @@ function fn_list(curPage)
     <div class="page-heading-rent-venue2">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                </div>
+                <div class="col-lg-12"></div>
             </div>
         </div>
     </div>
@@ -115,13 +114,12 @@ function fn_list(curPage)
                 <div class="col-lg-12">
                     <div class="section-heading" style="padding: 20px 0;">
                         <div class="category2">
-                            <p>Know-How</p>
+                            <p>Review</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>        
+        </div>      
 
                 <div class="tickets-page" id="divB">
                     <div class="container">
@@ -142,10 +140,10 @@ function fn_list(curPage)
                                                             <option value="1">홀 제목</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-7">
                                                         <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
                                                     </div>
-                                                    <div class="col-lg-3">
+                                                    <div class="col-lg-2">
                                                         <fieldset>
                                                         <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                                         </fieldset>
@@ -160,144 +158,130 @@ function fn_list(curPage)
                             <div class="col-lg-12">
 								<div class="fb_ht"></div>
 							</div>                                                      
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <div class="shows-events-schedule2" id="divB">
-                    <div class="container">
-                        <div class="row">
 						
-                        <div class="col-lg-12">
-                            <ul>
+                     <div class="col-lg-12">
+						<ul>
 
-                                <li id="divB">
-                                    <div class="row">
-                                        <div class="col-lg-1">
-                                            <div class="title" style="text-align: center;">                                                
-                                                <span>번호</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-5" style="text-align: center;">
-                                            <div class="time"><span>내용</span></div>
-                                        </div>
-                                        <div class="col-lg-2" style="text-align: center;">
-                                            <div class="place"><span>작성자</span></div>
-                                        </div>
-                                        <div class="col-lg-2" style="text-align: center;">
-                                            <div class="place"><span>작성시간</span></div>
-                                        </div>
-                                        <div class="col-lg-2" style="text-align: center;">
-                                            <div class="main-dark-button">
-                                                <span>조회수</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                
+							<li id="divB1" style="background: #efefef;">
+								<div class="row">
+									<div class="col-lg-1">
+										<div class="divB_tb" style="text-align: center;">
+											<span>번호</span>
+										</div>
+									</div>
+									<div class="col-lg-6" style="text-align: center;">
+										<div class="divB_tb">
+											<span>내용</span>
+										</div>
+									</div>
+									<div class="col-lg-2" style="text-align: center;">
+										<div class="divB_tb">
+											<span>작성자</span>
+										</div>
+									</div>
+									<div class="col-lg-2" style="text-align: center;">
+										<div class="divB_tb">
+											<span>작성시간</span>
+										</div>
+									</div>
+									<div class="col-lg-1" style="text-align: center;">
+										<div class="divB_tb">
+											<span>조회수</span>
+										</div>
+									</div>
+								</div>
+							</li>
                               <c:forEach var="review" items="${list}" varStatus="status">                                
                                 <li id="divB">
-
-                                	<a href="javascript:void(0)" onclick="fn_view(${review.RSeq})">
+                                	<div onclick="fn_view(${review.RSeq})">
 	                                    <div class="row" id="minthover">
 	                                        <div class="col-lg-1">
-	                                            <div class="title">
+	                                            <div class="divB_tb2 tbstyle">
 	                                                <span>${review.RSeq}</span>
 	                                            </div>
 	                                        </div>
 	                                        
-	                                        <div class="col-lg-5" style="text-align: left;">
-	                                            <div class="time"><span>${review.RTitle}</span></div>
+	                                        <div class="col-lg-6" style="text-align: left;">
+	                                            <div class="divB_tb2">
+	                                            	<span>${review.RTitle}</span>
+	                                            </div>
 	                                        </div>
 	                                        <div class="col-lg-2">
-	                                            <div class="place"><span>${review.UNickName}</span></div>
+	                                            <div class="divB_tb2 tbstyle2">
+	                                            	<span>${review.UNickName}</span>
+	                                            </div>
 	                                        </div>
 	                                        <div class="col-lg-2">
-	                                            <div class="place"><span>${review.regDate}</span></div>
+	                                            <div class="divB_tb2 tbstyle3">
+	                                            	<span>${review.regDate}</span>
+	                                            </div>
 	                                        </div>
 	                                        <div class="col-lg-1">
-	                                        </div>
-	                                        <div class="col-lg-1">
-	                                            <div class="place">
+	                                            <div class="divB_tb2 tbstyle4">
 	                                                <span>${review.RReadCnt}</span>
 	                                            </div>
 	                                        </div>
 	                                    </div>
-                                	</a>
+                                	</div>
                                 </li>
                                 
                               </c:forEach>
                             </ul>
                         </div>
-                    </div>
-                </div>
-                
-                   <div class="tickets-page2" id="divB">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="search-box2" id="mint">
-                                    <form id="subscribe" action="" method="get">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <div class="row">
-                                                    <div class="col-lg-3">
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                    </div>
-                                                    <div class="col-lg-3">
-
-                                                        <button type="button" id="btnReviewWrite" class="main-dark-button3">글쓰기</button>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                           </div>
-                         
-                    
-                <div class="col-lg-12">
-                    <div class="pagination">
-                    
-                        <ul>
-                        	<c:if test="${!empty paging}">
-                        		<c:if test="${paging.prevBlockPage gt 0}">
-	                            	<li><a href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">Prev</a></li>
-	                        	</c:if>
-	                        </c:if>
-	                        
-	                        
-	                        <c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
-	                        	<c:choose>
-	                        		<c:when test="${i ne curPage}">
-	                            		<li><a href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
-	                            	</c:when>
-	                            	<c:otherwise>
-	                            		<li class="active"><a href="javascript:void(0)" style="cursor: default;">${i}</a></li>
-	                            	</c:otherwise>
-                        		</c:choose>
-                        	</c:forEach>	
-
-							<c:if test="${paging.nextBlockPage gt 0}">
-	                            <li><a href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">Next</a></li>
-	                        </c:if>    
-                        </ul>
                         
+						<div class="col-lg-12">
+							<div>
+								<form id="subscribe" action="" method="get">
+									<div class="row">
+										<div class="col-lg-5"></div>
+										<div class="col-lg-7">
+											<div class="row">
+												<div class="col-lg-3"></div>
+												<div class="col-lg-6"></div>
+												<div class="col-lg-3">
+
+													<button type="button" id="btnWrite"
+														class="main-dark-button3">글쓰기</button>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						
+						<div class="col-lg-12">
+		                    <div class="pagination">
+								<ul class="pagination justify-content-center">
+									<c:if test="${!empty paging}">
+										<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
+										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>
+										</c:if>
+										<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+											<c:choose>
+												<c:when test="${i ne curPage}">
+													<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+												</c:when>
+												<c:otherwise>
+													<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+										<c:if test="${paging.nextBlockPage gt 0}">         
+											<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">다음</a></li>
+										</c:if>       
+									</c:if> 
+								</ul>
+		                    </div>
+		                </div>
+
                     </div>
-                        <div class="boxing">
-                        <br>
-                        </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+  </div>
+
     <form name="bbsForm" id="bbsForm" method="post">
         <input type="hidden" name="RSeq" value="${RSeq}" /> <!-- 상세페이지 들어갈때 필요하니까 그때만 이 값이 들어가면됨 -->
         <input type="hidden" name="searchValue" value="${searchValue}" />
