@@ -156,7 +156,8 @@ a {
 }
 
 a:hover {
-	color: #0056b3;
+	/*color: #0056b3;*/
+	
 	text-decoration: underline
 }
 
@@ -1643,8 +1644,8 @@ pre code {
 }
 
 .table td, .table th {
-	/*padding: .75rem;
-	vertical-align: top;*/
+	padding: 10px 30px 10px 30px;
+	/*vertical-align: top;*/
 	border-top: 1px solid #dedede;
 }
 
@@ -1683,8 +1684,8 @@ pre code {
 }
 
 .table-hover tbody tr:hover {
-	color: #212529;
-	background-color: rgba(0, 0, 0, .075)
+	/*color: #212529;
+	background-color: rgba(0, 0, 0, .075)*/
 }
 
 .table-primary, .table-primary>td, .table-primary>th {
@@ -5001,7 +5002,8 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	display: flex;
 	padding-left: 0;
 	list-style: none;
-	border-radius: .25rem
+	border-radius: .25rem;
+	padding-bottom: 50px;
 }
 
 .page-link {
