@@ -87,9 +87,7 @@ public class WDReviewController {
 			wdReview.setEndRow(paging.getEndRow());
 			
 			list = wdReviewService.ReviewList(wdReview);
-			
-			System.out.println("리스트 까지 전부 들어감"+list.get(0).getRegDate());
-			System.out.println("리스트 까지 전부 들어감"+list.get(0).getRSeq());
+
 		}
 		model.addAttribute("list",list);
 		model.addAttribute("searchValue", searchValue);
