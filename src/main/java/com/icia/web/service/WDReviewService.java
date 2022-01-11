@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.icia.common.util.FileUtil;
 import com.icia.web.dao.WDReviewDao;
 import com.icia.web.model.WDBoardFile;
 import com.icia.web.model.WDFBoard;
@@ -181,5 +182,84 @@ public class WDReviewService {
 		
 		return count;
 	}
+	
+	//게시물 삭제
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	public int reviewDelete(long RSeq) throws Exception
+	{
+		int count = 0;
+		
+		WDReview wdReview = wdReviewDao.ReviewSelect(RSeq);
+		
+		if(wdReview != null) 
+		{
+			WDReviewFile wdReviewFile = wdReviewDao.ReviewFileSelect(RSeq);
+			
+			count = wdReviewDao.reviewDelete(RSeq);
+			
+			if(wdReviewFile != null) 
+			{
+				wdReview.setReviewFile(wdReviewFile);
+				
+				if(wdReviewDao.reviewDeleteFile(RSeq) > 0) 
+				{
+					FileUtil.deleteFile(UPLOAD_SAVE_DIR + FileUtil.getFileSeparator()+wdReviewFile.getrFileName());
+				}
+			}
+			
+		}
+		
+		return count;
+	}
+	
+	  //게시물 첨부파일만 삭제
+	   @Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	   public int reviewDeleteFile(WDReview wdReview) throws Exception
+	   {
+		   int count = 0;
+		   
 
+		   if(wdReview.getReviewFile() != null) 
+		   {
+			   WDReviewFile delWDReviewFile = wdReviewDao.ReviewFileSelect(wdReview.getRSeq());
+			   
+			   if(delWDReviewFile != null) 
+			   {
+				   //테이블 날리기
+				   count = wdReviewDao.reviewDeleteFile(wdReview.getRSeq());
+				   
+				   //삭제할 애가 존재함, 파일 삭제
+				   FileUtil.deleteFile(UPLOAD_SAVE_DIR + FileUtil.getFileSeparator()+delWDReviewFile.getrFileName());
+			   }
+		   }
+		   return count;
+	   }
+	   
+		//게시물 수정
+		@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+		public int reviewUpdate(WDReview wdReview) throws Exception
+		{
+			int count = 0;
+			
+			count = wdReviewDao.reviewUpdate(wdReview);
+			if(count > 0 && wdReview.getReviewFile() != null) 
+			{
+				WDReviewFile delWDReviewFile = wdReviewDao.ReviewFileSelect(wdReview.getRSeq());
+				
+				if(delWDReviewFile != null) 
+				{
+					wdReviewDao.reviewDeleteFile(wdReview.getRSeq());
+					
+					FileUtil.deleteFile(UPLOAD_SAVE_DIR + FileUtil.getFileSeparator()+delWDReviewFile.getrFileName());
+				}
+				
+				WDReviewFile wdReviewFile = wdReview.getReviewFile();
+				wdReviewFile.setrSeq(wdReview.getRSeq());
+				wdReviewFile.setrFileSeq(1);
+				
+				wdReviewDao.reviewFileInsert(wdReviewFile);				
+			}
+			
+			return count;
+		}
 }
