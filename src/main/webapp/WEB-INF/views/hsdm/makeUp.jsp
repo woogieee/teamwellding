@@ -111,7 +111,7 @@ function fn_list(curPage)
 <c:if test="${!empty list}">        
 	<c:forEach var="wdMakeup" items="${list}" varStatus="status">
                 <div class="col-lg-4">
-                    <div class="ticket-item">
+                    <div class="ticket-item" onclick="fn_view('${wdMakeup.mCode}')" style="cursor:pointer;">
                         <div class="thumb5">
                             <img src="../resources/images/makeup/${wdMakeup.mImgName}" alt="">
                         </div>

@@ -130,7 +130,13 @@ $(document).ready(function(){
                 <div class="col-lg-4">
                     <div class="com_detail9">
                         <div class="right-content2">
-                            <h4><c:out value="${wdStudio.sName}" /></h4>
+                            <h4>
+                            	<c:out value="${wdStudio.sName}" />
+				             	<button type="button" id="btnList" class="listButton3">
+				        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
+				        		</button>
+                            </h4>
+
                             <span><c:out value="${wdStudio.sContent}" /></span>
                             <ul  class="loc_li">
 			                    <li><i class="fa fa-map-marker"></i> <c:out value="${wdStudio.sLocation}" /></li>
@@ -148,63 +154,69 @@ $(document).ready(function(){
                             <div class="banner2">
                                 <!--img src="../resources/images/tour.png" width="100%"-->
                             </div>
-                  <dt>스튜디오 예약일</dt>
-                  <dd class="date">
-					<select id="year" class="year">
-						<option value="">년도</option>
-						<option value="2022">2022</option>
-						<option value="2023">2023</option>
-
-
-					</select> <select id="month" class="month">
-						<option value="">월</option>
-						<option value="01">1</option>
-						<option value="02">2</option>
-						<option value="03">3</option>
-						<option value="04">4</option>
-						<option value="05">5</option>
-						<option value="06">6</option>
-						<option value="07">7</option>
-						<option value="08">8</option>
-						<option value="09">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
-						<option value="12">12</option>
-					</select> <select id="day" class="day">
-						<option value="">일</option>
-						<option value="01">1</option>
-						<option value="02">2</option>
-						<option value="03">3</option>
-						<option value="04">4</option>
-						<option value="05">5</option>
-						<option value="06">6</option>
-						<option value="07">7</option>
-						<option value="08">8</option>
-						<option value="09">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
-						<option value="12">12</option>
-						<option value="13">13</option>
-						<option value="14">14</option>
-						<option value="15">15</option>
-						<option value="16">16</option>
-						<option value="17">17</option>
-						<option value="18">18</option>
-						<option value="19">19</option>
-						<option value="20">20</option>
-						<option value="21">21</option>
-						<option value="22">22</option>
-						<option value="23">23</option>
-						<option value="24">24</option>
-						<option value="25">25</option>
-						<option value="26">26</option>
-						<option value="27">27</option>
-						<option value="28">28</option>
-						<option value="29">29</option>
-						<option value="30">30</option>
-						<option value="31">31</option>
-					</select>
-				</dd>
+                            
+                            <!--  스튜디오 예약일 추가 시작 -->
+							<dl class="st_dl">
+								 <dt class="st_dt">스튜디오 예약일&nbsp;:</dt>
+				                  <dd class="date st_dd">
+									<select id="year" class="year select_date">
+										<option value="">년도</option>
+										<option value="2022">2022</option>
+										<option value="2023">2023</option>
+									</select> 
+									<select id="month" class="month select_date2">
+										<option value="">월</option>
+										<option value="01">1</option>
+										<option value="02">2</option>
+										<option value="03">3</option>
+										<option value="04">4</option>
+										<option value="05">5</option>
+										<option value="06">6</option>
+										<option value="07">7</option>
+										<option value="08">8</option>
+										<option value="09">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									</select>
+									<select id="day" class="day select_date2">
+										<option value="">일</option>
+										<option value="01">1</option>
+										<option value="02">2</option>
+										<option value="03">3</option>
+										<option value="04">4</option>
+										<option value="05">5</option>
+										<option value="06">6</option>
+										<option value="07">7</option>
+										<option value="08">8</option>
+										<option value="09">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+									</select>
+								</dd>
+							</dl>
+							<!-- 스튜디오 예약일 추가 끝 -->
+							
                             <div class="main-dark-button3"><a href="#" id="chae">이 스튜디오 담기</a></div>
                         </div>
                     </div>
@@ -228,9 +240,17 @@ $(document).ready(function(){
 				        </div>
 					</div>
 			    </div>
+			    
+				<div class="col-lg-12" style="width: 100%; height: 1px; background:#eee; margin-top:50px;"></div>
+            	<div class="alignleft2">
+	             	<button type="button" id="btnList" class="listButton">
+	        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
+	        		</button>
+            	</div>
+            	
             </div>
         </div>
-        <button type="button" id="btnList" class="listButton"><img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32"></button>
+
     </div>
 </c:if>
 
