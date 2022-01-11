@@ -72,6 +72,8 @@ FROM
     WD_REZ
 WHERE
     USER_ID = #{value}
+AND
+	REZ_STATUS = 'N'
 </select>
 <!-- 예약 테이블 값을 가져오기 위한 셀렉트문 종료 -->
 
