@@ -76,7 +76,7 @@ function fn_list(curPage)
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="search-box">
+                    <div class="search-box search-box2">
                         <form id="subscribe" method="get">
                             <div class="row">
                                 <div class="col-lg-5">
@@ -91,10 +91,10 @@ function fn_list(curPage)
                                                 <option value="1" <c:if test="${searchType eq '1'}">selected</c:if>>제목</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-7">
                                             <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <fieldset>
                                             
                                             <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
@@ -110,7 +110,7 @@ function fn_list(curPage)
                 	<div class="heading" style="margin-bottom:20px">
                 	</div>
                 </div>
-                <div class="col-lg-12" style="border-bottom: 1px solid black">
+                <div class="col-lg-12" style="border-bottom: 1px solid black; margin-bottom: 20px;">
                     <ul>
                         <li>
                             <table class="table table-hover">

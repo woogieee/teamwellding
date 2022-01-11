@@ -86,10 +86,10 @@ $('.post-wrapper').slick({
                                                 <option value="2" <c:if test="${searchType eq '2'}">selected</c:if>>지역</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-7">
                                             <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <fieldset>
                                            <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                             </fieldset>
