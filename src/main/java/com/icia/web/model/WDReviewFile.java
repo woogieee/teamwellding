@@ -6,81 +6,78 @@ public class WDReviewFile implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private long RSeq;
-	private long RFileSeq;
-	private String RFileName;
-	private String RFileOrgName;
-	private String RFileExt;
-	private long RFileSize;
-	private String RegDate;
+	private long rSeq;
+	private long rFileSeq;
+	private String rFileName;
+	private String rFileOrgName;
+	private String rFileExt;
+	private long rFileSize;
+	private String regDate;
 	
 	public WDReviewFile() {
-		  RSeq = 0;
-		  RFileSeq = 0;
-		  RFileName = "";
-		  RFileOrgName = "";
-		  RFileExt = "";
-		  RFileSize = 0;
-		  RegDate = "";
+		  rSeq = 0;
+		  rFileSeq = 0;
+		  rFileName = "";
+		  rFileOrgName = "";
+		  rFileExt = "";
+		  rFileSize = 0;
+		  regDate = "";
 	}
 
-	public long getRSeq() {
-		return RSeq;
+	public long getrSeq() {
+		return rSeq;
 	}
 
-	public void setRSeq(long rSeq) {
-		RSeq = rSeq;
+	public void setrSeq(long rSeq) {
+		this.rSeq = rSeq;
 	}
 
-	public long getRFileSeq() {
-		return RFileSeq;
+	public long getrFileSeq() {
+		return rFileSeq;
 	}
 
-	public void setRFileSeq(long rFileSeq) {
-		RFileSeq = rFileSeq;
+	public void setrFileSeq(long rFileSeq) {
+		this.rFileSeq = rFileSeq;
 	}
 
-	public String getRFileName() {
-		return RFileName;
+	public String getrFileName() {
+		return rFileName;
 	}
 
-	public void setRFileName(String rFileName) {
-		RFileName = rFileName;
+	public void setrFileName(String rFileName) {
+		this.rFileName = rFileName;
 	}
 
-	public String getRFileOrgName() {
-		return RFileOrgName;
+	public String getrFileOrgName() {
+		return rFileOrgName;
 	}
 
-	public void setRFileOrgName(String rFileOrgName) {
-		RFileOrgName = rFileOrgName;
+	public void setrFileOrgName(String rFileOrgName) {
+		this.rFileOrgName = rFileOrgName;
 	}
 
-	public String getRFileExt() {
-		return RFileExt;
+	public String getrFileExt() {
+		return rFileExt;
 	}
 
-	public void setRFileExt(String rFileExt) {
-		RFileExt = rFileExt;
+	public void setrFileExt(String rFileExt) {
+		this.rFileExt = rFileExt;
 	}
 
-	public long getRFileSize() {
-		return RFileSize;
+	public long getrFileSize() {
+		return rFileSize;
 	}
 
-	public void setRFileSize(long rFileSize) {
-		RFileSize = rFileSize;
+	public void setrFileSize(long rFileSize) {
+		this.rFileSize = rFileSize;
 	}
 
 	public String getRegDate() {
-		return RegDate;
+		return regDate;
 	}
 
 	public void setRegDate(String regDate) {
-		RegDate = regDate;
+		this.regDate = regDate;
 	}
 	
-	
-	
-
 }
