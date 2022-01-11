@@ -14,9 +14,33 @@ font-family: 'Gamja Flower', cursive;
 font-size: 64px;
 text-align: center;
 }
+/*별점 시작*/
+span.star-prototype, span.star-prototype > * {
+    height: 35px; 
+    /*background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;*/
+    background: url(../resources/images/star1234.png) 0 -35px repeat-x;
+    width: 170px;
+    display: inline-block;
+}
+ 
+span.star-prototype > * {
+    background-position: 0 0;
+    max-width:170px;
+}
+/*별점 끝*/
 </style>
 <script>
 $(document).ready(function(){
+	
+	//별점
+	$.fn.generateStars = function() {
+	    return this.each(function(i,e){$(e).html($('<span/>').width($(e).text()*34));});
+	};
+	
+	// 숫자 평점을 별로 변환하도록 호출하는 함수
+	$('.star-prototype').generateStars();
+	//별점
+	
 	$("#btnList").on("click", function(){
 		document.bbsForm.action = "/board/reviews";
 		document.bbsForm.submit();
@@ -25,7 +49,7 @@ $(document).ready(function(){
 	
 	<c:if test="${boardMe eq 'Y'}">
 	$("#btnUpdate").on("click", function(){
-		document.bbsForm.action = "/board/fUpdateForm";
+		document.bbsForm.action = "/board/reviewUpdate";
 		document.bbsForm.submit();
 	});
 	
@@ -38,7 +62,7 @@ $(document).ready(function(){
 				url:"/board/reviewDelete",
 				data:
 				{
-					bSeq: <c:out value="${wdReview.RSeq}" />
+					RSeq: <c:out value="${wdReview.RSeq}" />
 				},
 				datatype:"JSON",
 				beforeSend:function(xhr){
@@ -134,8 +158,10 @@ $(document).ready(function(){
                <td colspan="2" style="text-align:center">
 	               <div style="padding:10px">
 	               	<div>
-	               	<img src="../resources/upload/${url }">
-	               		<br>
+	               	<c:if test="${!empty wdReview.reviewFile}">
+	               	<img src="../resources/upload/${wdReview.reviewFile.rFileName }">
+	               	<br>
+	               	</c:if>
 	               		<c:out value="${wdReview.RContent}" />
 	               	</div>
 	               </div>
@@ -146,7 +172,8 @@ $(document).ready(function(){
          <tfoot>
          <tr>
          <td colspan="2">
-         
+         <!-- 별점은 여기에  -->
+         	평가 : <span class="star-prototype">${wdReview.RScore }</span>
          </td>
          </tr>
          <tr>

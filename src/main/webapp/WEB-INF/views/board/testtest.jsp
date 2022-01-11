@@ -14,7 +14,7 @@ span.star-prototype, span.star-prototype > * {
  
 span.star-prototype > * {
     background-position: 0 0;
-    max-width:200px;
+    max-width:250px;
 }
 </style>
 <script src="../resources/js/jquery-3.5.1.min.js"></script>
@@ -32,6 +32,6 @@ $(function(){
 <body>
 
 평가 :   
- <span class="star-prototype">2</span>
+ <span class="star-prototype">5</span>
 </body>
 </html>
