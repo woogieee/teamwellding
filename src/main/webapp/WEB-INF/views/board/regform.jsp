@@ -9,8 +9,10 @@
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/regform.css">
 <!--===============================================================================================-->
-<script type="text/javascript">
+<script>
+
 $(document).ready(function(){
+
 	$("#btnReg").prop("disabled", true);
 
 		$("#btnEmailCheck").on("click",function(){
@@ -30,8 +32,7 @@ $(document).ready(function(){
 				return;
 			}
 
-			$("#btnEmailCheck").prop(
-					"disabled", true);
+			$("#btnEmailCheck").prop("disabled", true);
 
 			if (!$("#checkinput").length > 0) 
 			{
@@ -322,209 +323,12 @@ function imnotok() {
 }
 
 function fn_validateEmail(value) {
-	var emailReg = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-	;
-});
+	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
-$("#pwd2").keyup(function(){
-
-   var pwd1= $("#pwd1").val();
-   var pwd2= $("#pwd2").val();
-
-   if(pwd1 != pwd2)
-   {
-       $('p').eq(2).text("비밀번호가 일치하지않습니다");
-       $('p').eq(2).css('color', 'red');
-       $("#pwd2").focus();
-       return;
-   
-   }
-   else
-   {
-       $('p').eq(2).text("비밀번호가 일치합니다");
-       $('p').eq(2).css("color", "green");
-       $('p').eq(2).css("font-weight", "700");
-       
-         return;
-   }
- 
-});
-
-$("#name").keyup(function(){
-
-   if($.trim($("#name").val()).length <= 2)
-     {
-       $('p').eq(3).text("이름을 입력해주세요.");
-       $('p').eq(3).css('color', 'red');
-        $("#name").focus();
-        return;
-     }
-     else 
-     {
-         $('p').eq(3).hide();
-         return;
-     }
-   
-  
-});
+	return regExp.test(value);
+};
 
 
-
-   $("#id").keyup(function(){
-      
-   
-      $("#pwd1").val($("#pwd2").val());
-      
-      $.ajax({
-          
-          type: "POST",
-          url : "/user/idCheck",
-          data : {
-             userId :$("#id").val()
-          },
-          datatype : "JSON",
-          beforeSend : function(xhr)
-          {
-              xhr.setRequestHeader("AJAX", "true");
-          },
-          
-          success: function(response)
-          {
-             if(response.code == 0)
-                {
-                }
-             else if(response.code == 100)
-                {
-                 $('p').eq(0).text("중복된 아이디입니다.");
-                  $('p').eq(0).css('color', 'red');
-                }
-          },
-           complete:function(data)
-            {
-               icia.common.log(data);
-            },
-            error:function(xhr,status,error)
-            {
-               icia.common.error(error);
-            }
-            
-       });
-   });
-   $("#btnReg").on("click",function(){
-      
-      
-       $.ajax({
-            type: "POST",
-            url: "/user/regProc",
-            data:{
-               id: $("#id").val(),
-               pwd1: $("#pwd1").val(),
-               name: $("#name").val(),
-               number : $("#number").val(),
-               year : $("#year").val(),
-               month : $("#month").val(),
-               day : $("#day").val(),
-               gender : $("#gender").val(),
-               nickname : $("#nickname").val(),
-               email : $("#email").val(),
-               uCheck : $("#checkinput").val()
-            },
-            datatype: "JSON",
-            beforeSend: function(xhr){
-               xhr.setRequestHeader("AJAX", "true");
-            },
-            success: function(response){
-               if(response.code == 0)
-               {
-                  alert("회원가입이 완료되었습니다.");
-                  location.href = "/board/login";
-               } 
-               else if(response.code == 400)
-               {
-                  alert("회원가입 중 오류가 발생했습니다..");
-                  location.href = "/board/regform";
-               }
-               else if(response.code == 500)
-               {
-                  alert("회원가입 중 오류가 발생했습니다.");
-                  location.href = "/board/regform";
-               }
-               else
-               {
-                  alert("오류가 발생했습니다.");
-                  $("#id").focus();
-               }
-            },
-            complete: function(data)
-            {
-               icia.common.log(data);
-            },
-            error: function(xhr, status, error)
-            {
-               icia.common.error(error);
-            }
-       
-         });
-   
-
-      });
-   
-   $("#btnCC").on("click", function(){
-		 
-		 alert("회원가입이 취소되었습니다.");
-		 location.href = "/";
-		
-	   	}); 
-   });
-   
-  
-function imnotok(){
-	
-  	      $.ajax({
-  	         
-  	         type: "POST",
-  	         url : "/user/emailCheck",
-  	         data : {
-  	            uCheck :$("#checkinput").val()
-  	         },
-  	         datatype : "JSON",
-  	         beforeSend : function(xhr)
-  	         {
-  	             xhr.setRequestHeader("AJAX", "true");
-  	         },
-  	         
-  	         success: function(response)
-  	         {
-  	            if(response.code == 0)
-  	               {
-  	                $('p').eq(7).text("인증이 완료되었습니다.");
- 	                 $('p').eq(7).css('color', 'green');
- 	        	   $("#btnReg").prop("disabled", false);
-  	               }
-  	            else if(response.code == 100)
-  	               {
-  	                $('p').eq(7).text("인증번호가 일치하지 않습니다..");
-  	                 $('p').eq(7).css('color', 'red');
-  	               }
-  	         
-  	         },
-  	          complete:function(data)
-  	           {
-  	              icia.common.log(data);
-  	           },
-  	           error:function(xhr,status,error)
-  	           {
-  	              icia.common.error(error);
-  	           }
-  	           
-  	     });
-}   
-function fn_validateEmail(value)
-{
-  var emailReg = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;;
-  
-  return emailReg.test(value);
-}
 </script>
 </head>
 <body>
