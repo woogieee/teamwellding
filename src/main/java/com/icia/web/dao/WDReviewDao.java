@@ -23,7 +23,7 @@ public interface WDReviewDao {
 	public int ReviewReadCntPlus(long RSeq);
 	
 	//리뷰 첨부파일 조회
-	public WDReviewFile ReviewFileSelect(WDReviewFile wdReviewFile);
+	public WDReviewFile ReviewFileSelect(long RSeq);
 	
 	//리뷰 작성 가능여부 조회
 	public String ReviewRezCheck(String userId);

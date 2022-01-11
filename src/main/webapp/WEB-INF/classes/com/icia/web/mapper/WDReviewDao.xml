@@ -38,13 +38,13 @@ FROM
     WD_REVIEW A, WD_REZ B, WD_HALL C
 WHERE
     A.REZ_NO = B.REZ_NO
-<if test='searchValue != null and searchValue != ""'> 
-AND
-    C.H_NAME LIKE '%' || #{value} || '%'
 AND 
     B.WH_CODE = C.WH_CODE
 AND
     B.H_CODE = C.H_CODE
+<if test='searchValue != null and searchValue != ""'> 
+AND
+    C.H_NAME LIKE '%' || #{value} || '%'
 </if>
 </select>
 <!-- 리뷰 게시물 총 수 체크 끝 -->
@@ -138,7 +138,7 @@ UPDATE WD_REVIEW
 <!-- 리뷰 조회수 증가 끝 -->
 
 <!-- 리뷰 첨부파일 조회 시작 -->
-<select id="ReviewFileSelect" parameterType="com.icia.web.model.WDReviewFile" resultMap="ReviewFileResultMap">
+<select id="ReviewFileSelect" parameterType="long" resultMap="ReviewFileResultMap">
 SELECT
     R_SEQ,
     R_FILE_SEQ,
@@ -150,9 +150,9 @@ SELECT
 FROM
     WD_REVIEW_FILE
 WHERE
-    R_SEQ = #{RSeq}
+    R_SEQ = #{value}
 AND
-    R_FILE_SEQ = #{RFileSeq}
+    R_FILE_SEQ = 1
 </select>
 <!-- 리뷰 첨부파일 조회 끝 -->
 

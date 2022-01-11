@@ -71,13 +71,13 @@ $(document).ready(function(){
 
 });
 
-function fn_view(bSeq)
+function fn_view(RSeq)
 {
-   document.bbsForm.bSeq.value = bSeq;
+   document.bbsForm.RSeq.value = RSeq;
    //searchType, searchValue는 안가져가나요?
    //조회 버튼을 안눌렀다면 굳이 가져갈 필요가 없음
    //조회 버튼을 눌렀다면 히든 타입 bbsForm에는 이미 값이 들어가 있음
-   document.bbsForm.action = "/board/fBoardView";
+   document.bbsForm.action = "/board/reviewInfo";
    document.bbsForm.submit();
 }
 
@@ -115,7 +115,7 @@ function fn_list(curPage)
                 <div class="col-lg-12">
                     <div class="section-heading" style="padding: 20px 0;">
                         <div class="category2">
-                            <p>Know-How</p>
+                            <p>Review</p>
                         </div>
                     </div>
                 </div>
