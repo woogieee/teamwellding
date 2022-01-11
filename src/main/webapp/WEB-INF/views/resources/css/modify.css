@@ -2,14 +2,11 @@
   margin: 0px; 
   padding: 0px; 
   box-sizing: border-box;
+  
  
   
 }
 
-body
-{
-  background-color: #fff4f3;
-}
 
 .date
 {
@@ -83,9 +80,10 @@ h1{
 
 .join_form
 {
+	
  width: 100%;
 text-align: center;
- /* background-color: aqua; */
+
 }
 
 .input {
@@ -229,7 +227,4 @@ label.selector {
     text-align: left;
 }
 
-.section
-{
-	background-color: rgba(255,224,212, 0.4);
-}
+
