@@ -78,7 +78,6 @@ function fn_view(eBSeq)
 	<br />
 
 	<div class="tickets-page">
-<<<<<<< HEAD
 
         <div class="container">
             <div class="row">
