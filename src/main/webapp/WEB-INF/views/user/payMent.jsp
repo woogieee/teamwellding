@@ -316,8 +316,11 @@ function movePage()
 					<select>
 						<option value="">쿠폰 선택</option>
 					<c:forEach var="coupon" items="${couponList}" varStatus="status">
-						<option value="${coupon.cCode }">${coupon.cName }</option>
+						<option value="${coupon.cCode }">${coupon.cName}</option>
 					</c:forEach>
+					
+					<input type="text" value="">
+						
 					</select>
 					</div>
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">

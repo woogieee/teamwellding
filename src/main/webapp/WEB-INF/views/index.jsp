@@ -19,7 +19,8 @@
 	   	document.fBoardForm.bSeq.value = bSeq;
 	   	document.fBoardForm.action = "/board/fBoardView";
 	   	document.fBoardForm.submit();
-
+	   }
+	   
 	   function fn_view2(eBSeq)
 	   {
 	   	document.eBoardForm.eBSeq.value = eBSeq;
