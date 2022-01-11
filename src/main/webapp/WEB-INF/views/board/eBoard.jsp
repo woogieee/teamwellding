@@ -86,7 +86,8 @@ function fn_view(eBSeq)
 							<div class="row">
 								<div class="col-lg-5">
 									<div class="search-heading">
-										<h4>찾는 이벤트가 있으신가요?</h4>
+
+										<h4>찾고 계신 이벤트가 있으시다면 검색을 이용해보세요!</h4>
 									</div>
 								</div>
 								<div class="col-lg-7">
