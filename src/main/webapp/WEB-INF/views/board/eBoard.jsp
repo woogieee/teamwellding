@@ -86,7 +86,7 @@ function fn_view(eBSeq)
 							<div class="row">
 								<div class="col-lg-5">
 									<div class="search-heading">
-										<h4>이벤트를 검색합니다</h4>
+										<h4>찾는 이벤트가 있으신가요?</h4>
 									</div>
 								</div>
 								<div class="col-lg-7">
@@ -107,8 +107,7 @@ function fn_view(eBSeq)
 										</div>
 										<div class="col-lg-3">
 											<fieldset>
-												<button type="button" id="btnSearch"
-													class="main-dark-button">Submit</button>
+												<button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
 											</fieldset>
 										</div>
 
