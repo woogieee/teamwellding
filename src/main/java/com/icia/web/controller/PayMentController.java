@@ -61,6 +61,7 @@ public class PayMentController
 		
 		if(couponList != null) {
 			model.addAttribute("couponList",couponList);
+			model.addAttribute("num", couponList.size());
 		}
 		
 		wdRez.setUserId(cookieUserId);

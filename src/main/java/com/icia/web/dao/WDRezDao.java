@@ -43,5 +43,8 @@ public interface WDRezDao {
 	   
 	public int rezHallUpdate(WDRez wdRez);
 	
+	//카카오페이 성공 시 업데이트 문
+	public int rezUpdatePay(WDRez wdRez);
+	
 	
 }
