@@ -111,7 +111,7 @@ $('.post-wrapper').slick({
             <div class="row">
            
             
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="text-align: center; height: 70px;">
                     <div class="heading">
                         <h2><!-- Studio --></h2>
                     </div>

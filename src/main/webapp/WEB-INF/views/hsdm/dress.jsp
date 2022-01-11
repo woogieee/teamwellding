@@ -104,11 +104,12 @@ function fn_list(curPage)
                 <div class="tickets-page">
         			<div class="container">
             			<div class="row">
-                <div class="col-lg-12">
-                    <div class="heading">
-                        <h2><!-- Dress --></h2>
-                    </div>
-                </div>
+            			
+			                <div class="col-lg-12" style="text-align: center; height: 70px;">
+			                    <div class="heading">
+			                        <h2><!-- Dress --></h2>
+			                    </div>
+			                </div>
 <c:if test="${!empty list}">        
 	<c:forEach var="wdDress" items="${list}" varStatus="status">
                 <div class="col-lg-4">
