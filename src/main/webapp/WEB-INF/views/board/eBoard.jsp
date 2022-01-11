@@ -148,36 +148,34 @@ function fn_view(eBSeq)
 						
 					</div>
 				</div>
-				
-				<div class="col-lg-1"></div>
-						<c:if test="${!empty paging}">
-							<div class="col-lg-12">
-								<div class="pagination">
-									<ul>
-										<c:if test="${paging.prevBlockPage gt 0}">
-											<li><a href="javascript:void(0)"
-												onclick="fn_list(${paging.prevBlockPage})">Prev</a></li>
+					<div class="col-lg-1"></div>
+
+
+						<div class="col-lg-12">
+		                    <div class="pagination">
+								<ul class="pagination justify-content-center">
+									<c:if test="${!empty paging}">
+										<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
+										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>
 										</c:if>
-										<c:forEach var="i" begin="${paging.startPage}"
-											end="${paging.endPage}">
+										<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
 											<c:choose>
 												<c:when test="${i ne curPage}">
-													<li><a href="javascript:void(0)"
-														onclick="fn_list(${i})">${i}</a></li>
+													<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
 												</c:when>
 												<c:otherwise>
-													<li class="active"><a href="javascript:void(0)" style="cursor: default;">${i}</a></li>
+													<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
-										<c:if test="${paging.nextBlockPage gt 0}">
-											<li><a href="javascript:void(0)"
-												onclick="fn_list(${paging.nextBlockPage})">next</a></li>
-										</c:if>
-									</ul>
-								</div>
-							</div>
-						</c:if>
+										<c:if test="${paging.nextBlockPage gt 0}">         
+											<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">다음</a></li>
+										</c:if>       
+									</c:if> 
+								</ul>
+		                    </div>
+		                </div>
+		                
 					</div>
 				</div>
 			</div>
