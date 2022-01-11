@@ -316,13 +316,12 @@ function movePage()
 					<!-- 쿠폰 가져오기 -->
 					<select>
 						<option value="">쿠폰 선택</option>
-						
-					<c:forEach var="coupon" items="${couponList}" end="" varStatus="status">
-						<option value="${coupon.cCode }">${coupon.cName }</option>
-					<input type="text" value="${coupon.cPrice}">
-					
+					<c:forEach var="coupon" items="${couponList}" varStatus="status">
+						<option value="${coupon.cCode }">${coupon.cName}</option>
 					</c:forEach>
 					
+					<input type="text" value="" />
+						
 					</select>
 					<input type="text" value="${coupon.cPrice}">
 					
