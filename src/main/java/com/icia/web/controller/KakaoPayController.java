@@ -20,7 +20,9 @@ import com.icia.web.model.KakaoPayApprove;
 import com.icia.web.model.KakaoPayOrder;
 import com.icia.web.model.KakaoPayReady;
 import com.icia.web.model.Response;
+import com.icia.web.model.WDRez;
 import com.icia.web.service.KakaoPayService;
+import com.icia.web.service.WDRezService;
 import com.icia.web.util.CookieUtil;
 import com.icia.web.util.HttpUtil;
 
@@ -31,6 +33,9 @@ public class KakaoPayController
    
    @Autowired
    private KakaoPayService kakaoPayService;
+   
+   @Autowired
+   private WDRezService wdRezService;
    
    // 쿠키명
    @Value("#{env['auth.cookie.name']}")
@@ -75,6 +80,7 @@ public class KakaoPayController
       int taxFreeAmount = HttpUtil.get(request, "taxFreeAmount", (int)0);
       int vatAmount = HttpUtil.get(request, "vatAmount", (int)0);
       
+
       KakaoPayOrder kakaoPayOrder = new KakaoPayOrder();
       
       kakaoPayOrder.setPartnerOrderId(orderId);
@@ -102,7 +108,21 @@ public class KakaoPayController
          json.addProperty("mobileUrl", kakaoPayReady.getNext_redirect_mobile_url());
          json.addProperty("pcUrl", kakaoPayReady.getNext_redirect_pc_url());
          
-         ajaxResponse.setResponse(0, "success", json);
+         WDRez wdRez = new WDRez();
+         wdRez.setUserId(userId);
+         wdRez.setRezNo(itemCode);
+         wdRez.setRezFullPrice(totalAmount);
+         
+         
+         if( wdRezService.rezUpdatePay(wdRez) > 0) 
+         {
+        	 ajaxResponse.setResponse(0, "success", json);        	 
+         }
+         else 
+         {
+        	 ajaxResponse.setResponse(-1, "fail", null);
+         }
+         
       }
       else
       {

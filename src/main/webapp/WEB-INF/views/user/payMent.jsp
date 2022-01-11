@@ -312,13 +312,21 @@ function movePage()
 					<div class="col-lg-1"></div>
 					<div class="col-lg-10">
 					<div class="col-lg-10">
+					
 					<!-- 쿠폰 가져오기 -->
 					<select>
 						<option value="">쿠폰 선택</option>
-					<c:forEach var="coupon" items="${couponList}" varStatus="status">
+						
+					<c:forEach var="coupon" items="${couponList}" end="" varStatus="status">
 						<option value="${coupon.cCode }">${coupon.cName }</option>
+					<input type="text" value="${coupon.cPrice}">
+					
 					</c:forEach>
+					
 					</select>
+					<input type="text" value="${coupon.cPrice}">
+					
+					
 					</div>
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
 						<div class="rez_sum">
@@ -354,7 +362,9 @@ function movePage()
 							<!-- 총 주문금액 변수 i에 넣어서  totalAmount 에 넣어주기-->
 							<fmt:parseNumber var="i" type="number" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)}" />
 							<!-- 카카오 페이 버튼 추가 -->
-							<button type="button" id="btnPay" style="border:0px; background:none; position:relative; top:-18px;" title="카카오페이"><img src="../resources/images/icons/kakaoPay.png"></button>
+							<button type="button" id="btnPay" style="border:0px; background:none; position:relative; top:-18px;" title="카카오페이">
+							<img src="../resources/images/icons/kakaoPay.png" style="width: 80px;">
+							</button>
 						</div>
 </c:if>
 					</div>

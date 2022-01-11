@@ -8,6 +8,8 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	
+	
 	parent.kakaoPayResult("${pgToken}");
 	/*
 	$("#btnClose").on("click", function() {
