@@ -172,10 +172,10 @@ public class WDReviewController {
 			{
 				WDReviewFile wdReviewFile = new WDReviewFile();
 				
-				wdReviewFile.setRFileName(fileData.getFileName());
-				wdReviewFile.setRFileOrgName(fileData.getFileOrgName());
-				wdReviewFile.setRFileExt(fileData.getFileExt());
-				wdReviewFile.setRFileSize(fileData.getFileSize());
+				wdReviewFile.setrFileName(fileData.getFileName());
+				wdReviewFile.setrFileOrgName(fileData.getFileOrgName());
+				wdReviewFile.setrFileExt(fileData.getFileExt());
+				wdReviewFile.setrFileSize(fileData.getFileSize());
 				
 				wdReview.setReviewFile(wdReviewFile);
 			}

@@ -20,13 +20,13 @@
 
 <!-- 리뷰파일 resultMap 시작 -->
 <resultMap id="ReviewFileResultMap" type="com.icia.web.model.WDReviewFile">
-		    <id column="R_SEQ" property="RSeq" />
-		    <id column="R_FILE_SEQ" property="RFileSeq" />
-		    <result column="R_FILE_NAME" property="RFileName" />
-		    <result column="R_FILE_ORG_NAME" property="RFileOrgName" />
-		    <result column="R_FILE_EXT" property="RFileExt" />
-		    <result column="R_FILE_SIZE" property="RFileSize" />
-		    <result column="REG_DATE" property="RegDate" />
+		    <id column="R_SEQ" property="rSeq" />
+		    <id column="R_FILE_SEQ" property="rFileSeq" />
+		    <result column="R_FILE_NAME" property="rFileName" />
+		    <result column="R_FILE_ORG_NAME" property="rFileOrgName" />
+		    <result column="R_FILE_EXT" property="rFileExt" />
+		    <result column="R_FILE_SIZE" property="rFileSize" />
+		    <result column="REG_DATE" property="regDate" />
 </resultMap>
 <!-- 리뷰파일 resultMap 끝 -->
 
@@ -61,9 +61,7 @@ SELECT
     R_READ_CNT,
     REG_DATE,
     R_SCORE,
-    REZ_NO,
-    '' as REZ_STATUS,
-    '' as TODAY
+    REZ_NO
 FROM (SELECT
             ROWNUM RNUM,
             R_SEQ,
@@ -232,12 +230,12 @@ INSERT INTO WD_REVIEW_FILE (
     R_FILE_SIZE,
     REG_DATE
 ) VALUES (
-    #{RSeq},
-    #{RfileSeq},
-    #{RfileName},
-    #{RfileOrgName},
-    #{RfileExt},
-    #{RfileSize},
+    #{rSeq},
+    #{rFileSeq},
+    #{rFileName},
+    #{rFileOrgName},
+    #{rFileExt},
+    #{rFileSize},
     SYSDATE
 )
 </insert>

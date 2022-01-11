@@ -149,13 +149,14 @@ public class WDReviewService {
 		int count = 0;
 		
 		count = wdReviewDao.ReviewInsert(wdReview);
-		
+		System.out.println("파일전 여긴 돌아 갓꾸~");
 		if(count>0 && wdReview.getReviewFile() != null) 
 		{
 			WDReviewFile wdReviewFile = wdReview.getReviewFile();
 			
-			wdReviewFile.setRSeq(wdReview.getRSeq());
-			wdReviewFile.setRFileSeq(1);
+			wdReviewFile.setrSeq(wdReview.getRSeq());
+			wdReviewFile.setrFileSeq((long)1);
+			System.out.println("파일 후 여긴 돌아 갓꾸~ : "+wdReviewFile.getrFileSeq());
 			
 			wdReviewDao.reviewFileInsert(wdReviewFile);
 		}
