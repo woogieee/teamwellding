@@ -11,18 +11,62 @@ $(document).ready(function(){
 	$("#btnSearch").on("click", function(){
 		//새로 조회버튼을 누를 때에는 신규로 넣은 값을 가져가야 함.
 		document.bbsForm.bSeq.value = "";
-		document.bbsForm.searchType.value = $("#searchTypeR").val();
-		document.bbsForm.searchValue.value = $("#searchValueR").val();
+		document.bbsForm.searchValue.value = $("#_searchValue").val();
 		//조회를 했을 때 무조건 1페이지로 가야 함. 결색 결과가 몇페이지까지 나올지 모르니깐
 		document.bbsForm.curPage.value = 1;
 		document.bbsForm.action = "/board/fBoard";
 		document.bbsForm.submit();
 	});
 	
-	$("#btnWrite").on("click",function(){
-		document.bbsForm.bSeq.value = "";
-		document.bbsForm.action = "/board/fBoardWrite";
-		document.bbsForm.submit();
+	$("#btnReviewWrite").on("click", function(){
+		document.bbsForm.RSeq.value = "";
+		var form = $("#bbsForm")[0];
+		var formData = new FormData(form);
+
+		$.ajax({
+					type : "POST",
+					url : "/board/reviewWrite",
+					data : formData,
+					processData : false,
+					contentType : false,
+					cache : false,
+					timeout : 600000,
+					beforeSend : function(xhr) 
+					{
+						xhr.setRequestHeader("AJAX","true");
+					},
+					success : function(response) 
+					{
+						if (response.code == 0) 
+						{
+							document.bbsForm.action = "/board/reviewWriteGo";
+							document.bbsForm.submit();
+						}
+						else if(response.code == 400)
+						{
+							alert("예약내역이 없거나 결제가 완료되지 않아 리뷰 작성이 불가능합니다.");
+							location.href = "/board/reviews";
+						}
+						else if(response.code == 401)
+						{
+							alert("아직 결혼식이 진행되지 않아 리뷰 작성이 불가능 합니다.");
+							location.href = "/board/reviews";
+						}
+						else 
+						{
+							alert("오류가 발생하였습니다. 다시 시도해주세요");
+							location.href = "/board/reviews";
+						}
+					},
+					complete : function(data) 
+					{
+						icia.common.log(data);
+					},
+					error : function(xhr, status, error) 
+					{
+						icia.common.error(error);
+					}
+				});
 	});
 
 });
@@ -163,7 +207,7 @@ function fn_list(curPage)
 	                                            <div class="time"><span>${review.RSeq}</span></div>
 	                                        </div>
 	                                        <div class="col-lg-2">
-	                                            <div class="place"><span>${review.UNickname}</span></div>
+	                                            <div class="place"><span>${review.UNickName}</span></div>
 	                                        </div>
 	                                        <div class="col-lg-2">
 	                                            <div class="place"><span>${review.RegDate}</span></div>
@@ -202,7 +246,7 @@ function fn_list(curPage)
                                                     </div>
                                                     <div class="col-lg-3">
 
-                                                        <button type="button" id="btnWrite" class="main-dark-button3">글쓰기</button>
+                                                        <button type="button" id="btnReviewWrite" class="main-dark-button3">글쓰기</button>
 
                                                     </div>
                                                 </div>

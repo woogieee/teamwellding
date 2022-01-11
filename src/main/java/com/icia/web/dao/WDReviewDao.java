@@ -31,6 +31,10 @@ public interface WDReviewDao {
 	//리뷰 작성
 	public int ReviewInsert(WDReview wdReview);
 	
+	public WDReview rezCheck(String userId);
+	
+	//리뷰 파일 등록
+	public int reviewFileInsert(WDReviewFile wdReviewFile);
 	
 
 }

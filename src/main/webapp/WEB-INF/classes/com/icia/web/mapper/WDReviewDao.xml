@@ -14,6 +14,7 @@
         <result column="REG_DATE" property="RegDate" />
         <result column="R_SCORE" property="RScore" />
         <result column="REZ_STATUS" property="rezStatus" />
+        <result column="TODAY" property="today" />
 </resultMap>
 <!-- 리뷰 resultMap 끝 -->
 
@@ -60,7 +61,9 @@ SELECT
     R_READ_CNT,
     REG_DATE,
     R_SCORE,
-    REZ_NO
+    REZ_NO,
+    '' as REZ_STATUS,
+    '' as TODAY
 FROM (SELECT
             ROWNUM RNUM,
             R_SEQ,
@@ -184,7 +187,8 @@ INSERT INTO WD_REVIEW (
     R_READ_CNT,
     REG_DATE,
     R_SCORE,
-    REZ_NO
+    REZ_NO,
+    REVIEW_STATUS
 ) VALUES (
     #{RSeq},
     #{UserId},
@@ -194,9 +198,49 @@ INSERT INTO WD_REVIEW (
     0,
     SYSDATE,
     #{RScore},
-    #{rezNo}
+    #{rezNo},
+    'Y'
 )
 </insert>
 <!-- 리뷰 작성 끝 -->
+
+<!-- 리뷰테이블 작성 전 예약테이블 정보 가져오기 -->
+<select id="rezCheck" parameterType="string" resultMap="ReviewResultMap">
+SELECT
+    NVL(REZ_NO,'') REZ_NO,
+    NVL(REZ_STATUS, 'N') REZ_STATUS,
+    NVL(WDATE, '') WDATE,
+    USER_ID,
+    TO_CHAR(SYSDATE, 'YYYYMMDD') TODAY
+FROM
+    WD_REZ
+WHERE
+    USER_ID = #{value}
+AND
+    REZ_STATUS = 'Y'
+</select>
+<!-- 리뷰테이블 작성 전 예약테이블 정보 가져오기 -->
+
+<!-- 첨부파일 등록 시작 -->
+<insert id="reviewFileInsert" parameterType="com.icia.web.model.WDReviewFile">
+INSERT INTO WD_REVIEW_FILE (
+    R_SEQ,
+    R_FILE_SEQ,
+    R_FILE_NAME,
+    R_FILE_ORG_NAME,
+    R_FILE_EXT,
+    R_FILE_SIZE,
+    REG_DATE
+) VALUES (
+    #{RSeq},
+    #{RfileSeq},
+    #{RfileName},
+    #{RfileOrgName},
+    #{RfileExt},
+    #{RfileSize},
+    SYSDATE
+)
+</insert>
+<!-- 첨부파일 등록 끝 -->
 
 </mapper>
