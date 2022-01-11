@@ -114,10 +114,9 @@
         <div class="container">
             <div class="row">
             
-                
-                <div class="col-lg-12" style="text-align: center;">
+                <div class="col-lg-12" style="text-align: center; height: 70px;">
                     <div class="heading">
-                        <h2>Wedding Hall</h2>
+                        <h2><!-- Wedding Hall --></h2>
                     </div>
                 </div>
                 

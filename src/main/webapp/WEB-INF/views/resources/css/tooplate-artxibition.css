@@ -2902,6 +2902,7 @@ Shows Events Page
   font-weight: 500;
   /*margin-bottom: 15px;*/
   font-family: 'Nanum Brush Script', cursive;
+      text-shadow: 2px 3px 15px #82623b;
 }
 
 /** 드레스 메인 **/
@@ -3224,7 +3225,7 @@ Shows Events Page
 
 .tickets-page {
   /*margin-bottom: 100px;*/
-  padding-bottom: 100px;
+ /* padding-bottom: 100px;*/
 }
 
 .tickets-page .search-box {

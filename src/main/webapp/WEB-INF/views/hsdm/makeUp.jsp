@@ -103,7 +103,7 @@ function fn_list(curPage)
       			  <div class="container">
         		    <div class="row">
             
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="text-align: center; height: 70px;">
                     <div class="heading">
                         <h2><!-- Makeup --></h2>
                     </div>
