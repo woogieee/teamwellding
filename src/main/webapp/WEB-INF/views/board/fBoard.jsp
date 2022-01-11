@@ -271,7 +271,7 @@ function fn_list(curPage)
 				</div>
 			</div>
 		</div>
-		
+</div>		
 	<form name="bbsForm" id="bbsForm" method="post">
 		<input type="hidden" name="bSeq" value="${fboard.bSeq}" />
 		<!-- 상세페이지 들어갈때 필요하니까 그때만 이 값이 들어가면됨 -->

@@ -65,11 +65,22 @@ html, body
 /*욱채 자유게시판*/
 .btnCommentD{
 	float : right;
+	border: none;
+	font-size: 13px;
+	letter-spacing: -0.7px;
+	font-weight: 600;
+	padding: 5px 9px;
 }
 
 .btnCommentU{
 	float : right;
 	margin-right : 5px;
+	background-color: #679267;
+	border: none;
+	font-size: 13px;
+	letter-spacing: -0.7px;
+	font-weight: 600;
+	padding: 5px 9px;
 }
 /*욱채 자유게시판*/
 
@@ -490,7 +501,7 @@ a{ text-decoration: none; color: inherit; }
   display: inline-block;
   font-size: 13px;
   padding: 12px 18px;
-  background-color: rgba(242,106,134);
+  background-color: #ff6e2e;
   color: #fff;
   text-align: center;
   font-weight: 600;
@@ -1953,7 +1964,7 @@ footer p.copyright {
 .sub-footer .menu ul li a {
   font-size: 14px;
   font-weight: 800;
-  color: #fff;
+  color: #777;
 }
 
 .sub-footer .menu ul li a:hover {
@@ -4917,14 +4928,14 @@ responsive
 .main-dark-button3 {
   display: inline-block;
   font-size: 14px;
-  padding: 10px 24px;
-  border-radius: 3px;
+  padding: 12px 26px;
+  border-radius: 8px;
   float:right;
   /*margin-left: 20px;*/
-  background-color: #5a5a5a;
+  background-color: #ff957d;
   color: #fff;
   text-align: center;
-  font-weight: 500;
+  font-weight: 900;
   text-transform: capitalize;
   transition: all .3s;
   border: none;
@@ -5087,14 +5098,19 @@ responsive
 }
 
 .w-btn-green {
-    background-color: #77af9c;
+    background-color: #679267;
     color: #fff;
     float: right;
 }
 
 .w-btn-green2 {
-    background-color:#e5e5e5;
-    color: #333;
+    background-color:#ff957d;/*#e5e5e5;*/
+    color: #fff; /*#333;*/
+}
+
+.w-btn-green3 {
+    background-color: #6c757d;
+    color: #fff;
 }
 
 .w-btn-green-outline {
@@ -6589,6 +6605,42 @@ responsive
   color: #fff!important;
 }
 
+textarea::placeholder {
+  color: #666;
+  font-size: 14px;
+}
+
+.comment_tr
+{
+	border-top: 1px solid #ccc;
+	padding: 15px 0;
+}
+
+.comment_tr td
+{
+	padding-top: 15px;
+}
+
+.comment_tr2 td
+{
+	margin: 4px 0 10px;
+}
+
+
+.comment_td
+{
+	float: left;
+	font-size: 13px;
+	height: 15px;
+	line-height:15px;
+	color: #444;
+}
+
+.comment_td2
+{
+	color: #666;
+	font-size: 16px;
+}
 
 
 
