@@ -135,7 +135,12 @@ function fn_view(dNo)
                 <div class="col-lg-6">
                     <div class="com_detail9">
                         <div class="right-content2">
-                            <h4><c:out value="${wdMakeup.mName}" /></h4>
+                            <h4>
+                            	<c:out value="${wdMakeup.mName}" />
+				             	<button type="button" id="btnList" class="listButton3">
+				        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
+				        		</button>
+                            </h4>
                             <span><c:out value="${wdMakeup.mContent}" /></span>
                             <ul  class="loc_li">
 			                    <li><i class="fa fa-map-marker"></i> <c:out value="${wdMakeup.mLocation}" /></li>
@@ -225,11 +230,19 @@ function fn_view(dNo)
                	</div>    
      </c:forEach>
 </c:if>
-                <!-- 랜덤드레스 추가 끝 -->            
+                <!-- 랜덤드레스 추가 끝 -->    
+                <!-- 아래쪽 뒤로가기버튼 시작 -->
+                <div class="col-lg-12" style="width: 100%; height: 1px; background:#eee; margin-top:50px;"></div>
+            	<div class="alignleft2">
+	             	<button type="button" id="btnList" class="listButton">
+	        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
+	        		</button>
+            	</div>  
+            	<!-- 아래쪽 뒤로가기버튼 끝 -->      
 
             </div>
         </div>
-        <button type="button" id="btnList" class="listButton"><img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32"></button>
+        
     </div>
 </c:if>
 

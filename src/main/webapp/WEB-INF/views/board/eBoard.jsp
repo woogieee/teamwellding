@@ -72,8 +72,10 @@ function fn_view(eBSeq)
 			</div>
 		</div>
 	</div>
-	
-	<h2 class="e_title">EVENT</h2>
+	<div class="category2" style="padding-top: 70px; padding-bottom: 8px;">
+		<p>WELLDING EVENT</p>
+	</div>	
+	<!--h2 class="e_title">EVENT</h2-->
 	<p style="text-align: center; margin-bottom: 20px;">웰딩 이벤트를 확인해보세요!</p>
 	<br />
 
@@ -86,7 +88,8 @@ function fn_view(eBSeq)
 							<div class="row">
 								<div class="col-lg-5">
 									<div class="search-heading">
-										<h4>이벤트를 검색합니다</h4>
+
+										<h4>찾고 계신 이벤트가 있으시다면 검색을 이용해보세요!</h4>
 									</div>
 								</div>
 								<div class="col-lg-7">
@@ -107,8 +110,7 @@ function fn_view(eBSeq)
 										</div>
 										<div class="col-lg-3">
 											<fieldset>
-												<button type="button" id="btnSearch"
-													class="main-dark-button">Submit</button>
+												<button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
 											</fieldset>
 										</div>
 

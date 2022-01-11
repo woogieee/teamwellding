@@ -85,7 +85,7 @@ function fn_list(curPage)
                                         </div>
                                         <div class="col-lg-3">
                                             <fieldset>
-                                            <button type="button" id="form-submit" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                            <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                             </fieldset>
                                         </div>
                                         
@@ -103,7 +103,7 @@ function fn_list(curPage)
       			  <div class="container">
         		    <div class="row">
             
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="text-align: center; height: 70px;">
                     <div class="heading">
                         <h2><!-- Makeup --></h2>
                     </div>
@@ -111,7 +111,7 @@ function fn_list(curPage)
 <c:if test="${!empty list}">        
 	<c:forEach var="wdMakeup" items="${list}" varStatus="status">
                 <div class="col-lg-4">
-                    <div class="ticket-item">
+                    <div class="ticket-item" onclick="fn_view('${wdMakeup.mCode}')" style="cursor:pointer;">
                         <div class="thumb5">
                             <img src="../resources/images/makeup/${wdMakeup.mImgName}" alt="">
                         </div>

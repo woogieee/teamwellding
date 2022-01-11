@@ -65,8 +65,12 @@ function fn_list(curPage)
         </div>
     </div>
 	<br />
-	<h2 class="Wtitle">WELLDING NOTICE</h2>
-	<p style="text-align:center; padding-bottom: 10px;">웰딩이야기를 지금 들려드려요</p>
+	<div class="category2" style="padding-top: 50px; padding-bottom: 8px;">
+		<p>WELLDING NOTICE</p>
+	</div>
+	
+	<!--h2 class="Wtitle">WELLDING NOTICE</h2-->
+	<p style="text-align:center; padding-bottom: 30px;">웰딩이야기를 지금 들려드려요</p>
 	<br />
     <div class="tickets-page">
         <div class="container">
@@ -92,7 +96,8 @@ function fn_list(curPage)
                                         </div>
                                         <div class="col-lg-3">
                                             <fieldset>
-                                            <button type="button" id="btnSearch" class="main-dark-button">조회</button>
+                                            
+                                            <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                             </fieldset>
                                         </div>
                                     </div>

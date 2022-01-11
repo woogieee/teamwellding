@@ -91,7 +91,7 @@ $('.post-wrapper').slick({
                                         </div>
                                         <div class="col-lg-3">
                                             <fieldset>
-                                           <button type="button" id="form-submit" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                           <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                             </fieldset>
                                         </div>
                                         
@@ -111,7 +111,7 @@ $('.post-wrapper').slick({
             <div class="row">
            
             
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="text-align: center; height: 70px;">
                     <div class="heading">
                         <h2><!-- Studio --></h2>
                     </div>
@@ -119,7 +119,7 @@ $('.post-wrapper').slick({
 <c:if test="${!empty list}">        
 	<c:forEach var="wdStudio" items="${list}" varStatus="status">
                 <div class="col-lg-4">
-                    <div class="ticket-item">
+                    <div class="ticket-item" onclick="fn_view('${wdStudio.sCode}')" style="cursor:pointer;">
                         <div class="thumb">
                             <img src="../resources/images/studio/${wdStudio.sImgname}" alt="">
                         </div>
