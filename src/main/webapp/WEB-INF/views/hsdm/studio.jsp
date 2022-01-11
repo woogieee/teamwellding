@@ -86,12 +86,12 @@ $('.post-wrapper').slick({
                                                 <option value="2" <c:if test="${searchType eq '2'}">selected</c:if>>지역</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-7">
                                             <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <fieldset>
-                                           <button type="button" id="form-submit" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                           <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                             </fieldset>
                                         </div>
                                         
@@ -111,7 +111,7 @@ $('.post-wrapper').slick({
             <div class="row">
            
             
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="text-align: center; height: 70px;">
                     <div class="heading">
                         <h2><!-- Studio --></h2>
                     </div>
@@ -119,7 +119,7 @@ $('.post-wrapper').slick({
 <c:if test="${!empty list}">        
 	<c:forEach var="wdStudio" items="${list}" varStatus="status">
                 <div class="col-lg-4">
-                    <div class="ticket-item">
+                    <div class="ticket-item" onclick="fn_view('${wdStudio.sCode}')" style="cursor:pointer;">
                         <div class="thumb">
                             <img src="../resources/images/studio/${wdStudio.sImgname}" alt="">
                         </div>

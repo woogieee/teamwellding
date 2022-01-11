@@ -106,8 +106,11 @@ function fn_view(whCode, hCode)
     <div class="container">
         <div class="row">
             <div class="col-lg-12" style="text-align: center;">
-                
+
 	                <h2 class="whname">${wdHall.whName }</h2>
+				         <button type="button" id="btnList" class="listButton2">
+		        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
+		        		</button>
 		            <div class="hibixbi">
 		                <h2>${wdHall.HName }</h2>
 		            </div>
@@ -190,9 +193,14 @@ function fn_view(whCode, hCode)
      </c:forEach>
 </c:if>
 			<!-- 같은 샵 다른상품 보기 끝 -->
+				<div class="col-lg-12" style="width: 100%; height: 1px; background:#eee; margin-top:50px;"></div>
+            	<div class="alignleft2">
+	             	<button type="button" id="btnList" class="listButton">
+	        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
+	        		</button>
+            	</div>
             </div>
         </div>
-        <button type="button" id="btnList" class="listButton"><img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32"></button>        
     </div>
 
 

@@ -69,9 +69,8 @@ function fn_list(curPage)
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-heading">
+                    <div class="section-heading" style="padding: 20px 0;">
                         <div class="category2">
-                            <h2>wellding Free Board</h2>
                             <p>Know-How</p>
                         </div>
                     </div>
@@ -80,11 +79,11 @@ function fn_list(curPage)
         </div>
     </div>        
 
-                <div class="tickets-page2" id="divB">
+                <div class="tickets-page" id="divB">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="search-box" id="mint">
+                                <div class="search-box search-box2"> <!--id="mint"  -->
                                     <form id="subscribe" action="" method="get">
                                         <div class="row">
                                             <div class="col-lg-5">
@@ -101,12 +100,12 @@ function fn_list(curPage)
                                                             <option value="2" <c:if test="${searchType eq '2'}">selected</c:if>>제목</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-7">
                                                         <input type="text" name="searchValueR" id="searchValueR" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
                                                     </div>
-                                                    <div class="col-lg-3">
+                                                    <div class="col-lg-2">
                                                         <fieldset>
-                                                        <button type="button" id="btnSearch" class="main-dark-button2">검색</button>
+                                                        <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                                         </fieldset>
                                                     </div>
                                                 </div>
@@ -115,6 +114,10 @@ function fn_list(curPage)
                                     </form>
                                 </div>
                             </div>
+                            
+                            <div class="col-lg-12">
+								<div class="fb_ht"></div>
+							</div>
                             
 	                        <div class="col-lg-12">
 								<div class="row">
