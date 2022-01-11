@@ -91,7 +91,7 @@ $('.post-wrapper').slick({
                                         </div>
                                         <div class="col-lg-3">
                                             <fieldset>
-                                           <button type="button" id="form-submit" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                           <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                             </fieldset>
                                         </div>
                                         
