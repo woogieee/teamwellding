@@ -5002,7 +5002,8 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	display: flex;
 	padding-left: 0;
 	list-style: none;
-	border-radius: .25rem
+	border-radius: .25rem;
+	padding-bottom: 50px;
 }
 
 .page-link {

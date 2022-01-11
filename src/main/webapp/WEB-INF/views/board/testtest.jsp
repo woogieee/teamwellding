@@ -7,7 +7,7 @@
 span.star-prototype, span.star-prototype > * {
     height: 50px; 
     /*background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;*/
-    background: url(../resources/images/star123.png) 0 -50px repeat-x;
+    background: url(../resources/images/star123.png) 0 -52px repeat-x;
     width: 250px;
     display: inline-block;
 }

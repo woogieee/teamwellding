@@ -25,6 +25,8 @@ public class WDReview implements Serializable{
 	private long startRow;
 	private long endRow;
 	
+	private String today;	//오늘 날짜 체크
+	
 	public WDReview() {
 		  RSeq = 0;
 		  rezNo = "";
@@ -41,8 +43,19 @@ public class WDReview implements Serializable{
 		  searchValue = "";
 		startRow = 0;
 		endRow = 0;
+		today = "";
 	}
+	
 		
+	public String getToday() {
+		return today;
+	}
+
+
+	public void setToday(String today) {
+		this.today = today;
+	}
+
 
 	public long getStartRow() {
 		return startRow;
