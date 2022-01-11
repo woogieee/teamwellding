@@ -72,8 +72,10 @@ function fn_view(eBSeq)
 			</div>
 		</div>
 	</div>
-	
-	<h2 class="e_title">EVENT</h2>
+	<div class="category2" style="padding-top: 70px; padding-bottom: 8px;">
+		<p>WELLDING EVENT</p>
+	</div>	
+	<!--h2 class="e_title">EVENT</h2-->
 	<p style="text-align: center; margin-bottom: 20px;">웰딩 이벤트를 확인해보세요!</p>
 	<br />
 

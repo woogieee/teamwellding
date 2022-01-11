@@ -65,8 +65,12 @@ function fn_list(curPage)
         </div>
     </div>
 	<br />
-	<h2 class="Wtitle">WELLDING NOTICE</h2>
-	<p style="text-align:center; padding-bottom: 10px;">웰딩이야기를 지금 들려드려요</p>
+	<div class="category2" style="padding-top: 50px; padding-bottom: 8px;">
+		<p>WELLDING NOTICE</p>
+	</div>
+	
+	<!--h2 class="Wtitle">WELLDING NOTICE</h2-->
+	<p style="text-align:center; padding-bottom: 30px;">웰딩이야기를 지금 들려드려요</p>
 	<br />
     <div class="tickets-page">
         <div class="container">
