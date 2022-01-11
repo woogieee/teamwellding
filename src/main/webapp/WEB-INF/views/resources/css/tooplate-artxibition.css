@@ -65,11 +65,22 @@ html, body
 /*욱채 자유게시판*/
 .btnCommentD{
 	float : right;
+	border: none;
+	font-size: 13px;
+	letter-spacing: -0.7px;
+	font-weight: 600;
+	padding: 5px 9px;
 }
 
 .btnCommentU{
 	float : right;
 	margin-right : 5px;
+	background-color: #679267;
+	border: none;
+	font-size: 13px;
+	letter-spacing: -0.7px;
+	font-weight: 600;
+	padding: 5px 9px;
 }
 /*욱채 자유게시판*/
 
@@ -5087,13 +5098,18 @@ responsive
 }
 
 .w-btn-green {
-    background-color: #77af9c;
+    background-color: #679267;
     color: #fff;
     float: right;
 }
 
 .w-btn-green2 {
     background-color: #ff957d;
+    color: #fff;
+}
+
+.w-btn-green3 {
+    background-color: #6c757d;
     color: #fff;
 }
 
@@ -6589,6 +6605,42 @@ responsive
   color: #fff!important;
 }
 
+textarea::placeholder {
+  color: #666;
+  font-size: 14px;
+}
+
+.comment_tr
+{
+	border-top: 1px solid #ccc;
+	padding: 15px 0;
+}
+
+.comment_tr td
+{
+	padding-top: 15px;
+}
+
+.comment_tr2 td
+{
+	margin: 4px 0 10px;
+}
+
+
+.comment_td
+{
+	float: left;
+	font-size: 13px;
+	height: 15px;
+	line-height:15px;
+	color: #444;
+}
+
+.comment_td2
+{
+	color: #666;
+	font-size: 16px;
+}
 
 
 

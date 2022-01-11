@@ -1,18 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/taglib.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-	<%@ include file="/WEB-INF/views/include/head.jsp" %>
+<%@ include file="/WEB-INF/views/include/head.jsp"%>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap"
+	rel="stylesheet">
 <style>
-.Wtitle{
-font-family: 'Gamja Flower', cursive;
-font-size: 64px;
-text-align: center;
+.Wtitle {
+	font-family: 'Gamja Flower', cursive;
+	font-size: 64px;
+	text-align: center;
 }
 </style>
 <script>
@@ -275,130 +278,146 @@ function commentUpdate(cSeq,tagId){
 </script>
 </head>
 <body>
-   	<jsp:include page="/WEB-INF/views/include/navigation.jsp" >
-       <jsp:param name="userName" value="${wdUser.userNickname}" />
-       </jsp:include>
-       
-    <div class="page-heading-rent-venue">
-        <div class="container">
-            <div class="row">
-            </div>
-        </div>
-    </div>
-    <br />
-    <h2 class="Wtitle">Know-How</h2>
-    <p style="text-align:center">여러분들의 노하우를 공유해보세요</p>
-    <br />
+	<jsp:include page="/WEB-INF/views/include/navigation.jsp">
+		<jsp:param name="userName" value="${wdUser.userNickname}" />
+	</jsp:include>
 
-<div class="container">
-   <div class="row" style="margin-right:0; margin-left:0;">
-   	  <div class="col-lg-12">
-      <table class="table">
-         <thead>
-            <tr class="table-active dongdong">
-               <td style="width:60%">
-                  <c:out value="${wdFBoard.bTitle}"/>
-               </td>
-               <td style="width:40%" class="text-right">
-                                         조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdFBoard.bReadCnt}" />
-               </td>
-            </tr>
-            <tr>
-               <td style="width:60%">
-               	작성자 : <c:out value="${wdFBoard.userNickname}"/>
-               </td>
-               <td style="width:40%" class="text-right">
-                  <div>${wdFBoard.regDate}</div>
-               </td>
-            </tr>   
+	<div class="page-heading-rent-venue">
+		<div class="container">
+			<div class="row"></div>
+		</div>
+	</div>
 
-         </thead>
-         <tbody>
-             <tr>
-             <!-- 첨부파일은 있을 때만 보여주면 됨 -->
-				<c:if test="${!empty wdFBoard.wdBoardFile}">
-                <!-- GET방식으로 넘어감 -->
-                  &nbsp;&nbsp;&nbsp;<a href="/board/download?bSeq=${wdFBoard.wdBoardFile.bSeq}" style="color:#000;">[첨부파일]${wdFBoard.wdBoardFile.fileOrgName}</a>
-                </c:if>
-            </tr>
-            <tr>
-               <td colspan="2" style="text-align:center">
-	               <div style="padding:10px">
-	               	<div>
-	               		<c:out value="${wdFBoard.bContent}" />
-	               	</div>
-	               </div>
-               </td>
-            </tr>
-            <div></div>
-         </tbody>
-         
-         <form name="commentForm" id="commentForm" method="post">
-         <tbody>
-            <tr>
-               <td colspan="2">
-               <textarea class="form-control" rows="3" name="wdFBoardComment" id="wdFBoardComment" style="ime-mode:active;resize: none;" placeholder="댓글을 입력해주세요" required></textarea><br>
-               <button type="button" id="btnComment" class="btn btn-secondary">댓글등록</button></td>
-            </tr>
+	<h2 class="e_title">Know-How</h2>
+	<p style="text-align: center; margin-bottom: 20px;">여러분들의 노하우를
+		공유해보세요</p>
+	<br />
 
-			<!-- 댓글 내용이 들어갈 곳 -->
-			<c:if test="${!empty commentList}">
-            <c:forEach items="${commentList}" var="comment" >
-	            <tr>
-	            <td>${comment.wdFBoardComment }</td>
-	            <td>작성자 : ${comment.uNickName } <br>${comment.regDate }
-	            <c:if test="${cookieUserId eq comment.userId }">
-	            <button type="button" class="btn btn-secondary btnCommentD" onclick="commentDelete(${comment.commentSeq})">삭제</button>
-	            <button type="button" class="btn btn-secondary btnCommentU" onclick="commentUpdate(${comment.commentSeq},'update${comment.commentSeq }')">수정</button>    
-	            </c:if>        
-	            </td>
-	            </tr>
-	            <tr>
-	            <td id="update${comment.commentSeq }" colspan="2"></td>
-	            </tr>
-            </c:forEach>
-            </c:if>
-         </tbody>
-             <input type="hidden" name="bSeq" value="${bSeq}" />
-             <input type="hidden" name="cSeq" value="" />
-             <input type="hidden" name="upComment" value="" />
-	         <input type="hidden" name="searchType" value="${searchType}" />
-	         <input type="hidden" name="searchValue" value="${searchValue}" />
-	         <input type="hidden" name="curPage" value="${curPage}" />
-	     </form>
-         <tfoot>
-         <tr>
-         <td colspan="2">
-         
-         </td>
-         </tr>
-         <tr>
-               	<td colspan="2">
-         <c:if test="${boardMe eq 'Y'}">
-               		<button type="button" id="btnDelete" class="w-btn w-btn-red">삭제</button>
-         </c:if>
-               		<button type="button" id="btnList" class="w-btn w-btn-green2" style="float: right">리스트</button>
-         <c:if test="${boardMe eq 'Y'}">
-               		<button type="button" id="btnUpdate" class="w-btn w-btn-green" style="margin-right: 10px;">수정</button>
-         </c:if>      	
-               	</td>
-         </tr>
-         </tfoot>
-      </table>
-      </div>
-   </div>
-</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<table class="table">
+					<thead>
+						<tr class="dongdong2">
+							<td
+								style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600;">
+								<c:out value="${wdFBoard.bTitle}" />
+							</td>
+							<td
+								style="width: 40%; padding-right: 25px; color: #444; font-size: 16px; text-align: right;">
+								${wdFBoard.regDate}</td>
+						</tr>
+						<tr style="height: 46px;">
+							<td
+								style="width: 60%; padding-left: 20px; font-size: 15px; color: #666;">
+								<c:out value="${wdFBoard.userNickname}" />
+							</td>
+							<td
+								style="width: 40%; padding-right: 20px; font-size: 15px; color: #666;"
+								class="text-right">
+									조회 :
+									<fmt:formatNumber type="number" maxFractionDigits="3"
+										value="${wdFBoard.bReadCnt}" />
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+
+					<c:if test="${!empty wdFBoard.wdBoardFile}">
+						<tr>
+							<td colspan="2" style="text-align: center; padding-bottom: 10px; background:#efefef;">
+								<!-- 첨부파일은 있을 때만 보여주면 됨 -->
+									<div style="width: 100%; border:none; font-size: 14px; text-align: right; padding-right: 10px; padding-top: 10px;">
+										<!-- GET방식으로 넘어감 --> 
+										<a href="/board/download?bSeq=${wdFBoard.wdBoardFile.bSeq}" style="color: #0080ff;">
+											[첨부파일]&nbsp; ${wdFBoard.wdBoardFile.fileOrgName}
+										</a>
+									<div>
+
+							</td>
+						</tr>
+					</c:if>
+						<tr>
+							<td colspan="2" style="text-align: center">	
+								<div style="padding: 30px 20px; text-align: left; font-size: 16px;">
+										<c:out value="${wdFBoard.bContent}" />
+								</div>
+							</td>
+						</tr>
+						
+					</tbody>
+
+					<form name="commentForm" id="commentForm" method="post">
+						<tbody>
+							<tr>
+								<td colspan="2" style="border-top:none; padding-bottom: 25px;">
+									<textarea class="form-control" rows="3" name="wdFBoardComment" id="wdFBoardComment" style="ime-mode: active; resize: none; width:90%; float:left; height:76px; font-size:14px;" placeholder="댓글을 입력해주세요" required></textarea>
+									<button type="button" id="btnComment" class="btn btn-secondary" style="float:left; width:100px; margin-left:5px; height: 76px; border: none; background: #ff957d; font-size:15px; font-weight:600;">댓글등록</button>
+								</td>
+							</tr>
+
+							<!-- 댓글 내용이 들어갈 곳 -->
+							<c:if test="${!empty commentList}">
+								<c:forEach items="${commentList}" var="comment">
+									<tr class="comment_tr">
+										<td class="comment_td2" style="border-top:none;">${comment.wdFBoardComment }</td>
+									</tr>
+									<tr class="comment_tr2">
+										<td class="comment_td" style="border-top:none; border-right:2px solid #ccc; padding-right:10px; font-weight:600;">${comment.uNickName }</td>
+										<td class="comment_td" style="border-top:none; margin-left: 10px; letter-spacing:0.5px;">${comment.regDate }</td>
+
+										<td style="border-top:none; position:relative; top: -18px; right:10px;">
+											<c:if test="${cookieUserId eq comment.userId }">
+												<button type="button" class="btn btn-secondary btnCommentD"
+													onclick="commentDelete(${comment.commentSeq})" style="margin-rignt:10px;">삭제</button>
+												<button type="button" class="btn btn-secondary btnCommentU"
+													onclick="commentUpdate(${comment.commentSeq},'update${comment.commentSeq }')">수정</button>
+											</c:if>
+										</td>
+									</tr>
+									<tr>
+										<td id="update${comment.commentSeq }" colspan="2" style="border-top:none;"></td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</tbody>
+						<input type="hidden" name="bSeq" value="${bSeq}" /> <input
+							type="hidden" name="cSeq" value="" /> <input type="hidden"
+							name="upComment" value="" /> <input type="hidden"
+							name="searchType" value="${searchType}" /> <input type="hidden"
+							name="searchValue" value="${searchValue}" /> <input
+							type="hidden" name="curPage" value="${curPage}" />
+					</form>
+					<tfoot>
+						<tr>
+							<td colspan="2">
+
+								<button type="button" id="btnList" class="w-btn w-btn-green2" style="float: right; margin: 20px 0 40px;">리스트</button>
+								<c:if test="${boardMe eq 'Y'}">
+									<button type="button" id="btnDelete" class="w-btn w-btn-green3" style="float: right; margin-right: 10px; margin-top: 20px; margin-bottom: 40px;">삭제</button>
+								</c:if>
+								<c:if test="${boardMe eq 'Y'}">
+									<button type="button" id="btnUpdate" class="w-btn w-btn-green" style="margin-right: 10px; margin-top: 20px; margin-bottom: 40px;">수정</button>
+								</c:if>
+								
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
 
 
-<form name="bbsForm" id="bbsForm" method="post">
-   <input type="hidden" name="bSeq" value="${bSeq}" />
-   <input type="hidden" name="searchType" value="${searchType}" />
-   <input type="hidden" name="searchValue" value="${searchValue}" />
-   <input type="hidden" name="curPage" value="${curPage}" />
-</form>
+	<form name="bbsForm" id="bbsForm" method="post">
+		<input type="hidden" name="bSeq" value="${bSeq}" /> <input
+			type="hidden" name="searchType" value="${searchType}" /> <input
+			type="hidden" name="searchValue" value="${searchValue}" /> <input
+			type="hidden" name="curPage" value="${curPage}" />
+	</form>
 
- <!-- *** 욱채수정Footer 시작 *** -->
-	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
- <!-- *** 욱채수정Footer 종료 *** -->
+	<!-- *** 욱채수정Footer 시작 *** -->
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+	<!-- *** 욱채수정Footer 종료 *** -->
 </body>
 </html>
