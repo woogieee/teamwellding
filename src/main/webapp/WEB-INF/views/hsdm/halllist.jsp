@@ -8,7 +8,7 @@
 	<script>
 	//리스트에서 리스트 다시 조회하지?
 	 $(document).ready(function(){
-	   $("#form-submit").on("click", function(){
+	   $("#btnSearch").on("click", function(){
 	      //조회버튼 눌렀을때: 조회항목, 조회값, 현재 커런트페이지에대한 정보를 가져가야함
 	      document.hallForm.WHCode.value = "";
 	      document.hallForm.HCode.value = "";
@@ -87,12 +87,12 @@
 									            <option value="2" <c:if test="${searchType eq '2'}">selected</c:if>>홀 이름</option>
 									         </select>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-7">
                                             <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <fieldset>
-                                            <button type="button" id="form-submit" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                            <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                      
                                             </fieldset>
                                         </div>
@@ -114,10 +114,9 @@
         <div class="container">
             <div class="row">
             
-                
-                <div class="col-lg-12" style="text-align: center;">
+                <div class="col-lg-12" style="text-align: center; height: 70px;">
                     <div class="heading">
-                        <h2>Wedding Hall</h2>
+                        <h2><!-- Wedding Hall --></h2>
                     </div>
                 </div>
                 

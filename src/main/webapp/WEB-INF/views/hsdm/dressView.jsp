@@ -103,6 +103,9 @@ function fn_view(dNo)
         <div class="row">
             <div class="col-lg-12">
                 <h2><span>[드레스]</span> <c:out value="${wdDress.dcName}" /></h2>
+             	<button type="button" id="btnList" class="listButton">
+        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
+        		</button>
             </div>
             <div class="col-lg-8 _detail">
                 <span><c:out value="${wdDress.dcContent}" /></span>
@@ -177,10 +180,16 @@ function fn_view(dNo)
      </c:forEach>
 </c:if>
 			<!-- 같은 샵 다른상품 보기 끝 -->
+				<div class="col-lg-12" style="width: 100%; height: 1px; background:#eee; margin-top:50px;"></div>
+            	<div class="alignleft2">
+	             	<button type="button" id="btnList" class="listButton">
+	        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
+	        		</button>
+            	</div>
             </div>
         </div>
-        <button type="button" id="btnList" class="listButton"><img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32"></button>
-    </div>
+
+	</div>
 </c:if>
 
 <form name="bbsForm" id="bbsForm" method="post">

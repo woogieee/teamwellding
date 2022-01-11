@@ -72,8 +72,10 @@ function fn_view(eBSeq)
 			</div>
 		</div>
 	</div>
-	
-	<h2 class="e_title">EVENT</h2>
+	<div class="category2" style="padding-top: 70px; padding-bottom: 8px;">
+		<p>WELLDING EVENT</p>
+	</div>	
+	<!--h2 class="e_title">EVENT</h2-->
 	<p style="text-align: center; margin-bottom: 20px;">웰딩 이벤트를 확인해보세요!</p>
 	<br />
 
@@ -81,12 +83,13 @@ function fn_view(eBSeq)
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12" id="search-box" style="margin-bottom: 30px;">
-					<div class="search-box">
+					<div class="search-box search-box2">
 						<form id="subscribe" action="" method="get">
 							<div class="row">
 								<div class="col-lg-5">
 									<div class="search-heading">
-										<h4>이벤트를 검색합니다</h4>
+
+										<h4>찾고 계신 이벤트가 있으시다면 검색을 이용해보세요!</h4>
 									</div>
 								</div>
 								<div class="col-lg-7">
@@ -100,15 +103,14 @@ function fn_view(eBSeq)
 													<c:if test="${searchType eq '2'}">selected</c:if>>내용</option>
 											</select>
 										</div>
-										<div class="col-lg-6">
+										<div class="col-lg-7">
 											<input type="text" name="_searchValue" id="_searchValue"
 												value="${searchValue}" maxlength="25" class="svalue"
 												placeholder="조회값을 입력하세요." />
 										</div>
-										<div class="col-lg-3">
+										<div class="col-lg-2">
 											<fieldset>
-												<button type="button" id="btnSearch"
-													class="main-dark-button">Submit</button>
+												<button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
 											</fieldset>
 										</div>
 
@@ -141,38 +143,39 @@ function fn_view(eBSeq)
 								</div>
 							</div>
 						</c:forEach>
+						
+						<div style="width:100%; height: 2px; background-color: #ddd; margin-bottom:30px;"></div>
+						
 					</div>
 				</div>
-				<div class="col-lg-1"></div>
-						<c:if test="${!empty paging}">
-							<div class="col-lg-12">
-								<div class="pagination">
-									<ul>
-										<c:if test="${paging.prevBlockPage gt 0}">
-											<li><a href="javascript:void(0)"
-												onclick="fn_list(${paging.prevBlockPage})">Prev</a></li>
+					<div class="col-lg-1"></div>
+
+
+						<div class="col-lg-12">
+		                    <div class="pagination">
+								<ul class="pagination justify-content-center">
+									<c:if test="${!empty paging}">
+										<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
+										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>
 										</c:if>
-										<c:forEach var="i" begin="${paging.startPage}"
-											end="${paging.endPage}">
+										<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
 											<c:choose>
 												<c:when test="${i ne curPage}">
-													<li><a href="javascript:void(0)"
-														onclick="fn_list(${i})">${i}</a></li>
+													<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
 												</c:when>
 												<c:otherwise>
-													<li class="active"><a href="javascript:void(0)"
-														style="cursor: default;">${i}</a></li>
+													<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
-										<c:if test="${paging.nextBlockPage gt 0}">
-											<li><a href="javascript:void(0)"
-												onclick="fn_list(${paging.nextBlockPage})">next</a></li>
-										</c:if>
-									</ul>
-								</div>
-							</div>
-						</c:if>
+										<c:if test="${paging.nextBlockPage gt 0}">         
+											<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">다음</a></li>
+										</c:if>       
+									</c:if> 
+								</ul>
+		                    </div>
+		                </div>
+		                
 					</div>
 				</div>
 			</div>

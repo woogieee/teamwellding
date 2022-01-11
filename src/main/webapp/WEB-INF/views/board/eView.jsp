@@ -50,22 +50,18 @@
 				<table class="table">
 					<thead>
 						<tr class="dongdong2">
-							<td
-								style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600;">
+							<td style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600;">
 								<c:out value="${eBoard.eBTitle}" />
 							</td>
 
-							<td
-								style="width: 40%; padding-right: 25px; color: #444; font-size: 16px;"
+							<td style="width: 40%; padding-right: 25px; color: #444; font-size: 16px;">
 								class="text-right">${eBoard.regDate}</td>
 						</tr>
 						<tr style="height: 46px;">
-							<td
-								style="width: 60%; padding-left: 20px; font-size: 15px; color: #666;">
+							<td style="width: 60%; padding-left: 20px; font-size: 15px; color: #666;">
 								<c:out value="${eBoard.adminId}" />
 							</td>
-							<td
-								style="width: 40%; padding-right: 20px; font-size: 15px; color: #666;"
+							<td style="width: 40%; padding-right: 20px; font-size: 15px; color: #666;"
 								class="text-right">
 								<div>
 									

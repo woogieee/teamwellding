@@ -69,7 +69,7 @@ $(document).ready(function(){
          </tbody>
          <tfoot>
          <tr>
-               <td colspan="2"><button type="button" id="btnList" class="w-btn w-btn-green2" style="float: right">리스트</button></td>
+               <td colspan="2"><button type="button" id="btnList" class="w-btn w-btn-green2" style="float: right">목록</button></td>
          </tr>
          </tfoot>
       </table>

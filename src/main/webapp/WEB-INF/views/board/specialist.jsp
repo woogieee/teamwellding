@@ -101,7 +101,7 @@ function expertView(eCo){
                 
                 <!-- 검색창 -->
                 <div class="col-lg-12">
-                    <div class="search-box">
+                    <div class="search-box search-box2">
                         <form id="subscribe" action="" method="get">
                             <div class="row">
                                 <div class="col-lg-5">
@@ -123,7 +123,8 @@ function expertView(eCo){
                                         </div>
                                         <div class="col-lg-3">
                                             <fieldset>
-                                            <button type="button" id="btnSearch" class="main-dark-button">검색</button>
+                                            <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                            
                                             </fieldset>
                                         </div>
                                         

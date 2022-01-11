@@ -4,6 +4,10 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital@0;1&family=The+Nautigal&display=swap" rel="stylesheet">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -129,6 +133,50 @@
 
 </head>
 <body>
+<body>
+    <jsp:include page="/WEB-INF/views/include/navigation.jsp" >
+    <jsp:param name="userName" value="${wdUser.userNickname}" />
+    </jsp:include>
+    
+    <div class="page-heading-rent-venue2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 bcline">
+				
+				<div class="row">
+					<div class="col-lg-1">
+					</div>
+					<div class="col-lg-10">
+						<h2 style="font-family: 'Bitter', serif; margin-top: 50px; padding-left: 10px;">My Page</h2>
+						<nav class="bcItem">
+							<ol class="breadcrumb bc" >
+								<li class="breadcrumb-item active">
+									<h5>장바구니</h5>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="#">결제내역</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/modify">회원정보수정</a>
+								</li>
+							</ol>
+						</nav>
+					
+					</div>
+					<div class="col-lg-1">
+					</div>
+					
 <div class="section">
 	<div class="join_form">
 		<dl class="join_write">
@@ -254,5 +302,6 @@
 			</div>
 	</div>
 </div>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
 </html>
