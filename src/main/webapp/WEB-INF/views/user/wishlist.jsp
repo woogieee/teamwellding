@@ -306,7 +306,7 @@ $(document).ready(function(){
                                 <th>총가격</th>
                                 <th>삭제</th>
                             </tr>
-                            
+<c:if test="${!empty wdRez}">                           
                             <!-- 홀 -->
 <c:if test="${!empty wdRez.whCode}">
                             
@@ -478,8 +478,15 @@ $(document).ready(function(){
                                 </td>
                             </tr>
 </c:if>
-
+</c:if>
                         </table>
+<c:if test="${empty wdRez}">
+						
+							<div style="text-align: center;">
+								장바구니에 담긴 상품이 없습니다.
+							</div>
+						
+</c:if>
 
 					
 					</div>
