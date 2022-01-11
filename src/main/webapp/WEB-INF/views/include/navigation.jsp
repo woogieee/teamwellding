@@ -99,7 +99,6 @@
                                 <ul>
                                     <li class="subul"><a href="/board/reviews" class="sub">Reviews</a></li>
                                     <li class="subul"><a href="/board/fBoard" class="sub">노하우공유</a></li>
-                                    <li class="subul"><a href="/kakao/pay" class="sub">카카오페이</a></li>
                                     <li class="subul"><a href="/board/specialist" class="sub">전문가 매칭</a></li>
                                 </ul>
                             </li> 

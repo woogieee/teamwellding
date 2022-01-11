@@ -15,6 +15,10 @@ $(document).ready(function() {
 		
 		location.href = "/";
 	});
+	$("#btnMyPage").on("click", function() {
+		
+		location.href = "/user/wishlist";
+	});
 });
 </script>
 </head>
@@ -91,9 +95,11 @@ $(document).ready(function() {
 					결제가 완료 되었습니다.
 					</div>
 						<div class="rez_sum">
-							<button type="button" id="btnComplete" class="btn btn-primary" title="카카오페이">결제내역 보러가기</button>
+							<button type="button" id="btnComplete" class="btn btn-primary" title="결제내역보러가기" style="border: solid 1px black; background:white; position:relative; top:-18px; color:black;">결제내역 보러가기</button>
+							<button type="button" id="btnMyPage" class="btn btn-primary" title="마이페이지" style="border: solid 1px black; background:white; position:relative; top:-18px; color:black;">마이페이지</button>
 						</div>
 					</div>
+					
 					<div class="col-lg-1"></div>
 				
 				</div>

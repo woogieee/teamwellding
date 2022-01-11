@@ -79,7 +79,6 @@ public class KakaoPayController
       int totalAmount = HttpUtil.get(request, "totalAmount", (int)0);
       int taxFreeAmount = HttpUtil.get(request, "taxFreeAmount", (int)0);
       int vatAmount = HttpUtil.get(request, "vatAmount", (int)0);
-      
 
       KakaoPayOrder kakaoPayOrder = new KakaoPayOrder();
       
