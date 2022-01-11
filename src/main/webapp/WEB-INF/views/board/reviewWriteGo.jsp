@@ -149,7 +149,19 @@ $(document).ready(function(){
 		      <div class="form-group">
 		         <textarea class="form-control" rows="10" name="hiBbsContent" id="hiBbsContent" style="ime-mode:active;" placeholder="내용을 입력해주세요" required></textarea>
 		      </div>
-		      <input type="file" id="hiBbsFile" name="hiBbsFile" class="form-control mb-2"  placeholder="파일을 선택하세요." required style="/*display: none;*/"/>		      
+		      <input type="file" id="hiBbsFile" name="hiBbsFile" class="form-control mb-2"  placeholder="파일을 선택하세요." required style="/*display: none;*/"/>
+별점을 선택해 주세요<select id="starScore" name="starScore">
+		      	<option>5</option>
+		      	<option>4.5</option>
+		      	<option>4</option>
+		      	<option>3.5</option>
+		      	<option>3</option>
+		      	<option>2.5</option>
+		      	<option>2</option>
+		      	<option>1.5</option>
+		      	<option>1</option>
+		      	<option>0.5</option>
+		      </select>		      
 		      
 		      <div class="form-group row">
 		         <div class="col-sm-12">
