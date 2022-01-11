@@ -81,7 +81,7 @@ $(document).ready(function() {
 					</div>
 					<!-- 경계선 종료 -->
 					<div class="col-lg-1"></div>
-				
+				`
 					<div class="col-lg-1"></div>
 					<div class="col-lg-10">
 					<!-- 쿠폰 가져오기 -->

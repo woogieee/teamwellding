@@ -2041,6 +2041,7 @@ About Us Page
   color: #333;
   margin-bottom: 15px;
   font-family: 'Jua', sans-serif;
+  margin-left:35px;
 }
 
 .big_title_hall span {
@@ -2067,6 +2068,7 @@ About Us Page
   /*font-weight: 800;*/
   margin-bottom: 15px;
   font-family: 'Jua', sans-serif;
+  float: left;
 }
 
 .big_title h2 > span 
@@ -2315,10 +2317,9 @@ About Us Page
 
 /*욱채**/
 
-
 .det_navi
 {
-	margin: 80px 0;
+	margin: 80px 0 50px;
 	border-top: 3px solid #262626;
 	border-bottom: 1px solid #c9c9c9;
 	padding: 25px 0;
@@ -6170,9 +6171,42 @@ responsive
 
 .listButton
 {
-	position: fixed; top: 15%; left: 5%;
+	/*position: fixed; top: 15%; left: 5%;*/
 	border: 0px;
 	background: none;
+	opacity: 0.7;
+	width: 44px;
+	height: 34px;
+	margin-top: 6px;
+	margin-left: 6px;
+}
+
+.listButton2
+{
+	/*position: fixed; top: 15%; left: 5%;*/
+	border: 0px;
+	background: none;
+	opacity: 0.7;
+	/*width: 44px;
+	height: 34px;
+	margin-top: 6px;
+	margin-left: 6px;*/
+	float:right;
+}
+
+.listButton3
+{
+	/*position: fixed; top: 15%; left: 5%;*/
+	border: 0px;
+	background: none;
+	opacity: 0.7;
+	/*width: 44px;
+	height: 34px;
+	margin-top: 6px;
+	margin-left: 6px;*/
+	float:right;
+	position: relative;
+	top: -7px;
 }
 
 /* 동욱 추가 민트테마 끝 */
@@ -6240,6 +6274,13 @@ responsive
 .alignleft
 {
 	text-align: left!important;
+}
+
+.alignleft2
+{
+	text-align: right;
+	width: 100%;
+	margin-top: 10px;
 }
 
 .imgbox
@@ -6395,4 +6436,44 @@ responsive
 	margin: 20px;
 }
 
+.st_dl
+{
+	width: 100%;
+	height: 30px;
+	margin-bottom: 20px;
+}
+
+.st_dt
+{
+	float: left;
+	letter-spacing: -0.8px;
+	color: #111;
+}
+
+.st_dd
+{
+	float: right;
+}
+
+.select_date
+{
+	border: none;
+	border-bottom:1px solid #999;
+	color: #333;
+	width: 70px;
+	outline: none;
+	background-color: transparent;
+	font-size: 14px;
+}
+
+.select_date2
+{
+	border: none;
+	border-bottom:1px solid #999;
+	color: #333;
+	width: 45px;
+	outline: none;
+	background-color: transparent;
+	font-size: 14px;
+}
 /*보현추가 끝*/

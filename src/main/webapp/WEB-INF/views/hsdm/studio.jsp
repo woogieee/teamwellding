@@ -119,7 +119,7 @@ $('.post-wrapper').slick({
 <c:if test="${!empty list}">        
 	<c:forEach var="wdStudio" items="${list}" varStatus="status">
                 <div class="col-lg-4">
-                    <div class="ticket-item">
+                    <div class="ticket-item" onclick="fn_view('${wdStudio.sCode}')" style="cursor:pointer;">
                         <div class="thumb">
                             <img src="../resources/images/studio/${wdStudio.sImgname}" alt="">
                         </div>

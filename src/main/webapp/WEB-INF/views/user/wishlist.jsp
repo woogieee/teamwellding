@@ -35,6 +35,7 @@
 						alert("장바구니에서 해당 상품을 제거했습니다.");
 						//업데이트가 성공하면 해당 tr 삭제
 		    			$("#wishH").remove();
+		    			location.href = "/user/wishlist";
 						
 					}
 					else
@@ -80,6 +81,7 @@
 						alert("장바구니에서 해당 상품을 제거했습니다.");
 						//업데이트가 성공하면 해당 tr 삭제
 		    			$("#wishS").remove();
+		    			location.href = "/user/wishlist";
 					}
 					else
 					{
@@ -125,6 +127,7 @@
 						alert("장바구니에서 해당 상품을 제거했습니다.");
 						//업데이트가 성공하면 해당 tr 삭제
 		    			$("#wishD").remove();
+		    			location.href = "/user/wishlist";
 					}
 					else
 					{
@@ -169,9 +172,7 @@
 						alert("장바구니에서 해당 상품을 제거했습니다.");
 						//업데이트가 성공하면 해당 tr 삭제
 		    			$("#wishM").remove();
-						$("#preP").remove();
-						$("#saleP").remove();
-						$("#aftP").remove();
+						location.href = "/user/wishlist";
 					}
 					else
 					{
