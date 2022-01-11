@@ -75,12 +75,15 @@ function fn_list(curPage)
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
 
-
+		<div class="tickets-page" id="divB">
+			<div class="container">
+				<div class="row">
 					<div class="col-lg-12">
 						<div class="search-box search-box2">
-							<!--id="mint"  -->
-							<form id="subscribe" action="" method="get">
+							<form id="subscribe" method="get">
 								<div class="row">
 									<div class="col-lg-5">
 										<div class="search-heading">
