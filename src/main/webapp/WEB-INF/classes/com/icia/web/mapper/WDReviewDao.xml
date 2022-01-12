@@ -12,7 +12,7 @@
         <result column="R_CONTENT" property="RContent" />
         <result column="R_READ_CNT" property="RReadCnt" />
         <result column="REG_DATE" property="RegDate" />
-        <result column="R_SCORE" property="RScore" />
+        <result column="R_SCORE_STAR" property="RScore" />
         <result column="REZ_STATUS" property="rezStatus" />
         <result column="TODAY" property="today" />
 </resultMap>
@@ -60,7 +60,7 @@ SELECT
     R_CONTENT,
     R_READ_CNT,
     REG_DATE,
-    R_SCORE,
+    R_SCORE_STAR,
     REZ_NO
 FROM (SELECT
             ROWNUM RNUM,
@@ -72,7 +72,7 @@ FROM (SELECT
             R_CONTENT,
             R_READ_CNT,
             REG_DATE,
-            R_SCORE,
+            R_SCORE_STAR,
             REZ_NO
         FROM ( SELECT
                     A.R_SEQ,
@@ -83,7 +83,7 @@ FROM (SELECT
                     NVL(A.R_CONTENT, '') R_CONTENT,
                     NVL(A.R_READ_CNT, 0) R_READ_CNT,
                     NVL(TO_CHAR(A.REG_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') REG_DATE,
-                    NVL(A.R_SCORE, 0), R_SCORE,
+                    NVL(A.R_SCORE_STAR, 0), R_SCORE_STAR,
                     A.REZ_NO
                 FROM
                     WD_REVIEW A, WD_USER B, WD_REZ C, WD_HALL D
@@ -118,7 +118,7 @@ SELECT
         NVL(A.R_CONTENT, '') R_CONTENT,
         NVL(A.R_READ_CNT, 0) R_READ_CNT,
         NVL(TO_CHAR(A.REG_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') REG_DATE,
-        NVL(A.R_SCORE, 0), R_SCORE,
+        NVL(A.R_SCORE_STAR, 0), R_SCORE_STAR,
         A.REZ_NO
     FROM
         WD_REVIEW A, WD_USER B
@@ -184,7 +184,7 @@ INSERT INTO WD_REVIEW (
     R_CONTENT,
     R_READ_CNT,
     REG_DATE,
-    R_SCORE,
+    R_SCORE_STAR,
     REZ_NO,
     REVIEW_STATUS
 ) VALUES (
@@ -240,5 +240,33 @@ INSERT INTO WD_REVIEW_FILE (
 )
 </insert>
 <!-- 첨부파일 등록 끝 -->
+
+<!-- 리뷰 게시물 삭제 -->
+<delete id="reviewDelete" parameterType="long">
+DELETE FROM WD_REVIEW
+WHERE
+        R_SEQ = #{value}
+</delete>
+<!-- 리뷰 게시물 삭제 -->
+
+<!-- 리뷰 게시물 첨부파일 삭제 -->
+<delete id="reviewDeleteFile" parameterType="long">
+DELETE FROM WD_REVIEW_FILE
+WHERE
+        R_SEQ = #{value}
+</delete>
+<!-- 리뷰 게시물 첨부파일 삭제 -->
+
+<!-- 리뷰 게시글 수정 -->
+<update id="reviewUpdate" parameterType="com.icia.web.model.WDReview">
+UPDATE WD_REVIEW
+SET
+    R_TITLE = #{RTitle},
+    R_CONTENT = #{RContent},
+    R_SCORE_STAR = #{RScore}
+WHERE
+        R_SEQ = #{RSeq}
+</update>
+<!-- 리뷰 게시글 수정 -->
 
 </mapper>

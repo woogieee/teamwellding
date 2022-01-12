@@ -36,5 +36,14 @@ public interface WDReviewDao {
 	//리뷰 파일 등록
 	public int reviewFileInsert(WDReviewFile wdReviewFile);
 	
+	//리뷰 게시물 삭제
+	public int reviewDelete(long RSeq);
+	
+	//리뷰 첨부파일 삭제
+	public int reviewDeleteFile(long RSeq);
+	
+	//리뷰 업데이트
+	public int reviewUpdate(WDReview wdReview);
+	
 
 }

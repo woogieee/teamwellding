@@ -84,11 +84,16 @@ html, body
 }
 /*욱채 자유게시판*/
 
+.c_btnbox
+{
+	text-align:center;
+}
 
 #closebtn{
-	float : right;
-	margin-top:15px;
-	margin-right:3%;
+	display: inline-block;
+	margin-top:30px;
+	/*float : right;
+	margin-right:3%;*/
 }
 
 #leezxc{
@@ -6564,6 +6569,24 @@ responsive
 	font-weight: 300;
 }
 
+.tbstyle5
+{
+	font-weight: 800;
+	color: #f85151;
+	font-size: 14px;
+}
+
+.tbstyle6 span
+{
+	color: #000;
+	font-weight: bold;
+}
+
+.tbstyle7 span
+{
+	color: green;
+	font-weight: bold;
+}
 
 .shows-events-schedule2 .pagination ul {
   text-align: center;
@@ -6632,7 +6655,12 @@ textarea::placeholder {
 	font-size: 16px;
 }
 
-
+.coupon_title
+{
+    height: 58px;
+    line-height: 42px;
+    border-top: 2px solid #222;
+}
 
 
 /*보현추가 끝*/
