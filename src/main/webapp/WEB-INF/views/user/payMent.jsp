@@ -45,8 +45,6 @@ $(document).ready(function(){
       //쿠폰 코드 가져오기
       var couponCode = $("#couponChoice > option:selected").attr("value2");
       
-
-      
       $("#couponValue").val(price);
    });
 
@@ -442,7 +440,7 @@ function movePage()
       <input type="hidden" name="orderId" id="orderId" value="" />
       <input type="hidden" name="tId" id="tId" value="" />
       <input type="hidden" name="pcUrl" id="pcUrl" value="" />
-      <input type="hidden" name="cCode" id="cCode" value="" />   <!-- 동욱 추가 -->
+      <input type="hidden" name="cCode" id="cCode" value="" />	<!-- 동욱 추가 -->
       <input type="hidden" name="rezNo" id="rezNo" value="" />
       <input type="hidden" name="rezFullPrice" id="rezFullPrice" value="" />
    </form>
