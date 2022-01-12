@@ -59,8 +59,13 @@ public class WDEBoardService
 	{
 		int count = 0;
 		
-		
+		try {
 		count=wdEBoardDao.eBoardInsert(wdEBoard);
+			}
+		catch(Exception e) 
+		{
+			logger.error("[WDEBoardService] eBoardInsert Exception", e);
+		}
 		
 		return count;
 	}
@@ -70,7 +75,15 @@ public class WDEBoardService
 	 public int eBoardUpdate(WDEBoard wdEBoard)
 	 {
 		 int count = 0;
+		 
+		 try
+		 {
 		 count = wdEBoardDao.eBoardUpdate(wdEBoard);
+		 }
+		 catch(Exception e)
+		 {
+			 logger.error("[WDEBoardService] eBoardUpdate Exception", e);
+		 }
 		 
 		 return count;
 	 }
@@ -81,8 +94,13 @@ public class WDEBoardService
 	{
 		int count = 0;
 		
+		try {
 		WDEBoard wdEBoard = wdEBoardDao.eBoardSelect(eBSeq);
-		
+			}
+		catch(Exception e)
+		{
+			logger.error("[WDEBoardService] eBoardDelete Exception", e);
+		}
 		return count;
 	}
 	

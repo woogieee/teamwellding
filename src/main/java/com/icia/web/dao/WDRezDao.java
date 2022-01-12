@@ -51,4 +51,8 @@ public interface WDRezDao {
 	//쿠폰까지 삽입되면, 그제서야 상태 Y로 변경
 	public int rezUpdateStatusAfC(String userId);
 	
+	//결제 완료된 내역 가져오기
+	public List<WDRez> rezSelectList(String userId);
+	
+	
 }
