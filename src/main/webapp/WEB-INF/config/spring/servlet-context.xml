@@ -109,7 +109,7 @@
 	                    <value>/kakao</value>	
 	                    <value>/user/payMent</value>
 	                    <value>/user/payComplete</value>		
-	                    
+	                    <value>/user/payList</value>
 
 						<value>/mng/login</value>
 						<value>/mng/userList</value>
