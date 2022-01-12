@@ -10,9 +10,13 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital@0;1&family=The+Nautigal&display=swap" rel="stylesheet">
 <script>
-$(document).ready(function() {
+function fn_view(rezNo)
+{
+	document.bbsForm.rezNo.value = rezNo;
+	document.bbsForm.action = "/user/payListView";
+	document.bbsForm.submit();
+}
 
-});
 </script>
 </head>
     
@@ -33,7 +37,6 @@ $(document).ready(function() {
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12 bcline">
-				
 				<div class="row">
 					<div class="col-lg-1">
 					</div>
@@ -55,7 +58,6 @@ $(document).ready(function() {
 								</li>
 							</ol>
 						</nav>
-					
 					</div>
 					<div class="col-lg-1">
 					</div>
@@ -72,44 +74,56 @@ $(document).ready(function() {
                             <tr style="border-top: 3px solid #444;">
                                 <th>예약번호</th>
                                 <th>예약날짜</th>
-                                <th>금액</th>
+                                <th>가격</th>
                             </tr>
 
-                        </table>
-
-					
 					</div>
 					<!-- 경계선 종료 -->
 					<div class="col-lg-1"></div>
-				`
+				
 					<div class="col-lg-1"></div>
 					<div class="col-lg-10">
 					<!-- 쿠폰 가져오기 -->
 					<div class="col-lg-10">
 					</div>
-                    <tbody>
-                        <c:if test="${!empty list}">
-                           <c:forEach var="hiBoard" items="${list}" varStatus="status">   
+						<c:choose>
+                        <c:when test="${!empty list}">
+                           <c:forEach var="wdRez" items="${list}" varStatus="status">
                                 <tr>
-                                    <td style="text-align:center">
-                                        <a href="javascript:void(0)" onclick="fn_view(${hiBoard.bSeq})">
-                                            <c:out value="${hiBoard.bSeq}" />
+                                	<!-- 예약번호 -->
+                                    <th>
+                                    <div class="col-lg-12" style="text-align:center">
+                                        <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})">
+                                            <c:out value="${wdRez.rezNo}" />
                                         </a>
-                                    </td>
-                                   	<td style="text-align:left">
-                                   		<a href="javascript:void(0)" onclick="fn_view(${hiBoard.bSeq})">${hiBoard.bTitle}</a>
-                                   	</td>
-                                   	<td style="text-align:center">${hiBoard.adminId}</td>
-                                    <td style="text-align:center">${hiBoard.regDate}</td>
-                                    <td style="text-align:center"><fmt:formatNumber type="number" maxFractionDigits="3" value="${hiBoard.bReadCnt}" /></td>
-                                </tr>
+                                    </div>
+                                    </th>
+                                    <!-- 예약날짜 -->
+                                   	<th>
+                                   	<div class="col-lg-12" style="text-align:center">
+                                   		<a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})">${wdRez.rezDate}</a>
+                                   	</div>
+                                   	</th>
+                                   	<!-- 금액 -->
+                                    <th>
+                                    <div class="col-lg-12" style="text-align:center">
+                                    	<fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />
+                                    	<!-- 쿠폰 할인된 금액이 아닌데..? -->
+                                    </div>
+                                    </th>
                            </c:forEach>
-                        </c:if>      
-                    </tbody>
-						<div class="rez_sum">
-							<button type="button" id="btnComplete" class="btn btn-primary" title="결제내역보러가기" style="border: solid 1px black; background:white; position:relative; top:-18px; color:black;">결제내역 보러가기</button>
-							<button type="button" id="btnMyPage" class="btn btn-primary" title="마이페이지" style="border: solid 1px black; background:white; position:relative; top:-18px; color:black;">마이페이지</button>
-						</div>
+                           </c:when>
+                           <c:when test="${empty list}">
+                                    <th colspan="3">
+			                        <div style="text-align: center;">
+										결제내역이 없습니다.
+									</div>
+                                    </th>
+                                 </tr>
+						</c:when>                          
+						</c:choose>
+                        </table>
+
 					</div>
 					
 					<div class="col-lg-1"></div>
@@ -117,7 +131,10 @@ $(document).ready(function() {
 				</div>
 			</div>			
 		</div>
-	</div>	
+		<form name="bbsForm" id="bbsForm" method="post" action="/user/payListView">
+			<input type="hidden" name="rezNo" value="" />
+		</form>
+	</div>
 
 		<%@ include file="/WEB-INF/views/include/footer.jsp" %>
   </body>
