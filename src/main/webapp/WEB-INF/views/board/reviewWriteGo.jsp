@@ -11,7 +11,7 @@ $(document).ready(function(){
 	$("#hiBbsTitle").focus();
 	
 	$("#btnList").on("click",function(){
-		document.bbsForm.action = "/board/fBoard";
+		document.bbsForm.action = "/board/reviews";
 		document.bbsForm.submit();			
 	});
 	
@@ -53,7 +53,7 @@ $(document).ready(function(){
 		$.ajax({
 			type:"POST",
 			enctype:'multipart/form-data',
-			url:"/board/writeProc",
+			url:"/board/reviewWriteProc",
 			data:formData,
 			processData:false,		//formData를 String으로 변환하지 않음
 			contentType:false,		//content-type 헤더가 multipart/form-data로 전송한다는 것
@@ -71,7 +71,7 @@ $(document).ready(function(){
 					//리스트 페이지로 돌아갈 때는 가져온 값을 가져가야 하지만,
 					//글쓰기를 눌렀을 때는, 가져온 값을 가져가면 내가 쓴 글이 안보임
 					//그래서 넣어줘서 보내지 않음
-					location.href = "/board/fBoard";
+					location.href = "/board/reviews";
 				}
 				else if(response.code == 400)
 				{
@@ -118,7 +118,7 @@ $(document).ready(function(){
                     <div class="section-heading">
                         <div class="category2">
                             <h2>Sharing your experiences</h2>
-                            <p>WRITING</p>
+                            <p>RIVIEW</p>
                         </div>
                     </div>
                 </div>
@@ -126,10 +126,11 @@ $(document).ready(function(){
         </div>
     </div>
 
- <div class="container">
 <div class="row" id="divB">
 
-	<div class="col-lg-12">
+	<div class="col-lg-1">
+	</div>
+	<div class="col-lg-10">
 	
 		<div class="containerfW">
 		   <h2></h2>
@@ -148,7 +149,14 @@ $(document).ready(function(){
 		      <div class="form-group">
 		         <textarea class="form-control" rows="10" name="hiBbsContent" id="hiBbsContent" style="ime-mode:active;" placeholder="내용을 입력해주세요" required></textarea>
 		      </div>
-		      <input type="file" id="hiBbsFile" name="hiBbsFile" class="form-control mb-2"  placeholder="파일을 선택하세요." required style="/*display: none;*/"/>		      
+		      <input type="file" id="hiBbsFile" name="hiBbsFile" class="form-control mb-2"  placeholder="파일을 선택하세요." required style="/*display: none;*/"/>
+별점을 선택해 주세요 : <select id="starScore" name="starScore">
+		      	<option>5</option>
+		      	<option>4</option>
+		      	<option>3</option>
+		      	<option>2</option>
+		      	<option>1</option>
+		      </select>		      
 		      
 		      <div class="form-group row">
 		         <div class="col-sm-12">
@@ -174,14 +182,14 @@ $(document).ready(function(){
 
 		   </form>
 		   <form name="bbsForm" id="bbsForm" method="post">
-		      <input type="hidden" name="searchType" value="${searchType}" />
 		      <input type="hidden" name="searchValue" value="${searchValue}" />
 		      <input type="hidden" name="curPage" value="${curPage}" />
 		   </form>
 		</div>
 			
 	</div>
-</div>
+	<div class="col-lg-1">
+	</div>
 </div>
 
 

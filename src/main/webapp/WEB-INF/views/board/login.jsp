@@ -36,6 +36,7 @@
 	<script src="../resources/js/icia.common.js"></script>
 
 <script>
+var loginModCheck;
 $(function(){
 	
 	$("#loginbtn").on("click", function(){
@@ -79,6 +80,10 @@ function fn_loginCheck()
 		$("#userPwd").focus();
 		return;
 	}
+	
+	
+	if(loginModCheck == 1) //일반사용자 ajax 시작
+	{
 	
 	$.ajax({
 		type : "POST",
@@ -149,10 +154,97 @@ function fn_loginCheck()
 			icia.common.error(error);
 		}
 	});
-
+	
+	}//일반사용자 ajax 끝
+	else if(loginModCheck == 2) //관리자 ajax 시작
+	{
+		$.ajax({
+			type : "POST",
+			url : "/manager/login",
+			data : {
+				userId:$("#userId").val(),
+				userPwd:$("#userPwd").val() 
+			},
+			datatype : "JSON",																																																					
+			beforeSend : function(xhr){
+	            xhr.setRequestHeader("AJAX", "true");
+	        },
+			success : function(response) {
+				
+				if(!icia.common.isEmpty(response))
+				{
+					icia.common.log(response);
+					
+					// var data = JSON.parse(obj);
+					var code = icia.common.objectValue(response, "code", -500);
+					
+					if(code == 0)
+					{
+						location.href = "/manager/userList";
+					}
+					else
+					{
+						if(code == -1)
+						{
+							alert("비밀번호가 올바르지 않습니다.");
+							$("#userPwd").focus();
+						}
+						else if(code == 404)
+						{
+							alert("아이디와 일치하는 사용자 정보가 없습니다.");
+							$("#userId").focus();
+						}
+						else if(code == 400)
+						{
+							alert("파라미터 값이 올바르지 않습니다.");
+							$("#userId").focus();
+						}
+						else if(code == 403)
+						{
+							alert("이용이 정지된 관리자입니다.");
+							$("#userId").focus();
+						}
+						else
+						{
+							alert("오류가 발생하였습니다.");
+							$("#userId").focus();
+						}	
+					}	
+				}
+				else
+				{
+					alert("오류가 발생하였습니다.");
+					$("#userId").focus();
+				}
+			},
+			complete : function(data) 
+			{ 
+				// 응답이 종료되면 실행, 잘 사용하지않는다
+				icia.common.log(data);
+			},
+			error : function(xhr, status, error) 
+			{
+				icia.common.error(error);
+			}
+		});
+	}
 }
-
-
+function classChange(id){
+	   document.getElementById('id1').classList.remove('selected');
+	   document.getElementById('id2').classList.remove('selected');
+	   document.getElementById('id3').classList.remove('selected');
+	   id.setAttribute('class','selected');
+	   
+	    if($('#id1').hasClass('selected')){
+	    	loginModCheck = 1;
+	     }
+	     if($('#id2').hasClass('selected')){
+	    	 loginModCheck = 2;
+	     }
+	     if($('#id3').hasClass('selected')){
+	    	 loginModCheck = 3;
+	     }
+	}
 
 </script>
 </head>
@@ -171,9 +263,9 @@ function fn_loginCheck()
 						<div class="mTab eTab">
 							<ul>
 								
-								<li class="selected"><a href="#" onclick="changeLogin('3', 'F', 'F');">회원</a></li>
-								<li><a href="loginform2.html" onclick="changeLogin('2', 'F', 'F');">관리자</a></li>
-								<li><a href="loginform3.html" onclick="changeLogin('2', 'F', 'F');">전문가</a></li>
+                        <li id="id1" class="selected" onclick="classChange(this)"><a href="javascript:void(0)">회원</a></li>
+                        <li id="id2" onclick="classChange(this)"><a href="javascript:void(0)" >관리자</a></li>
+                        <li id="id3" onclick="classChange(this)"><a href="javascript:void(0)" >전문가</a></li>
 								<!-- <li class="selected"><a href="#" onclick="changeLogin('3', 'F', 'F');">전문가</a></li> -->
 							</ul>
 						</div>

@@ -117,7 +117,7 @@ function termsofuse(){
 			         $("#colorbox").css("width", "1235px");
 			         $("#colorbox").css("height", "400px");
 			         $("#colorbox").css("border-radius", "10px");
-			         
+			 
 			         $('html').css("overflow","hidden");
 			      },
 			      onClosed:function()

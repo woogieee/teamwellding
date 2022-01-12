@@ -39,13 +39,13 @@
 //카카오페이 추가
 $(document).ready(function(){
    $("#couponChoice").change(function(){
-     
+
       //쿠폰 가격
       var price = $("#couponChoice").val();
       //쿠폰 코드 가져오기
       var couponCode = $("#couponChoice > option:selected").attr("value2");
       
-      alert(couponCode);
+
       
       $("#couponValue").val(price);
    });
@@ -71,7 +71,7 @@ $(document).ready(function(){
       document.getElementById("totalPriceAfter").innerHTML = aftPP+"원";
       
    });
-   
+
    $("#btnPay").on("click", function(){
       $("#btnPay").prop("disabled", true); //버튼비활성화
       
@@ -350,6 +350,7 @@ function movePage()
 </c:if>
 
                         </table>
+
                      </div>
                      <!-- 경계선 종료 -->
                      <div class="col-lg-1"></div>
@@ -371,6 +372,7 @@ function movePage()
                      <button name="couponSelect" id="couponSelect">적용</button>
       
                      </div>
+
 
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
                   <div class="rez_sum">

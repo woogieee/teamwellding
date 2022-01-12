@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-6">
-                    <span><span>♥</span>Welcome Wellding! &nbsp;&nbsp;<span>♥</span>웰딩에 오신 ${name }님 환영합니다!</span>
+                    <span><span class="span1">♥</span>Welcome Wellding! &nbsp;&nbsp;<span class="span1">♥</span>웰딩에 오신 <span class="span2">${name }</span>님 환영합니다!</span>
                 </div>
                 <div class="col-lg-6 col-sm-6">
                     <div class="text-button ourperson">
@@ -27,7 +27,6 @@
                         <a href="/user/wishlist">마이페이지</a>
                         <a href="/loginOut">로그아웃</a>
                         <a href="javascript:void(0)" id="coupon">내 쿠폰</a>
-                        <a href="/board/testtest">별점 테스트</a>
                     </div>
                 </div>
             </div>
@@ -99,7 +98,6 @@
                                 <ul>
                                     <li class="subul"><a href="/board/reviews" class="sub">Reviews</a></li>
                                     <li class="subul"><a href="/board/fBoard" class="sub">노하우공유</a></li>
-                                    <li class="subul"><a href="/kakao/pay" class="sub">카카오페이</a></li>
                                     <li class="subul"><a href="/board/specialist" class="sub">전문가 매칭</a></li>
                                 </ul>
                             </li> 

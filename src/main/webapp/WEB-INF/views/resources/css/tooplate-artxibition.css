@@ -65,19 +65,35 @@ html, body
 /*욱채 자유게시판*/
 .btnCommentD{
 	float : right;
+	border: none;
+	font-size: 13px;
+	letter-spacing: -0.7px;
+	font-weight: 600;
+	padding: 5px 9px;
 }
 
 .btnCommentU{
 	float : right;
 	margin-right : 5px;
+	background-color: #679267;
+	border: none;
+	font-size: 13px;
+	letter-spacing: -0.7px;
+	font-weight: 600;
+	padding: 5px 9px;
 }
 /*욱채 자유게시판*/
 
+.c_btnbox
+{
+	text-align:center;
+}
 
 #closebtn{
-	float : right;
-	margin-top:15px;
-	margin-right:3%;
+	display: inline-block;
+	margin-top:30px;
+	/*float : right;
+	margin-right:3%;*/
 }
 
 #leezxc{
@@ -93,6 +109,7 @@ header nav ul{float:left;}
 header nav ul li{float:left;}
 header.sticky {position: fixed; /*padding: 9px 0;*/ background-color: rgba(225, 225, 225, 0.9); top:0;}  /* 보현수정 */
 header.sticky .back{ height: 0px;}
+
 
 
 /*** 보현수정 ***/
@@ -490,7 +507,7 @@ a{ text-decoration: none; color: inherit; }
   display: inline-block;
   font-size: 13px;
   padding: 12px 18px;
-  background-color: rgba(242,106,134);
+  background-color: #ff6e2e;
   color: #fff;
   text-align: center;
   font-weight: 600;
@@ -1871,6 +1888,8 @@ footer {
   padding-bottom: 30px;
   background-color: #f5f5f5;
   border-top: 1px solid #bbb;
+  width: 100%;
+  
 }
 
 footer h4 {
@@ -1946,7 +1965,7 @@ footer p.copyright {
 .sub-footer .menu ul li a {
   font-size: 14px;
   font-weight: 800;
-  color: #fff;
+  color: #777;
 }
 
 .sub-footer .menu ul li a:hover {
@@ -4904,9 +4923,14 @@ responsive
   padding: 6px 18px;
   margin-left: 20px;
   background-color: #5a5a5a;
+  padding: 12px 26px;
+  border-radius: 8px;
+  float:right;
+  /*margin-left: 20px;*/
+  background-color: #ff957d;
   color: #fff;
   text-align: center;
-  font-weight: 500;
+  font-weight: 900;
   text-transform: capitalize;
   transition: all .3s;
   border: none;
@@ -4921,12 +4945,12 @@ responsive
 .shows-events-scheduleW {
   margin-top: 0px;
   padding-bottom: 0px;
-  background-color: #F0F9F8;
+  
 }
 
 #divB
 {
-	background-color: #F0F9F8;
+	
 }
 
 .containerfW
@@ -5067,13 +5091,18 @@ responsive
 }
 
 .w-btn-green {
-    background-color: #77af9c;
+    background-color: #679267;
     color: #fff;
     float: right;
 }
 
 .w-btn-green2 {
-    background-color: #ff957d;
+    background-color:#ff957d;/*#e5e5e5;*/
+    color: #fff; /*#333;*/
+}
+
+.w-btn-green3 {
+    background-color: #6c757d;
     color: #fff;
 }
 
@@ -5335,18 +5364,20 @@ responsive
 
 .containerfW .nickInput
 {
-	background-color: #91DDDB;
-	color: #fff;
-	font-weight: bold;
-	font-size: 20px;
+	background-color: #fff;
+	color:rgba(40,30,25,1);
+	
+	
+	font-family: 'OTWelcomeRA';
 }
 
 .containerfW .emailInput
 {
-	background-color: #91DDDB;
-	color: #fff;
-	font-weight: bold;
-	font-size: 20px;
+	background-color: #fff;
+	color: rgba(40,30,25,1);
+	
+	font-family: 'OTWelcomeRA';
+	
 }
 
 .page-heading-shows-eventsAb
@@ -5741,7 +5772,7 @@ responsive
 .bcline
 {
 	/*border-bottom: 5px solid gray;*/
-	padding-bottom: 40px;
+	/*padding-bottom: 40px;*/
 }
 
 .lineListMypage
@@ -6481,4 +6512,155 @@ responsive
 	background-color: transparent;
 	font-size: 14px;
 }
+
+#btnSearch
+{
+	position: relative;
+	top: 4px;
+}
+
+.fb_ht
+{
+	width: 100%;
+	height: 40px;
+}
+.divB_tb
+{
+	height:36px;
+	line-height: 36px;
+}
+
+.divB_tb2
+{
+	height: 30px;
+	line-height: 30px;
+}
+
+.tbstyle
+{
+	font-weight: 600;
+	color: #888;
+	font-size: 15px;
+}
+
+.tbstyle2
+{
+	font-size: 15px;
+	color: #333;
+	font-weight: 300;
+	display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tbstyle3
+{
+	font-weight: 500;
+	color: #666;
+	font-size: 14px;
+}
+
+.tbstyle4
+{
+	font-size: 14px;
+	color: #333;
+	font-weight: 300;
+}
+
+.tbstyle5
+{
+	font-weight: 800;
+	color: #f85151;
+	font-size: 14px;
+}
+
+.tbstyle6 span
+{
+	color: #000;
+	font-weight: bold;
+}
+
+.tbstyle7 span
+{
+	color: green;
+	font-weight: bold;
+}
+
+.shows-events-schedule2 .pagination ul {
+  text-align: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.shows-events-schedule2 .pagination ul li {
+  display: inline-block;
+  margin: 0px 10px!important;
+  border:none;
+}
+
+.shows-events-schedule2 .pagination ul li a {
+  display: inline-block;
+  font-size: 14px;
+  padding: 12px 20px;
+  background-color: #e6e7e8;
+  color: #2a2a2a;
+  text-align: center;
+  font-weight: 500;
+  text-transform: capitalize;
+  transition: all .3s;
+}
+
+.shows-events-schedule2 .pagination ul li a:hover,
+.shows-events-schedule2 .pagination ul li.active a {
+  background-color: #343a3e;
+  color: #fff!important;
+}
+
+textarea::placeholder {
+  color: #666;
+  font-size: 14px;
+}
+
+.comment_tr
+{
+	border-top: 1px solid #ccc;
+	padding: 15px 0;
+}
+
+.comment_tr td
+{
+	padding-top: 15px;
+}
+
+.comment_tr2 td
+{
+	margin: 4px 0 10px;
+}
+
+
+.comment_td
+{
+	float: left;
+	font-size: 13px;
+	height: 15px;
+	line-height:15px;
+	color: #444;
+}
+
+.comment_td2
+{
+	color: #666;
+	font-size: 16px;
+}
+
+.coupon_title
+{
+    height: 58px;
+    line-height: 42px;
+    border-top: 2px solid #222;
+}
+
+
 /*보현추가 끝*/

@@ -368,7 +368,7 @@ $(document).ready(function(){
 						        </td>
                                 
                                 <td class="HpriceTd alignleft">
-                                	<p class="Spc">스튜디오 예약일자 &nbsp <span style="font-weight:700; font-size:18px; color: #333;"><c:out value="${wdRez.sDate}"/></span></p>
+                                	<p class="Spc">스튜디오 예약일자 &nbsp<span style="font-weight:700; color: #333;"><c:out value="${wdRez.sDate}"/></span></p>
                                 	<p class="sangsaeP">
 	                                	<span class="chamgo">
 	                                		할인: <span id="discountSpan">${wdRez.sDiscount}%</span> &nbsp;&nbsp;</span>
@@ -381,7 +381,7 @@ $(document).ready(function(){
                                 	</span></p>
                                 </td>
                                 
-                                <td class="HpriceTotal">
+                                <td class="HpriceTotal" style="width: 18%;">
                                 	<h4>
                                 		<fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.sPrice *(1- wdRez.sDiscount*0.01)}" />원
                                 	</h4>
