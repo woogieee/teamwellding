@@ -93,21 +93,20 @@ public class WDRezController {
 		{
 			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
 			{
-				WDRez wdRez = new WDRez();
-				
-				wdRez.setUserId(wdUser.getUserId());
-				
-				wdRez = wdRezService.rezList(wdRez);
-	
 				WDRez search = new WDRez();
-				search = wdRezService.rezSelect(wdUser.getUserId());
+				//search = wdRezService.rezSelect(wdUser.getUserId());
 				
-				System.out.println("search.dcCode : "+ search.getDcCode());
+				search.setUserId(wdUser.getUserId());
+				//결제상태가 N인 애들만 가져와야 하기 때문에 상태가 N인 애들만 검색할 것!
+				search.setRezStatus("N");
 				
-				wdRez = wdRezService.rezList(search);
+				//유저 아이디와 N인 상태의 조건으로 검색한 결과를 wdRez에 담음
+				WDRez wdRez = wdRezService.rezSelect(search);
+				
+				//다시 해당 결과를 가지고 다른 테이블과 조인한 결과를 wdRez객체에 다시 담음
+				wdRez = wdRezService.rezList(wdRez);
 				
 				
-				System.out.println("여기는 타는거니 제발 타줬으면 하는데.");
 				model.addAttribute("wdRez", wdRez);
 				model.addAttribute("wdUser",wdUser);
 			}

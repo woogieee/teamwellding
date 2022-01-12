@@ -111,4 +111,52 @@ UPDATE WD_EBOARD
  WHERE B_SEQ = #{value}
 </update>
 <!-- 게시물 조회수 증가 종료 -->
+
+
+<!-- (관리자ver) 이벤트 글쓰기 시작 -->
+<insert id="eBoardInsert" parameterType="com.icia.web.model.WDEBoard">
+ <!-- 이벤트 글 시퀀스 생성 시작 -->
+    <selectKey resultType="long" keyProperty="eBSeq" order="BEFORE">
+    SELECT SEQ_B_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+    <!-- 이벤트 글 시퀀스  생성 끝 -->
+INSERT INTO WD_EBOARD (
+    B_SEQ,
+    ADMIN_ID,
+    B_TITLE,
+    B_CONTENT,
+    B_READ_CNT,
+    REG_DATE,
+    
+) VALUES (
+    #{eBSeq},
+    #{adminId},
+    #{eBTitle},
+    #{eBContent},
+    #{eBReadCnt},
+    SYSDATE
+)
+</insert>
+<!-- (관리자ver) 이벤트 글쓰기 끝 -->
+
+<!-- (관리자ver) 이벤트 글 수정 시작 -->
+<update id="eBoardUpdate" parameterType="com.icia.web.model.WDEBoard">
+UPDATE WD_EBOARD
+SET
+   
+     B_TITLE = #{eBTitle},
+     B_CONTENT = #{eBContent},
+    
+WHERE
+          B_SEQ = #{eBSeq}
+</update>
+<!-- (관리자ver) 이벤트 글 수정 끝 -->
+
+<!-- (관리자ver) 이벤트 글 삭제 시작 -->
+<delete id="eBoardDelete">
+DELETE FROM WD_EBOARD
+    WHERE
+        B_SEQ = #{value}
+</delete>
+<!-- (관리자ver) 이벤트 글 삭제 끝 -->
 </mapper>
