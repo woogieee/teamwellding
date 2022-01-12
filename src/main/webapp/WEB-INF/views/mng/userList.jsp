@@ -18,20 +18,6 @@
 }
 </style>
 <script>
-$(document).ready(function(){
-	   $("a[name='userUpdate']").colorbox({
-		      iframe:true, 
-		      innerWidth:1235,
-		      innerHeight:400,
-		      scrolling:false,
-		      onComplete:function()
-		      {
-		         $("#colorbox").css("width", "1235px");
-		         $("#colorbox").css("height", "400px");
-		         $("#colorbox").css("border-radius", "10px");
-		      }      
-		});
-});
 
 function fn_search()
 {
@@ -59,7 +45,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 <body id="school_list">
 	
 	<jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
-       <jsp:param name="userName" value="${wdUser.userNickname}" />
+       <jsp:param name="userName" value="${wdAdmin.admName}" />
        </jsp:include>
        
    <div id="school_list" style="width:90%; margin:auto; margin-top:5rem;">
@@ -94,7 +80,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
             </thead>
             <tbody>
             <c:if test="${!empty list}">
-            <c:forEach items="${list}" var="user" varStatus="status">
+            <c:forEach items="${userList}" var="user" varStatus="status">
             <tr>
                 <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;"><a href="/user/update?userId=${user.userId}" name="userUpdate">${user.userId}</a></th>
                 <td>${user.userName}</td>
