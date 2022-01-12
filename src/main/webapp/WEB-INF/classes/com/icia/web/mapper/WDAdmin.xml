@@ -2,4 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.icia.web.dao.WDAdminDao">
 
+<resultMap type="com.icia.web.model.WDAdmin" id="adminResultMap">
+	<id column="ADMIN_ID" property="adminId" />
+	<result column="ADM_PWD" property="admPwd" />
+	<result column="ADM_NAME" property="admName" />
+	<result column="STATUS" property="status" />
+	<result column="REG_DATE" property="regDate" />
+
+</resultMap>
+
+<select id="wdAdminSelect" parameterType="string" resultMap="adminResultMap">
+SELECT
+    ADMIN_ID,
+    NVL(ADM_PWD, '') AS ADM_PWD,
+    NVL(ADM_NAME, '') AS ADM_NAME,
+    NVL(STATUS, '') AS STATUS,
+    NVL(TO_CHAR(REG_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') AS REG_DATE
+FROM
+    WD_ADMIN
+WHERE
+    ADMIN_ID = #{value}
+</select>
+
 </mapper>
