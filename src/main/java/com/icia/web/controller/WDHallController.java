@@ -256,9 +256,12 @@ public class WDHallController {
 					   //홀 코드 존재하는지 체크
 					   WDRez search = new WDRez();
 					   
-					   search = wdRezService.rezSelect(wdUser.getUserId());
+					   search.setUserId(wdUser.getUserId());
+					   search.setRezStatus("N");
 					   
-					   wdRez = wdRezService.rezList(search);
+					   //search = wdRezService.rezSelect(wdUser.getUserId());
+					   wdRez = wdRezService.rezSelect(search);
+					   wdRez = wdRezService.rezList(wdRez);
 					   
 					   if(wdRez != null) 
 					   {

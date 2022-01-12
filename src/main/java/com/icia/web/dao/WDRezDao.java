@@ -9,7 +9,9 @@ import com.icia.web.model.WDRez;
 @Repository("wdRezDao")
 public interface WDRezDao {
 	
-	public WDRez rezSelect(String userId);
+	//public WDRez rezSelect(String userId);
+	public WDRez rezSelect(WDRez wdRez);
+	
 	//예약 내역 조회를 위한 셀렉트 메소드
 	public WDRez rezList(WDRez wdRez);
 	
@@ -46,5 +48,7 @@ public interface WDRezDao {
 	//카카오페이 성공 시 업데이트 문
 	public int rezUpdatePay(WDRez wdRez);
 	
+	//쿠폰까지 삽입되면, 그제서야 상태 Y로 변경
+	public int rezUpdateStatusAfC(String userId);
 	
 }

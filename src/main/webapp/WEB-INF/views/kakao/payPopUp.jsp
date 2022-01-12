@@ -8,7 +8,7 @@
 <script type="text/javascript">
 function kakaoPayResult(pgToken)
 {
-	$("#pgToken").val(pgToken);
+   $("#pgToken").val(pgToken);
     
     document.kakaoForm.action = "/kakao/payResult";
     document.kakaoForm.submit();

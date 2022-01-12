@@ -152,6 +152,7 @@ public class WDReviewController {
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		String hiBbsTitle = HttpUtil.get(request, "hiBbsTitle", "");
 		String hiBbsContent = HttpUtil.get(request, "hiBbsContent", "");
+		double rScore = HttpUtil.get(request, "starScore", (double)0);
 		
 		WDReview wdReviewRez = null;
 		wdReviewRez = wdReviewService.rezCheck(cookieUserId);		
@@ -166,6 +167,7 @@ public class WDReviewController {
 			wdReview.setRContent(hiBbsContent);
 			wdReview.setRezNo(wdReviewRez.getRezNo());
 			wdReview.setWDate(wdReviewRez.getWDate());
+			wdReview.setRScore(rScore);
 			
 			if(fileData != null && fileData.getFileSize() > 0) 
 			{
@@ -247,5 +249,243 @@ public class WDReviewController {
 		
 		return "/board/reviewInfo";
 	}
+	
+	//게시글 삭제
+	@RequestMapping(value="/board/reviewDelete", method=RequestMethod.POST)
+	@ResponseBody
+	public Response<Object> delete(HttpServletRequest request, HttpServletResponse response)
+	{
+		Response<Object> ajaxResponse = new Response<Object>();
+		
+		String cookieUserId =  CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		long RSeq = HttpUtil.get(request, "RSeq", (long)0);
+		
+		System.out.println("RSeq"+ RSeq);
+		
+		
+		if(RSeq > 0) 
+		{
+			WDReview wdReview = wdReviewService.ReviewSelect(RSeq);
+			if(wdReview != null) 
+			{
+				
+				if(StringUtil.equals(wdReview.getUserId(), cookieUserId)) 
+				{
+					try 
+					{
+						if(wdReviewService.reviewDelete(RSeq) > 0) 
+						{
+							ajaxResponse.setResponse(0, "Success");
+						}
+						else 
+						{
+							ajaxResponse.setResponse(500, "Internal Server Error");
+						}
+					}
+					catch(Exception e) 
+					{
+						logger.error("[WDReviewController] delete Exception", e);
+						ajaxResponse.setResponse(500, "Internal Server Error");
+					}
+				}
+				else 
+				{
+					ajaxResponse.setResponse(405, "User Error");					
+				}
+			}
+			else 
+			{
+				ajaxResponse.setResponse(404, "Not Exist");				
+			}
+			
+		}
+		else 
+		{
+			ajaxResponse.setResponse(400, "Bad Request");
+		}
+		
+		return ajaxResponse;
+	}
+	
+	   //게시물 수정 페이지
+	   @RequestMapping(value="/board/reviewUpdate")
+	   public String fUpdateForm(ModelMap model, HttpServletRequest request, HttpServletResponse response) 
+	   {
+		   String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		   
+		   long RSeq = HttpUtil.get(request, "RSeq", (long)0);
+		   String searchValue = HttpUtil.get(request, "searchValue", "");
+		   long curPage = HttpUtil.get(request, "curPage", (long)1);
+		   
+		   WDReview wdReview = null;
+		   WDUser wdUser = null;
+		   
+		   if(RSeq > 0) 
+		   {
+			   wdReview = wdReviewService.ReviewSelect(RSeq);
+			   
+			   if(wdReview != null) 
+			   {
+				   if(!StringUtil.equals(cookieUserId, wdReview.getUserId())) 
+				   {
+					   wdReview = null;
+				   }
+				   else 
+				   {
+					   wdUser = wdUserService.userSelect(cookieUserId);
+				   }
+			   }
+		   }
+		   
+		   model.addAttribute("searchvalue", searchValue);
+		   model.addAttribute("curPage", curPage);
+		   model.addAttribute("wdReview", wdReview);
+		   model.addAttribute("wdUser", wdUser);
+		   
+		   return "/board/reviewUpdate";
+	   }
+	   
+		//수정페이지에서 파일 삭제
+		@RequestMapping(value="/board/ReviewdeleteFileProc", method=RequestMethod.POST)
+		@ResponseBody
+		public Response<Object> reviewDeleteFileProc(HttpServletRequest request, HttpServletResponse response)
+		{
+			Response<Object> ajaxResponse = new Response<Object>();
+			String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+			long RSeq = HttpUtil.get(request, "RSeq", (long)0);
+			
+			if(RSeq>0) 
+			{
+				WDReview wdReview = wdReviewService.ReviewSelect(RSeq);
+				
+				if(wdReview != null) 
+				{
+					if(StringUtil.equals(cookieUserId, wdReview.getUserId())) 
+					{
+						WDReviewFile wdReviewFile = wdReviewService.ReviewFileSelect(RSeq);
+						
+						wdReview.setReviewFile(wdReviewFile);
+						
+						if(wdReviewFile != null) 
+						{
+							//파일 삭제
+							try 
+							{
+								if(wdReviewService.reviewDeleteFile(wdReview) > 0) 
+								{
+									ajaxResponse.setResponse(0, "Success");
+								}							
+							}
+							catch(Exception e) 
+							{
+								logger.debug("[WDReviewController] reviewDeleteFileProc Exception", e);
+								ajaxResponse.setResponse(500, "Bad Request");
+							}
+						}
+						else 
+						{
+							ajaxResponse.setResponse(404, "Bad Request");
+						}
+					}
+					else 
+					{
+						ajaxResponse.setResponse(401, "Bad Request");
+					}
+				}
+			}
+			else 
+			{
+				ajaxResponse.setResponse(404, "Bad Request");
+
+			}
+			
+			return ajaxResponse;
+		}
+		
+		@RequestMapping(value="/board/reviewUpdateProc", method=RequestMethod.POST)
+		@ResponseBody
+		public Response<Object> reviewUpdateProc(MultipartHttpServletRequest request, HttpServletResponse response)
+		{
+			Response<Object> ajaxResponse = new Response<Object>();
+			
+			String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+			
+			long RSeq = HttpUtil.get(request, "RSeq", (long)0);
+			String bTitle = HttpUtil.get(request, "bTitle", "");
+			String bContent = HttpUtil.get(request, "bContent", "");
+			double rScore = HttpUtil.get(request, "starScore", (double)0);
+			
+			System.out.println("점수 : "+rScore);
+			
+			FileData fileData = HttpUtil.getFile(request, "hiBbsFile", UPLOAD_SAVE_DIR);
+			WDReview wdReview = null;
+			System.out.println("RSeq : "+RSeq);
+			if(RSeq > 0 && !StringUtil.isEmpty(bTitle) && !StringUtil.isEmpty(bContent)) 
+			{
+				//게시글 존재, 제목, 내용도 넘어옴.
+				wdReview = wdReviewService.ReviewSelect(RSeq);
+				if(wdReview != null) 
+				{
+					if(StringUtil.equals(cookieUserId, wdReview.getUserId())) 
+					{
+						//게시물 작성자 아이디와 쿠키 아이디가 같음
+						//얘는 변경이 없지만 해두자						
+						wdReview.setRSeq(RSeq);
+						wdReview.setRTitle(bTitle);
+						wdReview.setRContent(bContent);
+						wdReview.setRScore(rScore);
+						
+						if(fileData != null && fileData.getFileSize()>0) 
+						{
+							//파일 존재
+							WDReviewFile wdReviewFile = new WDReviewFile();
+
+							//새로운 값들을 넣어줌
+							wdReviewFile.setrFileName(fileData.getFileName());
+							wdReviewFile.setrFileOrgName(fileData.getFileOrgName());
+							wdReviewFile.setrFileExt(fileData.getFileExt());
+							wdReviewFile.setrFileSize(fileData.getFileSize());
+							
+							wdReview.setReviewFile(wdReviewFile);
+						}
+						
+						//업데이트 할 것인데, 파일첨부까지 생각해야 함. 그래서 트랜잭션을 걸어야 하기 때문에 try catch
+						try 
+						{
+							//의수 여기서 잠시멈춤
+							if(wdReviewService.reviewUpdate(wdReview) > 0) 
+							{
+								ajaxResponse.setResponse(0, "Success");
+							}
+							else 
+							{
+								ajaxResponse.setResponse(500, "Internal Server Error");
+							}
+						}
+						catch(Exception e) 
+						{
+							logger.error("[WDReviewController] reviewUpdateProc Exception", e);
+							ajaxResponse.setResponse(500, "Internal Server Error");
+						}
+						
+					}
+					else 
+					{
+						//본인 게시물이 아님
+						ajaxResponse.setResponse(404, "Not The Owner");
+					}
+				}
+				else 
+				{
+					ajaxResponse.setResponse(401, "Not Found");
+				}
+			}
+			else 
+			{
+				ajaxResponse.setResponse(400, "Bad Request");
+			}
+					
+			return ajaxResponse;
+		}
 
 }

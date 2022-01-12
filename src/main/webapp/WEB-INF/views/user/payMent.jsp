@@ -39,7 +39,7 @@
 //카카오페이 추가
 $(document).ready(function(){
    $("#couponChoice").change(function(){
-	  
+
       //쿠폰 가격
       var price = $("#couponChoice").val();
       //쿠폰 코드 가져오기
@@ -48,7 +48,7 @@ $(document).ready(function(){
       $("#couponValue").val(price);
    });
 
-		//적용 선택시 금액 리프레쉬
+      //적용 선택시 금액 리프레쉬
    $("#couponSelect").on("click", function(){
       
       var price = $("#couponChoice").val();
@@ -69,7 +69,7 @@ $(document).ready(function(){
       document.getElementById("totalPriceAfter").innerHTML = aftPP+"원";
       
    });
-	
+
    $("#btnPay").on("click", function(){
       $("#btnPay").prop("disabled", true); //버튼비활성화
       
@@ -348,27 +348,29 @@ function movePage()
 </c:if>
 
                         </table>
-		               </div>
-		               <!-- 경계선 종료 -->
-		               <div class="col-lg-1"></div>
-		               <div class="col-lg-1"></div>
-		               <div class="col-lg-10">
-		               <div class="col-lg-10" style="text-align: right; max-width:100%;">
-		               
-		               <!-- 쿠폰 가져오기 -->
-		               	쿠폰 선택
-		               <select name="couponChoice" id="couponChoice">
-		                  <option value="0">선택</option>
-		                  
-		               <c:forEach var="coupon" items="${couponList}" varStatus="status">
-		                  <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
-		               </c:forEach>
-		               </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		               	할인금액 <input type="text" name="couponValue" id="couponValue" value="">
-		
-		               <button name="couponSelect" id="couponSelect">적용</button>
-		
-		               </div>
+
+                     </div>
+                     <!-- 경계선 종료 -->
+                     <div class="col-lg-1"></div>
+                     <div class="col-lg-1"></div>
+                     <div class="col-lg-10">
+                     <div class="col-lg-10" style="text-align: right; max-width:100%;">
+                     
+                     <!-- 쿠폰 가져오기 -->
+                        쿠폰 선택
+                     <select name="couponChoice" id="couponChoice">
+                        <option value="0">선택</option>
+                        
+                     <c:forEach var="coupon" items="${couponList}" varStatus="status">
+                        <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
+                     </c:forEach>
+                     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        할인금액 <input type="text" name="couponValue" id="couponValue" value="">
+      
+                     <button name="couponSelect" id="couponSelect">적용</button>
+      
+                     </div>
+
 
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
                   <div class="rez_sum">

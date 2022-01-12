@@ -124,7 +124,6 @@ public class KakaoPayController
          json.addProperty("rezNo", itemCode);
          json.addProperty("rezFullPrice", totalAmount);
 
-         
          ajaxResponse.setResponse(0, "success", json); 
          
       }
@@ -179,21 +178,21 @@ public class KakaoPayController
       
       WDRez wdRez = new WDRez();
       wdRez.setUserId(userId);
-      wdRez.setRezNo(itemCode);
-      wdRez.setRezFullPrice(totalAmount);
-      wdRez.setcCode(cCode);
+
       wdRez.setRezNo(rezNo);
       wdRez.setRezFullPrice(rezFullPrice);
-      if(wdRezService.rezUpdatePay(wdRez) > 0) 
+      wdRez.setcCode(cCode);
+      
+      try 
       {
-     	 System.out.println("성공일까");    	 
+    	  int cnt = wdRezService.rezUpdatePay(wdRez);
+      }
+      catch(Exception e) 
+      {
+    	  logger.error("[KakaoPayController] payReady rezUpdatePay Exception", e);
       }
       
       model.addAttribute("kakaoPayApprove", kakaoPayApprove);
-      
-      System.out.println("쿠폰코드" + cCode);
-      System.out.println("아이템코드" + rezNo);
-      System.out.println("총금액" + rezFullPrice);
       
       return "/kakao/payResult";
    }
