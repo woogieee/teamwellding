@@ -295,9 +295,9 @@ function commentUpdate(cSeq,tagId){
 	<div class="container">
 		<div class="row">
 		
-			<div class="col-lg-10">
+			
 			<div class="col-lg-12">
-				<div class="row">
+			
 				<table class="table">
 					<thead>
 						<tr class="dongdong2">
@@ -397,11 +397,11 @@ function commentUpdate(cSeq,tagId){
 					</tfoot>
 				</table>
 			</div>
-<<<<<<< HEAD
+
 			
-=======
+
 			</div>
->>>>>>> d2d09d4c2574f04ad8dd17f331521bbd2b69bea1
+
 		</div>
 	</div>
 
