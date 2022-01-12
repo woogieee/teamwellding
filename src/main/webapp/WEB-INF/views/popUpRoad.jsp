@@ -79,8 +79,8 @@
         
         function popupGo()
         {
-    	   	document.eBoardForm.action = "/board/eBoardView";
-    	   	document.eBoardForm.submit();
+        	opener.document.location.href='/board/eView?eBSeq=8';
+        	window.close();
         }
     </script>
     <style>

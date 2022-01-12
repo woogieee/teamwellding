@@ -2986,7 +2986,7 @@ Shows Events Page
 	/*background-color: #efefef;
 	font-family: 'Jua', sans-serif;*/
 	display: flex;
-	justify-content: center;
+	/*justify-content: center;*/
 	align-items:center;
 	/*padding:0px;
 	border-right: 1px solid #ddd;*/
@@ -6450,6 +6450,7 @@ responsive
 	cursor: pointer;
 	border-bottom: 2px solid #ddd;
 	padding: 20px 0;
+	width: 100%;
 }
 
 
