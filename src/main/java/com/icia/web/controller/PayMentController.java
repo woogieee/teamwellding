@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.icia.common.util.StringUtil;
 import com.icia.web.model.WDCoupon;
@@ -128,4 +129,11 @@ public class PayMentController
 		
 		return "/user/payComplete";
 	}
+	
+	@RequestMapping(value="/user/payList", method=RequestMethod.GET)
+	public String payList (HttpServletRequest request, HttpServletResponse response)
+	{
+		return "/user/payList";
+	}
+	
 }

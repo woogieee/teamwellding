@@ -269,7 +269,7 @@ $(document).ready(function(){
 									<h5>장바구니</h5>
 								</li>
 								<li class="breadcrumb-item">
-									<a href="#">결제내역</a>
+									<a href="/user/payList">결제내역</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
