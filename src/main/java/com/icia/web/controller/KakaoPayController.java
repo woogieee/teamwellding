@@ -59,8 +59,9 @@ public class KakaoPayController
       
       //동욱 추가
       String cCode = HttpUtil.get(request, "cCode", "");
-      
-      
+      String rezNo = HttpUtil.get(request, "rezNo", "");
+      int rezFullPrice = HttpUtil.get(request, "rezFullPrice", 0);
+       
       model.addAttribute("pcUrl", pcUrl);
       model.addAttribute("orderId", orderId);
       model.addAttribute("tId", tId);
@@ -68,6 +69,9 @@ public class KakaoPayController
       
       //동욱 추가
       model.addAttribute("cCode", cCode);
+      model.addAttribute("rezNo", rezNo);
+      model.addAttribute("rezFullPrice", rezFullPrice);
+
       
       return "/kakao/payPopUp";
    }
@@ -134,6 +138,11 @@ public class KakaoPayController
          {
             ajaxResponse.setResponse(-1, "fail", null);
          }
+
+         json.addProperty("rezNo", itemCode);
+         json.addProperty("rezFullPrice", totalAmount);
+
+         ajaxResponse.setResponse(0, "success", json); 
          
          */
          
@@ -170,8 +179,14 @@ public class KakaoPayController
       
       //동욱 추가
       String itemCode = HttpUtil.get(request, "itemCode", "");
+      System.out.println("아이템코드" + itemCode);
       String cCode = HttpUtil.get(request, "cCode", "");
       int totalAmount = HttpUtil.get(request,  "totalAmount", (int)0);
+      System.out.println("아이템코드" + totalAmount);
+      
+      String rezNo = HttpUtil.get(request, "rezNo", "");
+      
+      int rezFullPrice = HttpUtil.get(request, "rezFullPrice", 0);
       //여기까지
       
       KakaoPayOrder kakaoPayOrder = new KakaoPayOrder();
@@ -183,17 +198,21 @@ public class KakaoPayController
       
       kakaoPayApprove = kakaoPayService.kakaoPayApprove(kakaoPayOrder);
       
-      //동욱 추가
       WDRez wdRez = new WDRez();
       wdRez.setUserId(userId);
-      wdRez.setRezNo(itemCode);
-      wdRez.setRezFullPrice(totalAmount);
+
+      wdRez.setRezNo(rezNo);
+      wdRez.setRezFullPrice(rezFullPrice);
       wdRez.setcCode(cCode);
-      if(wdRezService.rezUpdatePay(wdRez) > 0) 
+      
+      try 
       {
-         System.out.println("성공일까");        
+    	  int cnt = wdRezService.rezUpdatePay(wdRez);
       }
-      //동우 추가 끝
+      catch(Exception e) 
+      {
+    	  logger.error("[KakaoPayController] payReady rezUpdatePay Exception", e);
+      }
       
       model.addAttribute("kakaoPayApprove", kakaoPayApprove);
       

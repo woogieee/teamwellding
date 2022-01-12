@@ -80,4 +80,27 @@ AND
     C.C_CODE = R.C_CODE
 
 </select>
+
+<!-- 결제 시 , 쿠폰 정보를 가져와서 해당 유저의 해당 쿠폰 업데이트 시작 -->
+<update id="couponStatusUpdate" parameterType="string">
+UPDATE 
+    WD_COUPON
+SET
+    C_STATUS = 'Y'
+WHERE
+    C_CODE = (
+                SELECT 
+                    C_CODE 
+                FROM 
+                    WD_REZ
+                WHERE
+                    USER_ID = #{value}
+                AND
+                    REZ_STATUS = 'N'
+                )
+AND
+    USER_ID = #{value}
+</update>
+<!-- 결제 시 , 쿠폰 정보를 가져와서 해당 유저의 해당 쿠폰 업데이트 종료 -->
+
 </mapper>

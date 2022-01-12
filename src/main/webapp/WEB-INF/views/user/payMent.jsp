@@ -39,13 +39,15 @@
 //카카오페이 추가
 $(document).ready(function(){
    $("#couponChoice").change(function(){
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> 6f0df56216215c5e08a6fccf8ed7b696e8f294c0
       //쿠폰 가격
       var price = $("#couponChoice").val();
       //쿠폰 코드 가져오기
       var couponCode = $("#couponChoice > option:selected").attr("value2");
-      
-      alert(couponCode);
       
       $("#couponValue").val(price);
    });
@@ -71,7 +73,11 @@ $(document).ready(function(){
       document.getElementById("totalPriceAfter").innerHTML = aftPP+"원";
       
    });
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> 6f0df56216215c5e08a6fccf8ed7b696e8f294c0
    $("#btnPay").on("click", function(){
       $("#btnPay").prop("disabled", true); //버튼비활성화
       
@@ -99,6 +105,11 @@ $(document).ready(function(){
                
                //동욱 추가
                var couponNum = couponCode;
+<<<<<<< HEAD
+=======
+               var rezNo = response.data.rezNo;
+               var rezFullPrice = response.data.rezFullPrice;
+>>>>>>> 6f0df56216215c5e08a6fccf8ed7b696e8f294c0
                
                $("#orderId").val(orderId);
                $("#tId").val(tId);
@@ -106,6 +117,11 @@ $(document).ready(function(){
                
                //동욱 추가
                $("#cCode").val(couponNum);
+<<<<<<< HEAD
+=======
+               $("#rezNo").val(rezNo);
+               $("#rezFullPrice").val(rezFullPrice);
+>>>>>>> 6f0df56216215c5e08a6fccf8ed7b696e8f294c0
                
                var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=700,left=100,top=100');
                
@@ -346,6 +362,10 @@ function movePage()
 </c:if>
 
                         </table>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6f0df56216215c5e08a6fccf8ed7b696e8f294c0
                      </div>
                      <!-- 경계선 종료 -->
                      <div class="col-lg-1"></div>
@@ -367,6 +387,10 @@ function movePage()
                      <button name="couponSelect" id="couponSelect">적용</button>
       
                      </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6f0df56216215c5e08a6fccf8ed7b696e8f294c0
 
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
                   <div class="rez_sum">
@@ -436,7 +460,13 @@ function movePage()
       <input type="hidden" name="orderId" id="orderId" value="" />
       <input type="hidden" name="tId" id="tId" value="" />
       <input type="hidden" name="pcUrl" id="pcUrl" value="" />
+<<<<<<< HEAD
       <input type="hidden" name="cCode" id="cCode" value="" />   <!-- 동욱 추가 -->
+=======
+      <input type="hidden" name="cCode" id="cCode" value="" />	<!-- 동욱 추가 -->
+      <input type="hidden" name="rezNo" id="rezNo" value="" />
+      <input type="hidden" name="rezFullPrice" id="rezFullPrice" value="" />
+>>>>>>> 6f0df56216215c5e08a6fccf8ed7b696e8f294c0
    </form>
    
 </div>

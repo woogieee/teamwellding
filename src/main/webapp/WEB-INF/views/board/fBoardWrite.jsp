@@ -126,11 +126,10 @@ $(document).ready(function(){
         </div>
     </div>
 
+ <div class="container">
 <div class="row" id="divB">
 
-	<div class="col-lg-1">
-	</div>
-	<div class="col-lg-10">
+	<div class="col-lg-12">
 	
 		<div class="containerfW">
 		   <h2></h2>
@@ -182,8 +181,7 @@ $(document).ready(function(){
 		</div>
 			
 	</div>
-	<div class="col-lg-1">
-	</div>
+</div>
 </div>
 
 

@@ -275,10 +275,12 @@ public class WDStudioController
 					   System.out.println("여긴타니 88");
 					   
 					   WDRez search = new WDRez();
+					   search.setUserId(wdUser.getUserId());
+					   search.setRezStatus("N");
 					   
-					   search = wdRezService.rezSelect(wdUser.getUserId());
-					   
-					   wdRez = wdRezService.rezList(search);
+					   //search = wdRezService.rezSelect(wdUser.getUserId());
+					   wdRez = wdRezService.rezSelect(search);
+					   wdRez = wdRezService.rezList(wdRez);
 					   
 					   if(wdRez != null) 
 					   {
