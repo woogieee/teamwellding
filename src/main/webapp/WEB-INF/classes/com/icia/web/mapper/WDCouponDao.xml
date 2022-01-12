@@ -79,4 +79,24 @@ AND
 </update>
 <!-- 결제 시 , 쿠폰 정보를 가져와서 해당 유저의 해당 쿠폰 업데이트 종료 -->
 
+
+<!-- 결제 취소 요청이 승인되고, 취소승인된 해당 쿠폰을 다시 사용가능하게 변경 -->
+<update id="rezCouponUpdatePayCancel" parameterType="string">
+UPDATE WD_COUPON
+SET
+    C_STATUS = 'N'
+WHERE
+    C_CODE = (SELECT
+                    C_CODE
+                FROM
+                    WD_REZ
+                WHERE
+                    USER_ID = #{value}
+                AND
+                    REZ_STATUS = 'C'
+                )
+AND
+    USER_ID = #{value}
+</update>
+<!-- 결제 취소 요청이 승인되고, 취소승인된 해당 쿠폰을 다시 사용가능하게 변경 종료 -->
 </mapper>
