@@ -19,8 +19,8 @@ public class WDAdminUser implements Serializable
 	private int userPoint;		//포인트(환불 취소 용도)
 	private int uCheck;
 	
-	private int startRow;
-	private int endRow;
+	private long startRow;
+	private long endRow;
 
 	
 	public WDAdminUser()
@@ -163,22 +163,22 @@ public class WDAdminUser implements Serializable
 	}
 
 
-	public int getStartRow() {
+	public long getStartRow() {
 		return startRow;
 	}
 
 
-	public void setStartRow(int startRow) {
+	public void setStartRow(long startRow) {
 		this.startRow = startRow;
 	}
 
 
-	public int getEndRow() {
+	public long getEndRow() {
 		return endRow;
 	}
 
 
-	public void setEndRow(int endRow) {
+	public void setEndRow(long endRow) {
 		this.endRow = endRow;
 	}
 	
