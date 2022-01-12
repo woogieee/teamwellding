@@ -20,9 +20,18 @@ import com.icia.web.model.Paging;
 import com.icia.web.model.Response;
 import com.icia.web.model.WDAdmin;
 import com.icia.web.model.WDAdminUser;
+import com.icia.web.model.WDDress;
+import com.icia.web.model.WDHall;
+import com.icia.web.model.WDMakeUp;
+import com.icia.web.model.WDStudio;
 import com.icia.web.model.WDUser;
 import com.icia.web.service.WDAdminService;
 import com.icia.web.service.WDAdminUserService;
+import com.icia.web.service.WDDressService;
+import com.icia.web.service.WDHallService;
+import com.icia.web.service.WDMakeUpService;
+import com.icia.web.service.WDRezService;
+import com.icia.web.service.WDStudioService;
 import com.icia.web.util.CookieUtil;
 import com.icia.web.util.HttpUtil;
 import com.icia.web.util.JsonUtil;
@@ -38,6 +47,21 @@ public class WDAdminIndexController
 	@Autowired
 	private WDAdminUserService wdAdminUserService;
 	
+    @Autowired
+    private WDHallService wdHallService;
+   
+    @Autowired
+    private WDRezService wdRezService;
+    
+    @Autowired
+	private WDStudioService wdStudioService;
+    
+    @Autowired
+	private WDDressService wdDressService;
+    
+    @Autowired
+	private WDMakeUpService wdMakeUpService;
+
 	//쿠키명
 	@Value("#{env['auth.cookie.name']}")
 	private String AUTH_COOKIE_NAME;
@@ -250,5 +274,136 @@ public class WDAdminIndexController
 			}
 			
 			return res;
+		}
+		
+		@RequestMapping(value="/mng/hsdmList")
+		public String hsdmList(Model model,HttpServletRequest request, HttpServletResponse response)
+		{
+			//홀스드메 리스트 페이징 처리를 위한 개수 체크 변수
+			long hTotalCount = 0;
+			long sTotalCount = 0;
+			long dTotalCount = 0;
+			long mTotalCount = 0;
+			
+			//홀스드메 리스트를 조회 할때 쓸 객체 선언 (검색기능도 이 객체에서 처리함)
+			WDHall wdHall = new WDHall();
+			WDStudio wdStudio = new WDStudio();
+			WDDress wdDress = new WDDress();
+			WDMakeUp wdMakeUp = new WDMakeUp();
+			
+			//홀스드메 정보가 담길 리스트 객체 선언
+			List<WDHall> hList = null;
+			List<WDStudio> sList = null;
+			List<WDDress> dList = null;
+			List<WDMakeUp> mList = null;
+			
+			//쿠키 조회
+		    String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		   
+			//조회항목
+			String searchType = HttpUtil.get(request, "searchType", "");
+			//조회값
+			String searchValue = HttpUtil.get(request, "searchValue", "");
+			//현재 페이지
+			long curPage = HttpUtil.get(request, "curPage", (long)1);
+			
+			//홀스드메 코드 조회
+		    String whCode = HttpUtil.get(request, "WHCode", "");
+		    String hCode = HttpUtil.get(request, "HCode", "");
+			String sCode = HttpUtil.get(request, "sCode", "");
+			String dcCode = HttpUtil.get(request, "dcCode", "");
+			String dNo = HttpUtil.get(request, "dNo", ""); 
+			String mCode = HttpUtil.get(request, "mCode", "");
+			
+			//홀스드메 페이징 처리 객체
+			Paging hPaging = null;
+			Paging sPaging = null;
+			Paging dPaging = null;
+			Paging mPaging = null;
+			
+			//각 홀스드메 객체마다 코드값 삽입
+			wdHall.setWHCode(whCode);
+			wdHall.setHCode(hCode);
+			wdStudio.setsCode(sCode);
+			wdDress.setDcCode(dcCode);
+			wdDress.setdNo(dNo);
+			wdMakeUp.setmCode(mCode);
+			
+			//홀스드메 각각 리스트가 총 몇개인지 개수 체크
+			hTotalCount = wdHallService.WDHallListCount(wdHall);
+			sTotalCount = wdStudioService.studioListCount(wdStudio);
+			dTotalCount = wdDressService.dressListCount(wdDress);
+			mTotalCount = wdMakeUpService.makeUpListCount(wdMakeUp);
+			
+			//홀 페이징 처리
+			if(hTotalCount > 0)
+			{
+				hPaging = new Paging("/mng/hsdmList", hTotalCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage"); //페이징처리 : 인수값이 있다 = 생성자가 있다
+				
+				hPaging.addParam("searchType", searchType);
+				hPaging.addParam("searchValue", searchValue);
+				hPaging.addParam("curPage", curPage);
+				
+				wdHall.setStartRow(hPaging.getStartRow());
+				wdHall.setEndRow(hPaging.getEndRow());
+				
+				hList = wdHallService.WDHallList(wdHall);
+			}
+			//스튜디오 페이징 처리
+			if(sTotalCount > 0)
+			{
+				sPaging = new Paging("/mng/hsdmList", sTotalCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage"); //페이징처리 : 인수값이 있다 = 생성자가 있다
+				
+				sPaging.addParam("searchType", searchType);
+				sPaging.addParam("searchValue", searchValue);
+				sPaging.addParam("curPage", curPage);
+				
+				wdStudio.setStartRow(sPaging.getStartRow());
+				wdStudio.setEndRow(sPaging.getEndRow());
+				
+				sList = wdStudioService.studioList(wdStudio);
+			}
+			//드레스 페이징 처리
+			if(dTotalCount > 0)
+			{
+				dPaging = new Paging("/mng/hsdmList", dTotalCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage"); //페이징처리 : 인수값이 있다 = 생성자가 있다
+				
+				dPaging.addParam("searchType", searchType);
+				dPaging.addParam("searchValue", searchValue);
+				dPaging.addParam("curPage", curPage);
+				
+				wdDress.setStartRow(dPaging.getStartRow());
+				wdDress.setEndRow(dPaging.getEndRow());
+				
+				dList = wdDressService.dressList(wdDress);
+			}
+			//메이크업 페이징 처리
+			if(mTotalCount > 0)
+			{
+				mPaging = new Paging("/mng/hsdmList", mTotalCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage"); //페이징처리 : 인수값이 있다 = 생성자가 있다
+				
+				mPaging.addParam("searchType", searchType);
+				mPaging.addParam("searchValue", searchValue);
+				mPaging.addParam("curPage", curPage);
+				
+				wdMakeUp.setStartRow(mPaging.getStartRow());
+				wdMakeUp.setEndRow(mPaging.getEndRow());
+				
+				mList = wdMakeUpService.makeUpList(wdMakeUp);
+			}
+			
+			model.addAttribute("hList", hList);
+			model.addAttribute("hPaging",hPaging);
+			model.addAttribute("sList", sList);
+			model.addAttribute("sPaging",sPaging);
+			model.addAttribute("dList", dList);
+			model.addAttribute("dPaging",dPaging);
+			model.addAttribute("mList", mList);
+			model.addAttribute("mPaging",mPaging);
+			model.addAttribute("searchType", searchType);
+			model.addAttribute("searchValue", searchValue);
+			model.addAttribute("curPage", curPage);		
+			
+			return "/mng/hsdmList";
 		}
 }
