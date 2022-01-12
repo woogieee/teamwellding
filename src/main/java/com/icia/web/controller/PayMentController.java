@@ -54,7 +54,7 @@ public class PayMentController
 		
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
 		
-		WDRez wdRez = new WDRez();
+		WDRez search = new WDRez();
 		List<WDCoupon> couponList = null;
 		
 		couponList = wdCouponService.couponSelectList(wdUser.getUserId());
@@ -64,16 +64,19 @@ public class PayMentController
 			model.addAttribute("num", couponList.size());
 		}
 		
-		wdRez.setUserId(cookieUserId);
+		
 		
 		if(wdUser != null) 
 		{
 
 			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
 			{
-				
-				wdRez = wdRezService.rezSelect(wdUser.getUserId());
+				search.setUserId(cookieUserId);
+				//wdRez = wdRezService.rezSelect(wdUser.getUserId());
+				search.setRezStatus("N");
+				WDRez wdRez = wdRezService.rezSelect(search);
 				wdRez = wdRezService.rezList(wdRez);
+				
 				System.out.println("난들어갓다 " + wdRez.gethImgName());
 				model.addAttribute("wdRez", wdRez);
 				model.addAttribute("wdUser",wdUser);
@@ -100,15 +103,21 @@ public class PayMentController
 		
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
 		
-		WDRez wdRez = new WDRez();
+		WDRez search = new WDRez();
 		
-		wdRez.setUserId(wdUser.getUserId());
 		
 		if(wdUser != null) 
 		{
+
 			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
 			{
+				search.setUserId(wdUser.getUserId());
+				search.setRezStatus("Y");
+				
+				WDRez wdRez = wdRezService.rezSelect(search);
+				
 				wdRez = wdRezService.rezList(wdRez);
+				
 				model.addAttribute("wdRez", wdRez);
 				model.addAttribute("wdUser",wdUser);
 			}
