@@ -6463,6 +6463,8 @@ responsive
 .e_imgbox
 {
 	padding-bottom: 30px;
+	width: 100%;
+	text-align: center;
 }
 
 .e_imgbox img

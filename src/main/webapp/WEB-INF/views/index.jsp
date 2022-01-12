@@ -31,7 +31,7 @@
        	var cookieData = document.cookie;
        	if(cookieData.indexOf("close=Yes") < 0)
        	{
-	            var option="width = 500, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
+	            var option="width = 500, height = 520, top = 100, left = 200, location = no, menubar = no, scrollbars=no, left=70, top=110";
 	            window.open("/popUpRoad", "PopUP", option);        		
        	}
        });
