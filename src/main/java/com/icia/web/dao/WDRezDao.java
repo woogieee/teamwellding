@@ -51,4 +51,14 @@ public interface WDRezDao {
 	//쿠폰까지 삽입되면, 그제서야 상태 Y로 변경
 	public int rezUpdateStatusAfC(String userId);
 	
+	//결제 취소 
+	public int rezCancelPayment(String userId);
+	
+	//결제 취소 리스트(관리자가 확인하는 리스트)
+	public List<WDRez> rezCancelSelect(WDRez wdRez);
+	
+	//결제 후 결제 취소시 포인트로 환급
+	public int rezPointReturn(String userId);
+	
+	
 }

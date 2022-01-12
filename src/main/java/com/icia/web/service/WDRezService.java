@@ -324,5 +324,51 @@ public class WDRezService {
 		return count;
 	}
 
+	public int rezCancelPayment(String userId) {
+		
+		int count = 0;
+		
+		try
+		{
+			count = wdRezDao.rezCancelPayment(userId);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] rezCancelPayment", e);
+		}
+		
+		return count;
+	}
 	
+	public List<WDRez> rezCancelSelect (WDRez wdRez)
+	{
+		List<WDRez> list = null;
+		
+		try
+		{
+			list = wdRezDao.rezCancelSelect(wdRez);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] rezCancelSelect");
+		}
+		
+		return list;
+	}
+	
+	public int rezPointReturn(String userId) {
+	
+		int count = 0;
+		
+		try
+		{
+			count = wdRezDao.rezPointReturn(userId);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] rezPointReturn", e);
+		}
+		
+		return count;
+	}
 }

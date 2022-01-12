@@ -49,26 +49,6 @@ $(document).ready(function(){
    });
 
       //적용 선택시 금액 리프레쉬
-   $("#couponSelect").on("click", function(){
-      
-      var price = $("#couponChoice").val();
-      
-      var ddong = ${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))} + parseInt(price);
-            
-      ddong = ddong.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-      
-      document.getElementById("sale").innerHTML= ddong+"원";
-      
-      //총액
-      var aftPPn = ${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)} - parseInt(price);
-      
-      $("#totalAmount").val(aftPPn);
-      
-      var aftPP = aftPPn.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-      
-      document.getElementById("totalPriceAfter").innerHTML = aftPP+"원";
-      
-   });
 
    $("#btnPay").on("click", function(){
       $("#btnPay").prop("disabled", true); //버튼비활성화

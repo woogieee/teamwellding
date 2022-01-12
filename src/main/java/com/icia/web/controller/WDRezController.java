@@ -1,6 +1,8 @@
 package com.icia.web.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -299,6 +301,42 @@ public class WDRezController {
 		}
 		
 		return ajaxResponse;		
+	}
+	
+	//결제 취소 리스트(관리자) 
+	@RequestMapping(value="/user/cancelList")
+	public String cancelPayment(ModelMap model, HttpServletRequest request, HttpServletResponse response) 
+	{
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		List<WDRez> wdRez = null;
+		WDUser wdUser = wdUserService.userSelect(cookieUserId);
+		
+		if(wdUser != null) 
+		{
+			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
+			{
+				WDRez search = new WDRez();
+				//search = wdRezService.rezSelect(wdUser.getUserId());
+				
+				search.setUserId(wdUser.getUserId());
+				
+				//유저 아이디와 Y인 상태의 조건과 결제 상태 C인 상태만 가져옴
+				wdRez = wdRezService.rezCancelSelect(search);
+					
+				model.addAttribute("wdRez", wdRez);
+				model.addAttribute("wdUser",wdUser);
+			}
+			else 
+			{
+				return "/";
+			}
+		}
+		else 
+		{
+			return "/";
+		}
+		
+		return "/user/cancelList";
 	}
 	
 }
