@@ -17,19 +17,41 @@
    text-align: center;
 }
 </style>
+<script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>
 <script>
+
+$(document).ready(function(){
+	   $("#userUpdate").colorbox({
+		      iframe:true, 
+		      innerWidth:1235,
+		      innerHeight:420,
+		      scrolling:false,
+		      onComplete:function()
+		      {
+		         $("#colorbox").css("width", "1235px");
+		         $("#colorbox").css("height", "420px");
+		         $("#colorbox").css("border-radius", "10px");
+		         
+		         $('html').css("overflow","hidden");
+		      } , 
+	   		  onClosed: function()
+			 {
+				$('html').css("overflow","auto");
+			 }  
+		});
+});
 
 function fn_search()
 {
 	document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
-	document.searchForm.action = "/user/list";
+	document.searchForm.action = "/mng/userList";
 	document.searchForm.submit();
 }
 
 function fn_paging(curPage)
 {
 	document.searchForm.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
-	document.searchForm.action = "/user/list";
+	document.searchForm.action = "/mng/userList";
 	document.searchForm.submit();
 }
 
@@ -79,10 +101,10 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
             </tr>
             </thead>
             <tbody>
-            <c:if test="${!empty list}">
+            <c:if test="${!empty userList}">
             <c:forEach items="${userList}" var="user" varStatus="status">
             <tr>
-                <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;"><a href="/user/update?userId=${user.userId}" name="userUpdate">${user.userId}</a></th>
+                <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;"><a href="/mng/MngUserUpdate?userId=${user.userId}" name="userUpdate" id="userUpdate">${user.userId}</a></th>
                 <td>${user.userName}</td>
                 <td>${user.userEmail}</td>
                 <td><c:if test="${user.status == 'Y'}">정상</c:if><c:if test="${user.status == 'N'}">정지</c:if></td>
@@ -90,7 +112,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
             </tr>
             </c:forEach>
             </c:if>
-            <c:if test="${empty list}">
+            <c:if test="${empty userList}">
             <tr>
             	<td colspan="5">등록된 회원정보가 없습니다.</td>
             </tr>
@@ -129,5 +151,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
          </div>
       </div>
    </div>
+   
+
 </body>
 </html>

@@ -54,8 +54,8 @@ public class WDEBoardService
 	      return list;
 	}
 	//이벤트 글 등록
-	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
-	public int eBoardInsert(WDEBoard wdEBoard) throws Exception
+	//@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	public int eBoardInsert(WDEBoard wdEBoard) //throws Exception
 	{
 		int count = 0;
 		
@@ -66,7 +66,7 @@ public class WDEBoardService
 	}
 	
 	//이벤트 글 수정
-	 @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+	// @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	 public int eBoardUpdate(WDEBoard wdEBoard)
 	 {
 		 int count = 0;
@@ -76,7 +76,7 @@ public class WDEBoardService
 	 }
 	
 	//이벤트 글 삭제
-	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+	//@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	public int eBoardDelete(long eBSeq) 
 	{
 		int count = 0;
