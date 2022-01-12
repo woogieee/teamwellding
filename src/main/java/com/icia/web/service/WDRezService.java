@@ -6,7 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.icia.web.dao.WDCouponDao;
 import com.icia.web.dao.WDRezDao;
 import com.icia.web.model.WDRez;
 
@@ -18,7 +21,11 @@ public class WDRezService {
 	@Autowired
 	private WDRezDao wdRezDao;
 	
+	@Autowired
+	private WDCouponDao wdCouponDao;
+	
 	//예약 테이블 값 가져오기
+	/*
 	public WDRez rezSelect(String userId) 
 	{
 		WDRez wdRez = null;
@@ -34,6 +41,21 @@ public class WDRezService {
 		
 		return wdRez;
 	}
+	*/
+	public WDRez rezSelect(WDRez wdRez) 
+	{
+		try 
+		{
+			wdRez = wdRezDao.rezSelect(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] rezSelect Exception", e);
+		}
+		
+		return wdRez;
+	}
+	
 	
 	//예약 게시물 총 수 
 	public long rezListCount()
@@ -271,21 +293,36 @@ public class WDRezService {
 	}
 	
 	
-	//카카오페이 성공 시 업데이트 문
-	public int rezUpdatePay(WDRez wdRez) 
+	//카카오페이 성공 시 업데이트 문, 쿠폰까지 넣어주고, 사용한 쿠폰도 업데이트 해야 함.
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	public int rezUpdatePay(WDRez wdRez) throws Exception
 	{
 		int count = 0;
 		
-		try 
+
+		count = wdRezDao.rezUpdatePay(wdRez);
+		
+		if(count > 0) 
 		{
-			count = wdRezDao.rezUpdatePay(wdRez);
-		}
-		catch(Exception e) 
-		{
-			logger.error("[WDRezService] rezUpdatePay Exception", e);
+			logger.debug("[여긴타니!!!!!1????]");
+			int cnt = wdCouponDao.couponStatusUpdate(wdRez.getUserId());
+			
+			if(cnt <= 0) 
+			{
+				count = 0;
+			}
+			else 
+			{
+				int x = wdRezDao.rezUpdateStatusAfC(wdRez.getUserId());
+				if( x <= 0) 
+				{
+					count = 0;
+				}
+			}
 		}
 		
 		return count;
 	}
 
+	
 }
