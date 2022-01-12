@@ -45,8 +45,6 @@ $(document).ready(function(){
       //쿠폰 코드 가져오기
       var couponCode = $("#couponChoice > option:selected").attr("value2");
       
-      alert(couponCode);
-      
       $("#couponValue").val(price);
    });
 
@@ -75,6 +73,9 @@ $(document).ready(function(){
    $("#btnPay").on("click", function(){
       $("#btnPay").prop("disabled", true); //버튼비활성화
       
+    //쿠폰 코드 가져오기
+      var couponCode = $("#couponChoice > option:selected").attr("value2");
+      
       ///////ajax
       icia.ajax.post({
          url: "/kakao/payReady",
@@ -94,9 +95,19 @@ $(document).ready(function(){
                var tId = response.data.tId;
                var pcUrl = response.data.pcUrl;
                
+               //동욱 추가
+               var couponNum = couponCode;
+               var rezNo = response.data.rezNo;
+               var rezFullPrice = response.data.rezFullPrice;
+               
                $("#orderId").val(orderId);
                $("#tId").val(tId);
                $("#pcUrl").val(pcUrl);
+               
+               //동욱 추가
+               $("#cCode").val(couponNum);
+               $("#rezNo").val(rezNo);
+               $("#rezFullPrice").val(rezFullPrice);
                
                var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=700,left=100,top=100');
                
@@ -418,7 +429,7 @@ function movePage()
 <div class="container">
    <form name="payForm" id="payForm" method="post">
       <input type="hidden" name="itemCode" id="itemCode" maxlength="32" class="form-control mb-2" placeholder="상품코드" value="${wdRez.rezNo}" />
-      <input type="hidden" name="itemName" id="itemName" maxlength="50" class="form-control mb-2" placeholder="상품명" value="${wdRez.hName}" />
+      <input type="hidden" name="itemName" id="itemName" maxlength="50" class="form-control mb-2" placeholder="상품명" value="${wdUser.userId} 의 상품" />
       <input type="hidden" name="quantity" id="quantity" maxlength="3" class="form-control mb-2" placeholder="수량" value="1" />
       <input type="hidden" name="totalAmount" id="totalAmount" maxlength="15" class="form-control mb-2" placeholder="금액" value="<c:out value='${i}' />" />     
       
@@ -427,6 +438,9 @@ function movePage()
       <input type="hidden" name="orderId" id="orderId" value="" />
       <input type="hidden" name="tId" id="tId" value="" />
       <input type="hidden" name="pcUrl" id="pcUrl" value="" />
+      <input type="hidden" name="cCode" id="cCode" value="" />	<!-- 동욱 추가 -->
+      <input type="hidden" name="rezNo" id="rezNo" value="" />
+      <input type="hidden" name="rezFullPrice" id="rezFullPrice" value="" />
    </form>
    
 </div>
