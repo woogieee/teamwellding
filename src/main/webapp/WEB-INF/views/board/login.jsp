@@ -36,7 +36,7 @@
 	<script src="../resources/js/icia.common.js"></script>
 
 <script>
-var loginModCheck;
+var loginModCheck = 1;
 $(function(){
 	
 	$("#loginbtn").on("click", function(){
@@ -160,7 +160,7 @@ function fn_loginCheck()
 	{
 		$.ajax({
 			type : "POST",
-			url : "/manager/login",
+			url : "/mng/login",
 			data : {
 				userId:$("#userId").val(),
 				userPwd:$("#userPwd").val() 
@@ -180,7 +180,7 @@ function fn_loginCheck()
 					
 					if(code == 0)
 					{
-						location.href = "/manager/userList";
+						location.href = "/mng/userList";
 					}
 					else
 					{
@@ -292,7 +292,7 @@ function classChange(id){
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button type="button" id="loginbtn" class="login100-form-btn" id="loginbtn">
+							<button type="button" id="loginbtn" class="login100-form-btn">
 								Login
 							</button>
 						</div>

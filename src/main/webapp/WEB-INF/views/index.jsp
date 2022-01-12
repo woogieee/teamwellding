@@ -12,7 +12,6 @@
 	      document.hallForm.action = "/hsdm/HallView";  
 	      document.hallForm.submit();
 	   }
-	   
 
 	   function fn_view3(bSeq)
 	   {

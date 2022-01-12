@@ -124,8 +124,6 @@ public class KakaoPayController
          json.addProperty("rezNo", itemCode);
          json.addProperty("rezFullPrice", totalAmount);
 
-         
-         
          ajaxResponse.setResponse(0, "success", json); 
          
       }
@@ -180,6 +178,7 @@ public class KakaoPayController
       
       WDRez wdRez = new WDRez();
       wdRez.setUserId(userId);
+
       wdRez.setRezNo(rezNo);
       wdRez.setRezFullPrice(rezFullPrice);
       wdRez.setcCode(cCode);
@@ -194,7 +193,6 @@ public class KakaoPayController
       }
       
       model.addAttribute("kakaoPayApprove", kakaoPayApprove);
-      
       
       return "/kakao/payResult";
    }
