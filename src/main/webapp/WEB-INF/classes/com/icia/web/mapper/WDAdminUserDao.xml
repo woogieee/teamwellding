@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icia.web.dao.WDAdminUserDao">
+
+<resultMap type="com.icia.web.model.WDAdminUser" id="admUserResultMap"> 
+	<id column="USER_ID" property="userId" />		
+	<result column="U_PWD" property="userPwd" />  
+	<result column="U_NAME" property="userName" />
+	<result column="U_NICKNAME" property="userNickname" />
+	<result column="U_NUMBER" property="userNumber" />
+	<result column="U_EMAIL" property="userEmail" />
+	<result column="U_GENDER" property="userGender" />
+	<result column="U_STATUS" property="status" />
+	<result column="REG_DATE" property="regDate" />
+	<result column="U_MARRTDATE" property="marryDate" />
+	<result column="U_POINT" property="userPoint" />
+	<result column="U_CHECK" property="uCheck" />
+
+</resultMap>
+
+<!-- 유저리스트 총 갯수 시작 -->
+<select id="wdAdmUserListCount" parameterType="com.icia.web.model.WDAdminUser" resultType="long">
+SELECT
+    COUNT(USER_ID) AS CNT
+FROM
+    WD_USER
+WHERE 1=1
+<if test='userId != null and userId != ""'>
+AND
+    USER_ID LIKE '%' || #{userName} || '%'
+</if>
+<if test='userName != null and userName != ""'>
+AND
+    U_NAME LIKE '%' || #{userName} || '%'
+</if>
+<if test='status != null and status != ""'>
+AND
+    U_STATUS = #{status}
+</if>
+</select>
+<!-- 유저리스트 총 갯수 끝 -->
+
+<!-- 유저리스트 불러오기 시작 -->
+<select id="wdAdmUserList" parameterType="com.icia.web.model.WDAdminUser" resultMap="admUserResultMap">
+SELECT
+    USER_ID,
+    U_PWD,
+    U_NAME,
+    U_NICKNAME,
+    U_NUMBER,
+    U_EMAIL,
+    U_GENDER,
+    U_STATUS,
+    REG_DATE,
+    U_MARRYDATE,
+    U_POINT,
+    U_CHECK
+FROM (SELECT
+            ROWNUM AS RNUM,
+            USER_ID,
+            U_PWD,
+            U_NAME,
+            U_NICKNAME,
+            U_NUMBER,
+            U_EMAIL,
+            U_GENDER,
+            U_STATUS,
+            REG_DATE,
+            U_MARRYDATE,
+            U_POINT,
+            U_CHECK
+        FROM (SELECT
+                    USER_ID,
+                    NVL(U_PWD, '') AS U_PWD,
+                    NVL(U_NAME, '') AS U_NAME,
+                    NVL(U_NICKNAME, '') AS U_NICKNAME,
+                    NVL(U_NUMBER, '') AS U_NUMBER,
+                    NVL(U_EMAIL, '') AS U_EMAIL,
+                    NVL(U_GENDER, '') AS U_GENDER,
+                    NVL(U_STATUS, '') AS U_STATUS,
+                    NVL(REG_DATE, '') AS REG_DATE,
+                    NVL(U_MARRYDATE, '') AS U_MARRYDATE,
+                    NVL(TO_CHAR(U_POINT, 0), '') AS U_POINT,
+                    NVL(TO_CHAR(U_CHECK, 0), '') AS U_CHECK
+                FROM
+                    WD_USER
+                WHERE 1=1
+                <if test='userId != null and userId != ""'>
+                AND
+                    USER_ID LIKE '%' || #{userName} || '%'
+                </if>
+                <if test='userName != null and userName != ""'>
+                AND
+                    U_NAME LIKE '%' || #{userName} || '%'
+                </if>
+                <if test='status != null and status != ""'>
+                AND
+                    U_STATUS = #{status}
+                </if>
+                ORDER BY REG_DATE DESC))
+WHERE
+    RNUM <![CDATA[>=]]> #{startRow}
+AND
+    RNUM <![CDATA[<=]]> #{endRow}
+</select>
+<!-- 유저리스트 끝 -->
+
+<!-- 사용자정보 수정 시작 -->
+<update id="wdAdmUserUpdate" parameterType="com.icia.web.model.WDAdminUser">
+UPDATE WD_USER
+SET
+    U_PWD = #{userPwd},
+    U_NAME = #{userName},
+    U_NICKNAME = #{userNickname},
+    U_STATUS = #{status}
+WHERE
+    USER_ID = #{userId}
+</update>
+
+</mapper>

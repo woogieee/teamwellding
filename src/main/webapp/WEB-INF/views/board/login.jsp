@@ -160,7 +160,7 @@ function fn_loginCheck()
 	{
 		$.ajax({
 			type : "POST",
-			url : "/manager/login",
+			url : "/mng/login",
 			data : {
 				userId:$("#userId").val(),
 				userPwd:$("#userPwd").val() 
@@ -180,7 +180,7 @@ function fn_loginCheck()
 					
 					if(code == 0)
 					{
-						location.href = "/manager/userList";
+						location.href = "/mng/userList";
 					}
 					else
 					{
