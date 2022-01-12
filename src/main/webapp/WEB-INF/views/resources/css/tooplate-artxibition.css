@@ -4940,12 +4940,12 @@ responsive
 .shows-events-scheduleW {
   margin-top: 0px;
   padding-bottom: 0px;
-  background-color: #F0F9F8;
+  
 }
 
 #divB
 {
-	background-color: #F0F9F8;
+	
 }
 
 .containerfW
@@ -5359,18 +5359,20 @@ responsive
 
 .containerfW .nickInput
 {
-	background-color: #91DDDB;
-	color: #fff;
-	font-weight: bold;
-	font-size: 20px;
+	background-color: #fff;
+	color:rgba(40,30,25,1);
+	
+	
+	font-family: 'OTWelcomeRA';
 }
 
 .containerfW .emailInput
 {
-	background-color: #91DDDB;
-	color: #fff;
-	font-weight: bold;
-	font-size: 20px;
+	background-color: #fff;
+	color: rgba(40,30,25,1);
+	
+	font-family: 'OTWelcomeRA';
+	
 }
 
 .page-heading-shows-eventsAb

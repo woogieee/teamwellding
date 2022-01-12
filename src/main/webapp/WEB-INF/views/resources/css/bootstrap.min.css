@@ -1938,7 +1938,7 @@ pre code {
 .form-control {
 	display: block;
 	width: 100%;
-	height: calc(1.5em + .75rem + 2px);
+	height: calc(1.5em + .75rem + 5px);
 	padding: .375rem .75rem;
 	font-size: 1rem;
 	font-weight: 400;
@@ -2084,7 +2084,8 @@ select.form-control[multiple], select.form-control[size] {
 }
 
 textarea.form-control {
-	height: auto
+	height: auto;
+	width: 100%;
 }
 
 .form-group {

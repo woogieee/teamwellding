@@ -295,7 +295,8 @@ function commentUpdate(cSeq,tagId){
 
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12">
+		
+			<div class="col-lg-10">
 				<table class="table">
 					<thead>
 						<tr class="dongdong2">
@@ -333,7 +334,6 @@ function commentUpdate(cSeq,tagId){
 											[첨부파일]&nbsp; ${wdFBoard.wdBoardFile.fileOrgName}
 										</a>
 									<div>
-
 							</td>
 						</tr>
 					</c:if>
@@ -344,7 +344,6 @@ function commentUpdate(cSeq,tagId){
 								</div>
 							</td>
 						</tr>
-						
 					</tbody>
 
 					<form name="commentForm" id="commentForm" method="post">
@@ -368,10 +367,8 @@ function commentUpdate(cSeq,tagId){
 
 										<td style="border-top:none; position:relative; top: -18px; right:10px;">
 											<c:if test="${cookieUserId eq comment.userId }">
-												<button type="button" class="btn btn-secondary btnCommentD"
-													onclick="commentDelete(${comment.commentSeq})" style="margin-rignt:10px;">삭제</button>
-												<button type="button" class="btn btn-secondary btnCommentU"
-													onclick="commentUpdate(${comment.commentSeq},'update${comment.commentSeq }')">수정</button>
+												<button type="button" class="btn btn-secondary btnCommentD" onclick="commentDelete(${comment.commentSeq})" style="margin-rignt:10px;">삭제</button>
+												<button type="button" class="btn btn-secondary btnCommentU" onclick="commentUpdate(${comment.commentSeq},'update${comment.commentSeq }')">수정</button>
 											</c:if>
 										</td>
 									</tr>
@@ -405,6 +402,7 @@ function commentUpdate(cSeq,tagId){
 					</tfoot>
 				</table>
 			</div>
+			
 		</div>
 	</div>
 

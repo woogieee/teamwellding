@@ -160,8 +160,10 @@
 			<div class="col-lg-12 bcline">
 				
 				<div class="row">
+					
 					<div class="col-lg-1">
 					</div>
+					
 					<div class="col-lg-10">
 						<h2 style="font-family: 'Bitter', serif; margin-top: 50px; padding-left: 10px;">My Page</h2>
 						<nav class="bcItem">
@@ -184,6 +186,7 @@
 					</div>
 					<div class="col-lg-1">
 					</div>
+					
 					
 
 	<div class="join_form">
