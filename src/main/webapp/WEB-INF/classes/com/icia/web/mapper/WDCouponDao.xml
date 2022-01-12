@@ -99,4 +99,30 @@ AND
     USER_ID = #{value}
 </update>
 <!-- 결제 취소 요청이 승인되고, 취소승인된 해당 쿠폰을 다시 사용가능하게 변경 종료 -->
+
+
+<!-- 결제 완료된 내역에서 결제중 쿠폰 정보를 가져오기 시작 -->
+<select id="couponSelectPayOk" parameterType="hashmap" resultMap="WDCouponResultMap">
+SELECT
+    C.USER_ID AS USER_ID,
+    NVL(C.C_CODE, '') AS C_CODE,
+    NVL(C.C_STATUS, 'N') AS C_STATUS,
+    NVL(I.C_NAME, '') AS C_NAME,
+    NVL(I.C_PRICE, 0) AS C_PRICE
+FROM
+    WD_COUPON C, WD_REZ R, WD_COUPON_INFO I
+WHERE
+    C.C_CODE = R.C_CODE
+AND
+    C.C_CODE = I.C_CODE
+AND
+    C.USER_ID = R.USER_ID
+AND
+    R.REZ_STATUS = 'Y'
+AND
+    R.USER_ID = #{userId}
+AND
+    R.REZ_NO = #{rezNo}
+</select>
+<!-- 결제 완료된 내역에서 결제중 쿠폰 정보를 가져오기 시작 -->
 </mapper>
