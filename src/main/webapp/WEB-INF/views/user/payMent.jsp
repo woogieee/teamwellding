@@ -38,10 +38,8 @@
 
 //카카오페이 추가
 $(document).ready(function(){
-   $("#couponChoice").change(function(){         
-      //쿠폰 가격
-      var price = $("#couponChoice").val();
-	  
+   $("#couponChoice").change(function(){
+     
       //쿠폰 가격
       var price = $("#couponChoice").val();
       //쿠폰 코드 가져오기
@@ -53,9 +51,6 @@ $(document).ready(function(){
    });
 
       //적용 선택시 금액 리프레쉬
-
-		//적용 선택시 금액 리프레쉬
-
    $("#couponSelect").on("click", function(){
       
       var price = $("#couponChoice").val();
@@ -74,14 +69,14 @@ $(document).ready(function(){
       var aftPP = aftPPn.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
       
       document.getElementById("totalPriceAfter").innerHTML = aftPP+"원";
-
-   });
-   
       
    });
-	
+   
    $("#btnPay").on("click", function(){
       $("#btnPay").prop("disabled", true); //버튼비활성화
+      
+    //쿠폰 코드 가져오기
+      var couponCode = $("#couponChoice > option:selected").attr("value2");
       
       ///////ajax
       icia.ajax.post({
@@ -102,9 +97,15 @@ $(document).ready(function(){
                var tId = response.data.tId;
                var pcUrl = response.data.pcUrl;
                
+               //동욱 추가
+               var couponNum = couponCode;
+               
                $("#orderId").val(orderId);
                $("#tId").val(tId);
                $("#pcUrl").val(pcUrl);
+               
+               //동욱 추가
+               $("#cCode").val(couponNum);
                
                var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=700,left=100,top=100');
                
@@ -124,17 +125,12 @@ $(document).ready(function(){
          }
       });
    });
-
+});
 
 function movePage()
 {
    location.href = "/user/payComplete";
 }
-
-//쿠폰선택시 인풋박스에 쿠폰 금액 적용
-$(document).ready(function(){
-
-});
 
 </script>  
 </head>
@@ -350,52 +346,28 @@ $(document).ready(function(){
 </c:if>
 
                         </table>
-		               </div>
-		               <!-- 경계선 종료 -->
-		               <div class="col-lg-1"></div>
-		               <div class="col-lg-1"></div>
-		               <div class="col-lg-10">
-		               <div class="col-lg-10" style="text-align: right; max-width:100%;">
-		               
-		               <!-- 쿠폰 가져오기 -->
-		               	쿠폰 선택
-		               <select name="couponChoice" id="couponChoice">
-		                  <option value="0">선택</option>
-		                  
-		               <c:forEach var="coupon" items="${couponList}" varStatus="status">
-		                  <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
-		               </c:forEach>
-		               </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		               	할인금액 <input type="text" name="couponValue" id="couponValue" value="">
-		
-		               <button name="couponSelect" id="couponSelect">적용</button>
-		
-		               </div>
-               
-               </div>
-               <!-- 경계선 종료 -->
-               <div class="col-lg-1"></div>
-            
-               <div class="col-lg-1"></div>
-               <div class="col-lg-10">
-               <div class="col-lg-10">
-               
-               <!-- 쿠폰 가져오기 -->
-               <select name="couponChoice" id="couponChoice">
-                  <option value="0">쿠폰 선택</option>
-                  
-               <c:forEach var="coupon" items="${couponList}" varStatus="status">
-                  <option value="${coupon.cPrice}">${coupon.cName}</option>
-               </c:forEach>
-                              
-               </select>
-               
-               할인금액 <input type="text" name="couponValue" id="couponValue" value="">
-               
-               <button name="couponSelect" id="couponSelect">적용</button>
-               
-               
-               </div>
+                     </div>
+                     <!-- 경계선 종료 -->
+                     <div class="col-lg-1"></div>
+                     <div class="col-lg-1"></div>
+                     <div class="col-lg-10">
+                     <div class="col-lg-10" style="text-align: right; max-width:100%;">
+                     
+                     <!-- 쿠폰 가져오기 -->
+                        쿠폰 선택
+                     <select name="couponChoice" id="couponChoice">
+                        <option value="0">선택</option>
+                        
+                     <c:forEach var="coupon" items="${couponList}" varStatus="status">
+                        <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
+                     </c:forEach>
+                     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        할인금액 <input type="text" name="couponValue" id="couponValue" value="">
+      
+                     <button name="couponSelect" id="couponSelect">적용</button>
+      
+                     </div>
+
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
                   <div class="rez_sum">
                      <dl class="sumbox1">
@@ -427,7 +399,6 @@ $(document).ready(function(){
                            </span>
                         </h5>
                      </div>
-
                      <!-- 총 주문금액 변수 i에 넣어서  totalAmount 에 넣어주기-->
                      <fmt:parseNumber var="i" type="number" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)}" />
                      <!-- 카카오 페이 버튼 추가 -->
@@ -456,19 +427,16 @@ $(document).ready(function(){
 <div class="container">
    <form name="payForm" id="payForm" method="post">
       <input type="hidden" name="itemCode" id="itemCode" maxlength="32" class="form-control mb-2" placeholder="상품코드" value="${wdRez.rezNo}" />
-      <input type="hidden" name="itemName" id="itemName" maxlength="50" class="form-control mb-2" placeholder="상품명" value="${wdRez.hName}" />
+      <input type="hidden" name="itemName" id="itemName" maxlength="50" class="form-control mb-2" placeholder="상품명" value="${wdUser.userId} 의 상품" />
       <input type="hidden" name="quantity" id="quantity" maxlength="3" class="form-control mb-2" placeholder="수량" value="1" />
-
-      <input type="hidden" name="totalAmount" id="totalAmount" maxlength="15" class="form-control mb-2" placeholder="금액" value="" />
-
       <input type="hidden" name="totalAmount" id="totalAmount" maxlength="15" class="form-control mb-2" placeholder="금액" value="<c:out value='${i}' />" />     
-
       
    </form>
    <form name="kakaoForm" id="kakaoForm" method="post" target="kakaoPopUp" action="/kakao/payPopUp">
       <input type="hidden" name="orderId" id="orderId" value="" />
       <input type="hidden" name="tId" id="tId" value="" />
       <input type="hidden" name="pcUrl" id="pcUrl" value="" />
+      <input type="hidden" name="cCode" id="cCode" value="" />   <!-- 동욱 추가 -->
    </form>
    
 </div>

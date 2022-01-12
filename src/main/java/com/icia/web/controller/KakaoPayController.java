@@ -57,10 +57,17 @@ public class KakaoPayController
       String tId = HttpUtil.get(request, "tId", "");
       String userId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
       
+      //동욱 추가
+      String cCode = HttpUtil.get(request, "cCode", "");
+      
+      
       model.addAttribute("pcUrl", pcUrl);
       model.addAttribute("orderId", orderId);
       model.addAttribute("tId", tId);
       model.addAttribute("userId", userId);
+      
+      //동욱 추가
+      model.addAttribute("cCode", cCode);
       
       return "/kakao/payPopUp";
    }
@@ -75,6 +82,7 @@ public class KakaoPayController
       String userId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
       String itemCode = HttpUtil.get(request, "itemCode", "");
       String itemName = HttpUtil.get(request, "itemName", "");
+      String cCode = HttpUtil.get(request, "cCode", "");
       int quantity = HttpUtil.get(request, "quantity", (int)0);
       int totalAmount = HttpUtil.get(request, "totalAmount", (int)0);
       int taxFreeAmount = HttpUtil.get(request, "taxFreeAmount", (int)0);
@@ -107,20 +115,29 @@ public class KakaoPayController
          json.addProperty("mobileUrl", kakaoPayReady.getNext_redirect_mobile_url());
          json.addProperty("pcUrl", kakaoPayReady.getNext_redirect_pc_url());
          
+         //동욱 추가
+         json.addProperty("cCode", cCode);
+         /*동욱 수정
          WDRez wdRez = new WDRez();
          wdRez.setUserId(userId);
          wdRez.setRezNo(itemCode);
          wdRez.setRezFullPrice(totalAmount);
          
+         wdRez.setcCode(cCode);
          
-         if( wdRezService.rezUpdatePay(wdRez) > 0) 
+         
+         if(wdRezService.rezUpdatePay(wdRez) > 0) 
          {
-        	 ajaxResponse.setResponse(0, "success", json);        	 
+            ajaxResponse.setResponse(0, "success", json);            
          }
          else 
          {
-        	 ajaxResponse.setResponse(-1, "fail", null);
+            ajaxResponse.setResponse(-1, "fail", null);
          }
+         
+         */
+         
+         ajaxResponse.setResponse(0, "success", json); 
          
       }
       else
@@ -151,6 +168,12 @@ public class KakaoPayController
       String tId = HttpUtil.get(request, "tId", "");
       String pgToken = HttpUtil.get(request, "pgToken", "");
       
+      //동욱 추가
+      String itemCode = HttpUtil.get(request, "itemCode", "");
+      String cCode = HttpUtil.get(request, "cCode", "");
+      int totalAmount = HttpUtil.get(request,  "totalAmount", (int)0);
+      //여기까지
+      
       KakaoPayOrder kakaoPayOrder = new KakaoPayOrder();
       
       kakaoPayOrder.setPartnerOrderId(orderId);
@@ -159,7 +182,19 @@ public class KakaoPayController
       kakaoPayOrder.setPgToken(pgToken);
       
       kakaoPayApprove = kakaoPayService.kakaoPayApprove(kakaoPayOrder);
-            
+      
+      //동욱 추가
+      WDRez wdRez = new WDRez();
+      wdRez.setUserId(userId);
+      wdRez.setRezNo(itemCode);
+      wdRez.setRezFullPrice(totalAmount);
+      wdRez.setcCode(cCode);
+      if(wdRezService.rezUpdatePay(wdRez) > 0) 
+      {
+         System.out.println("성공일까");        
+      }
+      //동우 추가 끝
+      
       model.addAttribute("kakaoPayApprove", kakaoPayApprove);
       
       return "/kakao/payResult";
