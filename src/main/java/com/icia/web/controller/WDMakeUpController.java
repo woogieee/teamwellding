@@ -283,10 +283,12 @@ public class WDMakeUpController
 				   //그럴 경우 홀 코드가 비어있다면 업데이트 해줘야 함.
 				   //홀 코드 존재하는지 체크
 				   WDRez search = new WDRez();
-				   
-				   search = wdRezService.rezSelect(wdUser.getUserId());
-				   
-				   wdRez = wdRezService.rezList(search);
+				   search.setUserId(wdUser.getUserId());
+				   search.setRezStatus("N");
+				   				   
+				   //search = wdRezService.rezSelect(wdUser.getUserId());
+				   wdRez = wdRezService.rezSelect(search);
+				   wdRez = wdRezService.rezList(wdRez);
 				   
 				   if(wdRez != null) 
 				   {

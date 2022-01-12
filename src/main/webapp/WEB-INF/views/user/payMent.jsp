@@ -39,18 +39,18 @@
 //카카오페이 추가
 $(document).ready(function(){
    $("#couponChoice").change(function(){
-	  
+
       //쿠폰 가격
       var price = $("#couponChoice").val();
       //쿠폰 코드 가져오기
       var couponCode = $("#couponChoice > option:selected").attr("value2");
       
-      alert(couponCode);
+
       
       $("#couponValue").val(price);
    });
 
-		//적용 선택시 금액 리프레쉬
+      //적용 선택시 금액 리프레쉬
    $("#couponSelect").on("click", function(){
       
       var price = $("#couponChoice").val();
@@ -71,9 +71,12 @@ $(document).ready(function(){
       document.getElementById("totalPriceAfter").innerHTML = aftPP+"원";
       
    });
-	
+
    $("#btnPay").on("click", function(){
       $("#btnPay").prop("disabled", true); //버튼비활성화
+      
+    //쿠폰 코드 가져오기
+      var couponCode = $("#couponChoice > option:selected").attr("value2");
       
       ///////ajax
       icia.ajax.post({
@@ -94,9 +97,19 @@ $(document).ready(function(){
                var tId = response.data.tId;
                var pcUrl = response.data.pcUrl;
                
+               //동욱 추가
+               var couponNum = couponCode;
+               var rezNo = response.data.rezNo;
+               var rezFullPrice = response.data.rezFullPrice;
+               
                $("#orderId").val(orderId);
                $("#tId").val(tId);
                $("#pcUrl").val(pcUrl);
+               
+               //동욱 추가
+               $("#cCode").val(couponNum);
+               $("#rezNo").val(rezNo);
+               $("#rezFullPrice").val(rezFullPrice);
                
                var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=700,left=100,top=100');
                
@@ -337,27 +350,29 @@ function movePage()
 </c:if>
 
                         </table>
-		               </div>
-		               <!-- 경계선 종료 -->
-		               <div class="col-lg-1"></div>
-		               <div class="col-lg-1"></div>
-		               <div class="col-lg-10">
-		               <div class="col-lg-10" style="text-align: right; max-width:100%;">
-		               
-		               <!-- 쿠폰 가져오기 -->
-		               	쿠폰 선택
-		               <select name="couponChoice" id="couponChoice">
-		                  <option value="0">선택</option>
-		                  
-		               <c:forEach var="coupon" items="${couponList}" varStatus="status">
-		                  <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
-		               </c:forEach>
-		               </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		               	할인금액 <input type="text" name="couponValue" id="couponValue" value="">
-		
-		               <button name="couponSelect" id="couponSelect">적용</button>
-		
-		               </div>
+
+                     </div>
+                     <!-- 경계선 종료 -->
+                     <div class="col-lg-1"></div>
+                     <div class="col-lg-1"></div>
+                     <div class="col-lg-10">
+                     <div class="col-lg-10" style="text-align: right; max-width:100%;">
+                     
+                     <!-- 쿠폰 가져오기 -->
+                        쿠폰 선택
+                     <select name="couponChoice" id="couponChoice">
+                        <option value="0">선택</option>
+                        
+                     <c:forEach var="coupon" items="${couponList}" varStatus="status">
+                        <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
+                     </c:forEach>
+                     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        할인금액 <input type="text" name="couponValue" id="couponValue" value="">
+      
+                     <button name="couponSelect" id="couponSelect">적용</button>
+      
+                     </div>
+
 
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
                   <div class="rez_sum">
@@ -418,7 +433,7 @@ function movePage()
 <div class="container">
    <form name="payForm" id="payForm" method="post">
       <input type="hidden" name="itemCode" id="itemCode" maxlength="32" class="form-control mb-2" placeholder="상품코드" value="${wdRez.rezNo}" />
-      <input type="hidden" name="itemName" id="itemName" maxlength="50" class="form-control mb-2" placeholder="상품명" value="${wdRez.hName}" />
+      <input type="hidden" name="itemName" id="itemName" maxlength="50" class="form-control mb-2" placeholder="상품명" value="${wdUser.userId} 의 상품" />
       <input type="hidden" name="quantity" id="quantity" maxlength="3" class="form-control mb-2" placeholder="수량" value="1" />
       <input type="hidden" name="totalAmount" id="totalAmount" maxlength="15" class="form-control mb-2" placeholder="금액" value="<c:out value='${i}' />" />     
       
@@ -427,6 +442,9 @@ function movePage()
       <input type="hidden" name="orderId" id="orderId" value="" />
       <input type="hidden" name="tId" id="tId" value="" />
       <input type="hidden" name="pcUrl" id="pcUrl" value="" />
+      <input type="hidden" name="cCode" id="cCode" value="" />   <!-- 동욱 추가 -->
+      <input type="hidden" name="rezNo" id="rezNo" value="" />
+      <input type="hidden" name="rezFullPrice" id="rezFullPrice" value="" />
    </form>
    
 </div>
