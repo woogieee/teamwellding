@@ -72,32 +72,44 @@ public class WDNBoardService
 	}
 	
 	//공지사항 글쓰기 시작
-	 @Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
 	 public int nBoardInsert(WDNBoard wdNBoard) throws Exception
 	 {
 		 int count = 0;
-		 
+		 try {
 		 count = wdNBoardDao.nBoardInsert(wdNBoard);
+		 	 }
+		 catch(Exception e)
+		 {
+			 logger.error("[WDNBoardService] nBoardInsert Exception", e);
+		 }
 		 return count;
 	 }
 	 
-	 //공지사항 글쓰기 수정
-	 @Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	 //공지사항 글쓰기 수정 
 	 public int nBoardUpdate(WDNBoard wdNBoard) 
 	 {
 		 int count = 0;
+		 try {
 		 count = wdNBoardDao.nBoardUpdate(wdNBoard);
-		 
+		 	 }
+		 catch(Exception e)
+		 {
+			 logger.error("[WDNBoardService] nBoardUpdate Exception", e);
+		 }
 		 return count;
 	 }
 	 
 	 //공지사항 글쓰기 삭제
-	 @Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
 	 public int nBoardDelete(long bSeq)
 	 {
 		 int count = 0;
-		 
+		 try {
 		 WDNBoard wdNBoard = wdNBoardDao.nBoardSelect(bSeq);
+		 	 }
+		 catch(Exception e)
+		 {
+			 logger.error("[WDNBoardService] nBoardDelete Exception", e);
+		 }
 		 return count;
 	 }
 	
