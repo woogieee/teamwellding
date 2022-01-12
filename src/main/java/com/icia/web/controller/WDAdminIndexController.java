@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.icia.common.util.StringUtil;
@@ -132,7 +133,7 @@ public class WDAdminIndexController
 			}
 			else if(StringUtil.equals(searchType, "2"))
 			{
-				wdAdminUser.setUserId(searchValue);
+				wdAdminUser.setUserName(searchValue);
 			}
 			else
 			{
@@ -162,6 +163,7 @@ public class WDAdminIndexController
 			
 			//유저 리스트 가져옴 (검색했으면 검색된 값을만)
 			userList = wdAdminUserService.wdAdmUserList(wdAdminUser);
+			//System.out.println("이거다 : "+userList.get(0).getUserName());
 		}
 		//list객체에 넣을거! 모델객체사용
 		model.addAttribute("userList", userList);
@@ -175,4 +177,78 @@ public class WDAdminIndexController
 		
 		return "/mng/userList";
 	}
+	
+	@RequestMapping(value="/mng/MngUserUpdate")
+	public String userUpdate(Model model,HttpServletRequest request, HttpServletResponse response) {
+		
+		//jps에 뿌려야하니까 Model 매개변수를 받음. 화면에서 보면 유저아이디만 처리하므로 유저아이디만 가져옴
+		String userId = HttpUtil.get(request, "userId");
+		
+		if(!StringUtil.isEmpty(userId))
+		{
+			//user정보조회
+			WDAdminUser wdAdminUser = wdAdminUserService.wdAdminUserSelect(userId);
+			
+			if(wdAdminUser != null)
+			{
+				//널이 아니면 써야하니까
+				model.addAttribute("wdAdminUser", wdAdminUser); //앞은 jsp에 사용할 이름, 뒤는 메소드내에 있는 메소드변수명
+			}
+		}
+		
+		return "/mng/MngUserUpdate";
+	}
+	
+	//회원정보 수정
+		@RequestMapping(value="/mng/userupdateProc", method=RequestMethod.POST)
+		@ResponseBody
+		public Response<Object> updateProc(HttpServletRequest request, HttpServletResponse response)
+		{
+			Response<Object> res = new Response<Object>();
+			
+			//관리가가 새로 입력한 정보들 받기
+			String userId = HttpUtil.get(request, "userId");
+			String userPwd = HttpUtil.get(request, "userPwd");
+			String userName = HttpUtil.get(request, "userName");
+			String userEmail = HttpUtil.get(request, "userEmail");
+			String status = HttpUtil.get(request, "status");
+			
+			if(!StringUtil.isEmpty(userId) && !StringUtil.isEmpty(userPwd) && !StringUtil.isEmpty(userName) && 
+					!StringUtil.isEmpty(userEmail) && !StringUtil.isEmpty(status))
+			{
+				//500번 오류 막기위한 처리 (주소치고오는 애들 막아주기)
+				WDAdminUser wdAdminUser = wdAdminUserService.wdAdminUserSelect(userId);
+				
+				if(wdAdminUser != null)
+				{
+					//원래 있던 유저의 정보를 새로받은걸로 값 넣어주기
+					wdAdminUser.setUserPwd(userPwd);
+					wdAdminUser.setUserName(userName);
+					wdAdminUser.setUserEmail(userEmail);
+					wdAdminUser.setStatus(status);
+					
+					if(wdAdminUserService.wdAdmUserUpdate(wdAdminUser) > 0)
+					{
+						//성공
+						res.setResponse(0, "Success");
+					}
+					else
+					{
+						res.setResponse(-1, "Fail");
+					}
+				}
+				else
+				{
+					//정보가 없음
+					res.setResponse(404, "Not Found");
+				}
+			}
+			else
+			{
+				//값이 하나라도 없으면 파라미터 오류
+				res.setResponse(400, "Bad Request");
+			}
+			
+			return res;
+		}
 }

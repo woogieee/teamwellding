@@ -53,8 +53,7 @@ SELECT
     U_STATUS,
     REG_DATE,
     U_MARRYDATE,
-    U_POINT,
-    U_CHECK
+    U_POINT
 FROM (SELECT
             ROWNUM AS RNUM,
             USER_ID,
@@ -67,8 +66,7 @@ FROM (SELECT
             U_STATUS,
             REG_DATE,
             U_MARRYDATE,
-            U_POINT,
-            U_CHECK
+            U_POINT
         FROM (SELECT
                     USER_ID,
                     NVL(U_PWD, '') AS U_PWD,
@@ -80,8 +78,7 @@ FROM (SELECT
                     NVL(U_STATUS, '') AS U_STATUS,
                     NVL(REG_DATE, '') AS REG_DATE,
                     NVL(U_MARRYDATE, '') AS U_MARRYDATE,
-                    NVL(TO_CHAR(U_POINT, 0), '') AS U_POINT,
-                    NVL(TO_CHAR(U_CHECK, 0), '') AS U_CHECK
+                    NVL(U_POINT, 0) AS U_POINT
                 FROM
                     WD_USER
                 WHERE 1=1

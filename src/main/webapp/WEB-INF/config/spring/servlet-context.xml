@@ -113,6 +113,8 @@
 
 						<value>/mng/login</value>
 						<value>/mng/userList</value>
+						<value>/mng/MngUserUpdate</value>
+						<value>/mng/userupdateProc</value>
 
             		</list>
             	</constructor-arg>
