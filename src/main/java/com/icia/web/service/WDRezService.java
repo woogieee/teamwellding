@@ -325,4 +325,20 @@ public class WDRezService {
 	}
 
 	
+	//결제 리스트 페이지
+	public List<WDRez> rezSelectList(String userId)
+	{
+		List<WDRez> list = null;
+		
+		try 
+		{
+			list = wdRezDao.rezSelectList(userId);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] rezSelectList Exception", e);
+		}
+		
+		return list;
+	}
 }

@@ -11,14 +11,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital@0;1&family=The+Nautigal&display=swap" rel="stylesheet">
 <script>
 $(document).ready(function() {
-	$("#btnComplete").on("click", function() {
-		
-		location.href = "/user/payList";
-	});
-	$("#btnMyPage").on("click", function() {
-		
-		location.href = "/user/wishlist";
-	});
+
 });
 </script>
 </head>
@@ -45,10 +38,20 @@ $(document).ready(function() {
 					<div class="col-lg-1">
 					</div>
 					<div class="col-lg-10">
-						<h2 style="font-family: 'Bitter'; margin-top: 50px; padding-left: 10px;">주문/결제</h2>
+						<h2 style="font-family: 'Bitter'; margin-top: 50px; padding-left: 10px;">결제내역</h2>
 						<nav class="bcItem">
 							<ol class="breadcrumb bc" >
 								<li class="breadcrumb-item active">
+									<a href="/user/wishlist">장바구니</a>
+								</li>
+								<li class="breadcrumb-item" >
+									<a style="font-size: large; font-weight: bold;">결제내역</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/modify">회원정보수정</a>
 								</li>
 							</ol>
 						</nav>
@@ -66,17 +69,10 @@ $(document).ready(function() {
 					
 						
                         <table class="table tableWish">
-							<tr>
-								<div class="rez_sta">
-									<h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
-									<h5 class="rez_number">예약번호&nbsp;&nbsp; <span>${wdRez.rezNo}</span></h5>
-								</div>
-							</tr>
                             <tr style="border-top: 3px solid #444;">
-                                <th>이미지</th>
-                                <th>상품정보</th>
-                                <th>참고사항</th>
-                                <th>총가격</th>
+                                <th>예약번호</th>
+                                <th>예약날짜</th>
+                                <th>금액</th>
                             </tr>
 
                         </table>
@@ -91,9 +87,25 @@ $(document).ready(function() {
 					<!-- 쿠폰 가져오기 -->
 					<div class="col-lg-10">
 					</div>
-					<div style="text-align: center;">
-					결제가 완료 되었습니다.
-					</div>
+                    <tbody>
+                        <c:if test="${!empty list}">
+                           <c:forEach var="hiBoard" items="${list}" varStatus="status">   
+                                <tr>
+                                    <td style="text-align:center">
+                                        <a href="javascript:void(0)" onclick="fn_view(${hiBoard.bSeq})">
+                                            <c:out value="${hiBoard.bSeq}" />
+                                        </a>
+                                    </td>
+                                   	<td style="text-align:left">
+                                   		<a href="javascript:void(0)" onclick="fn_view(${hiBoard.bSeq})">${hiBoard.bTitle}</a>
+                                   	</td>
+                                   	<td style="text-align:center">${hiBoard.adminId}</td>
+                                    <td style="text-align:center">${hiBoard.regDate}</td>
+                                    <td style="text-align:center"><fmt:formatNumber type="number" maxFractionDigits="3" value="${hiBoard.bReadCnt}" /></td>
+                                </tr>
+                           </c:forEach>
+                        </c:if>      
+                    </tbody>
 						<div class="rez_sum">
 							<button type="button" id="btnComplete" class="btn btn-primary" title="결제내역보러가기" style="border: solid 1px black; background:white; position:relative; top:-18px; color:black;">결제내역 보러가기</button>
 							<button type="button" id="btnMyPage" class="btn btn-primary" title="마이페이지" style="border: solid 1px black; background:white; position:relative; top:-18px; color:black;">마이페이지</button>

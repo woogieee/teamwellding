@@ -104,7 +104,7 @@ UPDATE WD_NBOARD
 <insert id="nBoardInsert" parameterType="com.icia.web.model.WDNBoard">
  <!-- 이벤트 글 시퀀스 생성 시작 -->
     <selectKey resultType="long" keyProperty="bSeq" order="BEFORE">
-    SELECT SEQ_B_SEQ.NEXTVAL FROM DUAL
+    SELECT WD_NBOARD_SEQ.NEXTVAL FROM DUAL
     </selectKey>
     <!-- 이벤트 글 시퀀스  생성 끝 -->
     
