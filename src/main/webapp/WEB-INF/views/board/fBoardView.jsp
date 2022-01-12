@@ -289,35 +289,29 @@ function commentUpdate(cSeq,tagId){
 	</div>
 
 	<h2 class="e_title">Know-How</h2>
-	<p style="text-align: center; margin-bottom: 20px;">여러분들의 노하우를
-		공유해보세요</p>
+	<p style="text-align: center; margin-bottom: 20px;">여러분들의 노하우를 공유해보세요</p>
 	<br />
 
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
+				<div class="row">
 				<table class="table">
 					<thead>
 						<tr class="dongdong2">
-							<td
-								style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600;">
+							<td style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600;">
 								<c:out value="${wdFBoard.bTitle}" />
 							</td>
-							<td
-								style="width: 40%; padding-right: 25px; color: #444; font-size: 16px; text-align: right;">
+							<td style="width: 40%; padding-right: 25px; color: #444; font-size: 16px; text-align: right;">
 								${wdFBoard.regDate}</td>
 						</tr>
 						<tr style="height: 46px;">
-							<td
-								style="width: 60%; padding-left: 20px; font-size: 15px; color: #666;">
+							<td style="width: 60%; padding-left: 20px; font-size: 15px; color: #666;">
 								<c:out value="${wdFBoard.userNickname}" />
 							</td>
-							<td
-								style="width: 40%; padding-right: 20px; font-size: 15px; color: #666;"
+							<td style="width: 40%; padding-right: 20px; font-size: 15px; color: #666;"
 								class="text-right">
-									조회 :
-									<fmt:formatNumber type="number" maxFractionDigits="3"
-										value="${wdFBoard.bReadCnt}" />
+									조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdFBoard.bReadCnt}" />
 							</td>
 						</tr>
 					</thead>
@@ -404,6 +398,7 @@ function commentUpdate(cSeq,tagId){
 						</tr>
 					</tfoot>
 				</table>
+			</div>
 			</div>
 		</div>
 	</div>
