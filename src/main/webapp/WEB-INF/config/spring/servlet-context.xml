@@ -111,7 +111,8 @@
 	                    <value>/user/payComplete</value>		
 	                    
 
-						<value>/board/testtest</value>
+						<value>/mng/login</value>
+						<value>/mng/userList</value>
 
             		</list>
             	</constructor-arg>
