@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.icia.common.util.StringUtil;
+import com.icia.web.model.Paging;
 import com.icia.web.model.WDCoupon;
 import com.icia.web.model.WDRez;
 import com.icia.web.model.WDUser;
@@ -22,6 +23,7 @@ import com.icia.web.service.WDCouponService;
 import com.icia.web.service.WDRezService;
 import com.icia.web.service.WDUserService;
 import com.icia.web.util.CookieUtil;
+import com.icia.web.util.HttpUtil;
 
 @Controller("payMentController")
 public class PayMentController 
@@ -43,6 +45,9 @@ public class PayMentController
 	//쿠폰 서비스
 	@Autowired
 	private WDCouponService wdCouponService;
+	
+	private static final int LIST_COUNT = 20;
+	private static final int PAGE_COUNT = 5;
 	
 	
 	@RequestMapping(value="/user/payMent")
@@ -96,10 +101,13 @@ public class PayMentController
 	public String payComplete(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		long curPage = HttpUtil.get(request, "curPage", (long)0);
+		
 		
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
 		
-		WDRez search = new WDRez();
+		List<WDRez> list = null;
+
 		
 		
 		if(wdUser != null) 
@@ -107,14 +115,11 @@ public class PayMentController
 
 			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
 			{
-				search.setUserId(wdUser.getUserId());
-				search.setRezStatus("Y");
 				
-				WDRez wdRez = wdRezService.rezSelect(search);
+				list = wdRezService.rezSelectList(wdUser.getUserId());
 				
-				wdRez = wdRezService.rezList(wdRez);
 				
-				model.addAttribute("wdRez", wdRez);
+				model.addAttribute("list", list);
 				model.addAttribute("wdUser",wdUser);
 			}
 			else 
