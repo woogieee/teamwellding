@@ -17,30 +17,7 @@
    text-align: center;
 }
 </style>
-<script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>
 <script>
-
-$(document).ready(function(){
-	   $("#userUpdate").colorbox({
-		      iframe:true, 
-		      innerWidth:1235,
-		      innerHeight:420,
-		      scrolling:false,
-		      onComplete:function()
-		      {
-		         $("#colorbox").css("width", "1235px");
-		         $("#colorbox").css("height", "420px");
-		         $("#colorbox").css("border-radius", "10px");
-		         
-		         $('html').css("overflow","hidden");
-		      } , 
-	   		  onClosed: function()
-			 {
-				$('html').css("overflow","auto");
-			 }  
-		});
-});
-
 function fn_search()
 {
 	document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
@@ -55,13 +32,6 @@ function fn_paging(curPage)
 	document.searchForm.submit();
 }
 
-function fn_pageInit() //서치타입과 서치밸유에대한 설정
-{
-   $("#searchType option:eq(0)").prop("selected", true);//eq(0): 아무것도 선택안함
-   $("#searchValue").val("");
-   
-   fn_search();      
-}
 </script>
 </head>
 <body id="school_list">
@@ -73,7 +43,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 <div class="container">
     <div class="row">
     	<div class="col-lg-12" style="width:100%; height:20px;"></div>
-    	
+ <!-- /////////////////////////////////////////// -->   	
         <div class="col-lg-12">       
 		   <div id="school_list" style="width:90%; margin:auto; margin-top:5rem;">
 	      <div class="mnb" style="display:flex; margin-bottom:0.8rem;">
