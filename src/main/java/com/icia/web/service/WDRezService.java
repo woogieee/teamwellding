@@ -320,6 +320,23 @@ public class WDRezService {
 				}
 			}
 		}
+		return count;
+	}
+	
+	public int rezUpdatePayNoC(WDRez wdRez) throws Exception
+	{
+		int count = 0;
+		
+		count = wdRezDao.rezUpdatePay(wdRez);
+		
+		if(count > 0) 
+		{
+			int x = wdRezDao.rezUpdateStatusAfC(wdRez.getUserId());
+			if(x <= 0) 
+			{
+				count = 0;
+			}
+		}
 		
 		return count;
 	}

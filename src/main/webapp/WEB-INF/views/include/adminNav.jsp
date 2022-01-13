@@ -9,7 +9,7 @@
     <!-- ***** 맨뒤 HEader ***** -->
     <div class="pre-header">
         <div class="container">
-            <div class="row">
+            <div class="row" style="width: 100%;">
                 <div class="col-lg-6">
                     <span><span class="span1">♥</span>Welcome Wellding! &nbsp;&nbsp;<span class="span1">♥</span><span class="span2">${name }</span>님 환영합니다!</span>
                 </div>
@@ -28,7 +28,7 @@
     <!-- ***** 보현수정 Header Area Start ***** -->
     <header class="header-area header-sticky">
         <div class="container">
-            <div class="row">
+            <div class="row" style="width: 100%;">
                 <div class="col-12">
                     <nav class="admmain_nav">
                         <!-- ***** Menu Start ***** -->

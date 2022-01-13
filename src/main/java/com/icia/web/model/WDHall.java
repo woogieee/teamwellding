@@ -33,6 +33,8 @@ public class WDHall implements Serializable{
 	private long startRow;			//시작 rownum
 	private long endRow;			//끝 rownum
 	
+	private String wDate;			//검색 조건 날짜
+	
 	public WDHall() {
 		  WHCode = "";
 		  HCode = "";

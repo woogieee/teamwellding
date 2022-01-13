@@ -211,7 +211,7 @@
     <div class="amazing-venues">
         <div class="container">
             <div class="row">
-                <div class="col-lg-auto">
+                <div class="col-lg-6">
                     <div class="left-content">
                         <iframe width="530" height="300" src="https://www.youtube.com/embed/kqUUPueWUxE?autoplay=1&amp;mute=1" title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>

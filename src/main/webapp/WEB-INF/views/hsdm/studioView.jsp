@@ -217,7 +217,7 @@ $(document).ready(function(){
 							</dl>
 							<!-- 스튜디오 예약일 추가 끝 -->
 							
-                            <div class="main-dark-button3"><a href="#" id="chae">이 스튜디오 담기</a></div>
+                            <div class="main-dark-button2"><a href="#" id="chae">이 스튜디오 담기</a></div>
                         </div>
                     </div>
                 </div>

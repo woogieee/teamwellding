@@ -71,92 +71,169 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
        </jsp:include>
        
 <div class="container">
-    <div class="row">
-       <div class="col-lg-12" style="width:100%; height:20px;"></div>
-       
-        <div class="col-lg-12">       
-         <div id="school_list" style="width:90%; margin:auto; margin-top:5rem;">
-         <div class="mnb" style="display:flex; margin-bottom:0.8rem;">
-            <h2 style="margin-right:auto; color: #525252;">회원 리스트</h2>
-            <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">
-               <select id="status" name="status" style="font-size: 1rem; width: 6rem; height: 3rem;">
-                  <option value="">상태</option>
-                  <option value="Y" <c:if test="${status == 'Y'}">selected</c:if>>정상</option>
-                  <option value="N" <c:if test="${status == 'N'}">selected</c:if>>정지</option>
-               </select>
-               <select id="searchType" name="searchType" style="font-size: 1rem; width: 8rem; height: 3rem; margin-left:.5rem; ">
-                  <option value="">검색타입</option>
-                  <option value="1" <c:if test="${searchType == '1'}">selected</c:if>>회원아이디</option>
-                  <option value="2" <c:if test="${searchType == '2'}">selected</c:if>>회원명</option>
-               </select>
-               <input name="searchValue" id="searchValue" class="form-control me-sm-2" style="width:15rem; margin-left:.5rem;" type="text" value="${searchValue}">
-               <a class="btn my-2 my-sm-0" href="javascript:void(0)" onclick="fn_search()" style="width:7rem; margin-left:.5rem; background-color: rgb(239, 239, 239); border-color:rgb(118, 118, 118);">조회</a>
-               <input type="hidden" name="curPage" value="" />
-            </form>
-         </div>
-         <div class="school_list_excel">
-            <table class="table table-hover" style="border:1px solid #c4c2c2;">
-               <thead style="border-bottom: 1px solid #c4c2c2;">
-               <tr class="table-thead-main" style="background: #ddd;">
-                  <th scope="col" style="width:15%;">아이디</th>
-                  <th scope="col">이름</th>
-                  <th scope="col">이메일</th>
-                  <th scope="col">상태</th>
-                  <th scope="col">등록일</th>
-               </tr>
-               </thead>
-               <tbody>
-               <c:if test="${!empty userList}">
-               <c:forEach items="${userList}" var="user" varStatus="status">
-               <tr>
-                   <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;"><a href="/mng/MngUserUpdate?userId=${user.userId}" name="userUpdate" id="userUpdate">${user.userId}</a></th>
-                   <td>${user.userName}</td>
-                   <td>${user.userEmail}</td>
-                   <td><c:if test="${user.status == 'Y'}">정상</c:if><c:if test="${user.status == 'N'}">정지</c:if></td>
-                   <td>${user.regDate}</td>
-               </tr>
-               </c:forEach>
-               </c:if>
-               <c:if test="${empty userList}">
-               <tr>
-                  <td colspan="5">등록된 회원정보가 없습니다.</td>
-               </tr>
-               </c:if>
-               </tbody>
-            </table>
-            <div class="paging-right" style="float:right;">
-               <!-- 페이징 샘플 시작 -->
-            <c:if test="${!empty paging}">
-                  <!--  이전 블럭 시작 -->
-               <c:if test="${paging.prevBlockPage gt 0}"> <!-- 0보다 클때 -->
-                     <a href="javascript:void(0)"  class="btn2 btn-primary" onclick="fn_paging(${paging.prevBlockPage})" title="이전 블럭">&laquo;</a>
-               </c:if>
-                  <!--  이전 블럭 종료 -->
-                  <span>
-                  <!-- 페이지 시작 -->
-               <c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
-                        <c:choose>
-                           <c:when test="${i ne curPage}">
-                           <a href="javascript:void(0)" class="btn2 btn-primary" onclick="fn_paging(${i})" style="font-size:14px;">${i}</a>
-                     </c:when>
-                     <c:otherwise>
-                           <h class="btn2 btn-primary" style="font-size:14px; font-weight:bold;">${i}</h>
-                        </c:otherwise>
-                     </c:choose>
-               </c:forEach>
-                  <!-- 페이지 종료 -->
-                  </span>
-                  <!--  다음 블럭 시작 -->
-                  <c:if test="${paging.nextBlockPage gt 0}">
-                     <a href="javascript:void(0)" class="btn2 btn-primary" onclick="fn_paging(${paging.nextBlockPage})" title="다음 블럭">&raquo;</a>
-               </c:if>
-                  <!--  다음 블럭 종료 -->
-            </c:if>
-               <!-- 페이징 샘플 종료 -->
-            </div>
-         </div>
-      </div>
-   </div>
+    <div class="row" style="width: 100%;">
+    	<div class="col-lg-12" style="width:100%; height:80px;"></div>
+ <!-- /////////////////////////////////////////// --> 
+		<div class="col-lg-12">
+			<div class="hsdm_nav">
+	             <ul class="hsdm_menu">
+	                 <li class="hsem_li sel" id="id1" onclick="classChange(this)"><a class="hsem_a" href="">웨딩홀</a></li>
+	                 <li class="hsem_li" id="id2" onclick="classChange(this)"><a class="hsem_a" href="">스튜디오</a></li>
+	                 <li class="hsem_li" id="id3" onclick="classChange(this)"><a class="hsem_a" href="">드레스</a></li>
+	                 <li class="hsem_li" id="id4" onclick="classChange(this)"><a class="hsem_a" href="">메이크업</a></li>
+	             </ul>  
+			</div>
+		</div>
+		
+		<!-- 홀 시작 -->
+		<div class="col-lg-12" width="100%">
+			<ul>
+
+				<li class="wdhth">
+					<div class="wdhtitle" style="width:10%;"><p>웨딩홀명</p></div>
+					<div class="wdhtitle" style="width:17%;"><p>웨딩홀설명</p></div>
+					<div class="wdhtitle" style="width:12%;"><p>주소</p></div>
+					<div class="wdhtitle" style="width:7%;"><p>전화번호</p></div>
+					<div class="wdhtitle" style="width:7%;"><p>대표이미지명</p></div>
+					<div class="wdhtitle" style="width:8%;"><p>홀명</p></div>
+					<div class="wdhtitle" style="width:7%;"><p>홀대관비</p></div>
+					<div class="wdhtitle" style="width:5%;"><p>1인당식비</p></div>
+					<div class="wdhtitle" style="width:5%;"><p>최소인원</p></div>
+					<div class="wdhtitle" style="width:5%;"><p>최대수용인원</p></div>
+					<div class="wdhtitle" style="width:16%;"><p>설명</p></div>
+				</li>
+				<li class="wdhtd">
+					<div class="wdhcon" style="width:10%;"><p>웨딩홀명</p></div>
+					<div class="wdhcon" style="width:17%;"><p>웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명</p></div>
+					<div class="wdhcon" style="width:12%;"><p>주소</p></div>
+					<div class="wdhcon" style="width:7%;"><p>전화번호</p></div>
+					<div class="wdhcon" style="width:7%;"><p>대표이미지명</p></div>
+					<div class="wdhcon" style="width:8%;"><p>홀명</p></div>
+					<div class="wdhcon" style="width:7%;"><p>홀대관비</p></div>
+					<div class="wdhcon" style="width:5%;"><p>1인당식비</p></div>
+					<div class="wdhcon" style="width:5%;"><p>최소인원</p></div>
+					<div class="wdhcon" style="width:5%;"><p>최대수용인원</p></div>
+					<div class="wdhcon" style="width:16%;"><p>설웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명명</p></div>
+				</li>
+
+			</ul>
+		</div>
+		<!-- 홀 끝 -->
+		
+		<!-- 스튜디오 시작 -->
+		<div class="col-lg-12" width="100%">
+			<ul>
+				<li class="wdhth">
+					<div class="wdhtitle" style="width:16%;"><p>스튜디오명</p></div>
+					<div class="wdhtitle" style="width:18%;"><p>주소</p></div>
+					<div class="wdhtitle" style="width:13%;"><p>전화번호</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>스튜디오 가격</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>대표이미지명</p></div>
+					<div class="wdhtitle" style="width:32%;"><p>스튜디오설명</p></div>
+				</li>
+				<li class="wdhtd">
+					<div class="wdhcon" style="width:16%;"><p>스튜디오명</p></div>
+					<div class="wdhcon" style="width:18%;"><p>주소</p></div>
+					<div class="wdhcon" style="width:13%;"><p>전화번호</p></div>
+					<div class="wdhcon" style="width:10%;"><p>스튜디오 가격</p></div>
+					<div class="wdhcon" style="width:10%;"><p>대표이미지명</p></div>
+					<div class="wdhcon" style="width:32%;"><p>설웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명명</p></div>
+				</li>
+			</ul>
+		</div>
+		<!-- 스튜디오 끝 -->
+		
+		<!-- 드레스 시작 -->
+		<div class="col-lg-12" width="100%">
+			<ul>
+				<li class="wdhth">
+					<div class="wdhtitle" style="width:9%;"><p>드레스샵 이름</p></div>
+					<div class="wdhtitle" style="width:13%;"><p>주소</p></div>
+					<div class="wdhtitle" style="width:8%;"><p>전화번호</p></div>
+					<div class="wdhtitle" style="width:7%;"><p>대표 이미지명</p></div>
+					<div class="wdhtitle" style="width:15%;"><p>업체설명</p></div>
+					<div class="wdhtitle" style="width:14%;"><p>드레스명</p></div>
+					<div class="wdhtitle" style="width:8%;"><p>드레스 이미지명</p></div>
+					<div class="wdhtitle" style="width:8%;"><p>가격</p></div>
+					<div class="wdhtitle" style="width:17%;"><p>드레스설명</p></div>
+				</li>
+				<li class="wdhtd">
+					<div class="wdhcon" style="width:9%;"><p>업체이름</p></div>
+					<div class="wdhcon" style="width:13%;"><p>주소</p></div>
+					<div class="wdhcon" style="width:8%;"><p>전화번호</p></div>
+					<div class="wdhcon" style="width:7%;"><p>대표이미지명</p></div>
+					<div class="wdhcon" style="width:15%;"><p>대웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명표이미지명</p></div>
+					<div class="wdhcon" style="width:14%;"><p>드레스명</p></div>
+					<div class="wdhcon" style="width:8%;"><p>드레스 이미지명</p></div>
+					<div class="wdhcon" style="width:8%;"><p>가격</p></div>
+					<div class="wdhcon" style="width:17%;"><p>웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명</p></div>
+				</li>
+			</ul>
+		</div>
+		<!-- 드레스 끝 -->
+		
+		<!-- 메이크업 시작 -->
+		<div class="col-lg-12" width="100%">
+			<ul>
+				<li class="wdhth">
+					<div class="wdhtitle" style="width:14%;"><p>메이크업샵 이름</p></div>
+					<div class="wdhtitle" style="width:18%;"><p>주소</p></div>
+					<div class="wdhtitle" style="width:13%;"><p>전화번호</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>대표이미지명</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>기본가격</p></div>
+					<div class="wdhtitle" style="width:24%;"><p>설명</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>추가인원당 가격</p></div>
+				</li>
+				<li class="wdhtd">
+					<div class="wdhcon" style="width:14%;"><p>메이크업샵이름</p></div>
+					<div class="wdhcon" style="width:18%;"><p>주소</p></div>
+					<div class="wdhcon" style="width:13%;"><p>전화번호</p></div>
+					<div class="wdhcon" style="width:10%;"><p>대표이미지명</p></div>
+					<div class="wdhcon" style="width:10%;"><p>기본가격</p></div>
+					<div class="wdhcon" style="width:24%;"><p>설웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명명</p></div>
+					<div class="wdhcon" style="width:10%;"><p>추가인원당 가격</p></div>
+				</li>
+			</ul>
+		</div>
+		<!-- 메이크업 끝 -->
+
+			<div class="col-lg-12">
+				<div>
+					<form id="subscribe" action="" method="get">
+						<div class="row" style="width: 100%;">
+							<div class="col-lg-12">
+									<button type="button" id="btnWrite" class="hsdm_btn">추가</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<div class="col-lg-12">
+                <div class="pagination">
+					<ul class="pagination justify-content-center">
+						<c:if test="${!empty paging}">
+							<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
+							<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>
+							</c:if>
+							<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+								<c:choose>
+									<c:when test="${i ne curPage}">
+										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${paging.nextBlockPage gt 0}">         
+								<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">다음</a></li>
+							</c:if>       
+						</c:if> 
+					</ul>
+                  </div>
+              </div>
+		
   </div>
 </div>
 
