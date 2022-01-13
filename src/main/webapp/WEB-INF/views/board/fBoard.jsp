@@ -195,7 +195,7 @@ function fn_list(curPage)
 
 											<div class="col-lg-6" style="text-align: left;">
 												<div class="divB_tb2">
-													<span>${fboard.bTitle}[${commentcount[status.index]}]</span>
+													<span>${fboard.bTitle}<span>[${commentcount[status.index]}]</span></span>
 												</div>
 											</div>
 											<div class="col-lg-2">

@@ -6683,6 +6683,13 @@ textarea::placeholder {
 	font-size: 16px;
 }
 
-
+.divB_tb2 span> span
+{
+	padding-left: 5px;
+    font-size: smaller;
+    font-weight: 300;
+    color: #666;
+    letter-spacing: 0.5px;
+}
 
 /*보현추가 끝*/
