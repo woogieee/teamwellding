@@ -86,7 +86,7 @@ function classChange(id){
        
 <div class="container">
     <div class="row" style="width: 100%;">
-       <div class="col-lg-12" style="width:100%; height:80px;"></div>
+       <div class="col-lg-12" style="width:100%; height:20px;"></div>
  <!-- /////////////////////////////////////////// --> 
       <div class="col-lg-12">
          <div class="hsdm_nav">
@@ -135,7 +135,7 @@ function classChange(id){
          </ul>
 
          <div class="row">
-              <div class="col-lg-5">
+              <div class="col-lg-10" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty hPaging}">
@@ -160,7 +160,7 @@ function classChange(id){
                   </div>
               </div>
               
-	         <div class="col-lg-6">
+	         <div class="col-lg-1">
 	            <div>
 	               <form id="subscribe" action="" method="get">
 	                  <div class="row" style="width: 100%;">
@@ -203,7 +203,7 @@ function classChange(id){
          </ul>
 
          <div class="row">
-              <div class="col-lg-5">
+              <div class="col-lg-10" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty hPaging}">
@@ -228,7 +228,7 @@ function classChange(id){
                   </div>
               </div>
               
-	         <div class="col-lg-6">
+	         <div class="col-lg-1">
 	            <div>
 	               <form id="subscribe" action="" method="get">
 	                  <div class="row" style="width: 100%;">
@@ -275,7 +275,7 @@ function classChange(id){
          </ul>
 
          <div class="row">
-              <div class="col-lg-5">
+              <div class="col-lg-10" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty hPaging}">
@@ -300,7 +300,7 @@ function classChange(id){
                   </div>
               </div>
               
-	         <div class="col-lg-6">
+	         <div class="col-lg-1">
 	            <div>
 	               <form id="subscribe" action="" method="get">
 	                  <div class="row" style="width: 100%;">
@@ -345,7 +345,7 @@ function classChange(id){
          </ul>
 
          <div class="row">
-              <div class="col-lg-5">
+              <div class="col-lg-10" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty hPaging}">
@@ -370,7 +370,7 @@ function classChange(id){
                   </div>
               </div>
               
-	         <div class="col-lg-6">
+	         <div class="col-lg-1">
 	            <div>
 	               <form id="subscribe" action="" method="get">
 	                  <div class="row" style="width: 100%;">
