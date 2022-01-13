@@ -16,8 +16,15 @@
    border: 1px solid #c4c2c2;
    text-align: center;
 }
+
+.sel{
+	background: #f5a4aa;
+}
 </style>
 <script>
+ var hsdmCheck = 1;
+ 
+ 
 function fn_search()
 {
 	document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
@@ -32,6 +39,27 @@ function fn_paging(curPage)
 	document.searchForm.submit();
 }
 
+function classChange(id){
+	   document.getElementById('id1').classList.remove('sel');
+	   document.getElementById('id2').classList.remove('sel');
+	   document.getElementById('id3').classList.remove('sel');
+	   document.getElementById('id4').classList.remove('sel');
+	   //id.setAttribute('class','sel');
+	   document.getElementById(id.id).className += ' sel';
+
+	    if($('#id1').hasClass('sel')){
+	    	 hsdmCheck = 1;
+	     }
+	     if($('#id2').hasClass('sel')){
+	    	 hsdmCheck = 2;
+	     }
+	     if($('#id3').hasClass('sel')){
+	    	 hsdmCheck = 3;
+	     }
+	     if($('#id4').hasClass('sel')){
+	    	 hsdmCheck = 4;
+	     }
+}
 </script>
 </head>
 <body id="school_list">
@@ -47,10 +75,10 @@ function fn_paging(curPage)
 		<div class="col-lg-12">
 			<div class="hsdm_nav">
 	             <ul class="hsdm_menu">
-	                 <li class="hsem_li"><a class="hsem_a" href="">웨딩홀</a></li>
-	                 <li class="hsem_li"><a class="hsem_a" href="">스튜디오</a></li>
-	                 <li class="hsem_li"><a class="hsem_a" href="">드레스</a></li>
-	                 <li class="hsem_li"><a class="hsem_a" href="">메이크업</a></li>
+	                 <li class="hsem_li sel" id="id1" onclick="classChange(this)"><a class="hsem_a" href="">웨딩홀</a></li>
+	                 <li class="hsem_li" id="id2" onclick="classChange(this)"><a class="hsem_a" href="">스튜디오</a></li>
+	                 <li class="hsem_li" id="id3" onclick="classChange(this)"><a class="hsem_a" href="">드레스</a></li>
+	                 <li class="hsem_li" id="id4" onclick="classChange(this)"><a class="hsem_a" href="">메이크업</a></li>
 	             </ul>  
 			</div>
 		</div>
@@ -64,7 +92,7 @@ function fn_paging(curPage)
 								<span>번호</span>
 							</div>
 						</div>
-						<div class="col-lg-8" style="text-align: center;">
+						<div class="col-lg-6" style="text-align: center;">
 							<div class="divB_tb">
 								<span>내용</span>
 							</div>
@@ -86,41 +114,41 @@ function fn_paging(curPage)
 						</div>
 					</div>
 				</li>
-				<c:forEach var="fboard" items="${list}" varStatus="status">
+				<!-- c:forEach var="fboard" items="${list}" varStatus="status" -->
 					<li id="divB2">
 						<div onclick="fn_view(${fboard.bSeq})">
 							<div class="row" id="minthover">
 								<div class="col-lg-1">
 									<div class="divB_tb2 tbstyle">
-										<span>${fboard.bSeq}</span>
+										<span>1</span>
 									</div>
 								</div>
 
 								<div class="col-lg-6" style="text-align: left;">
 									<div class="divB_tb2">
-										<span>${fboard.bTitle}</span>
+										<span>gjghdfgfsh</span>
 									</div>
 								</div>
-								<div class="col-lg-2">
+								<div class="col-lg-1">
 									<div class="divB_tb2 tbstyle2">
-										<span>${fboard.userNickname}</span>
+										<span>12131</span>
 									</div>
 								</div>
-								<div class="col-lg-2">
+								<div class="col-lg-1">
 									<div class="divB_tb2 tbstyle3">
-										<span>${fboard.regDate}</span>
+										<span>2132132132</span>
 									</div>
 								</div>
 								<div class="col-lg-1">
 									<div class="divB_tb2 tbstyle4">
-										<span>${fboard.bReadCnt}</span>
+										<span>1</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</li>
 
-				</c:forEach>
+				<!-- /c:forEach -->
 			</ul>
 		</div>
 
