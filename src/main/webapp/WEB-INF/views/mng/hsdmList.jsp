@@ -57,70 +57,32 @@ function fn_paging(curPage)
 		
 		<div class="col-lg-12" width="100%">
 			<ul>
-				<li id="divB1" style="background: #efefef;">
-					<div class="row">
-						<div class="col-lg-1">
-							<div class="divB_tb" style="text-align: center;">
-								<span>번호</span>
-							</div>
-						</div>
-						<div class="col-lg-8" style="text-align: center;">
-							<div class="divB_tb">
-								<span>내용</span>
-							</div>
-						</div>
-						<div class="col-lg-1" style="text-align: center;">
-							<div class="divB_tb">
-								<span>작성자</span>
-							</div>
-						</div>
-						<div class="col-lg-1" style="text-align: center;">
-							<div class="divB_tb">
-								<span>작성시간</span>
-							</div>
-						</div>
-						<div class="col-lg-1" style="text-align: center;">
-							<div class="divB_tb">
-								<span>조회수</span>
-							</div>
-						</div>
-					</div>
+				<li class="wdhth">
+					<div class="wdhtitle" style="width:10%;"><p>웨딩홀명</p></div>
+					<div class="wdhtitle" style="width:13%;"><p>웨딩홀설명</p></div>
+					<div class="wdhtitle" style="width:7%;"><p>주소</p></div>
+					<div class="wdhtitle" style="width:6%;"><p>전화번호</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>대표이미지명</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>홀명</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>홀대관비</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>1인당식비</p></div>
+					<div class="wdhtitle" style="width:5%;"><p>최소인원</p></div>
+					<div class="wdhtitle" style="width:5%;"><p>최대수용인원</p></div>
+					<div class="wdhtitle" style="width:13%;"><p>설명</p></div>
 				</li>
-				<c:forEach var="fboard" items="${list}" varStatus="status">
-					<li id="divB2">
-						<div onclick="fn_view(${fboard.bSeq})">
-							<div class="row" id="minthover">
-								<div class="col-lg-1">
-									<div class="divB_tb2 tbstyle">
-										<span>${fboard.bSeq}</span>
-									</div>
-								</div>
-
-								<div class="col-lg-6" style="text-align: left;">
-									<div class="divB_tb2">
-										<span>${fboard.bTitle}</span>
-									</div>
-								</div>
-								<div class="col-lg-2">
-									<div class="divB_tb2 tbstyle2">
-										<span>${fboard.userNickname}</span>
-									</div>
-								</div>
-								<div class="col-lg-2">
-									<div class="divB_tb2 tbstyle3">
-										<span>${fboard.regDate}</span>
-									</div>
-								</div>
-								<div class="col-lg-1">
-									<div class="divB_tb2 tbstyle4">
-										<span>${fboard.bReadCnt}</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-
-				</c:forEach>
+				<li class="wdhtd">
+					<div class="wdhcon" style="width:10%;"><p>웨딩홀명</p></div>
+					<div class="wdhcon" style="width:13%;"><p>웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명</p></div>
+					<div class="wdhcon" style="width:7%;"><p>주소</p></div>
+					<div class="wdhcon" style="width:6%;"><p>전화번호</p></div>
+					<div class="wdhcon" style="width:10%;"><p>대표이미지명</p></div>
+					<div class="wdhcon" style="width:10%;"><p>홀명</p></div>
+					<div class="wdhcon" style="width:10%;"><p>홀대관비</p></div>
+					<div class="wdhcon" style="width:10%;"><p>1인당식비</p></div>
+					<div class="wdhcon" style="width:5%;"><p>최소인원</p></div>
+					<div class="wdhcon" style="width:5%;"><p>최대수용인원</p></div>
+					<div class="wdhcon" style="width:13%;"><p>설웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명명</p></div>
+				</li>
 			</ul>
 		</div>
 
