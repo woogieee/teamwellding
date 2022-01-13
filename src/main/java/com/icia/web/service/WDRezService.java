@@ -1,5 +1,6 @@
 package com.icia.web.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -58,7 +59,7 @@ public class WDRezService {
 	
 	
 	//예약 게시물 총 수 
-	public long rezListCount()
+	public long rezListCount(WDRez wdRez)
 	{
 		long count = 0;
 		
@@ -342,14 +343,14 @@ public class WDRezService {
 			return list;
 		}
 	
-	//결제 취소 신청(일반 아이디)
-	public int rezCancelPayment(String userId) {
+	//결제 취소 신청
+	public int rezCancelPayment(WDRez wdRez) {
 		
 		int count = 0;
 		
 		try
 		{
-			count = wdRezDao.rezCancelPayment(userId);
+			count = wdRezDao.rezCancelPayment(wdRez);
 		}
 		catch(Exception e)
 		{
@@ -358,38 +359,72 @@ public class WDRezService {
 		
 		return count;
 	}
+		
+	//결제 취소 신청 승인
+    public int rezCancelApprove(WDRez wdRez) {
+			
+		int count = 0;
+		
+		try
+		{
+			count = wdRezDao.rezCancelApprov(wdRez);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] rezCancelApprove", e);
+		}
+		
+		return count;
+	}
 	
-	// 결제 취소 리스트 불러오기(관리자 사이트)
-	public List<WDRez> rezCancelSelect (WDRez wdRez)
+	// 관리자 사이트에서 결제 내역 리스트 조회하기
+	public List<WDRez> rezAdminSelect (WDRez wdRez)
 	{
 		List<WDRez> list = null;
 		
 		try
 		{
-			list = wdRezDao.rezCancelSelect(wdRez);
+			list = wdRezDao.rezAdminSelect(wdRez);
 		}
 		catch(Exception e)
 		{
-			logger.error("[WDRezService] rezCancelSelect");
+			logger.error("[WDRezService] rezAdminSelect Exception", e);
 		}	
 		
 			return list;
 		}	
 	
-	//결제 취소시 환불 요청하기(일반 아이디)
-	public int rezPointReturn(String userId) {
 	
-		int count = 0;
+	//결제 취소시 환불 요청 수락
+	public WDRez rezPointReturn(HashMap<String, Object> map) {
+	
+		WDRez wdRez = null;
 		
 		try
 		{
-			count = wdRezDao.rezPointReturn(userId);
+			wdRez = wdRezDao.rezPointReturn(map);
 		}
 		catch(Exception e)
 		{
 			logger.error("[WDRezService] rezPointReturn", e);
 		}
 		
+		return wdRez;
+	}
+	
+	//환불 요청 수락 후 결제금액 삭제
+	public int rezCancelComplete(WDRez wdRez)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdRezDao.rezCancelComplete(wdRez);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] rezCancelComplete", e);
+		}
 		return count;
 	}
 }
