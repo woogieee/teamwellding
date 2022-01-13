@@ -27,8 +27,6 @@ public class WDDress implements Serializable
 	private long endRow;			//끝 rownum
 	private String wDate;		//결혼날짜
 	
-	private String wDate;			//검색 조건 날짜
-	
 
 	
 	public WDDress()
