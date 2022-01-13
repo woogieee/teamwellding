@@ -233,7 +233,9 @@ FROM
                                         FROM
                                             WD_REZ
                                         WHERE
-                                            WDATE LIKE #{wDate})
+                                            WDATE LIKE #{wDate}
+                                        AND
+                                        	REZ_STATUS = 'Y')
             </if>            
 			<if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>   
 			   <choose>                
