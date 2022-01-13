@@ -10,7 +10,12 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital@0;1&family=The+Nautigal&display=swap" rel="stylesheet">
 <script>
-
+$(document).ready(function(){
+	$("#cou").on("click",function(){
+	    var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
+	    window.open("/board/Coupon", "PopUP", option); 
+	});
+});
 </script>
 </head>
     

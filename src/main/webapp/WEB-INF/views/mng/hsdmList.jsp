@@ -16,8 +16,15 @@
    border: 1px solid #c4c2c2;
    text-align: center;
 }
+
+.sel{
+	background: #f5a4aa;
+}
 </style>
 <script>
+ var hsdmCheck = 1;
+ 
+ 
 function fn_search()
 {
 	document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
@@ -32,6 +39,27 @@ function fn_paging(curPage)
 	document.searchForm.submit();
 }
 
+function classChange(id){
+	   document.getElementById('id1').classList.remove('sel');
+	   document.getElementById('id2').classList.remove('sel');
+	   document.getElementById('id3').classList.remove('sel');
+	   document.getElementById('id4').classList.remove('sel');
+	   //id.setAttribute('class','sel');
+	   document.getElementById(id.id).className += ' sel';
+
+	    if($('#id1').hasClass('sel')){
+	    	 hsdmCheck = 1;
+	     }
+	     if($('#id2').hasClass('sel')){
+	    	 hsdmCheck = 2;
+	     }
+	     if($('#id3').hasClass('sel')){
+	    	 hsdmCheck = 3;
+	     }
+	     if($('#id4').hasClass('sel')){
+	    	 hsdmCheck = 4;
+	     }
+}
 </script>
 </head>
 <body id="school_list">
@@ -47,16 +75,17 @@ function fn_paging(curPage)
 		<div class="col-lg-12">
 			<div class="hsdm_nav">
 	             <ul class="hsdm_menu">
-	                 <li class="hsem_li"><a class="hsem_a" href="">웨딩홀</a></li>
-	                 <li class="hsem_li"><a class="hsem_a" href="">스튜디오</a></li>
-	                 <li class="hsem_li"><a class="hsem_a" href="">드레스</a></li>
-	                 <li class="hsem_li"><a class="hsem_a" href="">메이크업</a></li>
+	                 <li class="hsem_li sel" id="id1" onclick="classChange(this)"><a class="hsem_a" href="">웨딩홀</a></li>
+	                 <li class="hsem_li" id="id2" onclick="classChange(this)"><a class="hsem_a" href="">스튜디오</a></li>
+	                 <li class="hsem_li" id="id3" onclick="classChange(this)"><a class="hsem_a" href="">드레스</a></li>
+	                 <li class="hsem_li" id="id4" onclick="classChange(this)"><a class="hsem_a" href="">메이크업</a></li>
 	             </ul>  
 			</div>
 		</div>
 		
 		<div class="col-lg-12" width="100%">
 			<ul>
+
 				<li class="wdhth">
 					<div class="wdhtitle" style="width:10%;"><p>웨딩홀명</p></div>
 					<div class="wdhtitle" style="width:13%;"><p>웨딩홀설명</p></div>
@@ -83,6 +112,7 @@ function fn_paging(curPage)
 					<div class="wdhcon" style="width:5%;"><p>최대수용인원</p></div>
 					<div class="wdhcon" style="width:13%;"><p>설웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명명</p></div>
 				</li>
+
 			</ul>
 		</div>
 
