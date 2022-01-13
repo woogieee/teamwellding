@@ -348,7 +348,7 @@ function commentUpdate(cSeq,tagId){
 					<form name="commentForm" id="commentForm" method="post">
 						<tbody>
 							<tr>
-								<td colspan="2" style="border-top:none; padding-bottom: 25px;">
+								<td colspan="2" style="border-top:none; padding-bottom: 25px; padding-left:inherit; padding-right:inherit;">
 									<textarea class="form-control" rows="3" name="wdFBoardComment" id="wdFBoardComment" style="ime-mode: active; resize: none; width:90%; float:left; height:76px; font-size:14px;" placeholder="댓글을 입력해주세요" required></textarea>
 									<button type="button" id="btnComment" class="btn btn-secondary" style="float:left; width:100px; margin-left:5px; height: 76px; border: none; background: #ff957d; font-size:15px; font-weight:600;">댓글등록</button>
 								</td>
