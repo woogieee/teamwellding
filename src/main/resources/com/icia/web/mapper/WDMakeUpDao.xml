@@ -12,6 +12,7 @@
 	<result column="M_CONTENT" property="mContent" />
 	<result column="M_PLUS" property="mPlus" />
 	<result column="M_DISCOUNT" property="mDiscount" />
+	<!-- result column="" property="wDate" /-->
 </resultMap>
 
 <!-- 첨부파일  시작 -->
@@ -30,7 +31,7 @@
 
 
 <!-- 메이크업 업체 총 수 확인 시작 -->
-<select id="makeUpListCount" parameterType="com.icia.web.model.WDMakeUp" resultType="long">
+<!-- select id="makeUpListCount" parameterType="com.icia.web.model.WDMakeUp" resultType="long">
 SELECT
     COUNT(M_CODE)
 FROM
@@ -49,12 +50,44 @@ AND
 		</when>
 	</choose>
 </if>
+</select-->
+<!-- 예약내역 제외 -->
+<select id="makeUpListCountmr" parameterType="com.icia.web.model.WDMakeUp" resultType="long">
+SELECT
+    COUNT(M_CODE)
+FROM
+    WD_MAKEUP
+WHERE 1=1
+<if test='wDate != null and wDate != ""'>
+AND
+   M_CODE NOT IN (SELECT
+                        M_CODE
+                    FROM
+                        WD_REZ
+                    WHERE
+                        WDATE LIKE #{wDate}
+                    AND
+                            REZ_STATUS = 'Y'
+                    )
+</if>
+<if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
+	<choose>
+		<when test='searchType == "1"'>
+AND
+    M_NAME LIKE '%' || #{searchValue}|| '%'
+		</when>
+		<when test='searchType == "2"'>	  
+AND
+    M_LOCATION LIKE '%' || #{searchValue}|| '%'
+		</when>
+	</choose>
+</if>
 </select>
 <!-- 메이크업 업체 총 수 확인 종료 -->
 
 
 <!-- 메이크업 업체 정보 불러오기 시작 -->
-<select id="makeUpList" parameterType="com.icia.web.model.WDMakeUp" resultMap="WDMakeUpMap">
+<!-- select id="makeUpList" parameterType="com.icia.web.model.WDMakeUp" resultMap="WDMakeUpMap">
 SELECT
     M_CODE,
     M_NAME,
@@ -98,6 +131,74 @@ FROM(
                     M_NAME LIKE '%' || #{searchValue} || '%'
         </when>    
         <when test='searchType == "2"'>    
+                AND
+                    M_LOCATION LIKE '%' || #{searchValue} || '%'
+		</when>
+	</choose>
+</if>
+                ORDER BY
+                    M_CODE ASC))
+WHERE
+    RNUM <![CDATA[>=]]> #{startRow}
+AND
+    RNUM <![CDATA[<=]]> #{endRow}
+</select-->
+<!-- 예약된거 제외하고 리스트 불러오기! -->
+<select id="makeUpListMinusRez" parameterType="com.icia.web.model.WDMakeUp" resultMap="WDMakeUpMap">
+SELECT
+    M_CODE,
+    M_NAME,
+    M_LOCATION,
+    M_NUMBER,
+    M_IMGNAME,
+    M_PRICE,
+    M_CONTENT,
+    M_PLUS,
+    M_DISCOUNT
+FROM(
+        SELECT 
+            ROWNUM AS RNUM,
+            M_CODE,
+            M_NAME,
+            M_LOCATION,
+            M_NUMBER,
+            M_IMGNAME,
+            M_PRICE,
+            M_CONTENT,
+            M_PLUS,
+            M_DISCOUNT
+        FROM(SELECT
+                    M_CODE,
+                    NVL(M_NAME, '') AS M_NAME,
+                    NVL(M_LOCATION, '') AS M_LOCATION,
+                    NVL(M_NUMBER, '') AS M_NUMBER,
+                    NVL(M_IMGNAME, '') AS M_IMGNAME,
+                    NVL(M_PRICE, 0) AS M_PRICE,
+                    NVL(M_CONTENT, '') AS M_CONTENT,
+                    NVL(M_PLUS, 0) AS M_PLUS,
+                    NVL(M_DISCOUNT, 0) AS M_DISCOUNT
+                FROM
+                    WD_MAKEUP
+                WHERE
+                    1 = 1
+<if test='wDate != null and wDate != ""'>
+                AND
+                   M_CODE NOT IN (SELECT
+                                        M_CODE
+                                    FROM
+                                        WD_REZ
+                                    WHERE
+                                        WDATE LIKE #{wDate}
+                                    AND
+                                        REZ_STATUS = 'Y') 
+</if>
+<if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
+	<choose>
+		<when test='searchType == "1"'>
+                AND
+                    M_NAME LIKE '%' || #{searchValue} || '%'  
+        </when>    
+        <when test='searchType == "2"'> 
                 AND
                     M_LOCATION LIKE '%' || #{searchValue} || '%'
 		</when>

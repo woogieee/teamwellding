@@ -18,6 +18,12 @@ function fn_view(rezNo)
 
 }
 
+$(document).ready(function(){
+	$("#cou").on("click",function(){
+	    var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
+	    window.open("/board/Coupon", "PopUP", option); 
+	});
+});
 </script>
 </head>
     
@@ -71,6 +77,8 @@ function fn_view(rezNo)
 					
 						
                         <table class="table tableWish">
+                        <c:choose>
+                        <c:when test="${!empty list}">
                             <tr style="border-top: 3px solid #444;">
                                 <th>예약번호</th>
                                 <th>예약날짜</th>
@@ -86,8 +94,7 @@ function fn_view(rezNo)
 					<!-- 쿠폰 가져오기 -->
 					<div class="col-lg-10">
 					</div>
-						<c:choose>
-                        <c:when test="${!empty list}">
+						
                            <c:forEach var="wdRez" items="${list}" varStatus="status">
                                 <tr>
                                 	<!-- 예약번호 -->
@@ -117,13 +124,14 @@ function fn_view(rezNo)
                            <c:when test="${empty list}">
                                     <th colspan="3">
 			                        <div style="text-align: center;">
-										결제내역이 없습니다.
+			                        <img src="../resources/images/icons/exclamation.png" style="width:100px; margin:30px;"/>
+									<p>결제내역이 없습니다. </p>
 									</div>
                                     </th>
                                  </tr>
-						</c:when>                          
-						</c:choose>
-                        </table>
+							</c:when>                          
+							</c:choose>
+	                        </table>
 
 					</div>
 					

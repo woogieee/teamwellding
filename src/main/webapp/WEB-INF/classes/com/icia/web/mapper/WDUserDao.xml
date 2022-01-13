@@ -51,7 +51,8 @@ SET
     U_STATUS = 'Y',
     REG_DATE = SYSDATE,
     U_MARRYDATE = #{marrytDate},
-    U_POINT = 0
+    U_POINT = 0,
+    U_CHECK = null
 WHERE
         U_CHECK = #{uCheck}
 </update>
@@ -101,7 +102,7 @@ INSERT INTO WD_USER (
 <!-- 이메일 인증 값 체크 -->
 <select id="checkSelect" parameterType="int" resultMap="userResultMap">
 SELECT
-    NVL(U_CHECK, 0) U_CHECK
+    NVL(U_CHECK, 1) U_CHECK
 FROM
     WD_USER
 WHERE

@@ -321,6 +321,23 @@ public class WDRezService {
 				}
 			}
 		}
+		return count;
+	}
+	
+	public int rezUpdatePayNoC(WDRez wdRez) throws Exception
+	{
+		int count = 0;
+		
+		count = wdRezDao.rezUpdatePay(wdRez);
+		
+		if(count > 0) 
+		{
+			int x = wdRezDao.rezUpdateStatusAfC(wdRez.getUserId());
+			if(x <= 0) 
+			{
+				count = 0;
+			}
+		}
 		
 		return count;
 	}
@@ -343,23 +360,6 @@ public class WDRezService {
 			return list;
 		}
 	
-	//결제 취소 신청
-	public int rezCancelPayment(WDRez wdRez) {
-		
-		int count = 0;
-		
-		try
-		{
-			count = wdRezDao.rezCancelPayment(wdRez);
-		}
-		catch(Exception e)
-		{
-			logger.error("[WDRezService] rezCancelPayment", e);
-		}
-		
-		return count;
-	}
-		
 	//결제 취소 신청 승인
     public int rezCancelApprove(WDRez wdRez) {
 			
@@ -425,6 +425,23 @@ public class WDRezService {
 		{
 			logger.error("[WDRezService] rezCancelComplete", e);
 		}
+		return count;
+	}
+	
+	//환불요청시 상태창 변경
+	public int rezCancelPayment(WDRez wdRez)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdRezDao.rezCancelPayment(wdRez);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] rezCancelPayment Exception", e);
+		}
+		
 		return count;
 	}
 }

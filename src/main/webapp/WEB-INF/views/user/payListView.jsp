@@ -10,7 +10,39 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital@0;1&family=The+Nautigal&display=swap" rel="stylesheet">
 <script>
+$(document).ready(function(){
+	$("#cou").on("click", function(){
+	    var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
+	    window.open("/board/Coupon", "PopUP", option);
+	});
+	$("#btnCancel").on("click", function(){
+		var result = confirm("환불을 요청하시겠습니까?");
+		if(result)
+		{
+			icia.ajax.post({
+				url: "/user/payCancel",
+				data: {
+					rezNo : <c:out value="${wdRez.rezNo}" />
+				},
+				success: function(response)
+				{
+					icia.common.log(response);
+					
+					if(response.code == 0)
+					{
+						alert("환불 요청에 성공했습니다.");
+						location.href="/user/payList";
+					}
+				},
+			});
+		}
+		else
+		{
+			alert("요청이 취소되었습니다.");
+		}
 
+	});
+});
 </script>
 </head>
     
@@ -302,15 +334,15 @@
                                     <!-- 총가격 -->
                                     <th colspan="5">
                                     <div class="col-lg-12" style="text-align:center">
-                                    	총 금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice + wdCoupon.cPrice}" /> - 
-                                    	쿠폰할인금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdCoupon.cPrice}" /> = 
-                                    	결제금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />
+                                    	총 금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice + wdCoupon.cPrice}" />원
+                                    	<c:if test="${!empty wdCoupon.cPrice}"> - 쿠폰할인금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdCoupon.cPrice}" />원</c:if>
+                                    	 = 결제금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원
                                     </div>
                                     </th>
 
                                     <th colspan="6">
 			                        <div style="text-align: center;">
-										<button value="예약취소">예약취소</button>
+										<button id="btnCancel" title="환불요청" style="border: solid 1px black; background:white; position:relative; color:black;">환불요청</button>
 									</div>
                                     </th>
                                  </tr>

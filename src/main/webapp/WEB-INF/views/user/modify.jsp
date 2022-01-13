@@ -172,13 +172,13 @@
 									<a href="/user/wishlist" id="basket">장바구니</a>
 								</li>
 								<li class="breadcrumb-item">
-									<a href="/user/wishlist"  id="payment">결제내역</a>
+									<a href="/user/payList"  id="payment">결제내역</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
 								</li>
 								<li class="breadcrumb-item">
-									<a href="/user/modify" id="modify" >회원정보수정</a>
+									<a href="javascript:void(0)" id="modify">회원정보수정</a>
 								</li>
 							</ol>
 						</nav>

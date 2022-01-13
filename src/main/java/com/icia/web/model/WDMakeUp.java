@@ -34,6 +34,8 @@ public class WDMakeUp implements Serializable{
 	
 	private long mDiscount;
 	
+	private String wDate;			//검색 조건 날짜
+	
 	//생성자
 	public WDMakeUp() 
 	{
@@ -165,6 +167,13 @@ public class WDMakeUp implements Serializable{
 		this.mDiscount = mDiscount;
 	}
 
+	public String getwDate() {
+		return wDate;
+	}
+
+	public void setwDate(String wDate) {
+		this.wDate = wDate;
+	}
 	
 	
 }

@@ -152,7 +152,7 @@ function fn_list(curPage)
 
 
 					<div class="col-lg-12">
-						<ul>
+						<ul style="border-top: 2px solid #222;">
 
 							<li id="divB1" style="background: #efefef;">
 								<div class="row">
@@ -225,18 +225,8 @@ function fn_list(curPage)
 							<div>
 								<form id="subscribe" action="" method="get">
 									<div class="row">
-										<div class="col-lg-5"></div>
-										<div class="col-lg-7">
-											<div class="row">
-												<div class="col-lg-3"></div>
-												<div class="col-lg-6"></div>
-												<div class="col-lg-3">
-
-													<button type="button" id="btnWrite"
-														class="main-dark-button3">글쓰기</button>
-
-												</div>
-											</div>
+										<div class="col-lg-12">
+											<button type="button" id="btnWrite" class="main-dark-button3">글쓰기</button>
 										</div>
 									</div>
 								</form>

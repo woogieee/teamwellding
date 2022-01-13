@@ -78,10 +78,6 @@ public class IndexController
 		//쿠키 확인
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		
-		if(StringUtil.equals(cookieUserId, "admin")) {
-			return "/mng/userList";
-		}
-		
 		//로그인 했을 때와 안했을 때를 구분해서 페이지를 보여주려 함.
 		//로그인 체크용. 0 => 로그인 x, 혹은 없는 계정; 1 => 로그인 정보 있는 계정
 		int loginS = 0;
