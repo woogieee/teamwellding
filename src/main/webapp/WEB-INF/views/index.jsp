@@ -6,7 +6,14 @@
 <head>
 	<%@ include file="/WEB-INF/views/include/head.jsp" %>
 	<script>
-
+	<%
+	   if(com.icia.web.util.CookieUtil.getHexValue(request, (String)request.getAttribute("AUTH_COOKIE_NAME")).equals("admin"))
+	   {
+	%>
+		location.href = "/mng/userList";
+	<%
+	   }
+	%>
 	   function fn_view(whCode, hCode)
 	   {
 	      document.hallForm.WHCode.value = whCode;

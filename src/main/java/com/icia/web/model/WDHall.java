@@ -6,7 +6,7 @@ public class WDHall implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private String WHCode;
+	private String WHCode;	
 	private String HCode;
 	private String HName;
 	private String whName;
@@ -22,8 +22,6 @@ public class WDHall implements Serializable{
 	private long hDiscount;
 	private String whNumber;
 	private int hSubImg;
-	
-	private String wDate;
 	
 	private String searchType;		//검색타입(1:이름, 2:제목, 3:내용)
 	private String searchValue;		//검색 값
