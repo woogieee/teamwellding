@@ -19,8 +19,6 @@
 	      document.hallForm.submit();
 	      
 	   });
-	   
-
 	});
 
 	

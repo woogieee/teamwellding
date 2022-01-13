@@ -181,16 +181,34 @@ public class KakaoPayController
 
       wdRez.setRezNo(rezNo);
       wdRez.setRezFullPrice(rezFullPrice);
-      wdRez.setcCode(cCode);
       
-      try 
+      if(cCode != null && cCode != "") 
       {
-    	  int cnt = wdRezService.rezUpdatePay(wdRez);
+    	  wdRez.setcCode(cCode);
+ 
+    	  try 
+    	  {
+    		  //cCode가 비어있지 않으면, 세개 전부 변경하는 쿼리 실행
+    		  int cnt = wdRezService.rezUpdatePay(wdRez);
+    	  }
+    	  catch(Exception e) 
+    	  {
+    		  logger.error("[KakaoPayController] payReady rezUpdatePay Exception", e);
+    	  }    	  
       }
-      catch(Exception e) 
+      else 
       {
-    	  logger.error("[KakaoPayController] payReady rezUpdatePay Exception", e);
+    	  try 
+    	  {
+    		  //cCode가 비어있으면 쿠폰에 대한 업데이트 하지 않음.
+    		  int cnt = wdRezService.rezUpdatePayNoC(wdRez);
+    	  }
+    	  catch(Exception e) 
+    	  {
+    		  logger.error("[KakaoPayController] payReady rezUpdatePay Exception", e);
+    	  }
       }
+      
       
       model.addAttribute("kakaoPayApprove", kakaoPayApprove);
       

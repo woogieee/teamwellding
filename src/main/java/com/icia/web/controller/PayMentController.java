@@ -58,7 +58,13 @@ public class PayMentController
 		WDRez search = new WDRez();
 		List<WDCoupon> couponList = null;
 		
-		couponList = wdCouponService.couponSelectList(wdUser.getUserId());
+		//의수 쿠폰 수정, 상태가 N인 애들만 목록에 나타남
+		WDCoupon wdCoupon = new WDCoupon();
+		wdCoupon.setUserId(wdUser.getUserId());
+		wdCoupon.setcStatus("N");
+		
+		couponList = wdCouponService.couponList(wdCoupon);
+		
 		
 		if(couponList != null) {
 			model.addAttribute("couponList",couponList);
