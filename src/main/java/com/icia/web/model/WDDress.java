@@ -26,6 +26,8 @@ public class WDDress implements Serializable
 	private long startRow;			//시작 rownum
 	private long endRow;			//끝 rownum
 	
+	private String wDate;			//검색 조건 날짜
+	
 
 	
 	public WDDress()
@@ -49,6 +51,8 @@ public class WDDress implements Serializable
 		startRow = 0;
 		endRow = 0;
 		dDiscount = 0;
+		
+		wDate = "";
 		
 	}
 
@@ -210,6 +214,16 @@ public class WDDress implements Serializable
 
 	public void setEndRow(long endRow) {
 		this.endRow = endRow;
+	}
+
+
+	public String getwDate() {
+		return wDate;
+	}
+
+
+	public void setwDate(String wDate) {
+		this.wDate = wDate;
 	}
 	
 }

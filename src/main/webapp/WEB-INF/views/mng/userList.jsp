@@ -21,23 +21,23 @@
 <script>
 
 $(document).ready(function(){
-      $("#userUpdate").colorbox({
+      $(".userUpdate").colorbox({
             iframe:true, 
             innerWidth:1235,
-            innerHeight:420,
+            innerHeight:500,
             scrolling:false,
             onComplete:function()
             {
                $("#colorbox").css("width", "1235px");
-               $("#colorbox").css("height", "420px");
+               $("#colorbox").css("height", "500px");
                $("#colorbox").css("border-radius", "10px");
                
                $('html').css("overflow","hidden");
             } , 
-              onClosed: function()
-          {
-            $('html').css("overflow","auto");
-          }  
+            onClosed: function()
+	          {
+	            $('html').css("overflow","auto");
+	          }  
       });
 });
 
@@ -109,7 +109,9 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                <c:if test="${!empty userList}">
                <c:forEach items="${userList}" var="user" varStatus="status">
                <tr>
-                   <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;"><a href="/mng/MngUserUpdate?userId=${user.userId}" name="userUpdate" id="userUpdate">${user.userId}</a></th>
+                   <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;">
+                   	<a href="/mng/MngUserUpdate?userId=${user.userId}" name="userUpdate" class="userUpdate">${user.userId}</a>
+                   </th>
                    <td>${user.userName}</td>
                    <td>${user.userEmail}</td>
                    <td><c:if test="${user.status == 'Y'}">정상</c:if><c:if test="${user.status == 'N'}">정지</c:if></td>
@@ -159,6 +161,6 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
    </div>
   </div>
 </div>
-
+	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
 </html>

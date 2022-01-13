@@ -32,7 +32,8 @@ function fn_list(curPage)
    document.bbsForm.action = "/hsdm/makeUp";
    document.bbsForm.submit();
 }
-</script>  
+
+</script> 
 </head> 
 <body>
 	<!-- 메뉴바 시작 -->
@@ -57,6 +58,7 @@ function fn_list(curPage)
             </div>
         </div>
     </div>
+
 
     <div class="tickets-page">
         <div class="container">

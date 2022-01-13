@@ -118,7 +118,10 @@ public class WDMakeUpController
 			searchValue = "";
 		}
 		
-		totalCount = wdMakeUpService.makeUpListCount(search);
+		search.setwDate("20220112");
+		
+		//totalCount = wdMakeUpService.makeUpListCount(search);
+		totalCount = wdMakeUpService.makeUpListCountmr(search);
 		
 		logger.debug("============totalCount : "+ totalCount + "===========================");
 		
@@ -132,8 +135,10 @@ public class WDMakeUpController
 			
 			search.setStartRow(paging.getStartRow());
 			search.setEndRow(paging.getEndRow());
+			search.setwDate("20220112"); //일단하드코딩!
 			
-			list = wdMakeUpService.makeUpList(search);
+			///list = wdMakeUpService.makeUpList(search);
+			list = wdMakeUpService.makeUpListMinusRez(search); //예약내역 제외한 목록 불러오기
 		}
 		
 		model.addAttribute("list", list);

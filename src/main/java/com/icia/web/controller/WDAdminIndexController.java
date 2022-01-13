@@ -235,10 +235,11 @@ public class WDAdminIndexController
 			String userPwd = HttpUtil.get(request, "userPwd");
 			String userName = HttpUtil.get(request, "userName");
 			String userEmail = HttpUtil.get(request, "userEmail");
+			String userNickname = HttpUtil.get(request, "userNickname");
 			String status = HttpUtil.get(request, "status");
 			
 			if(!StringUtil.isEmpty(userId) && !StringUtil.isEmpty(userPwd) && !StringUtil.isEmpty(userName) && 
-					!StringUtil.isEmpty(userEmail) && !StringUtil.isEmpty(status))
+					!StringUtil.isEmpty(userNickname) && !StringUtil.isEmpty(userEmail) && !StringUtil.isEmpty(status))
 			{
 				//500번 오류 막기위한 처리 (주소치고오는 애들 막아주기)
 				WDAdminUser wdAdminUser = wdAdminUserService.wdAdminUserSelect(userId);
@@ -249,6 +250,7 @@ public class WDAdminIndexController
 					wdAdminUser.setUserPwd(userPwd);
 					wdAdminUser.setUserName(userName);
 					wdAdminUser.setUserEmail(userEmail);
+					wdAdminUser.setUserEmail(userNickname);
 					wdAdminUser.setStatus(status);
 					
 					if(wdAdminUserService.wdAdmUserUpdate(wdAdminUser) > 0)
@@ -333,7 +335,8 @@ public class WDAdminIndexController
 			hTotalCount = wdHallService.WDHallListCount(wdHall);
 			sTotalCount = wdStudioService.studioListCount(wdStudio);
 			dTotalCount = wdDressService.dressListCount(wdDress);
-			mTotalCount = wdMakeUpService.makeUpListCount(wdMakeUp);
+			//mTotalCount = wdMakeUpService.makeUpListCount(wdMakeUp);
+			mTotalCount = wdMakeUpService.makeUpListCountmr(wdMakeUp);
 			
 			//홀 페이징 처리
 			if(hTotalCount > 0)
@@ -389,7 +392,8 @@ public class WDAdminIndexController
 				wdMakeUp.setStartRow(mPaging.getStartRow());
 				wdMakeUp.setEndRow(mPaging.getEndRow());
 				
-				mList = wdMakeUpService.makeUpList(wdMakeUp);
+				//mList = wdMakeUpService.makeUpList(wdMakeUp);
+				mList = wdMakeUpService.makeUpListMinusRez(wdMakeUp);
 			}
 			
 			model.addAttribute("hList", hList);
