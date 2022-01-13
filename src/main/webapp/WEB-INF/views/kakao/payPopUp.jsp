@@ -18,13 +18,7 @@ function kakaoPayResult(pgToken)
 <body>
 <iframe width="100%," height="650" src="${pcUrl}" frameborder="0" allowfullscreen=""></iframe>
 <form name="kakaoForm" id="kakaoForm" method="post" action="/kakao/payResult">
-<<<<<<< HEAD
-   <input type="hidden" name="orderId" id="orderId" value="${orderId}" />
-   <input type="hidden" name="tId" id="tId" value="${tId}" />
-   <input type="hidden" name="userId" id="userId" value="${userId}" />
-   <input type="hidden" name="pgToken" id="pgToken" value="" />
-   <input type="hidden" name="cCode" id="cCode" value="${cCode}" />   <!-- 동욱 추가 -->
-=======
+
 	<input type="hidden" name="orderId" id="orderId" value="${orderId}" />
 	<input type="hidden" name="tId" id="tId" value="${tId}" />
 	<input type="hidden" name="userId" id="userId" value="${userId}" />
@@ -32,7 +26,7 @@ function kakaoPayResult(pgToken)
 	<input type="hidden" name="cCode" id="cCode" value="${cCode}" />	<!-- 동욱 추가 -->
 	<input type="hidden" name="rezNo" id="rezNo" value="${rezNo}" />
     <input type="hidden" name="rezFullPrice" id="rezFullPrice" value="${rezFullPrice}" />
->>>>>>> 6f0df56216215c5e08a6fccf8ed7b696e8f294c0
+
 </form>
 </body>
 </html>

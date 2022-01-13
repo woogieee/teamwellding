@@ -4,7 +4,7 @@
 
 
  <!-- *** 욱채수정Footer *** -->
- <footer>
+ <footer style="width: 100%;">
     <div class="container">
         <div class="row">
             <div class="col-lg-4">

@@ -235,7 +235,7 @@ function fn_list(curPage)
 						
 						<div class="col-lg-12">
 		                    <div class="pagination">
-								<ul class="pagination justify-content-center">
+								<ul class="pagination justify-content-center" style="border-top: none;">
 									<c:if test="${!empty paging}">
 										<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
 										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>

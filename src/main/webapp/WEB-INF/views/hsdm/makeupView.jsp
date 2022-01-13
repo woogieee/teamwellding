@@ -25,14 +25,14 @@ $(document).ready(function(){
 			count ++;
 			$("#quantity").val(count);
 		});
-		$("#btnList").on("click", function(){
+		$(".btnListt").on("click", function(){
 			document.bbsForm.action = "/hsdm/makeUp";
 			document.bbsForm.submit();
 		});
 	}
 	
 	
-	//홀 담기 버튼 시작
+	//메이크업 담기 버튼 시작
 	$("#chae").on("click",function(){
 		if(confirm("해당 메이크업샵을 장바구니에 담으시겠습니까?"))
 		{
@@ -87,7 +87,7 @@ $(document).ready(function(){
 		}
 		
 	});
-	//홀 담기 버튼 종료
+	//메이크업 담기 버튼 종료
 	
 });
 function fn_view_st(sCode)
@@ -137,7 +137,7 @@ function fn_view(dNo)
                         <div class="right-content2">
                             <h4>
                             	<c:out value="${wdMakeup.mName}" />
-				             	<button type="button" id="btnList" class="listButton3">
+				             	<button type="button" id="btnList" class="btnListt listButton3">
 				        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
 				        		</button>
                             </h4>
@@ -234,7 +234,7 @@ function fn_view(dNo)
                 <!-- 아래쪽 뒤로가기버튼 시작 -->
                 <div class="col-lg-12" style="width: 100%; height: 1px; background:#eee; margin-top:50px;"></div>
             	<div class="alignleft2">
-	             	<button type="button" id="btnList" class="listButton">
+	             	<button type="button" id="btnList" class="btnListt listButton">
 	        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
 	        		</button>
             	</div>  

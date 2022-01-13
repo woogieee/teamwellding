@@ -478,7 +478,7 @@ $("#payMent").on("click", function(){
 <c:if test="${empty wdRez}">
 							<tr>
 							<td colspan="5">
-							<div style="text-align: center;">
+							<div style="text-align: center; padding-bottom: 30px;">
 							<img src="../resources/images/icons/basket.png" style="width:100px; margin:30px;"/>
 							<p>장바구니에 담긴 상품이 없습니다.</p>
 							</div>
@@ -522,7 +522,7 @@ $("#payMent").on("click", function(){
 							</dl>
 							
 							<div class="sumbox2">
-								<h5>총 주문금액 
+								<h5>총 주문금액 &nbsp;
 
 									<span id="aftP">
 										<fmt:formatNumber type="number" maxFractionDigits="0" 

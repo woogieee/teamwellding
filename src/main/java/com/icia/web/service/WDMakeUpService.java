@@ -31,7 +31,7 @@ public class WDMakeUpService
 	private String UPLOAD_SAVE_DIR;
 	
 	//총 메이크업 업체 수
-	/*public long makeUpListCount(WDMakeUp wdMakeUp) 
+	public long makeUpListCount(WDMakeUp wdMakeUp) 
 	{
 		long count = 0;
 		
@@ -45,7 +45,7 @@ public class WDMakeUpService
 		}
 		
 		return count;
-	}*/
+	}
 	
 	//총 메이크업 업체 수
 	public long makeUpListCountmr(WDMakeUp wdMakeUp) 
@@ -65,7 +65,7 @@ public class WDMakeUpService
 	}
 	
 	//메이크업 업체 가져오기
-	/*public List<WDMakeUp> makeUpList(WDMakeUp wdMakeUp)
+	public List<WDMakeUp> makeUpList(WDMakeUp wdMakeUp)
 	{
 		List<WDMakeUp> list = null;
 		
@@ -79,7 +79,7 @@ public class WDMakeUpService
 		}
 		
 		return list;
-	}*/
+	}
 	
 	//메이크업 업체 가져오기 - 예약된곳 제외
 	public List<WDMakeUp> makeUpListMinusRez(WDMakeUp wdMakeUp)

@@ -205,7 +205,7 @@
                             </ul>
                                 <div class="sd_detail_hall">${wdHall.HContent}</div>
                             <ul>    
-                                <li class="price">${wdHall.HPrice}원</li>
+                                <li class="price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice}" />원</li>
                                 <li class="dis_price"><span class="discount"><c:out value="${wdHall.hDiscount}" />%</span> <span class="dis-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice * (1-wdHall.hDiscount*0.01)}" />원</span></li>
                             </ul>
                             <div class="main-dark-button">
