@@ -98,8 +98,16 @@ SELECT
     S_DATE
 FROM
     WD_REZ
-WHERE
-    USER_ID = #{userId}
+WHERE	
+	1 = 1
+<if test='userId != null and userId != ""'>
+AND
+    USER_ID = #{userId}   
+</if>
+<if test='rezNo != null and rezNo != ""'>
+AND
+    REZ_NO = #{rezNo}   
+</if>
 AND
 	REZ_STATUS = #{rezStatus}
 </select>
@@ -424,5 +432,75 @@ WHERE
 </update>
 <!-- 쿠폰까지 삽입되면, 그제서야 상태 Y로 변경 종료 -->
 
+<!-- 결제 내역을 가져오기(rezStatus Y) 시작 -->
+<select id="rezSelectList" parameterType="string" resultMap="WDRezDaoResultMap">
+SELECT
+    REZ_NO,
+    WH_CODE,
+    H_CODE,
+    S_CODE,
+    DC_CODE,
+    D_NO,
+    M_CODE,
+    M_PLUS_NUM,
+    REZ_STATUS,
+    REZ_DATE,
+    WDATE,
+    USER_ID,
+    REZ_FULL_PRICE,
+    C_CODE,
+    REZ_POINT,
+    S_DATE
+FROM    
+    (SELECT
+        ROWNUM AS RNUM,
+        REZ_NO,
+        WH_CODE,
+        H_CODE,
+        S_CODE,
+        DC_CODE,
+        D_NO,
+        M_CODE,
+        M_PLUS_NUM,
+        REZ_STATUS,
+        REZ_DATE,
+        WDATE,
+        USER_ID,
+        REZ_FULL_PRICE,
+        C_CODE,
+        REZ_POINT,
+        S_DATE
+        FROM(
+                SELECT
+                    REZ_NO,
+                    NVL(WH_CODE, '') AS WH_CODE,
+                    NVL(H_CODE, '') AS H_CODE,
+                    NVL(S_CODE, '') AS S_CODE,
+                    NVL(DC_CODE, '') AS DC_CODE,
+                    NVL(D_NO, '') AS D_NO,
+                    NVL(M_CODE, '') AS M_CODE,
+                    NVL(M_PLUS_NUM, 0) AS M_PLUS_NUM,
+                    NVL(REZ_STATUS, 'Y') AS REZ_STATUS,
+                    NVL(TO_CHAR(REZ_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') AS REZ_DATE,
+                    NVL(WDATE, '') AS WDATE,
+                    USER_ID,
+                    NVL(REZ_FULL_PRICE, 0) AS REZ_FULL_PRICE,
+                    NVL(C_CODE, '') AS C_CODE,
+                    NVL(REZ_POINT, 0) AS REZ_POINT,
+                    NVL(S_DATE, '') AS S_DATE
+                FROM
+                    WD_REZ
+                WHERE
+                    USER_ID = #{value}
+                AND
+                    REZ_STATUS = 'Y'
+                ORDER BY
+                    REZ_NO DESC))
+WHERE
+    RNUM <![CDATA[<=]]> 10
+AND
+    RNUM <![CDATA[>=]]> 1
+</select>
+<!-- 결제 내역을 가져오기(rezStatus Y) 종료 -->
 
 </mapper>

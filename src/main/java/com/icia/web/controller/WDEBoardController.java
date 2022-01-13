@@ -161,6 +161,8 @@ public class WDEBoardController
 			String searchValue = HttpUtil.get(request, "searchValue", "");
 			long curPage = HttpUtil.get(request, "curPage", (long)1);
 			
+			System.out.println("#####################sdlfjsdjkfsdlfjsjdsdljfsd #######: " + eBSeq);
+			
 			WDEBoard eBoard = null;
 			
 			if(eBSeq > 0)

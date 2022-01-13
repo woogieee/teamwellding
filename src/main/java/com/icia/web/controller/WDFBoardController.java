@@ -380,23 +380,34 @@ public class WDFBoardController
 
 		   if(bSeq > 0 && !StringUtil.isEmpty(wdFBoardComment)) {
 			   WDFBoard wdFBoard = wdFBoardService.wdFBoardView(bSeq);
-			   if(wdFBoard != null) {
+			   if(wdFBoard != null) 
+			   {
+				   
 				   int maxcomment = wdCommentService.WDCommentMax(wdFBoard.getbSeq());
 				   wdUser = wdUserService.userSelect(cookieUserId);
-				  
-				   wdComment.setParentSeq(wdFBoard.getbSeq());
-				   wdComment.setCommentSeq(maxcomment+1);
-				   wdComment.setUserId(cookieUserId);
-				   wdComment.setuNickName(wdUser.getUserNickname());
-				   wdComment.setuEmail(wdUser.getUserEmail());
-				   wdComment.setWdFBoardComment(wdFBoardComment);
 				   
-				   if(wdCommentService.WDCommentInsert(wdComment) > 0) {
-					   ajaxResponse.setResponse(0, "Success");
+				   
+				   if(wdUser !=null) 
+				   {
+					   wdComment.setParentSeq(wdFBoard.getbSeq());
+					   wdComment.setCommentSeq(maxcomment+1);
+					   wdComment.setUserId(cookieUserId);
+					   wdComment.setuNickName(wdUser.getUserNickname());
+					   wdComment.setuEmail(wdUser.getUserEmail());
+					   wdComment.setWdFBoardComment(wdFBoardComment);
+					   
+					   if(wdCommentService.WDCommentInsert(wdComment) > 0) {
+						   ajaxResponse.setResponse(0, "Success");
+					   }
+					   else {
+						   ajaxResponse.setResponse(500, "Internal Server Error");
+					   }					   
 				   }
-				   else {
-					   ajaxResponse.setResponse(500, "Internal Server Error");
-				   }				   
+				   else 
+				   {
+					   ajaxResponse.setResponse(406, "Not Found");
+				   }
+				   
 			   }
 			   else {
 				   	//계정이 없음

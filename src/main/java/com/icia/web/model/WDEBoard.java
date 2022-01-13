@@ -13,6 +13,7 @@ public class WDEBoard implements Serializable
 	private String eBImgName;
 	private long eBReadCnt;
 	private String regDate;
+	private String eBSubImgName;
 	
 	private String adminName; 	//사용자 이름
 		
@@ -35,7 +36,24 @@ public class WDEBoard implements Serializable
 		searchValue = "";
 		startRow = 0;
 		endRow = 0;
+		eBSubImgName = "";
 	}
+	
+
+	public String geteBSubImgName() {
+		return eBSubImgName;
+	}
+
+
+	public void seteBSubImgName(String eBSubImgName) {
+		this.eBSubImgName = eBSubImgName;
+	}
+
+
+	public void seteBReadCnt(long eBReadCnt) {
+		this.eBReadCnt = eBReadCnt;
+	}
+
 
 	public long geteBSeq() {
 		return eBSeq;

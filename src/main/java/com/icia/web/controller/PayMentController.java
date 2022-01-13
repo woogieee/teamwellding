@@ -1,5 +1,6 @@
 package com.icia.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +13,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.icia.common.util.StringUtil;
+import com.icia.web.model.Paging;
 import com.icia.web.model.WDCoupon;
 import com.icia.web.model.WDRez;
 import com.icia.web.model.WDUser;
@@ -21,6 +24,7 @@ import com.icia.web.service.WDCouponService;
 import com.icia.web.service.WDRezService;
 import com.icia.web.service.WDUserService;
 import com.icia.web.util.CookieUtil;
+import com.icia.web.util.HttpUtil;
 
 @Controller("payMentController")
 public class PayMentController 
@@ -54,14 +58,18 @@ public class PayMentController
 		WDRez search = new WDRez();
 		List<WDCoupon> couponList = null;
 		
-		couponList = wdCouponService.couponSelectList(wdUser.getUserId());
+		//의수 쿠폰 수정, 상태가 N인 애들만 목록에 나타남
+		WDCoupon wdCoupon = new WDCoupon();
+		wdCoupon.setUserId(wdUser.getUserId());
+		wdCoupon.setcStatus("N");
+		
+		couponList = wdCouponService.couponList(wdCoupon);
+		
 		
 		if(couponList != null) {
 			model.addAttribute("couponList",couponList);
 			model.addAttribute("num", couponList.size());
 		}
-		
-		
 		
 		if(wdUser != null) 
 		{
@@ -91,6 +99,85 @@ public class PayMentController
 		
 	}
 	
+	@RequestMapping(value="/user/payList")
+	   public String payList(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	   {
+	      String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+	      long curPage = HttpUtil.get(request, "curPage", (long)0);
+	      
+	      
+	      WDUser wdUser = wdUserService.userSelect(cookieUserId);
+	      
+	      List<WDRez> list = null;
+
+	      
+	      
+	      if(wdUser != null) 
+	      {
+
+	         if(StringUtil.equals(wdUser.getStatus(), "Y")) 
+	         {
+	            
+	            list = wdRezService.rezSelectList(wdUser.getUserId());
+	            
+	            
+	            model.addAttribute("list", list);
+	            model.addAttribute("wdUser",wdUser);
+	         }
+	         else 
+	         {
+	            return "/";
+	         }
+	      }
+	      else 
+	      {
+	         return "/";
+	      }
+	      
+	      return "/user/payList";
+	   }
+	
+	@RequestMapping(value="/user/payListView", method=RequestMethod.POST)
+	   public String payListView (ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	   {
+	      String rezNo = HttpUtil.get(request, "rezNo", "");
+	      
+	      String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+	      
+	      WDUser wdUser = wdUserService.userSelect(cookieUserId);
+	      
+	      WDRez wdRez = null;
+	      
+	      WDCoupon wdCoupon = null;
+	      
+	      if(wdUser != null) 
+	      {
+	         if(StringUtil.equals(wdUser.getStatus(), "Y")) 
+	         {
+	            WDRez search = new WDRez();
+	            search.setUserId(wdUser.getUserId());
+	            search.setRezStatus("Y");
+	            
+	            wdRez = wdRezService.rezSelect(search);
+	            wdRez = wdRezService.rezList(wdRez);
+	            
+	            if(wdRez != null) 
+	            {
+	               HashMap<String, Object> map = new HashMap<String, Object>();
+	               map.put("userId", wdRez.getUserId());
+	               map.put("rezNo", wdRez.getRezNo());
+	               
+	               wdCoupon = wdCouponService.couponSelectPayOk(map);
+	               
+	               model.addAttribute("wdRez", wdRez);
+	               model.addAttribute("wdCoupon", wdCoupon);
+	            }
+	         }
+	      }
+	      
+	      return "/user/payListView";
+	   }
+	
 	@RequestMapping(value="/user/payComplete")
 	public String payComplete(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
@@ -98,22 +185,20 @@ public class PayMentController
 		
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
 		
-		WDRez search = new WDRez();
+		List<WDRez> list = null;
+
 		
 		
 		if(wdUser != null) 
 		{
 
-			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
+			if(StringUtil.equals(wdUser.getStatus(), "Y"))
 			{
-				search.setUserId(wdUser.getUserId());
-				search.setRezStatus("Y");
 				
-				WDRez wdRez = wdRezService.rezSelect(search);
+				list = wdRezService.rezSelectList(wdUser.getUserId());
 				
-				wdRez = wdRezService.rezList(wdRez);
 				
-				model.addAttribute("wdRez", wdRez);
+				model.addAttribute("list", list);
 				model.addAttribute("wdUser",wdUser);
 			}
 			else 
@@ -128,4 +213,5 @@ public class PayMentController
 		
 		return "/user/payComplete";
 	}
+
 }

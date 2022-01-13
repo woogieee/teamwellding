@@ -182,6 +182,7 @@ public class WDUserController
 			!StringUtil.isEmpty(uCheck)) 
 		{
 			System.out.println("다 들어왔어용 : "+userId );
+			System.out.println("체크 값 : "+wdUser.getuCheck());
 			if(wduserService.userInsert(wdUser) > 0) {
 				ajaxResponse.setResponse(0, "Success");
 			}

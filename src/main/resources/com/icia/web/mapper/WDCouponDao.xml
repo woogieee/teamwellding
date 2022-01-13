@@ -3,14 +3,14 @@
 <mapper namespace="com.icia.web.dao.WDCouponDao">
 <!-- 쿠폰 resultMap 시작 -->
 <resultMap id="WDCouponResultMap" type="com.icia.web.model.WDCoupon">
-	<id column="USER_ID" property="userId" />
-	<id column="C_CODE" property="cCode" />
-	<result column="C_STATUS" property="cStatus" />
-	<result column="C_NAME" property="cName" />
-	<result column="C_PRICE" property="cPrice" />
-	<result column="C_START_DATE" property="cStartDate" />
-	<result column="C_END_DATE" property="cEndDate" />
-	<result column="C_CONTENT" property="cContent" />
+   <id column="USER_ID" property="userId" />
+   <id column="C_CODE" property="cCode" />
+   <result column="C_STATUS" property="cStatus" />
+   <result column="C_NAME" property="cName" />
+   <result column="C_PRICE" property="cPrice" />
+   <result column="C_START_DATE" property="cStartDate" />
+   <result column="C_END_DATE" property="cEndDate" />
+   <result column="C_CONTENT" property="cContent" />
 </resultMap>
 <!-- 쿠폰 resultMap 끝 -->
 
@@ -79,4 +79,97 @@ AND
 </update>
 <!-- 결제 시 , 쿠폰 정보를 가져와서 해당 유저의 해당 쿠폰 업데이트 종료 -->
 
+
+<!-- 결제 취소 요청이 승인되고, 취소승인된 해당 쿠폰을 다시 사용가능하게 변경 -->
+<update id="rezCouponUpdatePayCancel" parameterType="string">
+UPDATE WD_COUPON
+SET
+    C_STATUS = 'N'
+WHERE
+    C_CODE = (SELECT
+                    C_CODE
+                FROM
+                    WD_REZ
+                WHERE
+                    USER_ID = #{value}
+                AND
+                    REZ_STATUS = 'C'
+                )
+AND
+    USER_ID = #{value}
+</update>
+<!-- 결제 취소 요청이 승인되고, 취소승인된 해당 쿠폰을 다시 사용가능하게 변경 종료 -->
+
+
+<!-- 결제 완료된 내역에서 결제중 쿠폰 정보를 가져오기 시작 -->
+<select id="couponSelectPayOk" parameterType="hashmap" resultMap="WDCouponResultMap">
+SELECT
+    C.USER_ID AS USER_ID,
+    NVL(C.C_CODE, '') AS C_CODE,
+    NVL(C.C_STATUS, 'N') AS C_STATUS,
+    NVL(I.C_NAME, '') AS C_NAME,
+    NVL(I.C_PRICE, 0) AS C_PRICE
+FROM
+    WD_COUPON C, WD_REZ R, WD_COUPON_INFO I
+WHERE
+    C.C_CODE = R.C_CODE
+AND
+    C.C_CODE = I.C_CODE
+AND
+    C.USER_ID = R.USER_ID
+AND
+    R.REZ_STATUS = 'Y'
+AND
+    R.USER_ID = #{userId}
+AND
+    R.REZ_NO = #{rezNo}
+</select>
+<!-- 결제 완료된 내역에서 결제중 쿠폰 정보를 가져오기 시작 -->
+
+
+<!-- 쿠폰 조회, 사용가능한 상태나 사용한 상태에 따라서 다르게 불러올 수 있는 쿼리(욱채꺼 수정 ㅡ_ㅡ;;) -->
+<select id="couponList" parameterType="com.icia.web.model.WDCoupon" resultMap="WDCouponResultMap">
+SELECT 
+    USER_ID,
+    C_CODE,
+    C_STATUS,
+    C_NAME,
+    C_PRICE,
+    C_START_DATE,
+    C_END_DATE,
+    C_CONTENT
+FROM (SELECT
+            ROWNUM RNUM,
+            USER_ID,
+            C_CODE,
+            C_STATUS,
+            C_NAME,
+            C_PRICE,
+            C_START_DATE,
+            C_END_DATE,
+            C_CONTENT
+        FROM (SELECT
+                    A.USER_ID,
+                    A.C_CODE,
+                    NVL(A.C_STATUS, 'Y') C_STATUS,
+                    NVL(B.C_NAME, '') C_NAME,
+                    NVL(B.C_PRICE, 0) C_PRICE,
+                    NVL(TO_CHAR(B.C_START_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') C_START_DATE,
+                    NVL(TO_CHAR(B.C_END_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') C_END_DATE,
+                    NVL(B.C_CONTENT, '') C_CONTENT
+                FROM
+                    WD_COUPON A, WD_COUPON_INFO B
+                WHERE
+                    A.C_CODE = B.C_CODE
+                AND
+                    A.USER_ID = #{userId}
+                AND
+                    A.C_STATUS = #{cStatus}
+                    ))
+WHERE
+    RNUM <![CDATA[>=]]> 1
+AND
+    RNUM <![CDATA[<=]]> 10
+</select>    
+<!-- 쿠폰 조회, 사용가능한 상태나 사용한 상태에 따라서 다르게 불러올 수 있는 쿼리(욱채꺼 수정 ㅡ_ㅡ;;) -->
 </mapper>
