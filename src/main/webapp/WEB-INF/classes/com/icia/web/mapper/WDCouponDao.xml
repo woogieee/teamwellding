@@ -3,14 +3,14 @@
 <mapper namespace="com.icia.web.dao.WDCouponDao">
 <!-- 쿠폰 resultMap 시작 -->
 <resultMap id="WDCouponResultMap" type="com.icia.web.model.WDCoupon">
-	<id column="USER_ID" property="userId" />
-	<id column="C_CODE" property="cCode" />
-	<result column="C_STATUS" property="cStatus" />
-	<result column="C_NAME" property="cName" />
-	<result column="C_PRICE" property="cPrice" />
-	<result column="C_START_DATE" property="cStartDate" />
-	<result column="C_END_DATE" property="cEndDate" />
-	<result column="C_CONTENT" property="cContent" />
+   <id column="USER_ID" property="userId" />
+   <id column="C_CODE" property="cCode" />
+   <result column="C_STATUS" property="cStatus" />
+   <result column="C_NAME" property="cName" />
+   <result column="C_PRICE" property="cPrice" />
+   <result column="C_START_DATE" property="cStartDate" />
+   <result column="C_END_DATE" property="cEndDate" />
+   <result column="C_CONTENT" property="cContent" />
 </resultMap>
 <!-- 쿠폰 resultMap 끝 -->
 

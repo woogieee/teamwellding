@@ -104,6 +104,10 @@ WHERE
 AND
     USER_ID = #{userId}   
 </if>
+<if test='rezNo != null and rezNo != ""'>
+AND
+    REZ_NO = #{rezNo}   
+</if>
 AND
 	REZ_STATUS = #{rezStatus}
 </select>
