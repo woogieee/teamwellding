@@ -1,6 +1,9 @@
 package com.icia.web.controller;
 
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.icia.common.util.StringUtil;
+import com.icia.web.model.Paging;
 import com.icia.web.model.Response;
 import com.icia.web.model.WDRez;
 import com.icia.web.model.WDUser;
@@ -57,6 +61,9 @@ public class WDRezController {
 		
 		@Autowired
 		private WDRezService wdRezService;
+		
+		private static final int LIST_COUNT = 10;	//한 페이지에 게시물 수
+		private static final int PAGE_COUNT = 5;	//페이징 수
 	
 	/*@RequestMapping(value="/cart")
 	public String cart(ModelMap model, HttpServletRequest request, HttpServletResponse response)
@@ -301,4 +308,95 @@ public class WDRezController {
 		return ajaxResponse;		
 	}
 	
+	//결제 취소 리스트 불러오기(관리자) 
+	@RequestMapping(value="/mng/payMentList")
+	public String payMentList(ModelMap model, HttpServletRequest request, HttpServletResponse response) 
+	{
+		String searchType = HttpUtil.get(request, "searchType", "");
+		String searchValue = HttpUtil.get(request, "searchValue", "");
+		long totalCount = 0;
+		long curPage = 1;
+		List<WDRez> list = null;
+		//페이징 객체
+		Paging paging = null;
+		
+		WDRez search = new WDRez();
+		
+		if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue)) 
+		{
+			//받아온 값이 있으면 set
+			search.setSearchType(searchType);
+			search.setSearchValue(searchValue);
+		}
+		else 
+		{
+			searchType = "";
+			searchValue = "";
+		}
+		
+		totalCount = wdRezService.rezListCount(search);
+		
+		logger.debug("[totalCount] = "+ totalCount);
+		
+		if(totalCount > 0)
+		{
+			paging = new Paging("/mng/payMentList", totalCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage");
+			paging.addParam("searchType", searchType);
+			paging.addParam("searchValue", searchValue);
+			paging.addParam("curPage", curPage);
+			
+			//시작 row와 종료 row를 paging 모듈에서 자동 계산해줌.
+			search.setStartRow(paging.getStartRow());
+			search.setEndRow(paging.getEndRow());
+			
+			list = wdRezService.rezAdminSelect(search);
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchValue", searchValue);
+		model.addAttribute("curPage", curPage);
+		model.addAttribute("paging", paging);
+		
+		return	"/mng/payMentList";
+	}
+	
+	@RequestMapping(value = "mng/payMentProc", method=RequestMethod.POST)
+	@ResponseBody
+	public Response<Object> updateStatus(HttpServletRequest request, HttpServletResponse response)
+	{
+		Response<Object> ajaxResponse = new Response<Object>();
+		String rezStatus = HttpUtil.get(request, "rezStatus");
+		
+		List<WDRez> list = null;
+		
+		WDRez search = new WDRez();
+		
+		if(StringUtil.equals(rezStatus, "C"))
+		{
+			search.setRezStatus("D");
+			if(StringUtil.equals(rezStatus, "D"))
+			{
+				HashMap<String, Object> map = new HashMap<String, Object>();
+	               map.put("userId", search.getUserId());
+	               map.put("rezNo", search.getRezNo());
+	               
+	               search = wdRezService.rezPointReturn(map);
+	               
+				ajaxResponse.setResponse(0, "Success");
+			}
+			else
+			{
+				ajaxResponse.setResponse(500,"Internal Server Error" );
+			}
+		}
+		else
+		{
+			ajaxResponse.setResponse(401, "Bad Request");
+		}
+		
+		list = wdRezService.rezAdminSelect(search);
+		
+		return ajaxResponse;
+	}
 }

@@ -52,6 +52,10 @@ $(document).ready(function(){
                      alert("아직 결혼식이 진행되지 않아 리뷰 작성이 불가능 합니다.");
                      location.href = "/board/reviews";
                   }
+                  else if(response.code == 501){
+                	  alert("이미 리뷰를 작성하였습니다.");
+                      location.href = "/board/reviews";
+                  }
                   else 
                   {
                      alert("오류가 발생하였습니다. 다시 시도해주세요");

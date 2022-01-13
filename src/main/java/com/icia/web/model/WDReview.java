@@ -17,7 +17,9 @@ public class WDReview implements Serializable{
 	private String RegDate;
 	private double RScore;
 	private String rezStatus;
+	private String reviewStatus;
 	
+
 	private WDReviewFile reviewFile;
 	
     private String searchValue;      //검색값
@@ -44,9 +46,17 @@ public class WDReview implements Serializable{
 		startRow = 0;
 		endRow = 0;
 		today = "";
+		reviewStatus = "";
 	}
-	
 		
+	public String getReviewStatus() {
+		return reviewStatus;
+	}
+
+	public void setReviewStatus(String reviewStatus) {
+		this.reviewStatus = reviewStatus;
+	}
+
 	public String getToday() {
 		return today;
 	}
