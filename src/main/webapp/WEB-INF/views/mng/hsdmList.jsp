@@ -55,6 +55,122 @@ function fn_paging(curPage)
 			</div>
 		</div>
 		
+		<div class="col-lg-12" width="100%">
+			<ul>
+				<li id="divB1" style="background: #efefef;">
+					<div class="row">
+						<div class="col-lg-1">
+							<div class="divB_tb" style="text-align: center;">
+								<span>번호</span>
+							</div>
+						</div>
+						<div class="col-lg-8" style="text-align: center;">
+							<div class="divB_tb">
+								<span>내용</span>
+							</div>
+						</div>
+						<div class="col-lg-1" style="text-align: center;">
+							<div class="divB_tb">
+								<span>작성자</span>
+							</div>
+						</div>
+						<div class="col-lg-1" style="text-align: center;">
+							<div class="divB_tb">
+								<span>작성시간</span>
+							</div>
+						</div>
+						<div class="col-lg-1" style="text-align: center;">
+							<div class="divB_tb">
+								<span>조회수</span>
+							</div>
+						</div>
+					</div>
+				</li>
+				<c:forEach var="fboard" items="${list}" varStatus="status">
+					<li id="divB2">
+						<div onclick="fn_view(${fboard.bSeq})">
+							<div class="row" id="minthover">
+								<div class="col-lg-1">
+									<div class="divB_tb2 tbstyle">
+										<span>${fboard.bSeq}</span>
+									</div>
+								</div>
+
+								<div class="col-lg-6" style="text-align: left;">
+									<div class="divB_tb2">
+										<span>${fboard.bTitle}</span>
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="divB_tb2 tbstyle2">
+										<span>${fboard.userNickname}</span>
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="divB_tb2 tbstyle3">
+										<span>${fboard.regDate}</span>
+									</div>
+								</div>
+								<div class="col-lg-1">
+									<div class="divB_tb2 tbstyle4">
+										<span>${fboard.bReadCnt}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+
+				</c:forEach>
+			</ul>
+		</div>
+
+			<div class="col-lg-12">
+				<div>
+					<form id="subscribe" action="" method="get">
+						<div class="row">
+							<div class="col-lg-5"></div>
+							<div class="col-lg-7">
+								<div class="row">
+									<div class="col-lg-3"></div>
+									<div class="col-lg-6"></div>
+									<div class="col-lg-3">
+
+										<button type="button" id="btnWrite"
+											class="main-dark-button3">글쓰기</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<div class="col-lg-12">
+                   <div class="pagination">
+					<ul class="pagination justify-content-center">
+						<c:if test="${!empty paging}">
+							<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
+							<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>
+							</c:if>
+							<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+								<c:choose>
+									<c:when test="${i ne curPage}">
+										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${paging.nextBlockPage gt 0}">         
+								<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">다음</a></li>
+							</c:if>       
+						</c:if> 
+					</ul>
+                   </div>
+               </div>
+		
 
   </div>
 </div>
