@@ -77,6 +77,8 @@ $(document).ready(function(){
 					
 						
                         <table class="table tableWish">
+                        <c:choose>
+                        <c:when test="${!empty list}">
                             <tr style="border-top: 3px solid #444;">
                                 <th>예약번호</th>
                                 <th>예약날짜</th>
@@ -92,8 +94,7 @@ $(document).ready(function(){
 					<!-- 쿠폰 가져오기 -->
 					<div class="col-lg-10">
 					</div>
-						<c:choose>
-                        <c:when test="${!empty list}">
+						
                            <c:forEach var="wdRez" items="${list}" varStatus="status">
                                 <tr>
                                 	<!-- 예약번호 -->
@@ -123,13 +124,14 @@ $(document).ready(function(){
                            <c:when test="${empty list}">
                                     <th colspan="3">
 			                        <div style="text-align: center;">
-										결제내역이 없습니다.
+			                        <img src="../resources/images/icons/exclamation.png" style="width:100px; margin:30px;"/>
+									<p>결제내역이 없습니다. </p>
 									</div>
                                     </th>
                                  </tr>
-						</c:when>                          
-						</c:choose>
-                        </table>
+							</c:when>                          
+							</c:choose>
+	                        </table>
 
 					</div>
 					
