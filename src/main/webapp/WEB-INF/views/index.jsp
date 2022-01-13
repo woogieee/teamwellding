@@ -6,7 +6,14 @@
 <head>
 	<%@ include file="/WEB-INF/views/include/head.jsp" %>
 	<script>
-
+	<%
+	   if(com.icia.web.util.CookieUtil.getHexValue(request, (String)request.getAttribute("AUTH_COOKIE_NAME")).equals("admin"))
+	   {
+	%>
+		location.href = "/mng/userList";
+	<%
+	   }
+	%>
 	   function fn_view(whCode, hCode)
 	   {
 	      document.hallForm.WHCode.value = whCode;
@@ -34,7 +41,7 @@
        	var cookieData = document.cookie;
        	if(cookieData.indexOf("close=Yes") < 0)
        	{
-	            var option="width = 500, height = 520, top = 100, left = 200, location = no, menubar = no, scrollbars=no, left=70, top=110";
+	            var option="width = 500, height = 540, top = 100, left = 200, location = no, menubar = no, scrollbars=no, left=70, top=110";
 	            window.open("/popUpRoad", "PopUP", option);        		
        	}
        });

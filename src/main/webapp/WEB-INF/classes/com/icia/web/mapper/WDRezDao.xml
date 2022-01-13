@@ -184,6 +184,10 @@ FROM
     WD_REZ R
 WHERE    
     USER_ID = #{userId}
+<if test='rezStatus != null and rezStatus != ""'>
+AND
+	R.REZ_STATUS = #{rezStatus}
+</if>
 <if test='whCode != null and whCode != "" and hCode != null and hCode != ""'>
 AND
     H.WH_CODE = W.WH_CODE
@@ -413,8 +417,11 @@ UPDATE
     WD_REZ
 SET
     REZ_DATE = SYSDATE,
-    REZ_FULL_PRICE = #{rezFullPrice},
+    REZ_FULL_PRICE = #{rezFullPrice}
+<if test='cCode != null and cCode != ""'>    
+    ,
     C_CODE = #{cCode}
+</if>    
 WHERE
     REZ_NO = #{rezNo}
 AND

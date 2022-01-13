@@ -69,8 +69,6 @@ $(document).ready(function() {
                         <table class="table tableWish">
 
                             <tr style="border-top: 3px solid #444;">
-                                <th colspan="4">
-                                </th>
                             </tr>
 
                         </table>
@@ -86,7 +84,7 @@ $(document).ready(function() {
                <div class="col-lg-10">
                </div>
                <div style="text-align: center;">
-               <img src="../resources/images/icons/check.png" style="width:100px; margin:30px;">
+               <img src="../resources/images/icons/check.png" style="width:100px; margin-bottom:70px;">
                <p style="font-size:xx-large; font-weight:500;">결제가 완료 되었습니다.</p>
                </div>
                   <div class="rez_sum">

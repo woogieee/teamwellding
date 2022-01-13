@@ -301,7 +301,8 @@ public class WDAdminIndexController
 			
 			//쿠키 조회
 		    String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
-		   
+		   //닉네임 달거야
+		    WDAdmin wdAdmin = wdAdminService.wdAdminSelect(cookieUserId);
 			//조회항목
 			String searchType = HttpUtil.get(request, "searchType", "");
 			//조회값
@@ -396,6 +397,7 @@ public class WDAdminIndexController
 				mList = wdMakeUpService.makeUpListMinusRez(wdMakeUp);
 			}
 			
+			model.addAttribute("wdAdmin",wdAdmin);
 			model.addAttribute("hList", hList);
 			model.addAttribute("hPaging",hPaging);
 			model.addAttribute("sList", sList);
