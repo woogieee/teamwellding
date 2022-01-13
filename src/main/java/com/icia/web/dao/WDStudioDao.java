@@ -21,4 +21,9 @@ public interface WDStudioDao
 	//스튜디오 무작위로 가져오기 4개
 	public List<WDStudio> studioRandom(WDStudio wdStudio);
 	
+	//스튜디오 예약테이블에서 예약된 날짜 제외하고 가져오기
+	public List<WDStudio> studioListSdate(WDStudio wdStudio);
+	
+	//게시물 총수 예약일 기준 시작
+	public long studioListSdateCount(WDStudio wdStudio);
 }

@@ -21,11 +21,7 @@
 	      document.hallForm.action = "/hsdm/HallView";  
 	      document.hallForm.submit();
 	   }
-<<<<<<< HEAD
-	   
-=======
 
->>>>>>> 6f0df56216215c5e08a6fccf8ed7b696e8f294c0
 	   function fn_view3(bSeq)
 	   {
 	   	document.fBoardForm.bSeq.value = bSeq;

@@ -62,6 +62,11 @@ public class WDStudioController
 		//쿠키 확인
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		
+		String year = HttpUtil.get(request, "year", "");
+	    String month = HttpUtil.get(request, "month", "");
+	    String day = HttpUtil.get(request, "day", "");
+	    String sDate = year + month + day;
+		
 		//로그인 했을 때와 안했을 때를 구분해서 페이지를 보여주려 함.
 		//로그인 체크용. 0 => 로그인 x, 혹은 없는 계정; 1 => 로그인 정보 있는 계정
 		int loginS = 0;
@@ -92,6 +97,9 @@ public class WDStudioController
 		long curPage = HttpUtil.get(request, "curPage", (long)1);
 		String sCode = HttpUtil.get(request, "sCode", "");
 		
+		//조회 날짜
+		//String wDate = HttpUtil.get(request, "wDate", "");
+		
 		long totalCount = 0;
 		List<WDStudio> list = null;
 		
@@ -115,8 +123,10 @@ public class WDStudioController
 		}
 		
 		wdStudio.setsCode(sCode);
+		wdStudio.setsDate(sDate);
 		
-		totalCount = wdStudioService.studioListCount(wdStudio);
+		//totalCount = wdStudioService.studioListCount(wdStudio);
+		totalCount = wdStudioService.studioListSdateCount(wdStudio);
 		logger.debug("totalCount : " + totalCount);
 		
 		if(totalCount > 0)
@@ -130,8 +140,9 @@ public class WDStudioController
 			
 			wdStudio.setStartRow(paging.getStartRow());
 			wdStudio.setEndRow(paging.getEndRow());
-			
-			list = wdStudioService.studioList(wdStudio);
+			wdStudio.setsDate(sDate);
+			//list = wdStudioService.studioList(wdStudio);
+			list = wdStudioService.studioListSdate(wdStudio);
 		}
 		
 		model.addAttribute("list", list);
@@ -139,6 +150,9 @@ public class WDStudioController
 	    model.addAttribute("searchValue", searchValue);
 	    model.addAttribute("curPage", curPage);
 	    model.addAttribute("paging", paging);
+	    model.addAttribute("year", year);
+	    model.addAttribute("month", month);
+	    model.addAttribute("day", day);
 		
 	    
 		return "/hsdm/studio";
