@@ -51,7 +51,8 @@ SET
     U_STATUS = 'Y',
     REG_DATE = SYSDATE,
     U_MARRYDATE = #{marrytDate},
-    U_POINT = 0
+    U_POINT = 0,
+    U_CHECK = null
 WHERE
         U_CHECK = #{uCheck}
 </update>
