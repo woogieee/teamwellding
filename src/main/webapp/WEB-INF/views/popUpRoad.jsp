@@ -76,15 +76,43 @@
             
             */
         }
+        
+        function popupGo()
+        {
+        	opener.document.location.href='/board/eView?eBSeq=8';
+        	window.close();
+        }
     </script>
+    <style>
+    html, body
+    {
+    	margin: 0;
+    	padding: 0;
+    }
+    
+    a
+    {
+    	color: #333;
+	    font-size: 12px;
+	    letter-spacing: -0.5px;
+	    padding: 2px 5px 0 5px;
+	    text-decoration: none;
+    }
+    </style>
 </head>
-<body>
-    <div name="popUp" id="popUp">
-        <img src="https://image.ytn.co.kr/general/jpg/2019/1111/201911110022200336_t.jpg" alt="이미지" width="480" height="450">
-        <br />
-        <a href="javascript:void(0)" onclick="popUpExit2()">오늘 하루 열지않기</a>
-        <input type="checkbox" name="checkPop" id="checkPop" onclick="popUpExit()">
-        <a href="javascript:void(0)" onclick="hidePop()">창 닫기</a>
+<body style="overflow:hidden;">
+    <div name="popUp" id="popUp" style="height: 512px;" onclick="popupGo()">
+        <!--img src="https://image.ytn.co.kr/general/jpg/2019/1111/201911110022200336_t.jpg" alt="이미지" width="480" height="450"-->
+        <img src="/resources/images/pop.jpg" alt="팝업이미지" width="100%" height="auto" style="margin:0; padding:0; cursor:pointer;">
     </div>
+        <a href="javascript:void(0)" onclick="popUpExit2()" style="float:left;">오늘 하루 열지않기</a>
+        <input type="checkbox" name="checkPop" id="checkPop" onclick="popUpExit()" style="margin:0;">
+        <a href="javascript:void(0)" onclick="hidePop()" style="float:right; font-weight: bold; color: #dc143c;">창 닫기</a>
+
+   <!-- 게시글 상세 페이지를 위한 폼 -->
+   <form name="eBoardForm" id="eBoardForm" method="post">
+			<input type="hidden" name="eBSeq" value="8" />
+	</form>
+   <!-- 게시글 상세 페이지를 위한 폼 -->
 </body>
 </html>

@@ -93,42 +93,6 @@ public class PayMentController
 		
 	}
 	
-	@RequestMapping(value="/user/payComplete")
-	public String payComplete(ModelMap model, HttpServletRequest request, HttpServletResponse response)
-	{
-		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
-		
-		WDUser wdUser = wdUserService.userSelect(cookieUserId);
-		
-		List<WDRez> list = null;
-
-		
-		
-		if(wdUser != null) 
-		{
-
-			if(StringUtil.equals(wdUser.getStatus(), "Y"))
-			{
-				
-				list = wdRezService.rezSelectList(wdUser.getUserId());
-				
-				
-				model.addAttribute("list", list);
-				model.addAttribute("wdUser",wdUser);
-			}
-			else 
-			{
-				return "/";
-			}
-		}
-		else 
-		{
-			return "/";
-		}
-		
-		return "/user/payComplete";
-	}
-	
 	@RequestMapping(value="/user/payList")
 	   public String payList(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	   {
@@ -207,4 +171,41 @@ public class PayMentController
 	      
 	      return "/user/payListView";
 	   }
+	
+	@RequestMapping(value="/user/payComplete")
+	public String payComplete(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	{
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		
+		WDUser wdUser = wdUserService.userSelect(cookieUserId);
+		
+		List<WDRez> list = null;
+
+		
+		
+		if(wdUser != null) 
+		{
+
+			if(StringUtil.equals(wdUser.getStatus(), "Y"))
+			{
+				
+				list = wdRezService.rezSelectList(wdUser.getUserId());
+				
+				
+				model.addAttribute("list", list);
+				model.addAttribute("wdUser",wdUser);
+			}
+			else 
+			{
+				return "/";
+			}
+		}
+		else 
+		{
+			return "/";
+		}
+		
+		return "/user/payComplete";
+	}
+
 }

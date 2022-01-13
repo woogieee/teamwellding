@@ -126,6 +126,10 @@ $(document).ready(function(){
 	                  alert("파라미터 값이 올바르지 않습니다.");
 	                  $("#btnComment").prop("disabled", false);
 	               }
+	               else if(response.code == 406)
+	               {
+	            	  alert("로그인이 되어있지 않습니다."); 
+	               }
 	               else if(response.code == 404)
 	               {
 	                  alert("게시물을 찾을수 없습니다.");

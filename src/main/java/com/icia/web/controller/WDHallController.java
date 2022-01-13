@@ -64,8 +64,8 @@ public class WDHallController {
 			String searchValue = HttpUtil.get(request, "searchValue", "");
 			//현재 페이지
 			long curPage = HttpUtil.get(request, "curPage", (long)1);
-		   String whCode = HttpUtil.get(request, "WHCode", "");
-		   String hCode = HttpUtil.get(request, "HCode", "");
+		    String whCode = HttpUtil.get(request, "WHCode", "");
+		    String hCode = HttpUtil.get(request, "HCode", "");
 			
 			
 			WDUser wdUser = null;

@@ -5,16 +5,17 @@
 <html lang="en">
 
 <head>
-    	<%@ include file="/WEB-INF/views/include/head.jsp" %>
-    	<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital@0;1&family=The+Nautigal&display=swap" rel="stylesheet">
+       <%@ include file="/WEB-INF/views/include/head.jsp" %>
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Bitter:ital@0;1&family=The+Nautigal&display=swap" rel="stylesheet">
 <script>
 function fn_view(rezNo)
 {
 	document.bbsForm.rezNo.value = rezNo;
 	document.bbsForm.action = "/user/payListView";
 	document.bbsForm.submit();
+
 }
 
 </script>
@@ -33,7 +34,6 @@ function fn_view(rezNo)
             </div>
         </div>
     </div>
-    
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12 bcline">
@@ -99,6 +99,7 @@ function fn_view(rezNo)
                                     </div>
                                     </th>
                                     <!-- 예약날짜 -->
+
                                    	<th>
                                    	<div class="col-lg-12" style="text-align:center">
                                    		<a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})">${wdRez.rezDate}</a>
@@ -136,7 +137,7 @@ function fn_view(rezNo)
 		</form>
 	</div>
 
-		<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+      <%@ include file="/WEB-INF/views/include/footer.jsp" %>
   </body>
 
 </html>
