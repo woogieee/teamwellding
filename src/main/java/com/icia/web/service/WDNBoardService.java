@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.icia.web.dao.WDNBoardDao;
 import com.icia.web.model.WDNBoard;
@@ -68,6 +70,48 @@ public class WDNBoardService
 		
 		return wdNBoard;
 	}
+	
+	//공지사항 글쓰기 시작
+	 public int nBoardInsert(WDNBoard wdNBoard) throws Exception
+	 {
+		 int count = 0;
+		 try {
+		 count = wdNBoardDao.nBoardInsert(wdNBoard);
+		 	 }
+		 catch(Exception e)
+		 {
+			 logger.error("[WDNBoardService] nBoardInsert Exception", e);
+		 }
+		 return count;
+	 }
+	 
+	 //공지사항 글쓰기 수정 
+	 public int nBoardUpdate(WDNBoard wdNBoard) 
+	 {
+		 int count = 0;
+		 try {
+		 count = wdNBoardDao.nBoardUpdate(wdNBoard);
+		 	 }
+		 catch(Exception e)
+		 {
+			 logger.error("[WDNBoardService] nBoardUpdate Exception", e);
+		 }
+		 return count;
+	 }
+	 
+	 //공지사항 글쓰기 삭제
+	 public int nBoardDelete(long bSeq)
+	 {
+		 int count = 0;
+		 try {
+		 WDNBoard wdNBoard = wdNBoardDao.nBoardSelect(bSeq);
+		 	 }
+		 catch(Exception e)
+		 {
+			 logger.error("[WDNBoardService] nBoardDelete Exception", e);
+		 }
+		 return count;
+	 }
 	
 	//게시물 보기(파일 포함) 리턴타입 HiBoard
 	public WDNBoard boardView(long bSeq)

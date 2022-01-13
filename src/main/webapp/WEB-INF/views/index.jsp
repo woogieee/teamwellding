@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/taglib.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<%@ include file="/WEB-INF/views/include/head.jsp" %>
 	<script>
+
 	   function fn_view(whCode, hCode)
 	   {
 	      document.hallForm.WHCode.value = whCode;
@@ -32,10 +34,11 @@
 	   }
 	   
        $(document).ready(function(){
+    	   
        	var cookieData = document.cookie;
        	if(cookieData.indexOf("close=Yes") < 0)
        	{
-	            var option="width = 500, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
+	            var option="width = 500, height = 520, top = 100, left = 200, location = no, menubar = no, scrollbars=no, left=70, top=110";
 	            window.open("/popUpRoad", "PopUP", option);        		
        	}
        });

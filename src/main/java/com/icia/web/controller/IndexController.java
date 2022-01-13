@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.icia.common.util.StringUtil;
 import com.icia.web.model.Paging;
 import com.icia.web.model.User;
 import com.icia.web.model.WDEBoard;
@@ -73,10 +74,13 @@ public class IndexController
 	@RequestMapping(value = "/index",method = {RequestMethod.GET, RequestMethod.POST})
 	public String index(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
-		
-		 
+			 
 		//쿠키 확인
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		
+		if(StringUtil.equals(cookieUserId, "admin")) {
+			return "/mng/userList";
+		}
 		
 		//로그인 했을 때와 안했을 때를 구분해서 페이지를 보여주려 함.
 		//로그인 체크용. 0 => 로그인 x, 혹은 없는 계정; 1 => 로그인 정보 있는 계정

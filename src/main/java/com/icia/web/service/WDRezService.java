@@ -323,7 +323,26 @@ public class WDRezService {
 		
 		return count;
 	}
+	
+	//결제 리스트 페이지
+		public List<WDRez> rezSelectList(String userId)
+		{
+			List<WDRez> list = null;
+			
+			try 
+			{
+				list = wdRezDao.rezSelectList(userId);
+			}
+			catch(Exception e) 
+			{
+				logger.error("[WDRezService] rezSelectList Exception", e);
 
+			}
+			
+			return list;
+		}
+	
+	//결제 취소 신청(일반 아이디)
 	public int rezCancelPayment(String userId) {
 		
 		int count = 0;
@@ -340,6 +359,7 @@ public class WDRezService {
 		return count;
 	}
 	
+	// 결제 취소 리스트 불러오기(관리자 사이트)
 	public List<WDRez> rezCancelSelect (WDRez wdRez)
 	{
 		List<WDRez> list = null;
@@ -351,11 +371,12 @@ public class WDRezService {
 		catch(Exception e)
 		{
 			logger.error("[WDRezService] rezCancelSelect");
-		}
+		}	
 		
-		return list;
-	}
+			return list;
+		}	
 	
+	//결제 취소시 환불 요청하기(일반 아이디)
 	public int rezPointReturn(String userId) {
 	
 		int count = 0;

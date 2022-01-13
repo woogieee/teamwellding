@@ -303,7 +303,7 @@ public class WDRezController {
 		return ajaxResponse;		
 	}
 	
-	//결제 취소 리스트(관리자) 
+	//결제 취소 리스트 불러오기(관리자) 
 	@RequestMapping(value="/user/cancelList")
 	public String cancelPayment(ModelMap model, HttpServletRequest request, HttpServletResponse response) 
 	{
