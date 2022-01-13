@@ -80,39 +80,23 @@
                             <div class="row">
                                 <div class="col-lg-5">
                                     <div class="search-heading">
-                                        <h4> 웨딩홀 이름 또는 홀 이름으로 검색해 보세요.</h4>
+                                    	<h4>결혼예정일</h4>
                                     </div>
                                     <div class="search-heading">
-                                    	<h4>결혼예정일</h4>
+                                        <h4> 웨딩홀 이름 또는 홀 이름으로 검색해 보세요.</h4>
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
                                     <div class="row">
-                                        <div class="col-lg-3">
-									         <select name="_searchType" id="_searchType">
-									            <option value="">조회 항목</option>
-									            <option value="1" <c:if test="${searchType eq '1'}">selected</c:if>>웨딩홀 이름</option>
-									            <option value="2" <c:if test="${searchType eq '2'}">selected</c:if>>홀 이름</option>
-									         </select>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <fieldset>
-                                            <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
-                                     
-                                            </fieldset>
-                                        </div> 
                                         <!-- # -->
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                         	<select id="year" class="year">
 												<option>년도</option>
 												<option value="2022" <c:if test="${year eq '2022'}">selected</c:if>>2022</option>
 												<option value="2023" <c:if test="${year eq '2023'}">selected</c:if>>2023</option>
 											</select>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <select id="month" class="month">
 												<option>월</option>
 												<option value="01" <c:if test="${month eq '01'}">selected</c:if>>1</option>
@@ -129,7 +113,7 @@
 												<option value="12" <c:if test="${month eq '12'}">selected</c:if>>12</option>
 											</select>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                         	<select id="day" class="day">
 												<option>일</option>
 												<option value="01" <c:if test="${day eq '01'}">selected</c:if>>1</option>
@@ -165,11 +149,24 @@
 												<option value="31" <c:if test="${day eq '31'}">selected</c:if>>31</option>
 											</select>
                                         </div>
+                                        
+                                        <!-- * -->
                                         <div class="col-lg-3">
-                                            <fieldset>
-                                            <button type="button" id="wDateSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
-                                            </fieldset>
+									         <select name="_searchType" id="_searchType">
+									            <option value="">조회 항목</option>
+									            <option value="1" <c:if test="${searchType eq '1'}">selected</c:if>>웨딩홀 이름</option>
+									            <option value="2" <c:if test="${searchType eq '2'}">selected</c:if>>홀 이름</option>
+									         </select>
                                         </div>
+                                        <div class="col-lg-7">
+                                            <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <fieldset>
+                                            <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                     
+                                            </fieldset>
+                                        </div> 
                                     </div>
                                 </div>
                             </div>
