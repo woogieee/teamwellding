@@ -54,5 +54,6 @@ public interface WDRezDao {
 	//결제 완료된 내역 가져오기
 	public List<WDRez> rezSelectList(String userId);
 	
-	
+	//환불요청시 상태창 변경
+	public int rezCancelPayment(WDRez wdRez);
 }

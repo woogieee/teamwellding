@@ -25,8 +25,7 @@
 <%
    }
 %>
-    <!-- ***** 보현수정 Header Area Start ***** -->
-    <header class="header-area header-sticky">
+
         <div class="container">
             <div class="row" style="width: 100%;">
                 <div class="col-12">
@@ -42,5 +41,4 @@
                 </div>
             </div>
         </div>
-    </header>
     <!-- ***** Header Area End ***** -->

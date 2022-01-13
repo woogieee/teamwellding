@@ -152,7 +152,7 @@ function fn_list(curPage)
 
 
 					<div class="col-lg-12">
-						<ul>
+						<ul style="border-top: 2px solid #222;">
 
 							<li id="divB1" style="background: #efefef;">
 								<div class="row">
