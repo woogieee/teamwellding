@@ -11,6 +11,7 @@
 <result column = "B_READ_CNT" property = "eBReadCnt" />
 <result column = "B_IMGNAME" property = "eBImgName" />
 <result column = "REG_DATE" property = "regDate" />
+<result column = "B_SUBIMGNAME" property = "eBSubImgName" />
 </resultMap>
 
 <select id ="eBoardList" parameterType ="com.icia.web.model.WDEBoard" resultMap ="WDEBoardResultMap">
@@ -21,7 +22,8 @@
         B_CONTENT,
         B_READ_CNT,
         B_IMGNAME,
-        REG_DATE   
+        REG_DATE,
+        B_SUBIMGNAME   
 FROM(SELECT ROWNUM AS RNUM,
         B_SEQ,
         ADMIN_ID,
@@ -29,7 +31,8 @@ FROM(SELECT ROWNUM AS RNUM,
         B_CONTENT,
         B_READ_CNT,
         B_IMGNAME,
-        REG_DATE
+        REG_DATE,
+        B_SUBIMGNAME
             FROM(SELECT
                 A.B_SEQ,
                 NVL(A.ADMIN_ID,'') AS ADMIN_ID,
@@ -38,7 +41,8 @@ FROM(SELECT ROWNUM AS RNUM,
                 NVL(A.B_CONTENT,'') AS B_CONTENT,
                 NVL(A.B_READ_CNT,'') AS B_READ_CNT,
                 NVL(A.B_IMGNAME,'') AS B_IMGNAME,
-                NVL(TO_CHAR(A.REG_DATE, 'YYYY.MM.DD'), '') AS REG_DATE
+                NVL(TO_CHAR(A.REG_DATE, 'YYYY.MM.DD'), '') AS REG_DATE,
+                NVL(A.B_SUBIMGNAME, '') AS B_SUBIMGNAME
             FROM
                 WD_EBOARD A, WD_ADMIN B
             WHERE 
@@ -95,7 +99,8 @@ SELECT
                 NVL(A.B_CONTENT,'') AS B_CONTENT,
                 NVL(A.B_READ_CNT,'') AS B_READ_CNT,
                 NVL(A.B_IMGNAME,'') AS B_IMGNAME,
-                NVL(TO_CHAR(A.REG_DATE, 'YYYY.MM.DD'), '') AS REG_DATE
+                NVL(TO_CHAR(A.REG_DATE, 'YYYY.MM.DD'), '') AS REG_DATE,
+                NVL(A.B_SUBIMGNAME, '') AS B_SUBIMGNAME
             FROM
                 WD_EBOARD A, WD_ADMIN B
             WHERE 

@@ -13,6 +13,7 @@ import com.icia.web.model.WDCoupon;
 
 @Service("WDCouponService")
 public class WDCouponService {
+
 	
 	private static Logger logger = LoggerFactory.getLogger(WDCouponService.class);
 	
@@ -68,4 +69,6 @@ public class WDCouponService {
 		
 		return list;
 	}
+
 }
+

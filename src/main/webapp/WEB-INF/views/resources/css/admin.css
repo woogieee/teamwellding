@@ -27,6 +27,11 @@
 	border-left: 2px solid #fff;
 }
 
+.adm_sub:hover .adm_ss
+{
+	color:#f5a4aa;
+}
+
 .adm_sub:last-child
 {
 	border-right: 2px solid #fff;
@@ -59,16 +64,22 @@
 	float: none;
 }
 
-.hsdm_li
+.hsem_li
 {
-	text-align:center;
-	display:inline-block;
-	margin: 20px 0;
-	padding: 0 25px;
-	border: 1px solid #eee;
+	text-align: center;
+    display: inline-block;
+    margin: 0 10px;
+    padding: 12px 40px;
+    border-radius: 5px;
+    background: #ccc;
 }
 
-.hsdm_a
+.hsem_li:hover
+{
+	background: #f5a4aa;
+}
+
+.hsem_a
 {
 	color: #333;
 	text-decoration: none;
