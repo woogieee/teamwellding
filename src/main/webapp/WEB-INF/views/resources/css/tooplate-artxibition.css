@@ -84,16 +84,11 @@ html, body
 }
 /*욱채 자유게시판*/
 
-.c_btnbox
-{
-	text-align:center;
-}
 
 #closebtn{
-	display: inline-block;
-	margin-top:30px;
-	/*float : right;
-	margin-right:3%;*/
+	float : right;
+	margin-top:15px;
+	margin-right:3%;
 }
 
 #leezxc{
@@ -109,7 +104,6 @@ header nav ul{float:left;}
 header nav ul li{float:left;}
 header.sticky {position: fixed; /*padding: 9px 0;*/ background-color: rgba(225, 225, 225, 0.9); top:0;}  /* 보현수정 */
 header.sticky .back{ height: 0px;}
-
 
 
 /*** 보현수정 ***/
@@ -592,8 +586,15 @@ header
   font-weight: 500;
 }
 
-.pre-header span span {
+.pre-header span .span1 {
   color: #f5a4aa;
+}
+
+.pre-header span .span2 {
+  font-weight:bold;
+  color: #ff4500;
+  font-size:14px;
+  letter-spacing:-0.5px;
 }
 
 .pre-header .text-button {
@@ -1888,8 +1889,6 @@ footer {
   padding-bottom: 30px;
   background-color: #f5f5f5;
   border-top: 1px solid #bbb;
-  width: 100%;
-  
 }
 
 footer h4 {
@@ -1965,7 +1964,7 @@ footer p.copyright {
 .sub-footer .menu ul li a {
   font-size: 14px;
   font-weight: 800;
-  color: #777;
+  color: #fff;
 }
 
 .sub-footer .menu ul li a:hover {
@@ -2986,7 +2985,7 @@ Shows Events Page
 	/*background-color: #efefef;
 	font-family: 'Jua', sans-serif;*/
 	display: flex;
-	justify-content: center;
+	/*justify-content: center;*/
 	align-items:center;
 	/*padding:0px;
 	border-right: 1px solid #ddd;*/
@@ -3247,11 +3246,16 @@ Shows Events Page
  /* padding-bottom: 100px;*/
 }
 
-.tickets-page .search-box {
+.search-box {
  
-  padding: 30px;
+  padding: 30px 30px 30px 40px;
+}
+
+.search-box2 {
+ 
       border: 3px solid #cecece;
 }
+
 
 .tickets-page .search-box h4 {
   color: #fff;
@@ -3637,7 +3641,7 @@ Shows Events Page
 
 .backgroundd
 {
-	background-color: rgba(255,239,239,0.8);/*#ffefef;*/
+	background-color: rgba(255,239,239,0.6);/*#ffefef;*/
 }
 
 .btn_go
@@ -3763,6 +3767,7 @@ Shows Events Page
   text-align: center;
   width: 100%;
   margin-top: 30px;
+  padding-bottom: 30px;
 }
 
 .tickets-page .pagination ul li {
@@ -4614,18 +4619,21 @@ responsive
 }
 
 /* 밑줄 구현 */
+.shows-events-schedule2 ul
+{
+	/*border-top: 2px solid #222;*/
+}
+
 .shows-events-schedule2 ul li {
   background-color: #fff;
   padding: 10px 30px 10px 30px;
   margin-bottom: 1px;
   text-align: center;
   cursor: pointer;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #666;
+  /*border-bottom: 1px solid black;*/
 }
-
-
-
+/*
 .shows-events-schedule2 ul li .title h4 {
   font-size: 20px;
   font-weight: 700;
@@ -4674,7 +4682,7 @@ responsive
   float: left;
   font-size: 18px;
 }
-
+*/
 .shows-events-schedule2 ul li .main-dark-button {
   text-align: right;
 }
@@ -4917,12 +4925,9 @@ responsive
   outline: none;
 }
 
-.tickets-page2 .search-box2 .main-dark-button3 {
+.main-dark-button3 {
   display: inline-block;
   font-size: 14px;
-  padding: 6px 18px;
-  margin-left: 20px;
-  background-color: #5a5a5a;
   padding: 12px 26px;
   border-radius: 8px;
   float:right;
@@ -4935,6 +4940,7 @@ responsive
   transition: all .3s;
   border: none;
   outline: none;
+  margin-top: 20px;
 }
 
 .category2 {
@@ -4945,12 +4951,13 @@ responsive
 .shows-events-scheduleW {
   margin-top: 0px;
   padding-bottom: 0px;
-  
+  background-color: #F0F9F8;
 }
 
 #divB
 {
-	
+	/*background-color: #F0F9F8;
+	padding: 10px 0;*/
 }
 
 .containerfW
@@ -5364,20 +5371,18 @@ responsive
 
 .containerfW .nickInput
 {
-	background-color: #fff;
-	color:rgba(40,30,25,1);
-	
-	
-	font-family: 'OTWelcomeRA';
+	background-color: #91DDDB;
+	color: #fff;
+	font-weight: bold;
+	font-size: 20px;
 }
 
 .containerfW .emailInput
 {
-	background-color: #fff;
-	color: rgba(40,30,25,1);
-	
-	font-family: 'OTWelcomeRA';
-	
+	background-color: #91DDDB;
+	color: #fff;
+	font-weight: bold;
+	font-size: 20px;
 }
 
 .page-heading-shows-eventsAb
@@ -5772,7 +5777,7 @@ responsive
 .bcline
 {
 	/*border-bottom: 5px solid gray;*/
-	/*padding-bottom: 40px;*/
+	padding-bottom: 40px;
 }
 
 .lineListMypage
@@ -6189,7 +6194,7 @@ responsive
 }
 
 /* 동욱 추가 민트테마 */
-#mint
+/*#mint
 {
 	background-color: #91DDDB;
 	color: #fff;
@@ -6203,7 +6208,7 @@ responsive
 #minthover:hover
 {
 	color:#fff; background-color:#91DDDB;
-}
+}*/
 
 .listButton
 {
@@ -6447,8 +6452,9 @@ responsive
 .event-item
 {
 	cursor: pointer;
-	border-bottom: 2px solid #ddd;
+	border-top: 2px solid #ddd;
 	padding: 20px 0;
+	width: 100%;
 }
 
 
@@ -6463,6 +6469,8 @@ responsive
 .e_imgbox
 {
 	padding-bottom: 30px;
+	width: 100%;
+	text-align: center;
 }
 
 .e_imgbox img
@@ -6569,24 +6577,6 @@ responsive
 	font-weight: 300;
 }
 
-.tbstyle5
-{
-	font-weight: 800;
-	color: #f85151;
-	font-size: 14px;
-}
-
-.tbstyle6 span
-{
-	color: #000;
-	font-weight: bold;
-}
-
-.tbstyle7 span
-{
-	color: green;
-	font-weight: bold;
-}
 
 .shows-events-schedule2 .pagination ul {
   text-align: center;
@@ -6655,12 +6645,7 @@ textarea::placeholder {
 	font-size: 16px;
 }
 
-.coupon_title
-{
-    height: 58px;
-    line-height: 42px;
-    border-top: 2px solid #222;
-}
+
 
 
 /*보현추가 끝*/

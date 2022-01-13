@@ -52,18 +52,18 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
       <div class="mnb" style="display:flex; margin-bottom:0.8rem;">
          <h2 style="margin-right:auto; color: #525252;">회원 리스트</h2>
          <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">
-            <select id="status" name="status" style="font-size: 1rem; width: 6rem; height: 3rem;">
+            <select id="status" name="status" style="font-size: 1rem; width: 6rem; height: 3.2rem;">
                <option value="">상태</option>
                <option value="Y" <c:if test="${status == 'Y'}">selected</c:if>>정상</option>
                <option value="N" <c:if test="${status == 'N'}">selected</c:if>>정지</option>
             </select>
-            <select id="searchType" name="searchType" style="font-size: 1rem; width: 8rem; height: 3rem; margin-left:.5rem; ">
+            <select id="searchType" name="searchType" style="font-size: 1rem; width: 8rem; height: 3.2rem; margin-left:.5rem; ">
                <option value="">검색타입</option>
                <option value="1" <c:if test="${searchType == '1'}">selected</c:if>>회원아이디</option>
                <option value="2" <c:if test="${searchType == '2'}">selected</c:if>>회원명</option>
             </select>
             <input name="searchValue" id="searchValue" class="form-control me-sm-2" style="width:15rem; margin-left:.5rem;" type="text" value="${searchValue}">
-            <a class="btn my-2 my-sm-0" href="javascript:void(0)" onclick="fn_search()" style="width:7rem; margin-left:.5rem; background-color: rgb(239, 239, 239); border-color:rgb(118, 118, 118);">조회</a>
+            <a class="btn my-2 my-sm-0" href="javascript:void(0)" onclick="fn_search()" style="width:7rem;  margin-left:.5rem; background-color: rgb(239, 239, 239); border-color:rgb(118, 118, 118);">조회</a>
             <input type="hidden" name="curPage" value="" />
          </form>
       </div>
