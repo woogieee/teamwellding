@@ -113,13 +113,22 @@ public class WDReviewController {
 		
 		WDReview wdReview = null;
 		wdReview = wdReviewService.rezCheck(cookieUserId);
+		
+		String rezNo = wdReview.getRezNo();
+		System.out.println(wdReviewService.reviewOverlapCheck(rezNo));
+		
 		if(wdReview != null) {
-			if(Integer.valueOf(wdReview.getToday()) >= Integer.valueOf(wdReview.getWDate())) {
-				ajaxResponse.setResponse(0, "Success");
+			if(!StringUtil.equals(wdReviewService.reviewOverlapCheck(rezNo), "Y")) {
+				if(Integer.valueOf(wdReview.getToday()) >= Integer.valueOf(wdReview.getWDate())) {
+					ajaxResponse.setResponse(0, "Success");
+				}
+				else {
+					ajaxResponse.setResponse(401, "Bad Request");
+				}
 			}
 			else {
-				ajaxResponse.setResponse(401, "Bad Request");
-			}			
+				ajaxResponse.setResponse(501, "Bad Request");
+			}
 		}
 		else {
 			ajaxResponse.setResponse(400, "No parameter");
