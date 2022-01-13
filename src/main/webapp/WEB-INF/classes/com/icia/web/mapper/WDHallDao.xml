@@ -158,64 +158,98 @@ SELECT
     H_FOOD,
     H_MIN,
     H_MAX,
+    WH_CONTENT,
     H_CONTENT,
     H_IMGNAME,
     REZCOUNT,
     H_DISCOUNT,
     H_SUBIMG
-FROM 
-    (SELECT
-        ROWNUM RNUM,
-        WH_CODE,
-        H_CODE,
-        H_NAME,
-        WH_NAME,
-        WH_LOCATION,
-        WH_NUMBER,
-        H_PRICE,
-        H_FOOD,
-        H_MIN,
-        H_MAX,
-        H_CONTENT,
-        H_IMGNAME,
-        REZCOUNT,
-        H_DISCOUNT,
-        H_SUBIMG
-    FROM 
+FROM
         (SELECT
-            A.WH_CODE WH_CODE,
-            A.H_CODE H_CODE,
-            NVL(A.H_NAME, '') H_NAME,
-            NVL(B.WH_NAME, '') WH_NAME,
-            NVL(B.WH_LOCATION, '') WH_LOCATION,
-            NVL(B.WH_NUMBER, '') WH_NUMBER,
-            NVL(A.H_PRICE, 0) H_PRICE,
-            NVL(A.H_FOOD, 0) H_FOOD,
-            NVL(A.H_MIN, 0) H_MIN,
-            NVL(A.H_MAX, 0) H_MAX,
-            NVL(A.H_CONTENT, '') H_CONTENT,
-            NVL(A.H_IMGNAME, '') H_IMGNAME,
-            NVL(A.REZCOUNT, 0) REZCOUNT,
-            NVL(A.H_DISCOUNT, 0) H_DISCOUNT,
-            NVL(A.H_SUBIMG, 0) H_SUBIMG
+            ROWNUM AS RNUM,
+            WH_CODE,
+            H_CODE,
+            H_NAME,
+            WH_NAME,
+            WH_LOCATION,
+            WH_NUMBER,
+            H_PRICE,
+            H_FOOD,
+            H_MIN,
+            H_MAX,
+            WH_CONTENT,
+            H_CONTENT,
+            H_IMGNAME,
+            REZCOUNT,
+            H_DISCOUNT,
+            H_SUBIMG
         FROM
-			WD_HALL A, WD_WEDDINGHALL B
-
-        WHERE 
-			A.WH_CODE = B.WH_CODE
-<if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>	
-   <choose>                
-      <when test='searchType == "1"'> 		
-        AND
-            B.WH_NAME LIKE '%' || #{searchValue} || '%'
-      </when>
-      <when test='searchType == "2"'>
-        AND
-        	A.H_NAME LIKE '%' || #{searchValue} || '%'
-		</when>
-	</choose>            
-</if>             
-        ORDER BY WH_CODE ASC, H_CODE ASC))
+            (SELECT
+                WH_CODE,
+                H_CODE,
+                H_NAME,
+                WH_NAME,
+                WH_LOCATION,
+                WH_NUMBER,
+                H_PRICE,
+                H_FOOD,
+                H_MIN,
+                H_MAX,
+                WH_CONTENT,
+                H_CONTENT,
+                H_IMGNAME,
+                REZCOUNT,
+                H_DISCOUNT,
+                H_SUBIMG
+            FROM
+                    (SELECT
+                                A.WH_CODE WH_CODE,
+                                A.H_CODE H_CODE,
+                                NVL(A.H_NAME, '') H_NAME,
+                                NVL(B.WH_NAME, '') WH_NAME,
+                                NVL(B.WH_LOCATION, '') WH_LOCATION,
+                                NVL(B.WH_NUMBER, '') WH_NUMBER,
+                                NVL(A.H_PRICE, 0) H_PRICE,
+                                NVL(A.H_FOOD, 0) H_FOOD,
+                                NVL(A.H_MIN, 0) H_MIN,
+                                NVL(A.H_MAX, 0) H_MAX,
+                                NVL(B.WH_CONTENT, '') WH_CONTENT,
+                                NVL(A.H_CONTENT, '') H_CONTENT,
+                                NVL(A.H_IMGNAME, '') H_IMGNAME,
+                                NVL(A.REZCOUNT, 0) REZCOUNT,
+                                NVL(A.H_DISCOUNT, 0) H_DISCOUNT,
+                                NVL(A.H_SUBIMG, 0) H_SUBIMG,
+                                CONCAT(A.WH_CODE, A.H_CODE) AS WDH
+                            FROM
+                                WD_HALL A, WD_WEDDINGHALL B
+                            WHERE 
+                                A.WH_CODE = B.WH_CODE)
+            WHERE
+                1=1
+            <if test='wDate != null and wDate != ""'>   
+            AND    
+                 WDH NOT IN (SELECT
+                                  CONCAT(WH_CODE, H_CODE) AS WDH
+                                        FROM
+                                            WD_REZ
+                                        WHERE
+                                            WDATE LIKE #{wDate}
+                                        AND
+                                        	REZ_STATUS = 'Y')
+            </if>            
+			<if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>   
+			   <choose>                
+			      <when test='searchType == "1"'>       
+			        AND
+			            WH_NAME LIKE '%' || #{searchValue} || '%'
+			      </when>
+			      <when test='searchType == "2"'>
+			        AND
+			           H_NAME LIKE '%' || #{searchValue} || '%'
+			      </when>
+			   </choose>            
+			</if>
+            ORDER BY WH_CODE ASC, H_CODE ASC))
 WHERE
     RNUM <![CDATA[>=]]> #{startRow}
 AND
