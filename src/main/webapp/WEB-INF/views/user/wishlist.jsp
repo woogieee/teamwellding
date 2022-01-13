@@ -199,6 +199,11 @@ $("#cou").on("click",function(){
     window.open("/board/Coupon", "PopUP", option); 
 });    
 
+$("#payMent").on("click", function(){
+	
+	document.rezForm.action = "/user/payMent";
+	document.rezForm.submit();
+});
     	
     });
     
@@ -227,15 +232,6 @@ $("#cou").on("click",function(){
     	document.rezForm.action = "/hsdm/makeupView";	
     	document.rezForm.submit();
     }
-    
-$(document).ready(function(){
-	$("#payMent").on("click", function(){
-		
-		document.rezForm.action = "/user/payMent";
-		document.rezForm.submit();
-	});
-});
-
 
 </script>  
 </head>
