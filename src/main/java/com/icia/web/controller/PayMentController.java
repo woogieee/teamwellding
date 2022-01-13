@@ -14,9 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.icia.common.util.StringUtil;
 import com.icia.web.model.Paging;
+import com.icia.web.model.Response;
 import com.icia.web.model.WDCoupon;
 import com.icia.web.model.WDRez;
 import com.icia.web.model.WDUser;
@@ -156,6 +158,7 @@ public class PayMentController
 	         {
 	            WDRez search = new WDRez();
 	            search.setUserId(wdUser.getUserId());
+	            search.setRezNo(rezNo);
 	            search.setRezStatus("Y");
 	            
 	            wdRez = wdRezService.rezSelect(search);
@@ -171,6 +174,7 @@ public class PayMentController
 	               
 	               model.addAttribute("wdRez", wdRez);
 	               model.addAttribute("wdCoupon", wdCoupon);
+	               model.addAttribute("wdUser",wdUser);
 	            }
 	         }
 	      }
@@ -212,6 +216,47 @@ public class PayMentController
 		}
 		
 		return "/user/payComplete";
+	}
+	
+	@RequestMapping(value="/user/payCancel", method=RequestMethod.POST)
+	@ResponseBody
+	public Response<Object> payCancel (HttpServletRequest request, HttpServletResponse response)
+	{	
+		Response<Object> ajaxResponse = new Response<Object>();
+		
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		
+		String rezNo = HttpUtil.get(request, "rezNo", "");
+		
+		WDUser wdUser = wdUserService.userSelect(cookieUserId);
+		
+		WDRez wdRez = new WDRez();
+		
+		if(wdUser != null)
+		{
+			if(StringUtil.equals(wdRez.getRezStatus(), "N"))
+			{
+				wdRez.setUserId(wdUser.getUserId());
+				wdRez.setRezNo(rezNo);
+				wdRez.setRezStatus("Y");
+				
+				
+				System.out.println("=============================" + wdRez.getRezNo());
+				System.out.println("=============================" + wdRez.getRezStatus());
+				
+				if(wdRezService.rezCancelPayment(wdRez) > 0)
+				{
+					ajaxResponse.setResponse(0, "Success");
+					
+					System.out.println("222222222222222222222222" + wdRez.getRezNo());
+					System.out.println("222222222222222222222222" + wdRez.getRezStatus());
+				}
+			}
+		}
+		
+		
+		
+		return ajaxResponse;
 	}
 
 }
