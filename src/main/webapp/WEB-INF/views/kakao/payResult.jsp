@@ -17,23 +17,35 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<div class="container">
+<div id="kakaopay_con">
+
 <c:choose>
    <c:when test="${!empty kakaoPayApprove}">
-      <h2>카카오페이 결제가 정상적으로 완료되었습니다.</h2>
-      결제일시: ${kakaoPayApprove.approved_at}<br/>
-       주문번호: ${kakaoPayApprove.partner_order_id}<br/>
-       상품명  : ${kakaoPayApprove.item_name}<br/>
-       상품수량: ${kakaoPayApprove.quantity}<br/>
-       결제금액: ${kakaoPayApprove.amount.total}<br/>
-       결제방법: ${kakaoPayApprove.payment_method_type}<br/>
+   	
+   	<!--  div id="nav"></div-->
+      <div id="kakaopayh5">
+      <img src="../resources/images/kakaopay.jpg" width="200" height="auto"/></div>
+	<div id="text">결제완료</div>  
+      <div id="margin">
+      <div id="approved_at">결제일시: ${kakaoPayApprove.approved_at}</div> <br/>
+      <div id="order_id">주문번호: ${kakaoPayApprove.partner_order_id} </div><br/>
+      <div id="item_name">상품명  :  ${kakaoPayApprove.item_name}</div><br/>
+      <div id="quantity">상품수량: ${kakaoPayApprove.quantity} </div><br/>
+      <div id="amount_total">결제금액: ${kakaoPayApprove.amount.total}</div><br/>
+      <div id="payment_method_type">결제방법: ${kakaoPayApprove.payment_method_type}</div><br/>    
+      <button id="btnClose" type="button">닫기</button>
+      </div>
+      
    </c:when>
+   
    <c:otherwise>
       <h2>카카오페이 결제중 오류가 발생하였습니다.</h2>
    </c:otherwise>
 </c:choose>
 </div>
-<button id="btnClose" type="button">닫기</button>
+
+
+ 
 <form name="kakaoForm" id="kakaoForm" method="post" action="/kakao/payResult">
 	<input type="hidden" name="orderId" id="orderId" value="${orderId}" />
 	<input type="hidden" name="tId" id="tId" value="${tId}" />
