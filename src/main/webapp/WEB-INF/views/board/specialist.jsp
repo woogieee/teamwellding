@@ -45,8 +45,6 @@ $(document).ready(function(){
 			$('html').css("overflow","auto");
 		 }
 	});*/
-	
-   $('html').css("overflow","auto");
    
    //검색버튼클릭
    $("#btnSearch").on("click", function(){

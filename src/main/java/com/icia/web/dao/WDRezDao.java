@@ -1,5 +1,6 @@
 package com.icia.web.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -54,5 +55,18 @@ public interface WDRezDao {
 	//결제 완료된 내역 가져오기
 	public List<WDRez> rezSelectList(String userId);
 	
+	//결제 취소 승인
+	public int rezCancelApprov(WDRez wdRez);
+		
+	//관리자 페이지에서 조회하는 결제 내역 리스트
+	public List<WDRez> rezAdminSelect(WDRez wdRez);
+		
+	//결제 후 결제 취소시 포인트로 환급
+	public WDRez rezPointReturn(HashMap<String, Object> map);
 	
+	//결제 후 결제 취소시 결제 총금액 삭제
+	public int rezCancelComplete(WDRez wdRez);
+	
+	//환불요청시 상태창 변경
+	public int rezCancelPayment(WDRez wdRez);
 }

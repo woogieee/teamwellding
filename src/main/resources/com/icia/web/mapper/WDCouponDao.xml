@@ -57,6 +57,30 @@ AND
 </select>
 <!-- 쿠폰 조회 -->
 
+<select id="couponSelect" parameterType="string" resultMap="WDCouponResultMap" >
+SELECT
+    C.USER_ID,
+    C.C_CODE,
+    C.C_STATUS,
+    I.C_PRICE,
+    R.REZ_FULL_PRICE,
+    R.REZ_NO,
+    R.REZ_POINT
+FROM
+    WD_COUPON C, WD_COUPON_INFO I, WD_REZ R
+WHERE 
+	C.C_CODE = ${value}
+AND
+    C.USER_ID = ${userId}
+AND    
+    C.C_STATUS = 'N'
+AND
+    C.C_CODE = I.C_CODE
+AND
+    C.C_CODE = R.C_CODE
+
+</select>
+
 <!-- 결제 시 , 쿠폰 정보를 가져와서 해당 유저의 해당 쿠폰 업데이트 시작 -->
 <update id="couponStatusUpdate" parameterType="string">
 UPDATE 

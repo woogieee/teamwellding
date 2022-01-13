@@ -113,7 +113,6 @@ AND
 </select>
 <!-- 예약 테이블 값을 가져오기 위한 셀렉트문 종료 -->
 
-
 <!-- 예약 여부 확인을 위한 셀렉트문 시작(결제 x인 애들) -->
 <select id="rezList" parameterType="com.icia.web.model.WDRez" resultMap="WDRezDaoResultMap" >
 SELECT
@@ -445,6 +444,20 @@ AND
 </update>
 <!-- 쿠폰까지 삽입되면, 그제서야 상태 Y로 변경 종료 -->
 
+<!-- 결제 취소 (결제 상태가 Y인 내역들만) 시작 -->
+<update id="rezCancelPayment" parameterType="com.icia.web.model.WDRez" >
+UPDATE WD_REZ
+SET
+    REZ_STATUS = 'C'
+WHERE
+    USER_ID = #{userId}
+AND
+	REZ_NO = #{rezNo}
+AND
+    REZ_STATUS = 'Y'
+</update>    
+<!-- 결제 취소 (결제 상태가 Y인 내역들만) 끝-->
+
 <!-- 결제 내역을 가져오기(rezStatus Y) 시작 -->
 <select id="rezSelectList" parameterType="string" resultMap="WDRezDaoResultMap">
 SELECT
@@ -515,5 +528,106 @@ AND
     RNUM <![CDATA[>=]]> 1
 </select>
 <!-- 결제 내역을 가져오기(rezStatus Y) 종료 -->
+<!-- 환불요청시 (status C로 변경) 시작 -->
+<update id="rezCancelPayment" parameterType="com.icia.web.model.WDRez" >
+UPDATE WD_REZ
+SET
+    REZ_STATUS = 'C'
+WHERE
+    USER_ID = #{userId}
+AND
+   REZ_NO = #{rezNo}
+AND
+    REZ_STATUS = 'Y'
+</update>
+<!-- 환불요청시 (status C로 변경) 시작 -->
 
+<!-- 관리자페이지에서 결제내역 리스트 조회 -->
+<select id="rezAdminSelect" parameterType="com.icia.web.model.WDRez" resultMap="WDRezDaoResultMap">
+SELECT
+    REZ_NO,
+    WH_CODE,
+    H_CODE,
+    S_CODE,
+    DC_CODE,
+    D_NO,
+    M_CODE,
+    M_PLUS_NUM,
+    REZ_STATUS,
+    REZ_DATE,
+    WDATE,
+    USER_ID,
+    REZ_FULL_PRICE,
+    C_CODE,
+    REZ_POINT,
+    S_DATE
+FROM
+    WD_REZ
+WHERE
+	 1=1
+	<if test='userId != null and userId != ""'>
+	<choose>                
+      <when test='searchType == "1"'> 
+AND
+    USER_ID LIKE '%' || #{userId} || '%'
+      </when>
+    </choose>
+    </if>
+</select>
+<!-- 관리자페이지에서 결제내역 리스트 종료 -->
+
+<!-- 결제 취소 승인시 결제 상태 D 변경 시작 -->
+<update id="rezCancelApprove" parameterType="com.icia.web.model.WDRez" >
+UPDATE WD_REZ
+SET
+    REZ_STATUS = 'D'
+WHERE
+    USER_ID = #{userId}
+AND
+	REZ_NO = #{rezNo}
+AND
+    REZ_STATUS = 'C'
+</update>  
+<!-- 결제 취소 승인시 결제 상태 D 변경 끝 -->
+
+<!-- 결제 후 결제 취소시, 결제 금액을 회원 포인트로 환급 시작 -->
+<update id = "rezPointReturn" parameterType="hashmap">
+UPDATE 
+    (SELECT
+        R.REZ_FULL_PRICE,
+        U.U_POINT,
+        R.REZ_STATUS,
+        R.USER_ID,
+        R.REZ_NO
+     FROM
+        WD_REZ R,
+        WD_USER U
+     WHERE
+      R.USER_ID = U.USER_ID
+     AND
+      R.USER_ID = '#{userId}'
+     AND
+      R.REZ_NO = '#{rezNo}'
+     AND
+      R.REZ_STATUS = 'C'    
+    )
+SET
+     U_POINT = REZ_FULL_PRICE
+</update>
+<!-- 결제 후 결제 취소시, 결제 금액을 회원 포인트로 환급 끝 -->
+
+<!-- 결제 포인트 환급 후 결제 금액 삭제 시작-->
+<update id ="rezCancelComplete" parameterType="com.icia.web.model.WDRez" >
+UPDATE
+    WD_REZ
+SET    
+    REZ_FULL_PRICE = 0
+WHERE
+    USER_ID = #{value}
+AND
+    REZ_NO = #{rezNo}
+AND
+    REZ_STATUS = 'D'
+</update>
+<!-- 결제 포인트 환급 후 결제 금액 삭제 끝-->
 </mapper>

@@ -15,6 +15,7 @@
         <result column="R_SCORE_STAR" property="RScore" />
         <result column="REZ_STATUS" property="rezStatus" />
         <result column="TODAY" property="today" />
+        <result column="REVIEW_STATUS" property="reviewStatus" />
 </resultMap>
 <!-- 리뷰 resultMap 끝 -->
 
@@ -269,4 +270,15 @@ WHERE
 </update>
 <!-- 리뷰 게시글 수정 -->
 
+<!-- 리뷰 중복 작성 불가능하게 체크 시작-->
+<select id="reviewOverlapCheck" parameterType="string" resultType="string">
+SELECT
+    NVL(REVIEW_STATUS, 'N') REVIEW_STATUS
+FROM
+     WD_REVIEW
+WHERE
+	REZ_NO = #{value}
+    AND REVIEW_STATUS = 'Y'
+</select>
+<!-- 리뷰 중복 작성 불가능하게 체크 끝-->
 </mapper>

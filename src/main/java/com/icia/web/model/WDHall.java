@@ -6,7 +6,7 @@ public class WDHall implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private String WHCode;
+	private String WHCode;	
 	private String HCode;
 	private String HName;
 	private String whName;
@@ -58,8 +58,17 @@ public class WDHall implements Serializable{
 		  hDiscount = 0;
 		  whNumber = "";
 		  hSubImg = 0;
+		  
+		  wDate = "";
 	}
-	
+
+	public String getwDate() {
+		return wDate;
+	}
+
+	public void setwDate(String wDate) {
+		this.wDate = wDate;
+	}
 
 	public int gethSubImg() {
 		return hSubImg;

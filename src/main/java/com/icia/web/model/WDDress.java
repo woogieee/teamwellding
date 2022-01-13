@@ -25,6 +25,7 @@ public class WDDress implements Serializable
 	
 	private long startRow;			//시작 rownum
 	private long endRow;			//끝 rownum
+	private String wDate;		//결혼날짜
 	
 
 	
@@ -49,8 +50,27 @@ public class WDDress implements Serializable
 		startRow = 0;
 		endRow = 0;
 		dDiscount = 0;
+		wDate ="";
+		
+		wDate = "";
 		
 	}
+	
+	
+
+
+	public String getWdate() {
+		return wDate;
+	}
+
+
+
+
+	public void setWdate(String wDate) {
+		this.wDate = wDate;
+	}
+
+
 
 
 	public String getDcCode() {
@@ -210,6 +230,16 @@ public class WDDress implements Serializable
 
 	public void setEndRow(long endRow) {
 		this.endRow = endRow;
+	}
+
+
+	public String getwDate() {
+		return wDate;
+	}
+
+
+	public void setwDate(String wDate) {
+		this.wDate = wDate;
 	}
 	
 }

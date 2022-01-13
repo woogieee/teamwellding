@@ -302,7 +302,7 @@ $("#payMent").on("click", function(){
                                 <th>총가격</th>
                                 <th>삭제</th>
                             </tr>
-<c:if test="${!empty wdRez}">                           
+<c:if test="${!empty wdRez}">
                             <!-- 홀 -->
 <c:if test="${!empty wdRez.whCode}">
                             
@@ -446,7 +446,7 @@ $("#payMent").on("click", function(){
                                 	<p class="Hpc">비용&nbsp; <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPrice *(1- wdRez.mDiscount*0.01)}" />원
 <c:if test="${!empty wdRez.mPlusNum}"> 
                                 	&nbsp;&nbsp;/&nbsp;&nbsp; 추가비용&nbsp; <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPlus * wdRez.mPlusNum}" />원</p>
-</c:if>                                	
+</c:if>                              	
                                 	<p class="sangsaeP">
 	                                	<span class="chamgo">
 	                                		할인: <span id="discountSpan">${wdRez.mDiscount}% &nbsp;&nbsp;</span></span>
@@ -454,7 +454,7 @@ $("#payMent").on("click", function(){
 	                                		<span id="nPrice"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPrice *(1- wdRez.mDiscount*0.01)}" />원</span>
 	                                	
                                 	</p>	
-<c:if test="${!empty wdRez.mPlusNum}"> 
+<c:if test="${!empty wdRez.mPlusNum}">
                                 	<p class="sangsaeP">
 	                                	<span class="chamgo">	                               		
 	                                		추가비용: <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPlus}" />원 x ${wdRez.mPlusNum}명 = <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdRez.mPlus * wdRez.mPlusNum}" />원
@@ -475,14 +475,19 @@ $("#payMent").on("click", function(){
                             </tr>
 </c:if>
 </c:if>
-                        </table>
 <c:if test="${empty wdRez}">
-						
+							<tr>
+							<td colspan="5">
 							<div style="text-align: center;">
-								장바구니에 담긴 상품이 없습니다.
+							<img src="../resources/images/icons/basket.png" style="width:100px; margin:30px;"/>
+							<p>장바구니에 담긴 상품이 없습니다.</p>
 							</div>
+							</td>
+							</tr>
+							
 						
 </c:if>
+                        </table>
 
 					
 					</div>

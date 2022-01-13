@@ -66,6 +66,13 @@ public class WDHallController {
 			long curPage = HttpUtil.get(request, "curPage", (long)1);
 		    String whCode = HttpUtil.get(request, "WHCode", "");
 		    String hCode = HttpUtil.get(request, "HCode", "");
+		    
+		    //결혼날짜 폼 데이터 가져오기
+		    String year = HttpUtil.get(request, "year", "");
+		    String month = HttpUtil.get(request, "month", "");
+		    String day = HttpUtil.get(request, "day", "");
+		    //결혼날짜 합치기
+		    String wDate = year+month+day;
 			
 			
 			WDUser wdUser = null;
@@ -96,6 +103,13 @@ public class WDHallController {
 				searchType = "";
 				searchValue = "";
 			}
+			//결혼날짜 객체에 세팅
+			if(!StringUtil.isEmpty(wDate)) {
+				wdHall.setwDate(wDate);
+			}
+			else {
+				wDate = "";
+			}
 			
 		   wdHall.setWHCode(whCode);
 		   
@@ -115,7 +129,10 @@ public class WDHallController {
 			   
 			   list = wdHallService.WDHallList(wdHall);
 		   }
-		   
+		   	
+		    model.addAttribute("year",year);
+		    model.addAttribute("month",month);
+		    model.addAttribute("day",day);
 			model.addAttribute("list", list);
 			model.addAttribute("searchType", searchType);
 			model.addAttribute("searchValue", searchValue);

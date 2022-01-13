@@ -34,7 +34,7 @@ button{
   margin-top: 1rem;
   border: .1rem solid rgb(204,204,204);
   border-radius: .2rem;
-  box-shadow: 1px 1px #666;
+  /*box-shadow: 1px 1px #666;*/
 }
 button:active {
   background-color: rgb(186,186,186);
@@ -43,6 +43,7 @@ button:active {
 }
 </style>
 <script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>
+<script type="text/javascript" src="../resources/js/colorBox.js"></script>
 <script>
 $(document).ready(function(){
 	$("#userName").focus();
@@ -51,7 +52,7 @@ $(document).ready(function(){
 function fn_userUpdate()
 {
 	//비밀번호
-	if(icia.common.isEmpty($("$userPwd").val()))
+	if(icia.common.isEmpty($("#userPwd").val()))
 	{
 		alert("비밀번호를 입력하세요");
 		$("#userPwd").focus();
@@ -75,7 +76,7 @@ function fn_userUpdate()
 	}
 	
 	//이메일
-	if(icia.common.isEmpty($("$userEmail").val()))
+	if(icia.common.isEmpty($("#userEmail").val()))
 	{
 		alert("이메일을 입력하세요.");
 		$("#userEmail").focus();
@@ -99,9 +100,10 @@ function fn_userUpdate()
 	
 	var formData = {
 		userId: $("#userId").val(),
+		userEmail: $("#userEmail").val(),
 		userPwd: $("#userPwd").val(),
 		userName: $("#userName").val(),
-		userEmail: $("#userEmail").val(),
+		userNickname: $("#userNickname").val(),
 		status: $("#status").val()
 	};
 	
@@ -168,6 +170,7 @@ function fn_idPwdCheck(val)
       <form name="regForm" id="regForm" method="post">
          <table>
             <tbody>
+
                <tr>
                   <th scope="row">아이디</th>
                   <td>
@@ -184,22 +187,30 @@ function fn_idPwdCheck(val)
                   <td>
                      <input type="text" id="userName" name="userName" value="${wdAdminUser.userName}" style="font-size:1rem;;" maxlength="50" placeholder="이름" />
                   </td>
-                  <th scope="row">이메일</th>
+                  <th scope="row">닉네임</th>
                   <td>
-                     <input type="text" id="userEmail" name="userEmail" value="${wdAdminUser.userEmail}" style="font-size:1rem;;" maxlength="50" placeholder="이메일" />
+                     <input type="text" id="userNickname" name="userNickname" value="${wdAdminUser.userNickname}" style="font-size:1rem;;" maxlength="50" placeholder="이메일" />
                   </td>
                </tr>
                <tr>
+                   <th scope="row">이메일</th>
+                  <td>
+                 ${wdAdminUser.userEmail}
+                     <input type="hidden" id="userEmail" name="userEmail" value="${wdAdminUser.userEmail}" />
+                  </td>
                   <th scope="row">상태</th>
                   <td>
                      <select id="status" name="status" style="font-size: 1rem; width: 7rem; height: 2rem;">
-                        <option value="Y" <c:if test="${user.status == 'Y'}">selected</c:if>>정상</option>
-                        <option value="N" <c:if test="${user.status == 'N'}">selected</c:if>>정지</option>
+                        <option value="Y" <c:if test="${wdAdminUser.status == 'Y'}">selected</c:if>>정상</option>
+                        <option value="N" <c:if test="${wdAdminUser.status == 'N'}">selected</c:if>>정지</option>
                      </select>
                   </td>
+               </tr>
+               <tr>
                   <th scope="row">등록일</th>
                   <td>${wdAdminUser.regDate}</td>
                </tr>
+
             </tbody>
          </table>
       </form>
@@ -209,5 +220,8 @@ function fn_idPwdCheck(val)
       </div>
    </div>
 </div>
+
+
+	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
 </html>
