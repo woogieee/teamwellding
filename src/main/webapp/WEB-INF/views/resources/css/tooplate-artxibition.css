@@ -1962,9 +1962,9 @@ footer p.copyright {
 }
 
 .sub-footer .menu ul li a {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 800;
-  color: #fff;
+  color: #777;
 }
 
 .sub-footer .menu ul li a:hover {
@@ -4951,7 +4951,7 @@ responsive
 .shows-events-scheduleW {
   margin-top: 0px;
   padding-bottom: 0px;
-  background-color: #F0F9F8;
+  
 }
 
 #divB
@@ -5371,16 +5371,16 @@ responsive
 
 .containerfW .nickInput
 {
-	background-color: #91DDDB;
-	color: #fff;
+	background-color: #fff;
+	
 	font-weight: bold;
 	font-size: 20px;
 }
 
 .containerfW .emailInput
 {
-	background-color: #91DDDB;
-	color: #fff;
+	background-color:  #fff;
+	
 	font-weight: bold;
 	font-size: 20px;
 }
