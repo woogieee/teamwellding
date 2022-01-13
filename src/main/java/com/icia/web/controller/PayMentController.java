@@ -1,5 +1,6 @@
 package com.icia.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -97,8 +98,8 @@ public class PayMentController
 		
 	}
 	
-	@RequestMapping(value="/user/payComplete")
-	public String payComplete(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="/user/payList")
+	public String payList(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		long curPage = HttpUtil.get(request, "curPage", (long)0);
@@ -132,13 +133,48 @@ public class PayMentController
 			return "/";
 		}
 		
-		return "/user/payComplete";
+		return "/user/payList";
 	}
 	
-	@RequestMapping(value="/user/payList", method=RequestMethod.GET)
-	public String payList (HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="/user/payListView", method=RequestMethod.POST)
+	public String payListView (ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
-		return "/user/payList";
+		String rezNo = HttpUtil.get(request, "rezNo", "");
+		
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		
+		WDUser wdUser = wdUserService.userSelect(cookieUserId);
+		                                                                     
+		WDRez wdRez = null;
+		
+		WDCoupon wdCoupon = null;
+		
+		if(wdUser != null) 
+		{
+			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
+			{
+				WDRez search = new WDRez();
+				search.setUserId(wdUser.getUserId());
+				search.setRezStatus("Y");
+				
+				wdRez = wdRezService.rezSelect(search);
+				wdRez = wdRezService.rezList(wdRez);
+				
+				if(wdRez != null) 
+				{
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("userId", wdRez.getUserId());
+					map.put("rezNo", wdRez.getRezNo());
+					
+					wdCoupon = wdCouponService.couponSelectPayOk(map);
+					
+					model.addAttribute("wdRez", wdRez);
+					model.addAttribute("wdCoupon", wdCoupon);
+				}
+			}
+		}
+		
+		return "/user/payListView";
 	}
 	
 }

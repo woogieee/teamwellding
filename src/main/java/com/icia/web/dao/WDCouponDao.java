@@ -1,5 +1,6 @@
 package com.icia.web.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,6 @@ public interface WDCouponDao {
 	public int couponStatusUpdate(String userId);
 
 
+	//결제 완료된 내역에서 결제중 쿠폰 정보를 가져오기 시작
+	public WDCoupon couponSelectPayOk(HashMap<String, Object> map);
 }
