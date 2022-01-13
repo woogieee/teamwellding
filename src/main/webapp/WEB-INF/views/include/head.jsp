@@ -60,7 +60,7 @@
 	
 	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap-theme.min.css">
 	<link type="text/css" href="../resources/css/jquery.colorbox.css" rel="stylesheet" />
-				
+	<link rel="stylesheet" href="../resources/css/admin.css">	
 <!--
 
 Tooplate 2125 ArtXibition

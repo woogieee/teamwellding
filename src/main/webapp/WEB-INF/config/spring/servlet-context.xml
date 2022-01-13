@@ -116,6 +116,7 @@
 						<value>/mng/userList</value>
 						<value>/mng/MngUserUpdate</value>
 						<value>/mng/userupdateProc</value>
+						<value>/mng/hsdmList</value>
 
             		</list>
             	</constructor-arg>
