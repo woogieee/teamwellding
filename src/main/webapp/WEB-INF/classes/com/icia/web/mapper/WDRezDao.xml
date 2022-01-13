@@ -73,7 +73,7 @@ FROM
 WHERE
     USER_ID = #{value}
 AND
-	REZ_STATUS = 'N'
+   REZ_STATUS = 'N'
 </select-->
 <!-- 예약 테이블 값을 가져오기 위한 셀렉트문 종료 -->
 
@@ -98,8 +98,8 @@ SELECT
     S_DATE
 FROM
     WD_REZ
-WHERE	
-	1 = 1
+WHERE   
+   1 = 1
 <if test='userId != null and userId != ""'>
 AND
     USER_ID = #{userId}   
@@ -109,7 +109,7 @@ AND
     REZ_NO = #{rezNo}   
 </if>
 AND
-	REZ_STATUS = #{rezStatus}
+   REZ_STATUS = #{rezStatus}
 </select>
 <!-- 예약 테이블 값을 가져오기 위한 셀렉트문 종료 -->
 
@@ -185,11 +185,11 @@ WHERE
     USER_ID = #{userId}
 <if test='rezStatus != null and rezStatus != ""'>
 AND
-	R.REZ_STATUS = #{rezStatus}
+   R.REZ_STATUS = #{rezStatus}
 </if>
 <if test='rezNo != null and rezNo != ""'>
 AND
-	R.REZ_NO = #{rezNo}
+   R.REZ_NO = #{rezNo}
 </if>
 <if test='whCode != null and whCode != "" and hCode != null and hCode != ""'>
 AND
@@ -440,7 +440,7 @@ SET
 WHERE
     USER_ID = #{value}
 AND
-	REZ_STATUS = 'N'
+   REZ_STATUS = 'N'
 </update>
 <!-- 쿠폰까지 삽입되면, 그제서야 상태 Y로 변경 종료 -->
 
@@ -452,7 +452,7 @@ SET
 WHERE
     USER_ID = #{userId}
 AND
-	REZ_NO = #{rezNo}
+   REZ_NO = #{rezNo}
 AND
     REZ_STATUS = 'Y'
 </update>    
@@ -528,19 +528,7 @@ AND
     RNUM <![CDATA[>=]]> 1
 </select>
 <!-- 결제 내역을 가져오기(rezStatus Y) 종료 -->
-<!-- 환불요청시 (status C로 변경) 시작 -->
-<update id="rezCancelPayment" parameterType="com.icia.web.model.WDRez" >
-UPDATE WD_REZ
-SET
-    REZ_STATUS = 'C'
-WHERE
-    USER_ID = #{userId}
-AND
-   REZ_NO = #{rezNo}
-AND
-    REZ_STATUS = 'Y'
-</update>
-<!-- 환불요청시 (status C로 변경) 시작 -->
+
 
 <!-- 관리자페이지에서 결제내역 리스트 조회 -->
 <select id="rezAdminSelect" parameterType="com.icia.web.model.WDRez" resultMap="WDRezDaoResultMap">
@@ -564,9 +552,9 @@ SELECT
 FROM
     WD_REZ
 WHERE
-	 1=1
-	<if test='userId != null and userId != ""'>
-	<choose>                
+    1=1
+   <if test='userId != null and userId != ""'>
+   <choose>                
       <when test='searchType == "1"'> 
 AND
     USER_ID LIKE '%' || #{userId} || '%'
@@ -584,7 +572,7 @@ SET
 WHERE
     USER_ID = #{userId}
 AND
-	REZ_NO = #{rezNo}
+   REZ_NO = #{rezNo}
 AND
     REZ_STATUS = 'C'
 </update>  

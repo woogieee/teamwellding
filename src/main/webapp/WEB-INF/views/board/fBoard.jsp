@@ -163,7 +163,7 @@ function fn_list(curPage)
 									</div>
 									<div class="col-lg-6" style="text-align: center;">
 										<div class="divB_tb">
-											<span>내용</span>
+											<span>제목</span>
 										</div>
 									</div>
 									<div class="col-lg-2" style="text-align: center;">
@@ -195,7 +195,7 @@ function fn_list(curPage)
 
 											<div class="col-lg-6" style="text-align: left;">
 												<div class="divB_tb2">
-													<span>${fboard.bTitle}</span>
+													<span>${fboard.bTitle}[${commentcount[status.index]}]</span>
 												</div>
 											</div>
 											<div class="col-lg-2">
@@ -216,7 +216,6 @@ function fn_list(curPage)
 										</div>
 									</div>
 								</li>
-
 							</c:forEach>
 						</ul>
 					</div>
