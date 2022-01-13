@@ -69,7 +69,7 @@ function classChange(id){
        </jsp:include>
        
 <div class="container">
-    <div class="row">
+    <div class="row" style="width: 100%;">
     	<div class="col-lg-12" style="width:100%; height:80px;"></div>
  <!-- /////////////////////////////////////////// --> 
 		<div class="col-lg-12">
@@ -83,55 +83,124 @@ function classChange(id){
 			</div>
 		</div>
 		
+		<!-- 홀 시작 -->
 		<div class="col-lg-12" width="100%">
 			<ul>
 
 				<li class="wdhth">
 					<div class="wdhtitle" style="width:10%;"><p>웨딩홀명</p></div>
-					<div class="wdhtitle" style="width:13%;"><p>웨딩홀설명</p></div>
-					<div class="wdhtitle" style="width:7%;"><p>주소</p></div>
-					<div class="wdhtitle" style="width:6%;"><p>전화번호</p></div>
-					<div class="wdhtitle" style="width:10%;"><p>대표이미지명</p></div>
-					<div class="wdhtitle" style="width:10%;"><p>홀명</p></div>
-					<div class="wdhtitle" style="width:10%;"><p>홀대관비</p></div>
-					<div class="wdhtitle" style="width:10%;"><p>1인당식비</p></div>
+					<div class="wdhtitle" style="width:17%;"><p>웨딩홀설명</p></div>
+					<div class="wdhtitle" style="width:12%;"><p>주소</p></div>
+					<div class="wdhtitle" style="width:7%;"><p>전화번호</p></div>
+					<div class="wdhtitle" style="width:7%;"><p>대표이미지명</p></div>
+					<div class="wdhtitle" style="width:8%;"><p>홀명</p></div>
+					<div class="wdhtitle" style="width:7%;"><p>홀대관비</p></div>
+					<div class="wdhtitle" style="width:5%;"><p>1인당식비</p></div>
 					<div class="wdhtitle" style="width:5%;"><p>최소인원</p></div>
 					<div class="wdhtitle" style="width:5%;"><p>최대수용인원</p></div>
-					<div class="wdhtitle" style="width:13%;"><p>설명</p></div>
+					<div class="wdhtitle" style="width:16%;"><p>설명</p></div>
 				</li>
 				<li class="wdhtd">
 					<div class="wdhcon" style="width:10%;"><p>웨딩홀명</p></div>
-					<div class="wdhcon" style="width:13%;"><p>웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명</p></div>
-					<div class="wdhcon" style="width:7%;"><p>주소</p></div>
-					<div class="wdhcon" style="width:6%;"><p>전화번호</p></div>
-					<div class="wdhcon" style="width:10%;"><p>대표이미지명</p></div>
-					<div class="wdhcon" style="width:10%;"><p>홀명</p></div>
-					<div class="wdhcon" style="width:10%;"><p>홀대관비</p></div>
-					<div class="wdhcon" style="width:10%;"><p>1인당식비</p></div>
+					<div class="wdhcon" style="width:17%;"><p>웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명</p></div>
+					<div class="wdhcon" style="width:12%;"><p>주소</p></div>
+					<div class="wdhcon" style="width:7%;"><p>전화번호</p></div>
+					<div class="wdhcon" style="width:7%;"><p>대표이미지명</p></div>
+					<div class="wdhcon" style="width:8%;"><p>홀명</p></div>
+					<div class="wdhcon" style="width:7%;"><p>홀대관비</p></div>
+					<div class="wdhcon" style="width:5%;"><p>1인당식비</p></div>
 					<div class="wdhcon" style="width:5%;"><p>최소인원</p></div>
 					<div class="wdhcon" style="width:5%;"><p>최대수용인원</p></div>
-					<div class="wdhcon" style="width:13%;"><p>설웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명명</p></div>
+					<div class="wdhcon" style="width:16%;"><p>설웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명명</p></div>
 				</li>
 
 			</ul>
 		</div>
+		<!-- 홀 끝 -->
+		
+		<!-- 스튜디오 시작 -->
+		<div class="col-lg-12" width="100%">
+			<ul>
+				<li class="wdhth">
+					<div class="wdhtitle" style="width:16%;"><p>스튜디오명</p></div>
+					<div class="wdhtitle" style="width:18%;"><p>주소</p></div>
+					<div class="wdhtitle" style="width:13%;"><p>전화번호</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>스튜디오 가격</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>대표이미지명</p></div>
+					<div class="wdhtitle" style="width:32%;"><p>스튜디오설명</p></div>
+				</li>
+				<li class="wdhtd">
+					<div class="wdhcon" style="width:16%;"><p>스튜디오명</p></div>
+					<div class="wdhcon" style="width:18%;"><p>주소</p></div>
+					<div class="wdhcon" style="width:13%;"><p>전화번호</p></div>
+					<div class="wdhcon" style="width:10%;"><p>스튜디오 가격</p></div>
+					<div class="wdhcon" style="width:10%;"><p>대표이미지명</p></div>
+					<div class="wdhcon" style="width:32%;"><p>설웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명명</p></div>
+				</li>
+			</ul>
+		</div>
+		<!-- 스튜디오 끝 -->
+		
+		<!-- 드레스 시작 -->
+		<div class="col-lg-12" width="100%">
+			<ul>
+				<li class="wdhth">
+					<div class="wdhtitle" style="width:9%;"><p>드레스샵 이름</p></div>
+					<div class="wdhtitle" style="width:13%;"><p>주소</p></div>
+					<div class="wdhtitle" style="width:8%;"><p>전화번호</p></div>
+					<div class="wdhtitle" style="width:7%;"><p>대표 이미지명</p></div>
+					<div class="wdhtitle" style="width:15%;"><p>업체설명</p></div>
+					<div class="wdhtitle" style="width:14%;"><p>드레스명</p></div>
+					<div class="wdhtitle" style="width:8%;"><p>드레스 이미지명</p></div>
+					<div class="wdhtitle" style="width:8%;"><p>가격</p></div>
+					<div class="wdhtitle" style="width:17%;"><p>드레스설명</p></div>
+				</li>
+				<li class="wdhtd">
+					<div class="wdhcon" style="width:9%;"><p>업체이름</p></div>
+					<div class="wdhcon" style="width:13%;"><p>주소</p></div>
+					<div class="wdhcon" style="width:8%;"><p>전화번호</p></div>
+					<div class="wdhcon" style="width:7%;"><p>대표이미지명</p></div>
+					<div class="wdhcon" style="width:15%;"><p>대웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명표이미지명</p></div>
+					<div class="wdhcon" style="width:14%;"><p>드레스명</p></div>
+					<div class="wdhcon" style="width:8%;"><p>드레스 이미지명</p></div>
+					<div class="wdhcon" style="width:8%;"><p>가격</p></div>
+					<div class="wdhcon" style="width:17%;"><p>웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명</p></div>
+				</li>
+			</ul>
+		</div>
+		<!-- 드레스 끝 -->
+		
+		<!-- 메이크업 시작 -->
+		<div class="col-lg-12" width="100%">
+			<ul>
+				<li class="wdhth">
+					<div class="wdhtitle" style="width:14%;"><p>메이크업샵 이름</p></div>
+					<div class="wdhtitle" style="width:18%;"><p>주소</p></div>
+					<div class="wdhtitle" style="width:13%;"><p>전화번호</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>대표이미지명</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>기본가격</p></div>
+					<div class="wdhtitle" style="width:24%;"><p>설명</p></div>
+					<div class="wdhtitle" style="width:10%;"><p>추가인원당 가격</p></div>
+				</li>
+				<li class="wdhtd">
+					<div class="wdhcon" style="width:14%;"><p>메이크업샵이름</p></div>
+					<div class="wdhcon" style="width:18%;"><p>주소</p></div>
+					<div class="wdhcon" style="width:13%;"><p>전화번호</p></div>
+					<div class="wdhcon" style="width:10%;"><p>대표이미지명</p></div>
+					<div class="wdhcon" style="width:10%;"><p>기본가격</p></div>
+					<div class="wdhcon" style="width:24%;"><p>설웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명웨딩홀설명명</p></div>
+					<div class="wdhcon" style="width:10%;"><p>추가인원당 가격</p></div>
+				</li>
+			</ul>
+		</div>
+		<!-- 메이크업 끝 -->
 
 			<div class="col-lg-12">
 				<div>
 					<form id="subscribe" action="" method="get">
-						<div class="row">
-							<div class="col-lg-5"></div>
-							<div class="col-lg-7">
-								<div class="row">
-									<div class="col-lg-3"></div>
-									<div class="col-lg-6"></div>
-									<div class="col-lg-3">
-
-										<button type="button" id="btnWrite"
-											class="main-dark-button3">글쓰기</button>
-
-									</div>
-								</div>
+						<div class="row" style="width: 100%;">
+							<div class="col-lg-12">
+									<button type="button" id="btnWrite" class="hsdm_btn">추가</button>
 							</div>
 						</div>
 					</form>
@@ -139,7 +208,7 @@ function classChange(id){
 			</div>
 			
 			<div class="col-lg-12">
-                   <div class="pagination">
+                <div class="pagination">
 					<ul class="pagination justify-content-center">
 						<c:if test="${!empty paging}">
 							<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
@@ -160,8 +229,8 @@ function classChange(id){
 							</c:if>       
 						</c:if> 
 					</ul>
-                   </div>
-               </div>
+                  </div>
+              </div>
 		
 
   </div>
