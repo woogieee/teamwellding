@@ -226,5 +226,59 @@ FROM(SELECT
 WHERE
     ROWNUM <![CDATA[<=]]> 4
 </select>
+<!-- 예약되어있는 날짜에 드레스 검색시 드레스 뜨지않게하기 시작 -->
+<select id="dressRez" parameterType="com.icia.web.model.WDDress" resultMap="WDDressResultMap">
+SELECT 
+            DC_CODE,
+            D_NO,
+            D_NAME,
+            D_IMGNAME,
+            D_PRICE,
+            D_CONTENT,
+            D_DISCOUNT
+FROM (SELECT
+            ROWNUM RNUM,
+            DC_CODE,
+            D_NO,
+            D_NAME,
+            D_IMGNAME,
+            D_PRICE,
+            D_CONTENT,
+            D_DISCOUNT
+            
+        FROM (SELECT
+                    DC_CODE AS DC_CODE,
+                    NVL(D_NO, '') AS D_NO,
+                    NVL(D_NAME, '') AS D_NAME,
+                    NVL(D_IMGNAME, '') AS D_IMGNAME,
+                    NVL(D_PRICE, 0) AS D_PRICE,
+                    NVL(D_CONTENT, '') AS D_CONTENT,
+                    NVL(D_DISCOUNT, '') AS D_DISCOUNT
+
+                FROM
+                    WD_DRESS
+                WHERE 
+                    1=1
+                AND
+                    D_NO NOT IN (SELECT
+                                        D_NO
+                                    FROM
+                                        WD_REZ
+                                    WHERE
+                                        WDATE LIKE #{wDate}
+                                            )
+                AND
+                    D_NAME LIKE #{dName}
+                                       
+                ORDER BY DC_CODE ASC))
+WHERE
+    RNUM  <![CDATA[>=]]> 1
+    
+AND
+    RNUM <![CDATA[<=]]> 20
+
+</select>
+<!-- 예약되어있는 날짜에 드레스 검색시 드레스 뜨지않게하기 끝 -->
+
 
 </mapper>
