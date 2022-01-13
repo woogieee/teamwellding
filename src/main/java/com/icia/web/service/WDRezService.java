@@ -358,4 +358,21 @@ public class WDRezService {
 		
 		return list;
 	}
+	
+	//환불요청시 상태창 변경
+	public int rezCancelPayment(WDRez wdRez)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdRezDao.rezCancelPayment(wdRez);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] rezCancelPayment Exception", e);
+		}
+		
+		return count;
+	}
 }
