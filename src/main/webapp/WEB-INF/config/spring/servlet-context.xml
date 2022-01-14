@@ -121,10 +121,13 @@
 						
 						<value>/mng/plusWHall</value>
 						<value>/mng/weddinghallWrite</value>
-						
+
+						<value>/mng/plusHall</value>
+						<value>/mng/hallWrite</value>
 						<value>/mng/plusDress</value>
-						<value>/mng/dressWrite</value>
-						<value>/mng/dressComWrite</value>
+		                <value>/mng/dressWrite</value>
+		                <value>/mng/dressComWrite</value>
+
 
             		</list>
             	</constructor-arg>

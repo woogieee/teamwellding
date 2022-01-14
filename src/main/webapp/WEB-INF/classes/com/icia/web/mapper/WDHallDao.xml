@@ -365,12 +365,14 @@ SELECT
 FROM
     WD_WEDDINGHALL
 </select>
+<!-- 웨딩홀 가장 마지막 웨딩홀 코드 불러오기 끝 -->
+
 <!-- 웨딩홀 제일 마지막 웨딩홀 코드 불러오기 끝 -->
 
 <!-- 웨딩홀의 가장 마지막 웨딩홀 코드 불러오기 시작 -->
-<select id="maxHCode" resultType="string">
+<select id="maxHCode" parameterType="string" resultType="long">
 SELECT
-    MAX(A.H_CODE) AS H_CODE
+    NVL(MAX(A.H_CODE), 0) AS H_CODE
 FROM
     WD_HALL A, WD_WEDDINGHALL B
 WHERE
@@ -409,6 +411,16 @@ INSERT INTO WD_HALL (
 )
 </insert>
 <!-- 홀 추가 인서트문 끝 -->
+
+<!-- 웨딩홀 코드와 이름 가져오기 -->
+<select id="whNameAndCode" resultMap="hallResultMap">
+SELECT
+    WH_CODE,
+    NVL(WH_NAME, '') WH_NAME
+FROM
+    WD_WEDDINGHALL
+</select>
+<!-- 웨딩홀 코드와 이름 가져오기 -->
 
 </mapper>
 
