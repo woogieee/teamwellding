@@ -160,9 +160,7 @@
 			<div class="col-lg-12">
 				
 				<div class="row">
-					
-					<div class="col-lg-1">
-					</div>
+					<div class="col-lg-1"></div>
 					
 					<div class="col-lg-10">
 						<h2 style="font-family: 'Bitter', serif; margin-top: 50px; padding-left: 10px;">My Page</h2>
@@ -186,6 +184,10 @@
 					</div>
 					<div class="col-lg-1">
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 					
 					
 
@@ -237,7 +239,7 @@
 				</div>
 				<p class="msg">
 				<p class="msg"></p>
-				</dd-->
+				</dd>
 				<!--이메일 주석-->
 			<dt>이메일</dt>
 			<dd>
@@ -302,6 +304,7 @@
 					<option value="31">31</option>
 				</select>
 			</dd>
+		
 
 			<div class="button_area">
 				<button class="btn_type" id="btn">수정</button>
@@ -311,7 +314,7 @@
 			<div class="footer">
 				<div class="copyright">COPYRIGHT. WELLDING INC. ALL RIGHTS RESERVED</div>
 			</div>
-			
+		</dl>
 	</div>
 	
 		<%@ include file="/WEB-INF/views/include/footer.jsp" %>

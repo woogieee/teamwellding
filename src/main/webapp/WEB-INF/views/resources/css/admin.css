@@ -101,7 +101,12 @@
 	border-bottom: 1px solid #ddd;
 	height: 50px;
     line-height: 50px;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
+}
+
+.wdhtd:last-child
+{
+	margin-bottom: 20px;
 }
 
 .wdhtitle
@@ -171,7 +176,8 @@
 .hsdm_btn {
   display: inline-block;
   font-size: 14px;
-  padding: 12px 26px;
+  padding: 12px 12px;
+  width: 90px;
   border-radius: 8px;
   float:right;
   /*margin-left: 20px;*/
@@ -199,5 +205,6 @@
   width: 100%;
   margin-top: 35px;
 }
+
 
 /* 홀스드메 관리페이지 끝 */

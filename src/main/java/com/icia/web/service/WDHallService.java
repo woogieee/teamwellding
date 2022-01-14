@@ -128,4 +128,81 @@ public class WDHallService {
    		}
    		return cnt;
    	}
+   	
+   	//웨딩홀 추가 쿼리문
+   	public int weddinghallInsert(WDHall wdHall) 
+   	{
+   		int count = 0;
+   		
+   		try {
+   			count = wdHallDao.weddinghallInsert(wdHall);
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDHallService] weddinghallInsert Exception", e);
+		}
+   		
+   		return count;
+   	}
+   	
+   	//웨딩홀 마지막 코드 불러오기
+   	public String maxWHCode() {
+   		
+   		String whCode = "";
+   		
+   		try {
+   			whCode = wdHallDao.maxWHCode();
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDHallService] maxWHCode Exception", e);
+		}
+   		
+   		return whCode;
+   	}
+   	
+   	//홀 마지막 코드 불러오기
+   	public long maxHCode(String whCode) {
+   		long hCode = 0;
+   		try {
+   			hCode = wdHallDao.maxHCode(whCode);
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDHallService] maxHCode Exception", e);
+		}
+   		
+   		return hCode;
+   	}
+   	
+   	//홀 추가 인서트
+   	public int hallInsert(WDHall wdHall) {
+   		int count = 0;
+   		
+   		try {
+   			count = wdHallDao.hallInsert(wdHall);
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDHallService] hallInsert Exception", e);
+		}
+   		
+   		return count;
+   	}
+   	
+	//홀 코드 이름 조회
+	public List<WDHall> whNameAndCode(){
+		List<WDHall> HCodeName = null;
+		
+		try {
+			HCodeName = wdHallDao.whNameAndCode();
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDHallService] whNameAndCode Exception", e);
+		}
+		
+		return HCodeName;
+	}
+   	
 }

@@ -26,4 +26,10 @@ public interface WDStudioDao
 	
 	//게시물 총수 예약일 기준 시작
 	public long studioListSdateCount(WDStudio wdStudio);
+	
+	//스튜디오 코드 최대값
+	public String maxSCode();
+	
+	//스튜디오 삽입
+	public int studioInsert(WDStudio wdStudio);
 }

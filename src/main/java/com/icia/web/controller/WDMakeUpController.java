@@ -61,7 +61,7 @@ public class WDMakeUpController
 	private WDUserService wdUserService;
 	
 	private static final int LIST_COUNT = 9;
-	private static final int PAGE_COUNT = 10;
+	private static final int PAGE_COUNT = 2;
 	
 	//메이크업 업체 불러와서 화면에 보여주는 메소드
 	@RequestMapping(value="/hsdm/makeUp")
@@ -100,6 +100,7 @@ public class WDMakeUpController
 		String year = HttpUtil.get(request, "year", "");
 		String month = HttpUtil.get(request, "month", "");
 		String day = HttpUtil.get(request, "day", "");
+		String wDate = year + month + day;
 		
 		String mCode = HttpUtil.get(request, "mCode", "");
 		
@@ -111,27 +112,19 @@ public class WDMakeUpController
 		
 		WDMakeUp search = new WDMakeUp();
 		
-		if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue) &&
-				!StringUtil.isEmpty(year) && !StringUtil.isEmpty(month) && !StringUtil.isEmpty(day)) 
+		if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue)) 
 		{
 			search.setSearchType(searchType);
 			search.setSearchValue(searchValue);
-			
-			search.setYear(year);
-			search.setMonth(month);
-			search.setDay(day);
 		}
 		else 
 		{
 			searchType = "";
 			searchValue = "";
-			
-			year = "";
-			month = "";
-			day = "";
 		}
 		
-		search.setwDate("20220112");
+		search.setmCode(mCode);
+		search.setwDate(wDate);
 		
 		//totalCount = wdMakeUpService.makeUpListCount(search);
 		totalCount = wdMakeUpService.makeUpListCountmr(search);
@@ -146,14 +139,10 @@ public class WDMakeUpController
 			paging.addParam("searchValue", searchValue);
 			paging.addParam("curPage", curPage);
 			
-			paging.addParam("year", year);
-			paging.addParam("month", month);
-			paging.addParam("day", day);
-			
 			search.setStartRow(paging.getStartRow());
 			search.setEndRow(paging.getEndRow());
 			
-			search.setwDate("20220112"); //일단하드코딩!
+			search.setwDate(wDate); //일단하드코딩!
 			
 			///list = wdMakeUpService.makeUpList(search);
 			list = wdMakeUpService.makeUpListMinusRez(search); //예약내역 제외한 목록 불러오기
@@ -208,10 +197,6 @@ public class WDMakeUpController
 		String searchValue = HttpUtil.get(request, "searchValue", "");
 		long curPage = HttpUtil.get(request, "curPage", (long)1);
 		
-		String year = HttpUtil.get(request, "year", "");
-		String month = HttpUtil.get(request, "month", "");
-		String day = HttpUtil.get(request, "day", "");
-		
 		WDMakeUp wdMakeup = null;
 		List<WDStudio> studioRandom = null;/*랜덤추가*/
 		List<WDDress> dressRandom = null; /*랜덤추가*/
@@ -234,10 +219,6 @@ public class WDMakeUpController
 		model.addAttribute("searchType", searchType);
 		model.addAttribute("searchValue", searchValue);
 		model.addAttribute("curPage", curPage);
-		
-		model.addAttribute("year", year);
-		model.addAttribute("month", month);
-		model.addAttribute("day", day);
 		
 		/*랜덤추가*/
 		model.addAttribute("studioRandom", studioRandom);

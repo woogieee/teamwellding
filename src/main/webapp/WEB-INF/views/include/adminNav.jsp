@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row" style="width: 100%;">
                 <div class="col-lg-6">
-                    <span><span class="span1">♥</span>Welcome Wellding! &nbsp;&nbsp;<span class="span1">♥</span><span class="span2">${name }</span>님 환영합니다!</span>
+                    <span style="cursor: default;"><span class="span1">♥</span>Welcome Wellding! &nbsp;&nbsp;<span class="span1">♥</span><span class="span2">${name }</span>님 환영합니다!</span>
                 </div>
 				<div class="col-lg-5">
                     <div class="ourperson" style="text-align:right;">
