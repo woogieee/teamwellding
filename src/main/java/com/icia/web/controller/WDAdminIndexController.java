@@ -530,117 +530,185 @@ public class WDAdminIndexController
          }
          
          return ajaxResponse;
-      }
-      
-         //드레스 관리자페이지 추가
-         @RequestMapping(value="/mng/plusDress")
-         public String plusDress(Model model,HttpServletRequest request, HttpServletResponse response) 
-         {   
-            return "/mng/plusDress";
-         }
+      }         
          
-         //드레스샵 추가
-         @RequestMapping(value="/mng/dressComWrite")
-         @ResponseBody
-         public Response<Object> dressComWrite(HttpServletRequest request, HttpServletResponse response)
-         {
-            
-            Response<Object> ajaxResponse = new Response<Object>();
-            
-            //가장 큰 드레르샵 코드를 받아와서 D제거
-            String maxDCCode = wdDressService.maxDCCode();
-            maxDCCode = maxDCCode.replace("D", "");      
-            //D 제거 후 남은 숫자를 int 형으로 바꿔서 1을 더해줌
-            int dcCodePlus = Integer.parseInt(maxDCCode)+1;
-            //해당 숫자앞에 다시D를 추가하여 숫자와 붙여서 문자열로 만듬
-            maxDCCode = "D" + dcCodePlus;
-            
-            String dcName = HttpUtil.get(request, "dcName", "");
-            String dcLocation = HttpUtil.get(request, "dcLocation", "");
-            String dcNumber = HttpUtil.get(request, "dcNumber", "");
-            String dcContent = HttpUtil.get(request, "dcContent", "");
-            
-            System.out.println("############# dcName ############# : " + dcName);
-
-            WDDress wdDress = new WDDress();
-            wdDress.setDcCode(maxDCCode);
-            wdDress.setDcName(dcName);
-            wdDress.setDcLocation(dcLocation);
-            wdDress.setDcNumber(dcNumber);
-            wdDress.setDcContent(dcContent);
-            
-            if(!StringUtil.isEmpty(dcName) && !StringUtil.isEmpty(dcLocation) && !StringUtil.isEmpty(dcNumber) && !StringUtil.isEmpty(dcContent)) 
-            {
-               if(wdDressService.dressComInsert(wdDress) > 0) 
-               {
-                  ajaxResponse.setResponse(0, "Success");
-               }
-               else 
-               {
-                  ajaxResponse.setResponse(-1, "Error");
-               }
-            }
-            else 
-            {
-               ajaxResponse.setResponse(400, "Not Paremeter");
-            }
-            
-            return ajaxResponse;
-         }
+     //스튜디오 관리자페이지 추가
+     @RequestMapping(value="/mng/plusStudio")
+     public String plusStudio(Model model,HttpServletRequest request, HttpServletResponse response) 
+     {   
+        return "/mng/plusStudio";
+     }
+     
+     //스튜디오추가
+     @RequestMapping(value="/mng/studioWrite")
+     @ResponseBody
+     public Response<Object> studioWrite(HttpServletRequest request, HttpServletResponse response)
+     {
+        
+         Response<Object> ajaxResponse = new Response<Object>();
          
-         //드레스추가
-         @RequestMapping(value="/mng/dressWrite")
-         @ResponseBody
-         public Response<Object> dressWrite(HttpServletRequest request, HttpServletResponse response)
-         {
-            
-            Response<Object> ajaxResponse = new Response<Object>();
-            
-            //가장 큰드레스샵 코드 받아오기
-            String maxDCode = wdDressService.maxDCode();
-            //숫자를 int형으로 바꿔서 1을 더해줌
-            int dCodePlus = Integer.parseInt(maxDCode)+1;
-            //다시 문자열로 만들기
-            maxDCode = "0" + dCodePlus;  ///이러면 1000번대로 가면안되눈뎅 ,,,
+         //가장 큰 웨딩홀 코드를 받아와서 W제거
+         String maxSCode = wdStudioService.maxSCode();
+         maxSCode = maxSCode.replace("S", "");      
+         //W 제거 후 남은 숫자를 int 형으로 바꿔서 1을 더해줌
+         int sCodePlus = Integer.parseInt(maxSCode)+1;
+         //해당 숫자앞에 다시 W를 추가하여 숫자와 붙여서 문자열로 만듬
+         maxSCode = "S"+sCodePlus;
 
-            String dcCode = HttpUtil.get(request, "dcCode", "");
-            String dNo = HttpUtil.get(request, "dNo", "");
-            String dName = HttpUtil.get(request, "dName", "");
-            String dImgname = HttpUtil.get(request, "dImgname", "");
-            long dPrice = HttpUtil.get(request, "dPrice", (long)0);
-            String dContent = HttpUtil.get(request, "dContent", "");
-            long dDiscount = HttpUtil.get(request, "dDiscount", (long)0);
-            
-            System.out.println("############# dNo ############# : " + dNo);
-            
-            WDDress wdDress = new WDDress();
-            wdDress.setDcCode(maxDCode);
-            wdDress.setdNo(maxDCode);
-            wdDress.setdName(dName);
-            wdDress.setdImgname(dImgname);
-            wdDress.setdPrice(dPrice);
-            wdDress.setdContent(dContent);
-            wdDress.setdDiscount(dDiscount);
-            
-            
-            if(!StringUtil.isEmpty(dName) && !StringUtil.isEmpty(dImgname) && !StringUtil.isEmpty(dPrice) &&
-                  !StringUtil.isEmpty(dContent) && !StringUtil.isEmpty(dDiscount)) 
-            {
-               if(wdDressService.dressInsert(wdDress) > 0) 
-               {
-                  ajaxResponse.setResponse(0, "Success");
-               }
-               else 
-               {
-                  ajaxResponse.setResponse(-1, "Error");
-               }
-            }
-            else 
-            {
-               ajaxResponse.setResponse(400, "Not Paremeter");
-            }
-            
-            return ajaxResponse;
-         }
+         String sName = HttpUtil.get(request, "studioName", "");
+         long sPrice = HttpUtil.get(request, "studioPrice", (long)0);
+         String sLocation = HttpUtil.get(request, "studioLocation", "");
+         String sNumber = HttpUtil.get(request, "studioNumber", "");
+         String sContent = HttpUtil.get(request, "studioNumber","");
+         long sDiscount = HttpUtil.get(request, "studioDiscount", (long)0);
+        
+        
+        WDStudio wdStudio = new WDStudio();
+        wdStudio.setsCode(maxSCode);
+        wdStudio.setsName(sName);
+        wdStudio.setsPrice(sPrice);
+        wdStudio.setsLocation(sLocation);
+        wdStudio.setsNumber(sNumber);
+        wdStudio.setsContent(sContent);
+        wdStudio.setsDiscount(sDiscount);
+        
+        
+        if(!StringUtil.isEmpty(sName) && !StringUtil.isEmpty(sPrice) && !StringUtil.isEmpty(sLocation) &&
+              !StringUtil.isEmpty(sNumber) && !StringUtil.isEmpty(sContent)  && !StringUtil.isEmpty(sDiscount)) 
+        {
+           if(wdStudioService.studioInsert(wdStudio) > 0) 
+           {
+              ajaxResponse.setResponse(0, "Success");
+           }
+           else 
+           {
+              ajaxResponse.setResponse(-1, "Error");
+           }
+        }
+        else 
+        {
+           ajaxResponse.setResponse(400, "Not Paremeter");
+        }
+        
+        return ajaxResponse;
+     }
+     
+     //드레스샵 관리자페이지 추가
+     @RequestMapping(value="/mng/plusDressCom")
+     public String plusDressCom(Model model,HttpServletRequest request, HttpServletResponse response) 
+     {   
+        return "/mng/plusDressCom";
+     }
+  
+     //드레스 관리자페이지 추가
+     @RequestMapping(value="/mng/plusDress")
+     public String plusDress(Model model,HttpServletRequest request, HttpServletResponse response) 
+     {   
+        return "/mng/plusDress";
+     }
+     
+     //드레스샵 추가
+     @RequestMapping(value="/mng/dressComWrite")
+     @ResponseBody
+     public Response<Object> dressComWrite(HttpServletRequest request, HttpServletResponse response)
+     {
+        
+        Response<Object> ajaxResponse = new Response<Object>();
+        
+        //가장 큰 드레르샵 코드를 받아와서 D제거
+        String maxDCCode = wdDressService.maxDCCode();
+        maxDCCode = maxDCCode.replace("D", "");      
+        //D 제거 후 남은 숫자를 int 형으로 바꿔서 1을 더해줌
+        int dcCodePlus = Integer.parseInt(maxDCCode)+1;
+        //해당 숫자앞에 다시D를 추가하여 숫자와 붙여서 문자열로 만듬
+        maxDCCode = "D" + dcCodePlus;
+        
+        String dcName = HttpUtil.get(request, "dcName", "");
+        String dcLocation = HttpUtil.get(request, "dcLocation", "");
+        String dcNumber = HttpUtil.get(request, "dcNumber", "");
+        String dcContent = HttpUtil.get(request, "dcContent", "");
+        
+        System.out.println("############# dcName ############# : " + dcName);
+
+        WDDress wdDress = new WDDress();
+        wdDress.setDcCode(maxDCCode);
+        wdDress.setDcName(dcName);
+        wdDress.setDcLocation(dcLocation);
+        wdDress.setDcNumber(dcNumber);
+        wdDress.setDcContent(dcContent);
+        
+        if(!StringUtil.isEmpty(dcName) && !StringUtil.isEmpty(dcLocation) && !StringUtil.isEmpty(dcNumber) && !StringUtil.isEmpty(dcContent)) 
+        {
+           if(wdDressService.dressComInsert(wdDress) > 0) 
+           {
+              ajaxResponse.setResponse(0, "Success");
+           }
+           else 
+           {
+              ajaxResponse.setResponse(-1, "Error");
+           }
+        }
+        else 
+        {
+           ajaxResponse.setResponse(400, "Not Paremeter");
+        }
+        
+        return ajaxResponse;
+     }
+     
+     //드레스추가
+     @RequestMapping(value="/mng/dressWrite")
+     @ResponseBody
+     public Response<Object> dressWrite(HttpServletRequest request, HttpServletResponse response)
+     {
+        
+        Response<Object> ajaxResponse = new Response<Object>();
+        
+        //가장 큰드레스샵 코드 받아오기
+        String maxDCode = wdDressService.maxDCode();
+        //숫자를 int형으로 바꿔서 1을 더해줌
+        int dCodePlus = Integer.parseInt(maxDCode)+1;
+        //다시 문자열로 만들기
+        maxDCode = "0" + dCodePlus;  ///이러면 1000번대로 가면안되눈뎅 ,,,
+
+        String dcCode = HttpUtil.get(request, "dcCode", "");
+        String dNo = HttpUtil.get(request, "dNo", "");
+        String dName = HttpUtil.get(request, "dName", "");
+        String dImgname = HttpUtil.get(request, "dImgname", "");
+        long dPrice = HttpUtil.get(request, "dPrice", (long)0);
+        String dContent = HttpUtil.get(request, "dContent", "");
+        long dDiscount = HttpUtil.get(request, "dDiscount", (long)0);
+        
+        System.out.println("############# dNo ############# : " + dNo);
+        
+        WDDress wdDress = new WDDress();
+        wdDress.setDcCode(maxDCode);
+        wdDress.setdNo(maxDCode);
+        wdDress.setdName(dName);
+        wdDress.setdImgname(dImgname);
+        wdDress.setdPrice(dPrice);
+        wdDress.setdContent(dContent);
+        wdDress.setdDiscount(dDiscount);
+        
+        
+        if(!StringUtil.isEmpty(dName) && !StringUtil.isEmpty(dImgname) && !StringUtil.isEmpty(dPrice) &&
+              !StringUtil.isEmpty(dContent) && !StringUtil.isEmpty(dDiscount)) 
+        {
+           if(wdDressService.dressInsert(wdDress) > 0) 
+           {
+              ajaxResponse.setResponse(0, "Success");
+           }
+           else 
+           {
+              ajaxResponse.setResponse(-1, "Error");
+           }
+        }
+        else 
+        {
+           ajaxResponse.setResponse(400, "Not Paremeter");
+        }
+        
+        return ajaxResponse;
+     }
 
 }
