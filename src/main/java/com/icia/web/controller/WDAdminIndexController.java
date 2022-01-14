@@ -674,23 +674,20 @@ public class WDAdminIndexController
         //숫자를 int형으로 바꿔서 1을 더해줌
         int dNoPlus = Integer.parseInt(maxDCode)+1;
         //다시 문자열로 만들기
-        maxDCode = "0" + dNoPlus;  ///이러면 1000번대로 가면안되눈뎅 ,,,
+        maxDCode = "" + dNoPlus;  ///이러면 1000번대로 가면안되눈뎅 ,,,
 
         String dcCode = HttpUtil.get(request, "dcCode", "");
-        String dNo = HttpUtil.get(request, "dNo", "");
         String dName = HttpUtil.get(request, "dName", "");
-        String dImgname = HttpUtil.get(request, "dImgname", "");
         long dPrice = HttpUtil.get(request, "dPrice", (long)0);
         String dContent = HttpUtil.get(request, "dContent", "");
         long dDiscount = HttpUtil.get(request, "dDiscount", (long)0);
         
-        System.out.println("############# dNo ############# : " + dNo);
+        System.out.println("############# dNo ############# : " + maxDCode);
         
         WDDress wdDress = new WDDress();
         wdDress.setDcCode(dcCode);
         wdDress.setdNo(maxDCode);
         wdDress.setdName(dName);
-        wdDress.setdImgname(dImgname);
         wdDress.setdPrice(dPrice);
         wdDress.setdContent(dContent);
         wdDress.setdDiscount(dDiscount);

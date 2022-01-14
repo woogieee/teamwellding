@@ -62,7 +62,7 @@ function fn_loginCheck()
 	
 	$.ajax({
 		type : "POST",
-		url : "/user/userDrop",
+		url : "/user/userDropProc",
 		data : {
 			userPwd:$("#userPwd").val() 
 		},

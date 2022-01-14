@@ -104,11 +104,10 @@ function fn_userUpdate()
 	
 	var formData = {
 			dcCode: $("#dcCode").val(),
-			dNo: $("#dNo").val(),
-			dName: $("#dName").val(),
-			dPrice: $("#dPrice").val(),
-			dContent: $("#dContent").val(),
-			dDiscount: $("#dDiscount").val()
+			dName: $("#dressname").val(),
+			dPrice: $("#dressprice").val(),
+			dContent: $("#dresscontent").val(),
+			dDiscount: $("#dressdiscount").val()
 	};
 	
 	//ajax통신

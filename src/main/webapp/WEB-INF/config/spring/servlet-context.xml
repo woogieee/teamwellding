@@ -112,6 +112,7 @@
 	                    <value>/user/payList</value>
 	                    <value>/user/payListView</value>
 	                    <value>/user/userDrop</value>
+	                    <value>/user/userDropProc</value>
 
 						<value>/mng/login</value>
 						<value>/mng/userList</value>
