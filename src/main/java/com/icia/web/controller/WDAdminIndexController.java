@@ -300,6 +300,10 @@ public class WDAdminIndexController
 			List<WDDress> dList = null;
 			List<WDMakeUp> mList = null;
 			
+			//페이징 처리시 어디서 했는지 확인용
+			int hsdmCheck = HttpUtil.get(request, "hsdmCheck", 1);
+			model.addAttribute("hsdmCheck",hsdmCheck);
+			
 			//쿠키 조회
 		    String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		   //닉네임 달거야
@@ -414,10 +418,15 @@ public class WDAdminIndexController
 			return "/mng/hsdmList";
 		}
 		
-		
+
 		@RequestMapping(value="/mng/plusWHall")
-		public String plusWHall(HttpServletRequest request, HttpServletResponse response)
+		public String weddinghallWrite(Model model,HttpServletRequest request, HttpServletResponse response)
 		{
+			String maxWHCode = wdHallService.maxWHCode();
+			maxWHCode.replace("W", "");			
+			
 			return "/mng/plusWHall";
 		}
+		
+
 }
