@@ -96,8 +96,8 @@ public class WDRezController {
 		
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
 		
-		if(wdUser != null) 
-		{
+		if(wdUser != null)
+		{	
 			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
 			{
 				WDRez search = new WDRez();
@@ -112,7 +112,6 @@ public class WDRezController {
 				
 				//다시 해당 결과를 가지고 다른 테이블과 조인한 결과를 wdRez객체에 다시 담음
 				wdRez = wdRezService.rezList(wdRez);
-				
 				
 				model.addAttribute("wdRez", wdRez);
 				model.addAttribute("wdUser",wdUser);

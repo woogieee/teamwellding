@@ -273,9 +273,16 @@ $("#payMent").on("click", function(){
 								<li class="breadcrumb-item">
 									<a href="/user/modify">회원정보수정</a>
 								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/userDrop">회원탈퇴</a>
+								</li>
+								<li style="position: absolute; right:50px;">
+									<div>잔여 포인트 : ${wdUser.userPoint} Point
+									</div>
+								</li>
 							</ol>
 						</nav>
-					
+						
 					</div>
 					<div class="col-lg-1">
 					</div>
@@ -488,7 +495,6 @@ $("#payMent").on("click", function(){
 						
 </c:if>
                         </table>
-
 					
 					</div>
 					<!-- 경계선 종료 -->
