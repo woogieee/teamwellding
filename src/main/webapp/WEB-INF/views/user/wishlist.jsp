@@ -273,6 +273,9 @@ $("#payMent").on("click", function(){
 								<li class="breadcrumb-item">
 									<a href="/user/modify">회원정보수정</a>
 								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/userDrop">회원탈퇴</a>
+								</li>
 							</ol>
 						</nav>
 					

@@ -119,4 +119,19 @@ public class WDUserService
 		return wduser;
 	}
 	
+	//회원탈퇴
+	public int userDrop(WDUser wduser) {
+		int count = 0;
+		
+		try {
+			count = wdUserDao.userDrop(wduser);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDUserService] userDrop Exception",e);
+		}
+		
+		return count;
+	}
+	
 }
