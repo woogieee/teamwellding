@@ -72,7 +72,7 @@ public class WDAdminIndexController
    private String AUTH_COOKIE_NAME;
    
    private static final int LIST_COUNT = 10;
-   private static final int PAGE_COUNT = 10;
+   private static final int PAGE_COUNT = 5;
    
    @RequestMapping(value="/mng/login") ///manager/index =>>로그인페이지!!
    @ResponseBody
@@ -604,6 +604,10 @@ public class WDAdminIndexController
      @RequestMapping(value="/mng/plusDress")
      public String plusDress(Model model,HttpServletRequest request, HttpServletResponse response) 
      {   
+    	 List<WDDress> dNoName = null;
+    	 dNoName = wdDressService.dNoAndName();
+    	 model.addAttribute("dNoName", dNoName);
+         
         return "/mng/plusDress";
      }
      
@@ -615,7 +619,12 @@ public class WDAdminIndexController
         
         Response<Object> ajaxResponse = new Response<Object>();
         
-        //가장 큰 드레르샵 코드를 받아와서 D제거
+        String dcName = HttpUtil.get(request, "dcName", "");
+        String dcLocation = HttpUtil.get(request, "dcLocation", "");
+        String dcNumber = HttpUtil.get(request, "dcNumber", "");
+        String dcContent = HttpUtil.get(request, "dcContent", "");
+        
+        //가장 큰 드레스샵 코드를 받아와서 D제거
         String maxDCCode = wdDressService.maxDCCode();
         maxDCCode = maxDCCode.replace("D", "");      
         //D 제거 후 남은 숫자를 int 형으로 바꿔서 1을 더해줌
@@ -623,11 +632,7 @@ public class WDAdminIndexController
         //해당 숫자앞에 다시D를 추가하여 숫자와 붙여서 문자열로 만듬
         maxDCCode = "D" + dcCodePlus;
         
-        String dcName = HttpUtil.get(request, "dcName", "");
-        String dcLocation = HttpUtil.get(request, "dcLocation", "");
-        String dcNumber = HttpUtil.get(request, "dcNumber", "");
-        String dcContent = HttpUtil.get(request, "dcContent", "");
-        
+        System.out.println("############# maxDCCode ############# : " + maxDCCode);
         System.out.println("############# dcName ############# : " + dcName);
 
         WDDress wdDress = new WDDress();
@@ -664,12 +669,12 @@ public class WDAdminIndexController
         
         Response<Object> ajaxResponse = new Response<Object>();
         
-        //가장 큰드레스샵 코드 받아오기
+        //가장 큰드레스 코드 받아오기
         String maxDCode = wdDressService.maxDCode();
         //숫자를 int형으로 바꿔서 1을 더해줌
-        int dCodePlus = Integer.parseInt(maxDCode)+1;
+        int dNoPlus = Integer.parseInt(maxDCode)+1;
         //다시 문자열로 만들기
-        maxDCode = "0" + dCodePlus;  ///이러면 1000번대로 가면안되눈뎅 ,,,
+        maxDCode = "0" + dNoPlus;  ///이러면 1000번대로 가면안되눈뎅 ,,,
 
         String dcCode = HttpUtil.get(request, "dcCode", "");
         String dNo = HttpUtil.get(request, "dNo", "");
@@ -682,7 +687,7 @@ public class WDAdminIndexController
         System.out.println("############# dNo ############# : " + dNo);
         
         WDDress wdDress = new WDDress();
-        wdDress.setDcCode(maxDCode);
+        wdDress.setDcCode(dcCode);
         wdDress.setdNo(maxDCode);
         wdDress.setdName(dName);
         wdDress.setdImgname(dImgname);
@@ -691,8 +696,7 @@ public class WDAdminIndexController
         wdDress.setdDiscount(dDiscount);
         
         
-        if(!StringUtil.isEmpty(dName) && !StringUtil.isEmpty(dImgname) && !StringUtil.isEmpty(dPrice) &&
-              !StringUtil.isEmpty(dContent) && !StringUtil.isEmpty(dDiscount)) 
+        if(!StringUtil.isEmpty(dName) && !StringUtil.isEmpty(dPrice) && !StringUtil.isEmpty(dContent) && !StringUtil.isEmpty(dDiscount)) 
         {
            if(wdDressService.dressInsert(wdDress) > 0) 
            {
