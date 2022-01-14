@@ -208,3 +208,33 @@
 
 
 /* 홀스드메 관리페이지 끝 */
+
+
+/** 다크모드 해보까 **/
+@media (prefers-color-scheme: dark)
+{
+	  body 
+	  {
+    	background: #202b38;
+	  }
+	
+	  h1,
+	  h2,
+	  h3 {
+	    color: #fff;
+	  }
+	
+	  p,
+	  dl {
+	    color: #dbdbdb;
+	  }
+	
+	  a {
+	    color: #41adff;
+	  }
+	
+	  code {
+	    color: #ffbe85;
+	    background: #161f27;
+  }
+}
