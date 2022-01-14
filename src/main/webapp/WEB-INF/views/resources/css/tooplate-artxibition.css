@@ -614,6 +614,11 @@ header
    font-size: 13px;
 }
 
+.ourperson a:hover 
+{
+    color: #000!important;
+}
+
 /*상단바 투명*/
 /* 
 .header-area {
@@ -2895,7 +2900,7 @@ Rent Venue Page
 }
 
 .rent-venue-application form .main-dark-button:hover {
-  background-color: #656c74;
+  background-color: coral;
 }
 
 /*
