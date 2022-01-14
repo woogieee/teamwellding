@@ -27,4 +27,18 @@ public interface WDDressDao
 	//드레스 예약내역 제외
 	public List<WDDress> dressRez(WDDress wdDress);
 	
+	//드레스업체 마지막코드 불러오기
+	public String maxDCCode();
+	
+	//드레스 마지막코드 불러오기
+	public String maxDCode();
+	
+	//드레스업체 추가
+	public int dressComInsert(WDDress wdDress);
+	
+	//드레스 추가
+	public int dressInsert(WDDress wdDress);
+	
+	//드레스업체 조회
+	public String selectDressCom(WDDress wdDress);
 }

@@ -43,4 +43,5 @@ public interface WDHallDao {
 	//홀 코드 이름 조회
 	public List<WDHall> whNameAndCode();
 																																																																																																																																													
+
 }
