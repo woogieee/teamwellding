@@ -33,7 +33,7 @@
 
 <!-- 드레스 조회 시작 -->
 <select id="dressList" parameterType="com.icia.web.model.WDDress" resultMap="WDDressResultMap">
-SELECT
+SELECT 
     DC_CODE,
     D_NO,
     DC_NAME,
@@ -42,11 +42,11 @@ SELECT
     DC_NUMBER,
     D_IMGNAME,
     D_PRICE,
-    D_CONTENT,
     DC_CONTENT,
+    D_CONTENT,
     D_DISCOUNT
-FROM (SELECT 
-            ROWNUM AS RNUM,
+FROM (SELECT
+            ROWNUM RNUM,
             DC_CODE,
             D_NO,
             DC_NAME,
@@ -55,8 +55,8 @@ FROM (SELECT
             DC_NUMBER,
             D_IMGNAME,
             D_PRICE,
-            D_CONTENT,
             DC_CONTENT,
+            D_CONTENT,
             D_DISCOUNT
         FROM (SELECT
                     A.DC_CODE AS DC_CODE,
@@ -72,24 +72,36 @@ FROM (SELECT
                     NVL(A.D_DISCOUNT, 0) AS D_DISCOUNT
                 FROM
                     WD_DRESS A, WD_DRESS_COM B
-                WHERE
-                    A.DC_CODE = B.DC_CODE
-<if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
-   <choose>                
-      <when test='searchType == "1"'> 
+                WHERE 
+                    1=1
                 AND
-                    B.DC_NAME LIKE '%' || #{searchValue} || '%'
-      </when>
-      <when test='searchType == "2"'>
-                AND 
-                    B.DC_LOCATION LIKE '%' || #{searchValue} || '%'
-		</when>
-	</choose>
-</if> 
-                 
-                ORDER BY A.D_NAME DESC)) 
+                    A.DC_CODE = B.DC_CODE
+	            <if test='wDate != null and wDate != ""'>   
+	            AND    
+	                 A.D_NO NOT IN (SELECT
+                         			  D_NO
+                                  FROM
+                                      WD_REZ
+                                  WHERE
+                                      WDATE LIKE #{wDate}
+                                  AND
+                                  	REZ_STATUS = 'Y')
+	            </if> 
+ <if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
+ 	<choose>
+ 		<when test='searchType =="1"'>
+ 			AND 
+ 				D_NAME LIKE '%' || #{searchValue} || '%'
+ 		</when>
+ 		<when test='searchType == "2"'>
+ 			AND
+ 				DC_LOCATION LIKE '%' || #{searchValue} || '%'
+ 		</when>
+ 	</choose>
+ </if>                           
+                ORDER BY A.D_NAME DESC))
 WHERE
-    RNUM <![CDATA[>=]]> #{startRow}
+    RNUM  <![CDATA[>=]]> #{startRow}
 AND
     RNUM <![CDATA[<=]]> #{endRow}
 </select>
@@ -292,7 +304,7 @@ FROM (SELECT
  		ORDER BY 
  			DC_CODE ASC
  		))
- 		
+ 		D_NO
 		WHERE
 		    RNUM  <![CDATA[>=]]> #{startRow}
 		AND
