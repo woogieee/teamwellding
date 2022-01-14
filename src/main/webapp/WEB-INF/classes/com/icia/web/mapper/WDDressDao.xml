@@ -232,6 +232,7 @@ SELECT
             DC_CODE,
             D_NO,
             D_NAME,
+            D_LOCATION,
             D_IMGNAME,
             D_PRICE,
             D_CONTENT,
@@ -241,6 +242,7 @@ FROM (SELECT
             DC_CODE,
             D_NO,
             D_NAME,
+            D_LOCATION,
             D_IMGNAME,
             D_PRICE,
             D_CONTENT,
@@ -250,6 +252,7 @@ FROM (SELECT
                     DC_CODE AS DC_CODE,
                     NVL(D_NO, '') AS D_NO,
                     NVL(D_NAME, '') AS D_NAME,
+                    NVL(D_LOCATION, '') AS D_LOCATION,
                     NVL(D_IMGNAME, '') AS D_IMGNAME,
                     NVL(D_PRICE, 0) AS D_PRICE,
                     NVL(D_CONTENT, '') AS D_CONTENT,
@@ -259,6 +262,7 @@ FROM (SELECT
                     WD_DRESS
                 WHERE 
                     1=1
+<if test='wDate != null and wDate != ""'> 
                 AND
                     D_NO NOT IN (SELECT
                                         D_NO
@@ -266,17 +270,33 @@ FROM (SELECT
                                         WD_REZ
                                     WHERE
                                         WDATE LIKE #{wDate}
-                                            )
                 AND
                     D_NAME LIKE #{dName}
+                AND
+                	REZ_STATUS = 'Y'
+                				)
+</if>                	
                                        
-                ORDER BY DC_CODE ASC))
-WHERE
-    RNUM  <![CDATA[>=]]> 1
-    
-AND
-    RNUM <![CDATA[<=]]> 20
-
+ <if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
+ 	<choose>
+ 		<when test='searchType =="1"'>
+ 			AND 
+ 				D_NAME LIKE '%' || #{searchValue} || '%'
+ 		</when>
+ 		<when test='searchType == "2"'>
+ 			AND
+ 				D_LOCATION LIKE '%' || #{searchValue} || '%'
+ 		</when>
+ 	</choose>
+ </if>             
+ 		ORDER BY 
+ 			DC_CODE ASC
+ 		))
+ 		
+		WHERE
+		    RNUM  <![CDATA[>=]]> #{startRow}
+		AND
+		    RNUM <![CDATA[<=]]> #{endRow}
 </select>
 <!-- 예약되어있는 날짜에 드레스 검색시 드레스 뜨지않게하기 끝 -->
 

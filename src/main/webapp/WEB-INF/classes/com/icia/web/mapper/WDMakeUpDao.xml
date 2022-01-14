@@ -65,7 +65,7 @@ AND
                     FROM
                         WD_REZ
                     WHERE
-                        WDATE LIKE #{wDate}
+                        WDATE = #{wDate}
                     AND
                             REZ_STATUS = 'Y'
                     )

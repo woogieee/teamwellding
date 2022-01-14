@@ -34,6 +34,9 @@ function fn_list(curPage)
 {
    document.bbsForm.mCode.value = "";
    document.bbsForm.curPage.value = curPage;
+   document.bbsForm.year.value = $("#year").val();
+   document.bbsForm.month.value = $("#month").val();
+   document.bbsForm.day.value = $("#day").val();
    document.bbsForm.action = "/hsdm/makeUp";
    document.bbsForm.submit();
 }

@@ -61,6 +61,7 @@ public class WDDressControllre
 		//쿠키 확인
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		
+		
 		//로그인 했을 때와 안했을 때를 구분해서 페이지를 보여주려 함.
 		//로그인 체크용. 0 => 로그인 x, 혹은 없는 계정; 1 => 로그인 정보 있는 계정
 		int loginS = 0;
@@ -89,7 +90,11 @@ public class WDDressControllre
 		String searchValue = HttpUtil.get(request, "searchValue", "");
 		//현재페이지
 		long curPage = HttpUtil.get(request, "curPage", (long)1);
-		//String dcCode = HttpUtil.get(request, "dcCode", "");
+		String year = HttpUtil.get(request, "year", "");
+	    String month = HttpUtil.get(request, "month", "");
+	    String day = HttpUtil.get(request, "day", "");
+	    String wDate = year + month + day;
+		String dcCode = HttpUtil.get(request, "dcCode", "");
 		
 		long totalCount = 0;
 		List<WDDress> list = null;
@@ -112,6 +117,10 @@ public class WDDressControllre
 			searchValue = "";
 		}
 		
+		
+		wdDress.setDcCode(dcCode);
+		wdDress.setwDate(wDate);
+		
 		//wdDress.setDcCode(dcCode);
 		
 		totalCount = wdDressService.dressListCount(wdDress);
@@ -128,6 +137,7 @@ public class WDDressControllre
 			
 			wdDress.setStartRow(paging.getStartRow());
 			wdDress.setEndRow(paging.getEndRow());
+			wdDress.setwDate(wDate);
 			
 			list = wdDressService.dressList(wdDress);
 		}
