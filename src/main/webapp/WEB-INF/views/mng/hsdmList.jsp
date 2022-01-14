@@ -270,8 +270,7 @@ function classChange(id){
 }*/
 </script>
 </head>
-<body id="school_list">
-   
+<body id="school_list">  
    <jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
        <jsp:param name="userName" value="${wdAdmin.admName}" />
        </jsp:include>
@@ -288,6 +287,7 @@ function classChange(id){
                     <li class="hsem_li" id="id3" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">드레스</a></li>
                     <li class="hsem_li" id="id4" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">메이크업</a></li>
                 </ul>  
+                
          </div>
       </div>
       <!-- 홀 시작 -->
@@ -616,7 +616,6 @@ function classChange(id){
 
   </div>
 </div>
-
 
    <%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
