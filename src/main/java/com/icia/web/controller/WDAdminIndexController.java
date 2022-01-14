@@ -203,7 +203,8 @@ public class WDAdminIndexController
 	}
 	
 	@RequestMapping(value="/mng/MngUserUpdate")
-	public String userUpdate(Model model,HttpServletRequest request, HttpServletResponse response) {
+	public String userUpdate(Model model,HttpServletRequest request, HttpServletResponse response)
+	{
 		
 		//jps에 뿌려야하니까 Model 매개변수를 받음. 화면에서 보면 유저아이디만 처리하므로 유저아이디만 가져옴
 		String userId = HttpUtil.get(request, "userId");
@@ -411,5 +412,12 @@ public class WDAdminIndexController
 			model.addAttribute("curPage", curPage);		
 			
 			return "/mng/hsdmList";
+		}
+		
+		
+		@RequestMapping(value="/mng/plusWHall")
+		public String plusWHall(HttpServletRequest request, HttpServletResponse response)
+		{
+			return "/mng/plusWHall";
 		}
 }

@@ -118,6 +118,8 @@
 						<value>/mng/userupdateProc</value>
 						<value>/mng/hsdmList</value>
 						<value>/mng/payMentList</value>
+						
+						<value>/mng/plusWHall</value>
 
             		</list>
             	</constructor-arg>

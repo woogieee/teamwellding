@@ -75,7 +75,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
        </jsp:include>
        
 <div class="container">
-    <div class="row">
+    <div class="row" style="width:100%;">
        <div class="col-lg-12" style="width:100%; height:20px;"></div>
        
         <div class="col-lg-12">       
