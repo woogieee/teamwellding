@@ -127,6 +127,8 @@
 						<value>/mng/plusDress</value>
 		                <value>/mng/dressWrite</value>
 		                <value>/mng/dressComWrite</value>
+		                
+		                <value>/mng/plusDressCom</value>
 
 
             		</list>

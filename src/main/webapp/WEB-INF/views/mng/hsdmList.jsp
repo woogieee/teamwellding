@@ -17,13 +17,32 @@
    background: #f5a4aa;
 }
 .wookhall{
-	width: 120px;
+   width: 120px;
 }
 </style>
 <script>
  var hsdmCheck = <c:out value="${hsdmCheck}" />;
  $(function(){
-	 
+    
+     $(".studio_modal").colorbox({
+            iframe:true, 
+            innerWidth:1000,
+            innerHeight:600,
+            scrolling:false,
+            onComplete:function()
+            {
+               $("#colorbox").css("width", "1000px");
+               $("#colorbox").css("height", "600px");
+               $("#colorbox").css("border-radius", "10px");
+               
+               $('html').css("overflow","hidden");
+            } , 
+            onClosed: function()
+                {
+                  $('html').css("overflow","auto");
+                }  
+     });
+    
      $(".wdhall_modal").colorbox({
          iframe:true, 
          innerWidth:1000,
@@ -38,9 +57,9 @@
             $('html').css("overflow","hidden");
          } , 
          onClosed: function()
-	          {
-	            $('html').css("overflow","auto");
-	          }  
+             {
+               $('html').css("overflow","auto");
+             }  
    });
      
      $(".hall_modal").colorbox({
@@ -57,11 +76,11 @@
             $('html').css("overflow","hidden");
          } , 
          onClosed: function()
-	          {
-	            $('html').css("overflow","auto");
-	          }  
+             {
+               $('html').css("overflow","auto");
+             }  
    });
-	 
+    
      if(hsdmCheck == 1){
          document.getElementById('id1').classList.remove('sel');
          document.getElementById('id2').classList.remove('sel');
@@ -80,7 +99,7 @@
          document.getElementById('id3').classList.remove('sel');
          document.getElementById('id4').classList.remove('sel');
          document.getElementById('id${hsdmCheck}').className += ' sel';  
-    	 
+        
          $("#studio").show();
          $("#hall").hide();
          $("#dress").hide();
@@ -92,7 +111,7 @@
          document.getElementById('id3').classList.remove('sel');
          document.getElementById('id4').classList.remove('sel');
          document.getElementById('id${hsdmCheck}').className += ' sel';  
-    	 
+        
          $("#dress").show();
          $("#studio").hide();
          $("#hall").hide();
@@ -104,7 +123,7 @@
          document.getElementById('id3').classList.remove('sel');
          document.getElementById('id4').classList.remove('sel');
          document.getElementById('id${hsdmCheck}').className += ' sel';  
-    	 
+        
          $("#makeup").show();
          $("#studio").hide();
          $("#dress").hide();
@@ -112,9 +131,33 @@
       } 
      
      $("#weddinghallWrite").on("click",function(){
-    	 location.href = "/mng/plusWHall";
+        location.href = "/mng/plusWHall";
      });
      
+     
+     $("#id1").on("click", function(){
+        document.bbsFormH.curPage.value = 1;
+        document.bbsFormH.action = "/mng/hsdmList";
+        document.bbsFormH.submit();
+     });
+     
+     $("#id2").on("click", function(){
+        document.bbsFormS.curPage.value = 1;
+        document.bbsFormS.action = "/mng/hsdmList";
+        document.bbsFormS.submit();
+     });
+     
+     $("#id3").on("click", function(){
+        document.bbsFormD.curPage.value = 1;
+        document.bbsFormD.action = "/mng/hsdmList";
+        document.bbsFormD.submit();
+     });
+     
+     $("#id4").on("click", function(){
+        document.bbsFormM.curPage.value = 1;
+        document.bbsFormM.action = "/mng/hsdmList";
+        document.bbsFormM.submit();
+     });
      
  });
 function fn_search()
@@ -266,28 +309,28 @@ function classChange(id){
                         <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingH(${hPaging.nextBlockPage})">다음</a></li>
                      </c:if>       
                   </c:if> 
-                  	<form name="bbsFormH" id="bbsFormH" method="post">
-                  		<input type="hidden" name="hsdmCheck" value="1" />
-						<input type="hidden" name="curPage" value="${curPage}" />
-					</form>
+                     <form name="bbsFormH" id="bbsFormH" method="post">
+                        <input type="hidden" name="hsdmCheck" value="1" />
+                  <input type="hidden" name="curPage" value="${curPage}" />
+               </form>
                </ul>
                   </div>
               </div>
               <div class="col-lg-1">
-	            <div>
+               <div>
                      <div class="col-lg-12">
-	                    <div class="ticket-item2 gosu_modal" href="/mng/plusWHall">
-	                        <div class="down-content2">
-	                            <div class="main-dark-button btn_go wookhall">
-	                                <a href="/mng/plusWHall" class="wdhall_modal" >웨딩홀 추가</a>
-	                            </div>    
-	                         </div>
-	                    </div>
+                       <div class="ticket-item2 gosu_modal" href="/mng/plusWHall">
+                           <div class="down-content2">
+                               <div class="main-dark-button btn_go wookhall">
+                                   <a href="/mng/plusWHall" class="wdhall_modal" >웨딩홀 추가</a>
+                               </div>    
+                            </div>
+                       </div>
                      </div>
-	            </div>
-	         </div>
-	         <div class="col-lg-1">
-	            <div>
+               </div>
+            </div>
+            <div class="col-lg-1">
+               <div>
                     <div class="ticket-item2 gosu_modal" href="/mng/plusHall">
                         <div class="down-content2">
                             <div class="main-dark-button btn_go wookhall">
@@ -295,10 +338,10 @@ function classChange(id){
                             </div>    
                          </div>
                     </div>
-	            </div>
-	         </div>
-	        </div>
-	        
+               </div>
+            </div>
+           </div>
+           
          </div>
       </div>
       <!-- 홀 끝 -->
@@ -351,25 +394,25 @@ function classChange(id){
                      </c:if>       
                   </c:if> 
                      <form name="bbsFormS" id="bbsFormS" method="post">
-                     	<input type="hidden" name="hsdmCheck" value="2" />
-						<input type="hidden" name="curPage" value="${curPage}" />
-					</form>
+                        <input type="hidden" name="hsdmCheck" value="2" />
+                  <input type="hidden" name="curPage" value="${curPage}" />
+               </form>
                </ul>
                   </div>
               </div>
               
-	         <div class="col-lg-1">
-	            <div>
-	               <form id="subscribe" action="" method="get">
-	                  <div class="row" style="width: 100%;">
-	                     <div class="col-lg-12">
-	                           <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
-	                     </div>
-	                  </div>
-	               </form>
-	            </div>
-	         </div>
-	        </div>
+            <div class="col-lg-1">
+               <div>
+                    <div class="ticket-item2 gosu_modal" href="/mng/plusStudio">
+                        <div class="down-content2">
+                            <div class="main-dark-button btn_go wookhall">
+                                <a href="/mng/plusStudio" class="studio_modal" >스튜디오 추가</a>
+                            </div>    
+                         </div>
+                    </div>
+               </div>
+            </div>
+           </div>
               
          </div>
       </div>
@@ -405,7 +448,7 @@ function classChange(id){
          </ul>
 
          <div class="row">
-              <div class="col-lg-10" style="left:43%;">
+              <div class="col-lg-10" style="left:40%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty dPaging}">
@@ -427,25 +470,30 @@ function classChange(id){
                      </c:if>       
                   </c:if> 
                     <form name="bbsFormD" id="bbsFormD" method="post">
-                    	<input type="hidden" name="hsdmCheck" value="3" />
-						<input type="hidden" name="curPage" value="${curPage}" />
-					</form>
+                       <input type="hidden" name="hsdmCheck" value="3" />
+                  <input type="hidden" name="curPage" value="${curPage}" />
+               </form>
                </ul>
                   </div>
               </div>
               
-	         <div class="col-lg-1">
-	            <div>
-	               <form id="subscribe" action="" method="get">
-	                  <div class="row" style="width: 100%;">
-	                     <div class="col-lg-12">
-	                           <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
-	                     </div>
-	                  </div>
-	               </form>
-	            </div>
-	         </div>
-	        </div>
+         <div class="col-lg-3">
+               <div>
+                  <form id="subscribe" action="" method="get">
+                     <div class="row" style="width: 100%;">
+                        <div class="col-lg-12">
+                           <div gosu_modal" href="/mng/plusDress">
+                              <a href="/mng/plusDress" id="btnWrite" class="gosu_modal hsdm_btn">드레스 추가</a>
+                            </div>
+                            <div gosu_modal" href="/mng/plusDressCom">
+                              <a href="/mng/plusDressCom" id="btnWrite" class="gosu_modal hsdm_btn" style="margin-right: 10px;">업체 추가</a>
+                           </div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+           </div>
               
          </div>
       </div>
@@ -502,24 +550,24 @@ function classChange(id){
                   </c:if> 
                      <form name="bbsFormM" id="bbsFormM" method="post">
                      <input type="hidden" name="hsdmCheck" value="4" />
-						<input type="hidden" name="curPage" value="${curPage}" />
-					</form>
+                  <input type="hidden" name="curPage" value="${curPage}" />
+               </form>
                </ul>
                   </div>
               </div>
               
-	         <div class="col-lg-1">
-	            <div>
-	               <form id="subscribe" action="" method="get">
-	                  <div class="row" style="width: 100%;">
-	                     <div class="col-lg-12">
-	                           <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
-	                     </div>
-	                  </div>
-	               </form>
-	            </div>
-	         </div>
-	        </div>
+            <div class="col-lg-1">
+               <div>
+                  <form id="subscribe" action="" method="get">
+                     <div class="row" style="width: 100%;">
+                        <div class="col-lg-12">
+                              <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+           </div>
               
       </div>
       </div>
@@ -533,6 +581,6 @@ function classChange(id){
 </div>
 
 
-	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
+   <%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
 </html>

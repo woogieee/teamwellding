@@ -101,7 +101,12 @@
 	border-bottom: 1px solid #ddd;
 	height: 50px;
     line-height: 50px;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
+}
+
+.wdhtd:last-child
+{
+	margin-bottom: 20px;
 }
 
 .wdhtitle
