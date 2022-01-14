@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.icia.common.model.FileData;
 import com.icia.common.util.StringUtil;
 import com.icia.web.model.Paging;
 import com.icia.web.model.Response;
@@ -62,6 +63,9 @@ public class WDAdminIndexController
     
     @Autowired
 	private WDMakeUpService wdMakeUpService;
+    
+	@Value("#{env['upload.save.dir']}")
+	private String UPLOAD_SAVE_DIR;
 
 	//쿠키명
 	@Value("#{env['auth.cookie.name']}")
@@ -445,8 +449,6 @@ public class WDAdminIndexController
 			String whNumber = HttpUtil.get(request, "whNumber", "");
 			String whContent = HttpUtil.get(request, "whContent", "");
 			
-			System.out.println("sdfsfgfdsgdfaghfh : " + whName);
-			
 			WDHall wdHall = new WDHall();
 			wdHall.setWHCode(maxWHCode);
 			wdHall.setWhName(whName);
@@ -456,6 +458,67 @@ public class WDAdminIndexController
 			
 			if(!StringUtil.isEmpty(whName) && !StringUtil.isEmpty(WHLocation) && !StringUtil.isEmpty(whNumber) && !StringUtil.isEmpty(whContent)) {
 				if(wdHallService.weddinghallInsert(wdHall) > 0) {
+					ajaxResponse.setResponse(0, "Success");
+				}
+				else {
+					ajaxResponse.setResponse(-1, "Error");
+				}
+			}
+			else {
+				ajaxResponse.setResponse(400, "Not Paremeter");
+			}
+			
+			return ajaxResponse;
+		}
+		
+		@RequestMapping(value="/mng/plusHall")
+		public String plusHall(Model model,HttpServletRequest request, HttpServletResponse response) 
+		{	
+			List<WDHall> HCodeName = null;
+			HCodeName = wdHallService.whNameAndCode();
+			model.addAttribute("HCodeName",HCodeName);
+			
+			return "/mng/plusHall";
+		}
+		
+		@RequestMapping(value="/mng/hallWrite")
+		@ResponseBody
+		public Response<Object> hallWrite(HttpServletRequest request, HttpServletResponse response)
+		{
+			
+			Response<Object> ajaxResponse = new Response<Object>();
+			
+			String whCode = HttpUtil.get(request, "whCode", "");
+			String hallName = HttpUtil.get(request, "hallName", "");
+			long hallPrice = HttpUtil.get(request, "hallPrice", (long)0);
+			long hallFood = HttpUtil.get(request, "hallFood", (long)0);
+			long hallMin = HttpUtil.get(request, "hallMin", (long)0);
+			long hallMax = HttpUtil.get(request, "hallMax", (long)0);
+			String hallContent = HttpUtil.get(request, "hallContent", "");
+//			String hallImgName = HttpUtil.get(request, "hallImgName", "");
+//			FileData fileData = HttpUtil.getFile(request, "hallImgName", UPLOAD_SAVE_DIR);
+			long hallHDiscount = HttpUtil.get(request, "hallHDiscount", (long)0);
+			
+			long hCode = wdHallService.maxHCode(whCode)+1;
+			
+			String HCode = ""+hCode;
+			
+			WDHall wdHall = new WDHall();
+			
+			wdHall.setWHCode(whCode);
+			wdHall.setHCode(HCode);
+			wdHall.setHName(hallName);
+			wdHall.setHPrice(hallPrice);
+			wdHall.setHFood(hallFood);
+			wdHall.setHMin(hallMin);
+			wdHall.setHMax(hallMax);
+			wdHall.setHContent(hallContent);
+			wdHall.sethDiscount(hallHDiscount);
+			
+			
+			if(!StringUtil.isEmpty(whCode) && !StringUtil.isEmpty(hallName) && !StringUtil.isEmpty(hallPrice) && !StringUtil.isEmpty(hallFood)
+					&& !StringUtil.isEmpty(hallMin) && !StringUtil.isEmpty(hallMax)&& !StringUtil.isEmpty(hallContent) && !StringUtil.isEmpty(hallHDiscount)) {
+				if(wdHallService.hallInsert(wdHall) > 0) {
 					ajaxResponse.setResponse(0, "Success");
 				}
 				else {

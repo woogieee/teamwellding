@@ -24,7 +24,7 @@
  var hsdmCheck = <c:out value="${hsdmCheck}" />;
  $(function(){
 	 
-     $(".hall_modal").colorbox({
+     $(".wdhall_modal").colorbox({
          iframe:true, 
          innerWidth:1000,
          innerHeight:500,
@@ -33,6 +33,25 @@
          {
             $("#colorbox").css("width", "1000px");
             $("#colorbox").css("height", "500px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+	          {
+	            $('html').css("overflow","auto");
+	          }  
+   });
+     
+     $(".hall_modal").colorbox({
+         iframe:true, 
+         innerWidth:1000,
+         innerHeight:800,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1000px");
+            $("#colorbox").css("height", "800px");
             $("#colorbox").css("border-radius", "10px");
             
             $('html').css("overflow","hidden");
@@ -260,7 +279,7 @@ function classChange(id){
 	                    <div class="ticket-item2 gosu_modal" href="/mng/plusWHall">
 	                        <div class="down-content2">
 	                            <div class="main-dark-button btn_go wookhall">
-	                                <a href="/mng/plusWHall" class="hall_modal" >웨딩홀 추가</a>
+	                                <a href="/mng/plusWHall" class="wdhall_modal" >웨딩홀 추가</a>
 	                            </div>    
 	                         </div>
 	                    </div>
@@ -269,10 +288,10 @@ function classChange(id){
 	         </div>
 	         <div class="col-lg-1">
 	            <div>
-                    <div class="ticket-item2 gosu_modal" href="/mng/plusWHall">
+                    <div class="ticket-item2 gosu_modal" href="/mng/plusHall">
                         <div class="down-content2">
                             <div class="main-dark-button btn_go wookhall">
-                                <a href="/mng/plusWHall" class="hall_modal" >홀 추가</a>
+                                <a href="/mng/plusHall" class="hall_modal" >홀 추가</a>
                             </div>    
                          </div>
                     </div>
