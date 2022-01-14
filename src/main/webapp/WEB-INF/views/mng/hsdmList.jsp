@@ -18,25 +18,87 @@
 }
 </style>
 <script>
- var hsdmCheck = 1;
+ var hsdmCheck = <c:out value="${hsdmCheck}" />;
  $(function(){
-     $("#hall").show();
-     $("#studio").hide();
-     $("#dress").hide();
-     $("#makeup").hide(); 
+     if(hsdmCheck == 1){
+         document.getElementById('id1').classList.remove('sel');
+         document.getElementById('id2').classList.remove('sel');
+         document.getElementById('id3').classList.remove('sel');
+         document.getElementById('id4').classList.remove('sel');
+         document.getElementById('id${hsdmCheck}').className += ' sel';  
+        
+         $("#hall").show();
+         $("#studio").hide();
+         $("#dress").hide();
+         $("#makeup").hide();
+      }
+     else if(hsdmCheck == 2){
+         document.getElementById('id1').classList.remove('sel');
+         document.getElementById('id2').classList.remove('sel');
+         document.getElementById('id3').classList.remove('sel');
+         document.getElementById('id4').classList.remove('sel');
+         document.getElementById('id${hsdmCheck}').className += ' sel';  
+    	 
+         $("#studio").show();
+         $("#hall").hide();
+         $("#dress").hide();
+         $("#makeup").hide();
+      }
+     else if(hsdmCheck == 3){
+         document.getElementById('id1').classList.remove('sel');
+         document.getElementById('id2').classList.remove('sel');
+         document.getElementById('id3').classList.remove('sel');
+         document.getElementById('id4').classList.remove('sel');
+         document.getElementById('id${hsdmCheck}').className += ' sel';  
+    	 
+         $("#dress").show();
+         $("#studio").hide();
+         $("#hall").hide();
+         $("#makeup").hide();
+      }
+     else if(hsdmCheck == 4){
+         document.getElementById('id1').classList.remove('sel');
+         document.getElementById('id2').classList.remove('sel');
+         document.getElementById('id3').classList.remove('sel');
+         document.getElementById('id4').classList.remove('sel');
+         document.getElementById('id${hsdmCheck}').className += ' sel';  
+    	 
+         $("#makeup").show();
+         $("#studio").hide();
+         $("#dress").hide();
+         $("#hall").hide();
+      } 
  });
 function fn_search()
 {
-   document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
-   document.searchForm.action = "/mng/userList";
+   document.searchForm.curPage.value = 1; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
+   document.searchForm.action = "/mng/hsdmList";
    document.searchForm.submit();
 }
 
-function fn_paging(curPage)
+function fn_pagingH(curPage)
 {
-   document.searchForm.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
-   document.searchForm.action = "/mng/userList";
-   document.searchForm.submit();
+   document.bbsFormH.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
+   document.bbsFormH.action = "/mng/hsdmList";
+   document.bbsFormH.submit();
+}
+function fn_pagingS(curPage)
+{
+   document.bbsFormS.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
+   document.bbsFormS.action = "/mng/hsdmList";
+   document.bbsFormS.submit();
+}
+function fn_pagingD(curPage)
+{
+   document.bbsFormD.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
+   document.bbsFormD.action = "/mng/hsdmList";
+   document.bbsFormD.submit();
+}
+function fn_pagingM(curPage)
+{
+   document.bbsFormM.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
+   document.bbsFormM.action = "/mng/hsdmList";
+   document.bbsFormM.submit();
 }
 
 function classChange(id){
@@ -45,8 +107,8 @@ function classChange(id){
       document.getElementById('id3').classList.remove('sel');
       document.getElementById('id4').classList.remove('sel');
       //id.setAttribute('class','sel');
-      document.getElementById(id.id).className += ' sel';
-
+      document.getElementById(id.id).className += ' sel';      
+      
        if($('#id1').hasClass('sel')){
            hsdmCheck = 1;
            $("#hall").show();
@@ -140,12 +202,12 @@ function classChange(id){
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty hPaging}">
                      <c:if test="${hPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.prevBlockPage})">이전</a></li>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingH(${hPaging.prevBlockPage})">이전</a></li>
                      </c:if>
                      <c:forEach var="i" begin="${hPaging.startPage}" end="${hPaging.endPage}">
                         <c:choose>
                            <c:when test="${i ne curPage}">
-                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingH(${i})">${i}</a></li>
                            </c:when>
                            <c:otherwise>
                               <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
@@ -153,9 +215,13 @@ function classChange(id){
                         </c:choose>
                      </c:forEach>
                      <c:if test="${hPaging.nextBlockPage gt 0}">         
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.nextBlockPage})">다음</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingH(${hPaging.nextBlockPage})">다음</a></li>
                      </c:if>       
                   </c:if> 
+                  	<form name="bbsFormH" id="bbsFormH" method="post">
+                  		<input type="hidden" name="hsdmCheck" value="1" />
+						<input type="hidden" name="curPage" value="${curPage}" />
+					</form>
                </ul>
                   </div>
               </div>
@@ -206,24 +272,28 @@ function classChange(id){
               <div class="col-lg-10" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
-                  <c:if test="${!empty hPaging}">
-                     <c:if test="${hPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.prevBlockPage})">이전</a></li>
+                  <c:if test="${!empty sPaging}">
+                     <c:if test="${sPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingS(${sPaging.prevBlockPage})">이전</a></li>
                      </c:if>
-                     <c:forEach var="i" begin="${hPaging.startPage}" end="${hPaging.endPage}">
+                     <c:forEach var="i" begin="${sPaging.startPage}" end="${sPaging.endPage}">
                         <c:choose>
                            <c:when test="${i ne curPage}">
-                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingS(${i})">${i}</a></li>
                            </c:when>
                            <c:otherwise>
                               <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
                            </c:otherwise>
                         </c:choose>
                      </c:forEach>
-                     <c:if test="${hPaging.nextBlockPage gt 0}">         
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.nextBlockPage})">다음</a></li>
+                     <c:if test="${sPaging.nextBlockPage gt 0}">         
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingS(${sPaging.nextBlockPage})">다음</a></li>
                      </c:if>       
                   </c:if> 
+                     <form name="bbsFormS" id="bbsFormS" method="post">
+                     	<input type="hidden" name="hsdmCheck" value="2" />
+						<input type="hidden" name="curPage" value="${curPage}" />
+					</form>
                </ul>
                   </div>
               </div>
@@ -278,24 +348,28 @@ function classChange(id){
               <div class="col-lg-10" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
-                  <c:if test="${!empty hPaging}">
-                     <c:if test="${hPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.prevBlockPage})">이전</a></li>
+                  <c:if test="${!empty dPaging}">
+                     <c:if test="${dPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingD(${dPaging.prevBlockPage})">이전</a></li>
                      </c:if>
-                     <c:forEach var="i" begin="${hPaging.startPage}" end="${hPaging.endPage}">
+                     <c:forEach var="i" begin="${dPaging.startPage}" end="${dPaging.endPage}">
                         <c:choose>
                            <c:when test="${i ne curPage}">
-                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingD(${i})">${i}</a></li>
                            </c:when>
                            <c:otherwise>
                               <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
                            </c:otherwise>
                         </c:choose>
                      </c:forEach>
-                     <c:if test="${hPaging.nextBlockPage gt 0}">         
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.nextBlockPage})">다음</a></li>
+                     <c:if test="${dPaging.nextBlockPage gt 0}">         
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingD(${dPaging.nextBlockPage})">다음</a></li>
                      </c:if>       
                   </c:if> 
+                    <form name="bbsFormD" id="bbsFormD" method="post">
+                    	<input type="hidden" name="hsdmCheck" value="3" />
+						<input type="hidden" name="curPage" value="${curPage}" />
+					</form>
                </ul>
                   </div>
               </div>
@@ -348,24 +422,28 @@ function classChange(id){
               <div class="col-lg-10" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
-                  <c:if test="${!empty hPaging}">
-                     <c:if test="${hPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.prevBlockPage})">이전</a></li>
+                  <c:if test="${!empty mPaging}">
+                     <c:if test="${mPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${mPaging.prevBlockPage})">이전</a></li>
                      </c:if>
-                     <c:forEach var="i" begin="${hPaging.startPage}" end="${hPaging.endPage}">
+                     <c:forEach var="i" begin="${mPaging.startPage}" end="${mPaging.endPage}">
                         <c:choose>
                            <c:when test="${i ne curPage}">
-                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${i})">${i}</a></li>
                            </c:when>
                            <c:otherwise>
                               <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
                            </c:otherwise>
                         </c:choose>
                      </c:forEach>
-                     <c:if test="${hPaging.nextBlockPage gt 0}">         
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.nextBlockPage})">다음</a></li>
+                     <c:if test="${mPaging.nextBlockPage gt 0}">         
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${mPaging.nextBlockPage})">다음</a></li>
                      </c:if>       
                   </c:if> 
+                     <form name="bbsFormM" id="bbsFormM" method="post">
+                     <input type="hidden" name="hsdmCheck" value="4" />
+						<input type="hidden" name="curPage" value="${curPage}" />
+					</form>
                </ul>
                   </div>
               </div>
@@ -393,6 +471,8 @@ function classChange(id){
 
   </div>
 </div>
+
+
 	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
 </html>
