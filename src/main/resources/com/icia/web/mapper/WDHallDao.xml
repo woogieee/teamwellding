@@ -340,5 +340,33 @@ AND
 </select>
 <!-- 홀 상세페이지 같은 회사 상품 조회 종료 -->
 
+<!-- 웨딩홀 추가 쿼리문 시작 -->
+<insert id="weddinghallInsert" parameterType="com.icia.web.model.WDHall">
+INSERT INTO WD_WEDDINGHALL (
+    WH_CODE,
+    WH_NAME,
+    WH_LOCATION,
+    WH_NUMBER,
+    WH_CONTENT
+) VALUES (
+    #{WHCode},
+    #{whName},
+    #{WHLocation},
+    #{whNumber},
+    #{whContent}
+)
+</insert>
+<!-- 웨딩홀 추가 쿼리문 끝 -->
+
+<!-- 웨딩홀 제일 마지막 웨딩홀 코드 불러오기 시작 -->
+<select id="maxWHCode" resultType="string">
+SELECT
+    MAX(WH_CODE)
+FROM
+    WD_WEDDINGHALL
+</select>
+<!-- 웨딩홀 제일 마지막 웨딩홀 코드 불러오기 시작 -->
+
+
 </mapper>
 

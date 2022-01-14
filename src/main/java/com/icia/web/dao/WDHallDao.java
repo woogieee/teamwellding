@@ -28,5 +28,11 @@ public interface WDHallDao {
 	//동일회사 홀 리스트 조회 선택된 홀 제외
 	public List<WDHall> hallSameCom(WDHall wdHall);
 	
+	//웨딩홀 추가
+	public int weddinghallInsert(WDHall wdHall);
+	
+	//웨딩홀 마지막 wh코드 불러오기
+	public String maxWHCode();
+	
 																																																																																																																																													
 }

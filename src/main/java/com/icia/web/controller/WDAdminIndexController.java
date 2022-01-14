@@ -203,7 +203,8 @@ public class WDAdminIndexController
 	}
 	
 	@RequestMapping(value="/mng/MngUserUpdate")
-	public String userUpdate(Model model,HttpServletRequest request, HttpServletResponse response) {
+	public String userUpdate(Model model,HttpServletRequest request, HttpServletResponse response)
+	{
 		
 		//jps에 뿌려야하니까 Model 매개변수를 받음. 화면에서 보면 유저아이디만 처리하므로 유저아이디만 가져옴
 		String userId = HttpUtil.get(request, "userId");
@@ -298,6 +299,10 @@ public class WDAdminIndexController
 			List<WDStudio> sList = null;
 			List<WDDress> dList = null;
 			List<WDMakeUp> mList = null;
+			
+			//페이징 처리시 어디서 했는지 확인용
+			int hsdmCheck = HttpUtil.get(request, "hsdmCheck", 1);
+			model.addAttribute("hsdmCheck",hsdmCheck);
 			
 			//쿠키 조회
 		    String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
@@ -412,4 +417,16 @@ public class WDAdminIndexController
 			
 			return "/mng/hsdmList";
 		}
+		
+
+		@RequestMapping(value="/mng/plusWHall")
+		public String weddinghallWrite(Model model,HttpServletRequest request, HttpServletResponse response)
+		{
+			String maxWHCode = wdHallService.maxWHCode();
+			maxWHCode.replace("W", "");			
+			
+			return "/mng/plusWHall";
+		}
+		
+
 }
