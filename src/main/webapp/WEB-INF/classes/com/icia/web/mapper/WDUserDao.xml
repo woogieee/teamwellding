@@ -12,7 +12,7 @@
 	<result column="U_GENDER" property="userGender" />
 	<result column="U_STATUS" property="status" />
 	<result column="REG_DATE" property="regDate" />
-	<result column="U_MARRTDATE" property="marryDate" />
+	<result column="U_MARRYDATE" property="marrytDate" />
 	<result column="U_POINT" property="userPoint" />
 	<result column="U_CHECK" property="uCheck" />
 

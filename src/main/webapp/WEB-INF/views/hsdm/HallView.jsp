@@ -34,7 +34,10 @@ $(document).ready(function(){
 			data:
 			{
 				whCode: $("#WHCode").val(),
-				hCode: $("#HCode").val()
+				hCode: $("#HCode").val(),
+				year: $("#year").val(),
+				month: $("#month").val(),
+				day: $("#day").val()
 			},
 			datatype:"JSON",
 			beforeSend:function(xhr){
@@ -236,7 +239,10 @@ function fn_view(whCode, hCode)
       <input type="hidden" name="HCode" id="HCode" value="${wdHall.HCode}" />
       <input type="hidden" name="searchType" value="${searchType}" />
    	  <input type="hidden" name="searchValue" value="${searchValue}" />
-      <input type="hidden" name="curPage" value="${curPage}" /> 
+      <input type="hidden" name="curPage" value="${curPage}" />
+      <input type="hidden" name="year" value="${year}" />
+      <input type="hidden" name="month" value="${month}" />
+      <input type="hidden" name="day" value="${day}" />  
    </form>
 
     

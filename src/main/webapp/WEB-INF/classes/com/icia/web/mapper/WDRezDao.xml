@@ -267,7 +267,8 @@ INSERT INTO WD_REZ (
 UPDATE WD_REZ
 SET
     WH_CODE = #{whCode},
-    H_CODE = #{hCode}
+    H_CODE = #{hCode},
+    WDATE = #{wDate}
 WHERE
     REZ_NO = #{rezNo}
 AND
@@ -528,19 +529,7 @@ AND
     RNUM <![CDATA[>=]]> 1
 </select>
 <!-- 결제 내역을 가져오기(rezStatus Y) 종료 -->
-<!-- 환불요청시 (status C로 변경) 시작 -->
-<update id="rezCancelPayment" parameterType="com.icia.web.model.WDRez" >
-UPDATE WD_REZ
-SET
-    REZ_STATUS = 'C'
-WHERE
-    USER_ID = #{userId}
-AND
-   REZ_NO = #{rezNo}
-AND
-    REZ_STATUS = 'Y'
-</update>
-<!-- 환불요청시 (status C로 변경) 시작 -->
+
 
 <!-- 관리자페이지에서 결제내역 리스트 조회 -->
 <select id="rezAdminSelect" parameterType="com.icia.web.model.WDRez" resultMap="WDRezDaoResultMap">

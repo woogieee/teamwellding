@@ -33,6 +33,9 @@
    {
       document.hallForm.WHCode.value = whCode;
       document.hallForm.HCode.value = hCode;
+	  document.hallForm.year.value = $("#year").val();
+	  document.hallForm.month.value = $("#month").val();
+	  document.hallForm.day.value = $("#day").val();
       document.hallForm.action = "/hsdm/HallView";  
       document.hallForm.submit();
    }   
