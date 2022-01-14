@@ -23,7 +23,7 @@
 <script>
  var hsdmCheck = <c:out value="${hsdmCheck}" />;
  $(function(){
-    
+
      $(".studio_modal").colorbox({
             iframe:true, 
             innerWidth:1000,
@@ -400,7 +400,6 @@ function classChange(id){
                </ul>
                   </div>
               </div>
-              
             <div class="col-lg-1">
                <div>
                     <div class="ticket-item2 gosu_modal" href="/mng/plusStudio">
@@ -413,7 +412,6 @@ function classChange(id){
                </div>
             </div>
            </div>
-              
          </div>
       </div>
       <!-- 스튜디오 끝 -->
@@ -477,7 +475,7 @@ function classChange(id){
                   </div>
               </div>
               
-         <div class="col-lg-3">
+			<div class="col-lg-3">
                <div>
                   <form id="subscribe" action="" method="get">
                      <div class="row" style="width: 100%;">

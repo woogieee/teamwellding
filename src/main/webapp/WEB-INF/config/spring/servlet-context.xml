@@ -130,6 +130,10 @@
 		                
 		                <value>/mng/plusDressCom</value>
 
+		                <value>/mng/plusStudio</value>
+		                <value>/mng/studioWrite</value>
+
+
 
             		</list>
             	</constructor-arg>
