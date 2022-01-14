@@ -37,6 +37,11 @@
 
 <script>
 $(function(){
+	
+	$("#backBtn").on("click", function(){
+		location.href = "/user/wishlist";
+	});
+	
 	$("#dropBtn").on("click", function(){
 		fn_loginCheck();		
 	});
@@ -81,6 +86,7 @@ function fn_loginCheck()
 				
 				if(code == 0)
 				{
+					alert("회원 탈퇴가 완료되었습니다.");
 					location.href = "/";
 				}
 				else if(code == 404)
@@ -150,7 +156,7 @@ function fn_loginCheck()
 						</div>
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button type="button" id="dropBtn" class="login100-form-btn">
+							<button type="button" id="backBtn" class="login100-form-btn">
 								돌아가기
 							</button>
 						</div>
