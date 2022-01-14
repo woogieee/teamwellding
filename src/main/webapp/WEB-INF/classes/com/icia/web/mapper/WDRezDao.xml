@@ -424,7 +424,7 @@ SET
 <if test='cCode != null and cCode != ""'>    
     ,
     C_CODE = #{cCode}
-</if>    
+</if>
 WHERE
     REZ_NO = #{rezNo}
 AND
@@ -618,4 +618,35 @@ AND
     REZ_STATUS = 'D'
 </update>
 <!-- 결제 포인트 환급 후 결제 금액 삭제 끝-->
+
+<!-- 포인트 사용시 컬럼 추가 시작 -->
+<update id="rezPointUpdate" parameterType="com.icia.web.model.WDRez">
+UPDATE 
+	WD_REZ
+<if test='rezPoint >= 0'>	
+SET
+    REZ_POINT = #{rezPoint}
+</if>    
+WHERE
+    REZ_NO = #{rezNo}
+</update>
+<!-- 포인트 사용시 컬럼 추가 끝 -->
+
+<!-- 포인트 사용시 보유포인트 감소 시작 -->
+<update id="userPointMinus" parameterType="com.icia.web.model.WDRez">
+UPDATE WD_USER
+SET
+U_POINT = U_POINT - (
+SELECT
+   R.REZ_POINT
+FROM
+   WD_REZ R, WD_USER U
+WHERE
+   R.USER_ID = U.USER_ID
+AND
+   REZ_NO = #{rezNo})
+WHERE
+    USER_ID = #{userId}
+</update>
+<!-- 포인트 사용시 보유포인트 감소 끝 -->
 </mapper>
