@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -417,16 +418,55 @@ public class WDAdminIndexController
 			
 			return "/mng/hsdmList";
 		}
-		
 
 		@RequestMapping(value="/mng/plusWHall")
-		public String weddinghallWrite(Model model,HttpServletRequest request, HttpServletResponse response)
-		{
-			String maxWHCode = wdHallService.maxWHCode();
-			maxWHCode.replace("W", "");			
-			
+		public String plusWHall(Model model,HttpServletRequest request, HttpServletResponse response) 
+		{	
 			return "/mng/plusWHall";
 		}
 		
+		@RequestMapping(value="/mng/weddinghallWrite")
+		@ResponseBody
+		public Response<Object> weddinghallWrite(HttpServletRequest request, HttpServletResponse response)
+		{
+			
+			Response<Object> ajaxResponse = new Response<Object>();
+			
+			//가장 큰 웨딩홀 코드를 받아와서 W제거
+			String maxWHCode = wdHallService.maxWHCode();
+			maxWHCode = maxWHCode.replace("W", "");		
+			//W 제거 후 남은 숫자를 int 형으로 바꿔서 1을 더해줌
+			int whCodePlus = Integer.parseInt(maxWHCode)+1;
+			//해당 숫자앞에 다시 W를 추가하여 숫자와 붙여서 문자열로 만듬
+			maxWHCode = "W"+whCodePlus;
+			
+			String whName = HttpUtil.get(request, "whName", "");
+			String WHLocation = HttpUtil.get(request, "WHLocation", "");
+			String whNumber = HttpUtil.get(request, "whNumber", "");
+			String whContent = HttpUtil.get(request, "whContent", "");
+			
+			System.out.println("sdfsfgfdsgdfaghfh : " + whName);
+			
+			WDHall wdHall = new WDHall();
+			wdHall.setWHCode(maxWHCode);
+			wdHall.setWhName(whName);
+			wdHall.setWHLocation(WHLocation);
+			wdHall.setWhNumber(whNumber);
+			wdHall.setWhContent(whContent);
+			
+			if(!StringUtil.isEmpty(whName) && !StringUtil.isEmpty(WHLocation) && !StringUtil.isEmpty(whNumber) && !StringUtil.isEmpty(whContent)) {
+				if(wdHallService.weddinghallInsert(wdHall) > 0) {
+					ajaxResponse.setResponse(0, "Success");
+				}
+				else {
+					ajaxResponse.setResponse(-1, "Error");
+				}
+			}
+			else {
+				ajaxResponse.setResponse(400, "Not Paremeter");
+			}
+			
+			return ajaxResponse;
+		}
 
 }

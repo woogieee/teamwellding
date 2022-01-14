@@ -42,68 +42,140 @@ button:active {
   transform: translateY(1px);
 }
 </style>
+<script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>
+<script type="text/javascript" src="../resources/js/colorBox.js"></script>
+<script>
+$(document).ready(function(){
+	$("#weddinghallName").focus();
+});
+
+function fn_userUpdate()
+{
+	if(icia.common.isEmpty($("#weddinghallName").val()))
+	{
+		alert("웨딩홀 이름을 입력해주세요");
+		$("#weddinghallName").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#weddinghallLocation").val()))
+	{
+		alert("웨딩홀 주소를 입력해주세요");
+		$("#weddinghallLocation").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#weddinghallNumber").val()))
+	{
+		alert("웨딩홀 전화번호를 입력해주세요");
+		$("#weddinghallNumber").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#weddinghallContent").val()))
+	{
+		alert("웨딩홀 설명을 입력해주세요.");
+		$("#weddinghallContent").focus();
+		return;
+	}
+	
+	//등록 취소
+	if(!confirm("웨딩홀을 등록 하시겠습니까?"))
+	{
+		//NO
+		return;
+	}
+	
+	var formData = {
+		whName: $("#weddinghallName").val(),
+		WHLocation: $("#weddinghallLocation").val(),
+		whNumber: $("#weddinghallNumber").val(),
+		whContent: $("#weddinghallContent").val()
+	};
+	
+	//ajax통신
+	icia.ajax.post({
+		url: "/mng/weddinghallWrite",
+		data: formData,
+		success: function(res)
+		{
+			icia.common.log(res);
+			
+			if(res.code == 0)
+			{
+				alert("웨딩홀 등록이 완료되었습니다.");
+				fn_colorbox_close(parent.fn_pageInit);
+			}
+			else if(res.code == -1)
+			{
+				alert("웨딩홀 등록 중 오류가 발생하였숩니다.");
+			}
+			else if(res.code == 400)
+			{
+				alert("파라미터 값이 잘못되었습니다.");
+			}
+			else if(res.code == 404)
+			{
+				alert("오류가 발생하였습니다.");
+				///칼라박스 내용이 잘못됬다는거니까 칼라박스를 닫게하자
+				fn_colorbox_close();
+			}
+		},
+		complete: function(data)
+		{
+			icia.common.log(data);
+		},
+		error: function(xhr, status, error)
+		{
+			icia.common.error(error);
+		}
+	});
+	
+}
+
+</script>
 </head>
-<body>
-   <jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
-       <jsp:param name="userName" value="${wdAdmin.admName}" />
-   </jsp:include>
-   
+<body>   
 <div class="container">
     <div class="row" style="width: 100%; text-align: center;">
-       <div class="col-lg-12" style="width:100%; height:20px;"></div>
  <!-- /////////////////////////////////////////// --> 
-<div class="layerpopup" style="width:1123px; margin:auto; margin-top:5%;">
-   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">사용자 수정</h1>
+<div class="layerpopup" style="width:1123px; margin:auto;">
+   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">웨딩홀 추가</h1>
    <div class="layer-cont">
       <form name="regForm" id="regForm" method="post">
          <table>
             <tbody>
 
                <tr>
-                  <th scope="row">아이디</th>
+                  <th scope="row">웨딩홀 이름</th>
                   <td>
-                 ${wdAdminUser.userId}
-                     <input type="hidden" id="userId" name="userId" value="${wdAdminUser.userId}" />
-                  </td>
-                  <th scope="row">비밀번호</th>
-                  <td>
-                     <input type="text" id="userPwd" name="userPwd" value="${wdAdminUser.userPwd}" style="font-size:1rem;;" maxlength="15" placeholder="비밀번호" />
+                     <input type="text" style="background-color: #fff;" id="weddinghallName" name="weddinghallName" placeholder="웨딩홀 이름을 입력해주세요"/>
                   </td>
                </tr>
                <tr>
-                  <th scope="row">이름</th>
+                  <th scope="row">웨딩홀 주소</th>
                   <td>
-                     <input type="text" id="userName" name="userName" value="${wdAdminUser.userName}" style="font-size:1rem;;" maxlength="50" placeholder="이름" />
-                  </td>
-                  <th scope="row">닉네임</th>
-                  <td>
-                     <input type="text" id="userNickname" name="userNickname" value="${wdAdminUser.userNickname}" style="font-size:1rem;;" maxlength="50" placeholder="이메일" />
+                     <input type="text" style="background-color: #fff;" id="weddinghallLocation" name="weddinghallLocation" placeholder="웨딩홀 주소를 입력해주세요"/>
                   </td>
                </tr>
                <tr>
-                   <th scope="row">이메일</th>
+                   <th scope="row">웨딩홀 번호</th>
                   <td>
-                 ${wdAdminUser.userEmail}
-                     <input type="hidden" id="userEmail" name="userEmail" value="${wdAdminUser.userEmail}" />
-                  </td>
-                  <th scope="row">상태</th>
-                  <td>
-                     <select id="status" name="status" style="font-size: 1rem; width: 7rem; height: 2rem;">
-                        <option value="Y" <c:if test="${wdAdminUser.status == 'Y'}">selected</c:if>>정상</option>
-                        <option value="N" <c:if test="${wdAdminUser.status == 'N'}">selected</c:if>>정지</option>
-                     </select>
+                     <input type="text" style="background-color: #fff;" id="weddinghallNumber" name="weddinghallNumber" placeholder="웨딩홀 번호를 입력해주세요"/>
                   </td>
                </tr>
                <tr>
-                  <th scope="row">등록일</th>
-                  <td>${wdAdminUser.regDate}</td>
+                  <th scope="row">웨딩홀 설명</th>
+                  <td>
+                  <textarea class="form-control" rows="3" name="weddinghallContent" id="weddinghallContent" style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px;" placeholder="웨딩홀 설명을 입력해주세요" required></textarea>
+                  </td>
                </tr>
 
             </tbody>
          </table>
       </form>
       <div class="pop-btn-area" style="float: right;">
-         <button onclick="fn_userUpdate()" class="btn-type01"><span>수정</span></button>
+         <button onclick="fn_userUpdate()" class="btn-type01"><span>등록</span></button>
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
       </div>
    </div>

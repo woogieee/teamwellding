@@ -120,6 +120,7 @@
 						<value>/mng/payMentList</value>
 						
 						<value>/mng/plusWHall</value>
+						<value>/mng/weddinghallWrite</value>
 
             		</list>
             	</constructor-arg>

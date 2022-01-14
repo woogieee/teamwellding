@@ -16,10 +16,33 @@
 .sel{
    background: #f5a4aa;
 }
+.wookhall{
+	width: 120px;
+}
 </style>
 <script>
  var hsdmCheck = <c:out value="${hsdmCheck}" />;
  $(function(){
+	 
+     $(".hall_modal").colorbox({
+         iframe:true, 
+         innerWidth:1000,
+         innerHeight:500,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1000px");
+            $("#colorbox").css("height", "500px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+	          {
+	            $('html').css("overflow","auto");
+	          }  
+   });
+	 
      if(hsdmCheck == 1){
          document.getElementById('id1').classList.remove('sel');
          document.getElementById('id2').classList.remove('sel');
@@ -68,6 +91,12 @@
          $("#dress").hide();
          $("#hall").hide();
       } 
+     
+     $("#weddinghallWrite").on("click",function(){
+    	 location.href = "/mng/plusWHall";
+     });
+     
+     
  });
 function fn_search()
 {
@@ -197,7 +226,7 @@ function classChange(id){
          </ul>
 
          <div class="row">
-              <div class="col-lg-10" style="left:43%;">
+              <div class="col-lg-9" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty hPaging}">
@@ -225,16 +254,28 @@ function classChange(id){
                </ul>
                   </div>
               </div>
-              
+              <div class="col-lg-1">
+	            <div>
+                     <div class="col-lg-12">
+	                    <div class="ticket-item2 gosu_modal" href="/mng/plusWHall">
+	                        <div class="down-content2">
+	                            <div class="main-dark-button btn_go wookhall">
+	                                <a href="/mng/plusWHall" class="hall_modal" >웨딩홀 추가</a>
+	                            </div>    
+	                         </div>
+	                    </div>
+                     </div>
+	            </div>
+	         </div>
 	         <div class="col-lg-1">
 	            <div>
-	               <form id="subscribe" action="" method="get">
-	                  <div class="row" style="width: 100%;">
-	                     <div class="col-lg-12">
-	                           <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
-	                     </div>
-	                  </div>
-	               </form>
+                    <div class="ticket-item2 gosu_modal" href="/mng/plusWHall">
+                        <div class="down-content2">
+                            <div class="main-dark-button btn_go wookhall">
+                                <a href="/mng/plusWHall" class="hall_modal" >홀 추가</a>
+                            </div>    
+                         </div>
+                    </div>
 	            </div>
 	         </div>
 	        </div>

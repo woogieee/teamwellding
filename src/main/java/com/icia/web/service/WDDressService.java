@@ -131,5 +131,21 @@ public class WDDressService
    		}
    		return cnt;
    	}
+   	
+   	//예약된곳 제외
+   	public List<WDDress> dressRez(WDDress wdDress)
+   	{
+   		List<WDDress> list = null;
+   		
+   		try
+   		{
+   			list= wdDressDao.dressRez(wdDress);
+   		}
+   		catch(Exception e) 
+		{
+			logger.error("[WDDressService] dressRez Exception", e);
+		}
+   		return list;
+   	}
 	
 }

@@ -123,6 +123,7 @@ public class WDDressControllre
 		
 		//wdDress.setDcCode(dcCode);
 		
+		//totalCount = wdDressService.dressListCount(wdDress);
 		totalCount = wdDressService.dressListCount(wdDress);
 		logger.debug("totalCount : " + totalCount);
 		
@@ -147,6 +148,9 @@ public class WDDressControllre
 	    model.addAttribute("searchValue", searchValue);
 	    model.addAttribute("curPage", curPage);
 	    model.addAttribute("paging", paging);
+	    model.addAttribute("year", year);
+	    model.addAttribute("month", month);
+	    model.addAttribute("day", day);
 	    
 		return "/hsdm/dress";
 	}
