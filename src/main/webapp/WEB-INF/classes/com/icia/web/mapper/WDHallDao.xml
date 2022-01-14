@@ -393,6 +393,7 @@ INSERT INTO WD_HALL (
     H_MIN,
     H_MAX,
     H_CONTENT,
+    H_IMGNAME,
     REZCOUNT,
     H_DISCOUNT
 ) VALUES (
@@ -404,6 +405,7 @@ INSERT INTO WD_HALL (
     #{HMin},
     #{HMax},
     #{HContent},
+    #{HImgName},
     #{RezCount},
     #{hDiscount}
 )
