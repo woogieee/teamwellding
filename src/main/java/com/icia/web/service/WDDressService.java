@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.icia.web.dao.WDDressDao;
 import com.icia.web.dao.WDRezDao;
 import com.icia.web.model.WDDress;
+import com.icia.web.model.WDHall;
 import com.icia.web.model.WDRez;
 
 @Service("WDDressService")
@@ -148,4 +149,93 @@ public class WDDressService
    		return list;
    	}
 	
+   	
+   	//드레스샵 추가 쿼리문
+   	public int dressComInsert(WDDress wdDress) 
+   	{
+   		int count = 0;
+   		
+   		try 
+   		{
+   			count = wdDressDao.dressComInsert(wdDress);
+   			
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] dressComInsert Exception", e);
+		}
+   		
+   		return count;
+   	}
+   	
+   	//드레스업체 마지막 코드 불러오기
+   	public String maxDCCode() 
+   	{
+   		
+   		String dcCode = "";
+   		
+   		try 
+   		{
+   			dcCode = wdDressDao.maxDCCode();
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] maxDCCode Exception", e);
+		}
+   		
+   		return dcCode;
+   	}
+   	
+   	//드레스샵 추가 쿼리문
+   	public int dressInsert(WDDress wdDress) 
+   	{
+   		int count = 0;
+   		
+   		try 
+   		{
+   			count = wdDressDao.dressInsert(wdDress);
+   			
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] dressInsert Exception", e);
+		}
+   		
+   		return count;
+   	}
+   	
+   	//드레스업체 마지막 코드 불러오기
+   	public String maxDCode() 
+   	{
+   		
+   		String dCode = "";
+   		
+   		try 
+   		{
+   			dCode = wdDressDao.maxDCode();
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] maxDCode Exception", e);
+		}
+   		
+   		return dCode;
+   	}
+   	
+   	//드레스 업체 조회
+   	public String selectDressCom(WDDress wdDress)
+   	{
+   		String dcCode = "";
+   		
+   		try
+   		{
+   			dcCode = wdDressDao.selectDressCom(wdDress);
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] selectDressCom Exception", e);
+		}
+   		
+   		return dcCode;
+   	}
 }
