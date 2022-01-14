@@ -117,6 +117,7 @@
 						<value>/mng/MngUserUpdate</value>
 						<value>/mng/userupdateProc</value>
 						<value>/mng/hsdmList</value>
+						<value>/mng/payMentList</value>
 
             		</list>
             	</constructor-arg>

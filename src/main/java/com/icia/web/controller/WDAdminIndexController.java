@@ -336,8 +336,8 @@ public class WDAdminIndexController
 			hTotalCount = wdHallService.WDHallListCount(wdHall);
 			sTotalCount = wdStudioService.studioListCount(wdStudio);
 			dTotalCount = wdDressService.dressListCount(wdDress);
-			//mTotalCount = wdMakeUpService.makeUpListCount(wdMakeUp);
-			mTotalCount = wdMakeUpService.makeUpListCountmr(wdMakeUp);
+			mTotalCount = wdMakeUpService.makeUpListCount(wdMakeUp);
+			////mTotalCount = wdMakeUpService.makeUpListCountmr(wdMakeUp); //이거아니래 마이너스필요업쪄
 			
 			//홀 페이징 처리
 			if(hTotalCount > 0)
@@ -393,8 +393,8 @@ public class WDAdminIndexController
 				wdMakeUp.setStartRow(mPaging.getStartRow());
 				wdMakeUp.setEndRow(mPaging.getEndRow());
 				
-				//mList = wdMakeUpService.makeUpList(wdMakeUp);
-				mList = wdMakeUpService.makeUpListMinusRez(wdMakeUp);
+				mList = wdMakeUpService.makeUpList(wdMakeUp);
+				//mList = wdMakeUpService.makeUpListMinusRez(wdMakeUp); //이거아니래 마이너스필요없쪄,,
 			}
 			
 			model.addAttribute("wdAdmin",wdAdmin);

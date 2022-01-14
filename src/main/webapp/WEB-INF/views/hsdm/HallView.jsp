@@ -17,7 +17,7 @@ $(document).ready(function(){
 		  prevArrow : "<button type='button' class='slick-prev2'></button>",		// 이전 화살표 모양 설정
 		  nextArrow : "<button type='button' class='slick-next2'></button>"		// 다음 화살표 모양 설정
 		});
-	$("#btnList").on("click", function(){
+	$(".btnListt").on("click", function(){
 		document.hallForm.action = "/hsdm/halllist";
 		document.hallForm.submit();
 	});
@@ -108,7 +108,7 @@ function fn_view(whCode, hCode)
             <div class="col-lg-12" style="text-align: center;">
 
 	                <h2 class="whname">${wdHall.whName }</h2>
-				         <button type="button" id="btnList" class="listButton2">
+				         <button type="button" id="btnList" class="btnListt listButton2">
 		        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
 		        		</button>
 		            <div class="hibixbi">
@@ -195,9 +195,9 @@ function fn_view(whCode, hCode)
 			<!-- 같은 샵 다른상품 보기 끝 -->
 				<div class="col-lg-12" style="width: 100%; height: 1px; background:#eee; margin-top:50px;"></div>
             	<div class="alignleft2">
-	             	<button type="button" id="btnList" class="listButton">
-	        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
-	        		</button>
+				         <button type="button" id="btnList" class="btnListt listButton2">
+		        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
+		        		</button>
             	</div>
             </div>
         </div>

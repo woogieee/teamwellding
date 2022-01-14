@@ -262,4 +262,18 @@ public class WDReviewService {
 			
 			return count;
 		}
+		//리뷰 존재 확인
+		public String reviewOverlapCheck(String rezNo)
+		{
+			String status = "";
+			try
+			{
+				status = wdReviewDao.reviewOverlapCheck(rezNo);
+			}
+			catch(Exception e)
+			{
+				logger.error("[WDReviewService] reviewOverlapCheck Exception",e);
+			}
+			return status;
+		}
 }

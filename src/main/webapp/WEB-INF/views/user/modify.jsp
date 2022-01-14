@@ -156,8 +156,8 @@
     </div>
     
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-lg-12 bcline">
+		<div class="row" style="background:#feede8;">
+			<div class="col-lg-12">
 				
 				<div class="row">
 					
@@ -167,7 +167,7 @@
 					<div class="col-lg-10">
 						<h2 style="font-family: 'Bitter', serif; margin-top: 50px; padding-left: 10px;">My Page</h2>
 						<nav class="bcItem">
-							<ol class="breadcrumb bc" >
+							<ol class="breadcrumb bc" style="background: #feede8;">
 								<li class="breadcrumb-item">
 									<a href="/user/wishlist" id="basket">장바구니</a>
 								</li>
@@ -177,8 +177,8 @@
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
 								</li>
-								<li class="breadcrumb-item">
-									<a href="javascript:void(0)" id="modify">회원정보수정</a>
+								<li class="breadcrumb-item active" style="position: relative; top: -2px; margin-left:4px;">
+									<a href="javascript:void(0)" id="modify" style="font-size: large; font-weight: bold; color: #000;">회원정보수정</a>
 								</li>
 							</ol>
 						</nav>

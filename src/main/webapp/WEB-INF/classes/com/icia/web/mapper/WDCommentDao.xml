@@ -57,13 +57,13 @@ AND
 <!-- 게시물에 대한 댓글 리스트 끝 -->
 
 <!-- 게시물 댓글 총 수 시작 -->
-<select id="commentListCount" parameterType="com.icia.web.model.WDComment" resultType="long">
+<select id="commentListCount" parameterType="long" resultType="int">
 SELECT
-    MAX(COMMENT_SEQ)
+    NVL(COUNT(COMMENT_SEQ), 0) COMMENT_SEQ
 FROM
     WD_COMMENT
 WHERE 
-    PARENT_SEQ = #{parentSeq}
+    PARENT_SEQ = #{value}
 </select>
 <!-- 게시물 댓글 총 수 끝 -->
 

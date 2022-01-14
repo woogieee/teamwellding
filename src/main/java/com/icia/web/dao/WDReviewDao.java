@@ -45,5 +45,8 @@ public interface WDReviewDao {
 	//리뷰 업데이트
 	public int reviewUpdate(WDReview wdReview);
 	
+	//리뷰 존재 확인
+	public String reviewOverlapCheck(String rezNo);
+	
 
 }

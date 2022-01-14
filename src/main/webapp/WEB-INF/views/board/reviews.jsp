@@ -52,6 +52,10 @@ $(document).ready(function(){
                      alert("아직 결혼식이 진행되지 않아 리뷰 작성이 불가능 합니다.");
                      location.href = "/board/reviews";
                   }
+                  else if(response.code == 501){
+                	  alert("이미 리뷰를 작성하였습니다.");
+                      location.href = "/board/reviews";
+                  }
                   else 
                   {
                      alert("오류가 발생하였습니다. 다시 시도해주세요");
@@ -136,9 +140,11 @@ function fn_list(curPage)
                                             <div class="col-lg-7">
                                                 <div class="row">
                                                     <div class="col-lg-3">
-                                                        <select value="searchType" name="_searchType" id="_searchType">
-                                                            <option value="1">홀 제목</option>
-                                                        </select>
+														<select value="searchType" name="searchTypeR" id="searchTypeR">
+															<option value="">조회 항목</option>
+															<option value="1" <c:if test="${searchType eq '1'}">selected</c:if>>작성자</option>
+															<option value="2" <c:if test="${searchType eq '2'}">selected</c:if>>제목</option>
+														</select>
                                                     </div>
                                                     <div class="col-lg-7">
                                                         <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
@@ -253,7 +259,7 @@ function fn_list(curPage)
 						
 						<div class="col-lg-12">
 		                    <div class="pagination">
-								<ul class="pagination justify-content-center">
+								<ul class="pagination justify-content-center" style="border-top:none;">
 									<c:if test="${!empty paging}">
 										<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
 										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>

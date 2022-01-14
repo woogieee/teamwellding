@@ -16,6 +16,10 @@
    border: 1px solid #c4c2c2;
    text-align: center;
 }
+.wookbtnzxc {
+	position: relative;
+    left: 50px;
+}
 </style>
 <script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>
 <script>
@@ -75,7 +79,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
        <div class="col-lg-12" style="width:100%; height:20px;"></div>
        
         <div class="col-lg-12">       
-         <div id="school_list" style="width:90%; margin:auto; margin-top:5rem;">
+         <div id="school_list" style="width:90%; margin:auto; margin-top:20px;">
          <div class="mnb" style="display:flex; margin-bottom:0.8rem;">
             <h2 style="margin-right:auto; color: #525252;">회원 리스트</h2>
             <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">
@@ -126,36 +130,30 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                </c:if>
                </tbody>
             </table>
-            <div class="paging-right" style="float:right;">
-               <!-- 페이징 샘플 시작 -->
-            <c:if test="${!empty paging}">
-                  <!--  이전 블럭 시작 -->
-               <c:if test="${paging.prevBlockPage gt 0}"> <!-- 0보다 클때 -->
-                     <a href="javascript:void(0)"  class="btn2 btn-primary" onclick="fn_paging(${paging.prevBlockPage})" title="이전 블럭">&laquo;</a>
-               </c:if>
-                  <!--  이전 블럭 종료 -->
-                  <span>
-                  <!-- 페이지 시작 -->
-               <c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+		     <div class="col-lg-12" style="left:43%;">
+                <div class="pagination">
+               <ul class="pagination justify-content-center">
+                  <c:if test="${!empty paging}">
+                     <c:if test="${paging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>
+                     </c:if>
+                     <c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
                         <c:choose>
                            <c:when test="${i ne curPage}">
-                           <a href="javascript:void(0)" class="btn2 btn-primary" onclick="fn_paging(${i})" style="font-size:14px;">${i}</a>
-                     </c:when>
-                     <c:otherwise>
-                           <h class="btn2 btn-primary" style="font-size:14px; font-weight:bold;">${i}</h>
-                        </c:otherwise>
-                     </c:choose>
-               </c:forEach>
-                  <!-- 페이지 종료 -->
-                  </span>
-                  <!--  다음 블럭 시작 -->
-                  <c:if test="${paging.nextBlockPage gt 0}">
-                     <a href="javascript:void(0)" class="btn2 btn-primary" onclick="fn_paging(${paging.nextBlockPage})" title="다음 블럭">&raquo;</a>
-               </c:if>
-                  <!--  다음 블럭 종료 -->
-            </c:if>
-               <!-- 페이징 샘플 종료 -->
-            </div>
+                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+                           </c:when>
+                           <c:otherwise>
+                              <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
+                           </c:otherwise>
+                        </c:choose>
+                     </c:forEach>
+                     <c:if test="${paging.nextBlockPage gt 0}">         
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">다음</a></li>
+                     </c:if>       
+                  </c:if> 
+               </ul>
+                  </div>
+              </div>
          </div>
       </div>
    </div>

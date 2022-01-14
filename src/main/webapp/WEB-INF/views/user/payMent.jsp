@@ -99,6 +99,7 @@ $(document).ready(function(){
                var couponNum = couponCode;
                var rezNo = response.data.rezNo;
                var rezFullPrice = response.data.rezFullPrice;
+
                
                $("#orderId").val(orderId);
                $("#tId").val(tId);
@@ -108,6 +109,7 @@ $(document).ready(function(){
                $("#cCode").val(couponNum);
                $("#rezNo").val(rezNo);
                $("#rezFullPrice").val(rezFullPrice);
+
                
                var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=700,left=100,top=100');
                
@@ -371,7 +373,6 @@ function movePage()
       
                      </div>
 
-
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
                   <div class="rez_sum">
                      <dl class="sumbox1">
@@ -440,9 +441,10 @@ function movePage()
       <input type="hidden" name="orderId" id="orderId" value="" />
       <input type="hidden" name="tId" id="tId" value="" />
       <input type="hidden" name="pcUrl" id="pcUrl" value="" />
-      <input type="hidden" name="cCode" id="cCode" value="" />	<!-- 동욱 추가 -->
+      <input type="hidden" name="cCode" id="cCode" value="" />   <!-- 동욱 추가 -->
       <input type="hidden" name="rezNo" id="rezNo" value="" />
       <input type="hidden" name="rezFullPrice" id="rezFullPrice" value="" />
+
    </form>
    
 </div>

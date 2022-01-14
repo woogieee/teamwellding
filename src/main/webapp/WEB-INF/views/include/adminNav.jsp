@@ -25,8 +25,7 @@
 <%
    }
 %>
-    <!-- ***** 보현수정 Header Area Start ***** -->
-    <header class="header-area header-sticky">
+
         <div class="container">
             <div class="row" style="width: 100%;">
                 <div class="col-12">
@@ -35,12 +34,11 @@
                         <ul class="admin_nav">
                             <li class="adm_sub"><a class="adm_ss" href="/mng/userList">회원목록</a></li>
                             <li class="adm_sub"><a class="adm_ss" href="/mng/hsdmList">홀/스/드/메 관리</a></li>
-                            <li class="adm_sub"><a class="adm_ss" href="">결제내역 관리</a></li>
+                            <li class="adm_sub"><a class="adm_ss" href="/mng/payMentList">결제내역 관리</a></li>
                         </ul>        
                         <!-- ***** Menu End ***** -->
                     </nav>
                 </div>
             </div>
         </div>
-    </header>
     <!-- ***** Header Area End ***** -->

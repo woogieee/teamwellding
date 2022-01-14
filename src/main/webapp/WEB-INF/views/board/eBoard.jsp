@@ -78,8 +78,17 @@ function fn_view(eBSeq)
 	<!--h2 class="e_title">EVENT</h2-->
 	<p style="text-align: center; margin-bottom: 20px;">웰딩 이벤트를 확인해보세요!</p>
 	<br />
-
-	<div class="tickets-page">
+      
+                <div class="tickets-page">
+       			 <div class="container">
+          		  <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading">
+                        <h2><!-- Event --></h2>
+                    </div>
+                </div>
+ 				
+					                             
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12" id="search-box" style="margin-bottom: 30px;">
@@ -191,4 +200,3 @@ function fn_view(eBSeq)
 
 </body>
 </html>
-

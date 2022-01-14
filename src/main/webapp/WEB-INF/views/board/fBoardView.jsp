@@ -361,10 +361,10 @@ function commentUpdate(cSeq,tagId){
 										<td class="comment_td2" style="border-top:none;">${comment.wdFBoardComment }</td>
 									</tr>
 									<tr class="comment_tr2">
-										<td class="comment_td" style="border-top:none; border-right:2px solid #ccc; padding-right:10px; font-weight:600;">${comment.uNickName }</td>
-										<td class="comment_td" style="border-top:none; margin-left: 10px; letter-spacing:0.5px;">${comment.regDate }</td>
+										<td class="comment_td" style="border-top:none; border-right:2px solid #ccc; /*padding-right:10px;*/ font-weight:600; line-height: 0px;">${comment.uNickName }</td>
+										<td class="comment_td" style="border-top:none; margin-left: 10px; letter-spacing:0.5px; line-height: 0px;">${comment.regDate }</td>
 
-										<td style="border-top:none; position:relative; top: -18px; right:10px;">
+										<td style="border-top:none; position:relative; top: -30px; right:5px;">
 											<c:if test="${cookieUserId eq comment.userId }">
 												<button type="button" class="btn btn-secondary btnCommentD" onclick="commentDelete(${comment.commentSeq})" style="margin-rignt:10px;">삭제</button>
 												<button type="button" class="btn btn-secondary btnCommentU" onclick="commentUpdate(${comment.commentSeq},'update${comment.commentSeq }')">수정</button>
@@ -372,7 +372,7 @@ function commentUpdate(cSeq,tagId){
 										</td>
 									</tr>
 									<tr>
-										<td id="update${comment.commentSeq }" colspan="2" style="border-top:none;"></td>
+										<td id="update${comment.commentSeq }" colspan="2" style="border-top:none; padding-top:0px; padding-bottom:0px;"></td>
 									</tr>
 								</c:forEach>
 							</c:if>

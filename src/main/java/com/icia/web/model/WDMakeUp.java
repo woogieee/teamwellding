@@ -36,6 +36,10 @@ public class WDMakeUp implements Serializable{
 	
 	private String wDate;			//검색 조건 날짜
 	
+	private String year;
+	private String month;
+	private String day;
+	
 	//생성자
 	public WDMakeUp() 
 	{
@@ -53,6 +57,11 @@ public class WDMakeUp implements Serializable{
 		endRow = 0;
 		wdMakeUpFile = null;
 		mDiscount = 0;
+		
+		wDate = "";
+		year = "";
+		month = "";
+		day = "";
 	}
 
 	public String getmCode() {
@@ -173,6 +182,30 @@ public class WDMakeUp implements Serializable{
 
 	public void setwDate(String wDate) {
 		this.wDate = wDate;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
 	}
 	
 	
