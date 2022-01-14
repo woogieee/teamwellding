@@ -416,14 +416,27 @@ public class WDAdminIndexController
 			
 			return "/mng/hsdmList";
 		}
-		
 		@RequestMapping(value="/mng/plusWHall")
-		public String weddinghallWrite(Model model,HttpServletRequest request, HttpServletResponse response)
-		{
-			String maxWHCode = wdHallService.maxWHCode();
-			maxWHCode.replace("W", "");			
+		public String plusWHall(Model model,HttpServletRequest request, HttpServletResponse response) {
 			
 			return "/mng/plusWHall";
+		}
+		
+		@RequestMapping(value="/mng/weddinghallWrite")
+		public String weddinghallWrite(HttpServletRequest request, HttpServletResponse response)
+		{
+			//가장 큰 웨딩홀 코드를 받아와서 W제거
+			String maxWHCode = wdHallService.maxWHCode();
+			maxWHCode.replace("W", "");		
+			//W 제거 후 남은 숫자를 int 형으로 바꿔서 1을 더해줌
+			int whCodePlus = Integer.parseInt(maxWHCode)+1;
+			//해당 숫자앞에 다시 W를 추가하여 숫자와 붙여서 문자열로 만듬
+			maxWHCode = "W"+whCodePlus;
+			
+			WDHall wdHall = new WDHall();
+			wdHall.setWHCode(maxWHCode);
+			
+			return "/mng/weddinghallWrite";
 		}
 		
 }
