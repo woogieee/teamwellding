@@ -163,7 +163,7 @@ function fn_list(curPage)
 									</div>
 									<div class="col-lg-6" style="text-align: center;">
 										<div class="divB_tb">
-											<span>내용</span>
+											<span>제목</span>
 										</div>
 									</div>
 									<div class="col-lg-2" style="text-align: center;">
@@ -195,7 +195,7 @@ function fn_list(curPage)
 
 											<div class="col-lg-6" style="text-align: left;">
 												<div class="divB_tb2">
-													<span>${fboard.bTitle}</span>
+													<span>${fboard.bTitle}<span>[${commentcount[status.index]}]</span></span>
 												</div>
 											</div>
 											<div class="col-lg-2">
@@ -216,7 +216,6 @@ function fn_list(curPage)
 										</div>
 									</div>
 								</li>
-
 							</c:forEach>
 						</ul>
 					</div>
@@ -235,7 +234,7 @@ function fn_list(curPage)
 						
 						<div class="col-lg-12">
 		                    <div class="pagination">
-								<ul class="pagination justify-content-center">
+								<ul class="pagination justify-content-center" style="border-top: none;">
 									<c:if test="${!empty paging}">
 										<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
 										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>
@@ -263,11 +262,9 @@ function fn_list(curPage)
 		</div>
 </div>		
 	<form name="bbsForm" id="bbsForm" method="post">
-		<input type="hidden" name="bSeq" value="${fboard.bSeq}" />
-		<!-- 상세페이지 들어갈때 필요하니까 그때만 이 값이 들어가면됨 -->
-		<input type="hidden" name="searchType" value="${searchType}" /> <input
-			type="hidden" name="searchValue" value="${searchValue}" /> <input
-			type="hidden" name="curPage" value="${curPage}" />
+		<input type="hidden" name="searchType" value="${searchType}" /> 
+		<input type="hidden" name="searchValue" value="${searchValue}" /> 
+		<input type="hidden" name="curPage" value="${curPage}" />
 	</form>
 
 

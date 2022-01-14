@@ -299,6 +299,10 @@ public class WDAdminIndexController
 			List<WDDress> dList = null;
 			List<WDMakeUp> mList = null;
 			
+			//페이징 처리시 어디서 했는지 확인용
+			int hsdmCheck = HttpUtil.get(request, "hsdmCheck", 1);
+			model.addAttribute("hsdmCheck",hsdmCheck);
+			
 			//쿠키 조회
 		    String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		   //닉네임 달거야
@@ -336,8 +340,8 @@ public class WDAdminIndexController
 			hTotalCount = wdHallService.WDHallListCount(wdHall);
 			sTotalCount = wdStudioService.studioListCount(wdStudio);
 			dTotalCount = wdDressService.dressListCount(wdDress);
-			//mTotalCount = wdMakeUpService.makeUpListCount(wdMakeUp);
-			mTotalCount = wdMakeUpService.makeUpListCountmr(wdMakeUp);
+			mTotalCount = wdMakeUpService.makeUpListCount(wdMakeUp);
+			////mTotalCount = wdMakeUpService.makeUpListCountmr(wdMakeUp); //이거아니래 마이너스필요업쪄
 			
 			//홀 페이징 처리
 			if(hTotalCount > 0)
@@ -393,8 +397,8 @@ public class WDAdminIndexController
 				wdMakeUp.setStartRow(mPaging.getStartRow());
 				wdMakeUp.setEndRow(mPaging.getEndRow());
 				
-				//mList = wdMakeUpService.makeUpList(wdMakeUp);
-				mList = wdMakeUpService.makeUpListMinusRez(wdMakeUp);
+				mList = wdMakeUpService.makeUpList(wdMakeUp);
+				//mList = wdMakeUpService.makeUpListMinusRez(wdMakeUp); //이거아니래 마이너스필요없쪄,,
 			}
 			
 			model.addAttribute("wdAdmin",wdAdmin);
@@ -412,4 +416,14 @@ public class WDAdminIndexController
 			
 			return "/mng/hsdmList";
 		}
+		
+		@RequestMapping(value="/mng/plusWHall")
+		public String weddinghallWrite(Model model,HttpServletRequest request, HttpServletResponse response)
+		{
+			String maxWHCode = wdHallService.maxWHCode();
+			maxWHCode.replace("W", "");			
+			
+			return "/mng/plusWHall";
+		}
+		
 }

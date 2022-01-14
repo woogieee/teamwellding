@@ -125,7 +125,7 @@ $(document).ready(function(){
                                     <th colspan="3">
 			                        <div style="text-align: center;">
 			                        <img src="../resources/images/icons/exclamation.png" style="width:100px; margin:30px;"/>
-									<p>결제내역이 없습니다. </p>
+									<p style="padding-bottom:30px;">결제내역이 없습니다. </p>
 									</div>
                                     </th>
                                  </tr>

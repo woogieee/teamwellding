@@ -30,8 +30,8 @@
 
 
 
-<!-- 메이크업 업체 총 수 확인 시작 -->
-<!-- select id="makeUpListCount" parameterType="com.icia.web.model.WDMakeUp" resultType="long">
+<!-- 메이크업 업체 총 수 확인 시작1 -->
+<select id="makeUpListCount" parameterType="com.icia.web.model.WDMakeUp" resultType="long">
 SELECT
     COUNT(M_CODE)
 FROM
@@ -50,8 +50,8 @@ AND
 		</when>
 	</choose>
 </if>
-</select-->
-<!-- 예약내역 제외 -->
+</select>
+<!-- 메이크업 업체총수2 예약내역 제외 -->
 <select id="makeUpListCountmr" parameterType="com.icia.web.model.WDMakeUp" resultType="long">
 SELECT
     COUNT(M_CODE)
@@ -65,7 +65,7 @@ AND
                     FROM
                         WD_REZ
                     WHERE
-                        WDATE LIKE #{wDate}
+                        WDATE = #{wDate}
                     AND
                             REZ_STATUS = 'Y'
                     )
@@ -86,8 +86,8 @@ AND
 <!-- 메이크업 업체 총 수 확인 종료 -->
 
 
-<!-- 메이크업 업체 정보 불러오기 시작 -->
-<!-- select id="makeUpList" parameterType="com.icia.web.model.WDMakeUp" resultMap="WDMakeUpMap">
+<!-- 메이크업 업체 정보 불러오기1 시작 -->
+<select id="makeUpList" parameterType="com.icia.web.model.WDMakeUp" resultMap="WDMakeUpMap">
 SELECT
     M_CODE,
     M_NAME,
@@ -142,8 +142,8 @@ WHERE
     RNUM <![CDATA[>=]]> #{startRow}
 AND
     RNUM <![CDATA[<=]]> #{endRow}
-</select-->
-<!-- 예약된거 제외하고 리스트 불러오기! -->
+</select>
+<!-- 리스트2 예약된거 제외하고 리스트 불러오기! -->
 <select id="makeUpListMinusRez" parameterType="com.icia.web.model.WDMakeUp" resultMap="WDMakeUpMap">
 SELECT
     M_CODE,

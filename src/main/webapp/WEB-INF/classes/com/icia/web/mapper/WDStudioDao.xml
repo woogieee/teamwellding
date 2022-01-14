@@ -125,7 +125,7 @@ WHERE
 </select>
 <!-- 스튜디오 상세보기 끝 -->
 
-<!-- 스튜디오 무작위로 4개 가져오기 시작 -->
+<!-- 스튜디오 무작위로 3개 가져오기 시작 -->
 <select id="studioRandom" parameterType="com.icia.web.model.WDStudio" resultMap="WDStudioMap">
 SELECT
     S_CODE,

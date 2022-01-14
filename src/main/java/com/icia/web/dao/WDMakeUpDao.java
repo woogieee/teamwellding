@@ -10,13 +10,13 @@ import com.icia.web.model.WDMakeUp;
 public interface WDMakeUpDao 
 {
 	//메이크업 업체 총 수 시작
-	//public long makeUpListCount(WDMakeUp wdMakeUp);
+	public long makeUpListCount(WDMakeUp wdMakeUp);
 	
 	//메이크업 업체 총 수 시작 - 예약내역 제외
 	public long makeUpListCountmr(WDMakeUp wdMakeUp);
 	
 	//메이크업 목록 불러오기
-	//public List<WDMakeUp> makeUpList(WDMakeUp wdMakeUp);
+	public List<WDMakeUp> makeUpList(WDMakeUp wdMakeUp);
 	
 	//메이크업 목록 불러오기-예약내역 제외
 	public List<WDMakeUp> makeUpListMinusRez(WDMakeUp wdMakeUp);

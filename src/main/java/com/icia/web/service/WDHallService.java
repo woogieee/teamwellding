@@ -128,4 +128,36 @@ public class WDHallService {
    		}
    		return cnt;
    	}
+   	
+   	//웨딩홀 추가 쿼리문
+   	public int weddinghallInsert(WDHall wdHall) 
+   	{
+   		int count = 0;
+   		
+   		try {
+   			count = wdHallDao.weddinghallInsert(wdHall);
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDHallService] weddinghallInsert Exception", e);
+		}
+   		
+   		return count;
+   	}
+   	
+   	//웨딩홀 마지막 코드 불러오기
+   	public String maxWHCode() {
+   		
+   		String whCode = "";
+   		
+   		try {
+   			whCode = wdHallDao.maxWHCode();
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDHallService] weddinghallInsert Exception", e);
+		}
+   		
+   		return whCode;
+   	}
 }
