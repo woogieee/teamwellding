@@ -375,10 +375,10 @@ INSERT INTO WD_DRESS (
 <!-- 드레스 추가 인서트문 끝 -->
 
 <!-- 드레스업체 조회 -->
-<select id="selectDressCom" resultType="string">
+<select id="dNoAndName" resultMap="WDDressResultMap">
 SELECT
     DC_CODE,
-    DC_NAME
+    NVL(DC_NAME, '') AS DC_NAME
 FROM
     WD_DRESS_COM
 </select>

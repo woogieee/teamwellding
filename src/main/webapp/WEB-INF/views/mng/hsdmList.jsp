@@ -80,6 +80,45 @@
                $('html').css("overflow","auto");
              }  
    });
+     
+     //dresscom_modal & dress_modal
+     $(".dresscom_modal").colorbox({
+         iframe:true, 
+         innerWidth:1000,
+         innerHeight:500,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1000px");
+            $("#colorbox").css("height", "500px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+             {
+               $('html').css("overflow","auto");
+             }  
+   });
+     
+     $(".dress_modal").colorbox({
+         iframe:true, 
+         innerWidth:1000,
+         innerHeight:800,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1000px");
+            $("#colorbox").css("height", "800px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+             {
+               $('html').css("overflow","auto");
+             }  
+   });
     
      if(hsdmCheck == 1){
          document.getElementById('id1').classList.remove('sel');
@@ -191,7 +230,7 @@ function fn_pagingM(curPage)
    document.bbsFormM.action = "/mng/hsdmList";
    document.bbsFormM.submit();
 }
-
+/*
 function classChange(id){
       document.getElementById('id1').classList.remove('sel');
       document.getElementById('id2').classList.remove('sel');
@@ -228,7 +267,7 @@ function classChange(id){
            $("#dress").hide();
            $("#hall").hide();
         }
-}
+}*/
 </script>
 </head>
 <body id="school_list">
@@ -253,7 +292,7 @@ function classChange(id){
       </div>
       <!-- 홀 시작 -->
       <div class="col-lg-12" width="100%">
-      <div id="hall">
+      <div id="hall" style="background:#fff;">
          <ul>
             <li class="wdhth">
                <div class="wdhtitle" style="width:10%;"><p>웨딩홀명</p></div><!-- whName -->
@@ -347,7 +386,7 @@ function classChange(id){
       <!-- 홀 끝 -->
       <!-- 스튜디오 시작 -->
       <div class="col-lg-12" width="100%">
-      <div id="studio">
+      <div id="studio" style="background:#fff;">
          <ul>
             <li class="wdhth">
                <div class="wdhtitle" style="width:14%;"><p>스튜디오명</p></div><!-- sName -->
@@ -417,7 +456,7 @@ function classChange(id){
       <!-- 스튜디오 끝 -->
       <!-- 드레스 시작 -->
       <div class="col-lg-12" width="100%">
-      <div id="dress">
+      <div id="dress" style="background:#fff;">
          <ul>
             <li class="wdhth">
                <div class="wdhtitle" style="width:9%;"><p>드레스샵 이름</p></div><!-- dcName -->
@@ -446,7 +485,7 @@ function classChange(id){
          </ul>
 
          <div class="row">
-              <div class="col-lg-10" style="left:40%;">
+              <div class="col-lg-8" style="left:40%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty dPaging}">
@@ -481,10 +520,10 @@ function classChange(id){
                      <div class="row" style="width: 100%;">
                         <div class="col-lg-12">
                            <div gosu_modal" href="/mng/plusDress">
-                              <a href="/mng/plusDress" id="btnWrite" class="gosu_modal hsdm_btn">드레스 추가</a>
+                              <a href="/mng/plusDress" id="btnWrite" class="dress_modal hsdm_btn">드레스 추가</a>
                             </div>
                             <div gosu_modal" href="/mng/plusDressCom">
-                              <a href="/mng/plusDressCom" id="btnWrite" class="gosu_modal hsdm_btn" style="margin-right: 10px;">업체 추가</a>
+                              <a href="/mng/plusDressCom" id="btnWrite" class="dresscom_modal hsdm_btn" style="margin-right: 10px;">업체 추가</a>
                            </div>
                         </div>
                      </div>
@@ -498,7 +537,7 @@ function classChange(id){
       <!-- 드레스 끝 -->
       <!-- 메이크업 시작 -->
       <div class="col-lg-12" width="100%">
-      <div id="makeup">
+      <div id="makeup" style="background:#fff;">
          <ul>
             <li class="wdhth">
                <div class="wdhtitle" style="width:13%;"><p>메이크업샵 이름</p></div><!-- mName -->

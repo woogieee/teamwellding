@@ -238,4 +238,21 @@ public class WDDressService
    		
    		return dcCode;
    	}
+   	
+	//드레스코드 이름 조회
+	public List<WDDress> dNoAndName()
+	{
+		List<WDDress> dNoName = null;
+		
+		try 
+		{
+			dNoName = wdDressDao.dNoAndName();
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] dNoAndName Exception", e);
+		}
+		
+		return dNoName;
+	}
 }

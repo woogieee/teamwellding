@@ -20,7 +20,8 @@ table th, td{
   padding-right: 1rem;
 }
 table th{
-  background-color: #e0e4fe;
+  background-color: #e9e9ed;
+  width: 250px;
 }
 input[type=text], input[type=password]{
   height:2rem;
@@ -28,6 +29,12 @@ input[type=text], input[type=password]{
   border-radius: .2rem;
   border: .2px solid rgb(204,204,204);
   background-color: rgb(246,246,246);
+  font-size:15px;
+}
+
+input::placeholder 
+{
+  font-size: 14px;
 }
 button{
   width: 5rem;
@@ -46,56 +53,56 @@ button:active {
 <script type="text/javascript" src="../resources/js/colorBox.js"></script>
 <script>
 $(document).ready(function(){
-	$("#weddinghallName").focus();
+	$("#dresscomName").focus();
 });
 
 function fn_userUpdate()
 {
-	if(icia.common.isEmpty($("#weddinghallName").val()))
+	if(icia.common.isEmpty($("#dresscomName").val()))
 	{
-		alert("웨딩홀 이름을 입력해주세요");
-		$("#weddinghallName").focus();
+		alert("업체 이름을 입력해주세요");
+		$("#dresscomName").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#weddinghallLocation").val()))
+	if(icia.common.isEmpty($("#dresscomlocation").val()))
 	{
-		alert("웨딩홀 주소를 입력해주세요");
-		$("#weddinghallLocation").focus();
+		alert("업체주소를 입력해주세요");
+		$("#dresscomlocation").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#weddinghallNumber").val()))
+	if(icia.common.isEmpty($("#dresscomnumber").val()))
 	{
-		alert("웨딩홀 전화번호를 입력해주세요");
-		$("#weddinghallNumber").focus();
+		alert("업체 전화번호를 입력해주세요");
+		$("#dresscomnumber").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#weddinghallContent").val()))
+	if(icia.common.isEmpty($("#dresscomcontent").val()))
 	{
-		alert("웨딩홀 설명을 입력해주세요.");
-		$("#weddinghallContent").focus();
+		alert("업체 설명을 입력해주세요.");
+		$("#dresscomcontent").focus();
 		return;
 	}
 	
 	//등록 취소
-	if(!confirm("웨딩홀을 등록 하시겠습니까?"))
+	if(!confirm("드레스 업체를 등록 하시겠습니까?"))
 	{
 		//NO
 		return;
 	}
 	
 	var formData = {
-		whName: $("#weddinghallName").val(),
-		WHLocation: $("#weddinghallLocation").val(),
-		whNumber: $("#weddinghallNumber").val(),
-		whContent: $("#weddinghallContent").val()
+			dcName: $("#dresscomName").val(),
+			dcLocation: $("#dresscomlocation").val(),
+			dcNumber: $("#dresscomnumber").val(),
+			dcContent: $("#dresscomcontent").val()
 	};
 	
 	//ajax통신
 	icia.ajax.post({
-		url: "/mng/weddinghallWrite",
+		url: "/mng/dressComWrite",
 		data: formData,
 		success: function(res)
 		{
@@ -103,12 +110,12 @@ function fn_userUpdate()
 			
 			if(res.code == 0)
 			{
-				alert("웨딩홀 등록이 완료되었습니다.");
+				alert("업체등록이 완료되었습니다.");
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == -1)
 			{
-				alert("웨딩홀 등록 중 오류가 발생하였숩니다.");
+				alert("업체 등록 중 오류가 발생하였숩니다.");
 			}
 			else if(res.code == 400)
 			{
@@ -140,34 +147,34 @@ function fn_userUpdate()
     <div class="row" style="width: 100%; text-align: center;">
  <!-- /////////////////////////////////////////// --> 
 <div class="layerpopup" style="width:1123px; margin:auto;">
-   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">웨딩홀 추가</h1>
+   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e9e9ed;">드레스 업체 추가</h1>
    <div class="layer-cont">
       <form name="regForm" id="regForm" method="post">
          <table>
             <tbody>
 
                <tr>
-                  <th scope="row">웨딩홀 이름</th>
+                  <th scope="row">드레스 업체명</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="weddinghallName" name="weddinghallName" placeholder="웨딩홀 이름을 입력해주세요"/>
+                     <input type="text" style="background-color: #fff;" id="dresscomName" name="dresscomName" placeholder="웨딩홀 이름을 입력해주세요"/>
                   </td>
                </tr>
                <tr>
-                  <th scope="row">웨딩홀 주소</th>
+                  <th scope="row">드레스업체 주소</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="weddinghallLocation" name="weddinghallLocation" placeholder="웨딩홀 주소를 입력해주세요"/>
+                     <input type="text" style="background-color: #fff;" id="dresscomlocation" name="dresscomlocation" placeholder="웨딩홀 주소를 입력해주세요"/>
                   </td>
                </tr>
                <tr>
-                   <th scope="row">웨딩홀 번호</th>
+                   <th scope="row">드레스업체 전화번호</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="weddinghallNumber" name="weddinghallNumber" placeholder="웨딩홀 번호를 입력해주세요"/>
+                     <input type="text" style="background-color: #fff;" id="dresscomnumber" name="dresscomnumber" placeholder="웨딩홀 번호를 입력해주세요"/>
                   </td>
                </tr>
                <tr>
-                  <th scope="row">웨딩홀 설명</th>
-                  <td>
-                  <textarea class="form-control" rows="3" name="weddinghallContent" id="weddinghallContent" style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px;" placeholder="웨딩홀 설명을 입력해주세요" required></textarea>
+                  <th scope="row">드레스업체 설명</th>
+                  <td style="padding: 15px 15px 15px 9px;">
+                  <textarea class="form-control" rows="3" name="dresscomcontent" id="dresscomcontent" style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px; padding:7px;" placeholder="업체설명을 입력해주세요" required></textarea>
                   </td>
                </tr>
 
