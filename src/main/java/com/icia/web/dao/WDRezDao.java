@@ -69,4 +69,10 @@ public interface WDRezDao {
 	
 	//환불요청시 상태창 변경
 	public int rezCancelPayment(WDRez wdRez);
+	
+	//포인트 사용
+	public int rezPointUpdate(WDRez wdRez);
+	
+	//보유 포인트 감소
+	public int userPointMinus(WDRez wdRez);
 }
