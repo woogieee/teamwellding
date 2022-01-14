@@ -24,4 +24,7 @@ public interface WDDressDao
 	//드레스 랜덤가져오기
 	public List<WDDress> dressRandom(WDDress wdDress);
 	
+	//드레스 예약내역 제외
+	public List<WDDress> dressRez(WDDress wdDress);
+	
 }
