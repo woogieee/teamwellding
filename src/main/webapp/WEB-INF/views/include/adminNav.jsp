@@ -7,11 +7,11 @@
 %>
    <c:set var = "name" value="${param.userName }" />
     <!-- ***** 맨뒤 HEader ***** -->
-    <div class="pre-header">
+    <div class="pre-header"  class="light-theme || dark-theme">
         <div class="container">
             <div class="row" style="width: 100%;">
                 <div class="col-lg-6">
-                    <span style="cursor: default;"><span class="span1">♥</span>Welcome Wellding! &nbsp;&nbsp;<span class="span1">♥</span><span class="span2">${name }</span>님 환영합니다!</span>
+                    <span style="cursor: default; background: rgba(235,235,235,0.5); border-radius:5px;"><span class="span1">♥</span>Welcome Wellding! &nbsp;&nbsp;<span class="span1">♥</span><span class="span2">${name }</span>님 환영합니다!</span>
                 </div>
 				<div class="col-lg-5">
                     <div class="ourperson" style="text-align:right;">

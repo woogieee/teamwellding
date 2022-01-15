@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/views/include/head.jsp" %>
+<%@ include file="/WEB-INF/views/include/head2.jsp" %>
 <style>
 *, ::after, ::before {
    box-sizing: unset;
@@ -20,6 +20,49 @@
 	position: relative;
     left: 50px;
 }
+
+
+/*다크모드관련*/
+.btn-toggle
+{
+	background: none;
+    position: absolute;
+    top: 28px;
+    left: 79%;
+    border: none;
+    outline: none;
+    color: #ccc;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+button:focus
+{
+	outline: none;
+}
+.btn-toggle:active
+{
+	outline: none!important;
+}
+/*다크모드 */
+body {  color: #efefef; background: #121212;} 
+a { color: #809fff; } 
+td,th {color: #eee;}
+span {color: #efefef;}
+.page-link
+{
+	background: #555!important;
+    border: none;
+}
+/* Dark Mode styles */ 
+body.dark-theme { color: #222; background: #fff; } 
+body.dark-theme a { }
+body.dark-theme td,th {color: #333;}
+body.dark-theme .page-link
+{
+	    background: #f5a4aa!important;
+}
+
 </style>
 <script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>
 <script>
@@ -43,6 +86,13 @@ $(document).ready(function(){
 	            $('html').css("overflow","auto");
 	          }  
       });
+      
+	    //다크모드
+	    const btn = document.querySelector('.btn-toggle');
+	    btn.addEventListener('click', function() {
+	    	document.body.classList.toggle('dark-theme'); 
+	    	});
+      
 });
 
 function fn_search()
@@ -66,14 +116,20 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
    
    fn_search();      
 }
+
+
 </script>
 </head>
-<body id="school_list">
-   
+<body id="school_list" class="light-theme || dark-theme">
+
    <jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
        <jsp:param name="userName" value="${wdAdmin.admName}" />
        </jsp:include>
        
+<div>
+<button class="btn-toggle">다크모드</button>
+</div>
+
 <div class="container">
     <div class="row" style="width:100%;">
        <div class="col-lg-12" style="width:100%; height:20px;"></div>

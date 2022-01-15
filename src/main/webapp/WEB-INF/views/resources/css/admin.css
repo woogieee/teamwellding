@@ -102,6 +102,7 @@
 	height: 50px;
     line-height: 50px;
     /*margin-bottom: 10px;*/
+    background: rgba(245,245,245,0.5);
 }
 
 .wdhtd:last-child
@@ -211,30 +212,17 @@
 
 
 /** 다크모드 해보까 **/
-@media (prefers-color-scheme: dark)
-{
-	  body 
-	  {
-    	background: #202b38;
-	  }
-	
-	  h1,
-	  h2,
-	  h3 {
-	    color: #fff;
-	  }
-	
-	  p,
-	  dl {
-	    color: #dbdbdb;
-	  }
-	
-	  a {
-	    color: #41adff;
-	  }
-	
-	  code {
-	    color: #ffbe85;
-	    background: #161f27;
-  }
+/*다크모드*/
+body {  color: #efefef; background: #121212;} 
+a { color: #809fff; } 
+td,th {color: #eee;}
+span {color: #efefef;}
+
+/* Dark Mode ㅇㅏ닐떄 styles */ 
+body.dark-theme { color: #222; background: #fff; } 
+body.dark-theme a { }
+body.dark-theme td,th {color: #333;}
+  
+  
+  
 }

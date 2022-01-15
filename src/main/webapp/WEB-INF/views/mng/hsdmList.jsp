@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/views/include/head.jsp" %>
+<%@ include file="/WEB-INF/views/include/head2.jsp" %>
 <style>
 *, ::after, ::before {
    box-sizing: unset;
@@ -19,11 +19,64 @@
 .wookhall{
    width: 120px;
 }
+
+
+
+/*다크모드관련*/
+.btn-toggle
+{
+	background: none;
+    position: absolute;
+    top: 28px;
+    left: 79%;
+    border: none;
+    outline: none;
+    color: #ccc;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+button:focus
+{
+	outline: none;
+}
+.btn-toggle:active
+{
+	outline: none!important;
+}
+/*다크모드 */
+body {  color: #efefef; background: #121212;} 
+a { color: #809fff; } 
+td,th {color: #eee;}
+span {color: #efefef;}
+p{color: #efefef;}
+.page-link
+{
+	background: #555!important;
+    border: none;
+}
+/* Dark Mode 아닐떄 */ 
+body.dark-theme { color: #222; background: #fff; } 
+body.dark-theme a { }
+body.dark-theme td,th {color: #333;}
+body.dark-theme .page-link.active
+{
+	    background: #f5a4aa!important;
+}
 </style>
 <script>
  var hsdmCheck = <c:out value="${hsdmCheck}" />;
+ 
  $(function(){
-
+	    //다크모드
+	    const btn = document.querySelector('.btn-toggle');
+	    btn.addEventListener('click', function() {
+	    	document.body.classList.toggle('dark-theme'); 
+	    	});
+	    
+		//다크모드 끛
+		
+		
      $(".studio_modal").colorbox({
             iframe:true, 
             innerWidth:1000,
@@ -176,25 +229,25 @@
      
      $("#id1").on("click", function(){
         document.bbsFormH.curPage.value = 1;
-        document.bbsFormH.action = "/mng/hsdmList";
+        //document.bbsFormH.action = "/mng/hsdmList";
         document.bbsFormH.submit();
      });
      
      $("#id2").on("click", function(){
         document.bbsFormS.curPage.value = 1;
-        document.bbsFormS.action = "/mng/hsdmList";
+        //document.bbsFormS.action = "/mng/hsdmList";
         document.bbsFormS.submit();
      });
      
      $("#id3").on("click", function(){
         document.bbsFormD.curPage.value = 1;
-        document.bbsFormD.action = "/mng/hsdmList";
+        //document.bbsFormD.action = "/mng/hsdmList";
         document.bbsFormD.submit();
      });
      
      $("#id4").on("click", function(){
         document.bbsFormM.curPage.value = 1;
-        document.bbsFormM.action = "/mng/hsdmList";
+        //document.bbsFormM.action = "/mng/hsdmList";
         document.bbsFormM.submit();
      });
      
@@ -270,10 +323,14 @@ function classChange(id){
 }*/
 </script>
 </head>
-<body id="school_list">  
+<body id="school_list" class="light-theme || dark-theme">  
    <jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
        <jsp:param name="userName" value="${wdAdmin.admName}" />
        </jsp:include>
+       
+<div>
+<button class="btn-toggle">다크모드</button>
+</div>
        
 <div class="container">
     <div class="row" style="width: 100%;">
@@ -292,7 +349,7 @@ function classChange(id){
       </div>
       <!-- 홀 시작 -->
       <div class="col-lg-12" width="100%">
-      <div id="hall" style="background:#fff;">
+      <div id="hall">
          <ul>
             <li class="wdhth">
                <div class="wdhtitle" style="width:10%;"><p>웨딩홀명</p></div><!-- whName -->
@@ -386,7 +443,7 @@ function classChange(id){
       <!-- 홀 끝 -->
       <!-- 스튜디오 시작 -->
       <div class="col-lg-12" width="100%">
-      <div id="studio" style="background:#fff;">
+      <div id="studio">
          <ul>
             <li class="wdhth">
                <div class="wdhtitle" style="width:14%;"><p>스튜디오명</p></div><!-- sName -->
@@ -456,7 +513,7 @@ function classChange(id){
       <!-- 스튜디오 끝 -->
       <!-- 드레스 시작 -->
       <div class="col-lg-12" width="100%">
-      <div id="dress" style="background:#fff;">
+      <div id="dress">
          <ul>
             <li class="wdhth">
                <div class="wdhtitle" style="width:9%;"><p>드레스샵 이름</p></div><!-- dcName -->
@@ -537,7 +594,7 @@ function classChange(id){
       <!-- 드레스 끝 -->
       <!-- 메이크업 시작 -->
       <div class="col-lg-12" width="100%">
-      <div id="makeup" style="background:#fff;">
+      <div id="makeup">
          <ul>
             <li class="wdhth">
                <div class="wdhtitle" style="width:13%;"><p>메이크업샵 이름</p></div><!-- mName -->
