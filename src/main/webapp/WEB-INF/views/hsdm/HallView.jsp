@@ -240,9 +240,9 @@ function fn_view(whCode, hCode)
       <input type="hidden" name="searchType" value="${searchType}" />
    	  <input type="hidden" name="searchValue" value="${searchValue}" />
       <input type="hidden" name="curPage" value="${curPage}" />
-      <input type="hidden" name="year" value="${year}" />
-      <input type="hidden" name="month" value="${month}" />
-      <input type="hidden" name="day" value="${day}" />  
+      <input type="hidden" name="year" id="year" value="${year}" />
+      <input type="hidden" name="month" id="month" value="${month}" />
+      <input type="hidden" name="day" id="day" value="${day}" />  
    </form>
 
     

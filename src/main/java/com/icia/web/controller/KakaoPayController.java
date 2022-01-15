@@ -121,6 +121,8 @@ public class KakaoPayController
          
          //동욱 추가
          json.addProperty("cCode", cCode);
+         json.addProperty("rezNo", itemCode);
+         json.addProperty("rezFullPrice", totalAmount);
          /*동욱 수정
          WDRez wdRez = new WDRez();
          wdRez.setUserId(userId);

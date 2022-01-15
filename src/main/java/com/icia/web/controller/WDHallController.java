@@ -156,11 +156,12 @@ public class WDHallController {
 		   String hCode = HttpUtil.get(request, "HCode", "");
 		   
 		   //의수 추가
-		   //검색 조건에 날짜가 있으면 받아야 
+		   //검색 조건에 날짜가 있으면 받아야 함
 		   String year = HttpUtil.get(request, "year", "");
 		   String month = HttpUtil.get(request, "month", "");
 		   String day = HttpUtil.get(request, "day", "");
 		   
+		   System.out.println("year:" + year + "month "+month+"day "+day);
 		   
 		   String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		   
@@ -232,7 +233,7 @@ public class WDHallController {
 		    //결혼날짜 합치기
 		    String wDate = year+month+day;
 		   
-		    System.out.println("==================================wDate : "+wDate);
+		    System.out.println("==================================wDate : "+wDate+"year "+year+" month "+month+" day "+ day);
 		   
 		   //존재하는 유저인지부터 체크
 		   WDUser wdUser = null;
