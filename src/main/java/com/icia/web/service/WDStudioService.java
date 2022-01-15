@@ -148,4 +148,36 @@ public class WDStudioService
   		return cnt;
   	}
   	
+  	//스튜디오 코드 최대값
+  	public String maxSCode() {
+  		String sCode = "";
+  		
+  		try {
+  			sCode = wdStudioDao.maxSCode();
+  		}
+  		catch(Exception e) 
+  		{
+			logger.error("[WDStudioService] maxSCode Exception", e);
+  		}
+  		
+  		return sCode;
+  	}
+  	
+	//스튜디오 삽입
+	public int studioInsert(WDStudio wdStudio) {
+		
+		int count = 0;
+		
+		try {
+			count = wdStudioDao.studioInsert(wdStudio);
+		}
+  		catch(Exception e) 
+  		{
+			logger.error("[WDStudioService] studioInsert Exception", e);
+  		}
+		
+		return count;
+		
+	}
+  	
 }

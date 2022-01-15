@@ -269,4 +269,45 @@ public class WDUserController
 		return ajaxResponse;
 	}
 	
+	@RequestMapping(value = "/user/userDrop")
+	public String userDrops(HttpServletRequest request, HttpServletResponse response)
+	{
+		return "/user/userDrop";
+	}
+	
+	@RequestMapping(value = "/user/userDropProc")
+	@ResponseBody
+	public Response<Object> userDropProc(HttpServletRequest request, HttpServletResponse response)
+	{
+		Response<Object> ajaxResponse = new Response<Object>();
+		
+		String cookieUserId = CookieUtil.getHexValue(request,  AUTH_COOKIE_NAME);
+		String userPwd = HttpUtil.get(request, "userPwd", "");
+		
+		WDUser wdUser = new WDUser();
+		
+		wdUser.setUserId(cookieUserId);
+		wdUser.setUserPwd(userPwd);
+		if(!StringUtil.isEmpty(userPwd)) {
+			if(wduserService.userDrop(wdUser) > 0) {
+				ajaxResponse.setResponse(0, "Success");
+				if(CookieUtil.getCookie(request, AUTH_COOKIE_NAME) != null)
+				{
+					CookieUtil.deleteCookie(request, response, "/", AUTH_COOKIE_NAME);
+				}
+			}
+			else {
+				ajaxResponse.setResponse(400, "Bad parameter");
+			}
+		}
+		else {
+			ajaxResponse.setResponse(404, "Bad parameter");
+		}
+		
+		
+		return ajaxResponse;
+	}
+	
+	
+
 }

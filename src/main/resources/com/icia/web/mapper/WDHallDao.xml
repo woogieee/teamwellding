@@ -365,8 +365,62 @@ SELECT
 FROM
     WD_WEDDINGHALL
 </select>
-<!-- 웨딩홀 제일 마지막 웨딩홀 코드 불러오기 시작 -->
+<!-- 웨딩홀 가장 마지막 웨딩홀 코드 불러오기 끝 -->
 
+<!-- 웨딩홀 제일 마지막 웨딩홀 코드 불러오기 끝 -->
+
+<!-- 웨딩홀의 가장 마지막 웨딩홀 코드 불러오기 시작 -->
+<select id="maxHCode" parameterType="string" resultType="long">
+SELECT
+    NVL(MAX(A.H_CODE), 0) AS H_CODE
+FROM
+    WD_HALL A, WD_WEDDINGHALL B
+WHERE
+    A.WH_CODE = B.WH_CODE
+AND
+    A.WH_CODE = #{value}
+</select>
+<!-- 웨딩홀의 가장 마지막 웨딩홀 코드 불러오기 끝 -->
+
+<!-- 홀추가 인서트문 시작 -->
+<insert id="hallInsert" parameterType="com.icia.web.model.WDHall">
+INSERT INTO WD_HALL (
+    WH_CODE,
+    H_CODE,
+    H_NAME,
+    H_PRICE,
+    H_FOOD,
+    H_MIN,
+    H_MAX,
+    H_CONTENT,
+    H_IMGNAME,
+    REZCOUNT,
+    H_DISCOUNT
+) VALUES (
+    #{WHCode},
+    #{HCode},
+    #{HName},
+    #{HPrice},
+    #{HFood},
+    #{HMin},
+    #{HMax},
+    #{HContent},
+    #{HImgName},
+    #{RezCount},
+    #{hDiscount}
+)
+</insert>
+<!-- 홀 추가 인서트문 끝 -->
+
+<!-- 웨딩홀 코드와 이름 가져오기 -->
+<select id="whNameAndCode" resultMap="hallResultMap">
+SELECT
+    WH_CODE,
+    NVL(WH_NAME, '') WH_NAME
+FROM
+    WD_WEDDINGHALL
+</select>
+<!-- 웨딩홀 코드와 이름 가져오기 -->
 
 </mapper>
 

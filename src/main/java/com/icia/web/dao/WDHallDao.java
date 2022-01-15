@@ -34,5 +34,14 @@ public interface WDHallDao {
 	//웨딩홀 마지막 wh코드 불러오기
 	public String maxWHCode();
 	
+	//홀 마지막 h코드 불러오기
+	public long maxHCode(String whCode);
+	
+	//홀 추가 인서트
+	public int hallInsert(WDHall wdHall);
+	
+	//홀 코드 이름 조회
+	public List<WDHall> whNameAndCode();
 																																																																																																																																													
+
 }

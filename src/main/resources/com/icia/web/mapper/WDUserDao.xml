@@ -109,5 +109,17 @@ WHERE
     U_CHECK = #{value}
 </select>
 <!-- 이메일 인증 값 체크 -->
+
+<!-- 유저 회원 탈퇴 -->
+<update id="userDrop" parameterType ="com.icia.web.model.WDUser">
+UPDATE WD_USER
+SET
+    U_STATUS = 'D'
+WHERE
+    USER_ID = #{userId}
+AND     
+    U_PWD = #{userPwd}
+</update>
+<!-- 유저 회원 탈퇴 -->
     
 </mapper>
