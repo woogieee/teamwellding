@@ -43,7 +43,8 @@ $(document).ready(function(){
 			data:
 			{
 				mCode: $("#mCode").val(),
-				mPlusNum: $("#quantity").val()
+				mPlusNum: $("#quantity").val(),
+				wDate: $("#wDate").val()
 			},
 			datatype:"JSON",
 			beforeSend:function(xhr){
@@ -265,6 +266,7 @@ function fn_view(dNo)
    <input type="hidden" name="searchType" value="${searchType}" />
    <input type="hidden" name="searchValue" value="${searchValue}" />
    <input type="hidden" name="curPage" value="${curPage}" />
+   <input type="hidden" name="wDate" value="${wDate}" />
 </form>
 
     

@@ -152,6 +152,7 @@ public class WDUser implements Serializable
 	public String getMarrtDate() {
 		return marrytDate;
 	}
+	
 
 	public void setMarrtDate(String marrtDate) {
 		this.marrytDate = marrtDate;

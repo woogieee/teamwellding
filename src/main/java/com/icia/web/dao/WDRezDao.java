@@ -78,4 +78,18 @@ public interface WDRezDao {
 	
 	//보유 포인트 감소
 	public int userPointMinus(WDRez wdRez);
+	
+	
+	//의수 추가
+	//해당 날짜에 해당 홀 예약 확인
+	public int isHallRez(WDRez wdRez);
+	
+	//해당 날짜에 해당 스튜디오 예약 확인
+	public int isStudioRez(WDRez wdRez);
+
+	//해당 날짜에 해당 드레스 예약 확인
+	public int isDressRez(WDRez wdRez);
+	
+	//해당 날짜에 해당 메이크업 업체 예약 확인
+	public int isMakeUpRez(WDRez wdRez);
 }

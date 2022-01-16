@@ -12,6 +12,18 @@
 	   $("#btnSearch").on("click",function(){
 		   document.hallForm.WHCode.value = "";
 		   document.hallForm.HCode.value = "";
+		   
+			var year = $("#year").val();
+			var month = $("#month").val();
+			var day = $("#day").val();
+			var wDate = year+month+day;
+			
+			if(wDate.length != 0 && wDate.length != 8)
+			{
+				alert("날짜로 검색하시려면 년,월,일을 전부 입력해주세요.");
+				return;
+			}
+		   
 		   document.hallForm.year.value = $("#year").val();
 		   document.hallForm.month.value = $("#month").val();
 		   document.hallForm.day.value = $("#day").val();
@@ -27,6 +39,9 @@
    {
       document.hallForm.WHCode.value = whCode;
       document.hallForm.HCode.value = hCode;
+	  document.hallForm.year.value = $("#year").val();
+	  document.hallForm.month.value = $("#month").val();
+	  document.hallForm.day.value = $("#day").val();
       document.hallForm.action = "/hsdm/HallView";  
       document.hallForm.submit();
    }   
@@ -85,14 +100,14 @@
                                         <!-- # -->
                                         <div class="col-lg-4">
                                         	<select id="year" class="year">
-												<option>년도</option>
+												<option value="">년도</option>
 												<option value="2022" <c:if test="${year eq '2022'}">selected</c:if>>2022</option>
 												<option value="2023" <c:if test="${year eq '2023'}">selected</c:if>>2023</option>
 											</select>
                                         </div>
                                         <div class="col-lg-4">
                                             <select id="month" class="month">
-												<option>월</option>
+												<option value="">월</option>
 												<option value="01" <c:if test="${month eq '01'}">selected</c:if>>1</option>
 												<option value="02" <c:if test="${month eq '02'}">selected</c:if>>2</option>
 												<option value="03" <c:if test="${month eq '03'}">selected</c:if>>3</option>
@@ -109,7 +124,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                         	<select id="day" class="day">
-												<option>일</option>
+												<option value="">일</option>
 												<option value="01" <c:if test="${day eq '01'}">selected</c:if>>1</option>
 												<option value="02" <c:if test="${day eq '02'}">selected</c:if>>2</option>
 												<option value="03" <c:if test="${day eq '03'}">selected</c:if>>3</option>

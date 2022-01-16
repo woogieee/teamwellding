@@ -43,5 +43,6 @@ public interface WDHallDao {
 	//홀 코드 이름 조회
 	public List<WDHall> whNameAndCode();
 																																																																																																																																													
-
+	//예약 성공 시 해당 예약번호의 홀 REZCOUNT +1해주기
+	public int rezCountPlus(String rezNo);
 }

@@ -3427,6 +3427,7 @@ Shows Events Page
 
 .tickets-page .ticket-item {
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
 /**************************보현이가하는 욱채홀 이미지 수정시작********************************/

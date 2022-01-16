@@ -510,4 +510,78 @@ public class WDRezService {
 		
 		return count;
 	}
+	
+	
+	//의수 추가
+	//해당 날짜에 해당 홀 예약 확인
+	public int isHallRez(WDRez wdRez) 
+	{
+		int count = 0;
+		
+		try 
+		{
+			count = wdRezDao.isHallRez(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] isHallRez Exception", e);
+		}
+		
+		return count;
+	}
+	
+	//해당 날짜에 해당 스튜디오 예약되어있는지 확인
+	public int isStudioRez(WDRez wdRez) 
+	{
+		int count = 0;
+		
+		try 
+		{
+			count = wdRezDao.isStudioRez(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] isStudioRez Exception", e);
+		}
+		
+		return count;
+	}
+	
+	
+	//해당 날짜에 해당 드레스 예약되어있는지 확인
+	//해당 날짜에 해당 드레스 예약 확인
+	public int isDressRez(WDRez wdRez) 
+	{
+		int count = 0;
+		
+		try 
+		{
+			count = wdRezDao.isDressRez(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] isDressRez Exception", e);
+		}
+		
+		return count;
+	}
+	
+	
+	//해당 날짜에 해당 메이크업 업체 예약되어 있는지 확인
+	//해당 날짜에 해당 메이크업 업체 예약 확인
+	public int isMakeUpRez(WDRez wdRez) 
+	{
+		int count = 0;
+		
+		try 
+		{
+			count = wdRezDao.isMakeUpRez(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] isMakeUpRez Exception", e);
+		}
+		
+		return count;
+	}
 }
