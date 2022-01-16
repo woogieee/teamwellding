@@ -12,7 +12,7 @@
 	<result column="U_GENDER" property="userGender" />
 	<result column="U_STATUS" property="status" />
 	<result column="REG_DATE" property="regDate" />
-	<result column="U_MARRTDATE" property="marryDate" />
+	<result column="U_MARRYDATE" property="marrytDate" />
 	<result column="U_POINT" property="userPoint" />
 	<result column="U_CHECK" property="uCheck" />
 
@@ -109,5 +109,17 @@ WHERE
     U_CHECK = #{value}
 </select>
 <!-- 이메일 인증 값 체크 -->
+
+<!-- 유저 회원 탈퇴 -->
+<update id="userDrop" parameterType ="com.icia.web.model.WDUser">
+UPDATE WD_USER
+SET
+    U_STATUS = 'D'
+WHERE
+    USER_ID = #{userId}
+AND     
+    U_PWD = #{userPwd}
+</update>
+<!-- 유저 회원 탈퇴 -->
     
 </mapper>

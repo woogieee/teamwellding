@@ -265,6 +265,7 @@ function fn_list(curPage)
 		<input type="hidden" name="searchType" value="${searchType}" /> 
 		<input type="hidden" name="searchValue" value="${searchValue}" /> 
 		<input type="hidden" name="curPage" value="${curPage}" />
+		<input type="hidden" name="bSeq" value="" />
 	</form>
 
 

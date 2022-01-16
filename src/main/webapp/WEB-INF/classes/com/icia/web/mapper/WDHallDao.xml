@@ -422,5 +422,26 @@ FROM
 </select>
 <!-- 웨딩홀 코드와 이름 가져오기 -->
 
+<!-- 의수 추가 -->
+<!-- 예약 성공 시 해당 예약번호의 홀 REZCOUNT +1해주기 시작 -->
+<update id="rezCountPlus" parameterType="string">
+UPDATE
+    (SELECT
+            CONCAT(NVL(WH_CODE,''),NVL(H_CODE,'')) AS WDH,
+            REZCOUNT
+        FROM
+            WD_HALL)
+SET
+    REZCOUNT = REZCOUNT + 1
+WHERE
+    WDH = (SELECT
+                CONCAT(NVL(WH_CODE,''),NVL(H_CODE,'')) AS WDH
+            FROM
+                WD_REZ
+            WHERE
+                REZ_NO = #{value})
+</update>
+<!-- 예약 성공 시 해당 예약번호의 홀 REZCOUNT +1해주기 종료 -->
+
 </mapper>
 

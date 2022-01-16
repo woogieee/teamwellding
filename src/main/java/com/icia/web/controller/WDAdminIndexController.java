@@ -23,15 +23,19 @@ import com.icia.web.model.Response;
 import com.icia.web.model.WDAdmin;
 import com.icia.web.model.WDAdminUser;
 import com.icia.web.model.WDDress;
+import com.icia.web.model.WDEBoard;
 import com.icia.web.model.WDHall;
 import com.icia.web.model.WDMakeUp;
+import com.icia.web.model.WDNBoard;
 import com.icia.web.model.WDStudio;
 import com.icia.web.model.WDUser;
 import com.icia.web.service.WDAdminService;
 import com.icia.web.service.WDAdminUserService;
 import com.icia.web.service.WDDressService;
+import com.icia.web.service.WDEBoardService;
 import com.icia.web.service.WDHallService;
 import com.icia.web.service.WDMakeUpService;
+import com.icia.web.service.WDNBoardService;
 import com.icia.web.service.WDRezService;
 import com.icia.web.service.WDStudioService;
 import com.icia.web.util.CookieUtil;
@@ -63,6 +67,12 @@ public class WDAdminIndexController
     
     @Autowired
    private WDMakeUpService wdMakeUpService;
+    
+    @Autowired
+    private WDNBoardService wdNBoardService;
+    
+    @Autowired
+    private WDEBoardService wdEboardService;
     
    @Value("#{env['upload.save.dir']}")
    private String UPLOAD_SAVE_DIR;
@@ -674,23 +684,20 @@ public class WDAdminIndexController
         //숫자를 int형으로 바꿔서 1을 더해줌
         int dNoPlus = Integer.parseInt(maxDCode)+1;
         //다시 문자열로 만들기
-        maxDCode = "0" + dNoPlus;  ///이러면 1000번대로 가면안되눈뎅 ,,,
+        maxDCode = "" + dNoPlus;  ///이러면 1000번대로 가면안되눈뎅 ,,,
 
         String dcCode = HttpUtil.get(request, "dcCode", "");
-        String dNo = HttpUtil.get(request, "dNo", "");
         String dName = HttpUtil.get(request, "dName", "");
-        String dImgname = HttpUtil.get(request, "dImgname", "");
         long dPrice = HttpUtil.get(request, "dPrice", (long)0);
         String dContent = HttpUtil.get(request, "dContent", "");
         long dDiscount = HttpUtil.get(request, "dDiscount", (long)0);
         
-        System.out.println("############# dNo ############# : " + dNo);
+        System.out.println("############# dNo ############# : " + maxDCode);
         
         WDDress wdDress = new WDDress();
         wdDress.setDcCode(dcCode);
         wdDress.setdNo(maxDCode);
         wdDress.setdName(dName);
-        wdDress.setdImgname(dImgname);
         wdDress.setdPrice(dPrice);
         wdDress.setdContent(dContent);
         wdDress.setdDiscount(dDiscount);
@@ -714,5 +721,75 @@ public class WDAdminIndexController
         
         return ajaxResponse;
      }
+     
+     
+     
+     
+     
+     //공지사항 목록 불러오기
+     @RequestMapping(value="/mng/nBoardList")
+     public String nBoardList(Model model,HttpServletRequest request, HttpServletResponse response)
+     {
+        //리스트 페이징 처리를 위한 개수 체크 변수
+        long nBoardCount = 0;
+        
+        //리스트를 조회 할때 쓸 객체 선언 (검색기능도 이 객체에서 처리함)
+        WDNBoard wdNBoard = new WDNBoard();
+        
+        //정보가 담길 리스트 객체 선언
+        List<WDNBoard> nBList = null;
+        
+        //쿠키 조회
+         String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+        //닉네임 달거야
+         WDAdmin wdAdmin = wdAdminService.wdAdminSelect(cookieUserId);
+        //조회항목
+        String searchType = HttpUtil.get(request, "searchType", "");
+        //조회값
+        String searchValue = HttpUtil.get(request, "searchValue", "");
+        //현재 페이지
+        long curPage = HttpUtil.get(request, "curPage", (long)1);
+        
+        Paging paging = null;
+        
+        if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue))
+        {
+        	wdNBoard.setSearchType(searchType);
+        	wdNBoard.setSearchValue(searchValue);
+        }
+        else
+        {
+        	searchType = "";
+        	searchValue = "";
+        }
+        
+        //리스트 갯수체크
+        nBoardCount = wdNBoardService.nBoardListCount(wdNBoard);
+        logger.debug("nBoardCount : " + nBoardCount);
+        
+        if(nBoardCount > 0)
+        {
+        	paging = new Paging("/mng/nBoardList", nBoardCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage");
+        	paging.addParam("searchType", searchType);
+        	paging.addParam("searchValue", searchValue);
+        	paging.addParam("curPage", curPage);
+        	
+        	wdNBoard.setStartRow(paging.getStartRow());
+        	wdNBoard.setEndRow(paging.getEndRow());
+        	
+        	nBList = wdNBoardService.nBoardList(wdNBoard);
+        }
+        
+        
+        model.addAttribute("wdAdmin",wdAdmin);
+        model.addAttribute("nBList", nBList);
+        model.addAttribute("paging",paging);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("searchValue", searchValue);
+        model.addAttribute("curPage", curPage);      
+        
+        return "/mng/nBoardList";
+     }
+
 
 }

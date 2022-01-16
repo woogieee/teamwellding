@@ -200,6 +200,7 @@ $("#cou").on("click",function(){
 });    
 
 $("#payMent").on("click", function(){
+
 	
 	document.rezForm.action = "/user/payMent";
 	document.rezForm.submit();
@@ -273,6 +274,9 @@ $("#payMent").on("click", function(){
 								<li class="breadcrumb-item">
 									<a href="/user/modify">회원정보수정</a>
 								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/userDrop">회원탈퇴</a>
+								</li>
 								<li style="position: absolute; right:50px;">
 									<div>잔여 포인트 : ${wdUser.userPoint} Point
 									</div>
@@ -296,7 +300,14 @@ $("#payMent").on("click", function(){
 							<tr>
 								<div class="rez_sta">
 									<h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
+<c:choose>
+	<c:when test="${!empty wdRez.whCode or wdRez.whCode !='' or !empty wdRez.sCode or wdRez.sCode !='' or !empty wdRez.dNo or wdRez.dNo !='' or !empty wdRez.mCode or wdRez.mCode !=''}">
 									<h5 class="rez_number">예약번호&nbsp;&nbsp; <span>${wdRez.rezNo}</span></h5>
+	</c:when>
+	<c:otherwise>
+									<h5 class="rez_number">예약번호&nbsp;&nbsp; <span></span></h5>
+	</c:otherwise>
+</c:choose>
 								</div>
 							</tr>
                             <tr style="border-top: 3px solid #444;">
@@ -479,7 +490,7 @@ $("#payMent").on("click", function(){
                             </tr>
 </c:if>
 </c:if>
-<c:if test="${empty wdRez}">
+<c:if test="${!empty wdRez.whCode and wdRez.whCode !='' and !empty wdRez.sCode and wdRez.sCode !='' and !empty wdRez.dNo and wdRez.dNo !='' and !empty wdRez.mCode and wdRez.mCode !=''}">
 							<tr>
 							<td colspan="5">
 							<div style="text-align: center; padding-bottom: 30px;">
@@ -488,8 +499,6 @@ $("#payMent").on("click", function(){
 							</div>
 							</td>
 							</tr>
-							
-						
 </c:if>
                         </table>
 					
@@ -500,7 +509,7 @@ $("#payMent").on("click", function(){
 				
 					<div class="col-lg-1"></div>
 					<div class="col-lg-10">
-<c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
+<c:if test="${!empty wdRez.whCode or wdRez.whCode !='' or !empty wdRez.sCode or wdRez.sCode !='' or !empty wdRez.dNo or wdRez.dNo !='' or !empty wdRez.mCode or wdRez.mCode !=''}">
 						<div class="rez_sum">
 							<dl class="sumbox1">
 								<dt class="sumsec">총상품금액</dt>
