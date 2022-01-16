@@ -85,7 +85,7 @@
 	                <div class="col-lg-4" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')">
 	                    <div class="event-item2">
 	                        <div class="thumb2">
-	                             <a href="javascript:void(0)" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')" ><img src="/resources/hsdm/${hallList.HImgName}" alt=""></a>	              
+	                             <a href="javascript:void(0)" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')" ><img src="/resources/images/hallrepimage/${hallList.HImgName}" alt=""></a>	              
 	                        </div>
 	                        <div class="down-content2">
 	                            <a href="event-details.html"><h4>${hallList.HName}</h4></a>
