@@ -101,7 +101,13 @@
 	border-bottom: 1px solid #ddd;
 	height: 50px;
     line-height: 50px;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
+    background: rgba(245,245,245,0.5);
+}
+
+.wdhtd:last-child
+{
+	margin-bottom: 20px;
 }
 
 .wdhtitle
@@ -171,7 +177,8 @@
 .hsdm_btn {
   display: inline-block;
   font-size: 14px;
-  padding: 12px 26px;
+  padding: 12px 12px;
+  width: 90px;
   border-radius: 8px;
   float:right;
   /*margin-left: 20px;*/
@@ -200,4 +207,22 @@
   margin-top: 35px;
 }
 
+
 /* 홀스드메 관리페이지 끝 */
+
+
+/** 다크모드 해보까 **/
+/*다크모드*/
+body {  color: #efefef; background: #121212;} 
+a { color: #809fff; } 
+td,th {color: #eee;}
+span {color: #efefef;}
+
+/* Dark Mode ㅇㅏ닐떄 styles */ 
+body.dark-theme { color: #222; background: #fff; } 
+body.dark-theme a { }
+body.dark-theme td,th {color: #333;}
+  
+  
+  
+}

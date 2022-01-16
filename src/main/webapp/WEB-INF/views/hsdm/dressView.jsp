@@ -13,7 +13,7 @@ $(document).ready(function(){
 			document.bbsForm.submit();
 		</c:when>
 	</c:choose>
-	$("#btnList").on("click", function(){
+	$(".btnListt").on("click", function(){
 		document.bbsForm.action = "/hsdm/dress";
 		document.bbsForm.submit();
 	});
@@ -103,7 +103,7 @@ function fn_view(dNo)
         <div class="row">
             <div class="col-lg-12">
                 <h2><span>[드레스]</span> <c:out value="${wdDress.dcName}" /></h2>
-             	<button type="button" id="btnList" class="listButton">
+             	<button type="button" id="btnList" class="btnListt listButton">
         			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
         		</button>
             </div>
@@ -182,7 +182,7 @@ function fn_view(dNo)
 			<!-- 같은 샵 다른상품 보기 끝 -->
 				<div class="col-lg-12" style="width: 100%; height: 1px; background:#eee; margin-top:50px;"></div>
             	<div class="alignleft2">
-	             	<button type="button" id="btnList" class="listButton">
+	             	<button type="button" id="btnList" class="btnListt listButton">
 	        			<img src="../resources/images/icons/leftButton.png" class="listIcon" alt="리스트" width="32" height="32">
 	        		</button>
             	</div>

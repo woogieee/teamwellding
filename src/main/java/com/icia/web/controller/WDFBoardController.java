@@ -1,6 +1,7 @@
 package com.icia.web.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -93,6 +94,8 @@ public class WDFBoardController
 		
 		logger.debug("[totalCount] = "+totalCount);
 		
+		ArrayList<Integer> commentcount = new ArrayList<Integer>();
+		
 		if(totalCount > 0) 
 		{
 			paging = new Paging("/board/fboard", totalCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage");
@@ -104,6 +107,10 @@ public class WDFBoardController
 			search.setEndRow(paging.getEndRow());
 			
 			list = wdFBoardService.fBoardList(search);
+			for(int i = 0; i<list.size();i++) {
+				commentcount.add(i, wdCommentService.commentListCount(list.get(i).getbSeq()));
+			}
+			model.addAttribute("commentcount",commentcount);
 		}
 		
 		model.addAttribute("list", list);

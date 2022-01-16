@@ -61,7 +61,7 @@ public class WDMakeUpController
 	private WDUserService wdUserService;
 	
 	private static final int LIST_COUNT = 9;
-	private static final int PAGE_COUNT = 10;
+	private static final int PAGE_COUNT = 2;
 	
 	//메이크업 업체 불러와서 화면에 보여주는 메소드
 	@RequestMapping(value="/hsdm/makeUp")
@@ -97,6 +97,11 @@ public class WDMakeUpController
 		String searchValue = HttpUtil.get(request, "searchValue", "");
 		long curPage = HttpUtil.get(request, "curPage", (long)1);
 		
+		String year = HttpUtil.get(request, "year", "");
+		String month = HttpUtil.get(request, "month", "");
+		String day = HttpUtil.get(request, "day", "");
+		String wDate = year + month + day;
+		
 		String mCode = HttpUtil.get(request, "mCode", "");
 		
 		long totalCount = 0;
@@ -118,7 +123,8 @@ public class WDMakeUpController
 			searchValue = "";
 		}
 		
-		search.setwDate("20220112");
+		search.setmCode(mCode);
+		search.setwDate(wDate);
 		
 		//totalCount = wdMakeUpService.makeUpListCount(search);
 		totalCount = wdMakeUpService.makeUpListCountmr(search);
@@ -135,7 +141,8 @@ public class WDMakeUpController
 			
 			search.setStartRow(paging.getStartRow());
 			search.setEndRow(paging.getEndRow());
-			search.setwDate("20220112"); //일단하드코딩!
+			
+			search.setwDate(wDate); //일단하드코딩!
 			
 			///list = wdMakeUpService.makeUpList(search);
 			list = wdMakeUpService.makeUpListMinusRez(search); //예약내역 제외한 목록 불러오기
@@ -146,6 +153,10 @@ public class WDMakeUpController
 		model.addAttribute("searchValue", searchValue);
 		model.addAttribute("curPage", curPage);
 		model.addAttribute("paging", paging);
+		
+		model.addAttribute("year", year);
+		model.addAttribute("month", month);
+		model.addAttribute("day", day);
 		
 		return "/hsdm/makeUp";
 	}

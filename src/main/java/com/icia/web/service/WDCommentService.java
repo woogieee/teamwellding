@@ -96,5 +96,20 @@ public class WDCommentService {
 		
 		return count;
 	}
+	
+	//게시물 댓글 개수 체크
+	public int commentListCount(long parentSeq) 
+	{
+		int count = 0;
+		try {
+			count = wdCommentDao.commentListCount(parentSeq);
+		}
+		catch(Exception e) {
+			logger.error("[WDCommentService] commentListCount Exception", e);
+		}	
+		
+		return count;
+		
+	}
 
 }

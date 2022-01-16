@@ -113,4 +113,71 @@ public class WDStudioService
    		return cnt;
    	}
 	
+   	
+   	//스튜디오 예약테이블에서 예약된 날짜 제외하고 가져오기
+  	public List<WDStudio> studioListSdate(WDStudio wdStudio)
+  	{
+  		List<WDStudio> list = null;
+  		
+  		try 
+  		{
+  			list = wdStudioDao.studioListSdate(wdStudio);
+  		}
+  		catch(Exception e) 
+  		{
+			logger.error("[WDStudioService] studioListWdate Exception", e);
+  		}
+  		
+  		return list;
+  	}
+  	
+  	//게시물 총수 예약일 기준 시작
+  	public long studioListSdateCount(WDStudio wdStudio) 
+  	{
+  		long cnt = 0;
+  		
+  		try 
+  		{
+  			cnt = wdStudioDao.studioListSdateCount(wdStudio);
+  		}
+  		catch(Exception e) 
+  		{
+			logger.error("[WDStudioService] studioListWdateCount Exception", e);
+  		}
+  		
+  		return cnt;
+  	}
+  	
+  	//스튜디오 코드 최대값
+  	public String maxSCode() {
+  		String sCode = "";
+  		
+  		try {
+  			sCode = wdStudioDao.maxSCode();
+  		}
+  		catch(Exception e) 
+  		{
+			logger.error("[WDStudioService] maxSCode Exception", e);
+  		}
+  		
+  		return sCode;
+  	}
+  	
+	//스튜디오 삽입
+	public int studioInsert(WDStudio wdStudio) {
+		
+		int count = 0;
+		
+		try {
+			count = wdStudioDao.studioInsert(wdStudio);
+		}
+  		catch(Exception e) 
+  		{
+			logger.error("[WDStudioService] studioInsert Exception", e);
+  		}
+		
+		return count;
+		
+	}
+  	
 }

@@ -501,7 +501,7 @@ a{ text-decoration: none; color: inherit; }
   display: inline-block;
   font-size: 13px;
   padding: 12px 18px;
-  background-color: #ff6e2e;
+  background-color: #ff7f50; /*#ff6e2e;*/
   color: #fff;
   text-align: center;
   font-weight: 600;
@@ -543,7 +543,8 @@ a{ text-decoration: none; color: inherit; }
 }
 
 .main-dark-button a:hover {
-  opacity: 0.9;
+  /*opacity: 0.9;*/
+  background: #ff4e0d;
 }
 
 
@@ -611,6 +612,11 @@ header
    color: #777!important;
    font-weight: 600;
    font-size: 13px;
+}
+
+.ourperson a:hover 
+{
+    color: #000!important;
 }
 
 /*상단바 투명*/
@@ -2873,11 +2879,28 @@ Rent Venue Page
   margin-top: 10px;
   width: 250px;
   float: right;
-  
+}
+
+.rent-venue-application form .main-dark-button2 {
+  display: inline-block;
+  font-size: 14px;
+  padding: 18px;
+  background-color: #656c74;
+  color: #fff;
+  text-align: center;
+  font-weight: 500;
+  text-transform: capitalize;
+  transition: all .3s;
+  border: none;
+  outline: none;
+  margin-top: 10px;
+  width: 170px;
+  float: right;
+  margin-left: 15px;
 }
 
 .rent-venue-application form .main-dark-button:hover {
-  background-color: #656c74;
+  background-color: coral;
 }
 
 /*
@@ -3256,13 +3279,32 @@ Shows Events Page
       border: 3px solid #cecece;
 }
 
+/* 결혼예정일 추가 */
+.let_sp
+{
+	letter-spacing: 12px;
+}
+
+.span_design
+{
+	height: 2px;
+    background: linear-gradient(45deg, #333, transparent);
+    width: 210px;
+    display: inline-block;
+    position: relative;
+    top: -5px;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+/***/
 
 .tickets-page .search-box h4 {
   color: #fff;
   font-weight: 500;
   font-size: 20px;
 
-  margin-top: 13px;
+  margin-top: 15px;
   margin-left : 5px;
  
    font-family: 'OTWelcomeRA';
@@ -3333,8 +3375,8 @@ Shows Events Page
   font-weight: 800;
   color: #2a2a2a;
   text-align: center;
-  margin-top: 80px;
-  margin-bottom: 60px;
+  /*margin-top: 80px;
+  margin-bottom: 60px;*/
 }
 
 .tickets-page .heading .h22 {
@@ -4621,7 +4663,7 @@ responsive
 /* 밑줄 구현 */
 .shows-events-schedule2 ul
 {
-	/*border-top: 2px solid #222;*/
+	border-top: 2px solid #222;
 }
 
 .shows-events-schedule2 ul li {
@@ -5683,6 +5725,7 @@ responsive
 .imgNav
 {
 	/* height: 100px; */	
+	filter: invert(65%) sepia(44%) saturate(617%) hue-rotate(323deg) brightness(102%) contrast(83%);
 }
 
 /* 왜 우리 종료 */
@@ -6621,7 +6664,7 @@ textarea::placeholder {
 
 .comment_tr td
 {
-	padding-top: 15px;
+	padding-top: 25px;
 }
 
 .comment_tr2 td
@@ -6645,6 +6688,13 @@ textarea::placeholder {
 	font-size: 16px;
 }
 
-
+.divB_tb2 span> span
+{
+	padding-left: 5px;
+    font-size: smaller;
+    font-weight: 300;
+    color: #666;
+    letter-spacing: 0.5px;
+}
 
 /*보현추가 끝*/

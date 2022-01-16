@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/views/include/head.jsp" %>
+<%@ include file="/WEB-INF/views/include/head2.jsp" %>
 <style>
 *, ::after, ::before {
    box-sizing: unset;
@@ -16,37 +16,283 @@
 .sel{
    background: #f5a4aa;
 }
+.wookhall{
+   width: 120px;
+}
+
+
+
+/*다크모드관련*/
+.btn-toggle
+{
+	background: none;
+    position: absolute;
+    top: 28px;
+    left: 79%;
+    border: none;
+    outline: none;
+    color: #ccc;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+button:focus
+{
+	outline: none;
+}
+.btn-toggle:active
+{
+	outline: none!important;
+}
+/*다크모드 */
+body {  color: #efefef; background: #121212;} 
+a { color: #809fff; } 
+td,th {color: #eee;}
+span {color: #efefef;}
+p{color: #efefef;}
+.page-link
+{
+	background: #555!important;
+    border: none;
+}
+/* Dark Mode 아닐떄 */ 
+body.dark-theme { color: #222; background: #fff; } 
+body.dark-theme a { }
+body.dark-theme td,th {color: #333;}
+body.dark-theme .page-link.active
+{
+	    background: #f5a4aa!important;
+}
 </style>
 <script>
- var hsdmCheck = 1;
+ var hsdmCheck = <c:out value="${hsdmCheck}" />;
+ 
  $(function(){
-     $("#hall").show();
-     $("#studio").hide();
-     $("#dress").hide();
-     $("#makeup").hide(); 
+	    //다크모드
+	    const btn = document.querySelector('.btn-toggle');
+	    btn.addEventListener('click', function() {
+	    	document.body.classList.toggle('dark-theme'); 
+	    	});
+	    
+		//다크모드 끛
+		
+		
+     $(".studio_modal").colorbox({
+            iframe:true, 
+            innerWidth:1000,
+            innerHeight:600,
+            scrolling:false,
+            onComplete:function()
+            {
+               $("#colorbox").css("width", "1000px");
+               $("#colorbox").css("height", "600px");
+               $("#colorbox").css("border-radius", "10px");
+               
+               $('html').css("overflow","hidden");
+            } , 
+            onClosed: function()
+                {
+                  $('html').css("overflow","auto");
+                }  
+     });
+    
+     $(".wdhall_modal").colorbox({
+         iframe:true, 
+         innerWidth:1000,
+         innerHeight:500,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1000px");
+            $("#colorbox").css("height", "500px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+             {
+               $('html').css("overflow","auto");
+             }  
+   });
+     
+     $(".hall_modal").colorbox({
+         iframe:true, 
+         innerWidth:1000,
+         innerHeight:800,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1000px");
+            $("#colorbox").css("height", "800px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+             {
+               $('html').css("overflow","auto");
+             }  
+   });
+     
+     //dresscom_modal & dress_modal
+     $(".dresscom_modal").colorbox({
+         iframe:true, 
+         innerWidth:1000,
+         innerHeight:500,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1000px");
+            $("#colorbox").css("height", "500px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+             {
+               $('html').css("overflow","auto");
+             }  
+   });
+     
+     $(".dress_modal").colorbox({
+         iframe:true, 
+         innerWidth:1000,
+         innerHeight:800,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1000px");
+            $("#colorbox").css("height", "800px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+             {
+               $('html').css("overflow","auto");
+             }  
+   });
+    
+     if(hsdmCheck == 1){
+         document.getElementById('id1').classList.remove('sel');
+         document.getElementById('id2').classList.remove('sel');
+         document.getElementById('id3').classList.remove('sel');
+         document.getElementById('id4').classList.remove('sel');
+         document.getElementById('id${hsdmCheck}').className += ' sel';  
+        
+         $("#hall").show();
+         $("#studio").hide();
+         $("#dress").hide();
+         $("#makeup").hide();
+      }
+     else if(hsdmCheck == 2){
+         document.getElementById('id1').classList.remove('sel');
+         document.getElementById('id2').classList.remove('sel');
+         document.getElementById('id3').classList.remove('sel');
+         document.getElementById('id4').classList.remove('sel');
+         document.getElementById('id${hsdmCheck}').className += ' sel';  
+        
+         $("#studio").show();
+         $("#hall").hide();
+         $("#dress").hide();
+         $("#makeup").hide();
+      }
+     else if(hsdmCheck == 3){
+         document.getElementById('id1').classList.remove('sel');
+         document.getElementById('id2').classList.remove('sel');
+         document.getElementById('id3').classList.remove('sel');
+         document.getElementById('id4').classList.remove('sel');
+         document.getElementById('id${hsdmCheck}').className += ' sel';  
+        
+         $("#dress").show();
+         $("#studio").hide();
+         $("#hall").hide();
+         $("#makeup").hide();
+      }
+     else if(hsdmCheck == 4){
+         document.getElementById('id1').classList.remove('sel');
+         document.getElementById('id2').classList.remove('sel');
+         document.getElementById('id3').classList.remove('sel');
+         document.getElementById('id4').classList.remove('sel');
+         document.getElementById('id${hsdmCheck}').className += ' sel';  
+        
+         $("#makeup").show();
+         $("#studio").hide();
+         $("#dress").hide();
+         $("#hall").hide();
+      } 
+     
+     $("#weddinghallWrite").on("click",function(){
+        location.href = "/mng/plusWHall";
+     });
+     
+     
+     $("#id1").on("click", function(){
+        document.bbsFormH.curPage.value = 1;
+        //document.bbsFormH.action = "/mng/hsdmList";
+        document.bbsFormH.submit();
+     });
+     
+     $("#id2").on("click", function(){
+        document.bbsFormS.curPage.value = 1;
+        //document.bbsFormS.action = "/mng/hsdmList";
+        document.bbsFormS.submit();
+     });
+     
+     $("#id3").on("click", function(){
+        document.bbsFormD.curPage.value = 1;
+        //document.bbsFormD.action = "/mng/hsdmList";
+        document.bbsFormD.submit();
+     });
+     
+     $("#id4").on("click", function(){
+        document.bbsFormM.curPage.value = 1;
+        //document.bbsFormM.action = "/mng/hsdmList";
+        document.bbsFormM.submit();
+     });
+     
  });
 function fn_search()
 {
-   document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
-   document.searchForm.action = "/mng/userList";
-   document.searchForm.submit();
-}
-
-function fn_list(curPage)
-{
-   document.searchForm.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
+   document.searchForm.curPage.value = 1; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
    document.searchForm.action = "/mng/hsdmList";
    document.searchForm.submit();
 }
 
+function fn_pagingH(curPage)
+{
+   document.bbsFormH.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
+   document.bbsFormH.action = "/mng/hsdmList";
+   document.bbsFormH.submit();
+>>>>>>> 86674b305f700b66a88ade9d0c8aadc0c5609188
+}
+function fn_pagingS(curPage)
+{
+   document.bbsFormS.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
+   document.bbsFormS.action = "/mng/hsdmList";
+   document.bbsFormS.submit();
+}
+function fn_pagingD(curPage)
+{
+   document.bbsFormD.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
+   document.bbsFormD.action = "/mng/hsdmList";
+   document.bbsFormD.submit();
+}
+function fn_pagingM(curPage)
+{
+   document.bbsFormM.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
+   document.bbsFormM.action = "/mng/hsdmList";
+   document.bbsFormM.submit();
+}
+/*
 function classChange(id){
       document.getElementById('id1').classList.remove('sel');
       document.getElementById('id2').classList.remove('sel');
       document.getElementById('id3').classList.remove('sel');
       document.getElementById('id4').classList.remove('sel');
       //id.setAttribute('class','sel');
-      document.getElementById(id.id).className += ' sel';
-
+      document.getElementById(id.id).className += ' sel';      
+      
        if($('#id1').hasClass('sel')){
            hsdmCheck = 1;
            $("#hall").show();
@@ -75,14 +321,17 @@ function classChange(id){
            $("#dress").hide();
            $("#hall").hide();
         }
-}
+}*/
 </script>
 </head>
-<body id="school_list">
-   
+<body id="school_list" class="light-theme || dark-theme">  
    <jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
        <jsp:param name="userName" value="${wdAdmin.admName}" />
        </jsp:include>
+       
+<div>
+<button class="btn-toggle">다크모드</button>
+</div>
        
 <div class="container">
     <div class="row" style="width: 100%;">
@@ -96,6 +345,7 @@ function classChange(id){
                     <li class="hsem_li" id="id3" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">드레스</a></li>
                     <li class="hsem_li" id="id4" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">메이크업</a></li>
                 </ul>  
+                
          </div>
       </div>
       <!-- 홀 시작 -->
@@ -135,17 +385,17 @@ function classChange(id){
          </ul>
 
          <div class="row">
-              <div class="col-lg-10" style="left:43%;">
+              <div class="col-lg-9" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty hPaging}">
                      <c:if test="${hPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.prevBlockPage})">이전</a></li>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingH(${hPaging.prevBlockPage})">이전</a></li>
                      </c:if>
                      <c:forEach var="i" begin="${hPaging.startPage}" end="${hPaging.endPage}">
                         <c:choose>
                            <c:when test="${i ne curPage}">
-                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingH(${i})">${i}</a></li>
                            </c:when>
                            <c:otherwise>
                               <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
@@ -153,26 +403,42 @@ function classChange(id){
                         </c:choose>
                      </c:forEach>
                      <c:if test="${hPaging.nextBlockPage gt 0}">         
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.nextBlockPage})">다음</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingH(${hPaging.nextBlockPage})">다음</a></li>
                      </c:if>       
                   </c:if> 
+                     <form name="bbsFormH" id="bbsFormH" method="post">
+                        <input type="hidden" name="hsdmCheck" value="1" />
+                  <input type="hidden" name="curPage" value="${curPage}" />
+               </form>
                </ul>
                   </div>
               </div>
-              
-	         <div class="col-lg-1">
-	            <div>
-	               <form id="subscribe" action="" method="get">
-	                  <div class="row" style="width: 100%;">
-	                     <div class="col-lg-12">
-	                           <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
-	                     </div>
-	                  </div>
-	               </form>
-	            </div>
-	         </div>
-	        </div>
-	        
+              <div class="col-lg-1">
+               <div>
+                     <div class="col-lg-12">
+                       <div class="ticket-item2 gosu_modal" href="/mng/plusWHall">
+                           <div class="down-content2">
+                               <div class="main-dark-button btn_go wookhall">
+                                   <a href="/mng/plusWHall" class="wdhall_modal" >웨딩홀 추가</a>
+                               </div>    
+                            </div>
+                       </div>
+                     </div>
+               </div>
+            </div>
+            <div class="col-lg-1">
+               <div>
+                    <div class="ticket-item2 gosu_modal" href="/mng/plusHall">
+                        <div class="down-content2">
+                            <div class="main-dark-button btn_go wookhall">
+                                <a href="/mng/plusHall" class="hall_modal" >홀 추가</a>
+                            </div>    
+                         </div>
+                    </div>
+               </div>
+            </div>
+           </div>
+           
          </div>
       </div>
       <!-- 홀 끝 -->
@@ -206,41 +472,43 @@ function classChange(id){
               <div class="col-lg-10" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
-                  <c:if test="${!empty hPaging}">
-                     <c:if test="${hPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.prevBlockPage})">이전</a></li>
+                  <c:if test="${!empty sPaging}">
+                     <c:if test="${sPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingS(${sPaging.prevBlockPage})">이전</a></li>
                      </c:if>
-                     <c:forEach var="i" begin="${hPaging.startPage}" end="${hPaging.endPage}">
+                     <c:forEach var="i" begin="${sPaging.startPage}" end="${sPaging.endPage}">
                         <c:choose>
                            <c:when test="${i ne curPage}">
-                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingS(${i})">${i}</a></li>
                            </c:when>
                            <c:otherwise>
                               <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
                            </c:otherwise>
                         </c:choose>
                      </c:forEach>
-                     <c:if test="${hPaging.nextBlockPage gt 0}">         
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.nextBlockPage})">다음</a></li>
+                     <c:if test="${sPaging.nextBlockPage gt 0}">         
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingS(${sPaging.nextBlockPage})">다음</a></li>
                      </c:if>       
                   </c:if> 
+                     <form name="bbsFormS" id="bbsFormS" method="post">
+                        <input type="hidden" name="hsdmCheck" value="2" />
+                  <input type="hidden" name="curPage" value="${curPage}" />
+               </form>
                </ul>
                   </div>
               </div>
-              
-	         <div class="col-lg-1">
-	            <div>
-	               <form id="subscribe" action="" method="get">
-	                  <div class="row" style="width: 100%;">
-	                     <div class="col-lg-12">
-	                           <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
-	                     </div>
-	                  </div>
-	               </form>
-	            </div>
-	         </div>
-	        </div>
-              
+            <div class="col-lg-1">
+               <div>
+                    <div class="ticket-item2 gosu_modal" href="/mng/plusStudio">
+                        <div class="down-content2">
+                            <div class="main-dark-button btn_go wookhall">
+                                <a href="/mng/plusStudio" class="studio_modal" >스튜디오 추가</a>
+                            </div>    
+                         </div>
+                    </div>
+               </div>
+            </div>
+           </div>
          </div>
       </div>
       <!-- 스튜디오 끝 -->
@@ -275,43 +543,52 @@ function classChange(id){
          </ul>
 
          <div class="row">
-              <div class="col-lg-10" style="left:43%;">
+              <div class="col-lg-8" style="left:40%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
-                  <c:if test="${!empty hPaging}">
-                     <c:if test="${hPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.prevBlockPage})">이전</a></li>
+                  <c:if test="${!empty dPaging}">
+                     <c:if test="${dPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingD(${dPaging.prevBlockPage})">이전</a></li>
                      </c:if>
-                     <c:forEach var="i" begin="${hPaging.startPage}" end="${hPaging.endPage}">
+                     <c:forEach var="i" begin="${dPaging.startPage}" end="${dPaging.endPage}">
                         <c:choose>
                            <c:when test="${i ne curPage}">
-                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingD(${i})">${i}</a></li>
                            </c:when>
                            <c:otherwise>
                               <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
                            </c:otherwise>
                         </c:choose>
                      </c:forEach>
-                     <c:if test="${hPaging.nextBlockPage gt 0}">         
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.nextBlockPage})">다음</a></li>
+                     <c:if test="${dPaging.nextBlockPage gt 0}">         
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingD(${dPaging.nextBlockPage})">다음</a></li>
                      </c:if>       
                   </c:if> 
+                    <form name="bbsFormD" id="bbsFormD" method="post">
+                       <input type="hidden" name="hsdmCheck" value="3" />
+                  <input type="hidden" name="curPage" value="${curPage}" />
+               </form>
                </ul>
                   </div>
               </div>
               
-	         <div class="col-lg-1">
-	            <div>
-	               <form id="subscribe" action="" method="get">
-	                  <div class="row" style="width: 100%;">
-	                     <div class="col-lg-12">
-	                           <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
-	                     </div>
-	                  </div>
-	               </form>
-	            </div>
-	         </div>
-	        </div>
+			<div class="col-lg-3">
+               <div>
+                  <form id="subscribe" action="" method="get">
+                     <div class="row" style="width: 100%;">
+                        <div class="col-lg-12">
+                           <div gosu_modal" href="/mng/plusDress">
+                              <a href="/mng/plusDress" id="btnWrite" class="dress_modal hsdm_btn">드레스 추가</a>
+                            </div>
+                            <div gosu_modal" href="/mng/plusDressCom">
+                              <a href="/mng/plusDressCom" id="btnWrite" class="dresscom_modal hsdm_btn" style="margin-right: 10px;">업체 추가</a>
+                           </div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+           </div>
               
          </div>
       </div>
@@ -348,40 +625,44 @@ function classChange(id){
               <div class="col-lg-10" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
-                  <c:if test="${!empty hPaging}">
-                     <c:if test="${hPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.prevBlockPage})">이전</a></li>
+                  <c:if test="${!empty mPaging}">
+                     <c:if test="${mPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${mPaging.prevBlockPage})">이전</a></li>
                      </c:if>
-                     <c:forEach var="i" begin="${hPaging.startPage}" end="${hPaging.endPage}">
+                     <c:forEach var="i" begin="${mPaging.startPage}" end="${mPaging.endPage}">
                         <c:choose>
                            <c:when test="${i ne curPage}">
-                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${i})">${i}</a></li>
                            </c:when>
                            <c:otherwise>
                               <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
                            </c:otherwise>
                         </c:choose>
                      </c:forEach>
-                     <c:if test="${hPaging.nextBlockPage gt 0}">         
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${hPaging.nextBlockPage})">다음</a></li>
+                     <c:if test="${mPaging.nextBlockPage gt 0}">         
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${mPaging.nextBlockPage})">다음</a></li>
                      </c:if>       
                   </c:if> 
+                     <form name="bbsFormM" id="bbsFormM" method="post">
+                     <input type="hidden" name="hsdmCheck" value="4" />
+                  <input type="hidden" name="curPage" value="${curPage}" />
+               </form>
                </ul>
                   </div>
               </div>
               
-	         <div class="col-lg-1">
-	            <div>
-	               <form id="subscribe" action="" method="get">
-	                  <div class="row" style="width: 100%;">
-	                     <div class="col-lg-12">
-	                           <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
-	                     </div>
-	                  </div>
-	               </form>
-	            </div>
-	         </div>
-	        </div>
+            <div class="col-lg-1">
+               <div>
+                  <form id="subscribe" action="" method="get">
+                     <div class="row" style="width: 100%;">
+                        <div class="col-lg-12">
+                              <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+           </div>
               
       </div>
       </div>
@@ -393,6 +674,7 @@ function classChange(id){
 
   </div>
 </div>
-	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
+
+   <%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
 </html>

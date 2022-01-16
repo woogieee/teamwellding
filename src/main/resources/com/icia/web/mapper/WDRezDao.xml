@@ -73,7 +73,7 @@ FROM
 WHERE
     USER_ID = #{value}
 AND
-	REZ_STATUS = 'N'
+   REZ_STATUS = 'N'
 </select-->
 <!-- 예약 테이블 값을 가져오기 위한 셀렉트문 종료 -->
 
@@ -98,8 +98,8 @@ SELECT
     S_DATE
 FROM
     WD_REZ
-WHERE	
-	1 = 1
+WHERE   
+   1 = 1
 <if test='userId != null and userId != ""'>
 AND
     USER_ID = #{userId}   
@@ -109,7 +109,7 @@ AND
     REZ_NO = #{rezNo}   
 </if>
 AND
-	REZ_STATUS = #{rezStatus}
+   REZ_STATUS = #{rezStatus}
 </select>
 <!-- 예약 테이블 값을 가져오기 위한 셀렉트문 종료 -->
 
@@ -185,14 +185,12 @@ WHERE
     USER_ID = #{userId}
 <if test='rezStatus != null and rezStatus != ""'>
 AND
-	R.REZ_STATUS = #{rezStatus}
+   R.REZ_STATUS = #{rezStatus}
 </if>
-
 <if test='rezNo != null and rezNo != ""'>
 AND
-	R.REZ_NO = #{rezNo}
+   R.REZ_NO = #{rezNo}
 </if>
-
 <if test='whCode != null and whCode != "" and hCode != null and hCode != ""'>
 AND
     H.WH_CODE = W.WH_CODE
@@ -426,7 +424,7 @@ SET
 <if test='cCode != null and cCode != ""'>    
     ,
     C_CODE = #{cCode}
-</if>    
+</if>
 WHERE
     REZ_NO = #{rezNo}
 AND
@@ -442,7 +440,7 @@ SET
 WHERE
     USER_ID = #{value}
 AND
-	REZ_STATUS = 'N'
+   REZ_STATUS = 'N'
 </update>
 <!-- 쿠폰까지 삽입되면, 그제서야 상태 Y로 변경 종료 -->
 
@@ -454,7 +452,7 @@ SET
 WHERE
     USER_ID = #{userId}
 AND
-	REZ_NO = #{rezNo}
+   REZ_NO = #{rezNo}
 AND
     REZ_STATUS = 'Y'
 </update>    
@@ -530,7 +528,10 @@ AND
     RNUM <![CDATA[>=]]> 1
 </select>
 <!-- 결제 내역을 가져오기(rezStatus Y) 종료 -->
+
 <!-- 환불요청시 (status C로 변경) 시작 -->
+
+
 
 <!-- 관리자페이지에서 결제내역 리스트 조회 -->
 <select id="rezAdminSelect" parameterType="com.icia.web.model.WDRez" resultMap="WDRezDaoResultMap">
@@ -603,7 +604,7 @@ FROM
                 ORDER BY
                     REZ_NO DESC))
 WHERE
-    RNUM <![CDATA[>=]]> #{startRow}
+	RNUM <![CDATA[>=]]> #{startRow}
 AND
     RNUM <![CDATA[<=]]> #{endRow}
 </select>
@@ -615,7 +616,9 @@ UPDATE WD_REZ
 SET
     REZ_STATUS = 'D'
 WHERE
-	REZ_NO = #{value}
+    USER_ID = #{userId}
+AND
+   REZ_NO = #{rezNo}
 AND
     REZ_STATUS = 'C'
 </update>  
@@ -649,6 +652,7 @@ SET
 
 <!-- 결제 포인트 환급 후 결제 금액 삭제 끝-->
 
+
 <!-- 결제 내역 번호 조회 -->
 <select id = "listSelect" parameterType="string" resultMap="WDRezDaoResultMap">
 SELECT
@@ -674,4 +678,34 @@ WHERE
     REZ_NO = #{value}
 </select>
 
+<!-- 포인트 사용시 컬럼 추가 시작 -->
+<update id="rezPointUpdate" parameterType="com.icia.web.model.WDRez">
+UPDATE 
+	WD_REZ
+<if test='rezPoint >= 0'>	
+SET
+    REZ_POINT = #{rezPoint}
+</if>    
+WHERE
+    REZ_NO = #{rezNo}
+</update>
+<!-- 포인트 사용시 컬럼 추가 끝 -->
+
+<!-- 포인트 사용시 보유포인트 감소 시작 -->
+<update id="userPointMinus" parameterType="com.icia.web.model.WDRez">
+UPDATE WD_USER
+SET
+U_POINT = U_POINT - (
+SELECT
+   R.REZ_POINT
+FROM
+   WD_REZ R, WD_USER U
+WHERE
+   R.USER_ID = U.USER_ID
+AND
+   REZ_NO = #{rezNo})
+WHERE
+    USER_ID = #{userId}
+</update>
+<!-- 포인트 사용시 보유포인트 감소 끝 -->
 </mapper>

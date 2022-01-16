@@ -65,6 +65,7 @@
                             <div class="col-lg-12">
                               <fieldset>
                               	<input type="hidden" name="receiveMail" id="receiveMail" value="${wdExpert.eEmail}"/> <!-- 메일을 받을 플래너의 메일주소 -->
+                              	<button onclick="fn_colorbox_close()" id="form-submit" class="main-dark-button2">닫기</button>
                                 <button type="submit" id="form-submit" class="main-dark-button">견적 요청하기</button>
                               	<span style="color:red">${message}</span>
                               </fieldset>
@@ -91,6 +92,7 @@
     <!-- jQuery -->
     <script src="../resources/js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="/resources/js/jquery.colorbox.js"></script>
+    <script type="text/javascript" src="../resources/js/colorBox.js"></script>
    
     
     <!-- 보현추가 -->

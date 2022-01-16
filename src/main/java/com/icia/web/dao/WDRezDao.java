@@ -72,4 +72,10 @@ public interface WDRezDao {
 	
 	//결제 취소 상태 조회
 	public WDRez listSelect(String rezNo);
+
+	//포인트 사용
+	public int rezPointUpdate(WDRez wdRez);
+	
+	//보유 포인트 감소
+	public int userPointMinus(WDRez wdRez);
 }
