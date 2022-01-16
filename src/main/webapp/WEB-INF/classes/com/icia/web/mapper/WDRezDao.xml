@@ -50,7 +50,7 @@
 </resultMap>
 
 <!-- 예약 테이블 값을 가져오기 위한 셀렉트문 시작 -->
-<!--select id="rezSelect" parameterType="string" resultMap="WDRezDaoResultMap">
+<!--select id="rezNoSelect" parameterType="string" resultMap="WDRezDaoResultMap">
 SELECT
     REZ_NO,
     WH_CODE,
@@ -221,7 +221,7 @@ AND
 <!-- 예약 여부 확인을 위한 셀렉트문 끝 -->
 
 <!-- 예약  수 확인 시작(관리자 페이지 페이징을 위한 총 수 체크)-->
-<select id ="rezListCount" resultType ="long">
+<select id ="rezListCount" parameterType="com.icia.web.model.WDRez" resultType ="long" >
 SELECT
     COUNT(REZ_NO) AS CNT
 FROM
@@ -462,6 +462,23 @@ AND
 
 <!-- 결제 내역을 가져오기(rezStatus Y) 시작 -->
 <select id="rezSelectList" parameterType="string" resultMap="WDRezDaoResultMap">
+SELECT
+        REZ_NO,
+        WH_CODE,
+        H_CODE,
+        S_CODE,
+        DC_CODE,
+        D_NO,
+        M_CODE,
+        M_PLUS_NUM,
+        REZ_STATUS,
+        REZ_DATE,
+        WDATE,
+        USER_ID,
+        REZ_FULL_PRICE,
+        C_CODE,
+        REZ_POINT,
+        S_DATE
 FROM    
     (SELECT
         ROWNUM AS RNUM,
@@ -514,62 +531,91 @@ AND
 </select>
 <!-- 결제 내역을 가져오기(rezStatus Y) 종료 -->
 <!-- 환불요청시 (status C로 변경) 시작 -->
-<update id="rezCancelPayment" parameterType="com.icia.web.model.WDRez" >
-UPDATE WD_REZ
-SET
-    REZ_STATUS = 'C'
-WHERE
-    USER_ID = #{userId}
-AND
-   REZ_NO = #{rezNo}
-AND
-    REZ_STATUS = 'Y'
-</update>
-<!-- 환불요청시 (status C로 변경) 시작 -->
 
 <!-- 관리자페이지에서 결제내역 리스트 조회 -->
 <select id="rezAdminSelect" parameterType="com.icia.web.model.WDRez" resultMap="WDRezDaoResultMap">
 SELECT
-    REZ_NO,
-    WH_CODE,
-    H_CODE,
-    S_CODE,
-    DC_CODE,
-    D_NO,
-    M_CODE,
-    M_PLUS_NUM,
-    REZ_STATUS,
-    REZ_DATE,
-    WDATE,
-    USER_ID,
-    REZ_FULL_PRICE,
-    C_CODE,
-    REZ_POINT,
-    S_DATE
-FROM
-    WD_REZ
+        REZ_NO,
+        WH_CODE,
+        H_CODE,
+        S_CODE,
+        DC_CODE,
+        D_NO,
+        M_CODE,
+        M_PLUS_NUM,
+        REZ_STATUS,
+        REZ_DATE,
+        WDATE,
+        USER_ID,
+        REZ_FULL_PRICE,
+        C_CODE,
+        REZ_POINT,
+        S_DATE
+FROM    
+    (SELECT
+        ROWNUM AS RNUM,
+        REZ_NO,
+        WH_CODE,
+        H_CODE,
+        S_CODE,
+        DC_CODE,
+        D_NO,
+        M_CODE,
+        M_PLUS_NUM,
+        REZ_STATUS,
+        REZ_DATE,
+        WDATE,
+        USER_ID,
+        REZ_FULL_PRICE,
+        C_CODE,
+        REZ_POINT,
+        S_DATE
+        FROM(
+                SELECT
+                    REZ_NO,
+                    NVL(WH_CODE, '') AS WH_CODE,
+                    NVL(H_CODE, '') AS H_CODE,
+                    NVL(S_CODE, '') AS S_CODE,
+                    NVL(DC_CODE, '') AS DC_CODE,
+                    NVL(D_NO, '') AS D_NO,
+                    NVL(M_CODE, '') AS M_CODE,
+                    NVL(M_PLUS_NUM, 0) AS M_PLUS_NUM,
+                    NVL(REZ_STATUS, 'Y') AS REZ_STATUS,
+                    NVL(TO_CHAR(REZ_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') AS REZ_DATE,
+                    NVL(WDATE, '') AS WDATE,
+                    USER_ID,
+                    NVL(REZ_FULL_PRICE, 0) AS REZ_FULL_PRICE,
+                    NVL(C_CODE, '') AS C_CODE,
+                    NVL(REZ_POINT, 0) AS REZ_POINT,
+                    NVL(S_DATE, '') AS S_DATE
+                FROM
+                    WD_REZ
+                WHERE
+					 1=1
+					<if test='userId != null and userId != ""'>
+				AND
+   					 USER_ID LIKE '%' || #{userId} || '%'
+    				</if>
+    			<if test='rezStatus != null and rezStatus != ""'>
+                AND
+                    REZ_STATUS = #{rezStatus}
+    				</if>	
+                ORDER BY
+                    REZ_NO DESC))
 WHERE
-	 1=1
-	<if test='userId != null and userId != ""'>
-	<choose>                
-      <when test='searchType == "1"'> 
+    RNUM <![CDATA[>=]]> #{startRow}
 AND
-    USER_ID LIKE '%' || #{userId} || '%'
-      </when>
-    </choose>
-    </if>
+    RNUM <![CDATA[<=]]> #{endRow}
 </select>
 <!-- 관리자페이지에서 결제내역 리스트 종료 -->
 
 <!-- 결제 취소 승인시 결제 상태 D 변경 시작 -->
-<update id="rezCancelApprove" parameterType="com.icia.web.model.WDRez" >
+<update id="rezCancelApprove" parameterType="string" >
 UPDATE WD_REZ
 SET
     REZ_STATUS = 'D'
 WHERE
-    USER_ID = #{userId}
-AND
-	REZ_NO = #{rezNo}
+	REZ_NO = #{value}
 AND
     REZ_STATUS = 'C'
 </update>  
@@ -590,29 +636,42 @@ UPDATE
      WHERE
       R.USER_ID = U.USER_ID
      AND
-      R.USER_ID = '#{userId}'
+      R.USER_ID = #{userId}
      AND
-      R.REZ_NO = '#{rezNo}'
+      R.REZ_NO = #{rezNo}
      AND
       R.REZ_STATUS = 'C'    
     )
 SET
-     U_POINT = REZ_FULL_PRICE
+     U_POINT = U_POINT + REZ_FULL_PRICE
 </update>
 <!-- 결제 후 결제 취소시, 결제 금액을 회원 포인트로 환급 끝 -->
 
-<!-- 결제 포인트 환급 후 결제 금액 삭제 시작-->
-<update id ="rezCancelComplete" parameterType="com.icia.web.model.WDRez" >
-UPDATE
-    WD_REZ
-SET    
-    REZ_FULL_PRICE = 0
-WHERE
-    USER_ID = #{value}
-AND
-    REZ_NO = #{rezNo}
-AND
-    REZ_STATUS = 'D'
-</update>
 <!-- 결제 포인트 환급 후 결제 금액 삭제 끝-->
+
+<!-- 결제 내역 번호 조회 -->
+<select id = "listSelect" parameterType="string" resultMap="WDRezDaoResultMap">
+SELECT
+     REZ_NO,
+        NVL(WH_CODE, '') AS WH_CODE,
+        NVL(H_CODE, '') AS H_CODE,
+        NVL(S_CODE, '') AS S_CODE,
+        NVL(DC_CODE, '') AS DC_CODE,
+        NVL(D_NO, '') AS D_NO,
+        NVL(M_CODE, '') AS M_CODE,
+        NVL(M_PLUS_NUM, 0) AS M_PLUS_NUM,
+        NVL(REZ_STATUS, 'Y') AS REZ_STATUS,
+        NVL(TO_CHAR(REZ_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') AS REZ_DATE,
+        NVL(WDATE, '') AS WDATE,
+        USER_ID,
+        NVL(REZ_FULL_PRICE, 0) AS REZ_FULL_PRICE,
+        NVL(C_CODE, '') AS C_CODE,
+        NVL(REZ_POINT, 0) AS REZ_POINT,
+        NVL(S_DATE, '') AS S_DATE
+FROM
+    WD_REZ
+WHERE
+    REZ_NO = #{value}
+</select>
+
 </mapper>

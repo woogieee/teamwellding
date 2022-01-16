@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.icia.common.util.StringUtil;
 import com.icia.web.model.Paging;
 import com.icia.web.model.Response;
+import com.icia.web.model.WDAdmin;
 import com.icia.web.model.WDRez;
 import com.icia.web.model.WDUser;
+import com.icia.web.service.WDAdminService;
 import com.icia.web.service.WDDressService;
 import com.icia.web.service.WDHallService;
 import com.icia.web.service.WDMakeUpService;
@@ -58,6 +60,9 @@ public class WDRezController {
 		//드레스 서비스
 		@Autowired
 		private WDDressService wdDressService;
+		
+		@Autowired
+		private WDAdminService wdAdminService;
 		
 		@Autowired
 		private WDRezService wdRezService;
@@ -312,21 +317,74 @@ public class WDRezController {
 	@RequestMapping(value="/mng/payMentList")
 	public String payMentList(ModelMap model, HttpServletRequest request, HttpServletResponse response) 
 	{
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		String searchType = HttpUtil.get(request, "searchType", "");
 		String searchValue = HttpUtil.get(request, "searchValue", "");
+		String rezNo = HttpUtil.get(request, "rezNo"); 
+		String rezStatus = HttpUtil.get(request, "rezStatus");
+		String userId = null;
+		long curPage = HttpUtil.get(request, "curPage", (long)1);
 		long totalCount = 0;
-		long curPage = 1;
+		long count = 0;
+		
+		
+		WDAdmin wdAdmin = wdAdminService.wdAdminSelect(cookieUserId);
+		
 		List<WDRez> list = null;
 		//페이징 객체
 		Paging paging = null;
 		
 		WDRez search = new WDRez();
 		
+		//예약 번호가 있을 경우
+		if(rezNo != null && rezNo != "")
+		{
+				search = wdRezService.listSelect(rezNo);
+				
+				//총 결제금액을 마이포인트로 전환
+				if(search != null)
+				{
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("userId", search.getUserId());
+		            map.put("rezNo", search.getRezNo());
+		            
+		            System.out.println("userId = "+search.getUserId());
+		            System.out.println("rezNo = "+search.getRezNo());
+		            
+		            //총 결제금액이 마이 포인트로 전환
+		            count = wdRezService.rezPointReturn(map);
+		            
+		            	//결제 취소 신청 상태일 경우
+						if(count > 0)
+						{
+							//결제 상태 C -> D로 변경
+						    wdRezService.rezCancelApprove(rezNo);
+						}
+						else
+						{
+							return "/";
+						}
+		            
+				}
+				else
+				{
+					return "/";
+				}	 
+		}
+		
+		WDRez wdRez = new WDRez();
+		
+		wdRez.setRezStatus(rezStatus);
+		
+		//결제내역 관리 searchType은 1개 밖에 없기 때문에 searchType eq 생략
 		if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue)) 
 		{
-			//받아온 값이 있으면 set
-			search.setSearchType(searchType);
-			search.setSearchValue(searchValue);
+			wdRez.setUserId(searchType);
+			wdRez.setUserId(searchValue);
+			
+			 System.out.println("searchType = "+ wdRez.getSearchType());
+	         System.out.println("searchValue = "+ wdRez.getSearchValue());
+			
 		}
 		else 
 		{
@@ -334,7 +392,7 @@ public class WDRezController {
 			searchValue = "";
 		}
 		
-		totalCount = wdRezService.rezListCount(search);
+		totalCount = wdRezService.rezListCount(wdRez);
 		
 		logger.debug("[totalCount] = "+ totalCount);
 		
@@ -345,58 +403,23 @@ public class WDRezController {
 			paging.addParam("searchValue", searchValue);
 			paging.addParam("curPage", curPage);
 			
-			//시작 row와 종료 row를 paging 모듈에서 자동 계산해줌.
-			search.setStartRow(paging.getStartRow());
-			search.setEndRow(paging.getEndRow());
+			wdRez.setStartRow(paging.getStartRow());
+			wdRez.setEndRow(paging.getEndRow());
 			
-			list = wdRezService.rezAdminSelect(search);
+			list = wdRezService.rezAdminSelect(wdRez);
+			
+			System.out.println("totalCount = " + totalCount);
 		}
 		
 		model.addAttribute("list", list);
 		model.addAttribute("searchType", searchType);
 		model.addAttribute("searchValue", searchValue);
+		model.addAttribute("rezStatus", rezStatus);
 		model.addAttribute("curPage", curPage);
 		model.addAttribute("paging", paging);
+		model.addAttribute("wdAdmin", wdAdmin);
 		
 		return	"/mng/payMentList";
 	}
 	
-	@RequestMapping(value = "mng/payMentProc", method=RequestMethod.POST)
-	@ResponseBody
-	public Response<Object> updateStatus(HttpServletRequest request, HttpServletResponse response)
-	{
-		Response<Object> ajaxResponse = new Response<Object>();
-		String rezStatus = HttpUtil.get(request, "rezStatus");
-		
-		List<WDRez> list = null;
-		
-		WDRez search = new WDRez();
-		
-		if(StringUtil.equals(rezStatus, "C"))
-		{
-			search.setRezStatus("D");
-			if(StringUtil.equals(rezStatus, "D"))
-			{
-				HashMap<String, Object> map = new HashMap<String, Object>();
-	               map.put("userId", search.getUserId());
-	               map.put("rezNo", search.getRezNo());
-	               
-	               search = wdRezService.rezPointReturn(map);
-	               
-				ajaxResponse.setResponse(0, "Success");
-			}
-			else
-			{
-				ajaxResponse.setResponse(500,"Internal Server Error" );
-			}
-		}
-		else
-		{
-			ajaxResponse.setResponse(401, "Bad Request");
-		}
-		
-		list = wdRezService.rezAdminSelect(search);
-		
-		return ajaxResponse;
-	}
 }

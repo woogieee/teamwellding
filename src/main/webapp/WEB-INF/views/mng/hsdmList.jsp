@@ -32,10 +32,10 @@ function fn_search()
    document.searchForm.submit();
 }
 
-function fn_paging(curPage)
+function fn_list(curPage)
 {
    document.searchForm.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
-   document.searchForm.action = "/mng/userList";
+   document.searchForm.action = "/mng/hsdmList";
    document.searchForm.submit();
 }
 
@@ -387,9 +387,9 @@ function classChange(id){
       </div>
       <!-- 메이크업 끝 -->
 
-         
-
-      
+	  <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">       
+		<input type="hidden" name="curPage" value="" />
+      </form>
 
   </div>
 </div>

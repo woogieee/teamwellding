@@ -126,26 +126,25 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                </c:if>
                </tbody>
             </table>
-            <div class="paging-right" style="float:right;">
-               <!-- 페이징 샘플 시작 -->
-            <c:if test="${!empty paging}">
-                  <!--  이전 블럭 시작 -->
-               <c:if test="${paging.prevBlockPage gt 0}"> <!-- 0보다 클때 -->
-                     <a href="javascript:void(0)"  class="btn2 btn-primary" onclick="fn_paging(${paging.prevBlockPage})" title="이전 블럭">&laquo;</a>
-               </c:if>
-                  <!--  이전 블럭 종료 -->
-                  <span>
-                  <!-- 페이지 시작 -->
-               <c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
-                        <c:choose>
-                           <c:when test="${i ne curPage}">
-                           <a href="javascript:void(0)" class="btn2 btn-primary" onclick="fn_paging(${i})" style="font-size:14px;">${i}</a>
-                     </c:when>
-                     <c:otherwise>
-                           <h class="btn2 btn-primary" style="font-size:14px; font-weight:bold;">${i}</h>
-                        </c:otherwise>
-                     </c:choose>
-               </c:forEach>
+           <ul class="pagination justify-content-center">
+		<c:if test="${!empty paging}">
+			
+			<c:if test="${paging.prevBlockPage gt 0}">
+	        <!-- 이전 블럭이 있다는 뜻임, 이전 블럭 페이지가 0보다 크면. -->
+	         	<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${paging.prevBlockPage})">이전블럭</a></li>
+			</c:if>
+	   		
+	   		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+
+	   			<c:choose>
+	   				<c:when test="${i ne curPage}">
+	         			<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${i})">${i}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor: default;">${i}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
                   <!-- 페이지 종료 -->
                   </span>
                   <!--  다음 블럭 시작 -->

@@ -56,17 +56,20 @@ public interface WDRezDao {
 	public List<WDRez> rezSelectList(String userId);
 	
 	//결제 취소 승인
-	public int rezCancelApprov(WDRez wdRez);
+	public int rezCancelApprove(String rezNo);
 		
 	//관리자 페이지에서 조회하는 결제 내역 리스트
 	public List<WDRez> rezAdminSelect(WDRez wdRez);
 		
 	//결제 후 결제 취소시 포인트로 환급
-	public WDRez rezPointReturn(HashMap<String, Object> map);
+	public int rezPointReturn(HashMap<String, Object> map);
 	
 	//결제 후 결제 취소시 결제 총금액 삭제
 	public int rezCancelComplete(WDRez wdRez);
 	
 	//환불요청시 상태창 변경
 	public int rezCancelPayment(WDRez wdRez);
+	
+	//결제 취소 상태 조회
+	public WDRez listSelect(String rezNo);
 }

@@ -21,65 +21,38 @@
 <script>
 
 $(document).ready(function(){
-	   $("#btn").on("click",function(){
-		  
-		   $.ajax({
-				type:"post",
-				url:"mng/payMentProc",
-				data:{
-					
-				},
-				 datatype: "JSON",
-		   	  beforeSend:function(xhr)
-		   	  {
-					xhr.setRequestHeader("AJAX", "true");  
-		   	  },
-		   	  success:function(response)
-		   	  {
-		   		  if(response.code == 0)
-		   		  {
-		   			  alert("결제 취소가 승인되었습니다.");
-		   			  location.href("/mng/payMentList");
-		   		  }
-		   		  else if(response.code == 401)
-		   		  {
-		   			  alert("결제 취소가 신청된 내역이 아닙니다.");
-		   		  }
-		   		  else if(response.code == 500)
-		   		  {
-		   			  //파라미터 값이 넘어가지 않음.
-		   			  alert("결제 취소 승인 중 오류가 발생했습니다.");
-		   		  }
-		   		  else
-		   		  {
-		   			  alert("알 수  없는 오류가 발생했습니다.");
-		   		  }
-		   	  },
-		   	  complete:function(data)
-		   	  {
-		   		  icia.common.log(data); 
-		   	  },
-		   	  error:function(xhr, status, error)
-		   	  {
-		   		  icia.common.error(error);
-		   	  }
-		     
-			});	
-		   
-	   });
+      $(".userUpdate").colorbox({
+            iframe:true, 
+            innerWidth:1235,
+            innerHeight:500,
+            scrolling:false,
+            onComplete:function()
+            {
+               $("#colorbox").css("width", "1235px");
+               $("#colorbox").css("height", "500px");
+               $("#colorbox").css("border-radius", "10px");
+               
+               $('html').css("overflow","hidden");
+            } , 
+            onClosed: function()
+	          {
+	            $('html').css("overflow","auto");
+	          }  
+      });
 });
 
 function fn_search()
 {
-	document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
-	document.searchForm.action = "/mng/payMentList";
+   document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
+   document.searchForm.action = "/mng/payMentList";
+   document.searchForm.submit();
 }
 
 function fn_paging(curPage)
 {
-	document.searchForm.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
-	document.searchForm.action = "/mng/payMentList";
-	document.searchForm.submit();
+   document.searchForm.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
+   document.searchForm.action = "/mng/payMentList";
+   document.searchForm.submit();
 }
 
 function fn_pageInit() //서치타입과 서치밸유에대한 설정
@@ -89,7 +62,6 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
    
    fn_search();      
 }
-
 </script>
 </head>
 <body id="school_list">
@@ -107,7 +79,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 	      <div class="mnb" style="display:flex; margin-bottom:0.8rem;">
 	         <h2 style="margin-right:auto; color: #525252;">결제 내역 리스트</h2>
 	         <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">
-	            <select id="status" name="status" style="font-size: 1rem; width: 6rem; height: 3rem;">
+	            <select id="rezStatus" name="rezStatus" style="font-size: 1rem; width: 6rem; height: 3rem;">
 	               <option value="">상태</option>
 	               <option value="Y" <c:if test="${status == 'Y'}">selected</c:if>>결제완료</option>
 	               <option value="N" <c:if test="${status == 'N'}">selected</c:if>>예약완료</option>
@@ -115,7 +87,6 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 	               <option value="D" <c:if test="${status == 'D'}">selected</c:if>>취소완료</option>
 	            </select>
 	            <select id="searchType" name="searchType" style="font-size: 1rem; width: 8rem; height: 3rem; margin-left:.5rem; ">
-	               <option value="">검색타입</option>
 	               <option value="1" <c:if test="${searchType == '1'}">selected</c:if>>회원아이디</option>
 	            </select>
 	            <input name="searchValue" id="searchValue" class="form-control me-sm-2" style="width:15rem; margin-left:.5rem;" type="text" value="${searchValue}">
@@ -128,6 +99,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 	            <thead style="border-bottom: 1px solid #c4c2c2;">
 	            <tr class="table-thead-main" style="background: #ddd;">
 	               <th scope="col" style="width:15%;">아이디</th>
+	               <th scope="col">예약번호</th>
 	               <th scope="col">상품</th>
 	               <th scope="col">가격</th>
 	               <th scope="col">상태</th>
@@ -140,16 +112,17 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 	            <c:forEach  var="payment" items="${list}" varStatus="status">
 	            <tr>
 	                <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;"><a href="/mng/MngUserUpdate?userId=${payment.userId}" name="userUpdate" id="userUpdate">${payment.userId}</a></th>
+	                <td>${payment.rezNo}</td>
 	                <td>
 	                <c:if test="${!empty payment.hCode}">H</c:if>
 	                <c:if test="${!empty payment.sCode}">S</c:if>
 	                <c:if test="${!empty payment.dNo }">D</c:if>
-	                <c:if test="${!empty payment.mCode}"></c:if>
+	                <c:if test="${!empty payment.mCode}">M</c:if>
 	                </td>
-	                <td>${payment.rezFullPrice}</td>
+	                <td><fmt:formatNumber type="number" maxFractionDigits="0" value="${payment.rezFullPrice}"/></td>
 	                <td><c:if test="${payment.rezStatus == 'Y'}">결제완료</c:if><c:if test="${payment.rezStatus == 'N'}">예약완료</c:if><c:if test="${payment.rezStatus == 'C'}">취소신청</c:if><c:if test="${payment.rezStatus == 'D'}">취소완료</c:if></td>
-	                <td><c:if test="${payment.rezStatus == 'C'}"><button onclick="">결제 취소</button></c:if></td>
-	            </tr>
+	                <td><c:if test="${payment.rezStatus == 'C'}"><a href="/mng/payMentList?rezNo=${payment.rezNo}" name="stsUpdate">결제 취소</a></c:if></td>
+	            </tr>		
 	            </c:forEach>
 	            </c:if>
 	            <c:if test="${empty list}">
@@ -159,41 +132,41 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 	            </c:if>
 	            </tbody>
 	         </table>
-	         <div class="paging-right" style="float:right;">
-	            <!-- 페이징 샘플 시작 -->
-				<c:if test="${!empty paging}">
-	               <!--  이전 블럭 시작 -->
-					<c:if test="${paging.prevBlockPage gt 0}"> <!-- 0보다 클때 -->
-	                  <a href="javascript:void(0)"  class="btn2 btn-primary" onclick="fn_paging(${paging.prevBlockPage})" title="이전 블럭">&laquo;</a>
-					</c:if>
-	               <!--  이전 블럭 종료 -->
-	               <span>
-	               <!-- 페이지 시작 -->
-				   <c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
-	               		<c:choose>
-	                        <c:when test="${i ne curPage}">
-	                        <a href="javascript:void(0)" class="btn2 btn-primary" onclick="fn_paging(${i})" style="font-size:14px;">${i}</a>
-							</c:when>
-							<c:otherwise>
-	                        <h class="btn2 btn-primary" style="font-size:14px; font-weight:bold;">${i}</h>
-				   			</c:otherwise>
-				   		</c:choose>
-				   </c:forEach>
-	               <!-- 페이지 종료 -->
-	               </span>
-	               <!--  다음 블럭 시작 -->
-	      		   <c:if test="${paging.nextBlockPage gt 0}">
-	                  <a href="javascript:void(0)" class="btn2 btn-primary" onclick="fn_paging(${paging.nextBlockPage})" title="다음 블럭">&raquo;</a>
-				   </c:if>
-	               <!--  다음 블럭 종료 -->
-				</c:if>
-	            <!-- 페이징 샘플 종료 -->
-	         </div>
-	      </div>
-	   </div>
+	         
+      <ul class="pagination justify-content-center">
+		<c:if test="${!empty paging}">
+			
+			<c:if test="${paging.prevBlockPage gt 0}">
+	        <!-- 이전 블럭이 있다는 뜻임, 이전 블럭 페이지가 0보다 크면. -->
+	         	<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${paging.prevBlockPage})">이전블럭</a></li>
+			</c:if>
+	   		
+	   		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+
+	   			<c:choose>
+	   				<c:when test="${i ne curPage}">
+	         			<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${i})">${i}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor: default;">${i}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+                  <!-- 페이지 종료 -->
+                  </span>
+                  <!--  다음 블럭 시작 -->
+                  <c:if test="${paging.nextBlockPage gt 0}">
+                     <a href="javascript:void(0)" class="btn2 btn-primary" onclick="fn_paging(${paging.nextBlockPage})" title="다음 블럭">&raquo;</a>
+               </c:if>
+                  <!--  다음 블럭 종료 -->
+            </c:if>
+               <!-- 페이징 샘플 종료 -->
+            </div>
+         </div>
+      </div>
    </div>
   </div>
 </div>
-
+	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
 </html>
