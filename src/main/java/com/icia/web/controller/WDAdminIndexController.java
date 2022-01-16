@@ -791,5 +791,81 @@ public class WDAdminIndexController
         return "/mng/nBoardList";
      }
 
+     
+     //공지사항 수정
+     @RequestMapping(value="/mng/nBoardUpdate")
+     public String nBoardUpdate(Model model,HttpServletRequest request, HttpServletResponse response)
+     {
+        //수정페이지에 필요한거 받아오기
+    	long bSeq = HttpUtil.get(request, "bSeq", (long)0);
+    	
+    	WDNBoard nBList = null;
+    	
+    	System.out.println("**************nSeq: " + bSeq);
+        
+        if(bSeq > 0)
+        {
+           nBList = wdNBoardService.nBoardSelect(bSeq);
+           
+           model.addAttribute("nBList", nBList);
+        }
+        
+        model.addAttribute("bSeq", bSeq);
+        model.addAttribute("nBList", nBList);
+        
+        return "/mng/nBoardUpdate";
+     }
+     
+     //공지사항수정
+        @RequestMapping(value="/mng/nBoardUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> nBoardUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           long bSeq = HttpUtil.get(request, "bSeq", (long)0);
+           String adminId = HttpUtil.get(request, "adminId", "");
+           String bTitle = HttpUtil.get(request, "bTitle", "");
+           String bContent = HttpUtil.get(request, "bContent", "");
+           
+           WDNBoard nBList = null;
+           
+           if(bSeq > 0 && !StringUtil.isEmpty(bTitle) && !StringUtil.isEmpty(bContent))
+           {
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   nBList = wdNBoardService.nBoardSelect(bSeq);
+        	   
+        	   if(nBList != null)
+        	   {
+        		   //새로운 정보 넣어주기
+        		   nBList.setbSeq(bSeq);
+        		   nBList.setbTitle(bTitle);
+        		   nBList.setbContent(bContent);
+        		   
+        		   if(wdNBoardService.nBoardUpdate(nBList) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+			}
+           
+           
+           
+           return res;
+        }
 
 }

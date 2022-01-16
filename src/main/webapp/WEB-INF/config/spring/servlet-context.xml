@@ -137,6 +137,10 @@
 		                
 		                <value>/mng/nBoardList</value>
 		                <value>/mng/eBoardList</value>
+		                
+		                <value>/mng/nBoardUpdate</value>
+		                <value>/mng/nBoardUpdateProc</value>
+		                <value>/mng/plusNBoard</value>
 
 
 

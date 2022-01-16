@@ -58,10 +58,10 @@ span {color: #efefef;}
 body.dark-theme { color: #222; background: #fff; } 
 body.dark-theme a { }
 body.dark-theme td,th {color: #333;}
-body.dark-theme .page-link
+/*body.dark-theme .page-link
 {
 	    background: #f5a4aa!important;
-}
+}*/
 
 </style>
 <script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>

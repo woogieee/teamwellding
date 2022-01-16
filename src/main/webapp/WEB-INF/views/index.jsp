@@ -220,7 +220,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="left-content">
-                        <iframe width="530" height="300" src="https://www.youtube.com/embed/kqUUPueWUxE?autoplay=1&amp;mute=1" title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <!--<iframe width="530" height="300" src="https://www.youtube.com/embed/kqUUPueWUxE?autoplay=1&amp;mute=1" title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                   		<div style="width:530px; height:300px; background:#000;"><video width="530" height="300" src="/resources/images/video/wedding.mp4" controls autoplay muted loop></video></div>
                     </div>
                 </div>
                 <div class="col-lg-6">
