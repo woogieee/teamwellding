@@ -29,7 +29,8 @@ $(document).ready(function(){
 			data:
 			{
 				dcCode: $("#dcCode").val(),
-				dNo: $("#dNo").val()
+				dNo: $("#dNo").val(),
+				wDate: $("#wDate").val()
 			},
 			datatype:"JSON",
 			beforeSend:function(xhr){
@@ -202,6 +203,7 @@ function fn_view(dNo)
 <form name="dressRez" id="dressRez" method="post">
 	<input type="hidden" name="dcCode" id="dcCode" value="${wdDress.dcCode }" />
 	<input type="hidden" name="dNo" id="dNo" value="${dNo}" />
+	<input type="hidden" name="wDate" id="wDate" value="${wDate}" />
 </form>
 
     

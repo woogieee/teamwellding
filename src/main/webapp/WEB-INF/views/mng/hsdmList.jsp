@@ -598,7 +598,7 @@ function classChange(id){
                   <form id="subscribe" action="" method="get">
                      <div class="row" style="width: 100%;">
                         <div class="col-lg-12">
-                              <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
+                              <button type="button" id="btnWrite" class="hsdm_btn">업체 추가</button>
                         </div>
                      </div>
                   </form>

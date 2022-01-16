@@ -35,6 +35,7 @@
                             <li class="adm_sub"><a class="adm_ss" href="/mng/userList">회원목록</a></li>
                             <li class="adm_sub"><a class="adm_ss" href="/mng/hsdmList">홀/스/드/메 관리</a></li>
                             <li class="adm_sub"><a class="adm_ss" href="/mng/payMentList">결제내역 관리</a></li>
+                            <li class="adm_sub"><a class="adm_ss" href="/mng/boardList">게시판 관리</a></li>
                         </ul>        
                         <!-- ***** Menu End ***** -->
                     </nav>
