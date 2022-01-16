@@ -137,9 +137,22 @@
 		                
 		                <value>/mng/nBoardList</value>
 		                <value>/mng/eBoardList</value>
+
 		                <value>/mng/boardList</value>
 
+		                
+		                <value>/mng/nBoardUpdate</value>
+		                <value>/mng/nBoardUpdateProc</value>
+		                <value>/mng/plusNBoard</value>
+		                <value>/mng/nBoardWrite</value>
+		                
+		                <value>/mng/nBoardDelete</value>
 
+
+						
+						
+						
+						<value>/board/fBoardFileTest</value>
 
             		</list>
             	</constructor-arg>
