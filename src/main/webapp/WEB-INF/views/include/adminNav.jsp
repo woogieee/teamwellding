@@ -37,6 +37,7 @@
                             <li class="adm_sub"><a class="adm_ss" href="/mng/nBoardList">공지사항 관리</a></li>
                             <li class="adm_sub"><a class="adm_ss" href="/mng/eBoardList">이벤트 관리</a></li>
                             <li class="adm_sub"><a class="adm_ss" href="/mng/payMentList">결제내역 관리</a></li>
+                            <li class="adm_sub"><a class="adm_ss" href="/mng/boardList">게시판 관리</a></li>
                         </ul>        
                         <!-- ***** Menu End ***** -->
                     </nav>

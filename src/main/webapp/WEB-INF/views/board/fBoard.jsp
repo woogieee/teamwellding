@@ -220,53 +220,54 @@ function fn_list(curPage)
                   </ul>
                </div>
 
-                  <div class="col-lg-12">
-                     <div>
-                        <form id="subscribe" action="" method="get">
-                           <div class="row">
-                              <div class="col-lg-12">
-                                 <button type="button" id="btnWrite" class="main-dark-button3">글쓰기</button>
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-                  </div>
-                  
-                  <div class="col-lg-12">
-                          <div class="pagination">
-                        <ul class="pagination justify-content-center" style="border-top: none;">
-                           <c:if test="${!empty paging}">
-                              <c:if test="${paging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>
-                              </c:if>
-                              <c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
-                                 <c:choose>
-                                    <c:when test="${i ne curPage}">
-                                       <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
-                                    </c:when>
-                                    <c:otherwise>
-                                       <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
-                                    </c:otherwise>
-                                 </c:choose>
-                              </c:forEach>
-                              <c:if test="${paging.nextBlockPage gt 0}">         
-                                 <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">다음</a></li>
-                              </c:if>       
-                           </c:if> 
-                        </ul>
-                          </div>
-                      </div>
-               </div>
-            </div>
-         </div>
-      </div>
-</div>      
-   <form name="bbsForm" id="bbsForm" method="post">
-      <input type="hidden" name="searchType" value="${searchType}" /> 
-      <input type="hidden" name="searchValue" value="${searchValue}" /> 
-      <input type="hidden" name="curPage" value="${curPage}" />
-      <input type="hidden" name="bSeq" value="" />
-   </form>
+						<div class="col-lg-12">
+							<div>
+								<form id="subscribe" action="" method="get">
+									<div class="row">
+										<div class="col-lg-12">
+											<button type="button" id="btnWrite" class="main-dark-button3">글쓰기</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						
+						<div class="col-lg-12">
+		                    <div class="pagination">
+								<ul class="pagination justify-content-center" style="border-top: none;">
+									<c:if test="${!empty paging}">
+										<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
+										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>
+										</c:if>
+										<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+											<c:choose>
+												<c:when test="${i ne curPage}">
+													<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+												</c:when>
+												<c:otherwise>
+													<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+										<c:if test="${paging.nextBlockPage gt 0}">         
+											<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">다음</a></li>
+										</c:if>       
+									</c:if> 
+								</ul>
+		                    </div>
+		                </div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>		
+	<form name="bbsForm" id="bbsForm" method="post">
+		<input type="hidden" name="searchType" value="${searchType}" /> 
+		<input type="hidden" name="searchValue" value="${searchValue}" /> 
+		<input type="hidden" name="curPage" value="${curPage}" />
+		<input type="hidden" name="bSeq" value="" />
+	</form>
+
 
 
    <%@ include file="/WEB-INF/views/include/footer.jsp"%>

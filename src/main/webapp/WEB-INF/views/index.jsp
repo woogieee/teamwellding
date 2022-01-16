@@ -37,13 +37,15 @@
 	   }
 	   
        $(document).ready(function(){
-    	   
+
        	var cookieData = document.cookie;
        	if(cookieData.indexOf("close=Yes") < 0)
        	{
 	            var option="width = 500, height = 540, top = 100, left = 200, location = no, menubar = no, scrollbars=no, left=70, top=110";
-	            window.open("/popUpRoad", "PopUP", option);        		
+	            window.open("/popUpRoad", "PopUP", option);
+
        	}
+
        });
 	</script>
 </head> 
@@ -210,7 +212,7 @@
         </div>
         </div>
     </div>
-
+      
     <!--의수수정중 끝-->
     
     <!-- 김동욱 수정 시작 + 보현수정 -->
