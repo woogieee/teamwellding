@@ -23,15 +23,19 @@ import com.icia.web.model.Response;
 import com.icia.web.model.WDAdmin;
 import com.icia.web.model.WDAdminUser;
 import com.icia.web.model.WDDress;
+import com.icia.web.model.WDEBoard;
 import com.icia.web.model.WDHall;
 import com.icia.web.model.WDMakeUp;
+import com.icia.web.model.WDNBoard;
 import com.icia.web.model.WDStudio;
 import com.icia.web.model.WDUser;
 import com.icia.web.service.WDAdminService;
 import com.icia.web.service.WDAdminUserService;
 import com.icia.web.service.WDDressService;
+import com.icia.web.service.WDEBoardService;
 import com.icia.web.service.WDHallService;
 import com.icia.web.service.WDMakeUpService;
+import com.icia.web.service.WDNBoardService;
 import com.icia.web.service.WDRezService;
 import com.icia.web.service.WDStudioService;
 import com.icia.web.util.CookieUtil;
@@ -63,6 +67,12 @@ public class WDAdminIndexController
     
     @Autowired
    private WDMakeUpService wdMakeUpService;
+    
+    @Autowired
+    private WDNBoardService wdNBoardService;
+    
+    @Autowired
+    private WDEBoardService wdEboardService;
     
    @Value("#{env['upload.save.dir']}")
    private String UPLOAD_SAVE_DIR;
@@ -761,5 +771,147 @@ public class WDAdminIndexController
         
         return ajaxResponse;
      }
+     
+     //공지사항 목록 불러오기
+     @RequestMapping(value="/mng/nBoardList")
+     public String nBoardList(Model model,HttpServletRequest request, HttpServletResponse response)
+     {
+        //리스트 페이징 처리를 위한 개수 체크 변수
+        long nBoardCount = 0;
+        
+        //리스트를 조회 할때 쓸 객체 선언 (검색기능도 이 객체에서 처리함)
+        WDNBoard wdNBoard = new WDNBoard();
+        
+        //정보가 담길 리스트 객체 선언
+        List<WDNBoard> nBList = null;
+        
+        //쿠키 조회
+         String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+        //닉네임 달거야
+         WDAdmin wdAdmin = wdAdminService.wdAdminSelect(cookieUserId);
+        //조회항목
+        String searchType = HttpUtil.get(request, "searchType", "");
+        //조회값
+        String searchValue = HttpUtil.get(request, "searchValue", "");
+        //현재 페이지
+        long curPage = HttpUtil.get(request, "curPage", (long)1);
+        
+        Paging paging = null;
+        
+        if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue))
+        {
+        	wdNBoard.setSearchType(searchType);
+        	wdNBoard.setSearchValue(searchValue);
+        }
+        else
+        {
+        	searchType = "";
+        	searchValue = "";
+        }
+        
+        //리스트 갯수체크
+        nBoardCount = wdNBoardService.nBoardListCount(wdNBoard);
+        logger.debug("nBoardCount : " + nBoardCount);
+        
+        if(nBoardCount > 0)
+        {
+        	paging = new Paging("/mng/nBoardList", nBoardCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage");
+        	paging.addParam("searchType", searchType);
+        	paging.addParam("searchValue", searchValue);
+        	paging.addParam("curPage", curPage);
+        	
+        	wdNBoard.setStartRow(paging.getStartRow());
+        	wdNBoard.setEndRow(paging.getEndRow());
+        	
+        	nBList = wdNBoardService.nBoardList(wdNBoard);
+        }
+        
+        
+        model.addAttribute("wdAdmin",wdAdmin);
+        model.addAttribute("nBList", nBList);
+        model.addAttribute("paging",paging);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("searchValue", searchValue);
+        model.addAttribute("curPage", curPage);      
+        
+        return "/mng/nBoardList";
+     }
+
+     
+     //공지사항 수정
+     @RequestMapping(value="/mng/nBoardUpdate")
+     public String nBoardUpdate(Model model,HttpServletRequest request, HttpServletResponse response)
+     {
+        //수정페이지에 필요한거 받아오기
+    	long bSeq = HttpUtil.get(request, "bSeq", (long)0);
+    	
+    	WDNBoard nBList = null;
+    	
+    	System.out.println("**************nSeq: " + bSeq);
+        
+        if(bSeq > 0)
+        {
+           nBList = wdNBoardService.nBoardSelect(bSeq);
+           
+           model.addAttribute("nBList", nBList);
+        }
+        
+        model.addAttribute("bSeq", bSeq);
+        model.addAttribute("nBList", nBList);
+        
+        return "/mng/nBoardUpdate";
+     }
+     
+     //공지사항수정
+        @RequestMapping(value="/mng/nBoardUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> nBoardUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           long bSeq = HttpUtil.get(request, "bSeq", (long)0);
+           String adminId = HttpUtil.get(request, "adminId", "");
+           String bTitle = HttpUtil.get(request, "bTitle", "");
+           String bContent = HttpUtil.get(request, "bContent", "");
+           
+           WDNBoard nBList = null;
+           
+           if(bSeq > 0 && !StringUtil.isEmpty(bTitle) && !StringUtil.isEmpty(bContent))
+           {
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   nBList = wdNBoardService.nBoardSelect(bSeq);
+        	   
+        	   if(nBList != null)
+        	   {
+        		   //새로운 정보 넣어주기
+        		   nBList.setbSeq(bSeq);
+        		   nBList.setbTitle(bTitle);
+        		   nBList.setbContent(bContent);
+        		   
+        		   if(wdNBoardService.nBoardUpdate(nBList) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+			}
+           
+           
+           
+           return res;
+        }
 
 }

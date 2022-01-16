@@ -204,5 +204,22 @@ public class WDHallService {
 		
 		return HCodeName;
 	}
+	
+	//예약 성공 시 해당 예약번호의 홀 REZCOUNT +1해주기
+	public int rezCountPlus(String rezNo) 
+	{
+		int count = 0;
+		
+		try 
+		{
+			count = wdHallDao.rezCountPlus(rezNo);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] rezCountPlus Exception", e);
+		}
+		
+		return count;
+	}
    	
 }

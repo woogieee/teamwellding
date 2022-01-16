@@ -37,13 +37,15 @@
 	   }
 	   
        $(document).ready(function(){
-    	   
+
        	var cookieData = document.cookie;
        	if(cookieData.indexOf("close=Yes") < 0)
        	{
 	            var option="width = 500, height = 540, top = 100, left = 200, location = no, menubar = no, scrollbars=no, left=70, top=110";
-	            window.open("/popUpRoad", "PopUP", option);        		
+	            window.open("/popUpRoad", "PopUP", option);
+
        	}
+
        });
 	</script>
 </head> 
@@ -83,7 +85,7 @@
 	                <div class="col-lg-4" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')">
 	                    <div class="event-item2">
 	                        <div class="thumb2">
-	                             <a href="javascript:void(0)" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')" ><img src="/resources/hsdm/${hallList.HImgName}" alt=""></a>	              
+	                             <a href="javascript:void(0)" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')" ><img src="/resources/images/hallrepimage/${hallList.HImgName}" alt=""></a>	              
 	                        </div>
 	                        <div class="down-content2">
 	                            <a href="event-details.html"><h4>${hallList.HName}</h4></a>
@@ -210,7 +212,7 @@
         </div>
         </div>
     </div>
-
+      
     <!--의수수정중 끝-->
     
     <!-- 김동욱 수정 시작 + 보현수정 -->
@@ -220,7 +222,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="left-content">
-                        <iframe width="530" height="300" src="https://www.youtube.com/embed/kqUUPueWUxE?autoplay=1&amp;mute=1" title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <!--<iframe width="530" height="300" src="https://www.youtube.com/embed/kqUUPueWUxE?autoplay=1&amp;mute=1" title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                   		<div style="width:530px; height:300px; background:#000;"><video width="530" height="300" src="/resources/images/video/wedding.mp4" controls autoplay muted loop></video></div>
                     </div>
                 </div>
                 <div class="col-lg-6">
