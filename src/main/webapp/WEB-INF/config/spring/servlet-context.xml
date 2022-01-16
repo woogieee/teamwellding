@@ -145,7 +145,10 @@
 		                
 		                <value>/mng/nBoardDelete</value>
 
-
+						
+						
+						
+						<value>/board/fBoardFileTest</value>
 
             		</list>
             	</constructor-arg>

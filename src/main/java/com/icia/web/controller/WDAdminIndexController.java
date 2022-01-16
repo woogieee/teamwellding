@@ -723,9 +723,55 @@ public class WDAdminIndexController
         return ajaxResponse;
      }
      
+     //관리자 메이크업
+     @RequestMapping(value="/mng/plusMakeup")
+     public String plusMakeup(Model model,HttpServletRequest request, HttpServletResponse response) 
+     {
+        return "/mng/plusMakeup";
+     }
      
-     
-     
+     @RequestMapping(value="/mng/makeupWrite")
+     @ResponseBody
+     public Response<Object> makeupWrite(HttpServletRequest request, HttpServletResponse response)
+     {
+        Response<Object> ajaxResponse = new Response<Object>();
+        
+        String makeupMax = wdMakeUpService.makeupMax();
+        makeupMax = makeupMax.replace("M", "");
+        int wdMakeupCodePlus = Integer.parseInt(makeupMax)+1;
+        makeupMax = "M"+wdMakeupCodePlus;
+        
+        String mkName = HttpUtil.get(request, "mkName", "");
+        String mkLocation = HttpUtil.get(request, "mkLocation", "");
+        String mkNumber = HttpUtil.get(request, "mkNumber", "");
+        String mkContent = HttpUtil.get(request,"mkContent", "");
+        
+        WDMakeUp wdmakeup = new WDMakeUp();
+        
+        wdmakeup.setmCode(makeupMax);
+        wdmakeup.setmName(mkName);
+        wdmakeup.setmLocation(mkLocation);
+        wdmakeup.setmNumber(mkNumber);
+        wdmakeup.setmContent(mkContent);
+        
+        if(!StringUtil.isEmpty(mkName) &&
+              !StringUtil.isEmpty(mkLocation) && !StringUtil.isEmpty(mkNumber) &&
+              !StringUtil.isEmpty(mkContent))
+        {
+           if(wdMakeUpService.makeupInsert(wdmakeup) > 0)
+           {
+              ajaxResponse.setResponse(0, "Success");
+           }
+           else {
+              ajaxResponse.setResponse(-1, "Error");
+           }
+        }
+        else {
+           ajaxResponse.setResponse(400, "Not Paremeter");
+        }
+        
+        return ajaxResponse;
+     }
      
      //공지사항 목록 불러오기
      @RequestMapping(value="/mng/nBoardList")
