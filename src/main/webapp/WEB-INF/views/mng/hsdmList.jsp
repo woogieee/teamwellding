@@ -264,7 +264,7 @@ function fn_pagingH(curPage)
    document.bbsFormH.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
    document.bbsFormH.action = "/mng/hsdmList";
    document.bbsFormH.submit();
->>>>>>> 86674b305f700b66a88ade9d0c8aadc0c5609188
+
 }
 function fn_pagingS(curPage)
 {

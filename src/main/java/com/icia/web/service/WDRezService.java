@@ -394,7 +394,7 @@ public class WDRezService {
 		}	
 	
 	
-	//결제 취소시 환불 요청 수락
+	//결제 취소시 포인트 환불
 	public int rezPointReturn(HashMap<String, Object> map) {
 	
 		int count = 0;

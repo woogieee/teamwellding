@@ -216,6 +216,11 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
    </div>
   </div>
 </div>
+
+		 <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">
+		 <input type="hidden" name="curPage" value="" />
+		 </form>
+
 	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
 </html>

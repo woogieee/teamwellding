@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/taglib.jsp" %>
-<%
-   // GNB 번호 (사용자관리)
-   request.setAttribute("_gnbNo", 1);
-%>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/views/include/head.jsp" %>
+<%@ include file="/WEB-INF/views/include/head2.jsp" %>
 <style>
 *, ::after, ::before {
    box-sizing: unset;
@@ -16,29 +12,85 @@
    border: 1px solid #c4c2c2;
    text-align: center;
 }
+
+.sel{
+   background: #f5a4aa;
+}
+.wookhall{
+   width: 120px;
+}
+
+/*다크모드관련*/
+.btn-toggle
+{
+	background: none;
+    position: absolute;
+    top: 28px;
+    left: 79%;
+    border: none;
+    outline: none;
+    color: #ccc;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+button:focus
+{
+	outline: none;
+}
+.btn-toggle:active
+{
+	outline: none!important;
+}
+/*다크모드 */
+body {  color: #efefef; background: #121212;} 
+a { color: #809fff; } 
+td,th {color: #eee;}
+span {color: #efefef;}
+p{color: #efefef;}
+.page-link
+{
+	background: #555!important;
+    border: none;
+}
+/* Dark Mode 아닐떄 */ 
+body.dark-theme { color: #222; background: #fff; } 
+body.dark-theme a { }
+body.dark-theme td,th {color: #333;}
+body.dark-theme .page-link.active
+{
+	    background: #f5a4aa!important;
+}
 </style>
 <script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>
 <script>
 
 $(document).ready(function(){
-      $(".userUpdate").colorbox({
-            iframe:true, 
-            innerWidth:1235,
-            innerHeight:500,
-            scrolling:false,
-            onComplete:function()
-            {
-               $("#colorbox").css("width", "1235px");
-               $("#colorbox").css("height", "500px");
-               $("#colorbox").css("border-radius", "10px");
-               
-               $('html').css("overflow","hidden");
-            } , 
-            onClosed: function()
+    $(".userUpdate").colorbox({
+          iframe:true, 
+          innerWidth:1235,
+          innerHeight:500,
+          scrolling:false,
+          onComplete:function()
+          {
+             $("#colorbox").css("width", "1235px");
+             $("#colorbox").css("height", "500px");
+             $("#colorbox").css("border-radius", "10px");
+             
+             $('html').css("overflow","hidden");
+          } , 
+          onClosed: function()
 	          {
 	            $('html').css("overflow","auto");
 	          }  
-      });
+    });
+    
+	    //다크모드
+	    const btn = document.querySelector('.btn-toggle');
+	    btn.addEventListener('click', function() {
+	    	document.body.classList.toggle('dark-theme'); 
+	    	});
+    
 });
 
 function fn_search()
@@ -64,7 +116,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 }
 </script>
 </head>
-<body id="school_list">
+<body id="school_list" class="light-theme || dark-theme"> 
 	
 	<jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
        <jsp:param name="userName" value="${wdAdmin.admName}" />
@@ -111,7 +163,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 	            <c:if test="${!empty list}">
 	            <c:forEach  var="payment" items="${list}" varStatus="status">
 	            <tr>
-	                <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;"><a href="/mng/MngUserUpdate?userId=${payment.userId}" name="userUpdate" id="userUpdate">${payment.userId}</a></th>
+	                <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;"><a href="/mng/MngUserUpdate?userId=${payment.userId}" name="userUpdate" class="userUpdate">${payment.userId}</a></th>
 	                <td>${payment.rezNo}</td>
 	                <td>
 	                <c:if test="${!empty payment.hCode}">H</c:if>
@@ -120,8 +172,8 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 	                <c:if test="${!empty payment.mCode}">M</c:if>
 	                </td>
 	                <td><fmt:formatNumber type="number" maxFractionDigits="0" value="${payment.rezFullPrice}"/></td>
-	                <td><c:if test="${payment.rezStatus == 'Y'}">결제완료</c:if><c:if test="${payment.rezStatus == 'N'}">예약완료</c:if><c:if test="${payment.rezStatus == 'C'}">취소신청</c:if><c:if test="${payment.rezStatus == 'D'}">취소완료</c:if></td>
-	                <td><c:if test="${payment.rezStatus == 'C'}"><a href="/mng/payMentList?rezNo=${payment.rezNo}" name="stsUpdate">결제 취소</a></c:if></td>
+	                <td><c:if test="${payment.rezStatus == 'Y'}">결제완료</c:if><c:if test="${payment.rezStatus == 'N'}">예약완료</c:if><c:if test="${payment.rezStatus == 'C'}">취소대기</c:if><c:if test="${payment.rezStatus == 'D'}">취소완료</c:if></td>
+	                <td><c:if test="${payment.rezStatus == 'C'}"><a href="/mng/payMentList?rezNo=${payment.rezNo}"><button>결제 취소</button></a></c:if></td>
 	            </tr>		
 	            </c:forEach>
 	            </c:if>
@@ -153,7 +205,6 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 				</c:choose>
 			</c:forEach>
                   <!-- 페이지 종료 -->
-                  </span>
                   <!--  다음 블럭 시작 -->
                   <c:if test="${paging.nextBlockPage gt 0}">
                      <a href="javascript:void(0)" class="btn2 btn-primary" onclick="fn_paging(${paging.nextBlockPage})" title="다음 블럭">&raquo;</a>
@@ -161,12 +212,12 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                   <!--  다음 블럭 종료 -->
             </c:if>
                <!-- 페이징 샘플 종료 -->
+               </ul>
             </div>
          </div>
       </div>
    </div>
   </div>
-</div>
 	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
 </html>

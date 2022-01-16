@@ -531,7 +531,7 @@ AND
 
 <!-- 환불요청시 (status C로 변경) 시작 -->
 
-
+<!-- 환불요청시 (status C로 변경) 끝 -->
 
 <!-- 관리자페이지에서 결제내역 리스트 조회 -->
 <select id="rezAdminSelect" parameterType="com.icia.web.model.WDRez" resultMap="WDRezDaoResultMap">
@@ -599,7 +599,7 @@ FROM
     				</if>
     			<if test='rezStatus != null and rezStatus != ""'>
                 AND
-                    REZ_STATUS = #{rezStatus}
+                    REZ_STATUS LIKE '%'|| #{rezStatus} || '%'
     				</if>	
                 ORDER BY
                     REZ_NO DESC))
@@ -616,9 +616,7 @@ UPDATE WD_REZ
 SET
     REZ_STATUS = 'D'
 WHERE
-    USER_ID = #{userId}
-AND
-   REZ_NO = #{rezNo}
+    REZ_NO = #{value}
 AND
     REZ_STATUS = 'C'
 </update>  
@@ -648,10 +646,7 @@ UPDATE
 SET
      U_POINT = U_POINT + REZ_FULL_PRICE
 </update>
-<!-- 결제 후 결제 취소시, 결제 금액을 회원 포인트로 환급 끝 -->
-
 <!-- 결제 포인트 환급 후 결제 금액 삭제 끝-->
-
 
 <!-- 결제 내역 번호 조회 -->
 <select id = "listSelect" parameterType="string" resultMap="WDRezDaoResultMap">

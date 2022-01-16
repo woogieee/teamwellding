@@ -321,7 +321,6 @@ public class WDRezController {
 		String searchValue = HttpUtil.get(request, "searchValue", "");
 		String rezNo = HttpUtil.get(request, "rezNo"); 
 		String rezStatus = HttpUtil.get(request, "rezStatus");
-		String userId = null;
 		long curPage = HttpUtil.get(request, "curPage", (long)1);
 		long totalCount = 0;
 		long count = 0;
@@ -352,6 +351,8 @@ public class WDRezController {
 		            
 		            //총 결제금액이 마이 포인트로 전환
 		            count = wdRezService.rezPointReturn(map);
+		            
+		            System.out.println("count : " + count);
 		            
 		            	//결제 취소 신청 상태일 경우
 						if(count > 0)
@@ -398,16 +399,20 @@ public class WDRezController {
 		if(totalCount > 0)
 		{
 			paging = new Paging("/mng/payMentList", totalCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage");
+			paging.addParam("rezStatus", rezStatus);
 			paging.addParam("searchType", searchType);
 			paging.addParam("searchValue", searchValue);
 			paging.addParam("curPage", curPage);
+			
+			System.out.println("======================================================================");
+			System.out.println("rezStatus : " + rezStatus);
+			System.out.println("======================================================================");
 			
 			wdRez.setStartRow(paging.getStartRow());
 			wdRez.setEndRow(paging.getEndRow());
 			
 			list = wdRezService.rezAdminSelect(wdRez);
 			
-			System.out.println("totalCount = " + totalCount);
 		}
 		
 		model.addAttribute("list", list);
