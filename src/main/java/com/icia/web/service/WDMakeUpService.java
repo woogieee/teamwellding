@@ -131,4 +131,36 @@ public class WDMakeUpService
    		return cnt;
    	}
 	
+    //메이크업 글쓰기
+    public int makeupInsert(WDMakeUp wdMakeUp)
+    {
+       int count = 0;
+       
+       try
+       {
+          count = wdMakeUpDao.makeupInsert(wdMakeUp);
+       }
+       catch(Exception e)
+       {
+          logger.error("[WDMakeUpService] makeupInsert Exception", e);
+       }
+       return count;
+    }
+    //메이크업 마지막 코드 불러오기
+    public String makeupMax()
+    {
+       String mCode = "";
+       
+       try
+       {
+          mCode = wdMakeUpDao.makeupMax();
+       }
+       catch(Exception e)
+       {
+          logger.error("[WDMakeUpService] makeupInsert Exception", e);
+       }
+       
+       return mCode;
+    }
+   	
 }

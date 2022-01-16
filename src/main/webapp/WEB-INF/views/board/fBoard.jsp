@@ -38,6 +38,16 @@ function fn_view(bSeq)
 	document.bbsForm.submit();
 }
 
+function fn_view2(bSeq)
+{
+	document.bbsForm.bSeq.value = bSeq;
+	//searchType, searchValue는 안가져가나요?
+	//조회 버튼을 안눌렀다면 굳이 가져갈 필요가 없음
+	//조회 버튼을 눌렀다면 히든 타입 bbsForm에는 이미 값이 들어가 있음
+	document.bbsForm.action = "/board/fBoardFileTest";
+	document.bbsForm.submit();
+}
+
 //페이지 이동에 대한 버튼 처리
 function fn_list(curPage)
 {
@@ -185,7 +195,7 @@ function fn_list(curPage)
 							</li>
 							<c:forEach var="fboard" items="${list}" varStatus="status">
 								<li id="divB2">
-									<div onclick="fn_view(${fboard.bSeq})">
+									<div onclick="fn_view2(${fboard.bSeq})">
 										<div class="row" id="minthover">
 											<div class="col-lg-1">
 												<div class="divB_tb2 tbstyle">
@@ -219,7 +229,6 @@ function fn_list(curPage)
 							</c:forEach>
 						</ul>
 					</div>
-
 						<div class="col-lg-12">
 							<div>
 								<form id="subscribe" action="" method="get">
@@ -231,7 +240,6 @@ function fn_list(curPage)
 								</form>
 							</div>
 						</div>
-						
 						<div class="col-lg-12">
 		                    <div class="pagination">
 								<ul class="pagination justify-content-center" style="border-top: none;">
@@ -261,11 +269,12 @@ function fn_list(curPage)
 			</div>
 		</div>
 </div>		
-	<form name="bbsForm" id="bbsForm" method="post">
-		<input type="hidden" name="searchType" value="${searchType}" /> 
-		<input type="hidden" name="searchValue" value="${searchValue}" /> 
-		<input type="hidden" name="curPage" value="${curPage}" />
-	</form>
+<form name="bbsForm" id="bbsForm" method="post">
+      <input type="hidden" name="searchType" value="${searchType}" /> 
+      <input type="hidden" name="searchValue" value="${searchValue}" /> 
+      <input type="hidden" name="curPage" value="${curPage}" />
+      <input type="hidden" name="bSeq" value="" />
+   </form>
 
 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>

@@ -135,7 +135,10 @@
 		                <value>/mng/plusStudio</value>
 		                <value>/mng/studioWrite</value>
 
-
+						
+						
+						
+						<value>/board/fBoardFileTest</value>
 
             		</list>
             	</constructor-arg>
