@@ -138,11 +138,15 @@
 
 		                <value>/mng/plusStudio</value>
 		                <value>/mng/studioWrite</value>
+		                <value>/mng/plusMakeup</value>
 		                
 		                <value>/mng/nBoardList</value>
 		                <value>/mng/eBoardList</value>
 
 		                <value>/mng/boardList</value>
+		                <value>/mng/mngFboardUpdate</value>
+		                <value>/mng/fDelete</value>
+		                <value>/board/fdownload</value>
 
 		                
 		                <value>/mng/nBoardUpdate</value>
@@ -151,12 +155,19 @@
 		                <value>/mng/nBoardWrite</value>
 		                
 		                <value>/mng/nBoardDelete</value>
+		                <value>/mng/mngFboardUpdate</value>
+		                <value>/mng/mngReviewUpdate</value>
+		                <value>/mng/reviewDelete</value>
 
 
-						
-						
-						
 						<value>/board/fBoardFileTest</value>
+						
+						<value>/mng/dressComUpdate</value>
+						<value>/mng/dressComUpdateProc</value>
+						<value>/mng/dressComDelete</value>
+						<value>/mng/dressUpdate</value>
+						<value>/mng/dressUpdateProc</value>
+						<value>/mng/dressDelete</value>
 
             		</list>
             	</constructor-arg>

@@ -1,5 +1,6 @@
 package com.icia.web.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +13,20 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.icia.common.util.FileUtil;
 import com.icia.common.util.StringUtil;
 import com.icia.web.model.Paging;
+import com.icia.web.model.Response;
 import com.icia.web.model.WDAdmin;
+import com.icia.web.model.WDBoardFile;
 import com.icia.web.model.WDFBoard;
 import com.icia.web.model.WDReview;
 import com.icia.web.service.WDAdminService;
+import com.icia.web.service.WDCommentService;
 import com.icia.web.service.WDFBoardService;
 import com.icia.web.service.WDReviewService;
 import com.icia.web.util.CookieUtil;
@@ -36,6 +44,9 @@ public class WDAdminFRBoardController {
    
    @Autowired
    private WDReviewService wdReviewService;
+
+   @Autowired
+   private WDCommentService wdCommentService;
    
    @Value("#{env['upload.save.dir']}")
    private String UPLOAD_SAVE_DIR;
@@ -78,7 +89,7 @@ public class WDAdminFRBoardController {
 	   
        
        long bSeq = HttpUtil.get(request, "bSeq", (long)0);
-       long rSeq = HttpUtil.get(request, "rSeq", (long)0);
+       long rSeq = HttpUtil.get(request, "RSeq", (long)0);
        
        Paging fPaging = null;
        Paging rPaging = null;
@@ -125,7 +136,7 @@ public class WDAdminFRBoardController {
     	   wdReview.setStartRow(rPaging.getStartRow());
     	   wdReview.setEndRow(rPaging.getEndRow());
     	   
-    	   fList = wdFBoardService.fBoardList(wdFBoard);
+    	   rList = wdReviewService.ReviewList(wdReview);
        }
        
        model.addAttribute("wdAdmin",wdAdmin);
@@ -161,4 +172,145 @@ public class WDAdminFRBoardController {
 	   return "/mng/mngFboardUpdate";
    }
    
+   @RequestMapping(value="/mng/mngReviewUpdate")
+   public String mngReviewUpdate(ModelMap model,HttpServletRequest request, HttpServletResponse response) 
+   {
+	   long RSeq = HttpUtil.get(request, "RSeq", (long)0);
+	   
+	   WDReview wdReview = null;
+	   
+	   if(RSeq>0) 
+	   {
+		   wdReview = wdReviewService.ReviewSelect(RSeq);
+		   
+		   if(wdReview != null) 
+		   {
+			   model.addAttribute("wdReview", wdReview);
+		   }
+	   }
+	   
+	   return "/mng/mngReviewUpdate";
+   }
+   
+   @RequestMapping(value="/mng/reviewDelete")
+   @ResponseBody
+   public Response<Object> reviewDelete(HttpServletRequest request, HttpServletResponse response)
+   {
+	   Response<Object> ajaxResponse = new Response<Object>();
+	   
+	   long RSeq = HttpUtil.get(request, "RSeq", (long)0);
+	   
+	   if(RSeq>0) {
+			try 
+			{
+				if(wdReviewService.reviewDelete(RSeq) > 0) 
+				{
+					ajaxResponse.setResponse(0, "Success");
+				}
+				else 
+				{
+					ajaxResponse.setResponse(-1, "Internal Server Error");
+				}
+			}
+			catch(Exception e) 
+			{
+				logger.error("[WDAdminFRBoardController] reviewDelete Exception", e);
+				ajaxResponse.setResponse(-1, "Internal Server Error");
+			}
+	   }
+	   else {
+		   ajaxResponse.setResponse(400, "Bad Parameter");
+	   }
+	   
+	   return ajaxResponse;
+   }
+	
+	//게시글 삭제
+   	@RequestMapping(value="/mng/fDelete", method=RequestMethod.POST)
+	@ResponseBody
+	public Response<Object> fdelete(HttpServletRequest request, HttpServletResponse response)
+	{
+		Response<Object> ajaxResponse = new Response<Object>();
+		
+		long bSeq = HttpUtil.get(request, "bSeq", (long)0);
+		
+		System.out.println("bSeq"+ bSeq);
+		
+		
+		if(bSeq > 0) 
+		{
+			WDFBoard wdFBoard = wdFBoardService.wdFBoardView(bSeq);
+			if(wdFBoard != null) 
+			{
+				
+					try 
+					{
+						if(wdFBoardService.fBoardDelete(bSeq) > 0) 
+						{
+							wdCommentService.commentBoardDelete(bSeq);
+							ajaxResponse.setResponse(0, "Success");
+						}
+						else 
+						{
+							ajaxResponse.setResponse(500, "Internal Server Error");
+						}
+					}
+					catch(Exception e) 
+					{
+						logger.error("[WDFBoardController] delete Exception", e);
+						ajaxResponse.setResponse(500, "Internal Server Error");
+					}
+
+			}
+			else 
+			{
+				ajaxResponse.setResponse(404, "Not Exist");				
+			}
+			
+		}
+		else 
+		{
+			ajaxResponse.setResponse(400, "Bad Request");
+		}
+		
+		return ajaxResponse;
+	}
+   	
+   	
+   	@RequestMapping("/board/fdownload")
+   	public ModelAndView fdownload(HttpServletRequest request, HttpServletResponse response) 
+   	{
+   		ModelAndView modelAndView = null;
+   		
+   		long bSeq = HttpUtil.get(request, "bSeq", (long)0);
+   		
+   		if(bSeq > 0) 
+   		{
+   			WDBoardFile wdBoardFile = wdFBoardService.fBoardFileSelect(bSeq);
+   			
+   			if(wdBoardFile != null && wdBoardFile.getFileSize() > 0) 
+   			{
+   				//파일이 존재하면
+   				File file = new File(UPLOAD_SAVE_DIR + FileUtil.getFileSeparator()+wdBoardFile.getFileName());
+   			
+   				logger.debug("UPLOAD_SAVE_DIR : "+UPLOAD_SAVE_DIR);
+   				logger.debug("FileUtil.getFileSeparator() : "+ FileUtil.getFileSeparator());
+				logger.debug("wdBoardFile.getFileName() : "+ wdBoardFile.getFileName());
+				
+				if(FileUtil.isFile(file)) 
+				{
+					modelAndView = new ModelAndView();
+					
+					modelAndView.setViewName("fileDownloadView");
+					
+					modelAndView.addObject("file", file);
+					modelAndView.addObject("fileName", wdBoardFile.getFileOrgName());
+				
+					return modelAndView;
+				}
+   			}
+   		}
+   		return modelAndView;
+   	}
+
 }
