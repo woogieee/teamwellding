@@ -255,4 +255,91 @@ public class WDDressService
 		
 		return dNoName;
 	}
+	
+	//드레스 업체만!! 조회
+	public WDDress onlyDressComSelect(String dcCode)
+	{
+		WDDress wdDress = null;
+		
+		try
+		{
+			wdDress = wdDressDao.onlyDressComSelect(dcCode);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] onlyDressComSelect Exception", e);
+		}
+		
+		return wdDress;
+	}
+	
+	//드레스 업체 삭제
+	public int onlyDressComDelete(String dcCode)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdDressDao.onlyDressComDelete(dcCode);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] onlyDressComDelete Exception", e);
+		}
+		
+		return count;
+	}
+	
+	//드레스삭제
+	public int onlyDressDelete(WDDress wdDress)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdDressDao.onlyDressDelete(wdDress);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] onlyDressDelete Exception", e);
+		}
+		
+		return count;
+	}
+	
+	
+	//드레스 업체 수정
+	public int dressComUpdate(WDDress wdDress)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdDressDao.dressComUpdate(wdDress);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] dressComUpdate Exception", e);
+		}
+		
+		return count;
+	}
+	
+	//드레스 업체 수정
+	public int dressUpdate(WDDress wdDress)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdDressDao.dressUpdate(wdDress);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] dressUpdate Exception", e);
+		}
+		
+		return count;
+	}
+	
 }
