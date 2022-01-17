@@ -35,8 +35,9 @@ import com.icia.web.util.HttpUtil;
 
 @Controller("wdRezController")
 public class WDRezController {
-	
-	private static Logger logger = LoggerFactory.getLogger(WDRezController.class);
+   
+   private static Logger logger = LoggerFactory.getLogger(WDRezController.class);
+
 
 		//쿠키명
 		@Value("#{env['auth.cookie.name']}")
@@ -427,3 +428,5 @@ public class WDRezController {
 	}
 	
 }
+
+

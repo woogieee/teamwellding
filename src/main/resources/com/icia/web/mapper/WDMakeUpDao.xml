@@ -231,4 +231,42 @@ WHERE
     M_CODE = #{value}
 </select>
 <!-- 메이크업 상세보기 끝 -->
+
+<!-- 메이크업 글쓰기 시작-->
+<insert id="makeupInsert" parameterType="com.icia.web.model.WDMakeUp" >
+ INSERT INTO WD_MAKEUP (
+    M_CODE,
+    M_NAME,
+    M_LOCATION,
+    M_NUMBER,
+    M_IMGNAME,
+    M_PRICE,
+    M_CONTENT,
+    M_PLUS,
+    M_DISCOUNT
+) VALUES (
+    #{mCode},
+    #{mName},
+    #{mLocation},
+    #{mNumber},
+    #{mImgName},
+    #{mPrice},
+    #{mContent},
+    #{mPlus},
+    #{mDiscount}
+)
+</insert>
+<!-- 메이크업 글쓰기 끝-->
+
+<!-- 업체코드 MAX 시작-->
+<select id="makeupMax" parameterType="String">
+   SELECT
+    MAX(M_CODE)
+FROM
+    WD_MAKEUP
+</select>
+
+
+<!-- 업체코드 MAX 끝-->
+
 </mapper>

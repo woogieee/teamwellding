@@ -23,4 +23,11 @@ public interface WDMakeUpDao
 	
 	//메이크업 상세보기페이지
 	public WDMakeUp makeupSelect(String mCode);
+	
+	//메이크업 글쓰기
+	   public int makeupInsert(WDMakeUp wdMakeUp);
+	   
+   //메이크업 m코드 불러오기
+   public String makeupMax();
+	
 }
