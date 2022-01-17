@@ -134,6 +134,7 @@
 
 		                <value>/mng/plusStudio</value>
 		                <value>/mng/studioWrite</value>
+		                <value>/mng/plusMakeup</value>
 		                
 		                <value>/mng/nBoardList</value>
 		                <value>/mng/eBoardList</value>
@@ -148,12 +149,14 @@
 		                <value>/mng/nBoardWrite</value>
 		                
 		                <value>/mng/nBoardDelete</value>
+		                <value>/mng/mngFboardUpdate</value>
 
 
 						
 						
 						
 						<value>/board/fBoardFileTest</value>
+						
 
             		</list>
             	</constructor-arg>
