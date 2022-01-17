@@ -202,7 +202,7 @@ function fn_userUpdate()
                   </td>
                </tr>
                <tr>
-                   <th scope="row">메이크업 번호</th>
+                   <th scope="row">메이크업 전화번호</th>
                   <td>
                      <input type="text" style="background-color: #fff;" id="makeupnumber" name="makeupnumber" placeholder="메이크업 번호를 입력해주세요"/>
                   </td>
@@ -210,9 +210,10 @@ function fn_userUpdate()
                 <tr>
                    <th scope="row">대표 이미지</th>
                   <td>
-                     <input type="file" style="background-color: #fff;" id="makeupimgname" name="makeupimgname" placeholder="메이크업 번호를 입력해주세요"/>
+                     <input type="file" style="background-color: #fff;" id="makeupimgname" name="makeupimgname" />
                   </td>
                </tr>
+               
                 <tr>
                    <th scope="row">금액</th>
                   <td>

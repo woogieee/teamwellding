@@ -19,9 +19,11 @@ table th, td{
   height: 3rem;
   padding-left: .5rem;
   padding-right: 1rem;
+  
 }
 table th{
   background-color: #e0e4fe;
+ 
  
 }
 input[type=text], input[type=password]{
@@ -110,11 +112,10 @@ function fn_userUpdate()
 	      return;
 	   }   
 	   var formData = {
-		   
+		   mCode : $("#mCode").val(),
 			mName: $("#makeupName").val(),
 			mLocation: $("#makeupLocation").val(),
 			mNumber: $("#makeupnumber").val(),
-			mImgName :$("#makeupimgname").val(),
 			mPrice : $("#makeupprice").val(),
 			mContent: $("#makeupContent").val(),
 			mPlus : $("#makeupPlus").val(),
@@ -125,16 +126,7 @@ function fn_userUpdate()
    //ajax통신
    icia.ajax.post({
       url: "/mng/makeupupdateProc",
-      data: {
-			mName: $("#makeupName").val(),
-			mLocation: $("#makeupLocation").val(),
-			mNumber: $("#makeupnumber").val(),
-			mImgName :$("#makeupimgname").val(),
-			mPrice : $("#makeupprice").val(),
-			mContent: $("#makeupContent").val(),
-			mPlus : $("#makeupPlus").val(),
-		    mDiscount : $("#makeupdiscount").val()
-       },
+      data: formData,
       success: function(res)
       {
          icia.common.log(res);
@@ -170,7 +162,56 @@ function fn_userUpdate()
    });
    
 }
-
+function makeupComDelete()
+{
+	if(confirm("정말 삭제하시겠습니까?") == true)
+	{
+		$.ajax({
+			type: "POST",
+			url: "/mng/makeupComDelete",
+			data:{
+				mCode: $("#mCode").val()
+			},
+			datatype: "JSON",
+			beforeSend: function(xhr)
+			{
+				xhr.setRequestHeader("AJAX", "true");
+			},
+			success: function(res)
+			{
+				icia.common.log(res);
+				
+				if(res.code == 0)
+				{
+					alert("업체가 삭제되었습니다.");
+					fn_colorbox_close(parent.fn_pageInit);
+				}
+				else if(res.code == 400)
+				{
+					alert("파라미터값이 올바지않습르니다.");
+				}
+				else if(res.code == 404)
+				{
+					alert("업체를 찾을 수 없습니다.");
+					fn_colorbox_close();
+				}
+				else
+				{
+					alert("업체 삭제 중 오류가 발생했습니다.");
+					fn_colorbox_close();
+				}
+			},
+			complete: function(data)
+			{
+				icia.common.log(data);
+			},
+			error: function(xhr, status, error)
+			{
+				icia.common.error(error);
+			}
+		});
+	}
+}
 </script>
 </head>
 <body>
@@ -183,7 +224,7 @@ function fn_userUpdate()
       <form name="regForm" id="regForm" method="post">
          <table>
             <tbody>
-
+				<input type="hidden" id="mCode" name="mCode" value="${wdmakeup.mCode}" />
                <tr>
                   <th scope="row">메이크업 이름</th>
                   <td>
@@ -198,7 +239,7 @@ function fn_userUpdate()
                   </td>
                </tr>
                <tr>
-                   <th scope="row">메이크업 번호</th>
+                   <th scope="row">메이크업 전화번호</th>
                   <td>
                      <input type="text" style="background-color: #fff;" id="makeupnumber" name="makeupnumber" value="${wdmakeup.mNumber}"/>
                   </td>
@@ -239,6 +280,7 @@ function fn_userUpdate()
       </form>
       <div class="pop-btn-area" style="float: right;">
          <button onclick="fn_userUpdate()" class="btn-type01"><span>수정</span></button>
+         <button onclick="makeupComDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
       </div>
    </div>

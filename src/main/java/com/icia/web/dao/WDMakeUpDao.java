@@ -32,5 +32,12 @@ public interface WDMakeUpDao
    
    //메이크업 수정
    public int makeupUpdate(WDMakeUp wdMakeUp);
+   
+ //메이크업 업체 조회
+ 	public WDMakeUp onlyMakeupComSelect(String mCode);
+ 	
+ 	//메이크업 업체 삭제
+ 	public int onlyMakeupComDelete(String mCode);
+
 	
 }

@@ -168,6 +168,9 @@
 						<value>/mng/dressUpdate</value>
 						<value>/mng/dressUpdateProc</value>
 						<value>/mng/dressDelete</value>
+						
+						<value>/mng/makeupupdateProc</value>
+						<value>/mng/makeupComDelete</value>
 
             		</list>
             	</constructor-arg>
