@@ -110,6 +110,56 @@ public class WDCommentService {
 		
 		return count;
 		
+	}	
+	
+	//댓글 전부 불러오기 시작
+	public List<WDComment> commentTotalSelect()
+	{
+		List<WDComment> list = null;
+		
+		try 
+		{
+			list = wdCommentDao.commentTotalSelect();
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCommentService] commentTotalSelect Exception", e);
+		}
+		
+		return list;
+	}
+	
+	//댓글 총 수 가져오기 시작
+	public int commentTotalCnt() 
+	{
+		int count = 0;
+		
+		try 
+		{
+			count = wdCommentDao.commentTotalCnt();
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCommentService] commentTotalCnt Exception", e);
+		}
+		
+		return count;
 	}
 
+	//관리자 페이지에서 댓글 삭제 시작
+	public int commentDelAdm(WDComment wdComment) 
+	{
+		int cnt = 0;
+		
+		try 
+		{
+			cnt = wdCommentDao.commentDelAdm(wdComment);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCommentService] commentDelAdm Exception", e);
+		}
+		
+		return cnt;
+	}
 }
