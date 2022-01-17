@@ -48,36 +48,29 @@ button:active {
 <script type="text/javascript" src="../resources/js/colorBox.js"></script>
 <script>
 $(document).ready(function(){
-	$("#dcName").focus();
+	$("#dName").focus();
 });
 
 function dressUpdate()
 {
 	if(icia.common.isEmpty($("#dcName").val()))
 	{
-		alert("업체 이름을 입력해주세요");
+		alert("드레스 업체명을 입력해주세요");
 		$("#dcName").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#dcLocation").val()))
+	if(icia.common.isEmpty($("#dName").val()))
 	{
-		alert("업체주소를 입력해주세요");
-		$("#dcLocation").focus();
+		alert("드레스명을 입력해주세요");
+		$("#dName").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#dcNumber").val()))
+	if(icia.common.isEmpty($("#dContent").val()))
 	{
-		alert("업체 전화번호를 입력해주세요");
-		$("#dcNumber").focus();
-		return;
-	}
-	
-	if(icia.common.isEmpty($("#dcContent").val()))
-	{
-		alert("업체 설명을 입력해주세요.");
-		$("#dcContent").focus();
+		alert("드레스 설명을 입력해주세요.");
+		$("#dContent").focus();
 		return;
 	}
 	
@@ -89,37 +82,44 @@ function dressUpdate()
 	}
 	
 	var formData = {
+			dcCode: $("#dcCode").val(),
+			dNo: $("#dNo").val(),
 			dcName: $("#dcName").val(),
 			dName: $("#dName").val(),
-			dcLocation: $("#dImgname").val(),
-			dcContent: $("#dContent").val()
+			//dcLocation: $("#dImgname").val(),
+			dContent: $("#dContent").val(),
+			dPrice: $("#dPrice").val()
 	};
 	
 	//ajax통신
 	icia.ajax.post({
-		url: "/mng/dressComUpdateProc",
+		url: "/mng/dressUpdateProc",
 		data: formData,
+		beforeSend: function(xhr)
+		{
+			xhr.setRequestHeader("AJAX", "true");
+		},
 		success: function(res)
 		{
 			icia.common.log(res);
 			
 			if(res.code == 0)
 			{
-				alert("업체수정이 완료되었습니다.");
+				alert("드레스 정보가 수정되었습니다.");
 				fn_colorbox_close(parent.fn_pageInit);
-			}
-			else if(res.code == -1)
-			{
-				alert("업체 수정 중 오류가 발생하였숩니다.");
 			}
 			else if(res.code == 400)
 			{
-				alert("파라미터 값이 잘못되었습니다.");
+				alert("파라미터값이 올바지않습르니다.");
 			}
 			else if(res.code == 404)
 			{
-				alert("오류가 발생하였습니다.");
-				///칼라박스 내용이 잘못됬다는거니까 칼라박스를 닫게하자
+				alert("드레스 정보를 찾을 수 없습니다.");
+				fn_colorbox_close();
+			}
+			else
+			{
+				alert("드레스 정보 수정 중 오류가 발생했습니다.");
 				fn_colorbox_close();
 			}
 		},
@@ -132,7 +132,6 @@ function dressUpdate()
 			icia.common.error(error);
 		}
 	});
-	
 }
 
 function dressDelete()
@@ -225,11 +224,17 @@ function dressDelete()
 		                  </td>
 		               </tr>
 		               <tr>
+		                  <th scope="row">드레스 가격</th>
+		                  <td>
+		                     <input type="text" style="background-color: #fff;" id="dPrice" name="dPrice" value="${dList.dPrice}" />
+		                  </td>
+		               </tr>
+		               <!--tr>
 		                  <th scope="row">드레스 대표 이미지</th>
 		                  <td>
 		                  	<input type="file" style="background-color: #fff;" id="dressimgname" name="dressimgname" value="${dList.dImgname}" />
 		                  </td>
-		               </tr>
+		               </tr-->
 		               <tr>
 		                  <th scope="row">드레스 설명</th>
 		                  <td style="padding: 15px 15px 15px 9px;">
@@ -244,7 +249,7 @@ function dressDelete()
 				<tr style="border:none;">
 					<td style="border:none;">
 					      <div class="pop-btn-area" style="display: block; float: right;">
-					         <!--button onclick="dressUpdate()" class="btn-type01"><span>수정</span></button-->
+					         <button onclick="dressUpdate()" class="btn-type01"><span>수정</span></button>
 					         <button onclick="dressDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
 					         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
 					      </div>
