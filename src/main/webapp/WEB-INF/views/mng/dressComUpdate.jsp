@@ -89,9 +89,11 @@ function dressComUpdate()
 	}
 	
 	var formData = {
+			dcCode: $("#dcCode").val(),
 			dcName: $("#dcName").val(),
 			dcLocation: $("#dcLocation").val(),
 			dcNumber: $("#dcNumber").val(),
+			//dcImgname : $("#dcImgname").val(),
 			dcContent: $("#dcContent").val()
 	};
 	
@@ -99,27 +101,31 @@ function dressComUpdate()
 	icia.ajax.post({
 		url: "/mng/dressComUpdateProc",
 		data: formData,
+		beforeSend: function(xhr)
+		{
+			xhr.setRequestHeader("AJAX", "true");
+		},
 		success: function(res)
 		{
 			icia.common.log(res);
 			
 			if(res.code == 0)
 			{
-				alert("업체수정이 완료되었습니다.");
+				alert("업체가 수정되었습니다.");
 				fn_colorbox_close(parent.fn_pageInit);
-			}
-			else if(res.code == -1)
-			{
-				alert("업체 수정 중 오류가 발생하였숩니다.");
 			}
 			else if(res.code == 400)
 			{
-				alert("파라미터 값이 잘못되었습니다.");
+				alert("파라미터값이 올바지않습르니다.");
 			}
 			else if(res.code == 404)
 			{
-				alert("오류가 발생하였습니다.");
-				///칼라박스 내용이 잘못됬다는거니까 칼라박스를 닫게하자
+				alert("업체를 찾을 수 없습니다.");
+				fn_colorbox_close();
+			}
+			else
+			{
+				alert("업체 수정 중 오류가 발생했습니다.");
 				fn_colorbox_close();
 			}
 		},
@@ -236,7 +242,7 @@ function dressComDelete()
 				<tr style="border:none;">
 					<td style="border:none;">
 					      <div class="pop-btn-area" style="display: block; float: right;">
-					         <!--button onclick="dressComUpdate()" class="btn-type01"><span>수정</span></button-->
+					         <button onclick="dressComUpdate()" class="btn-type01"><span>수정</span></button>
 					         <button onclick="dressComDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
 					         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
 					      </div>

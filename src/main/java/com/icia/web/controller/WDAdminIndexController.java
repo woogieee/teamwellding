@@ -1289,4 +1289,142 @@ public class WDAdminIndexController
         	return ajaxResponse;
         }
 
+        //드레스업체 수정하기
+        @RequestMapping(value="/mng/dressComUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> dressComUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           String dcCode = HttpUtil.get(request, "dcCode", "");
+           String dcName = HttpUtil.get(request, "dcName", "");
+           String dcLocation = HttpUtil.get(request, "dcLocation", "");
+           String dcNumber = HttpUtil.get(request, "dcNumber", "");
+           String dcContent = HttpUtil.get(request, "dcContent", "");
+           //String dcImgname = HttpUtil.get(request, "dcImgname", "");
+           
+           WDDress dList = new WDDress();
+           
+           System.out.println("혹시여긴오나몰라11111");
+           
+           if(!StringUtil.isEmpty(dcCode) && !StringUtil.isEmpty(dcName) && !StringUtil.isEmpty(dcLocation) &&
+        		   !StringUtil.isEmpty(dcNumber) && !StringUtil.isEmpty(dcContent))
+           {
+        	   System.out.println("혹시여긴오나몰라222222");
+        	   
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   dList = wdDressService.onlyDressComSelect(dcCode);
+        	   
+        	   if(dList != null)
+        	   {
+        		   System.out.println("혹시여긴오나몰라33333");
+        		   
+        		   //새로운 정보 넣어주기
+        		   dList.setDcCode(dcCode);
+        		   dList.setDcName(dcName);
+        		   dList.setDcLocation(dcLocation);
+        		   dList.setDcNumber(dcNumber);
+        		   dList.setDcContent(dcContent);
+        		   //dList.setDcContent(dcImgname);
+        		   
+        		   if(wdDressService.dressComUpdate(dList) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        			   System.out.println("혹시여긴오나몰라4444");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        			   System.out.println("혹시여긴오나몰라55555");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        		   System.out.println("혹시여긴오나몰라6666");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+        	   System.out.println("혹시여긴오나몰라777777");
+			}
+           
+           
+           return res;
+        }
+        
+        //드레스 수정하기
+        @RequestMapping(value="/mng/dressUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> dressUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           String dcCode = HttpUtil.get(request, "dcCode", "");
+           String dNo = HttpUtil.get(request, "dNo", "");
+           String dcName = HttpUtil.get(request, "dcName", "");
+           String dName = HttpUtil.get(request, "dName", "");
+           String dContent = HttpUtil.get(request, "dContent", "");
+           long dPrice = HttpUtil.get(request, "dPrice", (long)0);
+           //String dImgname = HttpUtil.get(request, "dImgname", "");
+           
+           WDDress dList = new WDDress();
+           
+           System.out.println("혹시여긴오나몰라11111");
+           
+           if(!StringUtil.isEmpty(dcCode) && !StringUtil.isEmpty(dNo) && !StringUtil.isEmpty(dcName) &&
+        		   !StringUtil.isEmpty(dName) && !StringUtil.isEmpty(dContent))
+           {
+        	   System.out.println("혹시여긴오나몰라222222");
+        	   
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   dList = wdDressService.dressSelect(dNo);
+        	   
+        	   if(dList != null)
+        	   {
+        		   System.out.println("여긴타니여긴타니여긴타니??");
+        		   
+        		   //새로운 정보 넣어주기
+        		   dList.setDcCode(dcCode);
+        		   dList.setdNo(dNo);
+        		   dList.setDcName(dcName);
+        		   dList.setdName(dName);
+        		   dList.setdContent(dContent);
+        		   dList.setdPrice(dPrice);
+        		   //dList.setDsContent(dImgname);
+        		   
+        		   System.out.println("==========이거 값은 얼마냐??==="+dList.getdName());
+        		   
+        		   if(wdDressService.dressUpdate(dList) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        			   System.out.println("혹시여긴오나몰라44*******************44d와주겠니");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        			   System.out.println("혹시여긴오나몰라55555");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        		   System.out.println("혹시여긴오나몰라6666");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+        	   System.out.println("혹시여긴오나몰라777777");
+			}
+           
+           
+           return res;
+        }
+        
 }
