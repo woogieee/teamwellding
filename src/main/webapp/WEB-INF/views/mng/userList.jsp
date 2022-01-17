@@ -97,7 +97,7 @@ $(document).ready(function(){
 
 function fn_search()
 {
-   document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
+   document.searchForm.curPage.value = 1; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
    document.searchForm.action = "/mng/userList";
    document.searchForm.submit();
 }
@@ -158,11 +158,12 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
             <table class="table table-hover" style="border:1px solid #c4c2c2;">
                <thead style="border-bottom: 1px solid #c4c2c2;">
                <tr class="table-thead-main" style="background: #ddd;">
-                  <th scope="col" style="width:15%;">아이디</th>
-                  <th scope="col">이름</th>
-                  <th scope="col">이메일</th>
-                  <th scope="col">상태</th>
-                  <th scope="col">등록일</th>
+                  <th scope="col" style="width:13%;">아이디</th>
+                  <th scope="col" style="width:15%;">이름</th>
+                  <th scope="col" style="width:25%;">닉네임</th>
+                  <th scope="col" style="width:30%;">이메일</th>
+                  <th scope="col" style="width:7%;">상태</th>
+                  <th scope="col" style="width:10%;">등록일</th>
                </tr>
                </thead>
                <tbody>
@@ -173,6 +174,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                    	<a href="/mng/MngUserUpdate?userId=${user.userId}" name="userUpdate" class="userUpdate">${user.userId}</a>
                    </th>
                    <td>${user.userName}</td>
+                   <td>${user.userNickname}</td>
                    <td>${user.userEmail}</td>
                    <td><c:if test="${user.status == 'Y'}">정상</c:if><c:if test="${user.status == 'N'}">정지</c:if></td>
                    <td>${user.regDate}</td>
@@ -217,9 +219,6 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
   </div>
 </div>
 
-		 <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">
-		 <input type="hidden" name="curPage" value="" />
-		 </form>
 
 	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
