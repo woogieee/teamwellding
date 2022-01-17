@@ -89,7 +89,7 @@ public class WDAdminFRBoardController {
 	   
        
        long bSeq = HttpUtil.get(request, "bSeq", (long)0);
-       long rSeq = HttpUtil.get(request, "rSeq", (long)0);
+       long rSeq = HttpUtil.get(request, "RSeq", (long)0);
        
        Paging fPaging = null;
        Paging rPaging = null;
@@ -136,7 +136,7 @@ public class WDAdminFRBoardController {
     	   wdReview.setStartRow(rPaging.getStartRow());
     	   wdReview.setEndRow(rPaging.getEndRow());
     	   
-    	   fList = wdFBoardService.fBoardList(wdFBoard);
+    	   rList = wdReviewService.ReviewList(wdReview);
        }
        
        model.addAttribute("wdAdmin",wdAdmin);
@@ -172,9 +172,58 @@ public class WDAdminFRBoardController {
 	   return "/mng/mngFboardUpdate";
    }
    
+   @RequestMapping(value="/mng/mngReviewUpdate")
+   public String mngReviewUpdate(ModelMap model,HttpServletRequest request, HttpServletResponse response) 
+   {
+	   long RSeq = HttpUtil.get(request, "RSeq", (long)0);
+	   
+	   WDReview wdReview = null;
+	   
+	   if(RSeq>0) 
+	   {
+		   wdReview = wdReviewService.ReviewSelect(RSeq);
+		   
+		   if(wdReview != null) 
+		   {
+			   model.addAttribute("wdReview", wdReview);
+		   }
+	   }
+	   
+	   return "/mng/mngReviewUpdate";
+   }
    
-   
-	
+   @RequestMapping(value="/mng/reviewDelete")
+   @ResponseBody
+   public Response<Object> reviewDelete(HttpServletRequest request, HttpServletResponse response)
+   {
+	   Response<Object> ajaxResponse = new Response<Object>();
+	   
+	   long RSeq = HttpUtil.get(request, "RSeq", (long)0);
+	   
+	   if(RSeq>0) {
+			try 
+			{
+				if(wdReviewService.reviewDelete(RSeq) > 0) 
+				{
+					ajaxResponse.setResponse(0, "Success");
+				}
+				else 
+				{
+					ajaxResponse.setResponse(-1, "Internal Server Error");
+				}
+			}
+			catch(Exception e) 
+			{
+				logger.error("[WDAdminFRBoardController] reviewDelete Exception", e);
+				ajaxResponse.setResponse(-1, "Internal Server Error");
+			}
+	   }
+	   else {
+		   ajaxResponse.setResponse(400, "Bad Parameter");
+	   }
+	   
+	   return ajaxResponse;
+   }
 	
 	//게시글 삭제
    	@RequestMapping(value="/mng/fDelete", method=RequestMethod.POST)
@@ -263,4 +312,5 @@ public class WDAdminFRBoardController {
    		}
    		return modelAndView;
    	}
+
 }

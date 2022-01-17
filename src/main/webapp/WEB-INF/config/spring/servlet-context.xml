@@ -152,6 +152,8 @@
 		                
 		                <value>/mng/nBoardDelete</value>
 		                <value>/mng/mngFboardUpdate</value>
+		                <value>/mng/mngReviewUpdate</value>
+		                <value>/mng/reviewDelete</value>
 
 
 						<value>/board/fBoardFileTest</value>
