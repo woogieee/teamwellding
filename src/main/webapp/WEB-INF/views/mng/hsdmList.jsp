@@ -265,6 +265,7 @@ function fn_pagingH(curPage)
    document.bbsFormH.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
    document.bbsFormH.action = "/mng/hsdmList";
    document.bbsFormH.submit();
+
 }
 function fn_pagingS(curPage)
 {
@@ -670,7 +671,9 @@ function classChange(id){
       </div>
    </div>
       <!-- 메이크업 끝 -->
-
+	  <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">       
+		<input type="hidden" name="curPage" value="" />
+      </form>
   </div>
 </div>
 
