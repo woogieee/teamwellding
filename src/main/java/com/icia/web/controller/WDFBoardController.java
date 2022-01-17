@@ -606,7 +606,6 @@ public class WDFBoardController
 			else 
 			{
 				ajaxResponse.setResponse(404, "Bad Request");
-
 			}
 			
 			return ajaxResponse;

@@ -25,7 +25,7 @@
 /*다크모드관련*/
 .btn-toggle
 {
-	background: none;
+   background: none;
     position: absolute;
     top: 28px;
     left: 79%;
@@ -38,11 +38,11 @@
 
 button:focus
 {
-	outline: none;
+   outline: none;
 }
 .btn-toggle:active
 {
-	outline: none!important;
+   outline: none!important;
 }
 /*다크모드 */
 body {  color: #efefef; background: #121212;} 
@@ -52,7 +52,7 @@ span {color: #efefef;}
 p{color: #efefef;}
 .page-link
 {
-	background: #555!important;
+   background: #555!important;
     border: none;
 }
 /* Dark Mode 아닐떄 */ 
@@ -61,22 +61,26 @@ body.dark-theme a { }
 body.dark-theme td,th {color: #333;}
 body.dark-theme .page-link.active
 {
+<<<<<<< HEAD
 	   /* background: #f5a4aa!important;*/
+=======
+      /* background: #f5a4aa!important;*/
+>>>>>>> eb79646c824dab2ff801bf87f7161724a22bcece
 }
 </style>
 <script>
  var hsdmCheck = <c:out value="${hsdmCheck}" />;
  
  $(function(){
-	    //다크모드
-	    const btn = document.querySelector('.btn-toggle');
-	    btn.addEventListener('click', function() {
-	    	document.body.classList.toggle('dark-theme'); 
-	    	});
-	    
-		//다크모드 끛
-		
-		
+       //다크모드
+       const btn = document.querySelector('.btn-toggle');
+       btn.addEventListener('click', function() {
+          document.body.classList.toggle('dark-theme'); 
+          });
+       
+      //다크모드 끛
+      
+      
      $(".studio_modal").colorbox({
             iframe:true, 
             innerWidth:1000,
@@ -303,6 +307,7 @@ function fn_pagingH(curPage)
    document.bbsFormH.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
    document.bbsFormH.action = "/mng/hsdmList";
    document.bbsFormH.submit();
+
 }
 function fn_pagingS(curPage)
 {
@@ -363,7 +368,7 @@ function classChange(id){
 </script>
 </head>
 <body id="school_list" class="light-theme || dark-theme">  
-   	<jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
+      <jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
        <jsp:param name="userName" value="${wdAdmin.admName}" />
        </jsp:include>
        
@@ -422,16 +427,16 @@ function classChange(id){
             </c:forEach>
          </ul>
 
-		<div class="row">
-			<div class="col-lg-12">
+      <div class="row">
+         <div class="col-lg-12">
                <div class="ticket-item2 gosu_modal" href="/mng/plusHall" style="float: right; margin-right: 30px;" >
                    <div class="down-content2">
                        <div class="main-dark-button btn_go" style="margin-top: 0;">
                            <a href="/mng/plusHall" class="hall_modal" >홀 추가</a>
                        </div>    
                     </div>
-       			</div>
-			
+                </div>
+         
                   <div class="ticket-item2 gosu_modal" href="/mng/plusWHall" style="float: right; margin-right: 10px;">
                       <div class="down-content2">
                           <div class="main-dark-button btn_go" style="margin-top: 0;">
@@ -439,8 +444,8 @@ function classChange(id){
                           </div>    
                        </div>
                   </div>
-			</div>
-		</div>
+         </div>
+      </div>
 
          <div class="row">
               <div class="col-lg-9" style="left:43%;">
@@ -502,7 +507,7 @@ function classChange(id){
             </c:forEach>
          </ul>
 
-		<div>
+      <div>
             <div class="col-lg-12" style="text-align: right;">
                <div>
                     <div class="ticket-item2 gosu_modal" href="/mng/plusStudio">
@@ -514,7 +519,7 @@ function classChange(id){
                     </div>
                </div>
             </div>
-		</div>
+      </div>
 
          <div class="row">
               <div class="col-lg-12" style="left:43%;">
@@ -583,8 +588,8 @@ function classChange(id){
             </c:forEach>
          </ul>
 
-		<div class="row">
-			<div class="col-lg-12">
+      <div class="row">
+         <div class="col-lg-12">
                <div>
                   <form id="subscribe" action="" method="get">
                      <div class="row" style="width: 100%;">
@@ -600,7 +605,7 @@ function classChange(id){
                   </form>
                </div>
             </div>
-		</div>
+      </div>
 
          <div class="row">
               <div class="col-lg-12" style="left:40%;">
@@ -637,7 +642,7 @@ function classChange(id){
          </div>
       </div>
       <!-- 드레스 끝 -->
- 	<!-- 메이크업 시작 -->
+    <!-- 메이크업 시작 -->
     <div class="col-lg-12" width="100%">
       <div id="makeup">
          <ul>
@@ -665,7 +670,7 @@ function classChange(id){
             </c:forEach>
          </ul>
 
-		<div class="row">
+      <div class="row">
             <div class="col-lg-12">
                  <div class="ticket-item2 makeup_modal" href="/mng/plusMakeup">
                     <div class="down-content2" style="text-align: right; margin-right: 30px;">
@@ -676,6 +681,7 @@ function classChange(id){
                 </div>
              </div>
 		</div>
+
 
          <div class="row">
               <div class="col-lg-10" style="left:43%;">
@@ -700,9 +706,9 @@ function classChange(id){
                      </c:if>       
                   </c:if> 
                      <form name="bbsFormM" id="bbsFormM" method="post">
-                     	<input type="hidden" name="hsdmCheck" value="4" />
-                  		<input type="hidden" name="curPage" value="${curPage}" />
-              		 </form>
+                        <input type="hidden" name="hsdmCheck" value="4" />
+                        <input type="hidden" name="curPage" value="${curPage}" />
+                     </form>
                </ul>
                   </div>
               </div>
@@ -711,6 +717,9 @@ function classChange(id){
    </div>
       <!-- 메이크업 끝 -->
 
+	  <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">       
+		<input type="hidden" name="curPage" value="" />
+      </form>
   </div>
 </div>
 

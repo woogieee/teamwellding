@@ -47,13 +47,30 @@ $(document).ready(function(){
 		   
 		   $("#couponValue").val(price);
 	   });
-
+		
+      //포인트 사용범위 제한
+      $("#pointValue").keyup(function(){
+    	  var val = $(this).val();
+    	  if(val < 0 || val > ${wdUser.userPoint})
+    	  {
+    		  alert("범위를 초과하였습니다.");
+    		  $(this).val("");
+    	  }
+      });
+	      
+	      
       //적용 선택시 금액 리프레쉬
 	  $("#couponSelect").on("click", function(){
 	     
 	     var price = $("#couponChoice").val();
 	     
 	     var point = $("#pointValue").val();
+	     
+	     var pointMax = ${wdUser.userPoint} - point;
+	     
+	     pointMax = pointMax.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	     
+	     document.getElementById("pointBox").innerHTML = pointMax;
 	     
 	     var ddong = ${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))} + parseInt(price) + Number(point);
 	           
@@ -71,32 +88,10 @@ $(document).ready(function(){
 	     document.getElementById("totalPriceAfter").innerHTML = aftPP+"원";
 	     
 	  });
-      /*
-      //포인트 사용 적용
-      $("#pointSelect").on("click", function(){
-    	 
-    	 var price = $("#couponChoice").val();
-    	 
-    	 var point = $("#pointValue").val();
-    	  
-    	 var ddong = ${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))} + parseInt(price) + Number(point);
-          
- 	     ddong = ddong.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
- 	     
- 	     document.getElementById("sale").innerHTML= ddong+"원";
- 	     
- 	     //총액
- 	     var aftPPn = ${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)} - parseInt(price) - Number(point);
- 	     
- 	     $("#totalAmount").val(aftPPn);
- 	     
- 	     var aftPP = aftPPn.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
- 	     
- 	     document.getElementById("totalPriceAfter").innerHTML = aftPP+"원";
-    	  
-    	  
-      });
-      */
+      
+
+      
+      
 	  $("#btnPay").on("click", function(){
 	     $("#btnPay").prop("disabled", true); //버튼비활성화
       
@@ -410,7 +405,7 @@ function movePage()
                      <!-- 쿠폰 가져오기 -->
                      <div>
 						쿠폰 
-	                     <select name="couponChoice" id="couponChoice">
+	                     <select name="couponChoice" id="couponChoice" style="width:100px;">
 	                        <option value="0">선택</option>
 	                        
 	                     <c:forEach var="coupon" items="${couponList}" varStatus="status">
@@ -422,13 +417,13 @@ function movePage()
 	                     <!-- <button name="couponSelect" id="couponSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
                      </div>
                      <div>
-                     	잔여 포인트 : ${wdUser.userPoint} Point
-                     	<input type="text" name="pointValue" id="pointValue" style="width:100px" value="">
+                     	잔여 포인트 : <span name="pointBox" id="pointBox" style="display:inline-block; width:90px;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
+                     <span><input type="number" name="pointValue" id="pointValue" style="width:100px" value="" min="0" max="${wdUser.userPoint}"></span>
                      	<!-- <button name="pointSelect" id="pointSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
 					 </div>
                      </div>
                      <div style="text-align: right; max-width:98%; padding-top:5px; ">
-                     <button name="couponSelect" id="couponSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button>
+                     <button name="couponSelect" id="couponSelect" style="border: solid 1px black; background:white; position:relative; color:black; width:90px;">적용</button>
                      </div>
 
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
