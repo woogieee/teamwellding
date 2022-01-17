@@ -44,4 +44,13 @@ public interface WDDressDao
 	
 	//드레스업체 이름 조회
 	public List<WDDress> dNoAndName();
+	
+	//드레스업체만! 조회
+	public WDDress onlyDressComSelect(String dcCode);
+	
+	//드레스 업체 삭제
+	public int onlyDressComDelete(String dcCode);
+	
+	//드레스 삭제
+	public int onlyDressDelete(WDDress wdDress);
 }

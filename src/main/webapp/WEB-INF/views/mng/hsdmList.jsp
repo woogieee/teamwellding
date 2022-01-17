@@ -61,7 +61,11 @@ body.dark-theme a { }
 body.dark-theme td,th {color: #333;}
 body.dark-theme .page-link.active
 {
+<<<<<<< HEAD
+	   /* background: #f5a4aa!important;*/
+=======
       /* background: #f5a4aa!important;*/
+>>>>>>> eb79646c824dab2ff801bf87f7161724a22bcece
 }
 </style>
 <script>
@@ -156,6 +160,44 @@ body.dark-theme .page-link.active
    });
      
      $(".dress_modal").colorbox({
+         iframe:true, 
+         innerWidth:1000,
+         innerHeight:800,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1000px");
+            $("#colorbox").css("height", "800px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+         {
+           $('html').css("overflow","auto");
+         }  
+   });
+     
+     $(".dresscom_modal2").colorbox({
+         iframe:true, 
+         innerWidth:1100,
+         innerHeight:600,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1100px");
+            $("#colorbox").css("height", "600px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+         {
+           $('html').css("overflow","auto");
+         }  
+   });
+     
+     $(".dress_modal2").colorbox({
          iframe:true, 
          innerWidth:1000,
          innerHeight:800,
@@ -530,12 +572,14 @@ function classChange(id){
             <c:forEach var="dressList" items="${dList}" varStatus="status">
             <li class="wdhtd">
                <div class="wdhcon" style="width:9%;">
-               <p>   <a href="/mng/dressComUpdqte?dcCode=${dressList.dcCode}" name="nBoardUpdate" class="nBoardUpdate">${dressList.dcName}</a></p>
+               <p><a href="/mng/dressComUpdate?dcCode=${dressList.dcCode}" name="dresscom_modal2" class="dresscom_modal2" style="font-weight:800;">${dressList.dcName}</a></p>
                </div>
                <div class="wdhcon" style="width:13%;"><p>${dressList.dcLocation }</p></div>
                <div class="wdhcon" style="width:8%;"><p>${dressList.dcNumber }</p></div>
                <div class="wdhcon" style="width:16%;"><p>${dressList.dcContent }</p></div>
-               <div class="wdhcon" style="width:15%;"><p>${dressList.dName }</p></div>
+               <div class="wdhcon" style="width:15%;">
+               <p><a href="/mng/dressUpdate?dNo=${dressList.dNo}" name="dress_modal2" class="dress_modal2" style="font-weight:800;">${dressList.dName }</a></p>
+               </div>
                <div class="wdhcon" style="width:8%;"><p>${dressList.dImgname }</p></div>
                <div class="wdhcon" style="width:8%;"><p>${dressList.dPrice }</p></div>
                <div class="wdhcon" style="width:17%;"><p>${dressList.dContent }</p></div>
@@ -636,7 +680,8 @@ function classChange(id){
                      </div>
                 </div>
              </div>
-      </div>
+		</div>
+
 
          <div class="row">
               <div class="col-lg-10" style="left:43%;">
@@ -671,6 +716,7 @@ function classChange(id){
       </div>
    </div>
       <!-- 메이크업 끝 -->
+
 	  <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">       
 		<input type="hidden" name="curPage" value="" />
       </form>

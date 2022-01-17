@@ -154,6 +154,21 @@ body.dark-theme .page-link.active
 	   document.bbsFormF.action = "/mng/boardList";
 	   document.bbsFormF.submit();
 	}
+	
+	function fn_search()
+	{
+	   document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
+	   document.searchForm.action = "/mng/boardList";
+	   document.searchForm.submit();
+	}
+	
+	function fn_pageInit() //서치타입과 서치밸유에대한 설정
+	{
+	   $("#searchType option:eq(0)").prop("selected", true);//eq(0): 아무것도 선택안함
+	   $("#searchValue").val("");
+	   
+	   fn_search();      
+	}
 </script>
 <meta charset="UTF-8">
 <title>게시판 관리</title>
@@ -325,6 +340,9 @@ body.dark-theme .page-link.active
     </div>
 </div>
 
+		 <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">
+		 <input type="hidden" name="curPage" value="" />
+		 </form>
 
    <%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>

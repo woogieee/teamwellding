@@ -116,11 +116,15 @@ public class WDRezController {
 				//유저 아이디와 N인 상태의 조건으로 검색한 결과를 wdRez에 담음
 				WDRez wdRez = wdRezService.rezSelect(search);
 				
-				//다시 해당 결과를 가지고 다른 테이블과 조인한 결과를 wdRez객체에 다시 담음
-				wdRez = wdRezService.rezList(wdRez);
+				if(wdRez != null) 
+				{
+					//다시 해당 결과를 가지고 다른 테이블과 조인한 결과를 wdRez객체에 다시 담음
+					wdRez = wdRezService.rezList(wdRez);
+					
+					model.addAttribute("wdRez", wdRez);
+					model.addAttribute("wdUser",wdUser);					
+				}
 				
-				model.addAttribute("wdRez", wdRez);
-				model.addAttribute("wdUser",wdUser);
 			}
 			else 
 			{
