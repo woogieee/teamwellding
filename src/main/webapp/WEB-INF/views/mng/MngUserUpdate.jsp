@@ -46,105 +46,105 @@ button:active {
 <script type="text/javascript" src="../resources/js/colorBox.js"></script>
 <script>
 $(document).ready(function(){
-	$("#userName").focus();
+   $("#userName").focus();
 });
 
 function fn_userUpdate()
 {
-	//비밀번호
-	if(icia.common.isEmpty($("#userPwd").val()))
-	{
-		alert("비밀번호를 입력하세요");
-		$("#userPwd").focus();
-		return;
-	}
-	
-	if(!fn_idPwdCheck($("#userPwd").val()))
-	{
-		//정규표현식이 맞지 않을떄
-		alert("비밀번호는 영문 대소문자, 숫자 4~12자로 입력해주세요.");
-		$("#userPwd").focus();
-		return;
-	}
-	
-	//이름
-	if(icia.common.isEmpty($("#userName").val()))
-	{
-		alert("이름을 입력하세요");
-		$("#userName").focus();
-		return;
-	}
-	
-	//이메일
-	if(icia.common.isEmpty($("#userEmail").val()))
-	{
-		alert("이메일을 입력하세요.");
-		$("#userEmail").focus();
-		return;
-	}
-	
-	if(!fn_validateEmail($("#userEmail").val()))
-	{
-		//정규표현식이 맞지 않을떄
-		alert("이메일 형식이 올바르지 않습니다.");
-		$("#userEamil").focus();
-		return;
-	}
-	
-	//수정 취소
-	if(!confirm("회원정보를 수정하시겠습니까?"))
-	{
-		//NO
-		return;
-	}
-	
-	var formData = {
-		userId: $("#userId").val(),
-		userEmail: $("#userEmail").val(),
-		userPwd: $("#userPwd").val(),
-		userName: $("#userName").val(),
-		userNickname: $("#userNickname").val(),
-		status: $("#status").val()
-	};
-	
-	//ajax통신
-	icia.ajax.post({
-		url: "/mng/userupdateProc",
-		data: formData,
-		success: function(res)
-		{
-			icia.common.log(res);
-			
-			if(res.code == 0)
-			{
-				alert("회원정보가 수정되었습니다.");
-				fn_colorbox_close(parent.fn_pageInit);
-			}
-			else if(res.code == -1)
-			{
-				alert("회원정보 수정 중 오류가 발생하였숩니다.");
-			}
-			else if(res.code == 400)
-			{
-				alert("파라미터 값이 잘못되었습니다.");
-			}
-			else if(res.code == 404)
-			{
-				alert("회원정보가 존재하지 않습니다.");
-				///칼라박스 내용이 잘못됬다는거니까 칼라박스를 닫게하자
-				fn_colorbox_close();
-			}
-		},
-		complete: function(data)
-		{
-			icia.common.log(data);
-		},
-		error: function(xhr, status, error)
-		{
-			icia.common.error(error);
-		}
-	});
-	
+   //비밀번호
+   if(icia.common.isEmpty($("#userPwd").val()))
+   {
+      alert("비밀번호를 입력하세요");
+      $("#userPwd").focus();
+      return;
+   }
+   
+   if(!fn_idPwdCheck($("#userPwd").val()))
+   {
+      //정규표현식이 맞지 않을떄
+      alert("비밀번호는 영문 대소문자, 숫자 4~12자로 입력해주세요.");
+      $("#userPwd").focus();
+      return;
+   }
+   
+   //이름
+   if(icia.common.isEmpty($("#userName").val()))
+   {
+      alert("이름을 입력하세요");
+      $("#userName").focus();
+      return;
+   }
+   
+   //이메일
+   if(icia.common.isEmpty($("#userEmail").val()))
+   {
+      alert("이메일을 입력하세요.");
+      $("#userEmail").focus();
+      return;
+   }
+   
+   if(!fn_validateEmail($("#userEmail").val()))
+   {
+      //정규표현식이 맞지 않을떄
+      alert("이메일 형식이 올바르지 않습니다.");
+      $("#userEamil").focus();
+      return;
+   }
+   
+   //수정 취소
+   if(!confirm("회원정보를 수정하시겠습니까?"))
+   {
+      //NO
+      return;
+   }
+   
+   var formData = {
+      userId: $("#userId").val(),
+      userEmail: $("#userEmail").val(),
+      userPwd: $("#userPwd").val(),
+      userName: $("#userName").val(),
+      userNickname: $("#userNickname").val(),
+      status: $("#status").val()
+   };
+   
+   //ajax통신
+   icia.ajax.post({
+      url: "/mng/userupdateProc",
+      data: formData,
+      success: function(res)
+      {
+         icia.common.log(res);
+         
+         if(res.code == 0)
+         {
+            alert("회원정보가 수정되었습니다.");
+            fn_colorbox_close(parent.fn_pageInit);
+         }
+         else if(res.code == -1)
+         {
+            alert("회원정보 수정 중 오류가 발생하였숩니다.");
+         }
+         else if(res.code == 400)
+         {
+            alert("파라미터 값이 잘못되었습니다.");
+         }
+         else if(res.code == 404)
+         {
+            alert("회원정보가 존재하지 않습니다.");
+            ///칼라박스 내용이 잘못됬다는거니까 칼라박스를 닫게하자
+            fn_colorbox_close();
+         }
+      },
+      complete: function(data)
+      {
+         icia.common.log(data);
+      },
+      error: function(xhr, status, error)
+      {
+         icia.common.error(error);
+      }
+   });
+   
 }
 
 //이메일 및 아이디패스워드 정규표현식
@@ -222,6 +222,6 @@ function fn_idPwdCheck(val)
 </div>
 
 
-	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
+   <%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
 </html>

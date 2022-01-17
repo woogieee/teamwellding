@@ -17,7 +17,7 @@
    background: #f5a4aa;
 }
 .wookhall{
-   width: 120px;
+  /* width: 120px;*/
 }
 
 
@@ -324,7 +324,7 @@ function classChange(id){
 </script>
 </head>
 <body id="school_list" class="light-theme || dark-theme">  
-   <jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
+   	<jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
        <jsp:param name="userName" value="${wdAdmin.admName}" />
        </jsp:include>
        
@@ -383,6 +383,26 @@ function classChange(id){
             </c:forEach>
          </ul>
 
+		<div class="row">
+			<div class="col-lg-12">
+               <div class="ticket-item2 gosu_modal" href="/mng/plusHall" style="float: right; margin-right: 30px;" >
+                   <div class="down-content2">
+                       <div class="main-dark-button btn_go" style="margin-top: 0;">
+                           <a href="/mng/plusHall" class="hall_modal" >홀 추가</a>
+                       </div>    
+                    </div>
+       			</div>
+			
+                  <div class="ticket-item2 gosu_modal" href="/mng/plusWHall" style="float: right; margin-right: 10px;">
+                      <div class="down-content2">
+                          <div class="main-dark-button btn_go" style="margin-top: 0;">
+                              <a href="/mng/plusWHall" class="wdhall_modal" >웨딩홀 추가</a>
+                          </div>    
+                       </div>
+                  </div>
+			</div>
+		</div>
+
          <div class="row">
               <div class="col-lg-9" style="left:43%;">
                 <div class="pagination">
@@ -412,30 +432,6 @@ function classChange(id){
                </ul>
                   </div>
               </div>
-              <div class="col-lg-1">
-               <div>
-                     <div class="col-lg-12">
-                       <div class="ticket-item2 gosu_modal" href="/mng/plusWHall">
-                           <div class="down-content2">
-                               <div class="main-dark-button btn_go wookhall">
-                                   <a href="/mng/plusWHall" class="wdhall_modal" >웨딩홀 추가</a>
-                               </div>    
-                            </div>
-                       </div>
-                     </div>
-               </div>
-            </div>
-            <div class="col-lg-1">
-               <div>
-                    <div class="ticket-item2 gosu_modal" href="/mng/plusHall">
-                        <div class="down-content2">
-                            <div class="main-dark-button btn_go wookhall">
-                                <a href="/mng/plusHall" class="hall_modal" >홀 추가</a>
-                            </div>    
-                         </div>
-                    </div>
-               </div>
-            </div>
            </div>
            
          </div>
@@ -467,8 +463,22 @@ function classChange(id){
             </c:forEach>
          </ul>
 
+		<div>
+            <div class="col-lg-12" style="text-align: right;">
+               <div>
+                    <div class="ticket-item2 gosu_modal" href="/mng/plusStudio">
+                        <div class="down-content2">
+                            <div class="main-dark-button btn_go wookhall" style="display: inline-block; margin-top: 0; margin-right:20px;">
+                                <a href="/mng/plusStudio" class="studio_modal" >스튜디오 추가</a>
+                            </div>    
+                         </div>
+                    </div>
+               </div>
+            </div>
+		</div>
+
          <div class="row">
-              <div class="col-lg-10" style="left:43%;">
+              <div class="col-lg-12" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty sPaging}">
@@ -496,17 +506,6 @@ function classChange(id){
                </ul>
                   </div>
               </div>
-            <div class="col-lg-1">
-               <div>
-                    <div class="ticket-item2 gosu_modal" href="/mng/plusStudio">
-                        <div class="down-content2">
-                            <div class="main-dark-button btn_go wookhall">
-                                <a href="/mng/plusStudio" class="studio_modal" >스튜디오 추가</a>
-                            </div>    
-                         </div>
-                    </div>
-               </div>
-            </div>
            </div>
          </div>
       </div>
@@ -541,8 +540,27 @@ function classChange(id){
             </c:forEach>
          </ul>
 
+		<div class="row">
+			<div class="col-lg-12">
+               <div>
+                  <form id="subscribe" action="" method="get">
+                     <div class="row" style="width: 100%;">
+                        <div class="col-lg-12">
+                           <div gosu_modal" href="/mng/plusDress">
+                              <a href="/mng/plusDress" id="btnWrite" class="dress_modal hsdm_btn" style="margin-right: 30px;">드레스 추가</a>
+                            </div>
+                            <div gosu_modal" href="/mng/plusDressCom">
+                              <a href="/mng/plusDressCom" id="btnWrite" class="dresscom_modal hsdm_btn" style="margin-right: 10px;">업체 추가</a>
+                           </div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+		</div>
+
          <div class="row">
-              <div class="col-lg-8" style="left:40%;">
+              <div class="col-lg-12" style="left:40%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty dPaging}">
@@ -571,22 +589,6 @@ function classChange(id){
                   </div>
               </div>
               
-			<div class="col-lg-3">
-               <div>
-                  <form id="subscribe" action="" method="get">
-                     <div class="row" style="width: 100%;">
-                        <div class="col-lg-12">
-                           <div gosu_modal" href="/mng/plusDress">
-                              <a href="/mng/plusDress" id="btnWrite" class="dress_modal hsdm_btn">드레스 추가</a>
-                            </div>
-                            <div gosu_modal" href="/mng/plusDressCom">
-                              <a href="/mng/plusDressCom" id="btnWrite" class="dresscom_modal hsdm_btn" style="margin-right: 10px;">업체 추가</a>
-                           </div>
-                        </div>
-                     </div>
-                  </form>
-               </div>
-            </div>
            </div>
               
          </div>

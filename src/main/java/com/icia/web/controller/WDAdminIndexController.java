@@ -74,6 +74,7 @@ public class WDAdminIndexController
     @Autowired
     private WDEBoardService wdEboardService;
     
+    
    @Value("#{env['upload.save.dir']}")
    private String UPLOAD_SAVE_DIR;
 
@@ -722,9 +723,55 @@ public class WDAdminIndexController
         return ajaxResponse;
      }
      
+     //관리자 메이크업
+     @RequestMapping(value="/mng/plusMakeup")
+     public String plusMakeup(Model model,HttpServletRequest request, HttpServletResponse response) 
+     {
+        return "/mng/plusMakeup";
+     }
      
-     
-     
+     @RequestMapping(value="/mng/makeupWrite")
+     @ResponseBody
+     public Response<Object> makeupWrite(HttpServletRequest request, HttpServletResponse response)
+     {
+        Response<Object> ajaxResponse = new Response<Object>();
+        
+        String makeupMax = wdMakeUpService.makeupMax();
+        makeupMax = makeupMax.replace("M", "");
+        int wdMakeupCodePlus = Integer.parseInt(makeupMax)+1;
+        makeupMax = "M"+wdMakeupCodePlus;
+        
+        String mkName = HttpUtil.get(request, "mkName", "");
+        String mkLocation = HttpUtil.get(request, "mkLocation", "");
+        String mkNumber = HttpUtil.get(request, "mkNumber", "");
+        String mkContent = HttpUtil.get(request,"mkContent", "");
+        
+        WDMakeUp wdmakeup = new WDMakeUp();
+        
+        wdmakeup.setmCode(makeupMax);
+        wdmakeup.setmName(mkName);
+        wdmakeup.setmLocation(mkLocation);
+        wdmakeup.setmNumber(mkNumber);
+        wdmakeup.setmContent(mkContent);
+        
+        if(!StringUtil.isEmpty(mkName) &&
+              !StringUtil.isEmpty(mkLocation) && !StringUtil.isEmpty(mkNumber) &&
+              !StringUtil.isEmpty(mkContent))
+        {
+           if(wdMakeUpService.makeupInsert(wdmakeup) > 0)
+           {
+              ajaxResponse.setResponse(0, "Success");
+           }
+           else {
+              ajaxResponse.setResponse(-1, "Error");
+           }
+        }
+        else {
+           ajaxResponse.setResponse(400, "Not Paremeter");
+        }
+        
+        return ajaxResponse;
+     }
      
      //공지사항 목록 불러오기
      @RequestMapping(value="/mng/nBoardList")
@@ -791,5 +838,183 @@ public class WDAdminIndexController
         return "/mng/nBoardList";
      }
 
+     
+     //공지사항 수정페이지 내용 불러오기
+     @RequestMapping(value="/mng/nBoardUpdate")
+     public String nBoardUpdate(Model model,HttpServletRequest request, HttpServletResponse response)
+     {
+        //수정페이지에 필요한거 받아오기
+    	long bSeq = HttpUtil.get(request, "bSeq", (long)0);
+    	
+    	WDNBoard nBList = null;
+    	
+    	System.out.println("**************nSeq: " + bSeq);
+        
+        if(bSeq > 0)
+        {
+           nBList = wdNBoardService.nBoardSelect(bSeq);
+           
+           model.addAttribute("nBList", nBList);
+        }
+        
+        model.addAttribute("bSeq", bSeq);
+        model.addAttribute("nBList", nBList);
+        
+        return "/mng/nBoardUpdate";
+     }
+     
+     //공지사항 게시글 수정하기
+        @RequestMapping(value="/mng/nBoardUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> nBoardUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           long bSeq = HttpUtil.get(request, "bSeq", (long)0);
+           String adminId = HttpUtil.get(request, "adminId", "");
+           String bTitle = HttpUtil.get(request, "bTitle", "");
+           String bContent = HttpUtil.get(request, "bContent", "");
+           
+           WDNBoard nBList = null;
+           
+           if(bSeq > 0 && !StringUtil.isEmpty(bTitle) && !StringUtil.isEmpty(bContent))
+           {
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   nBList = wdNBoardService.nBoardSelect(bSeq);
+        	   
+        	   if(nBList != null)
+        	   {
+        		   //새로운 정보 넣어주기
+        		   nBList.setbSeq(bSeq);
+        		   nBList.setbTitle(bTitle);
+        		   nBList.setbContent(bContent);
+        		   
+        		   if(wdNBoardService.nBoardUpdate(nBList) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+			}
+           
+           
+           return res;
+        }
+
+
+        //공지사항 게시글 등록
+        @RequestMapping(value="/mng/plusNBoard")
+        public String plusNBoard(Model model, HttpServletRequest request, HttpServletResponse response)
+        {
+        	return "/mng/plusNBoard";
+        }
+        
+        //공지사항 게시글 추가하기!!
+        @RequestMapping(value="/mng/nBoardWrite")
+        @ResponseBody
+        public Response<Object> nBoardWrite(Model model, HttpServletRequest request, HttpServletResponse response)
+        {
+            Response<Object> ajaxResponse = new Response<Object>();
+            
+            String adminId = HttpUtil.get(request, "adminId", "");
+            String bTitle = HttpUtil.get(request, "bTitle", "");
+            String bContent = HttpUtil.get(request, "bContent", "");
+            
+            //쿠키 조회
+            String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+           //닉네임 달거야
+            WDAdmin wdAdmin = wdAdminService.wdAdminSelect(cookieUserId);
+            //받아온 값을 엔보드에 넣어주기
+        	WDNBoard wdNBoard = new WDNBoard();
+        	
+        	//wdNBoard.setAdminId("admin"); //안들어가니께 하드코딩해부러
+        	wdNBoard.setAdminId(cookieUserId);
+        	wdNBoard.setbTitle(bTitle);
+        	wdNBoard.setbContent(bContent);
+        	
+        	//얘가 트렌젝션하래 안하면 오류띄워 이씨
+            if(!StringUtil.isEmpty(bTitle) && !StringUtil.isEmpty(bContent))
+            {
+            	try
+            	{
+            		if(wdNBoardService.nBoardInsert(wdNBoard) > 0)
+                	{
+                		ajaxResponse.setResponse(0, "Success");
+                	}
+                	else
+                	{
+                		ajaxResponse.setResponse(-1, "Error");
+                	}
+            	}
+            	catch(Exception e)
+          	  	{
+          		  logger.error("[WDAdminIndexController] /mng/nBoardWrite Exception", e);
+          		  ajaxResponse.setResponse(500, "Internal server Error");
+          	  	}
+            }
+            else 
+            {
+               ajaxResponse.setResponse(400, "Not Paremeter");
+            }
+
+            return ajaxResponse;
+        }
+        
+        //공지사항 게시글 삭제
+        @RequestMapping(value="/mng/nBoardDelete", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> nBoardDelete(HttpServletRequest request, HttpServletResponse response)
+        {
+     	   Response<Object> ajaxResponse = new Response<Object>();
+           
+     	   long bSeq = HttpUtil.get(request, "bSeq", (long)0);
+	       System.out.println("**************이거안받아오는거지 띠바야 bSeq: " + bSeq);
+     	   
+     	   if(bSeq > 0) //0보다 클떄 실제로 넘어온 값
+     	   {
+     		  WDNBoard nBList = wdNBoardService.nBoardSelect(bSeq);
+     		   
+     		   if(nBList != null) //nBList가 널이면 게시물이 없다는거니까 널이 아닐떄 !
+     		   {
+     			   //널이 아닐때
+				   if(wdNBoardService.nBoardDelete(nBList.getbSeq()) > 0)
+				   {
+					   //0보다 크면 정상적으로 삭제됬따
+					   ajaxResponse.setResponse(0, "Success");
+				   }
+				   else
+				   {
+					   //아니야. 삭제못했어,,,왜? 왜못하는데 여기걸리는데 왠데 왜? 와이? 와땀시?
+					   ajaxResponse.setResponse(500, "Internal Server Error");
+				   }
+     		   }
+     		   else
+     		   {
+     			   //널일때 = 게시물이 없다
+     			   ajaxResponse.setResponse(404, "Not Found");
+     		   }
+     	   }
+     	   else
+     	   {
+     		   //0이거나 0보다 작을때는 안넘어온거임
+     		   ajaxResponse.setResponse(400, "Bad Request");
+     	   }
+     	   
+     	   return ajaxResponse;
+        }
+        
 
 }

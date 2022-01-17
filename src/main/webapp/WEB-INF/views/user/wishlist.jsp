@@ -310,6 +310,7 @@ $("#payMent").on("click", function(){
 </c:choose>
 								</div>
 							</tr>
+							
                             <tr style="border-top: 3px solid #444;">
                                 <th>이미지</th>
                                 <th>상품정보</th>
@@ -317,6 +318,7 @@ $("#payMent").on("click", function(){
                                 <th>총가격</th>
                                 <th>삭제</th>
                             </tr>
+                        
 <c:if test="${!empty wdRez}">
                             <!-- 홀 -->
 <c:if test="${!empty wdRez.whCode}">

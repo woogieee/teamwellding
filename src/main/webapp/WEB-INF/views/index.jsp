@@ -85,7 +85,7 @@
 	                <div class="col-lg-4" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')">
 	                    <div class="event-item2">
 	                        <div class="thumb2">
-	                             <a href="javascript:void(0)" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')" ><img src="/resources/hsdm/${hallList.HImgName}" alt=""></a>	              
+	                             <a href="javascript:void(0)" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')" ><img src="/resources/images/hallrepimage/${hallList.HImgName}" alt=""></a>	              
 	                        </div>
 	                        <div class="down-content2">
 	                            <a href="event-details.html"><h4>${hallList.HName}</h4></a>
@@ -222,7 +222,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="left-content">
-                        <iframe width="530" height="300" src="https://www.youtube.com/embed/kqUUPueWUxE?autoplay=1&amp;mute=1" title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <!--<iframe width="530" height="300" src="https://www.youtube.com/embed/kqUUPueWUxE?autoplay=1&amp;mute=1" title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                   		<div style="width:530px; height:300px; background:#000;"><video width="530" height="300" src="/resources/images/video/wedding.mp4" controls autoplay muted loop></video></div>
                     </div>
                 </div>
                 <div class="col-lg-6">

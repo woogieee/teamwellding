@@ -411,10 +411,10 @@ function commentUpdate(cSeq,tagId){
 
 
 	<form name="bbsForm" id="bbsForm" method="post">
-		<input type="hidden" name="bSeq" value="${bSeq}" /> <input
-			type="hidden" name="searchType" value="${searchType}" /> <input
-			type="hidden" name="searchValue" value="${searchValue}" /> <input
-			type="hidden" name="curPage" value="${curPage}" />
+		<input type="hidden" name="bSeq" value="${bSeq}" /> 
+		<input type="hidden" name="searchType" value="${searchType}" /> 
+		<input type="hidden" name="searchValue" value="${searchValue}" /> 
+		<input type="hidden" name="curPage" value="${curPage}" />
 	</form>
 
 	<!-- *** 욱채수정Footer 시작 *** -->

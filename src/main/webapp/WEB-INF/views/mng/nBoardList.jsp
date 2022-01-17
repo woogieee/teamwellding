@@ -59,10 +59,10 @@ body.dark-theme { color: #222; background: #fff; }
 body.dark-theme a { }
 body.dark-theme td,th {color: #333;}
 body.dark-theme .nBoardUpdate {color: #333;}
-body.dark-theme .page-link
+/*body.dark-theme .page-link
 {
 	    background: #f5a4aa!important;
-}
+}*/
 
 </style>
 <script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>
@@ -72,12 +72,12 @@ $(document).ready(function(){
       $(".nBoardUpdate").colorbox({
             iframe:true, 
             innerWidth:1235,
-            innerHeight:500,
+            innerHeight:600,
             scrolling:false,
             onComplete:function()
             {
                $("#colorbox").css("width", "1235px");
-               $("#colorbox").css("height", "500px");
+               $("#colorbox").css("height", "600px");
                $("#colorbox").css("border-radius", "10px");
                
                $('html').css("overflow","hidden");
@@ -87,6 +87,27 @@ $(document).ready(function(){
 	            $('html').css("overflow","auto");
 	          }  
       });
+      
+      $(".plusNBoard").colorbox({
+          iframe:true, 
+          innerWidth:1235,
+          innerHeight:450,
+          scrolling:false,
+          onComplete:function()
+          {
+             $("#colorbox").css("width", "1235px");
+             $("#colorbox").css("height", "450px");
+             $("#colorbox").css("border-radius", "10px");
+             
+             $('html').css("overflow","hidden");
+          } , 
+          onClosed: function()
+	          {
+	            $('html').css("overflow","auto");
+	          }  
+    });
+      
+      
       
 	    //다크모드
 	    const btn = document.querySelector('.btn-toggle');
@@ -99,14 +120,14 @@ $(document).ready(function(){
 function fn_search()
 {
    document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
-   document.searchForm.action = "/mng/userList";
+   document.searchForm.action = "/mng/nBoardList";
    document.searchForm.submit();
 }
 
 function fn_paging(curPage)
 {
    document.searchForm.curPage.value = curPage; //매개변수로 받은 현재페이지를 가져옴
-   document.searchForm.action = "/mng/userList";
+   document.searchForm.action = "/mng/nBoardList";
    document.searchForm.submit();
 }
 
@@ -166,7 +187,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                <tr>
                	   <td>${nBList.bSeq}</td>
                    <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;">
-                   	<a href="/mng/nBoardUpdate?bTitle=${nBList.bTitle}" name="nBoardUpdate" class="nBoardUpdate">${nBList.bTitle}</a>
+                   	<a href="/mng/nBoardUpdate?bSeq=${nBList.bSeq}" name="nBoardUpdate" class="nBoardUpdate">${nBList.bTitle}</a>
                    </th>
                    <td>${nBList.adminId}</td>
                    <td>${nBList.regDate}</td>
@@ -181,6 +202,14 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                </c:if>
                </tbody>
             </table>
+         
+ 			<div class="row">
+              <div class="col-lg-12">
+                 <div>
+                 	 <a href="/mng/plusNBoard" id="btnWrite" class="hsdm_btn plusNBoard" style="margin-right:30px; margin-top: 0;">추가하기</a>
+                 </div>
+            </div>
+         </div>
 		     <div class="col-lg-12" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
@@ -205,6 +234,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                </ul>
                   </div>
               </div>
+         
          </div>
       </div>
    </div>
