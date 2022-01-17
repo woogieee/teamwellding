@@ -1,115 +1,154 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/taglib.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/views/include/head.jsp" %>
+<meta charset="UTF-8">
+<%@ include file="/WEB-INF/views/include/head2.jsp"%>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap"
+	rel="stylesheet">
 <style>
-html, body{
-  color:  #525252;
-}
-table{
-  width:100%;
-  border: 1px solid #c4c2c2;
-}
-table th, td{
-  border-right: 1px solid #c4c2c2;
-  border-bottom: 1px solid #c4c2c2;
-  height: 4rem;
-  padding-left: .5rem;
-  padding-right: 1rem;
-}
-table th{
-  background-color: #e0e4fe;
-}
-input[type=text], input[type=password]{
-  height:2rem;
-  width: 100%;
-  border-radius: .2rem;
-  border: .2px solid rgb(204,204,204);
-  background-color: rgb(246,246,246);
-}
-button{
-  width: 5rem;
-  margin-top: 1rem;
-  border: .1rem solid rgb(204,204,204);
-  border-radius: .2rem;
-  /*box-shadow: 1px 1px #666;*/
-}
-button:active {
-  background-color: rgb(186,186,186);
-  box-shadow: 0 0 1px 1px #666;
-  transform: translateY(1px);
+.Wtitle {
+	font-family: 'Gamja Flower', cursive;
+	font-size: 64px;
+	text-align: center;
 }
 </style>
 <script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>
 <script type="text/javascript" src="../resources/js/colorBox.js"></script>
 <script>
 $(document).ready(function(){
-	$("#userName").focus();
+	
+	    
+	//삭제버튼
+	$("#btnDelete").on("click", function(){
+		if(confirm("정말 삭제 하시겠습니까?") == true)
+		{
+			//정말 삭제하겠다고 했을 때, ajax 통신
+			$.ajax({
+				type:"POST",
+				url:"/mng/fDelete",
+				data:
+				{
+					bSeq: <c:out value="${wdFBoard.bSeq}" />
+				},
+				datatype:"JSON",
+				beforeSend:function(xhr){
+					xhr.setRequestHeader("AJAX", "true");
+				},
+				success:function(response){
+					if(response.code == 0)
+					{
+						alert("게시물이 삭제되었습니다.");
+						fn_colorbox_close(parent.fn_pageInit);
+					}
+					else if(response.code == 404)
+					{
+						alert("게시물을 찾을 수 없습니다.");
+						fn_colorbox_close(parent.fn_pageInit);
+					}
+					else
+					{
+						alert("게시물 삭제 중 오류가 발생했습니다.");
+					}
+				},
+				complete:function(data){
+					icia.common.log(data);
+				},
+				error:function(xhr, status, error)
+				{
+					icia.common.error(error);
+				}
+			});
+			
+		}
+	
+	});
 });
-
 </script>
 </head>
-<body>
-<div class="layerpopup" style="width:1123px; margin:auto; margin-top:5%;">
-   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">사용자 수정</h1>
-   <div class="layer-cont">
-      <form name="regForm" id="regForm" method="post">
-         <table>
-            <tbody>
+<body id="school_list" class="light-theme || dark-theme">
 
-               <tr>
-                  <th scope="row">아이디</th>
-                  <td>
-                 ${wdAdminUser.userId}
-                     <input type="hidden" id="userId" name="userId" value="${wdAdminUser.userId}" />
-                  </td>
-                  <th scope="row">비밀번호</th>
-                  <td>
-                     <input type="text" id="userPwd" name="userPwd" value="${wdAdminUser.userPwd}" style="font-size:1rem;;" maxlength="15" placeholder="비밀번호" />
-                  </td>
-               </tr>
-               <tr>
-                  <th scope="row">이름</th>
-                  <td>
-                     <input type="text" id="userName" name="userName" value="${wdAdminUser.userName}" style="font-size:1rem;;" maxlength="50" placeholder="이름" />
-                  </td>
-                  <th scope="row">닉네임</th>
-                  <td>
-                     <input type="text" id="userNickname" name="userNickname" value="${wdAdminUser.userNickname}" style="font-size:1rem;;" maxlength="50" placeholder="이메일" />
-                  </td>
-               </tr>
-               <tr>
-                   <th scope="row">이메일</th>
-                  <td>
-                 ${wdAdminUser.userEmail}
-                     <input type="hidden" id="userEmail" name="userEmail" value="${wdAdminUser.userEmail}" />
-                  </td>
-                  <th scope="row">상태</th>
-                  <td>
-                     <select id="status" name="status" style="font-size: 1rem; width: 7rem; height: 2rem;">
-                        <option value="Y" <c:if test="${wdAdminUser.status == 'Y'}">selected</c:if>>정상</option>
-                        <option value="N" <c:if test="${wdAdminUser.status == 'N'}">selected</c:if>>정지</option>
-                     </select>
-                  </td>
-               </tr>
-               <tr>
-                  <th scope="row">등록일</th>
-                  <td>${wdAdminUser.regDate}</td>
-               </tr>
+	<div class="container">
+		<div class="row">
+		
+			
+			<div class="col-lg-12">
+			
+				<table class="table">
+					<thead>
+						<tr class="dongdong2">
+							<td style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600;">
+								<c:out value="${wdFBoard.bTitle}" />
+							</td>
+							<td style="width: 40%; padding-right: 25px; color: #444; font-size: 16px; text-align: right;">
+								${wdFBoard.regDate}</td>
+						</tr>
+						<tr style="height: 46px;">
+							<td style="width: 60%; padding-left: 20px; font-size: 15px; color: #666;">
+								<c:out value="${wdFBoard.userNickname}" />
+							</td>
+							<td style="width: 40%; padding-right: 20px; font-size: 15px; color: #666;"
+								class="text-right">
+									조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdFBoard.bReadCnt}" />
+							</td>
+						</tr>
+					</thead>
+					<tbody>
 
-            </tbody>
-         </table>
-      </form>
-      <div class="pop-btn-area" style="float: right;">
-         <button onclick="fn_userUpdate()" class="btn-type01"><span>수정</span></button>
-         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
-      </div>
-   </div>
-</div>
+					<c:if test="${!empty wdFBoard.wdBoardFile}">
+						<tr>
+							<td colspan="2" style="text-align: center; padding-bottom: 10px; background:#efefef;">
+								<!-- 첨부파일은 있을 때만 보여주면 됨 -->
+									<div style="width: 100%; border:none; font-size: 14px; text-align: right; padding-right: 10px; padding-top: 10px;">
+										<!-- GET방식으로 넘어감 --> 
+										<a href="/board/fdownload?bSeq=${wdFBoard.wdBoardFile.bSeq}" style="color: #0080ff;">
+											[첨부파일]&nbsp; ${wdFBoard.wdBoardFile.fileOrgName}
+										</a>
+									<div>
+							</td>
+						</tr>
+					</c:if>
+						<tr>
+							<td colspan="2" style="text-align: center">	
+								<div style="padding: 30px 20px; text-align: left; font-size: 16px;">
+										<c:out value="${wdFBoard.bContent}" />
+								</div>
+							</td>
+						</tr>
+					</tbody>
+					
+					<tfoot>
+						<tr>
+							<td colspan="2">
 
 
-	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
+									<button type="button" id="btnDelete" class="w-btn w-btn-green3" style="float: right; margin-right: 10px; margin-top: 20px; margin-bottom: 40px;">삭제</button>
+			
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			
+
+			</div>
+
+		</div>
+	</div>
+
+
+	<form name="bbsForm" id="bbsForm" method="post">
+		<input type="hidden" name="bSeq" value="${bSeq}" /> 
+		<input type="hidden" name="searchType" value="${searchType}" /> 
+		<input type="hidden" name="searchValue" value="${searchValue}" /> 
+		<input type="hidden" name="curPage" value="${curPage}" />
+	</form>
+
 </body>
 </html>
