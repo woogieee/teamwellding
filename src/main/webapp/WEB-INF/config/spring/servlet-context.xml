@@ -162,6 +162,11 @@
 
 						<value>/board/fBoardFileTest</value>
 						
+						<value>/mng/WeddingHallUpdate</value>
+						<value>/mng/WeddingHallDelete</value>
+						<value>/mng/hallUpdate</value>
+						<value>/mng/hallDelete</value>
+						
 						<value>/mng/dressComUpdate</value>
 						<value>/mng/dressComUpdateProc</value>
 						<value>/mng/dressComDelete</value>

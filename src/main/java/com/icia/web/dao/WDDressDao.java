@@ -53,4 +53,10 @@ public interface WDDressDao
 	
 	//드레스 삭제
 	public int onlyDressDelete(WDDress wdDress);
+	
+	//드레스업체 수정
+	public int dressComUpdate(WDDress wdDress);
+	
+	//드레스 수정
+	public int dressUpdate(WDDress wdDress);
 }

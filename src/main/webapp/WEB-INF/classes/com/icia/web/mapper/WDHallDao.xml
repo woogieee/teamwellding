@@ -443,5 +443,38 @@ WHERE
 </update>
 <!-- 예약 성공 시 해당 예약번호의 홀 REZCOUNT +1해주기 종료 -->
 
+<!-- 웨딩홀만 조회 -->
+<select id="onlyWeddingHall" parameterType="string" resultMap="hallResultMap">
+SELECT
+    WH_CODE,
+    WH_NAME,
+    WH_LOCATION,
+    WH_NUMBER,
+    WH_CONTENT
+FROM
+    WD_WEDDINGHALL
+WHERE
+    WH_CODE = #{value}
+</select>
+<!-- 웨딩홀만 조회 -->
+
+<!-- 웨딩홀 삭제 -->
+<delete id="weddingHallDelete" parameterType="string">
+DELETE FROM WD_WEDDINGHALL
+WHERE
+        WH_CODE = #{value}
+</delete>
+<!-- 웨딩홀 삭제 -->
+
+<!-- 홀 삭제 -->
+<delete id="hallDelete" parameterType="com.icia.web.model.WDHall">
+DELETE FROM WD_HALL
+WHERE
+    WH_CODE = #{WHCode}
+AND 
+	H_CODE = #{HCode}
+</delete>
+<!-- 홀 삭제 -->
+
 </mapper>
 

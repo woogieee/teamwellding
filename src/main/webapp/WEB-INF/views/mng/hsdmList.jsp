@@ -66,6 +66,7 @@ body.dark-theme .page-link.active
 
       /* background: #f5a4aa!important;*/
 
+      /* background: #f5a4aa!important;*/
 }
 </style>
 <script>
@@ -80,6 +81,43 @@ body.dark-theme .page-link.active
        
       //다크모드 끛
       
+      $(".weddingHall_modal").colorbox({
+          iframe:true, 
+          innerWidth:1000,
+          innerHeight:600,
+          scrolling:false,
+          onComplete:function()
+          {
+             $("#colorbox").css("width", "1000px");
+             $("#colorbox").css("height", "600px");
+             $("#colorbox").css("border-radius", "10px");
+             
+             $('html').css("overflow","hidden");
+          } , 
+          onClosed: function()
+          {
+            $('html').css("overflow","auto");
+          }  
+   });
+      
+      $(".hall_modal2").colorbox({
+          iframe:true, 
+          innerWidth:1000,
+          innerHeight:700,
+          scrolling:false,
+          onComplete:function()
+          {
+             $("#colorbox").css("width", "1000px");
+             $("#colorbox").css("height", "700px");
+             $("#colorbox").css("border-radius", "10px");
+             
+             $('html').css("overflow","hidden");
+          } , 
+          onClosed: function()
+          {
+            $('html').css("overflow","auto");
+          }  
+   });
       
      $(".studio_modal").colorbox({
             iframe:true, 
@@ -109,6 +147,25 @@ body.dark-theme .page-link.active
          {
             $("#colorbox").css("width", "1000px");
             $("#colorbox").css("height", "500px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+         {
+           $('html').css("overflow","auto");
+         }  
+   });
+     
+     $(".hall_modal").colorbox({
+         iframe:true, 
+         innerWidth:1000,
+         innerHeight:800,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1000px");
+            $("#colorbox").css("height", "800px");
             $("#colorbox").css("border-radius", "10px");
             
             $('html').css("overflow","hidden");
@@ -431,12 +488,16 @@ function classChange(id){
             </li>
             <c:forEach var="hallList" items="${hList}" varStatus="status">
             <li class="wdhtd">
-               <div class="wdhcon" style="width:10%;"><p>${hallList.whName }</p></div>
+               <div class="wdhcon" style="width:10%;">
+               <p><a href="/mng/WeddingHallUpdate?whCode=${hallList.WHCode }" name="weddingHall_modal" class="weddingHall_modal" style="font-weight:800;">${hallList.whName }</a></p>
+               </div>
                <div class="wdhcon" style="width:17%;"><p>${hallList.whContent}</p></div>
                <div class="wdhcon" style="width:12%;"><p>${hallList.WHLocation }</p></div>
                <div class="wdhcon" style="width:9%;"><p>${hallList.whNumber }</p></div>
                <!-- div class="wdhcon" style="width:7%;"><p>${hallList.HImgName }</p></div -->
-               <div class="wdhcon" style="width:8%;"><p>${hallList.HName }</p></div>
+               <div class="wdhcon" style="width:8%;">
+               <p><a href="/mng/hallUpdate?whCode=${hallList.WHCode }&&hCode=${hallList.HCode }" name="hall_modal2" class="hall_modal2" style="font-weight:800;">${hallList.HName }</a></p>
+               </div>
                <div class="wdhcon" style="width:7%;"><p>${hallList.HPrice }</p></div>
                <div class="wdhcon" style="width:5%;"><p>${hallList.HFood }</p></div>
                <div class="wdhcon" style="width:5%;"><p>${hallList.HMin }</p></div>

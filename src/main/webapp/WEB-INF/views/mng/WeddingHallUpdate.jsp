@@ -48,29 +48,36 @@ button:active {
 <script type="text/javascript" src="../resources/js/colorBox.js"></script>
 <script>
 $(document).ready(function(){
-	$("#dName").focus();
+	$("#dcName").focus();
 });
 
-function dressUpdate()
+function dressComUpdate()
 {
 	if(icia.common.isEmpty($("#dcName").val()))
 	{
-		alert("드레스 업체명을 입력해주세요");
+		alert("업체 이름을 입력해주세요");
 		$("#dcName").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#dName").val()))
+	if(icia.common.isEmpty($("#dcLocation").val()))
 	{
-		alert("드레스명을 입력해주세요");
-		$("#dName").focus();
+		alert("업체주소를 입력해주세요");
+		$("#dcLocation").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#dContent").val()))
+	if(icia.common.isEmpty($("#dcNumber").val()))
 	{
-		alert("드레스 설명을 입력해주세요.");
-		$("#dContent").focus();
+		alert("업체 전화번호를 입력해주세요");
+		$("#dcNumber").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#dcContent").val()))
+	{
+		alert("업체 설명을 입력해주세요.");
+		$("#dcContent").focus();
 		return;
 	}
 	
@@ -82,44 +89,37 @@ function dressUpdate()
 	}
 	
 	var formData = {
-			dcCode: $("#dcCode").val(),
-			dNo: $("#dNo").val(),
 			dcName: $("#dcName").val(),
-			dName: $("#dName").val(),
-			//dcLocation: $("#dImgname").val(),
-			dContent: $("#dContent").val(),
-			dPrice: $("#dPrice").val()
+			dcLocation: $("#dcLocation").val(),
+			dcNumber: $("#dcNumber").val(),
+			dcContent: $("#dcContent").val()
 	};
 	
 	//ajax통신
 	icia.ajax.post({
-		url: "/mng/dressUpdateProc",
+		url: "/mng/dressComUpdateProc",
 		data: formData,
-		beforeSend: function(xhr)
-		{
-			xhr.setRequestHeader("AJAX", "true");
-		},
 		success: function(res)
 		{
 			icia.common.log(res);
 			
 			if(res.code == 0)
 			{
-				alert("드레스 정보가 수정되었습니다.");
+				alert("업체수정이 완료되었습니다.");
 				fn_colorbox_close(parent.fn_pageInit);
+			}
+			else if(res.code == -1)
+			{
+				alert("업체 수정 중 오류가 발생하였숩니다.");
 			}
 			else if(res.code == 400)
 			{
-				alert("파라미터값이 올바지않습르니다.");
+				alert("파라미터 값이 잘못되었습니다.");
 			}
 			else if(res.code == 404)
 			{
-				alert("드레스 정보를 찾을 수 없습니다.");
-				fn_colorbox_close();
-			}
-			else
-			{
-				alert("드레스 정보 수정 중 오류가 발생했습니다.");
+				alert("오류가 발생하였습니다.");
+				///칼라박스 내용이 잘못됬다는거니까 칼라박스를 닫게하자
 				fn_colorbox_close();
 			}
 		},
@@ -132,18 +132,18 @@ function dressUpdate()
 			icia.common.error(error);
 		}
 	});
+	
 }
 
-function dressDelete()
+function WeddingHallDelete()
 {
 	if(confirm("정말 삭제하시겠습니까?") == true)
 	{
 		$.ajax({
 			type: "POST",
-			url: "/mng/dressDelete",
+			url: "/mng/WeddingHallDelete",
 			data:{
-				dcCode: $("#dcCode").val(),
-				dNo : $("#dNo").val()
+				whCode: $("#wdCode").val()
 			},
 			datatype: "JSON",
 			beforeSend: function(xhr)
@@ -156,21 +156,21 @@ function dressDelete()
 				
 				if(res.code == 0)
 				{
-					alert("드레스가 삭제되었습니다.");
+					alert("웨딩홀이 삭제되었습니다.");
 					fn_colorbox_close(parent.fn_pageInit);
 				}
 				else if(res.code == 400)
 				{
-					alert("파라미터값이 올바지않습르니다.");
+					alert("파라미터값이 올바르지 않습니다..");
 				}
 				else if(res.code == 404)
 				{
-					alert("드레스를 찾을 수 없습니다.");
+					alert("웨딩홀을 찾을 수 없습니다.");
 					fn_colorbox_close();
 				}
 				else
 				{
-					alert("드레스 삭제 중 오류가 발생했습니다.");
+					alert("웨딩홀 삭제 중 오류가 발생했습니다.");
 					fn_colorbox_close();
 				}
 			},
@@ -192,73 +192,58 @@ function dressDelete()
     <div class="row" style="width: 100%; text-align: center;">
     
 		<div class="layerpopup" style="width:1123px; margin:auto;">
-			<h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">드레스 상세보기</h1>
+			<h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">드레스업체 상세보기</h1>
 		   <div class="layer-cont" style="display: block;">
 		      <form name="regForm" id="regForm" method="post">
 		         <table>
 		            <tbody>
 		               <tr>
-		                  <th scope="row">드레스업체 번호</th>
+		                  <th scope="row">웨딩홀 업체 번호</th>
 		                  <td>
-		                  	${dList.dcCode}
-		                     <input type="hidden" id="dcCode" name="dcCode" value="${dList.dcCode}" />
+		                  	${wdHall.WHCode}
+		                     <input type="hidden" id="wdCode" name="wdCode" value="${wdHall.WHCode}" />
 		                  </td>
 		               </tr>
 		               <tr>
-		                  <th scope="row">드레스 번호</th>
+		                  <th scope="row">웨딩홀 업체명</th>
 		                  <td>
-		                  	${dList.dNo}
-		                     <input type="hidden" id="dNo" name="dNo" value="${dList.dNo}" />
+		                     <input type="text" style="background-color: #fff;" id="wdName" name="wdName" value="${wdHall.whName}" />
 		                  </td>
 		               </tr>
 		               <tr>
-		                  <th scope="row">드레스 업체명</th>
+		                  <th scope="row">웨딩홀 업체 주소</th>
 		                  <td>
-		                     <input type="text" style="background-color: #fff;" id="dcName" name="dcName" value="${dList.dcName}" />
+		                     <input type="text" style="background-color: #fff;" id="wdLocation" name="wdLocation" value="${wdHall.WHLocation}" />
 		                  </td>
 		               </tr>
 		               <tr>
-		                  <th scope="row">드레스명</th>
+		                   <th scope="row">웨딩홀 업체 전화번호</th>
 		                  <td>
-		                     <input type="text" style="background-color: #fff;" id="dName" name="dName" value="${dList.dName}" />
+		                     <input type="text" style="background-color: #fff;" id="wdNumber" name="wdNumber" value="${wdHall.whNumber}"/>
 		                  </td>
 		               </tr>
 		               <tr>
-		                  <th scope="row">드레스 가격</th>
-		                  <td>
-		                     <input type="text" style="background-color: #fff;" id="dPrice" name="dPrice" value="${dList.dPrice}" />
-		                  </td>
-		               </tr>
-		               <!--tr>
-		                  <th scope="row">드레스 대표 이미지</th>
-		                  <td>
-		                  	<input type="file" style="background-color: #fff;" id="dressimgname" name="dressimgname" value="${dList.dImgname}" />
-		                  </td>
-		               </tr-->
-		               <tr>
-		                  <th scope="row">드레스 설명</th>
+		                  <th scope="row">웨딩홀 업체 설명</th>
 		                  <td style="padding: 15px 15px 15px 9px;">
-		                  <textarea class="form-control" rows="3" name="dContent" id="dContent" style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px; padding:7px;" required>${dList.dContent}</textarea>
+		                  <textarea class="form-control" rows="3" name="wdContent" id="wdContent" style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px; padding:7px;" required>${wdHall.whContent}</textarea>
 		                  </td>
 		               </tr>
 		
 		            </tbody>
 		      </form>
-		      
+		   
 			<table style="border:none;">
 				<tr style="border:none;">
 					<td style="border:none;">
 					      <div class="pop-btn-area" style="display: block; float: right;">
-					         <button onclick="dressUpdate()" class="btn-type01"><span>수정</span></button>
-					         <button onclick="dressDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
+					         <!--button onclick="WeddingHallUpdate()" class="btn-type01"><span>수정</span></button-->
+					         <button onclick="WeddingHallDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
 					         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
 					      </div>
 					   </div>
 					</td>
 				</tr>
 			</table>
-
-		   </div>
 
 		</div>
 
