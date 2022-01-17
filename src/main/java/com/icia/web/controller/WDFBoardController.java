@@ -241,9 +241,6 @@ public class WDFBoardController
 				wdFBoard.setWdBoardFile(wdBoardFile);
 			}
 			
-		
-		
-		
 			try 
 			{
 				if(wdFBoardService.boardInsert(wdFBoard) > 0) 
@@ -470,7 +467,7 @@ public class WDFBoardController
 		   return "/board/fUpdateForm";
 	   }
 	   
-	   
+	   	//게시물 수정
 		@RequestMapping(value="/board/updateProc", method=RequestMethod.POST)
 		@ResponseBody
 		public Response<Object> updateProc(MultipartHttpServletRequest request, HttpServletResponse response)
