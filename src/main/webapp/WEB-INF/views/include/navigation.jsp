@@ -69,7 +69,7 @@
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <h1 class="logo">
-                            <a href="/"><img class="imgNav" src="/resources/images/icons/theWellding2.png" width="auto" height="45px"></a>
+                            <a href="/"><img class="imgNa" src="/resources/images/icons/theWellding2.png" width="auto" height="45px"></a>
                         </h1>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->

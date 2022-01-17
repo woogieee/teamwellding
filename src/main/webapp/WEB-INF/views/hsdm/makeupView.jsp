@@ -36,6 +36,12 @@ $(document).ready(function(){
 	$("#chae").on("click",function(){
 		if(confirm("해당 메이크업샵을 장바구니에 담으시겠습니까?"))
 		{
+			if($("#quantity").val() <0)
+			{
+				alert("메이크업 추가 인원이 잘못되었습니다.");
+				return;
+			}
+			
 			//ajax통신 시작
 			$.ajax({
 			type:"POST",
@@ -43,7 +49,8 @@ $(document).ready(function(){
 			data:
 			{
 				mCode: $("#mCode").val(),
-				mPlusNum: $("#quantity").val()
+				mPlusNum: $("#quantity").val(),
+				wDate: $("#wDate").val()
 			},
 			datatype:"JSON",
 			beforeSend:function(xhr){
@@ -265,6 +272,7 @@ function fn_view(dNo)
    <input type="hidden" name="searchType" value="${searchType}" />
    <input type="hidden" name="searchValue" value="${searchValue}" />
    <input type="hidden" name="curPage" value="${curPage}" />
+   <input type="hidden" name="wDate" value="${wDate}" />
 </form>
 
     

@@ -102,6 +102,7 @@
 	height: 50px;
     line-height: 50px;
     /*margin-bottom: 10px;*/
+    background: rgba(245,245,245,0.5);
 }
 
 .wdhtd:last-child
@@ -189,7 +190,7 @@
   transition: all .3s;
   border: none;
   outline: none;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
 
 .hsdm_btn a {
@@ -208,3 +209,20 @@
 
 
 /* 홀스드메 관리페이지 끝 */
+
+
+/** 다크모드 해보까 **/
+/*다크모드*/
+body {  color: #efefef; background: #121212;} 
+a { color: #809fff; } 
+td,th {color: #eee;}
+span {color: #efefef;}
+
+/* Dark Mode ㅇㅏ닐떄 styles */ 
+body.dark-theme { color: #222; background: #fff; } 
+body.dark-theme a { }
+body.dark-theme td,th {color: #333;}
+  
+  
+  
+}

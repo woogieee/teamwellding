@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script type="text/javascript" src="../resources/js/icia.common.js"></script>
     <script type="text/javascript" src="../resources/js/icia.ajax.js"></script>
-    
+  
     
     <!-- 보현폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,7 +60,8 @@
 	
 	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap-theme.min.css">
 	<link type="text/css" href="../resources/css/jquery.colorbox.css" rel="stylesheet" />
-	<link rel="stylesheet" href="../resources/css/admin.css">	
+	
+
 <!--
 
 Tooplate 2125 ArtXibition

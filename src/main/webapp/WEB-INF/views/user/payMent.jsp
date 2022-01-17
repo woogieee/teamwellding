@@ -36,45 +36,73 @@
        document.rezForm.submit();
     }
 
-//카카오페이 추가
+//결제 옵션 추가
 $(document).ready(function(){
-   $("#couponChoice").change(function(){
-
-      //쿠폰 가격
-      var price = $("#couponChoice").val();
-      //쿠폰 코드 가져오기
-      var couponCode = $("#couponChoice > option:selected").attr("value2");
-      
-      $("#couponValue").val(price);
-   });
+		$("#couponChoice").change(function(){
+		
+		   //쿠폰 가격
+		   var price = $("#couponChoice").val();
+		   //쿠폰 코드 가져오기
+		   var couponCode = $("#couponChoice > option:selected").attr("value2");
+		   
+		   $("#couponValue").val(price);
+	   });
 
       //적용 선택시 금액 리프레쉬
-   $("#couponSelect").on("click", function(){
+	  $("#couponSelect").on("click", function(){
+	     
+	     var price = $("#couponChoice").val();
+	     
+	     var point = $("#pointValue").val();
+	     
+	     var ddong = ${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))} + parseInt(price) + Number(point);
+	           
+	     ddong = ddong.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	     
+	     document.getElementById("sale").innerHTML= ddong+"원";
+	     
+	     //총액
+	     var aftPPn = ${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)} - parseInt(price) - Number(point);
+	     
+	     $("#totalAmount").val(aftPPn);
+	     
+	     var aftPP = aftPPn.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	     
+	     document.getElementById("totalPriceAfter").innerHTML = aftPP+"원";
+	     
+	  });
+      /*
+      //포인트 사용 적용
+      $("#pointSelect").on("click", function(){
+    	 
+    	 var price = $("#couponChoice").val();
+    	 
+    	 var point = $("#pointValue").val();
+    	  
+    	 var ddong = ${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))} + parseInt(price) + Number(point);
+          
+ 	     ddong = ddong.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+ 	     
+ 	     document.getElementById("sale").innerHTML= ddong+"원";
+ 	     
+ 	     //총액
+ 	     var aftPPn = ${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)} - parseInt(price) - Number(point);
+ 	     
+ 	     $("#totalAmount").val(aftPPn);
+ 	     
+ 	     var aftPP = aftPPn.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+ 	     
+ 	     document.getElementById("totalPriceAfter").innerHTML = aftPP+"원";
+    	  
+    	  
+      });
+      */
+	  $("#btnPay").on("click", function(){
+	     $("#btnPay").prop("disabled", true); //버튼비활성화
       
-      var price = $("#couponChoice").val();
-      
-      var ddong = ${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))} + parseInt(price);
-            
-      ddong = ddong.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-      
-      document.getElementById("sale").innerHTML= ddong+"원";
-      
-      //총액
-      var aftPPn = ${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)} - parseInt(price);
-      
-      $("#totalAmount").val(aftPPn);
-      
-      var aftPP = aftPPn.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-      
-      document.getElementById("totalPriceAfter").innerHTML = aftPP+"원";
-      
-   });
-
-   $("#btnPay").on("click", function(){
-      $("#btnPay").prop("disabled", true); //버튼비활성화
-      
-    //쿠폰 코드 가져오기
+		//쿠폰 코드 가져오기
       var couponCode = $("#couponChoice > option:selected").attr("value2");
+	  var point = $("#pointValue").val();
       
       ///////ajax
       icia.ajax.post({
@@ -99,6 +127,7 @@ $(document).ready(function(){
                var couponNum = couponCode;
                var rezNo = response.data.rezNo;
                var rezFullPrice = response.data.rezFullPrice;
+               var rezPoint = point;
 
                
                $("#orderId").val(orderId);
@@ -109,12 +138,33 @@ $(document).ready(function(){
                $("#cCode").val(couponNum);
                $("#rezNo").val(rezNo);
                $("#rezFullPrice").val(rezFullPrice);
+               $("#rezPoint").val(rezPoint);
 
                
                var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=700,left=100,top=100');
                
                $("#kakaoForm").submit();
                $("#btnPay").prop("disabled", false);
+            }
+            else if(response.code == 500)
+            {
+            	//해당 날짜에 해당 홀이 이미 결제되어있음
+            	alert("이미 해당 날짜에 결제된 홀이 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
+            }
+            else if(response.code == 501)
+            {
+            	//해당 날짜에 해당 스튜디오가 이미 결제되어있음
+            	alert("이미 해당 날짜에 결제된 스튜디오가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
+            }
+            else if(response.code == 502)
+            {
+            	//해당 날짜에 해당 드레스가 이미 결제되어있음
+            	alert("이미 해당 날짜에 결제된 드레스가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
+            }
+            else if(response.code == 503)
+            {
+            	//해당 날짜에 해당 메이크업 업체가 이미 결제되어있음
+            	alert("이미 해당 날짜에 결제된 메이크업 업체가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
             }
             else
             {
@@ -357,20 +407,28 @@ function movePage()
                      <div class="col-lg-1"></div>
                      <div class="col-lg-10">
                      <div class="col-lg-10" style="text-align: right; max-width:100%;">
-                     
                      <!-- 쿠폰 가져오기 -->
-                        쿠폰 선택
-                     <select name="couponChoice" id="couponChoice">
-                        <option value="0">선택</option>
-                        
-                     <c:forEach var="coupon" items="${couponList}" varStatus="status">
-                        <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
-                     </c:forEach>
-                     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        할인금액 <input type="text" name="couponValue" id="couponValue" value="">
-      
-                     <button name="couponSelect" id="couponSelect">적용</button>
-      
+                     <div>
+						쿠폰 
+	                     <select name="couponChoice" id="couponChoice">
+	                        <option value="0">선택</option>
+	                        
+	                     <c:forEach var="coupon" items="${couponList}" varStatus="status">
+	                        <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
+	                     </c:forEach>
+	                     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						할인금액 <input type="text" name="couponValue" id="couponValue" style="width:100px;" value="" readonly>
+	      
+	                     <!-- <button name="couponSelect" id="couponSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
+                     </div>
+                     <div>
+                     	잔여 포인트 : ${wdUser.userPoint} Point
+                     	<input type="text" name="pointValue" id="pointValue" style="width:100px" value="">
+                     	<!-- <button name="pointSelect" id="pointSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
+					 </div>
+                     </div>
+                     <div style="text-align: right; max-width:98%; padding-top:5px; ">
+                     <button name="couponSelect" id="couponSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button>
                      </div>
 
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
@@ -444,6 +502,7 @@ function movePage()
       <input type="hidden" name="cCode" id="cCode" value="" />   <!-- 동욱 추가 -->
       <input type="hidden" name="rezNo" id="rezNo" value="" />
       <input type="hidden" name="rezFullPrice" id="rezFullPrice" value="" />
+      <input type="hidden" name="rezPoint" id="rezPoint" value="" />
 
    </form>
    

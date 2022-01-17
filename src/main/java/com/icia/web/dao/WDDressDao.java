@@ -41,4 +41,7 @@ public interface WDDressDao
 	
 	//드레스업체 조회
 	public String selectDressCom(WDDress wdDress);
+	
+	//드레스업체 이름 조회
+	public List<WDDress> dNoAndName();
 }

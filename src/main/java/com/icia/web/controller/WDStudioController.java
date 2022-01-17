@@ -166,6 +166,11 @@ public class WDStudioController
 		//쿠키 확인
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		
+		//결혼날짜 폼 데이터 가져오기
+	    String year = HttpUtil.get(request, "year", "");
+	    String month = HttpUtil.get(request, "month", "");
+	    String day = HttpUtil.get(request, "day", "");
+		
 		//로그인 했을 때와 안했을 때를 구분해서 페이지를 보여주려 함.
 		//로그인 체크용. 0 => 로그인 x, 혹은 없는 계정; 1 => 로그인 정보 있는 계정
 		int loginS = 0;
@@ -216,6 +221,9 @@ public class WDStudioController
 		model.addAttribute("wdStudio", wdStudio);
 		model.addAttribute("searchType", searchType);
 		model.addAttribute("searchValue", searchValue);
+		model.addAttribute("year", year);
+	    model.addAttribute("month", month);
+	    model.addAttribute("day", day);
 		model.addAttribute("curPage", curPage);
 		
 		return "/hsdm/studioView";

@@ -299,7 +299,6 @@ public class WDRezService {
 	public int rezUpdatePay(WDRez wdRez) throws Exception
 	{
 		int count = 0;
-		
 
 		count = wdRezDao.rezUpdatePay(wdRez);
 		
@@ -440,6 +439,130 @@ public class WDRezService {
 		catch(Exception e)
 		{
 			logger.error("[WDRezService] rezCancelPayment Exception", e);
+		}
+		
+		return count;
+	}
+	/*	밑에 트랜젝션 오류나면 이걸로 해야겟어용
+	//포인트 사용시 결제테이블 포인트 추가
+	public int rezPointUpdate(WDRez wdRez)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdRezDao.rezPointUpdate(wdRez);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] rezPointUpdate Exception", e);
+		}
+		
+		return count;
+	}
+	
+	//유저테이블 보유 포인트 감소
+	public int userPointMinus(WDRez wdRez)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdRezDao.userPointMinus(wdRez);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] userPointMinus Exception", e);
+		}
+		
+		return count;
+	}
+	*/
+	//포인트 사용시 업데이트문, 결제 테이블 포인트 추가, 보유포인트 감소
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	public int rezPointUpdate(WDRez wdRez) throws Exception
+	{
+		int count = 0;
+		
+		count = wdRezDao.rezPointUpdate(wdRez);
+		
+		if(count > 0)
+		{
+			int cnt = wdRezDao.userPointMinus(wdRez);
+		}
+		
+		return count;
+	}
+	
+	
+	//의수 추가
+	//해당 날짜에 해당 홀 예약 확인
+	public int isHallRez(WDRez wdRez) 
+	{
+		int count = 0;
+		
+		try 
+		{
+			count = wdRezDao.isHallRez(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] isHallRez Exception", e);
+		}
+		
+		return count;
+	}
+	
+	//해당 날짜에 해당 스튜디오 예약되어있는지 확인
+	public int isStudioRez(WDRez wdRez) 
+	{
+		int count = 0;
+		
+		try 
+		{
+			count = wdRezDao.isStudioRez(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] isStudioRez Exception", e);
+		}
+		
+		return count;
+	}
+	
+	
+	//해당 날짜에 해당 드레스 예약되어있는지 확인
+	//해당 날짜에 해당 드레스 예약 확인
+	public int isDressRez(WDRez wdRez) 
+	{
+		int count = 0;
+		
+		try 
+		{
+			count = wdRezDao.isDressRez(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] isDressRez Exception", e);
+		}
+		
+		return count;
+	}
+	
+	
+	//해당 날짜에 해당 메이크업 업체 예약되어 있는지 확인
+	//해당 날짜에 해당 메이크업 업체 예약 확인
+	public int isMakeUpRez(WDRez wdRez) 
+	{
+		int count = 0;
+		
+		try 
+		{
+			count = wdRezDao.isMakeUpRez(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] isMakeUpRez Exception", e);
 		}
 		
 		return count;

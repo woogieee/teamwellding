@@ -111,6 +111,8 @@
 	                    <value>/user/payComplete</value>		
 	                    <value>/user/payList</value>
 	                    <value>/user/payListView</value>
+	                    <value>/user/userDrop</value>
+	                    <value>/user/userDropProc</value>
 
 						<value>/mng/login</value>
 						<value>/mng/userList</value>
@@ -132,8 +134,25 @@
 
 		                <value>/mng/plusStudio</value>
 		                <value>/mng/studioWrite</value>
+		                
+		                <value>/mng/nBoardList</value>
+		                <value>/mng/eBoardList</value>
+
+		                <value>/mng/boardList</value>
+
+		                
+		                <value>/mng/nBoardUpdate</value>
+		                <value>/mng/nBoardUpdateProc</value>
+		                <value>/mng/plusNBoard</value>
+		                <value>/mng/nBoardWrite</value>
+		                
+		                <value>/mng/nBoardDelete</value>
 
 
+						
+						
+						
+						<value>/board/fBoardFileTest</value>
 
             		</list>
             	</constructor-arg>

@@ -334,8 +334,9 @@ $(document).ready(function(){
                                     <!-- 총가격 -->
                                     <th colspan="5">
                                     <div class="col-lg-12" style="text-align:center">
-                                    	총 금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice + wdCoupon.cPrice}" />원
+                                    	총 금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice + wdCoupon.cPrice + wdRez.rezPoint}" />원
                                     	<c:if test="${!empty wdCoupon.cPrice}"> - 쿠폰할인금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdCoupon.cPrice}" />원</c:if>
+                                    	<c:if test="${0 ne wdRez.rezPoint}"> - 포인트할인금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezPoint}" />원</c:if>
                                     	 = 결제금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원
                                     </div>
                                     </th>

@@ -18,9 +18,11 @@ table th, td{
   height: 4rem;
   padding-left: .5rem;
   padding-right: 1rem;
+      text-align: left;
 }
 table th{
-  background-color: #e0e4fe;
+  background-color: #e9e9ed;
+  width: 250px;
 }
 input[type=text], input[type=password]{
   height:2rem;
@@ -28,6 +30,12 @@ input[type=text], input[type=password]{
   border-radius: .2rem;
   border: .2px solid rgb(204,204,204);
   background-color: rgb(246,246,246);
+  font-size:15px;
+}
+
+input::placeholder 
+{
+  font-size: 14px;
 }
 button{
   width: 5rem;
@@ -46,89 +54,66 @@ button:active {
 <script type="text/javascript" src="../resources/js/colorBox.js"></script>
 <script>
 $(document).ready(function(){
-	$("#weddinghallName").focus();
+	$("#dressname").focus();
 });
 
 function fn_userUpdate()
 {
-	if(icia.common.isEmpty($("#whCode").val()))
+	if(icia.common.isEmpty($("#dcCode").val()))
 	{
-		alert("웨딩홀을 선택해주세요.");
-		$("#weddinghallName").focus();
+		alert("드레스 업체를 선택해주세요.");
+		$("#dcCode").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#hallName").val()))
+	if(icia.common.isEmpty($("#dressname").val()))
 	{
-		alert("홀 이름을 입력해주세요.");
-		$("#weddinghallLocation").focus();
+		alert("드레스 이름을 입력해주세요.");
+		$("#dressname").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#hallPrice").val()))
+	if(icia.common.isEmpty($("#dressprice").val()))
 	{
-		alert("홀 가격을 입력해주세요");
-		$("#weddinghallNumber").focus();
+		alert("드레스 가격을 입력해주세요");
+		$("#dressprice").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#hallFood").val()))
+	if(icia.common.isEmpty($("#dresscontent").val()))
 	{
-		alert("식비를 입력해주세요.");
-		$("#weddinghallContent").focus();
+		alert("드레스 설명을 입력해주세요.");
+		$("#dresscontent").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#hallMin").val()))
-	{
-		alert("홀 최소인원을 입력해주세요.");
-		$("#weddinghallContent").focus();
-		return;
-	}
-	
-	if(icia.common.isEmpty($("#hallMax").val()))
-	{
-		alert("홀 최대인원을 입력해주세요.");
-		$("#weddinghallContent").focus();
-		return;
-	}
-	
-	if(icia.common.isEmpty($("#hallContent").val()))
-	{
-		alert("홀 설명을 입력해주세요.");
-		$("#weddinghallContent").focus();
-		return;
-	}
-	
-	if(icia.common.isEmpty($("#hallHDiscount").val()))
+	if(icia.common.isEmpty($("#dressdiscount").val()))
 	{
 		alert("할인율을 입력해주세요");
-		$("#weddinghallContent").focus();
+		$("#dressdiscount").focus();
 		return;
 	}
 
+
 	
 	//등록 취소
-	if(!confirm("웨딩홀을 등록 하시겠습니까?"))
+	if(!confirm("드레스를 등록 하시겠습니까?"))
 	{
 		//NO
 		return;
 	}
 	
 	var formData = {
-		whCode: $("#whCode").val(),
-		hallName: $("#hallName").val(),
-		hallPrice: $("#hallPrice").val(),
-		hallFood: $("#hallFood").val(),
-		hallMin: $("#hallMin").val(),
-		hallMax: $("#hallMax").val(),
-		hallContent: $("#hallContent").val(),
-		hallHDiscount: $("#hallHDiscount").val()
+			dcCode: $("#dcCode").val(),
+			dName: $("#dressname").val(),
+			dPrice: $("#dressprice").val(),
+			dContent: $("#dresscontent").val(),
+			dDiscount: $("#dressdiscount").val()
 	};
 	
 	//ajax통신
 	icia.ajax.post({
-		url: "/mng/hallWrite",
+		url: "/mng/dressWrite",
 		data: formData,
 		success: function(res)
 		{
@@ -136,12 +121,12 @@ function fn_userUpdate()
 			
 			if(res.code == 0)
 			{
-				alert("홀 등록이 완료되었습니다.");
+				alert("드레스 등록이 완료되었습니다.");
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == -1)
 			{
-				alert("홀 등록 중 오류가 발생하였숩니다.");
+				alert("드레스 등록 중 오류가 발생하였숩니다.");
 			}
 			else if(res.code == 400)
 			{
@@ -173,69 +158,51 @@ function fn_userUpdate()
     <div class="row" style="width: 100%; text-align: center;">
  <!-- /////////////////////////////////////////// --> 
 <div class="layerpopup" style="width:1123px; margin:auto;">
-   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">웨딩홀 추가</h1>
+   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e9e9ed;">드레스 추가</h1>
    <div class="layer-cont">
       <form name="regForm" id="regForm" method="post">
          <table>
             <tbody>
 
                <tr>
-                  <th scope="row">웨딩홀 이름</th>
+                  <th scope="row">드레스 업체명</th>
                   <td>
-                     <select id="whCode" class="whCode">
-                     	<option>웨딩홀 이름</option>
-                     	<c:forEach var="list" items="${HCodeName }">
-                     	<option value="${list.WHCode }">${list.whName }</option>
+                     <select id="dcCode" class="dcCode">
+                     	<option>드레스 업체명</option>
+                     	<c:forEach var="list" items="${dNoName}">
+                     	<option value="${list.dcCode}">${list.dcName}</option>
                      	</c:forEach>
                      </select>
                   </td>
                </tr>
                <tr>
-                  <th scope="row">홀 이름</th>
+                  <th scope="row">드레스명</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="hallName" name="hallName" placeholder="홀 이름을 입력해주세요"/>
+                     <input type="text" style="background-color: #fff;" id="dressname" name="dressname" placeholder="드레스 이름을 입력해주세요"/>
                   </td>
                </tr>
                <tr>
-                  <th scope="row">홀 가격</th>
+                  <th scope="row">드레스 가격</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="hallPrice" name="hallPrice" placeholder="홀 가격을 입력해주세요"/>
+                     <input type="text" style="background-color: #fff;" id="dressprice" name="dressprice" placeholder="드레스 가격을 입력해주세요"/>
                   </td>
                </tr>
                <tr>
-                   <th scope="row">홀 1인당 식비</th>
+                  <th scope="row">드레스 설명</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="hallFood" name="hallFood" placeholder="식비를 입력해주세요"/>
+                  <textarea class="form-control" rows="3" name="dresscontent" id="dresscontent" style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px;" placeholder="드레스 설명을 입력해주세요" required></textarea>
                   </td>
                </tr>
                <tr>
-                  <th scope="row">홀 최소인원</th>
+                  <th scope="row">드레스 대표 이미지</th>
                   <td>
-                  	<input type="text" style="background-color: #fff;" id="hallMin" name="hallMin" placeholder="홀 최소인원을 입력해주세요"/>
-                  </td>
-               </tr>
-               <tr>
-                  <th scope="row">홀 최대인원</th>
-                  <td>
-                  	<input type="text" style="background-color: #fff;" id="hallMax" name="hallMax" placeholder="홀 최대인원을 입력해주세요"/>
-                  </td>
-               </tr>
-               <tr>
-                  <th scope="row">홀 설명</th>
-                  <td>
-                  <textarea class="form-control" rows="3" name="hallContent" id="hallContent" style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px;" placeholder="홀 설명을 입력해주세요" required></textarea>
-                  </td>
-               </tr>
-               <tr>
-                  <th scope="row">홀 대표 이미지</th>
-                  <td>
-                  	<input type="file" style="background-color: #fff;" id="hallImgName" name="hallImgName" />
+                  	<input type="file" style="background-color: #fff;" id="dressimgname" name="dressimgname" />
                   </td>
                </tr>
                <tr>
                   <th scope="row">할인율</th>
                   <td>
-                  	<input type="number" style="background-color: #fff;" id="hallHDiscount" name="hallHDiscount" placeholder="할인율을 입력해주세요"/>
+                  	<input type="number" style="background-color: #fff;" id="dressdiscount" name="dressdiscount" placeholder="할인율을 입력해주세요"/>
                   </td>
                </tr>
 

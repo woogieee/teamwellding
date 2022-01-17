@@ -22,6 +22,7 @@ import com.icia.web.model.KakaoPayReady;
 import com.icia.web.model.Response;
 import com.icia.web.model.WDRez;
 import com.icia.web.service.KakaoPayService;
+import com.icia.web.service.WDHallService;
 import com.icia.web.service.WDRezService;
 import com.icia.web.util.CookieUtil;
 import com.icia.web.util.HttpUtil;
@@ -36,6 +37,9 @@ public class KakaoPayController
    
    @Autowired
    private WDRezService wdRezService;
+   
+   @Autowired
+   private WDHallService wdHallService;
    
    // 쿠키명
    @Value("#{env['auth.cookie.name']}")
@@ -61,6 +65,8 @@ public class KakaoPayController
       String cCode = HttpUtil.get(request, "cCode", "");
       String rezNo = HttpUtil.get(request, "rezNo", "");
       int rezFullPrice = HttpUtil.get(request, "rezFullPrice", 0);
+      //포인트 추가
+      int rezPoint = HttpUtil.get(request, "rezPoint", 0);
        
       model.addAttribute("pcUrl", pcUrl);
       model.addAttribute("orderId", orderId);
@@ -71,6 +77,8 @@ public class KakaoPayController
       model.addAttribute("cCode", cCode);
       model.addAttribute("rezNo", rezNo);
       model.addAttribute("rezFullPrice", rezFullPrice);
+      //포인트 추가
+      model.addAttribute("rezPoint", rezPoint);
 
       
       return "/kakao/payPopUp";
@@ -91,6 +99,7 @@ public class KakaoPayController
       int totalAmount = HttpUtil.get(request, "totalAmount", (int)0);
       int taxFreeAmount = HttpUtil.get(request, "taxFreeAmount", (int)0);
       int vatAmount = HttpUtil.get(request, "vatAmount", (int)0);
+      int rezPoint = HttpUtil.get(request, "rezPoint", (int)0);
 
       KakaoPayOrder kakaoPayOrder = new KakaoPayOrder();
       
@@ -138,16 +147,64 @@ public class KakaoPayController
          {
             ajaxResponse.setResponse(-1, "fail", null);
          }
+*/
+         
+         //여기에 해당 홀, 스, 드, 메가 해당 날짜에 예약되어있는지 로직 추가
+         //우선 정보부터 얻어와보자
+         WDRez wdRez = new WDRez();
+         
+         //예약정보 얻어오려면 3가지 필요, 아이디, 예약번호, 상태
+         wdRez.setUserId(userId);
+         wdRez.setRezNo(itemCode);
+         //아직 장바구니에 있는 애를 확인하기 위한 것이니까 결제 상태는 N인 애를 가져와야 함.
+         wdRez.setRezStatus("N");
+         
+         //예약정보 가져오기
+         wdRez = wdRezService.rezSelect(wdRez);
+         if(wdRez != null) 
+         {
+        	 //홀부터 체크
+        	 int isH, isS, isD, isM;
+        	 
+        	 isH = wdRezService.isHallRez(wdRez);
+        	 isS = wdRezService.isStudioRez(wdRez);
+        	 isD = wdRezService.isDressRez(wdRez);
+        	 isM = wdRezService.isMakeUpRez(wdRez);
+        	 if(isH > 0) 
+        	 {
+        		 ajaxResponse.setResponse(500, "AlreadyHallExist", null);
+        	 }
+        	 else if(isS > 0) 
+        	 {
+        		 ajaxResponse.setResponse(501, "AlreadyStudioExist", null);
+        	 }
+        	 else if(isD > 0) 
+        	 {
+        		 ajaxResponse.setResponse(502, "AlreadyDressExist", null);
+        	 }
+        	 
+        	 else if(isM > 0) 
+        	 {
+        		 ajaxResponse.setResponse(503, "AlreadyMakeUpExist", null);
+        	 }
+        	 else 
+        	 {
+        		 json.addProperty("rezNo", itemCode);
+        		 json.addProperty("rezFullPrice", totalAmount);
+        		 //포인트 추가
+        		 json.addProperty("rezPoint", rezPoint);
+        		 
+        		 ajaxResponse.setResponse(0, "success", json);         		 
+        	 }
+        	 
+        	 
+             
+         }
+         else 
+         {
+             ajaxResponse.setResponse(-1, "fail", null);
+         }
 
-         json.addProperty("rezNo", itemCode);
-         json.addProperty("rezFullPrice", totalAmount);
-
-         ajaxResponse.setResponse(0, "success", json); 
-         
-         */
-         
-         ajaxResponse.setResponse(0, "success", json); 
-         
       }
       else
       {
@@ -179,14 +236,14 @@ public class KakaoPayController
       
       //동욱 추가
       String itemCode = HttpUtil.get(request, "itemCode", "");
-      System.out.println("아이템코드" + itemCode);
       String cCode = HttpUtil.get(request, "cCode", "");
       int totalAmount = HttpUtil.get(request,  "totalAmount", (int)0);
-      System.out.println("아이템코드" + totalAmount);
       
       String rezNo = HttpUtil.get(request, "rezNo", "");
       
       int rezFullPrice = HttpUtil.get(request, "rezFullPrice", 0);
+      
+      int rezPoint = HttpUtil.get(request, "rezPoint", 0);
       //여기까지
       
       KakaoPayOrder kakaoPayOrder = new KakaoPayOrder();
@@ -200,9 +257,10 @@ public class KakaoPayController
       
       WDRez wdRez = new WDRez();
       wdRez.setUserId(userId);
-
       wdRez.setRezNo(rezNo);
       wdRez.setRezFullPrice(rezFullPrice);
+      
+      int cnt = 0;
       
       if(cCode != null && cCode != "") 
       {
@@ -211,7 +269,7 @@ public class KakaoPayController
     	  try 
     	  {
     		  //cCode가 비어있지 않으면, 세개 전부 변경하는 쿼리 실행
-    		  int cnt = wdRezService.rezUpdatePay(wdRez);
+    		  cnt = wdRezService.rezUpdatePay(wdRez);
     	  }
     	  catch(Exception e) 
     	  {
@@ -223,7 +281,7 @@ public class KakaoPayController
     	  try 
     	  {
     		  //cCode가 비어있으면 쿠폰에 대한 업데이트 하지 않음.
-    		  int cnt = wdRezService.rezUpdatePayNoC(wdRez);
+    		  cnt = wdRezService.rezUpdatePayNoC(wdRez);
     	  }
     	  catch(Exception e) 
     	  {
@@ -231,6 +289,26 @@ public class KakaoPayController
     	  }
       }
       
+      //예약 성공 시 해당 예약번호로 
+      if(cnt != 0) 
+      {
+    	  wdHallService.rezCountPlus(rezNo);
+      }
+      
+      //동욱 포인트 추가
+      if(rezPoint >= 0)
+      {
+    	  wdRez.setRezPoint(rezPoint);
+    	  
+    	  try
+    	  {
+    		  cnt = wdRezService.rezPointUpdate(wdRez);
+    	  }
+    	  catch(Exception e)
+    	  {
+    		  logger.error("[KakaoPayController] payReady rezPoint Exception", e);
+    	  }
+      }
       
       model.addAttribute("kakaoPayApprove", kakaoPayApprove);
       

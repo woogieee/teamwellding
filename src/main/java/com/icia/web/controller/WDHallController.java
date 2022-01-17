@@ -155,6 +155,14 @@ public class WDHallController {
 		   String whCode = HttpUtil.get(request, "WHCode", "");
 		   String hCode = HttpUtil.get(request, "HCode", "");
 		   
+		   //의수 추가
+		   //검색 조건에 날짜가 있으면 받아야 함
+		   String year = HttpUtil.get(request, "year", "");
+		   String month = HttpUtil.get(request, "month", "");
+		   String day = HttpUtil.get(request, "day", "");
+		   
+		   System.out.println("year:" + year + "month "+month+"day "+day);
+		   
 		   String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		   
 			WDUser wdUser = null;
@@ -196,6 +204,9 @@ public class WDHallController {
 			   model.addAttribute("subImg",subImg);
 			   model.addAttribute("searchType", searchType);
 			   model.addAttribute("searchValue", searchValue);
+			   model.addAttribute("year", year);
+			   model.addAttribute("month", month);
+			   model.addAttribute("day", day);
 			   model.addAttribute("curPage", curPage);
 		   }		   
 		   
@@ -215,12 +226,22 @@ public class WDHallController {
 		   String whCode = HttpUtil.get(request, "whCode", "");
 		   String hCode = HttpUtil.get(request, "hCode", "");
 		   
+		    //결혼날짜 폼 데이터 가져오기
+		    String year = HttpUtil.get(request, "year", "");
+		    String month = HttpUtil.get(request, "month", "");
+		    String day = HttpUtil.get(request, "day", "");
+		    //결혼날짜 합치기
+		    String wDate = year+month+day;
+		   
+		    System.out.println("==================================wDate : "+wDate+"year "+year+" month "+month+" day "+ day);
+		   
 		   //존재하는 유저인지부터 체크
 		   WDUser wdUser = null;
 		   
 		   WDRez wdRez = null;
 		   
 		   wdUser = wdUserService.userSelect(cookieUserId);
+		   
 		   
 		   if(wdUser != null) 
 		   {
@@ -240,6 +261,19 @@ public class WDHallController {
 					   wdRez.setUserId(wdUser.getUserId());
 					   wdRez.sethCode(hCode);
 					   wdRez.setWhCode(whCode);
+					   
+					   //의수 추가
+					   //wDate 넣어주기
+					   //검색조건에 wDate를 줬다면, 그 값을, 아니면 회원가입 시 wDate로 입력
+					   if(!StringUtil.equals(wDate, "") && wDate != null) 
+					   {
+						   wdRez.setwDate(wDate);
+					   }
+					   else 
+					   {
+						   wdRez.setwDate(wdUser.getMarrytDate());
+					   }
+					   
 					   
 					   //한번에 인서트->업데이트!
 					   try 
@@ -290,6 +324,20 @@ public class WDHallController {
 							   //wdRez객체에 홀코드 예식장코드 담음.
 							   wdRez.sethCode(hCode);
 							   wdRez.setWhCode(whCode);
+							   
+							   //의수 추가
+							   //wDate 넣어주기
+							   //검색조건에 wDate를 줬다면, 그 값을, 아니면 회원가입 시 wDate로 입력
+							   if(!StringUtil.equals(wDate, "") && wDate != null) 
+							   {
+								   wdRez.setwDate(wDate);
+							   }
+							   else 
+							   {
+								   wdRez.setwDate(wdUser.getMarrytDate());
+							   }
+							   System.out.println("=======================이거 몇뜨니??? 몇뜰까??"+wdRez.getwDate());
+							   
 							   if(wdRezService.rezHallInsert(wdRez) >0 ) 
 							   {
 								   System.out.println("여긴타니 11,11,11,11");

@@ -14,6 +14,17 @@ $(document).ready(function(){
 		document.bbsForm.searchValue.value = $("#_searchValue").val();
 		document.bbsForm.curPage.value = 1;
 		
+		var year = $("#year").val();
+		var month = $("#month").val();
+		var day = $("#day").val();
+		var wDate = year+month+day;
+		
+		if(wDate.length != 0 && wDate.length != 8)
+		{
+			alert("날짜로 검색하시려면 년,월,일을 전부 입력해주세요.");
+			return;
+		}
+		
 		document.bbsForm.year.value=$("#year").val();
 		document.bbsForm.month.value =$("#month").val();
 		document.bbsForm.day.value = $("#day").val();
@@ -29,6 +40,9 @@ function fn_view(dNo)
 	document.bbsForm.dNo.value = dNo;
 	document.bbsForm.searchType.value = $("#_searchType").val();
 	document.bbsForm.searchValue.value = $("#_searchValue").val();
+    document.bbsForm.year.value =$("#year").val();
+    document.bbsForm.month.value = $("#month").val();
+    document.bbsForm.day.value=$("#day").val();
 	document.bbsForm.action = "/hsdm/dressView";
 	document.bbsForm.submit();
 }     
@@ -89,14 +103,14 @@ function fn_list(curPage)
                                    <!-- * -->
                                         <div class="col-lg-4">
                                         	<select id="year" name="year" class="year">
-												<option>년도</option>
+												<option value="">년도</option>
 												<option value="2022" <c:if test="${year eq '2022'}">selected</c:if>>2022</option>
 												<option value="2023" <c:if test="${year eq '2023'}">selected</c:if>>2023</option>
 											</select>
                                         </div>
                                         <div class="col-lg-4">
                                             <select id="month" name="month" class="month">
-												<option>월</option>
+												<option value="">월</option>
 												<option value="01" <c:if test="${month eq '01'}">selected</c:if>>1</option>
 												<option value="02" <c:if test="${month eq '02'}">selected</c:if>>2</option>
 												<option value="03" <c:if test="${month eq '03'}">selected</c:if>>3</option>
@@ -113,7 +127,7 @@ function fn_list(curPage)
                                         </div>
                                         <div class="col-lg-4">
                                         	<select id="day" name="day" class="day">
-												<option>일</option>
+												<option value="">일</option>
 												<option value="01" <c:if test="${day eq '01'}">selected</c:if>>1</option>
 												<option value="02" <c:if test="${day eq '02'}">selected</c:if>>2</option>
 												<option value="03" <c:if test="${day eq '03'}">selected</c:if>>3</option>

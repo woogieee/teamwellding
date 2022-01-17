@@ -21,4 +21,6 @@ public interface WDUserDao
 	
 	public WDUser checkSelect(int uCheck);
 	
+	public int userDrop(WDUser wduser);
+	
 }
