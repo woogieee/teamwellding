@@ -1157,5 +1157,136 @@ public class WDAdminIndexController
         	
         	return ajaxResponse;
         }
+        
+        //웨딩홀업체 수정,삭제 페이지 띄우기
+        @RequestMapping(value="/mng/WeddingHallUpdate")
+        public String WeddingHallUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+        {   
+        	String whCode = HttpUtil.get(request, "whCode", "");
+        	//String dNo = HttpUtil.get(request, "dNo", "");
+        	
+        	WDHall wdHall = null;        	
+        	
+        	if(!StringUtil.isEmpty(whCode))
+        	{
+        		wdHall = wdHallService.onlyWeddingHall(whCode);
+        		
+        		model.addAttribute("wdHall", wdHall);
+        	}
+        	
+        	model.addAttribute("whCode", whCode);
+        	
+        	return "/mng/WeddingHallUpdate";
+        }
+        
+        //웨딩홀 삭제하기
+        @RequestMapping(value="/mng/WeddingHallDelete")
+        @ResponseBody
+        public Response<Object> WeddingHallDelete(HttpServletRequest request, HttpServletResponse response)
+        {
+        	Response<Object> ajaxResponse = new Response<Object>();
+        	
+        	String whCode = HttpUtil.get(request, "whCode", "");
+        	
+        	WDHall wdHall = null;
+        	
+        	if(!StringUtil.isEmpty(whCode))
+      	   {
+        		wdHall = wdHallService.onlyWeddingHall(whCode);
+       		   
+       		   if(wdHall != null) //dList가 널이면 게시물이 없다는거니까 널이 아닐떄 !
+       		   {
+       			   //널이 아닐때
+  				   if(wdHallService.weddingHallDelete(whCode) > 0)
+  				   {
+  					   //0보다 크면 정상적으로 삭제됬따
+  					 ajaxResponse.setResponse(0, "Success");
+  				   }
+  				   else
+  				   {
+  					   //아니야. 삭제못했어
+  					 ajaxResponse.setResponse(500, "Internal Server Error");
+  				   }
+       		   }
+       		   else
+       		   {
+       			   //널일때 = 게시물이 없다
+       			ajaxResponse.setResponse(404, "Not Found");
+       		   }
+       	   }
+       	   else
+       	   {
+       		   //0이거나 0보다 작을때는 안넘어온거임
+       		ajaxResponse.setResponse(400, "Bad Request");
+       	   }
+        	
+        	return ajaxResponse;
+        }
+        
+        //홀업체 수정,삭제 페이지 띄우기
+        @RequestMapping(value="/mng/hallUpdate")
+        public String hallUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+        {   
+        	String whCode = HttpUtil.get(request, "whCode", "");
+        	String hCode = HttpUtil.get(request, "hCode", "");
+        	
+        	WDHall wdHall = new WDHall();
+        	
+        	wdHall.setWHCode(whCode);
+        	wdHall.setHCode(hCode);     	
+        	
+        	if(!StringUtil.isEmpty(whCode) && !StringUtil.isEmpty(hCode))
+        	{
+        		wdHall = wdHallService.WDHallSelect(wdHall);
+        		
+        		model.addAttribute("wdHall", wdHall);
+        	}
+        	
+        	model.addAttribute("whCode", whCode);
+        	model.addAttribute("hCode", hCode);
+        	
+        	return "/mng/hallUpdate";
+        }
+        
+        //홀 삭제하기
+        @RequestMapping(value="/mng/hallDelete")
+        @ResponseBody
+        public Response<Object> hallDelete(HttpServletRequest request, HttpServletResponse response)
+        {
+        	Response<Object> ajaxResponse = new Response<Object>();
+        	
+        	String whCode = HttpUtil.get(request, "whCode", "");
+        	String hCode = HttpUtil.get(request, "hCode", "");
+        	
+        	WDHall wdHall = new WDHall();
+        	
+        	System.out.println("fgdgfdg : " + whCode);
+        	System.out.println("fgdgfdg : " + hCode);
+        	
+        	if(!StringUtil.isEmpty(whCode) && !StringUtil.isEmpty(hCode))
+      	   {
+	    		wdHall.setWHCode(whCode);
+	    		wdHall.setHCode(hCode);
+    		
+   			   //널이 아닐때
+			   if(wdHallService.hallDelete(wdHall) > 0)
+			   {
+				   //0보다 크면 정상적으로 삭제됬따
+				 ajaxResponse.setResponse(0, "Success");
+			   }
+			   else
+			   {
+				   //아니야. 삭제못했어
+				 ajaxResponse.setResponse(500, "Internal Server Error");
+			   }
+   		   }
+   		   else
+   		   {
+   			   //널일때 = 게시물이 없다
+   			ajaxResponse.setResponse(404, "Not Found");
+   		   }
+        	
+        	return ajaxResponse;
+        }
 
 }
