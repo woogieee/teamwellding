@@ -602,10 +602,14 @@ FROM
                     WD_REZ
                 WHERE
 					 1=1
-					<if test='userId != null and userId != ""'>
+	<if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
+	<choose>
+		<when test='searchType == "1"'>
 				AND
-   					 USER_ID LIKE '%' || #{userId} || '%'
-    				</if>
+   					 USER_ID LIKE '%' || #{searchValue} || '%'
+   		</when>
+   	</choose>				 
+    </if>
     			<if test='rezStatus != null and rezStatus != ""'>
                 AND
                     REZ_STATUS LIKE '%'|| #{rezStatus} || '%'

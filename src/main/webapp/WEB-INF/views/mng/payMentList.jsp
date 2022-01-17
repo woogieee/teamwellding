@@ -61,6 +61,7 @@ body.dark-theme .page-link.active
 {
 	    background: #f5a4aa!important;
 }
+
 </style>
 <script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>
 <script>
@@ -91,7 +92,8 @@ $(document).ready(function(){
 	    	document.body.classList.toggle('dark-theme'); 
 	    	});
     
-});
+		
+	});
 
 function fn_search()
 {
@@ -114,6 +116,19 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
    
    fn_search();      
 }
+
+function fn_confirm()
+{
+	if(confirm("결제 취소 요청을 승인하시겠습니까?"))
+	{
+		alert("결제 취소 요청이 승인되었습니다.");
+	}
+	else
+	{
+		alert("결제 취소 요청이 거부되었습니다.");
+	}	
+}
+
 </script>
 </head>
 <body id="school_list" class="light-theme || dark-theme"> 
@@ -121,6 +136,10 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 	<jsp:include page="/WEB-INF/views/include/adminNav.jsp" >
        <jsp:param name="userName" value="${wdAdmin.admName}" />
        </jsp:include>
+       
+<div>
+<button class="btn-toggle">다크모드</button>
+</div>       
        
 <div class="container">
     <div class="row">
@@ -139,7 +158,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 	               <option value="D" <c:if test="${status == 'D'}">selected</c:if>>취소완료</option>
 	            </select>
 	            <select id="searchType" name="searchType" style="font-size: 1rem; width: 8rem; height: 3rem; margin-left:.5rem; ">
-	               <option value="1" <c:if test="${searchType == '1'}">selected</c:if>>회원아이디</option>
+	               <option value="1" <c:if test="${searchType eq '1'}">selected</c:if>>회원아이디</option>
 	            </select>
 	            <input name="searchValue" id="searchValue" class="form-control me-sm-2" style="width:15rem; margin-left:.5rem;" type="text" value="${searchValue}">
 	            <a class="btn my-2 my-sm-0" href="javascript:void(0)" onclick="fn_search()" style="width:7rem; margin-left:.5rem; background-color: rgb(239, 239, 239); border-color:rgb(118, 118, 118);">조회</a>
@@ -173,7 +192,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 	                </td>
 	                <td><fmt:formatNumber type="number" maxFractionDigits="0" value="${payment.rezFullPrice}"/></td>
 	                <td><c:if test="${payment.rezStatus == 'Y'}">결제완료</c:if><c:if test="${payment.rezStatus == 'N'}">예약완료</c:if><c:if test="${payment.rezStatus == 'C'}">취소대기</c:if><c:if test="${payment.rezStatus == 'D'}">취소완료</c:if></td>
-	                <td><c:if test="${payment.rezStatus == 'C'}"><a href="/mng/payMentList?rezNo=${payment.rezNo}"><button>결제 취소</button></a></c:if></td>
+	                <td><c:if test="${payment.rezStatus == 'C'}"><a href="/mng/payMentList?rezNo=${payment.rezNo}" onclick="fn_confirm()">결제 취소</a></c:if></td>
 	            </tr>		
 	            </c:forEach>
 	            </c:if>
@@ -192,7 +211,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
 	        <!-- 이전 블럭이 있다는 뜻임, 이전 블럭 페이지가 0보다 크면. -->
 	         	<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${paging.prevBlockPage})">이전블럭</a></li>
 			</c:if>
-	   		
+			
 	   		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
 
 	   			<c:choose>

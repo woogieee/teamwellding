@@ -379,17 +379,17 @@ public class WDRezController {
 		//결제내역 관리 searchType은 1개 밖에 없기 때문에 searchType eq 생략
 		if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue)) 
 		{
-			wdRez.setUserId(searchType);
-			wdRez.setUserId(searchValue);
+			wdRez.setSearchType(searchType);
+			wdRez.setSearchValue(searchValue);
 			
 			 System.out.println("searchType = "+ wdRez.getSearchType());
 	         System.out.println("searchValue = "+ wdRez.getSearchValue());
-			
 		}
 		else 
 		{
 			searchType = "";
 			searchValue = "";
+			
 		}
 		
 		totalCount = wdRezService.rezListCount(wdRez);
@@ -405,7 +405,7 @@ public class WDRezController {
 			paging.addParam("curPage", curPage);
 			
 			System.out.println("======================================================================");
-			System.out.println("rezStatus : " + rezStatus);
+			System.out.println("problem : " + paging.getEndPage());
 			System.out.println("======================================================================");
 			
 			wdRez.setStartRow(paging.getStartRow());
