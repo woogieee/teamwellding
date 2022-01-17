@@ -179,5 +179,38 @@ public class WDStudioService
 		return count;
 		
 	}
+	
+	//스튜디오 삭제
+	public int studioDelete(String sCode)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdStudioDao.studioDelete(sCode);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDStudioService] studioDelete Exception", e);
+		}
+		
+		return count;
+	}
   	
+	//스튜디오 수정
+	public int studioUpdate(WDStudio wdStudio)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdStudioDao.studioUpdate(wdStudio);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDStudioService] studioUpdate Exception", e);
+		}
+		
+		return count;
+	}
 }

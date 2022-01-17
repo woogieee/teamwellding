@@ -32,4 +32,10 @@ public interface WDStudioDao
 	
 	//스튜디오 삽입
 	public int studioInsert(WDStudio wdStudio);
+	
+	//스튜디오 삭제
+	public int studioDelete(String sCode);
+	
+	//스튜디오 수정
+	public int studioUpdate(WDStudio wdStudio);
 }

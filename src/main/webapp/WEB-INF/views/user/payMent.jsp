@@ -68,7 +68,7 @@ $(document).ready(function(){
 	     
 	     var pointMax = ${wdUser.userPoint} - point;
 	     
-	     pointMax = pointMax.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	     pointMax = pointMax.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") ;
 	     
 	     document.getElementById("pointBox").innerHTML = pointMax;
 	     

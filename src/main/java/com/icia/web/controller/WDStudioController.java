@@ -350,5 +350,57 @@ public class WDStudioController
 		   
 		   return ajaxResponse;
 	   }
-	  
+	   
+	   //스튜디오 삭제
+	   @RequestMapping(value="/mng/studioDelete", method=RequestMethod.POST)
+	   @ResponseBody
+	   public Response<Object> studioDelete(HttpServletRequest request, HttpServletResponse response)
+	   {
+		   Response<Object> ajaxResponse = new Response<Object>();
+		   
+		   String sCode = HttpUtil.get(request, "sCode", "");
+		   
+		   if(!StringUtil.isEmpty(sCode))
+		   {
+			   WDStudio wdStudio = wdStudioService.studioSelect(sCode);
+			   
+			   if(wdStudio != null)
+			   {
+				   if(wdStudioService.studioDelete(wdStudio.getsCode()) > 0)
+				   {
+					   ajaxResponse.setResponse(0, "Success");
+				   }
+				   else
+				   {
+					   ajaxResponse.setResponse(500, "Internal Server Error");
+				   }
+			   }
+			   else
+			   {
+				   ajaxResponse.setResponse(404, "Not Found");
+			   }
+		   }
+		   else
+		   {
+			   ajaxResponse.setResponse(400, "Bad Request");
+		   }
+		   
+		   return ajaxResponse;
+		   
+	   }
+	   
+	   //스튜디오 수정
+	   @RequestMapping(value="/mng/updateStudio", method=RequestMethod.GET)
+	   public String updateStudio(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	   {
+		   String sCode = HttpUtil.get(request, "sCode", "");
+		   
+		   WDStudio wdStudio = null;
+		   
+		   wdStudio = wdStudioService.studioSelect(sCode);
+		   
+		   model.addAttribute("wdStudio",wdStudio);
+		   
+		   return "/mng/updateStudio";
+	   }
 }
