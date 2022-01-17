@@ -139,6 +139,7 @@
 		                <value>/mng/eBoardList</value>
 
 		                <value>/mng/boardList</value>
+		                <value>/mng/mngFboardUpdate</value>
 
 		                
 		                <value>/mng/nBoardUpdate</value>
