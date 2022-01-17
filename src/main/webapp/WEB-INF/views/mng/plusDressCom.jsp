@@ -152,23 +152,22 @@ function fn_userUpdate()
       <form name="regForm" id="regForm" method="post">
          <table>
             <tbody>
-
                <tr>
                   <th scope="row">드레스 업체명</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="dresscomName" name="dresscomName" placeholder="웨딩홀 이름을 입력해주세요"/>
+                     <input type="text" style="background-color: #fff;" id="dresscomName" name="dresscomName" placeholder="드레스 업체명을 입력해주세요"/>
                   </td>
                </tr>
                <tr>
                   <th scope="row">드레스업체 주소</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="dresscomlocation" name="dresscomlocation" placeholder="웨딩홀 주소를 입력해주세요"/>
+                     <input type="text" style="background-color: #fff;" id="dresscomlocation" name="dresscomlocation" placeholder="드레스 업체주소를 입력해주세요"/>
                   </td>
                </tr>
                <tr>
                    <th scope="row">드레스업체 전화번호</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="dresscomnumber" name="dresscomnumber" placeholder="웨딩홀 번호를 입력해주세요"/>
+                     <input type="text" style="background-color: #fff;" id="dresscomnumber" name="dresscomnumber" placeholder="드레스 업체 번호를 입력해주세요"/>
                   </td>
                </tr>
                <tr>

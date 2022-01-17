@@ -1016,5 +1016,146 @@ public class WDAdminIndexController
      	   return ajaxResponse;
         }
         
+        
+        //드레스업체 수정,삭제 페이지 띄우기
+        @RequestMapping(value="/mng/dressComUpdate")
+        public String dressComUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+        {   
+        	String dcCode = HttpUtil.get(request, "dcCode", "");
+        	//String dNo = HttpUtil.get(request, "dNo", "");
+        	
+        	WDDress dList = null;
+        	
+        	System.out.println("******************dcCode : " + dcCode);
+        	//System.out.println("******************dNo : " + dNo);
+        	
+        	if(!StringUtil.isEmpty(dcCode))
+        	{
+        		dList = wdDressService.onlyDressComSelect(dcCode);
+        		
+        		model.addAttribute("dList", dList);
+        	}
+        	
+        	model.addAttribute("dcCode", dcCode);
+        	model.addAttribute("dList", dList);
+        	
+        	return "/mng/dressComUpdate";
+        }
+        
+        //드레스업체 삭제하기
+        @RequestMapping(value="/mng/dressComDelete")
+        @ResponseBody
+        public Response<Object> dressComDelete(HttpServletRequest request, HttpServletResponse response)
+        {
+        	Response<Object> ajaxResponse = new Response<Object>();
+        	
+        	String dcCode = HttpUtil.get(request, "dcCode", "");
+        	
+        	System.out.println("***********dcCode : " + dcCode);
+        	
+        	if(!StringUtil.isEmpty(dcCode))
+      	   {
+        		WDDress dList = wdDressService.onlyDressComSelect(dcCode);
+       		   
+       		   if(dList != null) //dList가 널이면 게시물이 없다는거니까 널이 아닐떄 !
+       		   {
+       			   //널이 아닐때
+  				   if(wdDressService.onlyDressComDelete(dList.getDcCode()) > 0)
+  				   {
+  					   //0보다 크면 정상적으로 삭제됬따
+  					 ajaxResponse.setResponse(0, "Success");
+  				   }
+  				   else
+  				   {
+  					   //아니야. 삭제못했어
+  					 ajaxResponse.setResponse(500, "Internal Server Error");
+  				   }
+       		   }
+       		   else
+       		   {
+       			   //널일때 = 게시물이 없다
+       			ajaxResponse.setResponse(404, "Not Found");
+       		   }
+       	   }
+       	   else
+       	   {
+       		   //0이거나 0보다 작을때는 안넘어온거임
+       		ajaxResponse.setResponse(400, "Bad Request");
+       	   }
+        	
+        	return ajaxResponse;
+        }
+        
+        
+        //드레스 수정,삭제 페이지 띄우기
+        @RequestMapping(value="/mng/dressUpdate")
+        public String dressUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+        {   
+        	String dNo = HttpUtil.get(request, "dNo", "");
+        	
+        	WDDress dList = null;
+        	
+        	System.out.println("******************dNo : " + dNo);
+        	
+        	if(!StringUtil.isEmpty(dNo))
+        	{
+        		dList = wdDressService.dressSelect(dNo);
+        		
+        		model.addAttribute("dList", dList);
+        	}
+        	
+        	model.addAttribute("dcCode", dNo);
+        	model.addAttribute("dList", dList);
+        	
+        	return "/mng/dressUpdate";
+        }
+
+        //드레스 삭제하기
+        @RequestMapping(value="/mng/dressDelete")
+        @ResponseBody
+        public Response<Object> dressDelete(HttpServletRequest request, HttpServletResponse response)
+        {
+        	Response<Object> ajaxResponse = new Response<Object>();
+        	
+        	String dcCode = HttpUtil.get(request, "dcCode", "");
+        	String dNo = HttpUtil.get(request, "dNo", "");
+        	
+        	System.out.println("***********dcCode : " + dcCode);
+        	System.out.println("***********dNo : " + dNo);
+        	
+        	WDDress dList = new WDDress();
+        	
+        	if(!StringUtil.isEmpty(dcCode) && !StringUtil.isEmpty(dNo))
+      	   {
+        		dList = wdDressService.dressSelect(dNo);
+       		   
+       		   if(dList != null) //dList가 널이면 게시물이 없다는거니까 널이 아닐떄 !
+       		   {
+       			   //널이 아닐때
+  				   if(wdDressService.onlyDressDelete(dList) > 0)
+  				   {
+  					   //0보다 크면 정상적으로 삭제됬따
+  					 ajaxResponse.setResponse(0, "Success");
+  				   }
+  				   else
+  				   {
+  					   //아니야. 삭제못했어
+  					 ajaxResponse.setResponse(500, "Internal Server Error");
+  				   }
+       		   }
+       		   else
+       		   {
+       			   //널일때 = 게시물이 없다
+       			ajaxResponse.setResponse(404, "Not Found");
+       		   }
+       	   }
+       	   else
+       	   {
+       		   //0이거나 0보다 작을때는 안넘어온거임
+       		ajaxResponse.setResponse(400, "Bad Request");
+       	   }
+        	
+        	return ajaxResponse;
+        }
 
 }

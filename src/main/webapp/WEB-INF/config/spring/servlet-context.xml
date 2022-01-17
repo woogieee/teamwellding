@@ -145,11 +145,14 @@
 		                
 		                <value>/mng/nBoardDelete</value>
 
-						
-						
-						
 						<value>/board/fBoardFileTest</value>
-
+						
+						<value>/mng/dressComUpdate</value>
+						<value>/mng/dressComUpdateProc</value>
+						<value>/mng/dressComDelete</value>
+						<value>/mng/dressUpdate</value>
+						<value>/mng/dressUpdateProc</value>
+						<value>/mng/dressDelete</value>
             		</list>
             	</constructor-arg>
             </bean>

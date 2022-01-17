@@ -61,7 +61,7 @@ body.dark-theme a { }
 body.dark-theme td,th {color: #333;}
 body.dark-theme .page-link.active
 {
-	    background: #f5a4aa!important;
+	   /* background: #f5a4aa!important;*/
 }
 </style>
 <script>
@@ -91,9 +91,9 @@ body.dark-theme .page-link.active
                $('html').css("overflow","hidden");
             } , 
             onClosed: function()
-                {
-                  $('html').css("overflow","auto");
-                }  
+            {
+              $('html').css("overflow","auto");
+            }  
      });
     
      $(".wdhall_modal").colorbox({
@@ -110,12 +110,13 @@ body.dark-theme .page-link.active
             $('html').css("overflow","hidden");
          } , 
          onClosed: function()
-             {
-               $('html').css("overflow","auto");
-             }  
+         {
+           $('html').css("overflow","auto");
+         }  
    });
      
-     $(".hall_modal").colorbox({
+     //메이크업모달
+     $(".makeup_modal").colorbox({
          iframe:true, 
          innerWidth:1000,
          innerHeight:800,
@@ -129,9 +130,9 @@ body.dark-theme .page-link.active
             $('html').css("overflow","hidden");
          } , 
          onClosed: function()
-             {
-               $('html').css("overflow","auto");
-             }  
+         {
+           $('html').css("overflow","auto");
+         }  
    });
      
      //dresscom_modal & dress_modal
@@ -149,9 +150,9 @@ body.dark-theme .page-link.active
             $('html').css("overflow","hidden");
          } , 
          onClosed: function()
-             {
-               $('html').css("overflow","auto");
-             }  
+         {
+           $('html').css("overflow","auto");
+         }  
    });
      
      $(".dress_modal").colorbox({
@@ -168,9 +169,47 @@ body.dark-theme .page-link.active
             $('html').css("overflow","hidden");
          } , 
          onClosed: function()
-             {
-               $('html').css("overflow","auto");
-             }  
+         {
+           $('html').css("overflow","auto");
+         }  
+   });
+     
+     $(".dresscom_modal2").colorbox({
+         iframe:true, 
+         innerWidth:1100,
+         innerHeight:600,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1100px");
+            $("#colorbox").css("height", "600px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+         {
+           $('html').css("overflow","auto");
+         }  
+   });
+     
+     $(".dress_modal2").colorbox({
+         iframe:true, 
+         innerWidth:1000,
+         innerHeight:800,
+         scrolling:false,
+         onComplete:function()
+         {
+            $("#colorbox").css("width", "1000px");
+            $("#colorbox").css("height", "800px");
+            $("#colorbox").css("border-radius", "10px");
+            
+            $('html').css("overflow","hidden");
+         } , 
+         onClosed: function()
+         {
+           $('html').css("overflow","auto");
+         }  
    });
     
      if(hsdmCheck == 1){
@@ -527,11 +566,15 @@ function classChange(id){
             </li>
             <c:forEach var="dressList" items="${dList}" varStatus="status">
             <li class="wdhtd">
-               <div class="wdhcon" style="width:9%;"><p>${dressList.dcName }</p></div>
+               <div class="wdhcon" style="width:9%;">
+               <p><a href="/mng/dressComUpdate?dcCode=${dressList.dcCode}" name="dresscom_modal2" class="dresscom_modal2" style="font-weight:800;">${dressList.dcName}</a></p>
+               </div>
                <div class="wdhcon" style="width:13%;"><p>${dressList.dcLocation }</p></div>
                <div class="wdhcon" style="width:8%;"><p>${dressList.dcNumber }</p></div>
                <div class="wdhcon" style="width:16%;"><p>${dressList.dcContent }</p></div>
-               <div class="wdhcon" style="width:15%;"><p>${dressList.dName }</p></div>
+               <div class="wdhcon" style="width:15%;">
+               <p><a href="/mng/dressUpdate?dNo=${dressList.dNo}" name="dress_modal2" class="dress_modal2" style="font-weight:800;">${dressList.dName }</a></p>
+               </div>
                <div class="wdhcon" style="width:8%;"><p>${dressList.dImgname }</p></div>
                <div class="wdhcon" style="width:8%;"><p>${dressList.dPrice }</p></div>
                <div class="wdhcon" style="width:17%;"><p>${dressList.dContent }</p></div>
@@ -594,8 +637,8 @@ function classChange(id){
          </div>
       </div>
       <!-- 드레스 끝 -->
-      <!-- 메이크업 시작 -->
-      <div class="col-lg-12" width="100%">
+ 	<!-- 메이크업 시작 -->
+    <div class="col-lg-12" width="100%">
       <div id="makeup">
          <ul>
             <li class="wdhth">
@@ -610,7 +653,7 @@ function classChange(id){
             </li>
             <c:forEach var="makeupList" items="${mList}" varStatus="status">
             <li class="wdhtd">
-               <div class="wdhcon" style="width:13%;"><p>${makeupList.mName }</p></div>
+               <div class="wdhcon" style="width:13%;"><a href="/mng/MakeupUpdate?mName=${makeupList.mName }" name="makeupUpdate" class="makeupUpdate">${makeupList.mName}</a></div>
                <div class="wdhcon" style="width:18%;"><p>${makeupList.mLocation }</p></div>
                <div class="wdhcon" style="width:12%;"><p>${makeupList.mNumber }</p></div>
                <div class="wdhcon" style="width:8%;"><p>${makeupList.mImgName }</p></div>
@@ -621,6 +664,18 @@ function classChange(id){
             </li>
             </c:forEach>
          </ul>
+
+		<div class="row">
+            <div class="col-lg-12">
+                 <div class="ticket-item2 makeup_modal" href="/mng/plusMakeup">
+                    <div class="down-content2" style="text-align: right; margin-right: 30px;">
+                        <div class="main-dark-button">
+                            <a href="/mng/plusMakeup" class="makeup_modal" >메이크업 추가</a>
+                        </div>    
+                     </div>
+                </div>
+             </div>
+		</div>
 
          <div class="row">
               <div class="col-lg-10" style="left:43%;">
@@ -645,33 +700,16 @@ function classChange(id){
                      </c:if>       
                   </c:if> 
                      <form name="bbsFormM" id="bbsFormM" method="post">
-                     <input type="hidden" name="hsdmCheck" value="4" />
-                  <input type="hidden" name="curPage" value="${curPage}" />
-               </form>
+                     	<input type="hidden" name="hsdmCheck" value="4" />
+                  		<input type="hidden" name="curPage" value="${curPage}" />
+              		 </form>
                </ul>
                   </div>
               </div>
-              
-            <div class="col-lg-1">
-               <div>
-                  <form id="subscribe" action="" method="get">
-                     <div class="row" style="width: 100%;">
-                        <div class="col-lg-12">
-                              <button type="button" id="btnWrite" class="hsdm_btn">업체 추가</button>
-                        </div>
-                     </div>
-                  </form>
-               </div>
-            </div>
-           </div>
-              
+         </div>   
       </div>
-      </div>
+   </div>
       <!-- 메이크업 끝 -->
-
-         
-
-      
 
   </div>
 </div>
