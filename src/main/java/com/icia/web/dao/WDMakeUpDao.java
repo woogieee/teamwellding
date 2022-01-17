@@ -29,5 +29,8 @@ public interface WDMakeUpDao
 	   
    //메이크업 m코드 불러오기
    public String makeupMax();
+   
+   //메이크업 수정
+   public int makeupUpdate(WDMakeUp wdMakeUp);
 	
 }

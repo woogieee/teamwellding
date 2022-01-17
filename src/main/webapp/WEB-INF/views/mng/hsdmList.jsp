@@ -172,6 +172,26 @@ body.dark-theme .page-link.active
                $('html').css("overflow","auto");
              }  
    });
+     //메이크업
+         $(".makeupUpdate").colorbox({
+               iframe:true, 
+               innerWidth:1235,
+               innerHeight:500,
+               scrolling:false,
+               onComplete:function()
+               {
+                  $("#colorbox").css("width", "1235px");
+                  $("#colorbox").css("height", "500px");
+                  $("#colorbox").css("border-radius", "10px");
+                  
+                  $('html').css("overflow","hidden");
+               } , 
+               onClosed: function()
+   	          {
+   	            $('html').css("overflow","auto");
+   	          }  
+         });
+     
     
      if(hsdmCheck == 1){
          document.getElementById('id1').classList.remove('sel');
@@ -595,7 +615,7 @@ function classChange(id){
          </div>
       </div>
       <!-- 드레스 끝 -->
-      <!-- 메이크업 시작 -->
+     <!-- 메이크업 시작 -->
       <div class="col-lg-12" width="100%">
       <div id="makeup">
          <ul>
@@ -611,7 +631,7 @@ function classChange(id){
             </li>
             <c:forEach var="makeupList" items="${mList}" varStatus="status">
             <li class="wdhtd">
-               <div class="wdhcon" style="width:13%;"><p>${makeupList.mName }</p></div>
+               <div class="wdhcon" style="width:13%;"><a href="/mng/MngMakeupUpdate?mCode=${makeupList.mCode}" name="makeupUpdate" class="makeupUpdate">${makeupList.mName}</a></div>
                <div class="wdhcon" style="width:18%;"><p>${makeupList.mLocation }</p></div>
                <div class="wdhcon" style="width:12%;"><p>${makeupList.mNumber }</p></div>
                <div class="wdhcon" style="width:8%;"><p>${makeupList.mImgName }</p></div>
@@ -655,10 +675,30 @@ function classChange(id){
               
             <div class="col-lg-1">
                <div>
+            <div class="col-lg-12" style="text-align: right;">
+               <div>
+                    <div class="ticket-item2 gosu_modal" href="/mng/plusMakeup">
+                        <div class="down-content2">
+                            <div class="main-dark-button btn_go wookhall" style="display: inline-block; margin-top: 0;">
+                                <a href="/mng/plusMakeup" class="studio_modal" >메이크업 추가</a>
+                            </div>    
+                         </div>
+                    </div>
+               </div>
+            </div>
+		</div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+           </div>
+            <div class="col-lg-1">
+               <div>
                   <form id="subscribe" action="" method="get">
                      <div class="row" style="width: 100%;">
                         <div class="col-lg-12">
-                              <button type="button" id="btnWrite" class="hsdm_btn">업체 추가</button>
+                              <button type="button" id="btnWrite" class="hsdm_btn">추가</button>
                         </div>
                      </div>
                   </form>

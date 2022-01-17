@@ -120,9 +120,13 @@
 						<value>/mng/userupdateProc</value>
 						<value>/mng/hsdmList</value>
 						<value>/mng/payMentList</value>
+						<value>/mng/plusMakeup</value>
+						<value>/mng/MngMakeupUpdate</value>
 						
+						<value>/mng/makeupWrite</value>
 						<value>/mng/plusWHall</value>
 						<value>/mng/weddinghallWrite</value>
+						
 
 						<value>/mng/plusHall</value>
 						<value>/mng/hallWrite</value>

@@ -295,6 +295,68 @@ public class WDAdminIndexController
          return res;
       }
       
+      //메이크업 수정
+      @RequestMapping(value="/mng/makeupupdateProc", method=RequestMethod.POST)
+      @ResponseBody
+      public Response<Object> makeupupdateProc(HttpServletRequest request, HttpServletResponse response)
+      {
+    	  Response<Object> res = new Response<Object>();
+    	  
+    //관리가가 새로 입력한 정보들 받기
+    	  String mkName = HttpUtil.get(request, "mkName");
+          String mkLocation = HttpUtil.get(request, "mkLocation");
+          String mkNumber = HttpUtil.get(request, "mkNumber");
+          long mkPrice = HttpUtil.get(request, "mkPrice",(long)0);
+          String mkContent = HttpUtil.get(request,"mkContent");
+          long mkPlus = HttpUtil.get(request, "mkPlus",(long)0);
+          long mkDiscount = HttpUtil.get(request, "mkDiscount",(long)0);
+      
+          if(!StringUtil.isEmpty(mkName) &&
+                  !StringUtil.isEmpty(mkLocation) && !StringUtil.isEmpty(mkNumber) && !StringUtil.isEmpty(mkPrice) &&
+                  !StringUtil.isEmpty(mkContent) && !StringUtil.isEmpty(mkDiscount))
+          {
+         String mCode;
+			
+         WDMakeUp wdmakeup = new WDMakeUp();
+        		
+         
+         if(wdmakeup != null)
+         {
+            //새로받은걸로 값 넣어주기
+        	 wdmakeup.setmName(mkName);
+             wdmakeup.setmLocation(mkLocation);
+             wdmakeup.setmNumber(mkNumber);
+             wdmakeup.setmPrice(mkPrice);
+             wdmakeup.setmContent(mkContent);
+             wdmakeup.setmPlus(mkPlus);
+             wdmakeup.setmDiscount(mkDiscount);
+            
+            
+            if(wdMakeUpService.makeupUpdate(wdmakeup) > 0)
+            {
+               //성공
+               res.setResponse(0, "Success");
+            }
+            else
+            {
+               res.setResponse(-1, "Fail");
+            }
+         }
+         else
+         {
+            //정보가 없음
+            res.setResponse(404, "Not Found");
+         }
+      }
+      else
+      {
+         //값이 하나라도 없으면 파라미터 오류
+         res.setResponse(400, "Bad Request");
+      }
+      
+      return res;
+   }
+      
       @RequestMapping(value="/mng/hsdmList")
       public String hsdmList(Model model,HttpServletRequest request, HttpServletResponse response)
       {
@@ -730,6 +792,47 @@ public class WDAdminIndexController
         return "/mng/plusMakeup";
      }
      
+     
+     /*@RequestMapping(value="/mng/MngMakeupUpdate")
+     public String MngMakeupUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+     {
+    	 
+         return "/mng/MngMakeupUpdate";
+      }*/
+     
+   //메이크업 수정창
+     @RequestMapping(value="/mng/MngMakeupUpdate")
+     public String MngMakeupUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+     {
+    	 //String mkName = HttpUtil.get(request, "mkName");
+    	 String mCode = HttpUtil.get(request, "mCode", "");
+    	 
+    
+    	
+    	 
+    	 WDMakeUp wdmakeup = null;
+    	 
+    	 if(!StringUtil.isEmpty(mCode))
+    	 {
+    		 wdmakeup = wdMakeUpService.makeupSelect(mCode);
+    		 
+    		 model.addAttribute("wdmakeup", wdmakeup);
+    		 
+    		 
+    		 
+    		 
+    		 
+    	 }
+    	 
+    	
+    	 model.addAttribute("wdmakeup", wdmakeup);
+    	 System.out.println("mContent" + mCode);
+    	
+    	 
+    	 return "/mng/MngMakeupUpdate";
+     }
+     
+     
      @RequestMapping(value="/mng/makeupWrite")
      @ResponseBody
      public Response<Object> makeupWrite(HttpServletRequest request, HttpServletResponse response)
@@ -744,7 +847,10 @@ public class WDAdminIndexController
         String mkName = HttpUtil.get(request, "mkName", "");
         String mkLocation = HttpUtil.get(request, "mkLocation", "");
         String mkNumber = HttpUtil.get(request, "mkNumber", "");
+        long mkPrice = HttpUtil.get(request, "mkPrice",(long)0);
         String mkContent = HttpUtil.get(request,"mkContent", "");
+        long mkPlus = HttpUtil.get(request, "mkPlus",(long)0);
+        long mkDiscount = HttpUtil.get(request, "mkDiscount",(long)0);
         
         WDMakeUp wdmakeup = new WDMakeUp();
         
@@ -752,11 +858,15 @@ public class WDAdminIndexController
         wdmakeup.setmName(mkName);
         wdmakeup.setmLocation(mkLocation);
         wdmakeup.setmNumber(mkNumber);
+        wdmakeup.setmPrice(mkPrice);
         wdmakeup.setmContent(mkContent);
+        wdmakeup.setmPlus(mkPlus);
+        wdmakeup.setmDiscount(mkDiscount);
+  
         
         if(!StringUtil.isEmpty(mkName) &&
-              !StringUtil.isEmpty(mkLocation) && !StringUtil.isEmpty(mkNumber) &&
-              !StringUtil.isEmpty(mkContent))
+              !StringUtil.isEmpty(mkLocation) && !StringUtil.isEmpty(mkNumber) && !StringUtil.isEmpty(mkPrice) &&
+              !StringUtil.isEmpty(mkContent) && !StringUtil.isEmpty(mkDiscount))
         {
            if(wdMakeUpService.makeupInsert(wdmakeup) > 0)
            {

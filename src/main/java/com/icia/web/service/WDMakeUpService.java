@@ -157,10 +157,29 @@ public class WDMakeUpService
        }
        catch(Exception e)
        {
-          logger.error("[WDMakeUpService] makeupInsert Exception", e);
+          logger.error("[WDMakeUpService] makeupMax Exception 너냐?", e);
        }
        
        return mCode;
     }
+    
+    //메이크업 수정
+    public int makeupUpdate(WDMakeUp wdMakeUp)
+    {
+    	int count = 0;
+    	
+    	try
+    	{
+    		count = wdMakeUpDao.makeupUpdate(wdMakeUp);
+    	}
+    	catch(Exception e)
+    	{
+    		logger.error("[WDAdminUserService] wdAdmUserUpdate Exception", e);
+    	}
+    	return count;
+    }
+    
+
+	
    	
 }
