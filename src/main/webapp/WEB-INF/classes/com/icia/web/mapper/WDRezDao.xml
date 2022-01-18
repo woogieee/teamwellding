@@ -725,11 +725,16 @@ SELECT
     COUNT(WDH)
 FROM
         (SELECT 
-            CONCAT(NVL(#{whCode}, ''), NVL(#{hCode}, '')) AS WDH,
+            CONCAT(NVL(WH_CODE, ''), NVL(H_CODE, '')) AS WDH,
             NVL(WDATE, '') AS WDATE,
             NVL(REZ_STATUS, 'N') AS REZ_STATUS
         FROM
-            WD_REZ)
+            WD_REZ
+        WHERE
+            WH_CODE = #{whCode}
+        AND
+            H_CODE = #{hCode}    
+            )
 WHERE
     WDATE IN #{wDate}
 AND
