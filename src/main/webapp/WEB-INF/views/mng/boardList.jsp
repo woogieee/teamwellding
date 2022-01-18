@@ -71,6 +71,26 @@ body.dark-theme .page-link.active
 	
 	$(function(){
 		var msg = $("#msg").val();
+		
+	      $(".mngReviewUpdate").colorbox({
+	            iframe:true, 
+	            innerWidth:1235,
+	            innerHeight:500,
+	            scrolling:false,
+	            onComplete:function()
+	            {
+	               $("#colorbox").css("width", "1235px");
+	               $("#colorbox").css("height", "500px");
+	               $("#colorbox").css("border-radius", "10px");
+	               
+	               $('html').css("overflow","hidden");
+	            } , 
+	            onClosed: function()
+		          {
+		            $('html').css("overflow","auto");
+		          }  
+	      });
+
 	    
 		if(msg == "Y")
 		{
@@ -139,7 +159,13 @@ body.dark-theme .page-link.active
 	         $("#comment").show();
 	     }
 		
+		$("#id1").on("click", function(){
+	        document.bbsFormF.curPage.value = 1;
+	        document.bbsFormF.action = "/mng/boardList";
+	        document.bbsFormF.submit();
+		});
 		
+
 		 $("#id1").on("click", function(){
 	        document.bbsFormF.curPage.value = 1;
 	        //document.bbsFormH.action = "/mng/hsdmList";
@@ -204,6 +230,13 @@ body.dark-theme .page-link.active
 	       });
 	     
 	     
+
+		$("#id2").on("click", function(){
+	        document.bbsFormR.curPage.value = 1;
+	        document.bbsFormR.action = "/mng/boardList";
+	        document.bbsFormR.submit();
+		});
+
 		
 	});    
 
@@ -357,7 +390,7 @@ body.dark-theme .page-link.active
                   </c:if> 
                      <form name="bbsFormF" id="bbsFormF" method="post">
                         <input type="hidden" name="frCheck" value="1" />
-                  <input type="hidden" name="curPage" value="${curPage}" />
+                  		<input type="hidden" name="curPage" value="${curPage}" />
                </form>
                </ul>
                   </div>
@@ -377,9 +410,80 @@ body.dark-theme .page-link.active
          </div>
       </div>
       <!-- 자유게시판 끝 -->    	
-    	
+
 	  
-	  
+	  <!-- 리뷰게시판 시작 -->
+      <div class="col-lg-12" width="100%">
+		<div id="review">
+		   <ul>
+			  <li class="wdhth">
+				 <div class="wdhtitle" style="width:9%;"><p>게시물번호</p></div><!-- bSeq -->
+				 <div class="wdhtitle" style="width:9%;"><p>아이디</p></div><!-- userId -->
+				 <div class="wdhtitle" style="width:32%;"><p>제목</p></div><!-- bTitle -->
+				 <div class="wdhtitle" style="width:33%;"><p>내용</p></div><!-- bContent -->
+				 <div class="wdhtitle" style="width:8%;"><p>조회수</p></div><!-- bReadCnt -->
+				 <div class="wdhtitle" style="width:8%;"><p>등록일</p></div><!-- regDate -->
+			  </li>
+			  <c:forEach var="review" items="${rList}" varStatus="status">
+			  <li class="wdhtd">
+				 <div class="wdhcon" style="width:9%;"><p>${review.RSeq}</p></div>
+				 <div class="wdhcon" style="width:9%;"><p>${review.userId}</p></div>
+				 <a href="/mng/mngReviewUpdate?RSeq=${review.RSeq}" name="RboardUpdate" class="RboardUpdate">
+					<div class="wdhcon mngReviewUpdate" style="width:32%; border-right: 1px solid #dedede;" href="/mng/mngReviewUpdate?RSeq=${review.RSeq}"><p style="font-weight: bold;">${review.RTitle}</p></div>
+				 </a>
+				 <div class="wdhcon" style="width:33%;"><p>${review.RContent}</p></div>
+				 <div class="wdhcon" style="width:8%;"><p>${review.RReadCnt}</p></div>
+				 <div class="wdhcon" style="width:8%;"><p>${review.regDate}</p></div>
+			  </li>
+			  </c:forEach>
+		   </ul>
+  
+		   <div class="row">
+				<div class="col-lg-10" style="left:43%;">
+				  <div class="pagination">
+				 <ul class="pagination justify-content-center">
+					<c:if test="${!empty rPaging}">
+					   <c:if test="${rPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
+					   <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingF(${rPaging.prevBlockPage})">이전</a></li>
+					   </c:if>
+					   <c:forEach var="i" begin="${rPaging.startPage}" end="${rPaging.endPage}">
+						  <c:choose>
+							 <c:when test="${i ne curPage}">
+								<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingF(${i})">${i}</a></li>
+							 </c:when>
+							 <c:otherwise>
+								<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
+							 </c:otherwise>
+						  </c:choose>
+					   </c:forEach>
+					   <c:if test="${rPaging.nextBlockPage gt 0}">         
+						  <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingF(${rPaging.nextBlockPage})">다음</a></li>
+					   </c:if>       
+					</c:if> 
+					   <form name="bbsFormR" id="bbsFormR" method="post">
+						  <input type="hidden" name="frCheck" value="2" />
+						  <input type="hidden" name="curPage" value="${curPage}" />
+				 </form>
+				 </ul>
+					</div>
+				</div>
+			  <div class="col-lg-1">
+				 <!--div>
+					  <div class="ticket-item2 gosu_modal" href="/mng/plusStudio">
+						  <div class="down-content2">
+							  <div class="main-dark-button btn_go wookhall">
+								  <a href="/mng/plusStudio" class="studio_modal" >스튜디오 추가</a>
+							  </div>    
+						   </div>
+					  </div>
+				 </div-->
+			  </div>
+			 </div>
+		   </div>
+		</div>
+	  <!-- 리뷰게시판 끝 -->
+
+
 	  <!-- 댓글 시작 -->
       <div class="col-lg-12" width="100%">
       <div id="comment">
@@ -433,7 +537,7 @@ body.dark-theme .page-link.active
                      <form name="bbsFormC" id="bbsFormC" method="post">
                         <input type="hidden" name="frCheck" value="3" />
                         <input type="hidden" name="curPage" value="${curPage}" />
-               </form>
+               		</form>
                </ul>
                   </div>
               </div>
@@ -452,7 +556,6 @@ body.dark-theme .page-link.active
          </div>
       </div>
       <!-- 댓글 끝 -->
-    
     	
     </div>
 </div>
