@@ -36,16 +36,20 @@
 SELECT
     COUNT(A.R_SEQ) CNT
 FROM
-    WD_REVIEW A, WD_REZ B, WD_HALL C
+    WD_REVIEW A, WD_REZ B
+<if test='searchValue != null and searchValue != ""'>     
+    , WD_HALL C
+</if>    
 WHERE
     A.REZ_NO = B.REZ_NO
+<if test='searchValue != null and searchValue != ""'> 
 AND 
     B.WH_CODE = C.WH_CODE
 AND
     B.H_CODE = C.H_CODE
-<if test='searchValue != null and searchValue != ""'> 
+
 AND
-    C.H_NAME LIKE '%' || #{value} || '%'
+    C.H_NAME LIKE '%' || #{searchValue} || '%'
 </if>
 </select>
 <!-- 리뷰 게시물 총 수 체크 끝 -->
