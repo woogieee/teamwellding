@@ -48,56 +48,57 @@ button:active {
 <script type="text/javascript" src="../resources/js/colorBox.js"></script>
 <script>
 $(document).ready(function(){
-	$("#dcName").focus();
+	$("#wdName").focus();
 });
 
-function dressComUpdate()
+function WeddingHallUpdate()
 {
-	if(icia.common.isEmpty($("#dcName").val()))
+	if(icia.common.isEmpty($("#wdName").val()))
 	{
-		alert("업체 이름을 입력해주세요");
-		$("#dcName").focus();
+		alert("웨딩홀 이름을 입력해주세요");
+		$("#wdName").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#dcLocation").val()))
+	if(icia.common.isEmpty($("#wdLocation").val()))
 	{
-		alert("업체주소를 입력해주세요");
-		$("#dcLocation").focus();
+		alert("웨딩홀 주소를 입력해주세요");
+		$("#wdLocation").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#dcNumber").val()))
+	if(icia.common.isEmpty($("#wdNumber").val()))
 	{
 		alert("업체 전화번호를 입력해주세요");
-		$("#dcNumber").focus();
+		$("#wdNumber").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#dcContent").val()))
+	if(icia.common.isEmpty($("#wdContent").val()))
 	{
 		alert("업체 설명을 입력해주세요.");
-		$("#dcContent").focus();
+		$("#wdContent").focus();
 		return;
 	}
 	
 	//등록 취소
-	if(!confirm("드레스 업체를 등록 하시겠습니까?"))
+	if(!confirm("웨딩홀을 수정 하시겠습니까?"))
 	{
 		//NO
 		return;
 	}
 	
 	var formData = {
-			dcName: $("#dcName").val(),
-			dcLocation: $("#dcLocation").val(),
-			dcNumber: $("#dcNumber").val(),
-			dcContent: $("#dcContent").val()
+			wdCode: $("#wdCode").val(),
+			wdName: $("#wdName").val(),
+			wdLocation: $("#wdLocation").val(),
+			wdNumber: $("#wdNumber").val(),
+			wdContent: $("#wdContent").val()
 	};
 	
 	//ajax통신
 	icia.ajax.post({
-		url: "/mng/dressComUpdateProc",
+		url: "/mng/weddinghallUpdateProc",
 		data: formData,
 		success: function(res)
 		{
@@ -236,7 +237,7 @@ function WeddingHallDelete()
 				<tr style="border:none;">
 					<td style="border:none;">
 					      <div class="pop-btn-area" style="display: block; float: right;">
-					         <!--button onclick="WeddingHallUpdate()" class="btn-type01"><span>수정</span></button-->
+					         <button onclick="WeddingHallUpdate()" class="btn-type01"><span>수정</span></button>
 					         <button onclick="WeddingHallDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
 					         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
 					      </div>

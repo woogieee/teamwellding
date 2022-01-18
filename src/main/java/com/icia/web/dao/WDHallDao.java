@@ -51,4 +51,8 @@ public interface WDHallDao {
 	public int weddingHallDelete(String whCode);
 	
 	public int hallDelete(WDHall wdHall);
+	
+	public int weddinghallUpdate(WDHall wdHall);
+	
+	public int hallUpdate(WDHall wdHall);
 }

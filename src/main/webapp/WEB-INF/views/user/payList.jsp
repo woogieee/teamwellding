@@ -24,6 +24,63 @@ $(document).ready(function(){
        window.open("/board/Coupon", "PopUP", option); 
    });
 });
+
+function reviewWrite(rezNo){
+	   document.reviewForm.FormRezNo.value = rezNo;
+	   
+		$.ajax({
+			type : "POST",
+			url : "/board/reviewWrite",
+			data : {
+				rezNo:$("#FormRezNo").val()
+			},
+			datatype : "JSON",																																																					
+			beforeSend : function(xhr){
+	            xhr.setRequestHeader("AJAX", "true");
+	        },
+			success : function(response) {
+				
+				if(!icia.common.isEmpty(response))
+				{
+					icia.common.log(response);
+					
+					// var data = JSON.parse(obj);
+					var code = icia.common.objectValue(response, "code", -500);
+					
+					if(code == 0)
+					{
+	                     document.reviewForm.action = "/board/reviewWriteGo";
+	                     document.reviewForm.submit();
+					}
+					else if(code == 400)
+                    {
+                       alert("예약내역이 없거나 결제가 완료되지 않아 리뷰 작성이 불가능합니다.");
+                    }
+                    else if(code == 401)
+                    {
+                       alert("아직 결혼식이 진행되지 않아 리뷰 작성이 불가능 합니다.");
+                    }
+                    else if(code == 501){
+                    	alert("이미 리뷰를 작성하였습니다.")
+                    }
+                    else{
+				  		alert("오류가 발생하였습니다.");
+						$("#userId").focus();
+                    }
+
+				}
+			},
+			complete : function(data) 
+			{ 
+				// 응답이 종료되면 실행, 잘 사용하지않는다
+				icia.common.log(data);
+			},
+			error : function(xhr, status, error) 
+			{
+				icia.common.error(error);
+			}
+		});
+}
 </script>
 </head>
     
@@ -40,37 +97,43 @@ $(document).ready(function(){
             </div>
         </div>
     </div>
-   <div class="container-fluid">
-      <div class="row">
-         <div class="col-lg-12 bcline">
-            <div class="row">
-               <div class="col-lg-1"></div>
-               <div class="col-lg-10">
-                  <h2 style="font-family: 'Bitter'; margin-top: 50px; padding-left: 10px;">결제내역</h2>
-                  <nav class="bcItem">
-                     <ol class="breadcrumb bc" >
-                        <li class="breadcrumb-item active">
-                           <a href="/user/wishlist">장바구니</a>
-                        </li>
-                        <li class="breadcrumb-item" >
-                           <a style="font-size: large; font-weight: bold;">결제내역</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                           <a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                           <a href="/user/modify">회원정보수정</a>
-                        </li>
-                     </ol>
-                  </nav>
-               </div>
-               <div class="col-lg-1"></div>
-               
-               <!-- 다음 라인 -->
-               <div class="col-lg-1"></div>
-               
-               <!-- 경계선 및 내용 -->
-               <div class="col-lg-10 lineListMypage">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 bcline">
+				<div class="row">
+					<div class="col-lg-1">
+					</div>
+					<div class="col-lg-10">
+						<h2 style="font-family: 'Bitter'; margin-top: 50px; padding-left: 10px;">결제내역</h2>
+						<nav class="bcItem">
+							<ol class="breadcrumb bc" >
+								<li class="breadcrumb-item active">
+									<a href="/user/wishlist">장바구니</a>
+								</li>
+								<li class="breadcrumb-item" >
+									<a style="font-size: large; font-weight: bold;">결제내역</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/modify">회원정보수정</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/userDrop">회원탈퇴</a>
+								</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="col-lg-1">
+					</div>
+					
+					<!-- 다음 라인 -->
+					<div class="col-lg-1">
+					
+					</div>
+					<!-- 경계선 및 내용 -->
+					<div class="col-lg-10 lineListMypage">
                         <table class="table tableWish">
                         <c:choose>
                         <c:when test="${!empty list}">
@@ -132,12 +195,14 @@ $(document).ready(function(){
             </div>
          </div>         
       </div>
-	      <form name="reviewForm" id="reviewForm">
-	         <input type="hidden" name="rezNo" value="" />
-	      </form>
-	      <form name="bbsForm" id="bbsForm" method="post" action="/user/payListView">
-	         <input type="hidden" name="rezNo" value="" />
-	      </form>
+
+   		<form name="reviewForm" id="reviewForm">
+         <input type="hidden" name="FormRezNo" id="FormRezNo" value="" />
+        </form>
+         <form name="bbsForm" id="bbsForm" method="post" action="/user/payListView">
+            <input type="hidden" name="rezNo" value="" />
+         </form>
+
    </div>
 
       <%@ include file="/WEB-INF/views/include/footer.jsp" %>

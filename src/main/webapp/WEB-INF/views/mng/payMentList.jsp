@@ -97,7 +97,7 @@ $(document).ready(function(){
 
 function fn_search()
 {
-   document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
+   document.searchForm.curPage.value = 1; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
    document.searchForm.action = "/mng/payMentList";
    document.searchForm.submit();
 }
@@ -152,17 +152,21 @@ function fn_confirm()
 	         <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">
 	            <select id="rezStatus" name="rezStatus" style="font-size: 1rem; width: 6rem; height: 3rem;">
 	               <option value="">상태</option>
-	               <option value="Y" <c:if test="${status == 'Y'}">selected</c:if>>결제완료</option>
-	               <option value="N" <c:if test="${status == 'N'}">selected</c:if>>예약완료</option>
-	               <option value="C" <c:if test="${status == 'C'}">selected</c:if>>취소대기</option>
-	               <option value="D" <c:if test="${status == 'D'}">selected</c:if>>취소완료</option>
+	               <option value="Y" <c:if test="${rezStatus == 'Y'}">selected</c:if>>결제완료</option>
+	               <option value="N" <c:if test="${rezStatus == 'N'}">selected</c:if>>예약완료</option>
+	               <option value="C" <c:if test="${rezStatus == 'C'}">selected</c:if>>취소대기</option>
+	               <option value="D" <c:if test="${rezStatus == 'D'}">selected</c:if>>취소완료</option>
 	            </select>
 	            <select id="searchType" name="searchType" style="font-size: 1rem; width: 8rem; height: 3rem; margin-left:.5rem; ">
 	               <option value="1" <c:if test="${searchType eq '1'}">selected</c:if>>회원아이디</option>
+	               <option value="2" <c:if test="${searchType eq '2'}">selected</c:if>>예약번호</option>
 	            </select>
 	            <input name="searchValue" id="searchValue" class="form-control me-sm-2" style="width:15rem; margin-left:.5rem;" type="text" value="${searchValue}">
 	            <a class="btn my-2 my-sm-0" href="javascript:void(0)" onclick="fn_search()" style="width:7rem; margin-left:.5rem; background-color: rgb(239, 239, 239); border-color:rgb(118, 118, 118);">조회</a>
 	            <input type="hidden" name="curPage" value="" />
+	            <input type="hidden" name="searchType" value ="${searchType}" />
+	            <input type="hidden" name="searchValue" value="${searchValue}" />
+	            <input type="hidden" name="status" value="${rezStatus}" />
 	         </form>
 	      </div>
 	      <div class="school_list_excel">
@@ -237,6 +241,8 @@ function fn_confirm()
       </div>
    </div>
   </div>
+ 
+  
 	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
 </html>

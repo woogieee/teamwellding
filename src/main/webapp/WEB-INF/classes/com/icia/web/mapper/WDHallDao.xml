@@ -476,5 +476,34 @@ AND
 </delete>
 <!-- 홀 삭제 -->
 
+<!-- 웨딩홀 업데이트 -->
+<update id="weddinghallUpdate" parameterType="com.icia.web.model.WDHall">
+UPDATE WD_WEDDINGHALL
+SET
+    WH_NAME = #{whName},
+    WH_LOCATION = #{WHLocation},
+    WH_NUMBER = #{whNumber},
+    WH_CONTENT = #{whNumber}
+WHERE
+        WH_CODE = #{WHCode}
+</update>
+<!-- 웨딩홀 업데이트 -->
+
+<!-- 홀 업데이트 -->
+<update id="hallUpdate" parameterType="com.icia.web.model.WDHall">
+UPDATE WD_HALL
+SET
+    H_NAME = #{HName},
+    H_PRICE = #{HPrice},
+    H_FOOD = #{HFood},
+    H_MIN = #{HMin},
+    H_MAX = #{HMax},
+    H_CONTENT = #{HContent}
+WHERE
+        WH_CODE = #{WHCode}
+    AND H_CODE = #{HCode}
+</update>
+<!-- 홀 업데이트 -->
+
 </mapper>
 

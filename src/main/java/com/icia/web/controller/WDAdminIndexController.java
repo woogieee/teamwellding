@@ -267,7 +267,7 @@ public class WDAdminIndexController
                wdAdminUser.setUserPwd(userPwd);
                wdAdminUser.setUserName(userName);
                wdAdminUser.setUserEmail(userEmail);
-               wdAdminUser.setUserEmail(userNickname);
+               wdAdminUser.setUserNickname(userNickname);
                wdAdminUser.setStatus(status);
                
                if(wdAdminUserService.wdAdmUserUpdate(wdAdminUser) > 0)
@@ -1563,6 +1563,146 @@ public class WDAdminIndexController
         		   System.out.println("==========이거 값은 얼마냐??==="+dList.getdName());
         		   
         		   if(wdDressService.dressUpdate(dList) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        			   System.out.println("혹시여긴오나몰라44*******************44d와주겠니");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        			   System.out.println("혹시여긴오나몰라55555");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        		   System.out.println("혹시여긴오나몰라6666");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+        	   System.out.println("혹시여긴오나몰라777777");
+			}
+           
+           
+           return res;
+        }
+        
+        //웨딩홀 수정하기
+        @RequestMapping(value="/mng/weddinghallUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> weddinghallUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           String wdName = HttpUtil.get(request, "wdName", "");
+           String wdLocation = HttpUtil.get(request, "wdLocation", "");
+           String wdNumber = HttpUtil.get(request, "wdNumber", "");
+           String wdContent = HttpUtil.get(request, "wdContent", "");
+           String wdCode = HttpUtil.get(request, "wdCode", "");
+           
+           WDHall wdHall = null;
+           
+           System.out.println("혹시여긴오나몰라11111");
+           
+           if(!StringUtil.isEmpty(wdName) && !StringUtil.isEmpty(wdLocation) && !StringUtil.isEmpty(wdNumber) &&
+        		   !StringUtil.isEmpty(wdContent) && !StringUtil.isEmpty(wdCode))
+           {
+        	   System.out.println("혹시여긴오나몰라222222");
+        	   
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   wdHall = wdHallService.onlyWeddingHall(wdCode);
+        	   
+        	   if(wdHall != null)
+        	   {
+        		   System.out.println("여긴타니여긴타니여긴타니??");
+        		   
+        		   //새로운 정보 넣어주기
+        		   wdHall.setWhName(wdName);
+        		   wdHall.setWHLocation(wdLocation);
+        		   wdHall.setWhNumber(wdNumber);
+        		   wdHall.setWhContent(wdContent);
+        		   //dList.setDsContent(dImgname);
+        		   
+        		   if(wdHallService.weddinghallUpdate(wdHall) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        			   System.out.println("혹시여긴오나몰라44*******************44d와주겠니");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        			   System.out.println("혹시여긴오나몰라55555");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        		   System.out.println("혹시여긴오나몰라6666");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+        	   System.out.println("혹시여긴오나몰라777777");
+			}
+           
+           
+           return res;
+        }
+        
+        //홀 수정하기
+        @RequestMapping(value="/mng/hallUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> hallUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           String whCode = HttpUtil.get(request, "whCode", "");
+           String hCode = HttpUtil.get(request, "hCode", "");
+           String hName = HttpUtil.get(request, "hName", "");
+           long hPrice = HttpUtil.get(request, "hPrice", (long)0);
+           long hFood = HttpUtil.get(request, "hFood", (long)0);
+           long hMin = HttpUtil.get(request, "hMin", (long)0);
+           long hMax = HttpUtil.get(request, "hMax", (long)0);
+           String hContent = HttpUtil.get(request, "hContent", "");
+           //String dImgname = HttpUtil.get(request, "dImgname", "");
+           
+           WDHall wdHall = new WDHall();
+           
+           System.out.println("혹시여긴오나몰라11111");
+           
+           wdHall.setWHCode(whCode);
+           wdHall.setHCode(hCode);
+           
+           if(!StringUtil.isEmpty(whCode) && !StringUtil.isEmpty(hCode) && !StringUtil.isEmpty(hName) && !StringUtil.isEmpty(hContent))
+           {
+        	   System.out.println("혹시여긴오나몰라222222");
+        	   
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   wdHall = wdHallService.WDHallSelect(wdHall);
+        	   
+        	   if(wdHall != null)
+        	   {
+        		   System.out.println("여긴타니여긴타니여긴타니??");
+        		   
+        		   //새로운 정보 넣어주기
+        		   wdHall.setHName(hName);
+        		   wdHall.setHPrice(hPrice);
+        		   wdHall.setHFood(hFood);
+        		   wdHall.setHMin(hMin);
+        		   wdHall.setHMax(hMax);
+        		   wdHall.setHContent(hContent);
+        		   //dList.setDsContent(dImgname);
+        		   
+        		   System.out.println("==========이거 값은 얼마냐??==="+wdHall.getHName());
+        		   
+        		   if(wdHallService.hallUpdate(wdHall) > 0)
         		   {
         			   res.setResponse(0, "Success");
         			   System.out.println("혹시여긴오나몰라44*******************44d와주겠니");

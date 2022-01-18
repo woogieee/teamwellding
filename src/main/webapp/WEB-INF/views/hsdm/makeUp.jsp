@@ -255,9 +255,9 @@ function fn_list(curPage)
         
 		<form name="bbsForm" id="bbsForm" method="post">
 			<input type="hidden" name="mCode" value="" /> <!-- 상세페이지 들어갈때 필요하니까 그때만 이 값이 들어가면됨 -->
-	        <input type="hidden" name="year" value="${year}" />
-	        <input type="hidden" name="month" value="${month}" />
-	        <input type="hidden" name="day" value="${day}" /> 
+	        <input type="hidden" name="year" id="year" value="${year}" />
+	        <input type="hidden" name="month" id="month" value="${month}" />
+	        <input type="hidden" name="day" id="day" value="${day}" /> 
 			<input type="hidden" name="searchType" value="${searchType}" />
 			<input type="hidden" name="searchValue" value="${searchValue}" />
 			<input type="hidden" name="curPage" value="${curPage}" />

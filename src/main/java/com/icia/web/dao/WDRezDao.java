@@ -16,7 +16,11 @@ public interface WDRezDao {
 	//예약 내역 조회를 위한 셀렉트 메소드
 	public WDRez rezList(WDRez wdRez);
 	
+	//예약 게시물 총 수 
 	public long rezListCount();
+	
+	//결제내역 리스트 검색값 조회
+	public long rezSearchCount(WDRez wdRez);
 	
 	//아이디로 예약현황 확인. 1개라도 있으면 추가 예약번호 부여하지 않음.
 	public int checkRez(String userId);

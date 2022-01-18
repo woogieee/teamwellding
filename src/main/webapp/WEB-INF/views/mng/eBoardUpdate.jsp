@@ -132,10 +132,6 @@ function fn_eBoardDelete()
 				bSeq: <c:out value="${eBoard.eBSeq}" />
 			},
 			datatype: "JSON",
-			beforeSend: function(xhr)
-			{
-				xhr.setRequestHeader("AJAX", "true");
-			},
 			success: function(response)
 			{
 				if(response.code == 0)
