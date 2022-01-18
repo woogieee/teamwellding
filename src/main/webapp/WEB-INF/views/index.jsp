@@ -31,6 +31,7 @@
 	   
 	   function fn_view2(eBSeq)
 	   {
+		alert(eBSeq);
 	   	document.eBoardForm.eBSeq.value = eBSeq;
 	   	document.eBoardForm.action = "/board/eView";
 	   	document.eBoardForm.submit();
