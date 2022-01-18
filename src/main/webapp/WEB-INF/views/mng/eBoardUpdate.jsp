@@ -50,7 +50,7 @@ $(document).ready(function(){
 	$("#bTitle").focus();
 });
 
-function fn_nBoardUpdate()
+function fn_eBoardUpdate()
 {
 	//내용확인
 	if(icia.common.isEmpty($("#bTitle").val()))
@@ -75,15 +75,15 @@ function fn_nBoardUpdate()
 	}
 	
 	var formData = {
-			bSeq: $("#bSeq").val(),
+			eBSeq: $("#bSeq").val(),
 			adminId: $("#adminId").val(),
-			bTitle: $("#bTitle").val(),
-			bContent: $("#bContent").val()
+			eBTitle: $("#bTitle").val(),
+			eBContent: $("#bContent").val()
 	};
 	
 	//ajax통신
 	icia.ajax.post({
-		url: "/mng/nBoardUpdateProc",
+		url: "/mng/eBoardUpdateProc",
 		data: formData,
 		success: function(res)
 		{
@@ -121,15 +121,15 @@ function fn_nBoardUpdate()
 	
 }
 
-function fn_nBoardDelete()
+function fn_eBoardDelete()
 {
 	if(confirm("정말 삭제하시겠습니까?") == true)
 	{
 		$.ajax({
 			type: "POST",
-			url: "/mng/nBoardDelete",
+			url: "/mng/eBoardDelete",
 			data:{
-				bSeq: <c:out value="${nBList.bSeq}" />
+				bSeq: <c:out value="${eBoard.eBSeq}" />
 			},
 			datatype: "JSON",
 			beforeSend: function(xhr)
@@ -182,44 +182,45 @@ function fn_nBoardDelete()
             	<tr>
                   <th scope="row">글 번호</th>
                   <td>
-                  	${nBList.bSeq}
-                     <input type="hidden" id="bSeq" name="bSeq" value="${nBList.bSeq}"/>
+                  	${eBoard.eBSeq}
+                     <input type="hidden" id="bSeq" name="bSeq" value="${eBoard.eBSeq}"/>
                   </td>
             	</tr>
                <tr>
                   <th scope="row">작성자</th>
                   <td>
-                  	${nBList.adminId}
-                     <input type="hidden" id="adminId" name="adminId" value="${nBList.adminId}"/>
+                  	${eBoard.adminId}
+                     <input type="hidden" id="adminId" name="adminId" value="${eBoard.adminId}"/>
                   </td>
                </tr>
                <tr>
                   <th scope="row">제목</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="bTitle" name="bTitle" value="${nBList.bTitle}"/>
+                     <input type="text" style="background-color: #fff;" id="bTitle" name="bTitle" value="${eBoard.eBTitle}"/>
                   </td>
                </tr>
                <tr>
                    <th scope="row">내용</th>
                   <td>
-                  	 <textarea class="form-control" rows="3" name="bContent" id="bContent"style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px;" required>${nBList.bContent}</textarea>
+                  	 <textarea class="form-control" rows="3" name="bContent" id="bContent"style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px;" required>${eBoard.eBContent}</textarea>
                   </td>
                </tr>
                <tr>
                   <th scope="row">등록일</th>
                   <td>
-                  ${nBList.regDate}
+                  ${eBoard.regDate}
                   </td>
                </tr>
             </tbody>
          </table>
       </form>
       <div class="pop-btn-area" style="float: right;">
-         <button onclick="fn_nBoardUpdate()" class="btn-type01"><span>수정</span></button>
-         <button onclick="fn_nBoardDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
+         <button onclick="fn_eBoardUpdate()" class="btn-type01"><span>수정</span></button>
+         <button onclick="fn_eBoardDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
       </div>
    </div>
+
 </div>
 
 

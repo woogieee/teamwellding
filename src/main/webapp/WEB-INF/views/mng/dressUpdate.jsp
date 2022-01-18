@@ -214,7 +214,8 @@ function dressDelete()
 		               <tr>
 		                  <th scope="row">드레스 업체명</th>
 		                  <td>
-		                     <input type="text" style="background-color: #fff;" id="dcName" name="dcName" value="${dList.dcName}" />
+		                  ${dList.dcName}
+		                     <input type="hidden" style="background-color: #fff;" id="dcName" name="dcName" value="${dList.dcName}" />
 		                  </td>
 		               </tr>
 		               <tr>

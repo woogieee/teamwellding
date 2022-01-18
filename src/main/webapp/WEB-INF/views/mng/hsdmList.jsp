@@ -137,6 +137,26 @@ body.dark-theme .page-link.active
               $('html').css("overflow","auto");
             }  
      });
+	
+	//스튜디오 수정 및 삭제 모달
+	$(".studiomodal").colorbox({
+            iframe:true, 
+            innerWidth:1200,
+            innerHeight:600,
+            scrolling:false,
+            onComplete:function()
+            {
+               $("#colorbox").css("width", "1200px");
+               $("#colorbox").css("height", "600px");
+               $("#colorbox").css("border-radius", "10px");
+               
+               $('html').css("overflow","hidden");
+            } , 
+            onClosed: function()
+                {
+                  $('html').css("overflow","auto");
+                }  
+     });
     
      $(".wdhall_modal").colorbox({
          iframe:true, 
@@ -577,7 +597,7 @@ function classChange(id){
             </li>
             <c:forEach var="studioList" items="${sList}" varStatus="status">
             <li class="wdhtd">
-               <div class="wdhcon" style="width:14%;"><p>${studioList.sName }</p></div>
+               <div class="wdhcon" style="width:14%;"><p><a class="studiomodal" href="/mng/updateStudio?sCode=${studioList.sCode}">${studioList.sName }</a></p></div>
                <div class="wdhcon" style="width:18%;"><p>${studioList.sLocation }</p></div>
                <div class="wdhcon" style="width:12%;"><p>${studioList.sNumber }</p></div>
                <div class="wdhcon" style="width:9%;"><p>${studioList.sPrice }</p></div>
@@ -595,7 +615,7 @@ function classChange(id){
                         <div class="down-content2">
                             <div class="main-dark-button btn_go wookhall" style="display: inline-block; margin-top: 0; margin-right:20px;">
                                 <a href="/mng/plusStudio" class="studio_modal" >스튜디오 추가</a>
-                            </div>    
+                            </div>
                          </div>
                     </div>
                </div>

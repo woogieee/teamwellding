@@ -153,13 +153,22 @@
 		                <value>/mng/nBoardUpdateProc</value>
 		                <value>/mng/plusNBoard</value>
 		                <value>/mng/nBoardWrite</value>
-		                
+		           
 		                <value>/mng/nBoardDelete</value>
+
+						
+						<value>/mng/eBoardUpdate</value>
+		                <value>/mng/eBoardUpdateProc</value>
+		                <value>/mng/plusEBoard</value>
+		                <value>/mng/eBoardWrite</value>
+		           
+		                <value>/mng/eBoardDelete</value>
+
 		                <value>/mng/mngFboardUpdate</value>
 		                <value>/mng/mngReviewUpdate</value>
 		                <value>/mng/reviewDelete</value>
-
-
+						<value>/mng/updateStudio</value>
+						
 						<value>/board/fBoardFileTest</value>
 						
 						<value>/mng/WeddingHallUpdate</value>
@@ -176,6 +185,8 @@
 						
 						<value>/mng/makeupupdateProc</value>
 						<value>/mng/makeupComDelete</value>
+						<value>/mng/studioDelete</value>
+						<value>/mng/studioUpdateProc</value>
 
             		</list>
             	</constructor-arg>
