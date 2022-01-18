@@ -38,7 +38,7 @@
                                     <li><a id="terms" href="/include/Terms" data-lightbox="Terms" data-title="My caption">이용약관</a></li>
                                     <li><a id="policy" href="/include/PrivacyPolicy" data-lightbox="Privacy Policy" data-title="My caption">개인정보처리방침</a></li>
                                     <li><a href="/about">오시는 길</a></li> 
-                                    <li><a href="">고객센터</a></li> 
+                                    <!--li><a href="">고객센터</a></li --> 
                                 </ul>
                             </div>
                         </div>

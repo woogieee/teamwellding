@@ -227,6 +227,22 @@ FROM
 </select>    
 <!-- 예약  수 확인 종료-->
 
+<select id = "rezSearchCount" parameterType="com.icia.web.model.WDRez" resultType="long">
+SELECT
+    COUNT(REZ_NO) AS CNT
+FROM
+    WD_REZ
+WHERE
+	1=1	
+<if test='rezStatus != null and rezStatus != ""'>	
+AND	
+	REZ_STATUS = #{rezStatus}
+</if>
+<if test='userId != null and userId != ""'>	
+AND
+    USER_ID = '%' || #{searchValue} || '%'
+</if>
+</select>
 
 <!-- 해당 유저의 예약 내역이 존재하는지 확인 시작 -->
 <select id="checkRez" parameterType="string" resultType="int">
@@ -725,11 +741,16 @@ SELECT
     COUNT(WDH)
 FROM
         (SELECT 
-            CONCAT(NVL(#{whCode}, ''), NVL(#{hCode}, '')) AS WDH,
+            CONCAT(NVL(WH_CODE, ''), NVL(H_CODE, '')) AS WDH,
             NVL(WDATE, '') AS WDATE,
             NVL(REZ_STATUS, 'N') AS REZ_STATUS
         FROM
-            WD_REZ)
+            WD_REZ
+        WHERE
+            WH_CODE = #{whCode}
+        AND
+            H_CODE = #{hCode}    
+            )
 WHERE
     WDATE IN #{wDate}
 AND

@@ -172,7 +172,6 @@ function fn_view(whCode, hCode)
                 	<div class="det_navi-hall">
                 		<ul>
                 			<li><a href=""><c:out value="${wdHall.whName}" />의 다른 홀 보기</a></li>
-                			<li><a href="">이용 후기</a></li>
                 		</ul>
                 	</div>
                 </div>
@@ -181,7 +180,7 @@ function fn_view(whCode, hCode)
 <c:if test="${!empty sameCom}">        
 	<c:forEach var="wdHall" items="${sameCom}" varStatus="status">
                	<div class="col-lg-6">
-                    <div class="ticket-item2" onclick="fn_view('${wdHall.WHCode}', '${wdHall.HCode}')">
+                    <div class="ticket-item2" onclick="fn_view('${wdHall.WHCode}', '${wdHall.HCode}')" style="cursor: pointer;">
                         <div class="thumb-hall">
                             <img src="../resources/images/hallrepimage/${wdHall.HImgName}" alt="">
                         </div>

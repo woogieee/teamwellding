@@ -184,10 +184,12 @@
 						<value>/mng/dressUpdateProc</value>
 						<value>/mng/dressDelete</value>
 						
+
 						<value>/mng/makeupupdateProc</value>
 						<value>/mng/makeupComDelete</value>
 						<value>/mng/studioDelete</value>
 						<value>/mng/studioUpdateProc</value>
+
 
             		</list>
             	</constructor-arg>

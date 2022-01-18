@@ -1959,12 +1959,12 @@ footer p.copyright {
 }
 
 .sub-footer .menu {
-  text-align: center;
+  text-align: left; /*center;*/
 }
 
 .sub-footer .menu ul li {
   display: inline-block;
-  margin: 10px 15px 5px 15px;
+  margin: 10px 20px 5px 20px;
 }
 
 .sub-footer .menu ul li a {
@@ -2314,9 +2314,10 @@ About Us Page
 
 .det_navi-hall ul
 {
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	width: 100%;
 	padding: 0 25%;
+	text-align: center;
 }
 
 .det_navi-hall li
@@ -2324,8 +2325,7 @@ About Us Page
 	/*float: left;*/
 	margin: 0 auto;
 	text-align: center;
-	width: 50%;
-	float: left;
+	/*width: 50%;*/
 }
 
 .det_navi-hall li:first-child a
@@ -2353,7 +2353,7 @@ About Us Page
 
 .det_navi ul
 {
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	width: 100%;
 	padding: 0 25%;
 }
@@ -2363,8 +2363,8 @@ About Us Page
 	/*float: left;*/
 	margin: 0 auto;
 	text-align: center;
-	width: 50%;
-	float: left;
+	/*width: 50%;
+	float: left;*/
 }
 
 .det_navi li:first-child a
@@ -2390,7 +2390,7 @@ About Us Page
 
 .det_navi2 ul
 {
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	width: 100%;
 	padding: 0 25%;
 }
@@ -2400,8 +2400,8 @@ About Us Page
 	/*float: left;*/
 	margin: 0 auto;
 	text-align: center;
-	width: 50%;
-	float: left;
+	/*width: 50%;
+	float: left;*/
 }
 
 .det_navi2 li:first-child a
@@ -3285,6 +3285,11 @@ Shows Events Page
 	letter-spacing: 12px;
 }
 
+.let_sp
+{
+	letter-spacing: 10px;
+}
+
 .span_design
 {
 	height: 2px;
@@ -3427,7 +3432,7 @@ Shows Events Page
 
 .tickets-page .ticket-item {
   margin-bottom: 30px;
-  cursor: pointer;
+  /*cursor: pointer;*/
 }
 
 /**************************보현이가하는 욱채홀 이미지 수정시작********************************/
@@ -3435,6 +3440,7 @@ Shows Events Page
   position: relative;
   height: 255px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .tickets-page .ticket-item .thumb3 img {
@@ -3546,6 +3552,7 @@ Shows Events Page
   position: relative;
   height: 300px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .ticket-item2 .thumb-hall {
@@ -3667,6 +3674,7 @@ Shows Events Page
 .tickets-page .ticket-item .down-content {
   background-color: #efefef;
   padding: 30px;
+  cursor: default;
 }
 
 .tickets-page .ticket-item2 .down-content2 {
@@ -4079,8 +4087,8 @@ Ticket Details Page : 보현 수정 쭉한다
 }
 
 .ticket-details-page-hall .right-content span {
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 17px;
+  line-height: 29px;
   font-weight: 500;
   color: #756c74; /* 보현수정 */
   display: inline-block;

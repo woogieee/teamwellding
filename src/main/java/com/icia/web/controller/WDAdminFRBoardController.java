@@ -223,7 +223,7 @@ public class WDAdminFRBoardController {
 		   }
 	   }
 	   
-	   return "/mng/boardList";
+	   return "/mng/mngFboardUpdate";
    }
    
    @RequestMapping(value="/mng/mngReviewUpdate")

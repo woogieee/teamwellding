@@ -388,18 +388,18 @@ public class WDRezController {
 		{
 			wdRez.setSearchType(searchType);
 			wdRez.setSearchValue(searchValue);
-			
-			 System.out.println("searchType = "+ wdRez.getSearchType());
-	         System.out.println("searchValue = "+ wdRez.getSearchValue());
 		}
 		else 
 		{
 			searchType = "";
 			searchValue = "";
-			
 		}
 		
-		totalCount = wdRezService.rezListCount(wdRez);
+		//총 게시물 수
+		totalCount = wdRezService.rezSearchCount(wdRez);
+		
+		System.out.println("searchType = "+ wdRez.getSearchType());
+        System.out.println("searchValue = "+ wdRez.getSearchValue());
 		
 		logger.debug("[totalCount] = "+ totalCount);
 		

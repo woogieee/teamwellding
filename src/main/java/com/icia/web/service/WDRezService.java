@@ -74,6 +74,23 @@ public class WDRezService {
 		return count;
 	}
 	
+	//결제내역 리스트 검색값 조회
+	public long rezSearchCount(WDRez wdRez)
+	{
+		long count = 0;
+		
+		try
+		{
+			count = wdRezDao.rezSearchCount(wdRez);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] rezSearchCount Exception", e);
+		}
+		
+		return count;
+	}
+	
 	//아이디를 통해 예약건수가 있는지 확인
 	public int checkRez(String userId) 
 	{
