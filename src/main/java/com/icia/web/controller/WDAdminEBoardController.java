@@ -75,19 +75,9 @@ public class WDAdminEBoardController {
 		
 		if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue)) 
 		{
-			if(StringUtil.equals(searchType, "1"))
-			{
-				search.setSearchValue(searchValue);
-			}
-			else if(StringUtil.equals(searchType, "2"))
-			{
-				search.setSearchValue(searchValue);
-			}
-			else
-			{
-				searchType = "";
-				searchValue = "";
-			}
+			//받아온 값이 있음.
+			search.setSearchType(searchType);
+			search.setSearchValue(searchValue);
 		}
 		else 
 		{
@@ -104,7 +94,6 @@ public class WDAdminEBoardController {
 			paging.addParam("curPage", curPage);
 			paging.addParam("searchType", searchType);
 			paging.addParam("searchValue", searchValue);
-			paging.addParam("curPage", curPage);
 			
 			search.setStartRow(paging.getStartRow());
 			search.setEndRow(paging.getEndRow());

@@ -267,7 +267,7 @@ public class WDAdminIndexController
                wdAdminUser.setUserPwd(userPwd);
                wdAdminUser.setUserName(userName);
                wdAdminUser.setUserEmail(userEmail);
-               wdAdminUser.setUserEmail(userNickname);
+               wdAdminUser.setUserNickname(userNickname);
                wdAdminUser.setStatus(status);
                
                if(wdAdminUserService.wdAdmUserUpdate(wdAdminUser) > 0)

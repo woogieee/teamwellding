@@ -138,7 +138,7 @@ function fn_list(curPage)
                                                 <div class="row">
                                                     <div class="col-lg-3">
                                                         <select value="searchType" name="_searchType" id="_searchType">
-                                                            <option value="1">홀 제목</option>
+                                                            <option value="1">제목</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-lg-7">
