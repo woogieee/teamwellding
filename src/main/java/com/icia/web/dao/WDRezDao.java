@@ -16,7 +16,11 @@ public interface WDRezDao {
 	//예약 내역 조회를 위한 셀렉트 메소드
 	public WDRez rezList(WDRez wdRez);
 	
+	//예약 게시물 총 수 
 	public long rezListCount();
+	
+	//결제내역 리스트 검색값 조회
+	public long rezSearchCount(WDRez wdRez);
 	
 	//아이디로 예약현황 확인. 1개라도 있으면 추가 예약번호 부여하지 않음.
 	public int checkRez(String userId);
@@ -56,13 +60,13 @@ public interface WDRezDao {
 	public List<WDRez> rezSelectList(String userId);
 	
 	//결제 취소 승인
-	public int rezCancelApprov(WDRez wdRez);
+	public int rezCancelApprove(String rezNo);
 		
 	//관리자 페이지에서 조회하는 결제 내역 리스트
 	public List<WDRez> rezAdminSelect(WDRez wdRez);
 		
 	//결제 후 결제 취소시 포인트로 환급
-	public WDRez rezPointReturn(HashMap<String, Object> map);
+	public int rezPointReturn(HashMap<String, Object> map);
 	
 	//결제 후 결제 취소시 결제 총금액 삭제
 	public int rezCancelComplete(WDRez wdRez);
@@ -70,6 +74,9 @@ public interface WDRezDao {
 	//환불요청시 상태창 변경
 	public int rezCancelPayment(WDRez wdRez);
 	
+	//결제 취소 상태 조회
+	public WDRez listSelect(String rezNo);
+
 	//포인트 사용
 	public int rezPointUpdate(WDRez wdRez);
 	

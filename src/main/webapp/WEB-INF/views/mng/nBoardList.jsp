@@ -72,12 +72,12 @@ $(document).ready(function(){
       $(".nBoardUpdate").colorbox({
             iframe:true, 
             innerWidth:1235,
-            innerHeight:570,
+            innerHeight:600,
             scrolling:false,
             onComplete:function()
             {
                $("#colorbox").css("width", "1235px");
-               $("#colorbox").css("height", "570px");
+               $("#colorbox").css("height", "600px");
                $("#colorbox").css("border-radius", "10px");
                
                $('html').css("overflow","hidden");
@@ -91,12 +91,12 @@ $(document).ready(function(){
       $(".plusNBoard").colorbox({
           iframe:true, 
           innerWidth:1235,
-          innerHeight:570,
+          innerHeight:450,
           scrolling:false,
           onComplete:function()
           {
              $("#colorbox").css("width", "1235px");
-             $("#colorbox").css("height", "570px");
+             $("#colorbox").css("height", "450px");
              $("#colorbox").css("border-radius", "10px");
              
              $('html').css("overflow","hidden");
@@ -105,7 +105,7 @@ $(document).ready(function(){
 	          {
 	            $('html').css("overflow","auto");
 	          }  
-    });plusNBoard
+    });
       
       
       
@@ -206,7 +206,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
  			<div class="row">
               <div class="col-lg-12">
                  <div>
-                 	 <a href="/mng/plusNBoard" id="btnWrite" class="hsdm_btn plusNBoard">추가하기</a>
+                 	 <a href="/mng/plusNBoard" id="btnWrite" class="hsdm_btn plusNBoard" style="margin-right:30px; margin-top: 0;">추가하기</a>
                  </div>
             </div>
          </div>

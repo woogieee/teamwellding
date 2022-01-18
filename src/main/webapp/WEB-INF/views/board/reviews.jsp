@@ -18,7 +18,8 @@ $(document).ready(function(){
       document.bbsForm.submit();
    });
    
-   $("#btnReviewWrite").on("click", function(){
+
+  /* $("#btnReviewWrite").on("click", function(){
       document.bbsForm.RSeq.value = "";
       var form = $("#bbsForm")[0];
       var formData = new FormData(form);
@@ -67,7 +68,7 @@ $(document).ready(function(){
                   icia.common.error(error);
                }
             });
-   });
+   });*/
 
 });
 
@@ -137,7 +138,7 @@ function fn_list(curPage)
                                                 <div class="row">
                                                     <div class="col-lg-3">
                                                         <select value="searchType" name="_searchType" id="_searchType">
-                                                            <option value="1">홀 제목</option>
+                                                            <option value="1">제목</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-lg-7">
@@ -239,10 +240,6 @@ function fn_list(curPage)
 												<div class="col-lg-3"></div>
 												<div class="col-lg-6"></div>
 												<div class="col-lg-3">
-
-													<button type="button" id="btnReviewWrite"
-														class="main-dark-button3">글쓰기</button>
-
 												</div>
 											</div>
 										</div>

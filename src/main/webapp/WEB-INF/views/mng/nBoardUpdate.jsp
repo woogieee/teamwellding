@@ -55,14 +55,22 @@ function fn_nBoardUpdate()
 	//내용확인
 	if(icia.common.isEmpty($("#bTitle").val()))
 	{
-		alert("글 제목을 입력해주세요");
+		//alert("글 제목을 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '글 제목을 입력해주세요.'
+		});
 		$("#bTitle").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#bContent").val()))
 	{
-		alert("글 내용을 입력해주세요");
+		//alert("글 내용을 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '글 내용 입력해주세요.'
+		});
 		$("#bContent").focus();
 		return;
 	}
@@ -120,6 +128,51 @@ function fn_nBoardUpdate()
 	});
 	
 }
+
+function fn_nBoardDelete()
+{
+	if(confirm("정말 삭제하시겠습니까?") == true)
+	{
+		$.ajax({
+			type: "POST",
+			url: "/mng/nBoardDelete",
+			data:{
+				bSeq: <c:out value="${nBList.bSeq}" />
+			},
+			datatype: "JSON",
+			success: function(response)
+			{
+				if(response.code == 0)
+				{
+					alert("게시물이 삭제되었습니다.");
+					fn_colorbox_close(parent.fn_pageInit);
+				}
+				else if(response.code == 400)
+				{
+					alert("파라미터값이 올바르지않습니다.");
+				}
+				else if(response.code == 404)
+				{
+					alert("게시물을 찾을 수 없습니다.");
+					fn_colorbox_close();
+				}
+				else
+				{
+					alert("게시물 삭제 중 오류가 발생했습니다.");
+					fn_colorbox_close();
+				}
+			},
+			complete: function(data)
+			{
+				icia.common.log(data);
+			},
+			error: function(xhr, status, error)
+			{
+				icia.common.error(error);
+			}
+		});
+	}
+}
 </script>
 </head>
 <body>
@@ -167,10 +220,10 @@ function fn_nBoardUpdate()
       </form>
       <div class="pop-btn-area" style="float: right;">
          <button onclick="fn_nBoardUpdate()" class="btn-type01"><span>수정</span></button>
+         <button onclick="fn_nBoardDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
       </div>
    </div>
-
 </div>
 
 

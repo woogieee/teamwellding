@@ -45,4 +45,14 @@ public interface WDHallDao {
 																																																																																																																																													
 	//예약 성공 시 해당 예약번호의 홀 REZCOUNT +1해주기
 	public int rezCountPlus(String rezNo);
+	
+	public WDHall onlyWeddingHall(String whCode);
+	
+	public int weddingHallDelete(String whCode);
+	
+	public int hallDelete(WDHall wdHall);
+	
+	public int weddinghallUpdate(WDHall wdHall);
+	
+	public int hallUpdate(WDHall wdHall);
 }

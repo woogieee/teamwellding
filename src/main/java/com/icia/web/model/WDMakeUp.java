@@ -25,6 +25,11 @@ public class WDMakeUp implements Serializable{
 	//추가 인원당 가격
 	private long mPlus;
 	
+	
+
+	private String mAddpeople;
+	
+	
 	private String searchType;      	//검색타입(1:이름, 2:제묵, 3:내용)
 	private String searchValue;      	//검색값
 	private long startRow;         		//시작 rownum
@@ -57,6 +62,7 @@ public class WDMakeUp implements Serializable{
 		endRow = 0;
 		wdMakeUpFile = null;
 		mDiscount = 0;
+		mAddpeople = "";
 		
 		wDate = "";
 		year = "";
@@ -64,6 +70,14 @@ public class WDMakeUp implements Serializable{
 		day = "";
 	}
 
+	public String getmAddpeople() {
+		return mAddpeople;
+	}
+
+	public void setmAddpeople(String mAddpeople) {
+		this.mAddpeople = mAddpeople;
+	}
+	
 	public String getmCode() {
 		return mCode;
 	}

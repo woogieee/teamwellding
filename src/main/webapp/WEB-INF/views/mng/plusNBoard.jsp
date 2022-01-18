@@ -16,12 +16,12 @@ table th, td{
   border-right: 1px solid #c4c2c2;
   border-bottom: 1px solid #c4c2c2;
   height: 4rem;
-  padding: 10px;
+  padding-left: .5rem;
+  padding-right: 1rem;
 }
 table th{
-  background-color: #e0e4fe;
-  text-align: center;
-  width: 200px;
+  background-color: #e9e9ed;
+  width: 250px;
 }
 input[type=text], input[type=password]{
   height:2rem;
@@ -29,6 +29,12 @@ input[type=text], input[type=password]{
   border-radius: .2rem;
   border: .2px solid rgb(204,204,204);
   background-color: rgb(246,246,246);
+  font-size:15px;
+}
+
+input::placeholder 
+{
+  font-size: 14px;
 }
 button{
   width: 5rem;
@@ -47,35 +53,41 @@ button:active {
 <script type="text/javascript" src="../resources/js/colorBox.js"></script>
 <script>
 $(document).ready(function(){
-	$("#bTitle").focus();
+	$("#dresscomName").focus();
 });
 
-function fn_nBoardUpdate()
+function fn_userUpdate()
 {
-	//내용확인
 	if(icia.common.isEmpty($("#bTitle").val()))
 	{
-		alert("글 제목을 입력해주세요");
+		//alert("제목을 입력해주세요");
+	  Swal.fire({ 
+		  icon: 'warning',
+		  text: '제목을 입력해주세요.'
+	  });
 		$("#bTitle").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#bContent").val()))
 	{
-		alert("글 내용을 입력해주세요");
+		//alert("내용을 입력해주세요");
+	  Swal.fire({ 
+		  icon: 'warning',
+		  text: '내용을 입력해주세요.'
+	  });
 		$("#bContent").focus();
 		return;
 	}
 	
-	//수정 취소
-	if(!confirm("회원정보를 수정하시겠습니까?"))
+	//등록 취소
+	if(!confirm("게시물을 등록 하시겠습니까?"))
 	{
 		//NO
 		return;
 	}
 	
 	var formData = {
-			bSeq: $("#bSeq").val(),
 			adminId: $("#adminId").val(),
 			bTitle: $("#bTitle").val(),
 			bContent: $("#bContent").val()
@@ -83,7 +95,7 @@ function fn_nBoardUpdate()
 	
 	//ajax통신
 	icia.ajax.post({
-		url: "/mng/nBoardUpdateProc",
+		url: "/mng/nBoardWrite",
 		data: formData,
 		success: function(res)
 		{
@@ -91,12 +103,12 @@ function fn_nBoardUpdate()
 			
 			if(res.code == 0)
 			{
-				alert("게시물이 수정되었습니다.");
+				alert("게시글 등록이 완료되었습니다.");
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == -1)
 			{
-				alert("게시물 수정 중 오류가 발생하였숩니다.");
+				alert("게시글 등록 중 오류가 발생하였숩니다.");
 			}
 			else if(res.code == 400)
 			{
@@ -104,9 +116,13 @@ function fn_nBoardUpdate()
 			}
 			else if(res.code == 404)
 			{
-				alert("게시물이 존재하지 않습니다.");
+				alert("오류가 발생하였습니다.");
 				///칼라박스 내용이 잘못됬다는거니까 칼라박스를 닫게하자
 				fn_colorbox_close();
+			}
+			else
+			{
+				alert("게시물 등록중 오류발생 500");
 			}
 		},
 		complete: function(data)
@@ -120,60 +136,47 @@ function fn_nBoardUpdate()
 	});
 	
 }
+
 </script>
 </head>
-<body>
-
-<div class="layerpopup" style="width:1123px; margin:auto; margin-top:5%;">
-	<h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">공지사항 게시글 수정</h1>
+<body>   
+<div class="container">
+    <div class="row" style="width: 100%; text-align: center;">
+ <!-- /////////////////////////////////////////// --> 
+<div class="layerpopup" style="width:1123px; margin:auto;">
+   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e9e9ed;">공지사항 게시글 추가</h1>
    <div class="layer-cont">
       <form name="regForm" id="regForm" method="post">
          <table>
             <tbody>
-            	<tr>
-                  <th scope="row">글 번호</th>
-                  <td>
-                  	${nBList.bSeq}
-                     <input type="hidden" id="bSeq" name="bSeq" value="${nBList.bSeq}"/>
-                  </td>
-            	</tr>
-               <tr>
-                  <th scope="row">작성자</th>
-                  <td>
-                  	${nBList.adminId}
-                     <input type="hidden" id="adminId" name="adminId" value="${nBList.adminId}"/>
-                  </td>
-               </tr>
                <tr>
                   <th scope="row">제목</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="bTitle" name="bTitle" value="${nBList.bTitle}"/>
+                     <input type="text" style="background-color: #fff;" id="bTitle" name="bTitle" placeholder="제목을 입력해주세요"/>
                   </td>
                </tr>
                <tr>
-                   <th scope="row">내용</th>
-                  <td>
-                  	 <textarea class="form-control" rows="3" name="bContent" id="bContent"style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px;" required>${nBList.bContent}</textarea>
+                  <th scope="row">내용</th>
+                  <td style="padding: 15px 15px 15px 9px;">
+                  <textarea class="form-control" rows="10" name="bContent" id="bContent" style="ime-mode: active; resize: none; width:100%; float:left; height:140px; font-size:14px; padding:7px;" placeholder="내용을 입력해주세요" required></textarea>
                   </td>
                </tr>
-               <tr>
-                  <th scope="row">등록일</th>
-                  <td>
-                  ${nBList.regDate}
-                  </td>
-               </tr>
+
             </tbody>
          </table>
       </form>
       <div class="pop-btn-area" style="float: right;">
-         <button onclick="fn_nBoardUpdate()" class="btn-type01"><span>수정</span></button>
+         <button onclick="fn_userUpdate()" class="btn-type01"><span>등록</span></button>
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
       </div>
    </div>
-
 </div>
 
 
 	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
+ <!-- ///////////////////////////////////////////// -->
+	</div>
+</div>
+       
 </body>
 </html>

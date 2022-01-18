@@ -92,7 +92,11 @@ $(document).ready(function(){
   	  $("#btnComment").prop("disabled", true);// 수정 버튼 비활성화 
   	  
   	  if($.trim($("#wdFBoardComment").val()).length <= 0){
-  		  alert("댓글내용을 입력하세요.");
+  		  //alert("댓글내용을 입력하세요.");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '댓글내용을 입력하세요.'
+			});
   		  $("#wdFBoardComment").val("");
   		  $("#wdFBoardComment").focus();
   		  $("#btnComment").prop("disabled", false);
@@ -222,7 +226,11 @@ function commentUpdate(cSeq,tagId){
 		  document.commentForm.cSeq.value = cSeq;
 		  
 	  	  if($.trim($("#updateComment").val()).length <= 0){
-	  		  alert("댓글내용을 입력하세요.");
+	  		  //alert("댓글내용을 입력하세요.");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '댓글내용을 입력하세요.'
+			});
 	  		  $("#updateComment").val("");
 	  		  $("#updateComment").focus();
 	  		  return;

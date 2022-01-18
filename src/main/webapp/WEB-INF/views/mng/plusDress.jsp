@@ -18,6 +18,7 @@ table th, td{
   height: 4rem;
   padding-left: .5rem;
   padding-right: 1rem;
+      text-align: left;
 }
 table th{
   background-color: #e9e9ed;
@@ -60,35 +61,55 @@ function fn_userUpdate()
 {
 	if(icia.common.isEmpty($("#dcCode").val()))
 	{
-		alert("드레스 업체를 선택해주세요.");
+		//alert("드레스 업체를 선택해주세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '드레스 업체를 선택해주세요.'
+		});
 		$("#dcCode").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#dressname").val()))
 	{
-		alert("드레스 이름을 입력해주세요.");
+		//alert("드레스 이름을 입력해주세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '드레스 이름을 입력해주세요.'
+		});
 		$("#dressname").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#dressprice").val()))
 	{
-		alert("드레스 가격을 입력해주세요");
+		//alert("드레스 가격을 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '드레스 가격을 입력해주세요.'
+		});
 		$("#dressprice").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#dresscontent").val()))
 	{
-		alert("드레스 설명을 입력해주세요.");
+		//alert("드레스 설명을 입력해주세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '드레스 설명을 입력해주세요.'
+		});
 		$("#dresscontent").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#dressdiscount").val()))
 	{
-		alert("할인율을 입력해주세요");
+		//alert("할인율을 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '할인율을 입력해주세요.'
+		});
 		$("#dressdiscount").focus();
 		return;
 	}
@@ -157,7 +178,7 @@ function fn_userUpdate()
     <div class="row" style="width: 100%; text-align: center;">
  <!-- /////////////////////////////////////////// --> 
 <div class="layerpopup" style="width:1123px; margin:auto;">
-   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e9e9ed;">웨딩홀 추가</h1>
+   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e9e9ed;">드레스 추가</h1>
    <div class="layer-cont">
       <form name="regForm" id="regForm" method="post">
          <table>

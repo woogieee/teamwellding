@@ -18,7 +18,6 @@ function kakaoPayResult(pgToken)
 <body>
 <iframe width="100%," height="650" src="${pcUrl}" frameborder="0" allowfullscreen=""></iframe>
 <form name="kakaoForm" id="kakaoForm" method="post" action="/kakao/payResult">
-
 	<input type="hidden" name="orderId" id="orderId" value="${orderId}" />
 	<input type="hidden" name="tId" id="tId" value="${tId}" />
 	<input type="hidden" name="userId" id="userId" value="${userId}" />

@@ -53,42 +53,66 @@ function fn_userUpdate()
 {
 	if(icia.common.isEmpty($("#studioName").val()))
 	{
-		alert("스튜디오 이름을 선택해주세요.");
+		//alert("스튜디오 이름을 선택해주세요.");
+		  Swal.fire({ 
+			  icon: 'warning',
+			  text: '스튜디오 이름을 입력해주세요.'
+		  });
 		$("#studioName").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#studioPrice").val()))
 	{
-		alert("스튜디오 가격을 입력해주세요.");
+		//alert("스튜디오 가격을 입력해주세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '스튜디오 가격을 입력해주세요.'
+		});
 		$("#studioPrice").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#studioLocation").val()))
 	{
-		alert("스튜디오 가격을 입력해주세요");
+		//alert("스튜디오 가격을 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '스튜디오 주소를 입력해주세요.'
+		});
 		$("#studioLocation").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#studioNumber").val()))
 	{
-		alert("스튜디오 전화번호를 입력해주세요.");
+		//alert("스튜디오 전화번호를 입력해주세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '스튜디오 전화번호를 입력해주세요.'
+		});
 		$("#studioNumber").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#studioContent").val()))
 	{
-		alert("스튜디오 설명을 입력해주세요.");
+		//alert("스튜디오 설명을 입력해주세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '스튜디오 설명을 입력해주세요.'
+		});
 		$("#studioContent").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#studioDiscount").val()))
 	{
-		alert("할인율을 입력해주세요.");
+		//alert("할인율을 입력해주세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '할인율을 입력해주세요.'
+		});
 		$("#studioDiscount").focus();
 		return;
 	}
@@ -157,12 +181,12 @@ function fn_userUpdate()
     <div class="row" style="width: 100%; text-align: center;">
  <!-- /////////////////////////////////////////// --> 
 <div class="layerpopup" style="width:1123px; margin:auto;">
-   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">웨딩홀 추가</h1>
+   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">스튜디오 추가</h1>
    <div class="layer-cont">
       <form name="regForm" id="regForm" method="post">
          <table>
             <tbody>
-
+				<tr>
                   <th scope="row">스튜디오 이름</th>
                   <td>
                      <input type="text" style="background-color: #fff;" id="studioName" name="studioName" placeholder="스튜디오 이름을 입력해주세요"/>

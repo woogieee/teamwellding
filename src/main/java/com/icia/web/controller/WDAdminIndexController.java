@@ -74,6 +74,7 @@ public class WDAdminIndexController
     @Autowired
     private WDEBoardService wdEboardService;
     
+    
    @Value("#{env['upload.save.dir']}")
    private String UPLOAD_SAVE_DIR;
 
@@ -266,7 +267,7 @@ public class WDAdminIndexController
                wdAdminUser.setUserPwd(userPwd);
                wdAdminUser.setUserName(userName);
                wdAdminUser.setUserEmail(userEmail);
-               wdAdminUser.setUserEmail(userNickname);
+               wdAdminUser.setUserNickname(userNickname);
                wdAdminUser.setStatus(status);
                
                if(wdAdminUserService.wdAdmUserUpdate(wdAdminUser) > 0)
@@ -292,6 +293,121 @@ public class WDAdminIndexController
          }
          
          return res;
+      }
+      
+      //메이크업 수정
+      @RequestMapping(value="/mng/makeupupdateProc", method=RequestMethod.POST)
+      @ResponseBody
+      public Response<Object> makeupupdateProc(HttpServletRequest request, HttpServletResponse response)
+      {
+    	  Response<Object> res = new Response<Object>();
+    	  
+    	  //관리가가 새로 입력한 정보들 받기
+    	  String mCode = HttpUtil.get(request, "mCode", "");
+    	  String mkName = HttpUtil.get(request, "mName");
+          String mkLocation = HttpUtil.get(request, "mLocation");
+          String mkNumber = HttpUtil.get(request, "mNumber");
+          long mkPrice = HttpUtil.get(request, "mPrice",(long)0);
+          String mkContent = HttpUtil.get(request,"mContent");
+          long mkPlus = HttpUtil.get(request, "mPlus",(long)0);
+          long mkDiscount = HttpUtil.get(request, "mDiscount",(long)0);
+      
+          System.out.println("**********mCode : " + mCode);
+          
+          if(!StringUtil.isEmpty(mCode) && !StringUtil.isEmpty(mkName) &&
+                  !StringUtil.isEmpty(mkLocation) && !StringUtil.isEmpty(mkNumber) && !StringUtil.isEmpty(mkPrice) &&
+                  !StringUtil.isEmpty(mkContent) && !StringUtil.isEmpty(mkDiscount))
+          {
+        	  WDMakeUp wdmakeup = new WDMakeUp();
+        	  System.out.println("여기까지오냐111111111");
+        	  
+	         if(wdmakeup != null)
+	         {
+	            //새로받은걸로 값 넣어주기
+	        	 wdmakeup.setmCode(mCode);
+	        	 wdmakeup.setmName(mkName);
+	             wdmakeup.setmLocation(mkLocation);
+	             wdmakeup.setmNumber(mkNumber);
+	             wdmakeup.setmPrice(mkPrice);
+	             wdmakeup.setmContent(mkContent);
+	             wdmakeup.setmPlus(mkPlus);
+	             wdmakeup.setmDiscount(mkDiscount);
+	             
+	             System.out.println("여기까지오냐22222222222");
+	            
+	            
+	            if(wdMakeUpService.makeupUpdate(wdmakeup) > 0)
+	            {
+	               //성공
+	               res.setResponse(0, "Success");
+	               System.out.println("여기까지오냐33333333333");
+	            }
+	            else
+	            {
+	               res.setResponse(-1, "Fail");
+	               System.out.println("여기까지오냐44444444444");
+	            }
+	         }
+	         else
+	         {
+	            //정보가 없음
+	            res.setResponse(404, "Not Found");
+	            System.out.println("여기까지오냐555555555");
+	         }
+      }
+      else
+      {
+         //값이 하나라도 없으면 파라미터 오류
+         res.setResponse(400, "Bad Request");
+         System.out.println("여기까지오냐666666666666");
+      }
+      
+      return res;
+   }
+      
+    //메이크업 삭제하기
+      @RequestMapping(value="/mng/makeupComDelete")
+      @ResponseBody
+      public Response<Object> makeupComDelete(HttpServletRequest request, HttpServletResponse response)
+      {
+      	Response<Object> res = new Response<Object>();
+      	
+      	String mCode = HttpUtil.get(request, "mCode", "");
+      	
+     
+      	
+      	if(!StringUtil.isEmpty(mCode))
+    	   {
+      		WDMakeUp wdmakeup = wdMakeUpService.onlyMakeupComSelect(mCode);
+     		   
+     		   if(wdmakeup != null) 
+     		   {
+     			   //널이 아닐때
+				   if(wdMakeUpService.onlyMakeupComDelete(wdmakeup.getmCode()) > 0)
+					
+				   {
+					   //0보다 크면 정상적으로 삭제됬따
+					   res.setResponse(0, "Success");
+				   }
+				   else
+				   {
+					   //아니야. 삭제못했어
+					   res.setResponse(500, "Internal Server Error");
+				   }
+     		   }
+     		   else
+     		   {
+     			   //널일때 = 게시물이 없다
+     			  res.setResponse(404, "Not Found");
+     		   }
+     	   }
+     	   else
+     	   {
+     		   //0이거나 0보다 작을때는 안넘어온거임
+     		  res.setResponse(400, "Bad Request");
+     	   }
+      	
+      	return res;
       }
       
       @RequestMapping(value="/mng/hsdmList")
@@ -729,6 +845,47 @@ public class WDAdminIndexController
         return "/mng/plusMakeup";
      }
      
+     
+     /*@RequestMapping(value="/mng/MngMakeupUpdate")
+     public String MngMakeupUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+     {
+    	 
+         return "/mng/MngMakeupUpdate";
+      }*/
+     
+   //메이크업 수정창
+     @RequestMapping(value="/mng/MngMakeupUpdate")
+     public String MngMakeupUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+     {
+    	 //String mkName = HttpUtil.get(request, "mkName");
+    	 String mCode = HttpUtil.get(request, "mCode", "");
+    	 
+    
+    	
+    	 
+    	 WDMakeUp wdmakeup = null;
+    	 
+    	 if(!StringUtil.isEmpty(mCode))
+    	 {
+    		 wdmakeup = wdMakeUpService.makeupSelect(mCode);
+    		 
+    		 model.addAttribute("wdmakeup", wdmakeup);
+    		 
+    		 
+    		 
+    		 
+    		 
+    	 }
+    	 
+    	
+    	 model.addAttribute("wdmakeup", wdmakeup);
+    	 System.out.println("mContent" + mCode);
+    	
+    	 
+    	 return "/mng/MngMakeupUpdate";
+     }
+     
+     
      @RequestMapping(value="/mng/makeupWrite")
      @ResponseBody
      public Response<Object> makeupWrite(HttpServletRequest request, HttpServletResponse response)
@@ -743,7 +900,10 @@ public class WDAdminIndexController
         String mkName = HttpUtil.get(request, "mkName", "");
         String mkLocation = HttpUtil.get(request, "mkLocation", "");
         String mkNumber = HttpUtil.get(request, "mkNumber", "");
+        long mkPrice = HttpUtil.get(request, "mkPrice",(long)0);
         String mkContent = HttpUtil.get(request,"mkContent", "");
+        long mkPlus = HttpUtil.get(request, "mkPlus",(long)0);
+        long mkDiscount = HttpUtil.get(request, "mkDiscount",(long)0);
         
         WDMakeUp wdmakeup = new WDMakeUp();
         
@@ -751,11 +911,15 @@ public class WDAdminIndexController
         wdmakeup.setmName(mkName);
         wdmakeup.setmLocation(mkLocation);
         wdmakeup.setmNumber(mkNumber);
+        wdmakeup.setmPrice(mkPrice);
         wdmakeup.setmContent(mkContent);
+        wdmakeup.setmPlus(mkPlus);
+        wdmakeup.setmDiscount(mkDiscount);
+  
         
         if(!StringUtil.isEmpty(mkName) &&
-              !StringUtil.isEmpty(mkLocation) && !StringUtil.isEmpty(mkNumber) &&
-              !StringUtil.isEmpty(mkContent))
+              !StringUtil.isEmpty(mkLocation) && !StringUtil.isEmpty(mkNumber) && !StringUtil.isEmpty(mkPrice) &&
+              !StringUtil.isEmpty(mkContent) && !StringUtil.isEmpty(mkDiscount))
         {
            if(wdMakeUpService.makeupInsert(wdmakeup) > 0)
            {
@@ -838,7 +1002,7 @@ public class WDAdminIndexController
      }
 
      
-     //공지사항 수정
+     //공지사항 수정페이지 내용 불러오기
      @RequestMapping(value="/mng/nBoardUpdate")
      public String nBoardUpdate(Model model,HttpServletRequest request, HttpServletResponse response)
      {
@@ -862,7 +1026,7 @@ public class WDAdminIndexController
         return "/mng/nBoardUpdate";
      }
      
-     //공지사항수정
+     //공지사항 게시글 수정하기
         @RequestMapping(value="/mng/nBoardUpdateProc", method=RequestMethod.POST)
         @ResponseBody
         public Response<Object> nBoardUpdateProc(HttpServletRequest request, HttpServletResponse response)
@@ -910,8 +1074,660 @@ public class WDAdminIndexController
 			}
            
            
-           
            return res;
         }
 
+
+        //공지사항 게시글 등록
+        @RequestMapping(value="/mng/plusNBoard")
+        public String plusNBoard(Model model, HttpServletRequest request, HttpServletResponse response)
+        {
+        	return "/mng/plusNBoard";
+        }
+        
+        //공지사항 게시글 추가하기!!
+        @RequestMapping(value="/mng/nBoardWrite")
+        @ResponseBody
+        public Response<Object> nBoardWrite(Model model, HttpServletRequest request, HttpServletResponse response)
+        {
+            Response<Object> ajaxResponse = new Response<Object>();
+            
+            String adminId = HttpUtil.get(request, "adminId", "");
+            String bTitle = HttpUtil.get(request, "bTitle", "");
+            String bContent = HttpUtil.get(request, "bContent", "");
+            
+            //쿠키 조회
+            String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+           //닉네임 달거야
+            WDAdmin wdAdmin = wdAdminService.wdAdminSelect(cookieUserId);
+            //받아온 값을 엔보드에 넣어주기
+        	WDNBoard wdNBoard = new WDNBoard();
+        	
+        	//wdNBoard.setAdminId("admin"); //안들어가니께 하드코딩해부러
+        	wdNBoard.setAdminId(cookieUserId);
+        	wdNBoard.setbTitle(bTitle);
+        	wdNBoard.setbContent(bContent);
+        	
+        	//얘가 트렌젝션하래 안하면 오류띄워 이씨
+            if(!StringUtil.isEmpty(bTitle) && !StringUtil.isEmpty(bContent))
+            {
+            	try
+            	{
+            		if(wdNBoardService.nBoardInsert(wdNBoard) > 0)
+                	{
+                		ajaxResponse.setResponse(0, "Success");
+                	}
+                	else
+                	{
+                		ajaxResponse.setResponse(-1, "Error");
+                	}
+            	}
+            	catch(Exception e)
+          	  	{
+          		  logger.error("[WDAdminIndexController] /mng/nBoardWrite Exception", e);
+          		  ajaxResponse.setResponse(500, "Internal server Error");
+          	  	}
+            }
+            else 
+            {
+               ajaxResponse.setResponse(400, "Not Paremeter");
+            }
+
+            return ajaxResponse;
+        }
+        
+        //공지사항 게시글 삭제
+        @RequestMapping(value="/mng/nBoardDelete", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> nBoardDelete(HttpServletRequest request, HttpServletResponse response)
+        {
+     	   Response<Object> ajaxResponse = new Response<Object>();
+           
+     	   long bSeq = HttpUtil.get(request, "bSeq", (long)0);
+	       System.out.println("**************이거안받아오는거지 띠바야 bSeq: " + bSeq);
+     	   
+     	   if(bSeq > 0) //0보다 클떄 실제로 넘어온 값
+     	   {
+     		  WDNBoard nBList = wdNBoardService.nBoardSelect(bSeq);
+     		   
+     		   if(nBList != null) //nBList가 널이면 게시물이 없다는거니까 널이 아닐떄 !
+     		   {
+     			   //널이 아닐때
+				   if(wdNBoardService.nBoardDelete(nBList.getbSeq()) > 0)
+				   {
+					   //0보다 크면 정상적으로 삭제됬따
+					   ajaxResponse.setResponse(0, "Success");
+				   }
+				   else
+				   {
+					   //아니야. 삭제못했어,,,왜? 왜못하는데 여기걸리는데 왠데 왜? 와이? 와땀시?
+					   ajaxResponse.setResponse(500, "Internal Server Error");
+				   }
+     		   }
+     		   else
+     		   {
+     			   //널일때 = 게시물이 없다
+     			   ajaxResponse.setResponse(404, "Not Found");
+     		   }
+     	   }
+     	   else
+     	   {
+     		   //0이거나 0보다 작을때는 안넘어온거임
+     		   ajaxResponse.setResponse(400, "Bad Request");
+     	   }
+     	   
+     	   return ajaxResponse;
+        }
+        
+        
+        //드레스업체 수정,삭제 페이지 띄우기
+        @RequestMapping(value="/mng/dressComUpdate")
+        public String dressComUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+        {   
+        	String dcCode = HttpUtil.get(request, "dcCode", "");
+        	//String dNo = HttpUtil.get(request, "dNo", "");
+        	
+        	WDDress dList = null;
+        	
+        	System.out.println("******************dcCode : " + dcCode);
+        	//System.out.println("******************dNo : " + dNo);
+        	
+        	if(!StringUtil.isEmpty(dcCode))
+        	{
+        		dList = wdDressService.onlyDressComSelect(dcCode);
+        		
+        		model.addAttribute("dList", dList);
+        	}
+        	
+        	model.addAttribute("dcCode", dcCode);
+        	model.addAttribute("dList", dList);
+        	
+        	return "/mng/dressComUpdate";
+        }
+        
+        //드레스업체 삭제하기
+        @RequestMapping(value="/mng/dressComDelete")
+        @ResponseBody
+        public Response<Object> dressComDelete(HttpServletRequest request, HttpServletResponse response)
+        {
+        	Response<Object> ajaxResponse = new Response<Object>();
+        	
+        	String dcCode = HttpUtil.get(request, "dcCode", "");
+        	
+        	System.out.println("***********dcCode : " + dcCode);
+        	
+        	if(!StringUtil.isEmpty(dcCode))
+      	   {
+        		WDDress dList = wdDressService.onlyDressComSelect(dcCode);
+       		   
+       		   if(dList != null) //dList가 널이면 게시물이 없다는거니까 널이 아닐떄 !
+       		   {
+       			   //널이 아닐때
+  				   if(wdDressService.onlyDressComDelete(dList.getDcCode()) > 0)
+  				   {
+  					   //0보다 크면 정상적으로 삭제됬따
+  					 ajaxResponse.setResponse(0, "Success");
+  				   }
+  				   else
+  				   {
+  					   //아니야. 삭제못했어
+  					 ajaxResponse.setResponse(500, "Internal Server Error");
+  				   }
+       		   }
+       		   else
+       		   {
+       			   //널일때 = 게시물이 없다
+       			ajaxResponse.setResponse(404, "Not Found");
+       		   }
+       	   }
+       	   else
+       	   {
+       		   //0이거나 0보다 작을때는 안넘어온거임
+       		ajaxResponse.setResponse(400, "Bad Request");
+       	   }
+        	
+        	return ajaxResponse;
+        }
+        
+        
+        //드레스 수정,삭제 페이지 띄우기
+        @RequestMapping(value="/mng/dressUpdate")
+        public String dressUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+        {   
+        	String dNo = HttpUtil.get(request, "dNo", "");
+        	
+        	WDDress dList = null;
+        	
+        	System.out.println("******************dNo : " + dNo);
+        	
+        	if(!StringUtil.isEmpty(dNo))
+        	{
+        		dList = wdDressService.dressSelect(dNo);
+        		
+        		model.addAttribute("dList", dList);
+        	}
+        	
+        	model.addAttribute("dcCode", dNo);
+        	model.addAttribute("dList", dList);
+        	
+        	return "/mng/dressUpdate";
+        }
+
+        //드레스 삭제하기
+        @RequestMapping(value="/mng/dressDelete")
+        @ResponseBody
+        public Response<Object> dressDelete(HttpServletRequest request, HttpServletResponse response)
+        {
+        	Response<Object> ajaxResponse = new Response<Object>();
+        	
+        	String dcCode = HttpUtil.get(request, "dcCode", "");
+        	String dNo = HttpUtil.get(request, "dNo", "");
+        	
+        	System.out.println("***********dcCode : " + dcCode);
+        	System.out.println("***********dNo : " + dNo);
+        	
+        	WDDress dList = new WDDress();
+        	
+        	if(!StringUtil.isEmpty(dcCode) && !StringUtil.isEmpty(dNo))
+      	   {
+        		dList = wdDressService.dressSelect(dNo);
+       		   
+       		   if(dList != null) //dList가 널이면 게시물이 없다는거니까 널이 아닐떄 !
+       		   {
+       			   //널이 아닐때
+  				   if(wdDressService.onlyDressDelete(dList) > 0)
+  				   {
+  					   //0보다 크면 정상적으로 삭제됬따
+  					 ajaxResponse.setResponse(0, "Success");
+  				   }
+  				   else
+  				   {
+  					   //아니야. 삭제못했어
+  					 ajaxResponse.setResponse(500, "Internal Server Error");
+  				   }
+       		   }
+       		   else
+       		   {
+       			   //널일때 = 게시물이 없다
+       			ajaxResponse.setResponse(404, "Not Found");
+       		   }
+       	   }
+       	   else
+       	   {
+       		   //0이거나 0보다 작을때는 안넘어온거임
+       		ajaxResponse.setResponse(400, "Bad Request");
+       	   }
+        	
+        	return ajaxResponse;
+        }
+        
+        //웨딩홀업체 수정,삭제 페이지 띄우기
+        @RequestMapping(value="/mng/WeddingHallUpdate")
+        public String WeddingHallUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+        {   
+        	String whCode = HttpUtil.get(request, "whCode", "");
+        	//String dNo = HttpUtil.get(request, "dNo", "");
+        	
+        	WDHall wdHall = null;        	
+        	
+        	if(!StringUtil.isEmpty(whCode))
+        	{
+        		wdHall = wdHallService.onlyWeddingHall(whCode);
+        		
+        		model.addAttribute("wdHall", wdHall);
+        	}
+        	
+        	model.addAttribute("whCode", whCode);
+        	
+        	return "/mng/WeddingHallUpdate";
+        }
+        
+        //웨딩홀 삭제하기
+        @RequestMapping(value="/mng/WeddingHallDelete")
+        @ResponseBody
+        public Response<Object> WeddingHallDelete(HttpServletRequest request, HttpServletResponse response)
+        {
+        	Response<Object> ajaxResponse = new Response<Object>();
+        	
+        	String whCode = HttpUtil.get(request, "whCode", "");
+        	
+        	WDHall wdHall = null;
+        	
+        	if(!StringUtil.isEmpty(whCode))
+      	   {
+        		wdHall = wdHallService.onlyWeddingHall(whCode);
+       		   
+       		   if(wdHall != null) //dList가 널이면 게시물이 없다는거니까 널이 아닐떄 !
+       		   {
+       			   //널이 아닐때
+  				   if(wdHallService.weddingHallDelete(whCode) > 0)
+  				   {
+  					   //0보다 크면 정상적으로 삭제됬따
+  					 ajaxResponse.setResponse(0, "Success");
+  				   }
+  				   else
+  				   {
+  					   //아니야. 삭제못했어
+  					 ajaxResponse.setResponse(500, "Internal Server Error");
+  				   }
+       		   }
+       		   else
+       		   {
+       			   //널일때 = 게시물이 없다
+       			ajaxResponse.setResponse(404, "Not Found");
+       		   }
+       	   }
+       	   else
+       	   {
+       		   //0이거나 0보다 작을때는 안넘어온거임
+       		ajaxResponse.setResponse(400, "Bad Request");
+       	   }
+        	
+        	return ajaxResponse;
+        }
+        
+        //홀업체 수정,삭제 페이지 띄우기
+        @RequestMapping(value="/mng/hallUpdate")
+        public String hallUpdate(Model model,HttpServletRequest request, HttpServletResponse response) 
+        {   
+        	String whCode = HttpUtil.get(request, "whCode", "");
+        	String hCode = HttpUtil.get(request, "hCode", "");
+        	
+        	WDHall wdHall = new WDHall();
+        	
+        	wdHall.setWHCode(whCode);
+        	wdHall.setHCode(hCode);     	
+        	
+        	if(!StringUtil.isEmpty(whCode) && !StringUtil.isEmpty(hCode))
+        	{
+        		wdHall = wdHallService.WDHallSelect(wdHall);
+        		
+        		model.addAttribute("wdHall", wdHall);
+        	}
+        	
+        	model.addAttribute("whCode", whCode);
+        	model.addAttribute("hCode", hCode);
+        	
+        	return "/mng/hallUpdate";
+        }
+        
+        //홀 삭제하기
+        @RequestMapping(value="/mng/hallDelete")
+        @ResponseBody
+        public Response<Object> hallDelete(HttpServletRequest request, HttpServletResponse response)
+        {
+        	Response<Object> ajaxResponse = new Response<Object>();
+        	
+        	String whCode = HttpUtil.get(request, "whCode", "");
+        	String hCode = HttpUtil.get(request, "hCode", "");
+        	
+        	WDHall wdHall = new WDHall();
+        	
+        	System.out.println("fgdgfdg : " + whCode);
+        	System.out.println("fgdgfdg : " + hCode);
+        	
+        	if(!StringUtil.isEmpty(whCode) && !StringUtil.isEmpty(hCode))
+      	   {
+	    		wdHall.setWHCode(whCode);
+	    		wdHall.setHCode(hCode);
+    		
+   			   //널이 아닐때
+			   if(wdHallService.hallDelete(wdHall) > 0)
+			   {
+				   //0보다 크면 정상적으로 삭제됬따
+				 ajaxResponse.setResponse(0, "Success");
+			   }
+			   else
+			   {
+				   //아니야. 삭제못했어
+				 ajaxResponse.setResponse(500, "Internal Server Error");
+			   }
+   		   }
+   		   else
+   		   {
+   			   //널일때 = 게시물이 없다
+   			ajaxResponse.setResponse(404, "Not Found");
+   		   }
+        	
+        	return ajaxResponse;
+        }
+
+        //드레스업체 수정하기
+        @RequestMapping(value="/mng/dressComUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> dressComUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           String dcCode = HttpUtil.get(request, "dcCode", "");
+           String dcName = HttpUtil.get(request, "dcName", "");
+           String dcLocation = HttpUtil.get(request, "dcLocation", "");
+           String dcNumber = HttpUtil.get(request, "dcNumber", "");
+           String dcContent = HttpUtil.get(request, "dcContent", "");
+           //String dcImgname = HttpUtil.get(request, "dcImgname", "");
+           
+           WDDress dList = new WDDress();
+           
+           System.out.println("혹시여긴오나몰라11111");
+           
+           if(!StringUtil.isEmpty(dcCode) && !StringUtil.isEmpty(dcName) && !StringUtil.isEmpty(dcLocation) &&
+        		   !StringUtil.isEmpty(dcNumber) && !StringUtil.isEmpty(dcContent))
+           {
+        	   System.out.println("혹시여긴오나몰라222222");
+        	   
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   dList = wdDressService.onlyDressComSelect(dcCode);
+        	   
+        	   if(dList != null)
+        	   {
+        		   System.out.println("혹시여긴오나몰라33333");
+        		   
+        		   //새로운 정보 넣어주기
+        		   dList.setDcCode(dcCode);
+        		   dList.setDcName(dcName);
+        		   dList.setDcLocation(dcLocation);
+        		   dList.setDcNumber(dcNumber);
+        		   dList.setDcContent(dcContent);
+        		   //dList.setDcContent(dcImgname);
+        		   
+        		   if(wdDressService.dressComUpdate(dList) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        			   System.out.println("혹시여긴오나몰라4444");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        			   System.out.println("혹시여긴오나몰라55555");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        		   System.out.println("혹시여긴오나몰라6666");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+        	   System.out.println("혹시여긴오나몰라777777");
+			}
+           
+           
+           return res;
+        }
+        
+        //드레스 수정하기
+        @RequestMapping(value="/mng/dressUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> dressUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           String dcCode = HttpUtil.get(request, "dcCode", "");
+           String dNo = HttpUtil.get(request, "dNo", "");
+           String dcName = HttpUtil.get(request, "dcName", "");
+           String dName = HttpUtil.get(request, "dName", "");
+           String dContent = HttpUtil.get(request, "dContent", "");
+           long dPrice = HttpUtil.get(request, "dPrice", (long)0);
+           //String dImgname = HttpUtil.get(request, "dImgname", "");
+           
+           WDDress dList = new WDDress();
+           
+           System.out.println("혹시여긴오나몰라11111");
+           
+           if(!StringUtil.isEmpty(dcCode) && !StringUtil.isEmpty(dNo) && !StringUtil.isEmpty(dcName) &&
+        		   !StringUtil.isEmpty(dName) && !StringUtil.isEmpty(dContent))
+           {
+        	   System.out.println("혹시여긴오나몰라222222");
+        	   
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   dList = wdDressService.dressSelect(dNo);
+        	   
+        	   if(dList != null)
+        	   {
+        		   System.out.println("여긴타니여긴타니여긴타니??");
+        		   
+        		   //새로운 정보 넣어주기
+        		   dList.setDcCode(dcCode);
+        		   dList.setdNo(dNo);
+        		   dList.setDcName(dcName);
+        		   dList.setdName(dName);
+        		   dList.setdContent(dContent);
+        		   dList.setdPrice(dPrice);
+        		   //dList.setDsContent(dImgname);
+        		   
+        		   System.out.println("==========이거 값은 얼마냐??==="+dList.getdName());
+        		   
+        		   if(wdDressService.dressUpdate(dList) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        			   System.out.println("혹시여긴오나몰라44*******************44d와주겠니");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        			   System.out.println("혹시여긴오나몰라55555");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        		   System.out.println("혹시여긴오나몰라6666");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+        	   System.out.println("혹시여긴오나몰라777777");
+			}
+           
+           
+           return res;
+        }
+        
+        //웨딩홀 수정하기
+        @RequestMapping(value="/mng/weddinghallUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> weddinghallUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           String wdName = HttpUtil.get(request, "wdName", "");
+           String wdLocation = HttpUtil.get(request, "wdLocation", "");
+           String wdNumber = HttpUtil.get(request, "wdNumber", "");
+           String wdContent = HttpUtil.get(request, "wdContent", "");
+           String wdCode = HttpUtil.get(request, "wdCode", "");
+           
+           WDHall wdHall = null;
+           
+           System.out.println("혹시여긴오나몰라11111");
+           
+           if(!StringUtil.isEmpty(wdName) && !StringUtil.isEmpty(wdLocation) && !StringUtil.isEmpty(wdNumber) &&
+        		   !StringUtil.isEmpty(wdContent) && !StringUtil.isEmpty(wdCode))
+           {
+        	   System.out.println("혹시여긴오나몰라222222");
+        	   
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   wdHall = wdHallService.onlyWeddingHall(wdCode);
+        	   
+        	   if(wdHall != null)
+        	   {
+        		   System.out.println("여긴타니여긴타니여긴타니??");
+        		   
+        		   //새로운 정보 넣어주기
+        		   wdHall.setWhName(wdName);
+        		   wdHall.setWHLocation(wdLocation);
+        		   wdHall.setWhNumber(wdNumber);
+        		   wdHall.setWhContent(wdContent);
+        		   //dList.setDsContent(dImgname);
+        		   
+        		   if(wdHallService.weddinghallUpdate(wdHall) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        			   System.out.println("혹시여긴오나몰라44*******************44d와주겠니");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        			   System.out.println("혹시여긴오나몰라55555");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        		   System.out.println("혹시여긴오나몰라6666");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+        	   System.out.println("혹시여긴오나몰라777777");
+			}
+           
+           
+           return res;
+        }
+        
+        //홀 수정하기
+        @RequestMapping(value="/mng/hallUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> hallUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           String whCode = HttpUtil.get(request, "whCode", "");
+           String hCode = HttpUtil.get(request, "hCode", "");
+           String hName = HttpUtil.get(request, "hName", "");
+           long hPrice = HttpUtil.get(request, "hPrice", (long)0);
+           long hFood = HttpUtil.get(request, "hFood", (long)0);
+           long hMin = HttpUtil.get(request, "hMin", (long)0);
+           long hMax = HttpUtil.get(request, "hMax", (long)0);
+           String hContent = HttpUtil.get(request, "hContent", "");
+           //String dImgname = HttpUtil.get(request, "dImgname", "");
+           
+           WDHall wdHall = new WDHall();
+           
+           System.out.println("혹시여긴오나몰라11111");
+           
+           wdHall.setWHCode(whCode);
+           wdHall.setHCode(hCode);
+           
+           if(!StringUtil.isEmpty(whCode) && !StringUtil.isEmpty(hCode) && !StringUtil.isEmpty(hName) && !StringUtil.isEmpty(hContent))
+           {
+        	   System.out.println("혹시여긴오나몰라222222");
+        	   
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   wdHall = wdHallService.WDHallSelect(wdHall);
+        	   
+        	   if(wdHall != null)
+        	   {
+        		   System.out.println("여긴타니여긴타니여긴타니??");
+        		   
+        		   //새로운 정보 넣어주기
+        		   wdHall.setHName(hName);
+        		   wdHall.setHPrice(hPrice);
+        		   wdHall.setHFood(hFood);
+        		   wdHall.setHMin(hMin);
+        		   wdHall.setHMax(hMax);
+        		   wdHall.setHContent(hContent);
+        		   //dList.setDsContent(dImgname);
+        		   
+        		   System.out.println("==========이거 값은 얼마냐??==="+wdHall.getHName());
+        		   
+        		   if(wdHallService.hallUpdate(wdHall) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        			   System.out.println("혹시여긴오나몰라44*******************44d와주겠니");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        			   System.out.println("혹시여긴오나몰라55555");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        		   System.out.println("혹시여긴오나몰라6666");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+        	   System.out.println("혹시여긴오나몰라777777");
+			}
+           
+           
+           return res;
+        }
+        
 }

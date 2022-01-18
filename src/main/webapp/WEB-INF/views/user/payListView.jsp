@@ -96,9 +96,20 @@ $(document).ready(function(){
 					
 						
                         <table class="table tableWish">
+                        <tr>
+								<div class="rez_sta">
+									<h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
+<c:choose>
+	<c:when test="${!empty wdRez.whCode or wdRez.whCode !='' or !empty wdRez.sCode or wdRez.sCode !='' or !empty wdRez.dNo or wdRez.dNo !='' or !empty wdRez.mCode or wdRez.mCode !=''}">
+									<h5 class="rez_number">예약번호&nbsp;&nbsp; <span>${wdRez.rezNo}</span></h5>
+	</c:when>
+	<c:otherwise>
+									<h5 class="rez_number">예약번호&nbsp;&nbsp; <span></span></h5>
+	</c:otherwise>
+</c:choose>
+								</div>
+							</tr>
                             <tr style="border-top: 3px solid #444;">
-                                <th>예약번호</th>
-                                <th>예약날짜</th>
                                 <th>이미지</th>
                                 <th>상품정보</th>
                                 <th>참고사항</th>
@@ -110,18 +121,6 @@ $(document).ready(function(){
 <c:if test="${!empty wdRez.whCode}">
                             
                             <tr id="wishH">
-                            	<!-- 예약번호 -->
-                            	<td>
-                            		<div class="col-lg-12" style="text-align:center">
-                                    	<p><c:out value="${wdRez.rezNo}" /></p>
-                                    </div>
-                            	</td>
-                            	<!-- 예약날짜 -->
-                            	<td>
-                            		<div class="col-lg-12" style="text-align:center">
-                                   		<p><c:out value="${wdRez.rezDate}" /></p>
-                                   	</div>
-                            	</td>
                             	<!-- 이미지 -->
                                 <td class="image-prod">
                                 	<div class="imgbox" onclick="fn_view1('${wdRez.whCode}','${wdRez.hCode}')">
@@ -164,18 +163,6 @@ $(document).ready(function(){
                          
                             <tr id="wishS">
                             	
-                            	<!-- 예약번호 -->
-                            	<td>
-                            		<div class="col-lg-12" style="text-align:center">
-                                    	<p><c:out value="${wdRez.rezNo}" /></p>
-                                    </div>
-                            	</td>
-                            	<!-- 예약날짜 -->
-                            	<td>
-                            		<div class="col-lg-12" style="text-align:center">
-                                   		<p><c:out value="${wdRez.rezDate}" /></p>
-                                   	</div>
-                            	</td>
                             	<!-- 이미지 -->
                                 <td class="image-prod">
                                 	<div class="imgbox"  onclick="fn_view2('${wdRez.sCode}')">
@@ -215,18 +202,6 @@ $(document).ready(function(){
 <c:if test="${!empty wdRez.dNo}">
                             <tr id="wishD">
                             	
-                            	<!-- 예약번호 -->
-                            	<td>
-                            		<div class="col-lg-12" style="text-align:center">
-                                    	<p><c:out value="${wdRez.rezNo}" /></p>
-                                    </div>
-                            	</td>
-                            	<!-- 예약날짜 -->
-                            	<td>
-                            		<div class="col-lg-12" style="text-align:center">
-                                   		<p><c:out value="${wdRez.rezDate}" /></p>
-                                   	</div>
-                            	</td>
                             	<!-- 이미지 -->
                                 <td class="image-prod">
                                 	<div class="imgbox" onclick="fn_view3('${wdRez.dNo}')">
@@ -265,18 +240,6 @@ $(document).ready(function(){
 <c:if test="${!empty wdRez.mCode}">
                             <tr id="wishM">
                             	
-                            	<!-- 예약번호 -->
-                            	<td>
-                            		<div class="col-lg-12" style="text-align:center">
-                                    	<p><c:out value="${wdRez.rezNo}" /></p>
-                                    </div>
-                            	</td>
-                            	<!-- 예약날짜 -->
-                            	<td>
-                            		<div class="col-lg-12" style="text-align:center">
-                                   		<p><c:out value="${wdRez.rezDate}" /></p>
-                                   	</div>
-                            	</td>
                             	<!-- 이미지 -->
                                 <td class="image-prod">
                                 	<div class="imgbox"  onclick="fn_view4('${wdRez.mCode}')">
@@ -332,7 +295,7 @@ $(document).ready(function(){
 					</div>
                                 <tr>
                                     <!-- 총가격 -->
-                                    <th colspan="5">
+                                    <th colspan="3">
                                     <div class="col-lg-12" style="text-align:center">
                                     	총 금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice + wdCoupon.cPrice + wdRez.rezPoint}" />원
                                     	<c:if test="${!empty wdCoupon.cPrice}"> - 쿠폰할인금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdCoupon.cPrice}" />원</c:if>
@@ -341,7 +304,7 @@ $(document).ready(function(){
                                     </div>
                                     </th>
 
-                                    <th colspan="6">
+                                    <th colspan="4">
 			                        <div style="text-align: center;">
 										<button id="btnCancel" title="환불요청" style="border: solid 1px black; background:white; position:relative; color:black;">환불요청</button>
 									</div>

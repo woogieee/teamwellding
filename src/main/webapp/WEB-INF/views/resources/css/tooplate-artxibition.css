@@ -1169,6 +1169,7 @@ banner
    height: 600px;
    overflow: hidden;
    transition: all 0.5s linear;
+   border-radius: 17px;
 }
 
 .sdmimg:hover img
@@ -1959,12 +1960,12 @@ footer p.copyright {
 }
 
 .sub-footer .menu {
-  text-align: center;
+  text-align: left; /*center;*/
 }
 
 .sub-footer .menu ul li {
   display: inline-block;
-  margin: 10px 15px 5px 15px;
+  margin: 10px 20px 5px 20px;
 }
 
 .sub-footer .menu ul li a {
@@ -2314,9 +2315,10 @@ About Us Page
 
 .det_navi-hall ul
 {
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	width: 100%;
 	padding: 0 25%;
+	text-align: center;
 }
 
 .det_navi-hall li
@@ -2324,8 +2326,7 @@ About Us Page
 	/*float: left;*/
 	margin: 0 auto;
 	text-align: center;
-	width: 50%;
-	float: left;
+	/*width: 50%;*/
 }
 
 .det_navi-hall li:first-child a
@@ -2353,7 +2354,7 @@ About Us Page
 
 .det_navi ul
 {
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	width: 100%;
 	padding: 0 25%;
 }
@@ -2363,8 +2364,8 @@ About Us Page
 	/*float: left;*/
 	margin: 0 auto;
 	text-align: center;
-	width: 50%;
-	float: left;
+	/*width: 50%;
+	float: left;*/
 }
 
 .det_navi li:first-child a
@@ -2390,7 +2391,7 @@ About Us Page
 
 .det_navi2 ul
 {
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	width: 100%;
 	padding: 0 25%;
 }
@@ -2400,8 +2401,8 @@ About Us Page
 	/*float: left;*/
 	margin: 0 auto;
 	text-align: center;
-	width: 50%;
-	float: left;
+	/*width: 50%;
+	float: left;*/
 }
 
 .det_navi2 li:first-child a
@@ -3285,6 +3286,11 @@ Shows Events Page
 	letter-spacing: 12px;
 }
 
+.let_sp
+{
+	letter-spacing: 10px;
+}
+
 .span_design
 {
 	height: 2px;
@@ -3427,7 +3433,7 @@ Shows Events Page
 
 .tickets-page .ticket-item {
   margin-bottom: 30px;
-  cursor: pointer;
+  /*cursor: pointer;*/
 }
 
 /**************************보현이가하는 욱채홀 이미지 수정시작********************************/
@@ -3435,6 +3441,7 @@ Shows Events Page
   position: relative;
   height: 255px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .tickets-page .ticket-item .thumb3 img {
@@ -3546,6 +3553,7 @@ Shows Events Page
   position: relative;
   height: 300px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .ticket-item2 .thumb-hall {
@@ -3667,6 +3675,7 @@ Shows Events Page
 .tickets-page .ticket-item .down-content {
   background-color: #efefef;
   padding: 30px;
+  cursor: default;
 }
 
 .tickets-page .ticket-item2 .down-content2 {
@@ -4079,8 +4088,8 @@ Ticket Details Page : 보현 수정 쭉한다
 }
 
 .ticket-details-page-hall .right-content span {
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 17px;
+  line-height: 29px;
   font-weight: 500;
   color: #756c74; /* 보현수정 */
   display: inline-block;
@@ -5848,7 +5857,7 @@ responsive
 {
 	text-align: center;
 	/*border-right: 1px solid lightgray;*/
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: 600;
 	color: #555;
 	padding: 10px;
@@ -6110,6 +6119,38 @@ responsive
     border-right: 5px solid #fff; /* 선 두께 */
     transform: rotate(45deg); /* 각도 */
 }
+
+/*욱채 인덱스 슬라이더*/
+.slick-prev3.slick-arrow{ /* prev 이전 */
+	left: 0%!important;
+	outline: none
+    
+}
+.slick-next3.slick-arrow{ /* next 다음 */
+	right: 3%!important;
+	outline: none
+}
+
+.slick-prev3::after {
+    position: absolute;
+    content: '';
+    width: 36px; /* 사이즈 */
+    height: 36px; /* 사이즈 */
+    border-top: 5px solid #ffc0c8; /* 선 두께 */
+    border-right: 5px solid #ffc0c8; /* 선 두께 */
+    transform: rotate(225deg); /* 각도 */
+}
+
+.slick-next3::after {
+    position: absolute;
+    content: '';
+    width: 36px; /* 사이즈 */
+    height: 36px; /* 사이즈 */
+    border-top: 5px solid #ffc0c8; /* 선 두께 */
+    border-right: 5px solid #ffc0c8; /* 선 두께 */
+    transform: rotate(45deg); /* 각도 */
+}
+/*욱채 인덱스 슬라이더*/
 
 /** 모달띄운거 **/
 .ticket-details-page {
@@ -6698,4 +6739,36 @@ textarea::placeholder {
     letter-spacing: 0.5px;
 }
 
+.rezview
+{
+	font-size: 15px;
+	font-weight: 500;
+	display: inline-block;
+    margin-right: 10px;
+    color: #333;
+}
+
+.rez_btn
+{
+	border: none;
+    font-size: 12px;
+    padding: 5px 8px;
+    font-weight: 600;
+    background: #eb5e42;
+    color: #fff;
+    border-radius: 5px;
+    letter-spacing: -0.5px;
+}
+
+.rez_btn2
+{
+	border: none;
+    font-size: 12px;
+    padding: 5px 8px;
+    font-weight: 600;
+    background: #ccc;
+    color: #fff;
+    border-radius: 5px;
+    letter-spacing: -0.5px;
+}
 /*보현추가 끝*/

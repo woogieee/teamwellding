@@ -172,7 +172,6 @@ function fn_view(whCode, hCode)
                 	<div class="det_navi-hall">
                 		<ul>
                 			<li><a href=""><c:out value="${wdHall.whName}" />의 다른 홀 보기</a></li>
-                			<li><a href="">이용 후기</a></li>
                 		</ul>
                 	</div>
                 </div>
@@ -181,7 +180,7 @@ function fn_view(whCode, hCode)
 <c:if test="${!empty sameCom}">        
 	<c:forEach var="wdHall" items="${sameCom}" varStatus="status">
                	<div class="col-lg-6">
-                    <div class="ticket-item2" onclick="fn_view('${wdHall.WHCode}', '${wdHall.HCode}')">
+                    <div class="ticket-item2" onclick="fn_view('${wdHall.WHCode}', '${wdHall.HCode}')" style="cursor: pointer;">
                         <div class="thumb-hall">
                             <img src="../resources/images/hallrepimage/${wdHall.HImgName}" alt="">
                         </div>
@@ -206,33 +205,6 @@ function fn_view(whCode, hCode)
         </div>
     </div>
 
-
-    <!-- *** Subscribe *** -->
-    <div class="subscribe">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <h4>Subscribe Our Newsletter:</h4>
-                </div>
-                <div class="col-lg-8">
-                    <form id="subscribe" action="" method="get">
-                        <div class="row">
-                          <div class="col-lg-9">
-                            <fieldset>
-                              <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
-                            </fieldset>
-                          </div>
-                          <div class="col-lg-3">
-                            <fieldset>
-                              <button type="submit" id="form-submit" class="main-dark-button">Submit</button>
-                            </fieldset>
-                          </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     
    <form name="hallForm" id="hallForm" method="post">
       <input type="hidden" name="WHCode" id="WHCode" value="${wdHall.WHCode}" /> 

@@ -97,7 +97,7 @@ $(document).ready(function(){
 
 function fn_search()
 {
-   document.searchForm.curPage.value = "1"; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
+   document.searchForm.curPage.value = 1; //검색한단 이야기는 첨부터 한다는 뜻이라 1부터
    document.searchForm.action = "/mng/userList";
    document.searchForm.submit();
 }
@@ -158,11 +158,12 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
             <table class="table table-hover" style="border:1px solid #c4c2c2;">
                <thead style="border-bottom: 1px solid #c4c2c2;">
                <tr class="table-thead-main" style="background: #ddd;">
-                  <th scope="col" style="width:15%;">아이디</th>
-                  <th scope="col">이름</th>
-                  <th scope="col">이메일</th>
-                  <th scope="col">상태</th>
-                  <th scope="col">등록일</th>
+                  <th scope="col" style="width:13%;">아이디</th>
+                  <th scope="col" style="width:15%;">이름</th>
+                  <th scope="col" style="width:25%;">닉네임</th>
+                  <th scope="col" style="width:30%;">이메일</th>
+                  <th scope="col" style="width:7%;">상태</th>
+                  <th scope="col" style="width:10%;">등록일</th>
                </tr>
                </thead>
                <tbody>
@@ -173,6 +174,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                    	<a href="/mng/MngUserUpdate?userId=${user.userId}" name="userUpdate" class="userUpdate">${user.userId}</a>
                    </th>
                    <td>${user.userName}</td>
+                   <td>${user.userNickname}</td>
                    <td>${user.userEmail}</td>
                    <td><c:if test="${user.status == 'Y'}">정상</c:if><c:if test="${user.status == 'N'}">정지</c:if></td>
                    <td>${user.regDate}</td>
@@ -186,17 +188,18 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                </c:if>
                </tbody>
             </table>
+
 		     <div class="col-lg-12" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
                   <c:if test="${!empty paging}">
                      <c:if test="${paging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${paging.prevBlockPage})">이전</a></li>
                      </c:if>
                      <c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
                         <c:choose>
                            <c:when test="${i ne curPage}">
-                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${i})">${i}</a></li>
                            </c:when>
                            <c:otherwise>
                               <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
@@ -204,7 +207,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                         </c:choose>
                      </c:forEach>
                      <c:if test="${paging.nextBlockPage gt 0}">         
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">다음</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${paging.nextBlockPage})">다음</a></li>
                      </c:if>       
                   </c:if> 
                </ul>
@@ -215,6 +218,8 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
    </div>
   </div>
 </div>
+
+
 	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>
 </html>

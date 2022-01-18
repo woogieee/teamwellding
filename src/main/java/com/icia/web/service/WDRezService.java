@@ -74,6 +74,23 @@ public class WDRezService {
 		return count;
 	}
 	
+	//결제내역 리스트 검색값 조회
+	public long rezSearchCount(WDRez wdRez)
+	{
+		long count = 0;
+		
+		try
+		{
+			count = wdRezDao.rezSearchCount(wdRez);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] rezSearchCount Exception", e);
+		}
+		
+		return count;
+	}
+	
 	//아이디를 통해 예약건수가 있는지 확인
 	public int checkRez(String userId) 
 	{
@@ -360,13 +377,13 @@ public class WDRezService {
 		}
 	
 	//결제 취소 신청 승인
-    public int rezCancelApprove(WDRez wdRez) {
+    public int rezCancelApprove(String rezNo) {
 			
 		int count = 0;
 		
 		try
 		{
-			count = wdRezDao.rezCancelApprov(wdRez);
+			count = wdRezDao.rezCancelApprove(rezNo);
 		}
 		catch(Exception e)
 		{
@@ -394,21 +411,21 @@ public class WDRezService {
 		}	
 	
 	
-	//결제 취소시 환불 요청 수락
-	public WDRez rezPointReturn(HashMap<String, Object> map) {
+	//결제 취소시 포인트 환불
+	public int rezPointReturn(HashMap<String, Object> map) {
 	
-		WDRez wdRez = null;
+		int count = 0;
 		
 		try
 		{
-			wdRez = wdRezDao.rezPointReturn(map);
+			count = wdRezDao.rezPointReturn(map);
 		}
 		catch(Exception e)
 		{
 			logger.error("[WDRezService] rezPointReturn", e);
 		}
 		
-		return wdRez;
+		return count;
 	}
 	
 	//환불 요청 수락 후 결제금액 삭제
@@ -443,6 +460,23 @@ public class WDRezService {
 		
 		return count;
 	}
+	
+	public WDRez listSelect(String rezNo)
+	{
+		WDRez wdRez = null;
+		
+		try
+		{
+			wdRez = wdRezDao.listSelect(rezNo);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] listSelect Exception", e);
+		}
+		
+		return wdRez;
+	}
+
 	/*	밑에 트랜젝션 오류나면 이걸로 해야겟어용
 	//포인트 사용시 결제테이블 포인트 추가
 	public int rezPointUpdate(WDRez wdRez)

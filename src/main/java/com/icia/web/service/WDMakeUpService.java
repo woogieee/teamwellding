@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.icia.web.dao.WDMakeUpDao;
 import com.icia.web.dao.WDRezDao;
+import com.icia.web.model.WDDress;
 import com.icia.web.model.WDMakeUp;
 import com.icia.web.model.WDRez;
 
@@ -157,10 +158,60 @@ public class WDMakeUpService
        }
        catch(Exception e)
        {
-          logger.error("[WDMakeUpService] makeupInsert Exception", e);
+          logger.error("[WDMakeUpService] makeupMax Exception 너냐?", e);
        }
        
        return mCode;
     }
+    
+    //메이크업 수정
+    public int makeupUpdate(WDMakeUp wdMakeUp)
+    {
+    	int count = 0;
+    	
+    	try
+    	{
+    		count = wdMakeUpDao.makeupUpdate(wdMakeUp);
+    	}
+    	catch(Exception e)
+    	{
+    		logger.error("[WDMakeUpService] wdAdmUserUpdate Exception", e);
+    	}
+    	return count;
+    }
+    
+  //메이크업 업체 조회
+  	public WDMakeUp onlyMakeupComSelect(String mCode)
+  	{
+  		WDMakeUp wdMakeup = null;
+  		
+  		try
+  		{
+  			wdMakeup = wdMakeUpDao.onlyMakeupComSelect(mCode);
+  		}
+  		catch(Exception e)
+  		{
+  			logger.error("[WDMakeUpService] onlyMakeupComSelect Exception", e);
+  		}
+  		
+  		return wdMakeup;
+  	}
+    
+  //메이크업 업체 삭제
+  	public int onlyMakeupComDelete(String mCode)
+  	{
+  		int count = 0;
+  		
+  		try
+  		{
+  			count = wdMakeUpDao.onlyMakeupComDelete(mCode);
+  		}
+  		catch(Exception e)
+  		{
+  			logger.error("[WDMakeUpService] onlyMakeupComDelete Exception", e);
+  		}
+  		return count;
+  	}
+	
    	
 }

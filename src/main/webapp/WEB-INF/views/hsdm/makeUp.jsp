@@ -20,7 +20,11 @@ $(document).ready(function(){
 		
 		if(wDate.length != 0 && wDate.length != 8)
 		{
-			alert("날짜로 검색하시려면 년,월,일을 전부 입력해주세요.");
+			Swal.fire({ 
+				icon: 'warning', // Alert 타입 
+				//title: '검색오류입니다.', // Alert 제목
+				text: '날짜로 검색하기를 원하신다면 년, 월, 일을 빠짐없이 전부 입력해주세요.' // Alert 내용
+			});
 			return;
 		}
 		
@@ -200,8 +204,8 @@ function fn_list(curPage)
 <c:if test="${!empty list}">        
 	<c:forEach var="wdMakeup" items="${list}" varStatus="status">
                 <div class="col-lg-4">
-                    <div class="ticket-item" onclick="fn_view('${wdMakeup.mCode}')" style="cursor:pointer;">
-                        <div class="thumb5">
+                    <div class="ticket-item">
+                        <div class="thumb5" onclick="fn_view('${wdMakeup.mCode}')" style="cursor:pointer;">
                             <img src="../resources/images/makeup/${wdMakeup.mImgName}" alt="">
                         </div>
                         <div class="down-content">
@@ -251,9 +255,9 @@ function fn_list(curPage)
         
 		<form name="bbsForm" id="bbsForm" method="post">
 			<input type="hidden" name="mCode" value="" /> <!-- 상세페이지 들어갈때 필요하니까 그때만 이 값이 들어가면됨 -->
-	        <input type="hidden" name="year" value="${year}" />
-	        <input type="hidden" name="month" value="${month}" />
-	        <input type="hidden" name="day" value="${day}" /> 
+	        <input type="hidden" name="year" id="year" value="${year}" />
+	        <input type="hidden" name="month" id="month" value="${month}" />
+	        <input type="hidden" name="day" id="day" value="${day}" /> 
 			<input type="hidden" name="searchType" value="${searchType}" />
 			<input type="hidden" name="searchValue" value="${searchValue}" />
 			<input type="hidden" name="curPage" value="${curPage}" />

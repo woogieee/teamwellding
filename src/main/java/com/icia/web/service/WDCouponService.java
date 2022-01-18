@@ -69,6 +69,24 @@ public class WDCouponService {
 		
 		return list;
 	}
+	
+	//신규 회원가입 웰컴 쿠폰
+	public int couponInsert(String userId)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdCouponDao.couponInsert(userId);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] couponInsert Exception 신규회원가입 쿠폰 오류임", e);
+		}
+		
+		return count;
+	}
+	
 
 }
 

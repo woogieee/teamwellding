@@ -79,11 +79,11 @@ FROM (SELECT
 	            <if test='wDate != null and wDate != ""'>   
 	            AND    
 	                 A.D_NO NOT IN (SELECT
-                         			  D_NO
+                         			  NVL(D_NO, ' ') AS D_NO
                                   FROM
                                       WD_REZ
                                   WHERE
-                                      WDATE LIKE #{wDate}
+                                      WDATE = #{wDate}
                                   AND
                                   	REZ_STATUS = 'Y')
 	            </if> 
@@ -115,6 +115,17 @@ FROM
     WD_DRESS A, WD_DRESS_COM B
 WHERE
     A.DC_CODE = B.DC_CODE
+<if test='wDate != null and wDate != ""'>   
+AND    
+     A.D_NO NOT IN (SELECT
+            			  NVL(D_NO, ' ') AS D_NO
+                     FROM
+                         WD_REZ
+                     WHERE
+                         WDATE = #{wDate}
+                     AND
+                     	REZ_STATUS = 'Y')
+</if> 
 <if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
    	<choose>                
       	<when test='searchType == "1"'> 
@@ -377,5 +388,67 @@ FROM
     WD_DRESS_COM
 </select>
 <!-- 드레스업체조회 끝 -->
+
+<!-- 드레스업체조회 : 업체만 조회: DC_CODE -->
+<select id="onlyDressComSelect" parameterType="string" resultMap="WDDressResultMap">
+SELECT
+    DC_CODE,
+    DC_NAME,
+    DC_LOCATION,
+    DC_NUMBER,
+    DC_IMGNAME,
+    DC_CONTENT
+FROM
+    WD_DRESS_COM
+WHERE
+    DC_CODE = #{value}
+</select>
+<!-- 드레스업체조회 끝 -->
+
+<!-- 드레스업체 삭제 시작 -->
+<delete id="onlyDressComDelete" parameterType="string">
+DELETE FROM WD_DRESS_COM
+WHERE
+        DC_CODE = #{value}
+</delete>
+<!-- 드레스 업체 삭제 끝 -->
+
+<!-- 드레스 삭제 시작 : 딜리트,업데이트,인서트는 int니까 파라미터타입을 쓸필요가없어여 ? 이건스트링인데 ? -->
+<delete id="onlyDressDelete" parameterType="com.icia.web.model.WDDress">
+DELETE FROM WD_DRESS
+WHERE
+    DC_CODE = #{dcCode}
+AND
+    D_NO = #{dNo}
+</delete>
+<!-- 드레스 삭제 끝 -->
+
+<!-- 드레스업체 수정 시작 -->
+<update id="dressComUpdate" parameterType="com.icia.web.model.WDDress">
+UPDATE WD_DRESS_COM
+SET
+    DC_NAME = #{dcName},
+    DC_LOCATION = #{dcLocation},
+    DC_NUMBER = #{dcNumber},
+    DC_CONTENT = #{dcContent}
+WHERE
+    DC_CODE = #{dcCode}
+</update>
+<!-- 드레스업체 수정 끝 -->
+
+<!-- 드레스 수정 시작 -->
+<update id="dressUpdate" parameterType="com.icia.web.model.WDDress">
+UPDATE WD_DRESS
+SET
+    D_NAME = #{dName},
+    D_PRICE = #{dPrice},
+    D_CONTENT = #{dContent},
+    D_DISCOUNT = #{dDiscount}
+WHERE
+    DC_CODE = #{dcCode}
+AND
+    D_NO = #{dNo}
+</update>
+<!-- 드레스 수정 끝 -->
 
 </mapper>

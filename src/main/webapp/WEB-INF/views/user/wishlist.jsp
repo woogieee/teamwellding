@@ -278,7 +278,7 @@ $("#payMent").on("click", function(){
 									<a href="/user/userDrop">회원탈퇴</a>
 								</li>
 								<li style="position: absolute; right:50px;">
-									<div>잔여 포인트 : ${wdUser.userPoint} Point
+									<div>잔여 포인트 : <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /> Point
 									</div>
 								</li>
 							</ol>
@@ -300,6 +300,7 @@ $("#payMent").on("click", function(){
 							<tr>
 								<div class="rez_sta">
 									<h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
+									<h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span>${wdRez.wDate}</span></h5>									
 <c:choose>
 	<c:when test="${!empty wdRez.whCode or wdRez.whCode !='' or !empty wdRez.sCode or wdRez.sCode !='' or !empty wdRez.dNo or wdRez.dNo !='' or !empty wdRez.mCode or wdRez.mCode !=''}">
 									<h5 class="rez_number">예약번호&nbsp;&nbsp; <span>${wdRez.rezNo}</span></h5>
@@ -310,6 +311,7 @@ $("#payMent").on("click", function(){
 </c:choose>
 								</div>
 							</tr>
+							
                             <tr style="border-top: 3px solid #444;">
                                 <th>이미지</th>
                                 <th>상품정보</th>
@@ -317,6 +319,7 @@ $("#payMent").on("click", function(){
                                 <th>총가격</th>
                                 <th>삭제</th>
                             </tr>
+                        
 <c:if test="${!empty wdRez}">
                             <!-- 홀 -->
 <c:if test="${!empty wdRez.whCode}">
@@ -490,7 +493,7 @@ $("#payMent").on("click", function(){
                             </tr>
 </c:if>
 </c:if>
-<c:if test="${!empty wdRez.whCode and wdRez.whCode !='' and !empty wdRez.sCode and wdRez.sCode !='' and !empty wdRez.dNo and wdRez.dNo !='' and !empty wdRez.mCode and wdRez.mCode !=''}">
+<c:if test="${empty wdRez.whCode and empty wdRez.sCode and empty wdRez.dNo and empty wdRez.mCode}">
 							<tr>
 							<td colspan="5">
 							<div style="text-align: center; padding-bottom: 30px;">
@@ -509,6 +512,7 @@ $("#payMent").on("click", function(){
 				
 					<div class="col-lg-1"></div>
 					<div class="col-lg-10">
+<c:if test="${!empty wdRez.rezNo and wdRez.rezNo !=''}">
 <c:if test="${!empty wdRez.whCode or wdRez.whCode !='' or !empty wdRez.sCode or wdRez.sCode !='' or !empty wdRez.dNo or wdRez.dNo !='' or !empty wdRez.mCode or wdRez.mCode !=''}">
 						<div class="rez_sum">
 							<dl class="sumbox1">
@@ -547,6 +551,7 @@ $("#payMent").on("click", function(){
 							<!-- 카카오 페이 버튼 추가 -->
 							<button type="button" id="payMent" style="border: solid 1px black; background:white; position:relative; top:-18px; color:black;" class="btn btn-primary" title="결제페이지로 이동">결제페이지로 이동</button>
 						</div>
+</c:if>
 </c:if>
 					</div>
 					<div class="col-lg-1"></div>

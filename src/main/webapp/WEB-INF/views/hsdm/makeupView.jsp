@@ -36,6 +36,17 @@ $(document).ready(function(){
 	$("#chae").on("click",function(){
 		if(confirm("해당 메이크업샵을 장바구니에 담으시겠습니까?"))
 		{
+			if($("#quantity").val() <0)
+			{
+				//alert("메이크업 추가 인원이 잘못되었습니다.");
+				Swal.fire({ 
+					icon: 'info',
+					title: '메이크업 추가 인원이 잘못되었습니다.',
+					text: '메이크업 추가인원은 0명 이상으로 선택해주세요.'
+				});
+				return;
+			}
+			
 			//ajax통신 시작
 			$.ajax({
 			type:"POST",
@@ -89,6 +100,10 @@ $(document).ready(function(){
 		
 	});
 	//메이크업 담기 버튼 종료
+	
+	$(".banner3").on("click", function(){
+		location.href = "/board/specialist";
+	});
 	
 });
 function fn_view_st(sCode)
@@ -191,8 +206,8 @@ function fn_view(dNo)
 <c:if test="${!empty studioRandom}">        
 	<c:forEach var="wdStudio" items="${studioRandom}" varStatus="status">
                	<div class="col-lg-4">
-                    <div class="ticket-item2" onclick="fn_view_st('${wdStudio.sCode}')" style="cursor:pointer">
-                        <div class="thumb_ss">
+                    <div class="ticket-item2">
+                        <div class="thumb_ss" onclick="fn_view_st('${wdStudio.sCode}')" style="cursor:pointer">
                             <img src="../resources/images/studio/${wdStudio.sImgname}" alt="">
                         </div>
                         <div class="down-content dtbox">
@@ -217,8 +232,8 @@ function fn_view(dNo)
 <c:if test="${!empty dressRandom}">        
 	<c:forEach var="wdDress" items="${dressRandom}" varStatus="status">
                	<div class="col-lg-3">
-                    <div class="ticket-item2" onclick="fn_view('${wdDress.dNo}')" style="cursor:pointer">
-                        <div class="thumb1">
+                    <div class="ticket-item2">
+                        <div class="thumb1" onclick="fn_view('${wdDress.dNo}')" style="cursor:pointer">
                             <img src="../resources/images/dress/${wdDress.dImgname}" alt="">
                         </div>
                         <div class="down-content dtbox">

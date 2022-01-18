@@ -221,5 +221,86 @@ public class WDHallService {
 		
 		return count;
 	}
+	
+	//웨딩홀만 조회
+	public WDHall onlyWeddingHall(String whCode) {
+		
+		WDHall wdHall = null;
+		
+		try {
+			wdHall = wdHallDao.onlyWeddingHall(whCode);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] onlyWeddingHall Exception", e);
+		}
+		
+		return wdHall;
+	}
+	
+	//웨딩홀 삭제
+	public int weddingHallDelete(String whCode) {
+		int count = 0;
+		
+		try {
+			count = wdHallDao.weddingHallDelete(whCode);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] weddingHallDelete Exception", e);
+		}
+		
+		return count;
+		
+	}
+	
+	//홀 삭제
+	public int hallDelete(WDHall wdHall) {
+		
+		int count = 0;
+		
+		try {
+			count = wdHallDao.hallDelete(wdHall);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] hallDelete Exception", e);
+		}
+		
+		return count;
+		
+	}
+	
+	//웨딩홀 업데이트
+	public int weddinghallUpdate(WDHall wdHall) {
+		
+		int count = 0;
+		
+		try {
+			count = wdHallDao.weddinghallUpdate(wdHall);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] weddinghallUpdate Exception", e);
+		}
+		
+		return count;
+	}
+	
+	//홀 업데이트
+	public int hallUpdate(WDHall wdHall) {
+		
+		int count = 0;
+		
+		try {
+			count = wdHallDao.hallUpdate(wdHall);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] hallUpdate Exception", e);
+		}
+		
+		return count;
+	}
    	
 }

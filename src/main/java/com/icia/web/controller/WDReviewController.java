@@ -106,16 +106,14 @@ public class WDReviewController {
 	   
 		//쿠키 값
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
-		
-		//글 쓰고 돌아갈 때 서치벨류 현재페이지 세팅이 필요함
-		String searchValue = HttpUtil.get(request, "searchValue", "");
-		long curPage = HttpUtil.get(request, "curPage", (long)1);	
+			
+		String rezNo = HttpUtil.get(request, "rezNo", "");
 		
 		WDReview wdReview = null;
-		wdReview = wdReviewService.rezCheck(cookieUserId);
+		wdReview = wdReviewService.rezCheck(rezNo);
 		
-		String rezNo = wdReview.getRezNo();
-		System.out.println(wdReviewService.reviewOverlapCheck(rezNo));
+		System.out.println("예약번호 : "+ rezNo);
+		System.out.println("여기다 : "+wdReviewService.reviewOverlapCheck(rezNo));
 		
 		if(wdReview != null) {
 			if(!StringUtil.equals(wdReviewService.reviewOverlapCheck(rezNo), "Y")) {
@@ -143,10 +141,13 @@ public class WDReviewController {
 	   
 	   //쿠키 값
 	   String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+	   
+	   String rezNo = HttpUtil.get(request, "FormRezNo", "");
 	 	
 	   WDUser wdUser = wdUserService.userSelect(cookieUserId);
 	   
-	   model.addAttribute("wdUser",wdUser);	 		
+	   model.addAttribute("wdUser",wdUser);	 
+	   model.addAttribute("rezNo",rezNo);
 	   
 	   return "/board/reviewWriteGo";
    }
@@ -162,55 +163,66 @@ public class WDReviewController {
 		String hiBbsTitle = HttpUtil.get(request, "hiBbsTitle", "");
 		String hiBbsContent = HttpUtil.get(request, "hiBbsContent", "");
 		double rScore = HttpUtil.get(request, "starScore", (double)0);
+		String rezNo = HttpUtil.get(request, "rezNo", "");
 		
 		WDReview wdReviewRez = null;
-		wdReviewRez = wdReviewService.rezCheck(cookieUserId);		
+		wdReviewRez = wdReviewService.rezCheck(rezNo);		
+		
+		System.out.println("이거입니당 : "+rezNo);
+		
+		System.out.println("이거입니당 : "+wdReviewRez.getWDate());
 		
 		FileData fileData = HttpUtil.getFile(request, "hiBbsFile", UPLOAD_SAVE_DIR);
-		
-		if(!StringUtil.isEmpty(hiBbsTitle) && !StringUtil.isEmpty(hiBbsContent)) 
-		{
-			WDReview wdReview = new WDReview();
-			wdReview.setUserId(cookieUserId);
-			wdReview.setRTitle(hiBbsTitle);
-			wdReview.setRContent(hiBbsContent);
-			wdReview.setRezNo(wdReviewRez.getRezNo());
-			wdReview.setWDate(wdReviewRez.getWDate());
-			wdReview.setRScore(rScore);
-			
-			if(fileData != null && fileData.getFileSize() > 0) 
+		if(wdReviewRez != null) {
+			if(!StringUtil.isEmpty(hiBbsTitle) && !StringUtil.isEmpty(hiBbsContent)) 
 			{
-				WDReviewFile wdReviewFile = new WDReviewFile();
+				WDReview wdReview = new WDReview();
+				wdReview.setUserId(cookieUserId);
+				wdReview.setRTitle(hiBbsTitle);
+				wdReview.setRContent(hiBbsContent);
+				wdReview.setRezNo(wdReviewRez.getRezNo());
+				wdReview.setWDate(wdReviewRez.getWDate());
+				wdReview.setRScore(rScore);
 				
-				wdReviewFile.setrFileName(fileData.getFileName());
-				wdReviewFile.setrFileOrgName(fileData.getFileOrgName());
-				wdReviewFile.setrFileExt(fileData.getFileExt());
-				wdReviewFile.setrFileSize(fileData.getFileSize());
-				
-				wdReview.setReviewFile(wdReviewFile);
-			}
-		
-			try 
-			{
-				if(wdReviewService.reviewInsert(wdReview) > 0) 
+				if(fileData != null && fileData.getFileSize() > 0) 
 				{
-					ajaxResponse.setResponse(0, "Success");
+					WDReviewFile wdReviewFile = new WDReviewFile();
+					
+					wdReviewFile.setrFileName(fileData.getFileName());
+					wdReviewFile.setrFileOrgName(fileData.getFileOrgName());
+					wdReviewFile.setrFileExt(fileData.getFileExt());
+					wdReviewFile.setrFileSize(fileData.getFileSize());
+					
+					wdReview.setReviewFile(wdReviewFile);
 				}
-				else 
+			
+				try 
 				{
+					if(wdReviewService.reviewInsert(wdReview) > 0) 
+					{
+						wdReviewService.reviewCPT(rezNo);
+						ajaxResponse.setResponse(0, "Success");
+					}
+					else 
+					{
+						ajaxResponse.setResponse(500, "Internal Server Error");
+					}
+				}
+				catch(Exception e) 
+				{
+					logger.error("[WDReviewController] /board/reviewWriteProc Exception", e);
 					ajaxResponse.setResponse(500, "Internal Server Error");
 				}
+			
 			}
-			catch(Exception e) 
+			else 
 			{
-				logger.error("[WDReviewController] /board/reviewWriteProc Exception", e);
-				ajaxResponse.setResponse(500, "Internal Server Error");
+				ajaxResponse.setResponse(400, "Bad Request: No parameter");
 			}
-		
 		}
 		else 
 		{
-			ajaxResponse.setResponse(400, "Bad Request: No parameter");
+			ajaxResponse.setResponse(-1, "Bad Request");
 		}
 		
 		return ajaxResponse;

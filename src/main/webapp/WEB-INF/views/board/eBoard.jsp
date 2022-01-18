@@ -25,7 +25,11 @@ function fn_search(){
 	
 	if($.trim($("#_searchValue").val()).length <= 0)
 	{
-		alert("조회값을 입력하세요.");
+		//alert("조회값을 입력하세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '조회값을 입력하세요.'
+		});
 		$("#_searchValue").focus();
 		return;
 	}
@@ -165,12 +169,12 @@ function fn_view(eBSeq)
 								<ul class="pagination justify-content-center">
 									<c:if test="${!empty paging}">
 										<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
-										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.prevBlockPage})">이전</a></li>
+										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${paging.prevBlockPage})">이전</a></li>
 										</c:if>
 										<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
 											<c:choose>
 												<c:when test="${i ne curPage}">
-													<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${i})">${i}</a></li>
+													<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${i})">${i}</a></li>
 												</c:when>
 												<c:otherwise>
 													<li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
@@ -178,7 +182,7 @@ function fn_view(eBSeq)
 											</c:choose>
 										</c:forEach>
 										<c:if test="${paging.nextBlockPage gt 0}">         
-											<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_list(${paging.nextBlockPage})">다음</a></li>
+											<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${paging.nextBlockPage})">다음</a></li>
 										</c:if>       
 									</c:if> 
 								</ul>

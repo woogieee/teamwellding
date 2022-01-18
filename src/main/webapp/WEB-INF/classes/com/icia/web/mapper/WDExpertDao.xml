@@ -7,6 +7,7 @@
 	<id column="E_CODE" property="eCode" />
 	<result column="E_PWD" property="ePwd" />
 	<result column="E_NAME" property="eName" />
+	<result column="E_EMAIL" property="eEmail" />
 	<result column="E_LOCATION" property="eLocation" />
 	<result column="E_GENDER" property="eGender" />
 	<result column="REG_DATE" property="regDate" />

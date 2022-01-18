@@ -53,28 +53,44 @@ function fn_userUpdate()
 {
 	if(icia.common.isEmpty($("#weddinghallName").val()))
 	{
-		alert("웨딩홀 이름을 입력해주세요");
+		//alert("웨딩홀 이름을 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '웨딩홀 이름을 입력해주세요.'
+		});
 		$("#weddinghallName").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#weddinghallLocation").val()))
 	{
-		alert("웨딩홀 주소를 입력해주세요");
+		//alert("웨딩홀 주소를 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '웨딩홀 주소을 입력해주세요.'
+		});
 		$("#weddinghallLocation").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#weddinghallNumber").val()))
 	{
-		alert("웨딩홀 전화번호를 입력해주세요");
+		//alert("웨딩홀 전화번호를 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '웨딩홀 전화번호를 입력해주세요.'
+		});
 		$("#weddinghallNumber").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#weddinghallContent").val()))
 	{
-		alert("웨딩홀 설명을 입력해주세요.");
+		//alert("웨딩홀 설명을 입력해주세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '웨딩홀 설명을 입력해주세요.'
+		});
 		$("#weddinghallContent").focus();
 		return;
 	}
