@@ -350,5 +350,112 @@ public class WDStudioController
 		   
 		   return ajaxResponse;
 	   }
-	  
+	   
+	   //스튜디오 삭제
+	   @RequestMapping(value="/mng/studioDelete", method=RequestMethod.POST)
+	   @ResponseBody
+	   public Response<Object> studioDelete(HttpServletRequest request, HttpServletResponse response)
+	   {
+		   Response<Object> ajaxResponse = new Response<Object>();
+		   
+		   String sCode = HttpUtil.get(request, "sCode", "");
+		   
+		   System.out.println("DGFGDFGRgrgdfgafdgafd : "+ sCode);
+		   
+		   if(!StringUtil.isEmpty(sCode))
+		   {
+			   WDStudio wdStudio = wdStudioService.studioSelect(sCode);
+			   
+			   if(wdStudio != null)
+			   {
+				   if(wdStudioService.studioDelete(wdStudio.getsCode()) > 0)
+				   {
+					   ajaxResponse.setResponse(0, "Success");
+				   }
+				   else
+				   {
+					   ajaxResponse.setResponse(500, "Internal Server Error");
+				   }
+			   }
+			   else
+			   {
+				   ajaxResponse.setResponse(404, "Not Found");
+			   }
+		   }
+		   else
+		   {
+			   ajaxResponse.setResponse(400, "Bad Request");
+		   }
+		   
+		   return ajaxResponse;
+		   
+	   }
+	   
+	   //스튜디오 모달
+	   @RequestMapping(value="/mng/updateStudio", method=RequestMethod.GET)
+	   public String updateStudio(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	   {
+		   String sCode = HttpUtil.get(request, "sCode", "");
+		   
+		   WDStudio wdStudio = null;
+		   
+		   wdStudio = wdStudioService.studioSelect(sCode);
+		   
+		   model.addAttribute("wdStudio",wdStudio);
+		   
+		   return "/mng/updateStudio";
+	   }
+	   
+	   //스튜디오 수정
+	   @RequestMapping(value="/mng/studioUpdateProc", method=RequestMethod.POST)
+	   @ResponseBody
+	   public Response<Object> studioUpdateProc(HttpServletRequest request, HttpServletResponse response)
+	   {
+		   Response<Object> ajaxResponse = new Response<Object>();
+		   
+		   String sName = HttpUtil.get(request, "sName", "");
+		   long sPrice = HttpUtil.get(request, "sPrice", (long)0);
+		   String sLocation = HttpUtil.get(request, "sLocation", "");
+		   String sNumber = HttpUtil.get(request, "sNumber", "");
+		   String sContent = HttpUtil.get(request, "sContent", "");
+		   long sDiscount = HttpUtil.get(request, "sDiscount", (long)0);
+		   String sCode = HttpUtil.get(request, "sCode", "");
+		   String adminId = HttpUtil.get(request, "adminId", "");
+		   
+		   if(!StringUtil.isEmpty(sCode))
+		   {
+			   WDStudio wdStudio = new WDStudio();
+			   
+			   if(wdStudio != null)
+			   {
+				   wdStudio.setsName(sName);
+				   wdStudio.setsPrice(sPrice);
+				   wdStudio.setsLocation(sLocation);
+				   wdStudio.setsNumber(sNumber);
+				   wdStudio.setsContent(sContent);
+				   wdStudio.setsDiscount(sDiscount);
+				   wdStudio.setsCode(sCode);
+				   
+				   if(wdStudioService.studioUpdateProc(wdStudio) > 0)
+				   {
+					   ajaxResponse.setResponse(0, "Success");
+				   }
+				   else
+				   {
+					   ajaxResponse.setResponse(-1, "Fail");
+				   }
+			   }
+			   else
+			   {
+				   ajaxResponse.setResponse(404, "Not Found");
+			   }
+		   }
+		   else
+		   {
+			   ajaxResponse.setResponse(400, "Bad Request");
+		   }
+		   
+		   
+		   return ajaxResponse;
+	   }
 }

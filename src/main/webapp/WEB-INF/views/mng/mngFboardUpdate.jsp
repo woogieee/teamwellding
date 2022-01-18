@@ -74,7 +74,7 @@ $(document).ready(function(){
 <body id="school_list" class="light-theme || dark-theme">
 
 	<div class="container">
-		<div class="row">
+		<div class="row" style="padding: 60px 0;">
 		
 			
 			<div class="col-lg-12">

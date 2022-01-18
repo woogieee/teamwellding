@@ -153,6 +153,9 @@ public class WDMakeUpController
 		model.addAttribute("searchValue", searchValue);
 		model.addAttribute("curPage", curPage);
 		model.addAttribute("paging", paging);
+		model.addAttribute("year", year);
+		model.addAttribute("month", month);
+		model.addAttribute("day", day);
 		
 		return "/hsdm/makeUp";
 	}

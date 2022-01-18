@@ -23,6 +23,7 @@ import com.icia.web.model.Paging;
 import com.icia.web.model.Response;
 import com.icia.web.model.WDAdmin;
 import com.icia.web.model.WDBoardFile;
+import com.icia.web.model.WDComment;
 import com.icia.web.model.WDFBoard;
 import com.icia.web.model.WDReview;
 import com.icia.web.service.WDAdminService;
@@ -64,18 +65,30 @@ public class WDAdminFRBoardController {
 	   //자유게시판, 리뷰게시판 페이징을 위한 개수 체크 변수
 	   long fboardCnt = 0;
 	   long rboardCnt = 0;
+	   long cboardCnt = 0;
 	   
 	   //자유게시판 리스트를 조회할 때 쓸 객체 선언
 	   WDFBoard wdFBoard = new WDFBoard();
 	   WDReview wdReview = new WDReview();
+	   WDComment wdComment = new WDComment();
 	   
 	   //결과가 보여질 배열 객체 선언
 	   List<WDFBoard> fList = null;
 	   List<WDReview> rList = null;
+	   List<WDComment> cList = null;
 	   
 	   //페이징 처리 어디서 했는지 확인용
 	   int frCheck = HttpUtil.get(request, "frCheck", 1);
 	   model.addAttribute("frCheck", frCheck);
+	   
+	   //alert창을 위한 메세지
+	   String msg = "";
+	   //부모번호
+	   long parentSeq = HttpUtil.get(request, "parentSeq", (long)0);
+	   //댓글번호
+	   long commentSeq = HttpUtil.get(request, "commentSeq", (long)0);
+	   int count = 0;
+	   WDComment wdCom = new WDComment();
 	   
 	   String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 	   WDAdmin wdAdmin = wdAdminService.wdAdminSelect(cookieUserId);
@@ -89,10 +102,13 @@ public class WDAdminFRBoardController {
 	   
        
        long bSeq = HttpUtil.get(request, "bSeq", (long)0);
-       long rSeq = HttpUtil.get(request, "RSeq", (long)0);
+       long rSeq = HttpUtil.get(request, "rSeq", (long)0);
+       long cSeq = HttpUtil.get(request, "cSeq", (long)0);
+
        
        Paging fPaging = null;
        Paging rPaging = null;
+       Paging cPaging = null;
        
        if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue)) 
 		{
@@ -109,6 +125,7 @@ public class WDAdminFRBoardController {
        
        fboardCnt = wdFBoardService.fBoardListCount(wdFBoard);
        rboardCnt = wdReviewService.ReviewListCount(wdReview);
+       cboardCnt = wdCommentService.commentTotalCnt();
        
        //자유게시판 페이징
        if(fboardCnt > 0) 
@@ -139,14 +156,51 @@ public class WDAdminFRBoardController {
     	   rList = wdReviewService.ReviewList(wdReview);
        }
        
+		if(parentSeq>0 && commentSeq>0) 
+		{
+			wdCom.setParentSeq(parentSeq);
+			wdCom.setCommentSeq(commentSeq);
+			
+			count = wdCommentService.commentDelAdm(wdCom);
+			
+			if(count>0) 
+			{
+				msg = "Y";
+				frCheck = 3;
+			}
+			else 
+			{
+				msg = "N";
+			}
+	
+		}
+       
+       if(cboardCnt >0) 
+       {
+    	   cPaging = new Paging("/mng/boardList", cboardCnt, 20, 5, curPage, "curPage");
+    	   
+    	   cPaging.addParam("curPage", curPage);
+    	   
+    	   wdComment.setStartRow(cPaging.getStartRow());
+    	   wdComment.setEndRow(cPaging.getEndRow());
+    	   
+    	   cList = wdCommentService.commentTotalSelect();
+       }
+       
+
+       
        model.addAttribute("wdAdmin",wdAdmin);
        model.addAttribute("fList", fList);
        model.addAttribute("fPaging",fPaging);
        model.addAttribute("rList", rList);
        model.addAttribute("rPaging",rPaging);
+       model.addAttribute("cList", cList);
+       model.addAttribute("cPaging",cPaging);
        model.addAttribute("searchType", searchType);
        model.addAttribute("searchValue", searchValue);
        model.addAttribute("curPage", curPage);
+       model.addAttribute("msg", msg);
+       model.addAttribute("frCheck", frCheck);
        
        return "/mng/boardList";
    }

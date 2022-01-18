@@ -12,6 +12,7 @@
     <div class="gosu_page">
         <div class="container">
             <div class="row">
+
                 <div class="col-lg-4">
                     <div class="left-side">
                         <img src="../resources/images/gosu/${wdExpert.eImgname}" alt="">
@@ -29,17 +30,19 @@
 	                        </div>
                     	</div>
                     </div>
-                 
                 </div>
-                
+
+
                <div class="col-lg-8">
                  <div class="rent-venue-application">
                     <div class="heading-text">
                         <h4>견적 요청하기</h4>
                     </div>
                     <div class="contact-form">
-                        <form id="contact" action="/board/send.do" method="post">
+                        <form id="contact" action="/board/send.do?eCode=${wdExpert.eCode}" method="post">
                           <div class="row">
+                          
+  
                             <div class="col-lg-12">
                               <fieldset>
                                 <input name="senderName" type="text" id="senderName" placeholder="이름을 입력하세요*" required="" />
@@ -62,11 +65,15 @@
                                 <textarea name="message" rows="6" id="message" placeholder="문의내용을 입력해주세요" required=""></textarea>
                               </fieldset>
                             </div>
+                        
+                            
                             <div class="col-lg-12">
                               <fieldset>
+
                               	<input type="hidden" name="receiveMail" id="receiveMail" value="${wdExpert.eEmail}"/> <!-- 메일을 받을 플래너의 메일주소 -->
                               	<button onclick="fn_colorbox_close()" id="form-submit" class="main-dark-button2">닫기</button>
                                 <button type="submit" id="form-submit" class="main-dark-button">견적 요청하기</button>
+
                               	<span style="color:red">${message}</span>
                               </fieldset>
                             </div>

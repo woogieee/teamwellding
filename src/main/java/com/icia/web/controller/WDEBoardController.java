@@ -106,7 +106,6 @@ public class WDEBoardController
 			{
 				
 				paging = new Paging("/mng/eBoardList", totalCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage");
-				paging.addParam("curPage", curPage);
 				paging.addParam("searchType", searchType);
 				paging.addParam("searchValue", searchValue);
 				paging.addParam("curPage", curPage);

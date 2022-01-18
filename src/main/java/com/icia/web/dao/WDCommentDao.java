@@ -22,4 +22,14 @@ public interface WDCommentDao {
 	public int commentUpdate(WDComment wdComment);
 	
 	public int commentListCount(long parentSeq);
+	
+	//댓글 전부 불러오기 
+	public List<WDComment> commentTotalSelect();
+	
+	//댓글 총 수 가져오기 
+	public int commentTotalCnt();
+	
+	//관리자 페이지에서 댓글 삭제 시작
+	public int commentDelAdm(WDComment wdComment);
+	
 }

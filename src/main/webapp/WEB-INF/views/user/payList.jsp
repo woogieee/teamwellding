@@ -97,37 +97,43 @@ function reviewWrite(rezNo){
             </div>
         </div>
     </div>
-   <div class="container-fluid">
-      <div class="row">
-         <div class="col-lg-12 bcline">
-            <div class="row">
-               <div class="col-lg-1"></div>
-               <div class="col-lg-10">
-                  <h2 style="font-family: 'Bitter'; margin-top: 50px; padding-left: 10px;">결제내역</h2>
-                  <nav class="bcItem">
-                     <ol class="breadcrumb bc" >
-                        <li class="breadcrumb-item active">
-                           <a href="/user/wishlist">장바구니</a>
-                        </li>
-                        <li class="breadcrumb-item" >
-                           <a style="font-size: large; font-weight: bold;">결제내역</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                           <a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                           <a href="/user/modify">회원정보수정</a>
-                        </li>
-                     </ol>
-                  </nav>
-               </div>
-               <div class="col-lg-1"></div>
-               
-               <!-- 다음 라인 -->
-               <div class="col-lg-1"></div>
-               
-               <!-- 경계선 및 내용 -->
-               <div class="col-lg-10 lineListMypage">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 bcline">
+				<div class="row">
+					<div class="col-lg-1">
+					</div>
+					<div class="col-lg-10">
+						<h2 style="font-family: 'Bitter'; margin-top: 50px; padding-left: 10px;">결제내역</h2>
+						<nav class="bcItem">
+							<ol class="breadcrumb bc" >
+								<li class="breadcrumb-item active">
+									<a href="/user/wishlist">장바구니</a>
+								</li>
+								<li class="breadcrumb-item" >
+									<a style="font-size: large; font-weight: bold;">결제내역</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/modify">회원정보수정</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/userDrop">회원탈퇴</a>
+								</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="col-lg-1">
+					</div>
+					
+					<!-- 다음 라인 -->
+					<div class="col-lg-1">
+					
+					</div>
+					<!-- 경계선 및 내용 -->
+					<div class="col-lg-10 lineListMypage">
                         <table class="table tableWish">
                         <c:choose>
                         <c:when test="${!empty list}">
