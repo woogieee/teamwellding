@@ -216,7 +216,6 @@ function fn_nBoardDelete()
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
       </div>
    </div>
-
 </div>
 
 
