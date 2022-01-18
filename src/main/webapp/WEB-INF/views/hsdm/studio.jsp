@@ -85,7 +85,7 @@ $('.post-wrapper').slick({
                             <div class="row">
                                 <div class="col-lg-5">
                                     <div class="search-heading">
-                                    	<h4>스튜디오 예약일</h4>
+                                    	<h4 class="let_sp2">스튜디오 예약일<span class="span_design"></span></h4>
                                     </div>
                                     <div class="search-heading">
                                         <h4> 예약하고 싶은 스튜디오나 지역이 있으신가요? </h4>
@@ -196,8 +196,8 @@ $('.post-wrapper').slick({
 <c:if test="${!empty list}">        
 	<c:forEach var="wdStudio" items="${list}" varStatus="status">
                 <div class="col-lg-4">
-                    <div class="ticket-item" onclick="fn_view('${wdStudio.sCode}')" style="cursor:pointer;">
-                        <div class="thumb">
+                    <div class="ticket-item">
+                        <div class="thumb" onclick="fn_view('${wdStudio.sCode}')" style="cursor:pointer;">
                             <img src="../resources/images/studio/${wdStudio.sImgname}" alt="">
                         </div>
                         <div class="down-content">

@@ -179,6 +179,7 @@
 						<value>/mng/dressUpdate</value>
 						<value>/mng/dressUpdateProc</value>
 						<value>/mng/dressDelete</value>
+						
 
             		</list>
             	</constructor-arg>

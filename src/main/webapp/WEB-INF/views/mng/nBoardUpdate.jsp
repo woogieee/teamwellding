@@ -132,10 +132,6 @@ function fn_nBoardDelete()
 				bSeq: <c:out value="${nBList.bSeq}" />
 			},
 			datatype: "JSON",
-			beforeSend: function(xhr)
-			{
-				xhr.setRequestHeader("AJAX", "true");
-			},
 			success: function(response)
 			{
 				if(response.code == 0)
