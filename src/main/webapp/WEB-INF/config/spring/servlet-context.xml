@@ -176,6 +176,8 @@
 						<value>/mng/WeddingHallDelete</value>
 						<value>/mng/hallUpdate</value>
 						<value>/mng/hallDelete</value>
+						<value>/mng/weddinghallUpdateProc</value>
+						<value>/mng/hallUpdateProc</value>
 						
 						<value>/mng/dressComUpdate</value>
 						<value>/mng/dressComUpdateProc</value>

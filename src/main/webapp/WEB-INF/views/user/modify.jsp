@@ -178,6 +178,9 @@
 								<li class="breadcrumb-item active" style="position: relative; top: -2px; margin-left:4px;">
 									<a href="javascript:void(0)" id="modify" style="font-size: large; font-weight: bold; color: #000;">회원정보수정</a>
 								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/userDrop">회원탈퇴</a>
+								</li>
 							</ol>
 						</nav>
 					

@@ -48,5 +48,8 @@ public interface WDReviewDao {
 	//리뷰 존재 확인
 	public String reviewOverlapCheck(String rezNo);
 	
+	//리뷰 작성처리
+	public int reviewCPT(String rezNo);
+	
 
 }
