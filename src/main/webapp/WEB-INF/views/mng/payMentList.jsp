@@ -146,7 +146,7 @@ function fn_confirm()
     	<div class="col-lg-12" style="width:100%; height:20px;"></div>
     	
         <div class="col-lg-12">       
-		   <div id="school_list" style="width:90%; margin:auto; margin-top:5rem;">
+		   <div id="school_list" style="width:90%; margin:auto; margin-top:20px;">
 	      <div class="mnb" style="display:flex; margin-bottom:0.8rem;">
 	         <h2 style="margin-right:auto; color: #525252;">결제 내역 리스트</h2>
 	         <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">

@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.icia.web.model.EmailDTO;
 import com.icia.web.model.Response;
+import com.icia.web.model.WDExpert;
 import com.icia.web.model.WDUser;
 import com.icia.web.service.EmailService;
+import com.icia.web.service.WDExpertService;
 import com.icia.web.service.WDUserService;
+import com.icia.web.util.HttpUtil;
 
 @Controller
 //@RequestMapping("/board/*")
@@ -26,22 +29,36 @@ public class EmailController
 	@Autowired
 	private WDUserService wduserService;
 	
+	@Autowired
+	private WDExpertService wdExpertService;
+	
 	@RequestMapping("/board/send.do")
-	public String send(EmailDTO dto, Model model)
-	{
+	public String send(EmailDTO dto, Model model,HttpServletRequest request)
+	{	
+		
+		String eCode = HttpUtil.get(request, "eCode", "");
+		WDExpert wdExpert = null;
+		
+		wdExpert = wdExpertService.expertSelect(eCode);
+		
+		model.addAttribute("wdExpert",wdExpert);
 		try
 		{
 			emailService.sendMail(dto); //이메일발송
+			System.out.println("여긴타니111111111");
 			model.addAttribute("message", "이메일이 발송되었습니다.");
 		}
 		catch(Exception e)
 		{
+			System.out.println("여긴타니222222222222");
 			e.printStackTrace();
 			model.addAttribute("message", "이메일이 발송실패,,");
 		}
 		
+		System.out.println("여긴타니33333333");
 		return "/board/gosu";
 	}
+
 	
 	@RequestMapping("/board/check.do")
 	@ResponseBody

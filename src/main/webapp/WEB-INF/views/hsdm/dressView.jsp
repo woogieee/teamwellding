@@ -76,6 +76,10 @@ $(document).ready(function(){
 	});
 	//드레스 담기 버튼 종료
 	
+	$(".banner").on("click", function(){
+		location.href = "/board/specialist";
+	});
+	
 });
 
 function fn_view(dNo)
@@ -155,7 +159,6 @@ function fn_view(dNo)
                 	<div class="det_navi">
                 		<ul>
                 			<li><a href=""><c:out value="${wdDress.dcName}" />의 다른 드레스 보기</a></li>
-                			<li><a href="">이용 후기</a></li>
                 		</ul>
                 	</div>
                 </div>
@@ -166,8 +169,8 @@ function fn_view(dNo)
 <c:if test="${!empty sameCom}">        
 	<c:forEach var="wdDress" items="${sameCom}" varStatus="status">
                	<div class="col-lg-3">
-                    <div class="ticket-item2" onclick="fn_view('${wdDress.dNo}')">
-                        <div class="thumb1">
+                    <div class="ticket-item2">
+                        <div class="thumb1" onclick="fn_view('${wdDress.dNo}')">
                             <img src="../resources/images/dress/${wdDress.dImgname}" alt="">
                         </div>
                         <div class="down-content dtbox">
