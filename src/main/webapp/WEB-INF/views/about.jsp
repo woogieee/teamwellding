@@ -7,6 +7,19 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=The+Nautigal&display=swap');
 </style>
+<script>
+	$(document).ready(function(){
+		var map = $("#map").val();
+		
+		if(map ==1)
+		{
+			$('html, body').animate({
+				scrollTop: $('#contact').offset().top
+				}, 500);
+		}
+	});
+</script>
+
 </head>
 <body class="containerAb">
     <jsp:include page="/WEB-INF/views/include/navigation.jsp" >
@@ -140,6 +153,7 @@
     </section>
     <!-- End Why Us Section -->
     
+    <input type="hidden" value="${map}" name="map" id="map" />
     
     <!-- 푸터 시작 -->
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>

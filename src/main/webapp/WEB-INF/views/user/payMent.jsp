@@ -236,6 +236,7 @@ input::-webkit-inner-spin-button {
                      <tr>
                         <div class="rez_sta">
                            <h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
+						   <h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span>${wdRez.wDate}</span></h5>									
                            <h5 class="rez_number">예약번호&nbsp;&nbsp; <span>${wdRez.rezNo}</span></h5>
                         </div>
                      </tr>

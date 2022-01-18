@@ -182,6 +182,24 @@ public class IndexController
 		return "/about";
 	}
 	
+	//오시는 길
+	@RequestMapping(value="/about/map")
+	public String aboutMap(ModelMap model, HttpServletRequest request, HttpServletResponse response) 
+	{
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		
+		WDUser wdUser = wdUserService.userSelect(cookieUserId);
+		
+		int map = 1;
+		
+		model.addAttribute("wdUser" ,wdUser);
+		model.addAttribute("map", map);
+		
+		return "/about";
+	}
+	
+	
+	
 	@RequestMapping(value="/Termsofuse")
 	public String termsofuse(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 		
