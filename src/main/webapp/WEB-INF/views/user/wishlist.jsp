@@ -269,7 +269,7 @@ $("#payMent").on("click", function(){
 									<a href="/user/payList">결제내역</a>
 								</li>
 								<li class="breadcrumb-item">
-									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
+									<a href="javascript:void(0)" id="cou" class="cou">쿠폰보유현황</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="/user/modify">회원정보수정</a>

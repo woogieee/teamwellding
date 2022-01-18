@@ -133,18 +133,18 @@ $(document).ready(function(){
       <table class="table">
          <thead>
             <tr class="table-active dongdong">
-               <td style="width:60%">
+               <td style="width:80%; padding: 25px 25px; font-size: 17px; font-weight: 800;font-size: #333;">
                   <c:out value="${wdReview.RTitle}"/>
                </td>
-               <td style="width:40%" class="text-right">
+               <td style="width:20%; padding: 25px 25px;" class="text-right">
                                          조회 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdReview.RReadCnt}" />
                </td>
             </tr>
             <tr>
-               <td style="width:60%">
+               <td style="width:80%; padding: 15px 25px; font-size: 15px; color: #444;">
                	작성자 : <c:out value="${wdReview.UNickName}"/>
                </td>
-               <td style="width:40%" class="text-right">
+               <td style="width:20%; padding: 15px 20px;" class="text-right">
                   <div>${wdReview.regDate}</div>
                </td>
             </tr>   
@@ -157,9 +157,9 @@ $(document).ready(function(){
             <tr>
                <td colspan="2" style="text-align:center">
 	               <div style="padding:10px">
-	               	<div>
+	               	<div style="width: 100%; height: auto;">
 	               	<c:if test="${!empty wdReview.reviewFile}">
-	               	<img src="../resources/upload/${wdReview.reviewFile.rFileName }">
+	               	<img src="../resources/upload/${wdReview.reviewFile.rFileName }" style="width: 100%; height: auto; padding: 30px;">
 	               	<br>
 	               	</c:if>
 	               		<c:out value="${wdReview.RContent}" />

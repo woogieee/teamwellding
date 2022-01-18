@@ -5820,12 +5820,14 @@ responsive
 	color: black;
 	font-weight: bold;
 }
-
+/*
 .bc a:focus
 {
 	color: black;
 	font-weight: bold;
-}
+}*/
+
+
 
 .bcline
 {
@@ -6627,6 +6629,23 @@ responsive
 {
 	height: 30px;
 	line-height: 30px;
+}
+
+.tbstyle5 span
+{
+	font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    letter-spacing: -0.5px;
+    line-height: 16px;
+    top: 53%;
+    transform: translateY(-50%);
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tbstyle

@@ -57,10 +57,14 @@ public class WDReviewController {
    @RequestMapping(value = "/board/reviews")
    public String review(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 	   
+	   //조회항목(1:제목) 서치타입 추가
+	 		String searchType = HttpUtil.get(request, "searchType", "");
 		  //조회값
 		  String searchValue = HttpUtil.get(request, "searchValue", "");
 		  //현재페이지
 		  long curPage = HttpUtil.get(request, "curPage", (long)1);
+		   //list=>review.RSeq 필요한거추가
+		  long RSeq = HttpUtil.get(request, "RSeq", (long)0);
 		  
 		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
@@ -71,9 +75,18 @@ public class WDReviewController {
 		  
 		  Paging paging = null;
 		  
-		  if(!StringUtil.isEmpty(searchValue)) {
+		  if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue)) 
+		  {
 			  wdReview.setSearchValue(searchValue);
+			  wdReview.setSearchType(searchType);
 		  }
+		  else
+		  {
+			  searchType= "";
+			  searchValue = "";
+		  }
+		  
+		  wdReview.setRSeq(RSeq);
 		  
 		  totalCount = wdReviewService.ReviewListCount(wdReview);
 		  
@@ -81,6 +94,7 @@ public class WDReviewController {
 		
 		if(totalCount > 0) {
 			paging = new Paging("/board/reviews", totalCount, LIST_COUNT, PAGE_COUNT, curPage, "curPage");
+			paging.addParam("searchType", searchType); //추가
 			paging.addParam("searchValue",searchValue);
 			paging.addParam("curPage", curPage);
 			
@@ -91,6 +105,7 @@ public class WDReviewController {
 
 		}
 		model.addAttribute("list",list);
+		model.addAttribute("searchType", searchType);
 		model.addAttribute("searchValue", searchValue);
 		model.addAttribute("curPage", curPage);
 		model.addAttribute("paging", paging);
@@ -98,6 +113,8 @@ public class WDReviewController {
 	   
 	   return "/board/reviews";
    }
+   
+   
    @RequestMapping(value="/board/reviewWrite")
    @ResponseBody
    public Response<Object> rezCheck(HttpServletRequest request, HttpServletResponse response){

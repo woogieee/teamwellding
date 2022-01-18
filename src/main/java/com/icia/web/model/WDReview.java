@@ -23,6 +23,7 @@ public class WDReview implements Serializable{
 	private WDReviewFile reviewFile;
 	
     private String searchValue;      //검색값
+    private String searchType;		//검색조건
     
 	private long startRow;
 	private long endRow;
@@ -196,6 +197,14 @@ public class WDReview implements Serializable{
 
 	public void setRScore(double rScore) {
 		RScore = rScore;
+	}
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
 	}
 
 	
