@@ -60,7 +60,11 @@ function fn_loginCheck()
 	
 	if($.trim($("#userPwd").val()).length <= 0)
 	{
-		alert("비밀번호를 입력하세요.");
+		//alert("비밀번호를 입력하세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '비밀번호를 입력해주세요.'
+		});
 		$("#userPwd").focus();
 		return;
 	}

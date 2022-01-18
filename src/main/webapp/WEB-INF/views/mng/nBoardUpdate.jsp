@@ -55,14 +55,22 @@ function fn_nBoardUpdate()
 	//내용확인
 	if(icia.common.isEmpty($("#bTitle").val()))
 	{
-		alert("글 제목을 입력해주세요");
+		//alert("글 제목을 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '글 제목을 입력해주세요.'
+		});
 		$("#bTitle").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#bContent").val()))
 	{
-		alert("글 내용을 입력해주세요");
+		//alert("글 내용을 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '글 내용 입력해주세요.'
+		});
 		$("#bContent").focus();
 		return;
 	}
