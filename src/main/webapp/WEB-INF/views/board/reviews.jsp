@@ -118,6 +118,7 @@ function fn_list(curPage)
                         <div class="category2">
                             <p>Review</p>
                         </div>
+                         <p style="text-align:center; margin-top: 10px;">여러분들의 웰딩 후기를 공유해보세요</p>
                     </div>
                 </div>
             </div>

@@ -41,8 +41,6 @@ $(function(){
 	
 	$("#id2").removeAttr("onclick");
 	
-
-
 	$("#loginbtn").on("click", function(){
 		fn_loginCheck();		
 	});
@@ -53,7 +51,6 @@ $(function(){
 		{	
 			fn_loginCheck();
 		}
-		
 	});
 	
 	$("#userPwd").on("keypress", function(e){

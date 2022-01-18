@@ -16,7 +16,7 @@
 	%>
 		$(function(){
 			//다른화보보기 슬라이더 - 홀뷰
-			$('.post-wrapper2').slick({
+			$('.post-wrapper3').slick({
 				  slidesToShow: 1,
 				  slidesToScroll: 1,
 				  autoplay: true,
@@ -43,7 +43,7 @@
 	   
 	   function fn_view2(eBSeq)
 	   {
-		alert(eBSeq);
+		//alert(eBSeq);
 	   	document.eBoardForm.eBSeq.value = eBSeq;
 	   	document.eBoardForm.action = "/board/eView";
 	   	document.eBoardForm.submit();
@@ -54,7 +54,7 @@
        	var cookieData = document.cookie;
        	if(cookieData.indexOf("close=Yes") < 0)
        	{
-	            var option="width = 500, height = 540, top = 100, left = 200, location = no, menubar = no, scrollbars=no, left=70, top=110";
+	            var option="width = 500, height = 540, top = 100, left = 200, location = no, menubar = no, status=no,toolbar=no, scrollbars=no, left=70, top=110";
 	            window.open("/popUpRoad", "PopUP", option);
 
        	}
@@ -188,12 +188,14 @@
             </ul>
         </div-->
    <div class="left-image-hall">        
-        <div class="post-slider2">
-       		<div class="post-wrapper2">
+        <div class="post-slider3">
+       		<div class="post-wrapper3">
        		<c:forEach var="eboard" items="${wdEBoard}" varStatus="status">
-       			<li><a href="javascript:void(0)" onclick="fn_view2(${eboard.eBSeq})">
-         			<div class="post2"><img src="/resources/board/${eboard.eBImgName}" style="width: 100%; height: 350px;" alt="" /></div>
-         			</a></li> 
+       			<li>
+       				<a href="javascript:void(0)" onclick="fn_view2(${eboard.eBSeq})">
+         				<div class="post3"><img src="/resources/board/${eboard.eBImgName}" style="width: 100%; height: 350px;" alt="" /></div>
+         			</a>
+         		</li> 
            	</c:forEach>
        		</div>
 		</div>
