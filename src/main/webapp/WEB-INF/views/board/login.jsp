@@ -34,7 +34,6 @@
 	<script src="../resources/js/jquery-3.5.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="../resources/js/icia.common.js"></script>
-
 <script>
 var loginModCheck = 1;
 $(function(){
@@ -246,6 +245,11 @@ function classChange(id){
 	     }
 	}
 
+function fn_index()
+{
+	location.href = "/";	
+}
+
 </script>
 </head>
 <body>
@@ -255,7 +259,7 @@ function classChange(id){
 			<div class="wrap-login100">
 				<form class="login100-form validate-form">
 					<span class="login100-form-title p-b-26">
-						<h1 id="logo"><img src="../resources/images/theWellding.png" width="150" height="auto"/></h1>
+						<h1 id="logo"><img src="../resources/images/theWellding.png" width="150" height="auto" onclick="fn_index()" style="cursor: pointer;" /></h1>
 
 					</span>
 					<span class="login100-form-title p-b-48">

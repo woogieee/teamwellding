@@ -79,11 +79,11 @@ FROM (SELECT
 	            <if test='wDate != null and wDate != ""'>   
 	            AND    
 	                 A.D_NO NOT IN (SELECT
-                         			  D_NO
+                         			  NVL(D_NO, ' ') AS D_NO
                                   FROM
                                       WD_REZ
                                   WHERE
-                                      WDATE LIKE #{wDate}
+                                      WDATE = #{wDate}
                                   AND
                                   	REZ_STATUS = 'Y')
 	            </if> 
@@ -115,6 +115,17 @@ FROM
     WD_DRESS A, WD_DRESS_COM B
 WHERE
     A.DC_CODE = B.DC_CODE
+<if test='wDate != null and wDate != ""'>   
+AND    
+     A.D_NO NOT IN (SELECT
+            			  NVL(D_NO, ' ') AS D_NO
+                     FROM
+                         WD_REZ
+                     WHERE
+                         WDATE = #{wDate}
+                     AND
+                     	REZ_STATUS = 'Y')
+</if> 
 <if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
    	<choose>                
       	<when test='searchType == "1"'> 
