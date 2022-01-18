@@ -126,4 +126,68 @@ WHERE
 </update>
 <!-- 댓글 수정 끝 -->
 
+
+<!-- 댓글 전부 불러오기 시작 -->
+<select id="commentTotalSelect" resultMap="WDFBoardCommentResultMap">
+SELECT
+    PARENT_SEQ,
+    COMMENT_SEQ,
+    USER_ID,
+    WD_FBOARD_COMMENT,
+    REG_DATE,
+    U_NICKNAME,
+    U_EMAIL
+FROM(
+        SELECT
+            ROWNUM RNUM,
+            PARENT_SEQ,
+            COMMENT_SEQ,
+            USER_ID,
+            WD_FBOARD_COMMENT,
+            REG_DATE,
+            U_NICKNAME,
+            U_EMAIL
+            FROM(
+                    SELECT
+                        A.PARENT_SEQ,
+                        A.COMMENT_SEQ,
+                        A.USER_ID,
+                        NVL(A.WD_FBOARD_COMMENT, '') WD_FBOARD_COMMENT,
+                        NVL(TO_CHAR(A.REG_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') REG_DATE,
+                        NVL(B.U_NICKNAME, '') U_NICKNAME,
+                        NVL(B.U_EMAIL, '') U_EMAIL
+                    FROM
+                        WD_COMMENT A, WD_USER B
+                    WHERE
+                        A.USER_ID = B.USER_ID
+                    ORDER BY
+                        PARENT_SEQ ASC, COMMENT_SEQ ASC))
+WHERE
+    RNUM <![CDATA[>=]]> 1
+AND
+    RNUM <![CDATA[<=]]> 20
+</select>
+<!-- 댓글 전부 불러오기 종료 -->
+
+<!-- 댓글 총 수 가져오기 시작 -->
+<select id="commentTotalCnt" resultType="int">
+SELECT
+    COUNT(COMMENT_SEQ) AS COUNT
+FROM
+    WD_COMMENT
+</select>
+<!-- 댓글 총 수 가져오기 종료 -->
+
+
+<!-- 관리자 페이지에서 댓글 삭제 시작 -->
+<delete id="commentDelAdm" parameterType="com.icia.web.model.WDComment">
+DELETE FROM 
+    WD_COMMENT
+WHERE
+    PARENT_SEQ = #{parentSeq}
+AND 
+    COMMENT_SEQ = #{commentSeq}
+</delete>
+<!-- 관리자 페이지에서 댓글 삭제 종료 -->
+
 </mapper>

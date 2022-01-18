@@ -147,6 +147,7 @@
 		                <value>/mng/mngFboardUpdate</value>
 		                <value>/mng/fDelete</value>
 		                <value>/board/fdownload</value>
+		                <value>/mng/deleteCommentProc</value>
 
 		                
 		                <value>/mng/nBoardUpdate</value>
