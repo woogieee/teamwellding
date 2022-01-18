@@ -87,16 +87,20 @@ FROM (SELECT
                     NVL(A.R_SCORE_STAR, 0), R_SCORE_STAR,
                     A.REZ_NO
                 FROM
-                    WD_REVIEW A, WD_USER B, WD_REZ C, WD_HALL D
+                    WD_REVIEW A, WD_USER B, WD_REZ C
+<if test='searchValue != null and searchValue != ""'>                     
+                    , WD_HALL D
+</if>                    
                 WHERE
                     A.USER_ID = B.USER_ID
                 AND
                     A.REZ_NO = C.REZ_NO
+<if test='searchValue != null and searchValue != ""'>                      
                 AND
                     C.WH_CODE = D.WH_CODE
                 AND
                     C.H_CODE =  D.H_CODE
-<if test='searchValue != null and searchValue != ""'>                    
+                  
                 AND
                     D.H_NAME LIKE '%' || #{searchValue} || '%'
 </if>                          
@@ -214,7 +218,7 @@ SELECT
 FROM
     WD_REZ
 WHERE
-    USER_ID = #{value}
+    REZ_NO = #{value}
 AND
     REZ_STATUS = 'Y'
 </select>
@@ -274,11 +278,20 @@ WHERE
 <select id="reviewOverlapCheck" parameterType="string" resultType="string">
 SELECT
     NVL(REVIEW_STATUS, 'N') REVIEW_STATUS
-FROM
-     WD_REVIEW
+FROM 
+     WD_REZ
 WHERE
 	REZ_NO = #{value}
-    AND REVIEW_STATUS = 'Y'
 </select>
 <!-- 리뷰 중복 작성 불가능하게 체크 끝-->
+
+<!-- 리뷰 작성처리 -->
+<update id="reviewCPT" parameterType="string">
+UPDATE WD_REZ
+SET
+    REVIEW_STATUS = 'Y'
+WHERE
+        REZ_NO = #{value}
+</update>
+<!-- 리뷰 작성처리 -->
 </mapper>

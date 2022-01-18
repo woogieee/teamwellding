@@ -61,7 +61,7 @@ WHERE 1=1
 <if test='wDate != null and wDate != ""'>
 AND
    M_CODE NOT IN (SELECT
-                        M_CODE
+                        NVL(M_CODE, ' ') AS M_CODE
                     FROM
                         WD_REZ
                     WHERE
@@ -184,7 +184,7 @@ FROM(
 <if test='wDate != null and wDate != ""'>
                 AND
                    M_CODE NOT IN (SELECT
-                                        M_CODE
+                                        NVL(M_CODE, ' ') AS M_CODE
                                     FROM
                                         WD_REZ
                                     WHERE

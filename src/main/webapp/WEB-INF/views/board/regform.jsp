@@ -19,14 +19,22 @@ $(document).ready(function(){
 			var emailtest = $("#email").val();
 
 			if ($.trim(emailtest).length == 0) {
-				alert('이메일을 입력해주세요');
+				//alert('이메일을 입력해주세요');
+				Swal.fire({ 
+					icon: 'warning',
+					text: '이메일을 입력하세요.'
+				});
 				$("#email").val("");
 				$("#email").focus();
 				return;
 			}
 
 			if (!fn_validateEmail(emailtest)) {
-				alert("이메일을 제대로 입력해주세요.");
+				//alert("이메일을 제대로 입력해주세요.");
+				Swal.fire({ 
+					icon: 'error',
+					text: '이메일을 제대로 입력해주세요.'
+				});
 				$("#email").val("");
 				$("#email").focus();
 				return;
@@ -285,7 +293,11 @@ $(document).ready(function(){
 
 	$("#btnCC").on("click", function() 
 	{
-		alert("회원가입이 취소되었습니다.");
+		//alert("회원가입이 취소되었습니다.");
+		Swal.fire({ 
+			icon: 'error',
+			text: '회원가입이 취소되었습니다.'
+		});
 		location.href = "/";
 	});
 	

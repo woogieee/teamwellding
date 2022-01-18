@@ -33,6 +33,7 @@ $(document).ready(function(){
 	});
 	
 	$("#btnDelete").on("click", function(){
+		
 		if(confirm("정말 삭제 하시겠습니까?") == true)
 		{
 			//정말 삭제하겠다고 했을 때, ajax 통신
@@ -92,7 +93,11 @@ $(document).ready(function(){
   	  $("#btnComment").prop("disabled", true);// 수정 버튼 비활성화 
   	  
   	  if($.trim($("#wdFBoardComment").val()).length <= 0){
-  		  alert("댓글내용을 입력하세요.");
+  		 // alert("댓글내용을 입력하세요.");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '댓글내용을 입력하세요.'
+			});
   		  $("#wdFBoardComment").val("");
   		  $("#wdFBoardComment").focus();
   		  $("#btnComment").prop("disabled", false);
@@ -222,7 +227,11 @@ function commentUpdate(cSeq,tagId){
 		  document.commentForm.cSeq.value = cSeq;
 		  
 	  	  if($.trim($("#updateComment").val()).length <= 0){
-	  		  alert("댓글내용을 입력하세요.");
+	  		  //alert("댓글내용을 입력하세요.");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '댓글내용을 입력하세요.'
+			});
 	  		  $("#updateComment").val("");
 	  		  $("#updateComment").focus();
 	  		  return;

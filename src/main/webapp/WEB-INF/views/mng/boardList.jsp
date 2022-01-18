@@ -94,11 +94,19 @@ body.dark-theme .page-link.active
 	    
 		if(msg == "Y")
 		{
-			alert("댓글 삭제에 성공했습니다.");
+			//alert("댓글 삭제에 성공했습니다.");
+			Swal.fire({ 
+				icon: 'success', // Alert 타입 
+				text: '댓글 삭제에 성공했습니다.' // Alert 내용
+			});
 		}
 		else if(msg == "N")
 		{
-			alert("댓글 삭제에 실패했습니다.");
+			//alert("댓글 삭제에 실패했습니다.");
+			Swal.fire({ 
+				icon: 'error', // Alert 타입 
+				text: '댓글 삭제에 성공했습니다.' // Alert 내용
+			});
 		}
 		
 	      $(".FboardUpdate").colorbox({
@@ -357,7 +365,7 @@ body.dark-theme .page-link.active
                <div class="wdhcon" style="width:9%;"><p>${fList.bSeq}</p></div>
                <div class="wdhcon" style="width:9%;"><p>${fList.userId}</p></div>
                <a href="/mng/mngFboardUpdate?bSeq=${fList.bSeq}" name="FboardUpdate" class="FboardUpdate">
-               	<div class="wdhcon FboardUpdate" style="width:32%; border-right: 1px solid #dedede;" href="/mng/mngFboardUpdate?bSeq=${fList.bSeq}"><p style="font-weight: bold;">${fList.bTitle}</p></div>
+               	<div class="wdhcon FboardUpdate" style="width:32%; border-right: 1px solid #dedede;"><p style="font-weight: bold;">${fList.bTitle}</p></div>
                </a>
                <div class="wdhcon" style="width:33%;"><p>${fList.bContent}</p></div>
                <div class="wdhcon" style="width:8%;"><p>${fList.bReadCnt}</p></div>

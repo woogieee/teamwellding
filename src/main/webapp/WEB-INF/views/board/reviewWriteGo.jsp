@@ -25,7 +25,11 @@ $(document).ready(function(){
 		if($.trim($("#hiBbsTitle").val()).length <=0 )
 		{
 			//값이 없음
-			alert("제목을 입력하세요.");
+			//alert("제목을 입력하세요.");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '제목을 입력하세요.'
+			});
 			$("#hiBbsTitle").val("");
 			$("#hiBbsTitle").focus();
 			
@@ -35,7 +39,11 @@ $(document).ready(function(){
 		
 		if($.trim($("#hiBbsContent").val()).length <=0)
 		{
-			alert("내용을 입력하세요");
+			//alert("내용을 입력하세요");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '내용을 입력하세요.'
+			});
 			$("#hiBbsContent").val("");
 			$("#hiBbsContent").focus();
 			
@@ -81,7 +89,7 @@ $(document).ready(function(){
 				}
 				else
 				{
-					alert("게시물 등록 중 오류가 발생했습니다.");
+					alert("게시물 등록 중 오류가 발생했습니다."+response.code);
 					$("#btnWrite").prop("disabled", false);
 				}
 			},
@@ -136,10 +144,14 @@ $(document).ready(function(){
 		   <h2></h2>
 		   <form name="writeForm" id="writeForm" method="post" enctype="multipart/form-data">
 		      <div class="row">
-		      	<div class="col-lg-6">
+		      	<div class="col-lg-4">
+		      		<input type="hidden" name="rezNo" id="rezNo" value="${rezNo }"/>
+			      <input type="text" name="rezNo12" id="rezNo12" maxlength="20" value="예약번호 : ${rezNo}" style="ime-mode:active;" class="form-control mb-2 nickInput" placeholder="" readonly />		      	
+		      	</div>
+		      	<div class="col-lg-4">
 			      <input type="text" name="userName" id="userName" maxlength="20" value="${wdUser.userNickname}" style="ime-mode:active;" class="form-control mb-2 nickInput" placeholder="" readonly />		      	
 		      	</div>
-		      	<div class="col-lg-6">
+		      	<div class="col-lg-4">
 			      <input type="text" name="userEmail" id="userEmail" maxlength="30" value="${wdUser.userEmail}" style="ime-mode:inactive;" class="form-control mb-2 emailInput" placeholder="" readonly />		      	
 		      	</div>
 		      </div>

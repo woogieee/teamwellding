@@ -270,5 +270,37 @@ public class WDHallService {
 		return count;
 		
 	}
+	
+	//웨딩홀 업데이트
+	public int weddinghallUpdate(WDHall wdHall) {
+		
+		int count = 0;
+		
+		try {
+			count = wdHallDao.weddinghallUpdate(wdHall);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] weddinghallUpdate Exception", e);
+		}
+		
+		return count;
+	}
+	
+	//홀 업데이트
+	public int hallUpdate(WDHall wdHall) {
+		
+		int count = 0;
+		
+		try {
+			count = wdHallDao.hallUpdate(wdHall);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] hallUpdate Exception", e);
+		}
+		
+		return count;
+	}
    	
 }

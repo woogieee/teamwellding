@@ -176,6 +176,8 @@
 						<value>/mng/WeddingHallDelete</value>
 						<value>/mng/hallUpdate</value>
 						<value>/mng/hallDelete</value>
+						<value>/mng/weddinghallUpdateProc</value>
+						<value>/mng/hallUpdateProc</value>
 						
 						<value>/mng/dressComUpdate</value>
 						<value>/mng/dressComUpdateProc</value>
@@ -184,10 +186,12 @@
 						<value>/mng/dressUpdateProc</value>
 						<value>/mng/dressDelete</value>
 						
+
 						<value>/mng/makeupupdateProc</value>
 						<value>/mng/makeupComDelete</value>
 						<value>/mng/studioDelete</value>
 						<value>/mng/studioUpdateProc</value>
+
 
             		</list>
             	</constructor-arg>

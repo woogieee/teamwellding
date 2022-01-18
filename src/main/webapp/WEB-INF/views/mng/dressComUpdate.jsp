@@ -101,10 +101,6 @@ function dressComUpdate()
 	icia.ajax.post({
 		url: "/mng/dressComUpdateProc",
 		data: formData,
-		beforeSend: function(xhr)
-		{
-			xhr.setRequestHeader("AJAX", "true");
-		},
 		success: function(res)
 		{
 			icia.common.log(res);

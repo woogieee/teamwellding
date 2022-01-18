@@ -198,7 +198,7 @@ FROM (SELECT
 <if test='sDate != null and sDate != ""'>                    
                 AND
                     S_CODE NOT IN (SELECT
-                                        S_CODE
+                                        NVL(S_CODE, ' ') AS S_CODE
                                         FROM
                                             WD_REZ
                                         WHERE
@@ -242,7 +242,7 @@ WHERE 1=1
 <if test='sDate != null and sDate != ""'>
 AND
 	S_CODE NOT IN (SELECT
-                          S_CODE
+                          NVL(S_CODE, ' ') AS S_CODE
                     FROM
                         WD_REZ
                     WHERE
