@@ -19,6 +19,7 @@ table th, td{
   height: 3rem;
   padding-left: .5rem;
   padding-right: 1rem;
+  text-align : left;
   
 }
 table th{
@@ -299,7 +300,7 @@ function makeupComDelete()
                 <tr>
                    <th scope="row">할인율</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="makeupdiscount" name="makeupdiscount" value="${wdmakeup.mDiscount}"/>
+                     <input type="number" style="background-color: #fff;" id="makeupdiscount" name="makeupdiscount" value="${wdmakeup.mDiscount}"/>
                   </td>
                </tr>
 

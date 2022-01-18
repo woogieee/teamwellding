@@ -6120,6 +6120,38 @@ responsive
     transform: rotate(45deg); /* 각도 */
 }
 
+/*욱채 인덱스 슬라이더*/
+.slick-prev3.slick-arrow{ /* prev 이전 */
+	left: 0%!important;
+	outline: none
+    
+}
+.slick-next3.slick-arrow{ /* next 다음 */
+	right: 3%!important;
+	outline: none
+}
+
+.slick-prev3::after {
+    position: absolute;
+    content: '';
+    width: 36px; /* 사이즈 */
+    height: 36px; /* 사이즈 */
+    border-top: 5px solid #ffc0c8; /* 선 두께 */
+    border-right: 5px solid #ffc0c8; /* 선 두께 */
+    transform: rotate(225deg); /* 각도 */
+}
+
+.slick-next3::after {
+    position: absolute;
+    content: '';
+    width: 36px; /* 사이즈 */
+    height: 36px; /* 사이즈 */
+    border-top: 5px solid #ffc0c8; /* 선 두께 */
+    border-right: 5px solid #ffc0c8; /* 선 두께 */
+    transform: rotate(45deg); /* 각도 */
+}
+/*욱채 인덱스 슬라이더*/
+
 /** 모달띄운거 **/
 .ticket-details-page {
   margin: 25px 0 100px 0px;

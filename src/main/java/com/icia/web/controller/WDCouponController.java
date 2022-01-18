@@ -42,4 +42,5 @@ public class WDCouponController {
 		return "/board/Coupon";
 	}
 
+	
 }

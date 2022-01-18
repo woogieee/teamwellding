@@ -248,7 +248,8 @@ $(document).ready(function(){
 				gender : $("#gender").val(),
 				nickname : $("#nickname").val(),
 				email : $("#email").val(),
-				uCheck : $("#checkinput").val()
+				uCheck : $("#checkinput").val(),
+				
 			},
 			datatype : "JSON",
 			beforeSend : function(xhr) {
@@ -260,6 +261,7 @@ $(document).ready(function(){
 				{
 					alert("회원가입이 완료되었습니다.");
 					location.href = "/board/login";
+					
 				} 
 				else if (response.code == 400) 
 				{
@@ -298,6 +300,7 @@ $(document).ready(function(){
 		});
 		location.href = "/";
 	});
+	
 });
 
 function imnotok() {
@@ -491,7 +494,7 @@ function fn_validateEmail(value) {
 				<div class="button_area">
 					<button class="btn_type1" id="btnReg">가입하기</button>
 					<button class="btn_type2" id="btnCC">취소</button>
-					<input type="hidden" id="pwd" name="pwd" value="" />
+					
 				</div>
 			</dl>
 		</div>

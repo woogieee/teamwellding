@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.icia.common.util.StringUtil;
 import com.icia.web.model.Response;
 import com.icia.web.model.WDUser;
+import com.icia.web.service.WDCouponService;
 import com.icia.web.service.WDUserService;
 import com.icia.web.util.CookieUtil;
 import com.icia.web.util.HttpUtil;
@@ -33,6 +34,9 @@ public class WDUserController
 	
 	@Autowired
 	private WDUserService wduserService;
+	
+	@Autowired
+	private WDCouponService wdcouponservice;
 	
 	@RequestMapping(value="/imokay", method=RequestMethod.POST)
 	@ResponseBody
@@ -160,10 +164,12 @@ public class WDUserController
 		String day = HttpUtil.get(request, "day", "");
 		String marry = year + month + day;
 		
+		
 		String gender = HttpUtil.get(request, "gender", "");
 		String nickName = HttpUtil.get(request, "nickname", "");
 		String email = HttpUtil.get(request, "email", "");
 		int uCheck = HttpUtil.get(request, "uCheck", 0);
+		
 		
 		WDUser wdUser = new WDUser();
 		
@@ -177,6 +183,7 @@ public class WDUserController
 		wdUser.setUserEmail(email);
 		wdUser.setStatus("Y");
 		wdUser.setuCheck(uCheck);
+		
 		if(!StringUtil.isEmpty(userId) && !StringUtil.isEmpty(userPwd) && !StringUtil.isEmpty(userName) && !StringUtil.isEmpty(phone) &&
 			!StringUtil.isEmpty(marry) && !StringUtil.isEmpty(gender) && !StringUtil.isEmpty(nickName) && !StringUtil.isEmpty(email) &&
 			!StringUtil.isEmpty(uCheck)) 
@@ -185,6 +192,7 @@ public class WDUserController
 			System.out.println("체크 값 : "+wdUser.getuCheck());
 			if(wduserService.userInsert(wdUser) > 0) {
 				ajaxResponse.setResponse(0, "Success");
+				wdcouponservice.couponInsert(userId);
 			}
 			else {
 				ajaxResponse.setResponse(500, "Bad Request");
@@ -203,32 +211,41 @@ public class WDUserController
 		
 		Response<Object> ajaxResponse = new Response<Object>();
 		
+		
 		String cookieUserId = CookieUtil.getHexValue(request,  AUTH_COOKIE_NAME);
 		
-		String userPwd = HttpUtil.get(request, "pwd1", "");
-		String userName = HttpUtil.get(request, "name", "");
-		String phone = HttpUtil.get(request, "number", "");
-		String year = HttpUtil.get(request, "year", "");
-		String month = HttpUtil.get(request, "month", "");
-		String day = HttpUtil.get(request, "day", "");
+		String userPwd = HttpUtil.get(request, "pwd1");
+		String userName = HttpUtil.get(request, "name");
+		String phone = HttpUtil.get(request, "number");
+		String year = HttpUtil.get(request, "year");
+		String month = HttpUtil.get(request, "month");
+		String day = HttpUtil.get(request, "day");
 		String marry = year + month + day;
-		String nickName = HttpUtil.get(request, "nickname", "");
-		String email = HttpUtil.get(request, "email", "");
+		String nickName = HttpUtil.get(request, "nickname");
+		String email = HttpUtil.get(request, "email");
 		
-		WDUser wdUser = new WDUser();
+		System.out.println("현아누나바보");
 		
-		wdUser.setUserId(cookieUserId);
-		wdUser.setUserPwd(userPwd);
-		wdUser.setUserName(userName);
-		wdUser.setUserNumber(phone);
-		wdUser.setMarrtDate(marry);
-		wdUser.setUserNickname(nickName);
-		wdUser.setUserEmail(email);
 		
-		if(!StringUtil.isEmpty(wdUser.getUserId())) {
+		WDUser wdUser = null;
+		wdUser = wduserService.userSelect(cookieUserId);
+		System.out.println("아이디 : "+ wdUser.getUserId());
+		if(!StringUtil.isEmpty(wdUser.getUserId())) 
+		{
+			
+			
 			if(!StringUtil.isEmpty(userPwd) && !StringUtil.isEmpty(userName) && !StringUtil.isEmpty(phone) &&
 					!StringUtil.isEmpty(marry) && !StringUtil.isEmpty(nickName) && !StringUtil.isEmpty(email)) 
 				{
+				
+			
+				wdUser.setUserPwd(userPwd);
+				wdUser.setUserName(userName);
+				wdUser.setUserNumber(phone);
+				wdUser.setMarrtDate(marry);
+				wdUser.setUserNickname(nickName);
+				wdUser.setUserEmail(email);
+				
 					if(wduserService.userUpdate(wdUser) > 0) {
 						ajaxResponse.setResponse(0, "Success");
 					}
