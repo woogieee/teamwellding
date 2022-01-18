@@ -132,10 +132,6 @@ function fn_nBoardDelete()
 				bSeq: <c:out value="${nBList.bSeq}" />
 			},
 			datatype: "JSON",
-			beforeSend: function(xhr)
-			{
-				xhr.setRequestHeader("AJAX", "true");
-			},
 			success: function(response)
 			{
 				if(response.code == 0)
@@ -215,12 +211,11 @@ function fn_nBoardDelete()
          </table>
       </form>
       <div class="pop-btn-area" style="float: right;">
-         <!--button onclick="fn_nBoardUpdate()" class="btn-type01"><span>수정</span></button-->
+         <button onclick="fn_nBoardUpdate()" class="btn-type01"><span>수정</span></button>
          <button onclick="fn_nBoardDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
       </div>
    </div>
-
 </div>
 
 

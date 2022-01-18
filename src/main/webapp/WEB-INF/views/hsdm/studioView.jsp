@@ -159,12 +159,12 @@ $(document).ready(function(){
 							<dl class="st_dl">
 								 <dt class="st_dt">스튜디오 예약일&nbsp;:</dt>
 				                  <dd class="date st_dd">
-									<select id="year" class="year select_date">
+									<select id="year" class="year select_date" style="margin-right: 8px;">
 										<option value="">년도</option>
 										<option value="2022" <c:if test="${year eq '2022'}">selected</c:if>>2022</option>
 										<option value="2023" <c:if test="${year eq '2023'}">selected</c:if>>2023</option>
 									</select> 
-									<select id="month" class="month select_date2">
+									<select id="month" class="month select_date2" style="margin-right: 8px;">
 										<option value="">월</option>
 										<option value="01" <c:if test="${month eq '01'}">selected</c:if>>1</option>
 										<option value="02" <c:if test="${month eq '02'}">selected</c:if>>2</option>
@@ -226,7 +226,6 @@ $(document).ready(function(){
                 	<div class="det_navi2">
                 		<ul>
                 			<li><a href=""><c:out value="${wdStudio.sName}" />의 다른 화보 보기</a></li>
-                			<li><a href="">이용 후기</a></li>
                 		</ul>
                 	</div>
                 </div>

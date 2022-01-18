@@ -120,9 +120,13 @@
 						<value>/mng/userupdateProc</value>
 						<value>/mng/hsdmList</value>
 						<value>/mng/payMentList</value>
+						<value>/mng/plusMakeup</value>
+						<value>/mng/MngMakeupUpdate</value>
 						
+						<value>/mng/makeupWrite</value>
 						<value>/mng/plusWHall</value>
 						<value>/mng/weddinghallWrite</value>
+						
 
 						<value>/mng/plusHall</value>
 						<value>/mng/hallWrite</value>
@@ -143,6 +147,7 @@
 		                <value>/mng/mngFboardUpdate</value>
 		                <value>/mng/fDelete</value>
 		                <value>/board/fdownload</value>
+		                <value>/mng/deleteCommentProc</value>
 
 		                
 		                <value>/mng/nBoardUpdate</value>
@@ -163,9 +168,8 @@
 		                <value>/mng/mngFboardUpdate</value>
 		                <value>/mng/mngReviewUpdate</value>
 		                <value>/mng/reviewDelete</value>
-
-
-
+						<value>/mng/updateStudio</value>
+						
 						<value>/board/fBoardFileTest</value>
 						
 						<value>/mng/WeddingHallUpdate</value>
@@ -179,6 +183,13 @@
 						<value>/mng/dressUpdate</value>
 						<value>/mng/dressUpdateProc</value>
 						<value>/mng/dressDelete</value>
+						
+
+						<value>/mng/makeupupdateProc</value>
+						<value>/mng/makeupComDelete</value>
+						<value>/mng/studioDelete</value>
+						<value>/mng/studioUpdateProc</value>
+
 
             		</list>
             	</constructor-arg>

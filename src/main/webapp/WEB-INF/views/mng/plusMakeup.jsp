@@ -7,6 +7,7 @@
 <style>
 html, body{
   color:  #525252;
+  height: 100%;
 }
 table{
   width:100%;
@@ -15,12 +16,13 @@ table{
 table th, td{
   border-right: 1px solid #c4c2c2;
   border-bottom: 1px solid #c4c2c2;
-  height: 4rem;
+  height: 3rem;
   padding-left: .5rem;
   padding-right: 1rem;
 }
 table th{
   background-color: #e0e4fe;
+ 
 }
 input[type=text], input[type=password]{
   height:2rem;
@@ -67,17 +69,39 @@ function fn_userUpdate()
    
    if(icia.common.isEmpty($("#makeupnumber").val()))
    {
-      alert("메이크업 전화번호를 입력해주세요");
+      alert("메이크업 번호를 입력해주세요");
       $("#makeupnumber").focus();
       return;
    }
    
+   if(icia.common.isEmpty($("#makeupprice").val()))
+   {
+      alert("메이크업 금액을 입력해주세요");
+      $("#makeupprice").focus();
+      return;
+   }
+  
+   
+ 
    if(icia.common.isEmpty($("#makeupContent").val()))
    {
       alert("메이크업 설명을 입력해주세요.");
       $("#makeupContent").focus();
       return;
    }
+   if(icia.common.isEmpty($("#makeupPlus").val()))
+   {
+      alert("추가 인원당 금액을 입력해주세요");
+      $("#makeupPlus").focus();
+      return;
+   }
+   if(icia.common.isEmpty($("#makeupdiscount").val()))
+   {
+      alert("할인율을 입력해주세요");
+      $("#makeupdiscount").focus();
+      return;
+   }
+   
    
    //등록 취소
    if(!confirm("메이크업을 등록 하시겠습니까?"))
@@ -87,16 +111,35 @@ function fn_userUpdate()
    }
    
    var formData = {
+		   
       mkName: $("#makeupName").val(),
       mkLocation: $("#makeupLocation").val(),
       mkNumber: $("#makeupnumber").val(),
-      mkContent: $("#makeupContent").val()
-   };
+      mkImgname :$("#makeupimgname").val(),
+      mkPrice : $("#makeupprice").val(),
+      mkContent: $("#makeupContent").val(),
+      mkPlus : $("#makeupPlus").val(),
+      mkDiscount : $("#makeupdiscount").val()
+      
+   				};
    
+   
+   	
    //ajax통신
    icia.ajax.post({
       url: "/mng/makeupWrite",
-      data: formData,
+      data: {
+		   
+          mkName: $("#makeupName").val(),
+          mkLocation: $("#makeupLocation").val(),
+          mkNumber: $("#makeupnumber").val(),
+          mkImgname :$("#makeupimgname").val(),
+          mkPrice : $("#makeupprice").val(),
+          mkContent: $("#makeupContent").val(),
+          mkPlus : $("#makeupPlus").val(),
+          mkDiscount : $("#makeupdiscount").val()
+          
+       },
       success: function(res)
       {
          icia.common.log(res);
@@ -159,15 +202,40 @@ function fn_userUpdate()
                   </td>
                </tr>
                <tr>
-                   <th scope="row">메이크업 번호</th>
+                   <th scope="row">메이크업 전화번호</th>
                   <td>
                      <input type="text" style="background-color: #fff;" id="makeupnumber" name="makeupnumber" placeholder="메이크업 번호를 입력해주세요"/>
+                  </td>
+               </tr>
+                <tr>
+                   <th scope="row">대표 이미지</th>
+                  <td>
+                     <input type="file" style="background-color: #fff;" id="makeupimgname" name="makeupimgname" />
+                  </td>
+               </tr>
+               
+                <tr>
+                   <th scope="row">금액</th>
+                  <td>
+                     <input type="text" style="background-color: #fff;" id="makeupprice" name="makeupprice" placeholder="금액을 입력해주세요"/>
                   </td>
                </tr>
                <tr>
                   <th scope="row">메이크업 설명</th>
                   <td>
                   <textarea class="form-control" rows="3" name="makeupContent" id="makeupContent" style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px;" placeholder="메이크업 설명을 입력해주세요" required></textarea>
+                  </td>
+               </tr>
+                <tr>
+                   <th scope="row">추가 인원당 금액</th>
+                  <td>
+                     <input type="text" style="background-color: #fff;" id="makeupPlus" name="makeupPlus" placeholder="추가 인원당 금액을 입력해주세요"/>
+                  </td>
+               </tr>
+                <tr>
+                   <th scope="row">할인율</th>
+                  <td>
+                     <input type="text" style="background-color: #fff;" id="makeupdiscount" name="makeupdiscount" placeholder="할인율을 입력해주세요"/>
                   </td>
                </tr>
 
