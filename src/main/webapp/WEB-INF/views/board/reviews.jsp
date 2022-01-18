@@ -10,8 +10,8 @@
 $(document).ready(function(){
    $("#btnSearch").on("click", function(){
       //새로 조회버튼을 누를 때에는 신규로 넣은 값을 가져가야 함.
-      document.bbsForm.RSeq.value = "";
-      document.bbsForm.searchType.value = $("#_searchType").val();
+      document.bbsForm.RSeq.value = 0;
+
       document.bbsForm.searchValue.value = $("#_searchValue").val();
       //조회를 했을 때 무조건 1페이지로 가야 함. 결색 결과가 몇페이지까지 나올지 모르니깐
       document.bbsForm.curPage.value = 1;
@@ -139,8 +139,7 @@ function fn_list(curPage)
                                                 <div class="row">
                                                     <div class="col-lg-3">
                                                         <select value="searchType" name="_searchType" id="_searchType">
-                                                        	<option value="">조회 항목</option>
-                                                            <option value="1" <c:if test="${searchType eq '1'}">selected</c:if>>제목</option>
+                                                            <option value="1">홀 이름</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-lg-7">

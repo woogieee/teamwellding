@@ -136,7 +136,7 @@ $(document).ready(function(){
                $("#rezPoint").val(rezPoint);
 
                
-               var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=575,left=100,top=100');
+               var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=650,left=100,top=100');
                
                $("#kakaoForm").submit();
                $("#btnPay").prop("disabled", false);

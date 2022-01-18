@@ -3,10 +3,10 @@
 <mapper namespace="com.icia.web.dao.WDReviewDao">
 <!-- 리뷰 resultMap 시작 -->
 <resultMap id="ReviewResultMap" type="com.icia.web.model.WDReview">
-		<id column="R_SEQ" property="RSeq" />
-		<id column="REZ_NO" property="rezNo" />
-    	<result column="USER_ID" property="UserId" />
-    	<result column="U_NICKNAME" property="UNickName" />
+      <id column="R_SEQ" property="RSeq" />
+      <id column="REZ_NO" property="rezNo" />
+       <result column="USER_ID" property="UserId" />
+       <result column="U_NICKNAME" property="UNickName" />
         <result column="WDATE" property="WDate" />
         <result column="R_TITLE" property="RTitle" />
         <result column="R_CONTENT" property="RContent" />
@@ -21,13 +21,13 @@
 
 <!-- 리뷰파일 resultMap 시작 -->
 <resultMap id="ReviewFileResultMap" type="com.icia.web.model.WDReviewFile">
-		    <id column="R_SEQ" property="rSeq" />
-		    <id column="R_FILE_SEQ" property="rFileSeq" />
-		    <result column="R_FILE_NAME" property="rFileName" />
-		    <result column="R_FILE_ORG_NAME" property="rFileOrgName" />
-		    <result column="R_FILE_EXT" property="rFileExt" />
-		    <result column="R_FILE_SIZE" property="rFileSize" />
-		    <result column="REG_DATE" property="regDate" />
+          <id column="R_SEQ" property="rSeq" />
+          <id column="R_FILE_SEQ" property="rFileSeq" />
+          <result column="R_FILE_NAME" property="rFileName" />
+          <result column="R_FILE_ORG_NAME" property="rFileOrgName" />
+          <result column="R_FILE_EXT" property="rFileExt" />
+          <result column="R_FILE_SIZE" property="rFileSize" />
+          <result column="REG_DATE" property="regDate" />
 </resultMap>
 <!-- 리뷰파일 resultMap 끝 -->
 
@@ -36,16 +36,20 @@
 SELECT
     COUNT(A.R_SEQ) CNT
 FROM
-    WD_REVIEW A, WD_REZ B, WD_HALL C
+    WD_REVIEW A, WD_REZ B
+<if test='searchValue != null and searchValue != ""'>     
+    , WD_HALL C
+</if>    
 WHERE
     A.REZ_NO = B.REZ_NO
+<if test='searchValue != null and searchValue != ""'> 
 AND 
     B.WH_CODE = C.WH_CODE
 AND
     B.H_CODE = C.H_CODE
-<if test='searchValue != null and searchValue != ""'> 
+
 AND
-    C.H_NAME LIKE '%' || #{value} || '%'
+    C.H_NAME LIKE '%' || #{searchValue} || '%'
 </if>
 </select>
 <!-- 리뷰 게시물 총 수 체크 끝 -->
@@ -281,7 +285,7 @@ SELECT
 FROM 
      WD_REZ
 WHERE
-	REZ_NO = #{value}
+   REZ_NO = #{value}
 </select>
 <!-- 리뷰 중복 작성 불가능하게 체크 끝-->
 
