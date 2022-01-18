@@ -36,8 +36,13 @@
 	<script src="../resources/js/icia.common.js"></script>
 <script>
 var loginModCheck = 1;
+var euisooM = 0;
 $(function(){
 	
+	$("#id2").removeAttr("onclick");
+	
+
+
 	$("#loginbtn").on("click", function(){
 		fn_loginCheck();		
 	});
@@ -60,8 +65,6 @@ $(function(){
 		}
 		
 	});
-	
-
 });
 
 function fn_loginCheck()
@@ -250,6 +253,17 @@ function fn_index()
 	location.href = "/";	
 }
 
+function plusNum()
+{
+	euisooM = euisooM + 1;
+	
+	if(euisooM >= 6)
+	{
+		alert("이제 관리자 계정으로 로그인이 가능합니다.");
+		$("#id2").attr("onclick", "classChange(this);");
+	}
+}
+
 </script>
 </head>
 <body>
@@ -312,6 +326,7 @@ function fn_index()
 							회원가입하기
 						</a>
 					</div>
+						<input type="button" onclick="plusNum()" value="d" style="width: 50px; height: 50px; background-color: white; color: white; cursor: default;"/>
 				</form>
 			</div>
 		</div>
