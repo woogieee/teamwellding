@@ -16,6 +16,7 @@ $(document).ready(function(){
 		document.bbsForm.month.value = $("#month").val();
 		document.bbsForm.day.value = $("#day").val();
 		
+		
 		document.bbsForm.curPage.value = 1;
 		document.bbsForm.action = "/hsdm/studio";
 		document.bbsForm.submit();
