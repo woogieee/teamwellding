@@ -25,7 +25,11 @@ function fn_search(){
 	
 	if($.trim($("#_searchValue").val()).length <= 0)
 	{
-		alert("조회값을 입력하세요.");
+		//alert("조회값을 입력하세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '조회값을 입력하세요.'
+		});
 		$("#_searchValue").focus();
 		return;
 	}

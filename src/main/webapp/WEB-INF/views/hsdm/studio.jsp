@@ -11,12 +11,27 @@ $(document).ready(function(){
 		document.bbsForm.sCode.value = "";
 		document.bbsForm.searchType.value = $("#_searchType").val();
 		document.bbsForm.searchValue.value = $("#_searchValue").val();
+		document.bbsForm.curPage.value = 1;
+
+		var year = $("#year").val();
+		var month = $("#month").val();
+		var day = $("#day").val();
+		var wDate = year+month+day;
+		
+		if(wDate.length != 0 && wDate.length != 8)
+		{
+			Swal.fire({ 
+				icon: 'warning', // Alert 타입 
+				//title: '검색오류입니다.', // Alert 제목
+				text: '날짜로 검색하기를 원하신다면 년, 월, 일을 빠짐없이 전부 입력해주세요.', // Alert 내용
+			});
+			return;
+		}
 		
 		document.bbsForm.year.value = $("#year").val();
 		document.bbsForm.month.value = $("#month").val();
 		document.bbsForm.day.value = $("#day").val();
-		
-		document.bbsForm.curPage.value = 1;
+
 		document.bbsForm.action = "/hsdm/studio";
 		document.bbsForm.submit();
 	});

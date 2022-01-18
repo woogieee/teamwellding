@@ -21,7 +21,11 @@ $(document).ready(function(){
 		
 		if(wDate.length != 0 && wDate.length != 8)
 		{
-			alert("날짜로 검색하시려면 년,월,일을 전부 입력해주세요.");
+			Swal.fire({ 
+				icon: 'warning', // Alert 타입 
+				//title: '검색오류입니다.', // Alert 제목
+				text: '날짜로 검색하기를 원하신다면 년, 월, 일을 빠짐없이 전부 입력해주세요.' // Alert 내용
+			});
 			return;
 		}
 		

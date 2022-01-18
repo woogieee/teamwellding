@@ -25,7 +25,11 @@ $(document).ready(function(){
 		if($.trim($("#hiBbsTitle").val()).length <=0 )
 		{
 			//값이 없음
-			alert("제목을 입력하세요.");
+			//alert("제목을 입력하세요.");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '제목을 입력하세요.'
+			});
 			$("#hiBbsTitle").val("");
 			$("#hiBbsTitle").focus();
 			
@@ -35,7 +39,11 @@ $(document).ready(function(){
 		
 		if($.trim($("#hiBbsContent").val()).length <=0)
 		{
-			alert("내용을 입력하세요");
+			//alert("내용을 입력하세요");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '내용을 입력하세요.'
+			});
 			$("#hiBbsContent").val("");
 			$("#hiBbsContent").focus();
 			

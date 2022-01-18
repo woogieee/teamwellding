@@ -8,7 +8,11 @@
 $(document).ready(function(){
 	<c:choose>
 		<c:when test="${empty wdDress}">
-			alert("조회하신 상품이 존재하지 않습니다.");
+			//alert("조회하신 상품이 존재하지 않습니다.");
+			Swal.fire({ 
+				icon: 'question',
+				text: '조회하신 상품이 존재하지 않습니다.'
+			});
 			document.bbsForm.action = "/hsdm/dress";
 			document.bbsForm.submit();
 		</c:when>

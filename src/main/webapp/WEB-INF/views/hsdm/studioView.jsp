@@ -28,17 +28,29 @@ $(document).ready(function(){
 		
 		if($("#year").val() == "")
 		{
-			alert("예약할 연도를 입력해주세요.");
+			//alert("예약할 연도를 입력해주세요.");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '예약한 연도를 입력하세요.'
+			});
 			return;
 		}
 		else if($("#month").val() == "")
 		{
-			alert("예약할 달을 입력해주세요.");
+			//alert("예약할 달을 입력해주세요.");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '예약할 달을 입력하세요.'
+			});
 			return;
 		}
 		else if($("#day").val() == "")
 		{
-			alert("예약할 날짜를 입력해주세요.");
+			//alert("예약할 날짜를 입력해주세요.");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '예약할 일자를 입력하세요.'
+			});
 			return;
 		}
 		
