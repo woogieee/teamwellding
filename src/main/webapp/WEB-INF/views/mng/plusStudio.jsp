@@ -157,12 +157,12 @@ function fn_userUpdate()
     <div class="row" style="width: 100%; text-align: center;">
  <!-- /////////////////////////////////////////// --> 
 <div class="layerpopup" style="width:1123px; margin:auto;">
-   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">웨딩홀 추가</h1>
+   <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">스튜디오 추가</h1>
    <div class="layer-cont">
       <form name="regForm" id="regForm" method="post">
          <table>
             <tbody>
-
+				<tr>
                   <th scope="row">스튜디오 이름</th>
                   <td>
                      <input type="text" style="background-color: #fff;" id="studioName" name="studioName" placeholder="스튜디오 이름을 입력해주세요"/>

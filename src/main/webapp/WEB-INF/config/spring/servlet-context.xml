@@ -164,9 +164,8 @@
 		                <value>/mng/mngFboardUpdate</value>
 		                <value>/mng/mngReviewUpdate</value>
 		                <value>/mng/reviewDelete</value>
-
-
-
+						<value>/mng/updateStudio</value>
+						
 						<value>/board/fBoardFileTest</value>
 						
 						<value>/mng/WeddingHallUpdate</value>
@@ -180,6 +179,9 @@
 						<value>/mng/dressUpdate</value>
 						<value>/mng/dressUpdateProc</value>
 						<value>/mng/dressDelete</value>
+						
+						<value>/mng/studioDelete</value>
+						<value>/mng/studioUpdateProc</value>
 
             		</list>
             	</constructor-arg>
