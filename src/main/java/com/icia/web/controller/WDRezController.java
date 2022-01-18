@@ -102,6 +102,8 @@ public class WDRezController {
 		
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
 		
+		WDRez wdRez = null;
+		
 		if(wdUser != null)
 		{	
 			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
@@ -114,7 +116,7 @@ public class WDRezController {
 				search.setRezStatus("N");
 				
 				//유저 아이디와 N인 상태의 조건으로 검색한 결과를 wdRez에 담음
-				WDRez wdRez = wdRezService.rezSelect(search);
+				wdRez = wdRezService.rezSelect(search);
 				
 				if(wdRez != null) 
 				{
@@ -122,11 +124,11 @@ public class WDRezController {
 					wdRez = wdRezService.rezList(wdRez);
 					
 					model.addAttribute("wdRez", wdRez);
-					model.addAttribute("wdUser",wdUser);					
+
 				}
 				
 			}
-			else 
+			else
 			{
 				return "/";
 			}
@@ -135,6 +137,8 @@ public class WDRezController {
 		{
 			return "/";
 		}
+		model.addAttribute("wdRez", wdRez);
+		model.addAttribute("wdUser",wdUser);
 		
 		return "/user/wishlist";
 	}

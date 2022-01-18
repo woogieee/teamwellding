@@ -300,13 +300,13 @@ INSERT INTO WD_STUDIO (
 <!-- 스튜디오 추가 인서트문 끝 -->
 
 <!-- 스튜디오 삭제 시작 -->
-<delete id="studioDelete" parameterType="int">
+<delete id="studioDelete" parameterType="string">
 DELETE FROM WD_STUDIO
 WHERE
         S_CODE = #{value}
 </delete>
 <!-- 스튜디오 삭제 끝 -->
-<!-- 스튜디오 수정 시작 -->
+<!-- 스튜디오 모달 시작 -->
 <update id="studioUpdate" parameterType="com.icia.web.model.WDStudio">
 UPDATE WD_STUDIO
 SET
@@ -319,5 +319,19 @@ SET
 WHERE
     S_CODE = #{sCode}
 </update>
-<!-- 스튜디오 수정 끝 -->
+<!-- 스튜디오 모달 끝 -->
+<!-- 스튜디오 모달 시작 -->
+<update id="studioUpdateProc" parameterType="com.icia.web.model.WDStudio">
+UPDATE WD_STUDIO
+SET
+    S_NAME = #{sName},
+    S_PRICE = #{sPrice},
+    S_LOCATION = #{sLocation},
+    S_NUMBER = #{sNumber},
+    S_CONTENT = #{sContent},
+    S_DISCOUNT = #{sDiscount}
+WHERE
+    S_CODE = #{sCode}
+</update>
+<!-- 스튜디오 모달 끝 -->
 </mapper>

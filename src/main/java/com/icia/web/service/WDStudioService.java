@@ -197,7 +197,7 @@ public class WDStudioService
 		return count;
 	}
   	
-	//스튜디오 수정
+	//스튜디오 모달창?
 	public int studioUpdate(WDStudio wdStudio)
 	{
 		int count = 0;
@@ -209,6 +209,23 @@ public class WDStudioService
 		catch(Exception e)
 		{
 			logger.error("[WDStudioService] studioUpdate Exception", e);
+		}
+		
+		return count;
+	}
+	
+	//스튜디오 수정
+	public int studioUpdateProc(WDStudio wdStudio)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdStudioDao.studioUpdateProc(wdStudio);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDStudioService] studioUpdateProc Exception", e);
 		}
 		
 		return count;

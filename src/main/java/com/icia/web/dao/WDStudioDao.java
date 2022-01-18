@@ -36,6 +36,9 @@ public interface WDStudioDao
 	//스튜디오 삭제
 	public int studioDelete(String sCode);
 	
-	//스튜디오 수정
+	//스튜디오 모달?
 	public int studioUpdate(WDStudio wdStudio);
+	
+	//스튜디오 수정
+	public int studioUpdateProc(WDStudio wdStudio);
 }

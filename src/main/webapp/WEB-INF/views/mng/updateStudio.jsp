@@ -52,7 +52,9 @@ button:active {
 <script type="text/javascript" src="../resources/js/jquery.colorbox.js"></script>
 <script type="text/javascript" src="../resources/js/colorBox.js"></script>
 <script>
-
+$(document).ready(function(){
+	$("#sName").focus();
+});
 function fn_studioDelete()
 {
 	if(confirm("정말 삭제 하시겠습니까?") == true)
@@ -61,7 +63,7 @@ function fn_studioDelete()
 			type: "POST",
 			url: "/mng/studioDelete",
 			data:{
-				sCode: <c:out value="${wdStudio.sCode}" />
+				sCode: $("#studioCode").val()
 			},
 			datatype: "JSON",
 			beforeSend: function(xhr)
@@ -70,7 +72,6 @@ function fn_studioDelete()
 			},
 			success: function(response)
 			{
-				alert("여기는 뜰까요")
 				if(response.code == 0)
 				{
 					alert("스튜디오가 삭제되었습니다.");
@@ -88,6 +89,101 @@ function fn_studioDelete()
 				else
 				{
 					alert("스튜디오 삭제 중 오류가 발생했습니다.");
+					fn_colorbox_close();
+				}
+			},
+			complete: function(data)
+			{
+				icia.common.log(data);
+			},
+			error: function(xhr, status, error)
+			{
+				icia.common.error(error);
+			}
+		});
+	}
+}
+
+function fn_studioUpdate()
+{	
+	if(icia.common.isEmpty($("#studioName").val()))
+	{
+		alert("스튜디오 이름을 입력해주세요");
+		$("#studioName").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#studioPrice").val()))
+	{
+		alert("스튜디오 가격을 입력해주세요");
+		$("#studioPrice").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#studioLocation").val()))
+	{
+		alert("스튜디오 주소를 입력해주세요");
+		$("#studioLocation").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#studioNumber").val()))
+	{
+		alert("스튜디오 전화번호를 입력해주세요");
+		$("#studioNumber").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#studioContent").val()))
+	{
+		alert("스튜디오 설명을 입력해주세요");
+		$("#studioContent").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#studioDiscount").val()))
+	{
+		alert("스튜디오 할인율을 입력해주세요");
+		$("#studioDiscount").focus();
+		return;
+	}
+	
+	var formData = {
+		sCode : $("#studioCode").val(),
+		sName : $("#studioName").val(),
+		sPrice : $("#studioPrice").val(),
+		sLocation : $("#studioLocation").val(),
+		sNumber : $("#studioNumber").val(),
+		sContent : $("#studioContent").val(),
+		sDiscount : $("#studioDiscount").val()	
+	};
+	
+	if(confirm("정말 수정하시겠습니까?") == true)
+	{
+		$.ajax({
+			type: "POST",
+			url: "/mng/studioUpdateProc",
+			data: formData,
+			success: function(res)
+			{
+				icia.common.log(res);
+				
+				if(res.code == 0)
+				{
+					alert("정보 수정이 완료되었습니다.");
+					fn_colorbox_close(parent.fn_pageInit);
+				}
+				else if(res.code == -1)
+				{
+					alert("정보 수정 중 오류가 발생하였습니다.");
+				}
+				else if(res.code == 400)
+				{
+					alert("파라미터 값이 잘못 되었습니다.");
+				}
+				else if(res.code == 404)
+				{
+					alert("오류가 발생하였습니다.");
 					fn_colorbox_close();
 				}
 			},
