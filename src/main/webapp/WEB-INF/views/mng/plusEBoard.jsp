@@ -60,14 +60,22 @@ function fn_userUpdate()
 {
 	if(icia.common.isEmpty($("#bTitle").val()))
 	{
-		alert("제목을 입력해주세요");
+		//alert("제목을 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '제목을 입력해주세요.'
+		});
 		$("#bTitle").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#bContent").val()))
 	{
-		alert("내용을 입력해주세요");
+		//alert("내용을 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '내용을 입력해주세요.'
+		});
 		$("#bContent").focus();
 		return;
 	}

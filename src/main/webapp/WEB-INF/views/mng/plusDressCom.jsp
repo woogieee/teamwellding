@@ -60,28 +60,44 @@ function fn_userUpdate()
 {
 	if(icia.common.isEmpty($("#dresscomName").val()))
 	{
-		alert("업체 이름을 입력해주세요");
+		//alert("업체 이름을 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '업체 이름을 입력해주세요.
+		});
 		$("#dresscomName").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#dresscomlocation").val()))
 	{
-		alert("업체주소를 입력해주세요");
+		//alert("업체주소를 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '업체 주소를입력해주세요.'
+		});
 		$("#dresscomlocation").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#dresscomnumber").val()))
 	{
-		alert("업체 전화번호를 입력해주세요");
+		//alert("업체 전화번호를 입력해주세요");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '업체 전화번호를 입력해주세요.'
+		});
 		$("#dresscomnumber").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#dresscomcontent").val()))
 	{
-		alert("업체 설명을 입력해주세요.");
+		//alert("업체 설명을 입력해주세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '업체 설명을 입력해주세요.'
+		});
 		$("#dresscomcontent").focus();
 		return;
 	}
