@@ -14,6 +14,18 @@
 <result column = "B_SUBIMGNAME" property = "eBSubImgName" />
 </resultMap>
 
+<!-- 첨부파일 resultMap 시작 -->
+<resultMap id="WDBFileResultMap" type="com.icia.web.model.WDBoardFile">
+    <id column="B_SEQ" property="bSeq" />
+    <id column="B_FILE_SEQ" property="fileSeq" />
+    <result column="B_FILE_ORG_NAME" property="fileOrgName" />
+    <result column="B_FILE_NAME" property="fileName" />
+    <result column="B_FILE_EXT" property="fileExt" />
+    <result column="B_FILE_SIZE" property="fileSize" />
+    <result column="REG_DATE" property="regDate" />
+</resultMap>
+<!-- 첨부파일 resultMap 종료 -->
+
 <select id ="eBoardList" parameterType ="com.icia.web.model.WDEBoard" resultMap ="WDEBoardResultMap">
  SELECT 
         B_SEQ,
@@ -117,6 +129,17 @@ UPDATE WD_EBOARD
 </update>
 <!-- 게시물 조회수 증가 종료 -->
 
+<!-- 게시물 이미지 파일 조회 시작 -->
+<select id="eBoardFileSelect" parameterType="string" resultMap="WDBFileResultMap">
+SELECT
+    B_SEQ,
+    NVL(B_IMGNAME,''),
+    NVL(B_SUBIMGNAME,'')
+FROM
+    WD_EBOARD
+WHERE
+    B_SEQ = #{value}
+</select>
 
 <!-- (관리자ver) 이벤트 글쓰기 시작 -->
 <insert id="eBoardInsert" parameterType="com.icia.web.model.WDEBoard">
@@ -131,8 +154,7 @@ INSERT INTO WD_EBOARD (
     B_TITLE,
     B_CONTENT,
     B_READ_CNT,
-    REG_DATE,
-    
+    REG_DATE
 ) VALUES (
     #{eBSeq},
     #{adminId},
@@ -148,14 +170,36 @@ INSERT INTO WD_EBOARD (
 <update id="eBoardUpdate" parameterType="com.icia.web.model.WDEBoard">
 UPDATE WD_EBOARD
 SET
-   
      B_TITLE = #{eBTitle},
-     B_CONTENT = #{eBContent},
-    
+     B_CONTENT = #{eBContent}
+ 
 WHERE
-          B_SEQ = #{eBSeq}
+     B_SEQ = #{eBSeq}
 </update>
 <!-- (관리자ver) 이벤트 글 수정 끝 -->
+
+<!-- (관리자ver) 이벤트 글 첨부파일 등록 시작 -->
+<insert id="boardFileInsert" parameterType="com.icia.web.model.WDBoardFile">
+INSERT INTO WD_BOARD_FILE (
+    B_SEQ,
+    B_FILE_SEQ,
+    B_FILE_NAME,
+    B_FILE_ORG_NAME,
+    B_FILE_EXT,
+    B_FILE_SIZE,
+    REG_DATE
+) VALUES (
+    #{bSeq},
+    #{fileSeq},
+    #{fileName},
+    #{fileOrgName},
+    #{fileExt},
+    #{fileSize},
+    SYSDATE
+)
+</insert>
+<!-- 첨부파일 등록 종료 -->
+<!-- (관리자ver) 이벤트 글 첨부파일 등록 종료 -->
 
 <!-- (관리자ver) 이벤트 글 삭제 시작 -->
 <delete id="eBoardDelete">
@@ -164,4 +208,13 @@ DELETE FROM WD_EBOARD
         B_SEQ = #{value}
 </delete>
 <!-- (관리자ver) 이벤트 글 삭제 끝 -->
+
+<!-- (관리자ver) 게시물 첨부파일 삭제 시작 -->
+<delete id="eBoardFileDelete" parameterType="long">
+DELETE FROM WD_BOARD_FILE
+WHERE
+        B_SEQ = #{value}
+</delete>
+<!-- (관리자ver) 게시물 첨부파일 삭제 종료 -->
+
 </mapper>

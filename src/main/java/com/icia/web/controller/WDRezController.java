@@ -38,7 +38,6 @@ public class WDRezController {
    
    private static Logger logger = LoggerFactory.getLogger(WDRezController.class);
 
-
 		//쿠키명
 		@Value("#{env['auth.cookie.name']}")
 		private String AUTH_COOKIE_NAME;
@@ -334,7 +333,6 @@ public class WDRezController {
 		long totalCount = 0;
 		long count = 0;
 		
-		
 		WDAdmin wdAdmin = wdAdminService.wdAdminSelect(cookieUserId);
 		
 		List<WDRez> list = null;
@@ -436,5 +434,3 @@ public class WDRezController {
 	}
 	
 }
-
-

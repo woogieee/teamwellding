@@ -308,4 +308,38 @@ public class WDDressService
 	}
 	
 	
+	//드레스 업체 수정
+	public int dressComUpdate(WDDress wdDress)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdDressDao.dressComUpdate(wdDress);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] dressComUpdate Exception", e);
+		}
+		
+		return count;
+	}
+	
+	//드레스 업체 수정
+	public int dressUpdate(WDDress wdDress)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdDressDao.dressUpdate(wdDress);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] dressUpdate Exception", e);
+		}
+		
+		return count;
+	}
+	
 }

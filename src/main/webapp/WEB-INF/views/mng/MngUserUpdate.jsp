@@ -83,6 +83,14 @@ function fn_userUpdate()
       return;
    }
    
+   //닉네임
+   if(icia.common.isEmpty($("#userNickname").val()))
+   {
+      alert("닉네임을 입력하세요.");
+      $("#userNickname").focus();
+      return;
+   }
+   
    if(!fn_validateEmail($("#userEmail").val()))
    {
       //정규표현식이 맞지 않을떄
@@ -189,7 +197,7 @@ function fn_idPwdCheck(val)
                   </td>
                   <th scope="row">닉네임</th>
                   <td>
-                     <input type="text" id="userNickname" name="userNickname" value="${wdAdminUser.userNickname}" style="font-size:1rem;;" maxlength="50" placeholder="이메일" />
+                     <input type="text" id="userNickname" name="userNickname" value="${wdAdminUser.userNickname}" style="font-size:1rem;;" maxlength="50" placeholder="닉네임" />
                   </td>
                </tr>
                <tr>
