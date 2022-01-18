@@ -61,6 +61,11 @@ body.dark-theme a { }
 body.dark-theme td,th {color: #333;}
 body.dark-theme .page-link.active
 {
+
+	   /* background: #f5a4aa!important;*/
+
+      /* background: #f5a4aa!important;*/
+
       /* background: #f5a4aa!important;*/
 }
 </style>
@@ -287,6 +292,26 @@ body.dark-theme .page-link.active
            $('html').css("overflow","auto");
          }  
    });
+     //메이크업
+         $(".makeupUpdate").colorbox({
+               iframe:true, 
+               innerWidth:1235,
+               innerHeight:600,
+               scrolling:false,
+               onComplete:function()
+               {
+                  $("#colorbox").css("width", "1235px");
+                  $("#colorbox").css("height", "600px");
+                  $("#colorbox").css("border-radius", "10px");
+                  
+                  $('html').css("overflow","hidden");
+               } , 
+               onClosed: function()
+   	          {
+   	            $('html').css("overflow","auto");
+   	          }  
+         });
+     
     
      if(hsdmCheck == 1){
          document.getElementById('id1').classList.remove('sel');
@@ -718,45 +743,44 @@ function classChange(id){
          </div>
       </div>
       <!-- 드레스 끝 -->
+
+     <!-- 메이크업 시작 -->
+      <div class="col-lg-12" width="100%">
+
     <!-- 메이크업 시작 -->
     <div class="col-lg-12" width="100%">
+
       <div id="makeup">
          <ul>
             <li class="wdhth">
-               <div class="wdhtitle" style="width:13%;"><p>메이크업샵 이름</p></div><!-- mName -->
-               <div class="wdhtitle" style="width:18%;"><p>주소</p></div><!-- mLocation -->
-               <div class="wdhtitle" style="width:12%;"><p>전화번호</p></div><!-- mNumber -->
+               <div class="wdhtitle" style="width:17%;"><p>메이크업샵 이름</p></div><!-- mName -->
+               <div class="wdhtitle" style="width:20%;"><p>주소</p></div><!-- mLocation -->
+               <div class="wdhtitle" style="width:11%;"><p>전화번호</p></div><!-- mNumber -->
                <div class="wdhtitle" style="width:8%;"><p>대표이미지명</p></div><!-- mImgName -->
-               <div class="wdhtitle" style="width:10%;"><p>기본가격</p></div><!-- mPrice -->
+               <div class="wdhtitle" style="width:8%;"><p>기본가격</p></div><!-- mPrice -->
                <div class="wdhtitle" style="width:24%;"><p>설명</p></div><!-- mContent -->
-               <div class="wdhtitle" style="width:9%;"><p>추가인원당 가격</p></div><!-- mPlus -->
+               <div class="wdhtitle" style="width:5%;"><p>추가인원당 가격</p></div><!-- mPlus -->
                <div class="wdhtitle" style="width:5%;"><p>할인율</p></div><!-- mDiscount -->
             </li>
             <c:forEach var="makeupList" items="${mList}" varStatus="status">
             <li class="wdhtd">
-               <div class="wdhcon" style="width:13%;"><a href="/mng/MakeupUpdate?mName=${makeupList.mName }" name="makeupUpdate" class="makeupUpdate">${makeupList.mName}</a></div>
-               <div class="wdhcon" style="width:18%;"><p>${makeupList.mLocation }</p></div>
-               <div class="wdhcon" style="width:12%;"><p>${makeupList.mNumber }</p></div>
+
+               <div class="wdhcon" style="width:17%;font-weight:800; font-size: 14px;"><a href="/mng/MngMakeupUpdate?mCode=${makeupList.mCode}" name="makeupUpdate" class="makeupUpdate">${makeupList.mName}</a></div>
+
+            
+
+               <div class="wdhcon" style="width:20%;"><p>${makeupList.mLocation }</p></div>
+               <div class="wdhcon" style="width:11%;"><p>${makeupList.mNumber }</p></div>
                <div class="wdhcon" style="width:8%;"><p>${makeupList.mImgName }</p></div>
-               <div class="wdhcon" style="width:10%;"><p>${makeupList.mPrice }</p></div>
+               <div class="wdhcon" style="width:8%;"><p>${makeupList.mPrice }</p></div>
                <div class="wdhcon" style="width:24%;"><p>${makeupList.mContent }</p></div>
-               <div class="wdhcon" style="width:9%;"><p>${makeupList.mPlus }</p></div>
+               <div class="wdhcon" style="width:5%;"><p>${makeupList.mPlus }</p></div>
                <div class="wdhcon" style="width:5%;"><p>${makeupList.mDiscount }</p></div>
             </li>
             </c:forEach>
          </ul>
 
-      <div class="row">
-            <div class="col-lg-12">
-                 <div class="ticket-item2 makeup_modal" href="/mng/plusMakeup">
-                    <div class="down-content2" style="text-align: right; margin-right: 30px;">
-                        <div class="main-dark-button">
-                            <a href="/mng/plusMakeup" class="makeup_modal" >메이크업 추가</a>
-                        </div>    
-                     </div>
-                </div>
-             </div>
-		</div>
+     
 
 
          <div class="row">
@@ -788,7 +812,45 @@ function classChange(id){
                </ul>
                   </div>
               </div>
+
+              
+            <div class="col-lg-1">
+               <div>
+            <div class="col-lg-12" style="text-align: right;">
+               <div>
+                    <div class="ticket-item2 gosu_modal" href="/mng/plusMakeup">
+                        <div class="down-content2">
+                            <div class="main-dark-button btn_go wookhall" style="display: inline-block; margin-top: 0;">
+                                <a href="/mng/plusMakeup" class="studio_modal" style="width: 85px;" >메이크업 추가</a>
+                            </div>    
+                         </div>
+                    </div>
+               </div>
+            </div>
+		</div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+           </div>
+            <div class="col-lg-1">
+               <div>
+                  <form id="subscribe" action="" method="get">
+                     <div class="row" style="width: 100%;">
+                        <div class="col-lg-12">
+                              
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+           </div>
+              
+      </div>
+
          </div>   
+
       </div>
    </div>
       <!-- 메이크업 끝 -->

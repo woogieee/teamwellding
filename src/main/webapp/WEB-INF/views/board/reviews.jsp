@@ -19,6 +19,7 @@ $(document).ready(function(){
    });
    
    $("#btnReviewWrite").on("click", function(){
+	  
       document.bbsForm.RSeq.value = "";
       var form = $("#bbsForm")[0];
       var formData = new FormData(form);
