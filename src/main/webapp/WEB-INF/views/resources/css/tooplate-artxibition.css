@@ -1169,6 +1169,7 @@ banner
    height: 600px;
    overflow: hidden;
    transition: all 0.5s linear;
+   border-radius: 17px;
 }
 
 .sdmimg:hover img
@@ -5856,7 +5857,7 @@ responsive
 {
 	text-align: center;
 	/*border-right: 1px solid lightgray;*/
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: 600;
 	color: #555;
 	padding: 10px;
@@ -6738,4 +6739,36 @@ textarea::placeholder {
     letter-spacing: 0.5px;
 }
 
+.rezview
+{
+	font-size: 15px;
+	font-weight: 500;
+	display: inline-block;
+    margin-right: 10px;
+    color: #333;
+}
+
+.rez_btn
+{
+	border: none;
+    font-size: 12px;
+    padding: 5px 8px;
+    font-weight: 600;
+    background: #eb5e42;
+    color: #fff;
+    border-radius: 5px;
+    letter-spacing: -0.5px;
+}
+
+.rez_btn2
+{
+	border: none;
+    font-size: 12px;
+    padding: 5px 8px;
+    font-weight: 600;
+    background: #ccc;
+    color: #fff;
+    border-radius: 5px;
+    letter-spacing: -0.5px;
+}
 /*보현추가 끝*/
