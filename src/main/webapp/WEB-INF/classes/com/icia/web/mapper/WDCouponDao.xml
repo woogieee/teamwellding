@@ -196,4 +196,19 @@ AND
     RNUM <![CDATA[<=]]> 10
 </select>    
 <!-- 쿠폰 조회, 사용가능한 상태나 사용한 상태에 따라서 다르게 불러올 수 있는 쿼리(욱채꺼 수정 ㅡ_ㅡ;;) -->
+
+<!-- 신규 회원가입 웰컴 쿠폰 시작 -->
+
+<insert id="couponInsert" parameterType="string">
+ INSERT INTO WD_COUPON (
+    USER_ID,
+    C_CODE,
+    C_STATUS
+) VALUES (
+    #{value},
+    '111',
+    'N'
+)
+</insert>
+<!-- 신규 회원가입 웰컴 쿠폰 끝 -->
 </mapper>
