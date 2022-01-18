@@ -171,7 +171,12 @@ function fn_list(curPage)
 											<span>번호</span>
 										</div>
 									</div>
-									<div class="col-lg-6" style="text-align: center;">
+									<div class="col-lg-2" style="text-align: center;">
+										<div class="divB_tb">
+											<span>선택 홀</span>
+										</div>
+									</div>
+									<div class="col-lg-4" style="text-align: center;">
 										<div class="divB_tb">
 											<span>제목</span>
 										</div>
@@ -202,8 +207,13 @@ function fn_list(curPage)
 	                                                <span>${review.RSeq}</span>
 	                                            </div>
 	                                        </div>
+	                                        <div class="col-lg-2" style="text-align: left;">
+	                                            <div class="divB_tb2 tbstyle5">
+	                                            	<span>${hallName[status.index] }</span>
+	                                            </div>
+	                                        </div>
 	                                        
-	                                        <div class="col-lg-6" style="text-align: left;">
+	                                        <div class="col-lg-4" style="text-align: left;">
 	                                            <div class="divB_tb2 tbstyle5">
 	                                            	<span>${review.RTitle}</span>
 	                                            </div>

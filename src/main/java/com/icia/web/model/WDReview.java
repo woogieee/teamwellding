@@ -30,6 +30,18 @@ public class WDReview implements Serializable{
 	
 	private String today;	//오늘 날짜 체크
 	
+	private String whCode;
+	private String hCode;
+	private String sCode;
+	private String dcCode;
+	private String dNo;
+	private String mCode;
+	
+	private String hName;
+	private String sName;
+	private String dName;
+	private String mName;
+	
 	public WDReview() {
 		  RSeq = 0;
 		  rezNo = "";
@@ -48,8 +60,114 @@ public class WDReview implements Serializable{
 		endRow = 0;
 		today = "";
 		reviewStatus = "";
+		
+		 whCode = "없음";
+		 hCode = "없음";
+		 sCode = "없음";
+		 dcCode = "없음";
+		 dNo = "없음";
+		 mCode = "없음";
+		
+		 hName = "없음";
+		 sName = "없음";
+		 dName = "없음";
+		 mName = "없음";
 	}
 		
+	public String getWhCode() {
+		return whCode;
+	}
+
+
+	public void setWhCode(String whCode) {
+		this.whCode = whCode;
+	}
+
+
+	public String gethCode() {
+		return hCode;
+	}
+
+
+	public void sethCode(String hCode) {
+		this.hCode = hCode;
+	}
+
+
+	public String getsCode() {
+		return sCode;
+	}
+
+
+	public void setsCode(String sCode) {
+		this.sCode = sCode;
+	}
+
+
+	public String getDcCode() {
+		return dcCode;
+	}
+
+
+	public void setDcCode(String dcCode) {
+		this.dcCode = dcCode;
+	}
+
+
+	public String getdNo() {
+		return dNo;
+	}
+
+
+	public void setdNo(String dNo) {
+		this.dNo = dNo;
+	}
+
+
+	public String getmCode() {
+		return mCode;
+	}
+
+
+	public void setmCode(String mCode) {
+		this.mCode = mCode;
+	}
+
+
+	public String gethName() {
+		return hName;
+	}
+	
+	public void sethName(String hName) {
+		this.hName = hName;
+	}
+
+	public String getsName() {
+		return sName;
+	}
+
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
+
+	public String getdName() {
+		return dName;
+	}
+
+	public void setdName(String dName) {
+		this.dName = dName;
+	}
+
+	public String getmName() {
+		return mName;
+	}
+
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+
+
+
 	public String getReviewStatus() {
 		return reviewStatus;
 	}

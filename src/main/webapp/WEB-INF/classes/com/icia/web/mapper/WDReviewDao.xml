@@ -16,6 +16,16 @@
         <result column="REZ_STATUS" property="rezStatus" />
         <result column="TODAY" property="today" />
         <result column="REVIEW_STATUS" property="reviewStatus" />
+        <result column="WH_CODE" property="whCode" />
+        <result column="H_CODE" property="hCode" />
+        <result column="S_CODE" property="sCode" />
+        <result column="DC_CODE" property="dcCode" />
+        <result column="D_NO" property="dNo" />
+        <result column="M_CODE" property="mCode" />
+        <result column="H_NAME" property="hName" />
+        <result column="S_NAME" property="sName" />
+        <result column="D_NAME" property="dName" />
+        <result column="M_NAME" property="mName" />
 </resultMap>
 <!-- 리뷰 resultMap 끝 -->
 
@@ -298,4 +308,92 @@ WHERE
         REZ_NO = #{value}
 </update>
 <!-- 리뷰 작성처리 -->
+
+<!-- 리뷰게시판 홀 이름 보여주기 쿼리문 -->
+<select id="hallNameList" resultType="string">
+SELECT
+    NVL(H_NAME, '없음') H_NAME
+FROM
+    WD_HALL A, WD_REZ B
+WHERE
+    A.WH_CODE = B.WH_CODE
+AND
+    A.H_CODE = B.H_CODE
+AND
+    B.REVIEW_STATUS = 'Y'
+</select>    
+<!-- 리뷰게시판 홀 이름 보여주기 쿼리문 -->  
+
+<!-- 리뷰인포 업체이름 불러오기 전 코드 부터 불러오기 -->
+<select id="reviewhsdmCodeSet" parameterType="com.icia.web.model.WDReview" resultMap="ReviewResultMap">
+SELECT
+    NVL(B.WH_CODE, '없음') WH_CODE,
+    NVL(B.H_CODE, '없음') H_CODE,
+    NVL(B.S_CODE, '없음') S_CODE,
+    NVL(B.DC_CODE, '없음') DC_CODE,
+    NVL(B.D_NO, '없음')  D_NO,
+    NVL(B.M_CODE, '없음') M_CODE
+FROM
+    WD_REVIEW A, WD_REZ B
+WHERE
+    A.REZ_NO = B.REZ_NO
+AND
+	A.REZ_NO = #{rezNo}
+</select>
+<!-- 리뷰인포 업체이름 불러오기 전 코드 부터 불러오기 -->
+
+<!-- 리뷰인포 홀 스 드 메 업체 이름 불러오기 -->
+<select id="reviewInfohsdmName" parameterType="com.icia.web.model.WDReview" resultMap="ReviewResultMap">
+SELECT
+<if test='whCode != null and !whCode.equals("없음") and hCode != null and !hCode.equals("없음")'>  
+    NVL(C.H_NAME, '없음') H_NAME,
+</if>
+<if test='sCode != null and !sCode.equals("없음")'>     
+    NVL(D.S_NAME, '없음') S_NAME,
+</if>
+<if test='dcCode != null and !dcCode.equals("없음") and dNo != null and !dNo.equals("없음")'> 
+    NVL(E.D_NAME, '없음') D_NAME,
+</if>    
+<if test='mCode != null and !mCode.equals("없음")'>     
+    NVL(F.M_NAME, '없음') M_NAME,
+</if>    
+    A.REZ_NO
+FROM
+    WD_REVIEW A, WD_REZ B
+<if test='whCode != null and !whCode.equals("없음") and hCode != null and !hCode.equals("없음")'>      
+    , WD_HALL C
+</if>    
+<if test='sCode != null and !sCode.equals("없음")'>         
+    , WD_STUDIO D
+</if>    
+<if test='dcCode != null and !dcCode.equals("없음") and dNo != null and !dNo.equals("없음")'>     
+    , WD_DRESS E
+</if>    
+<if test='mCode != null and !mCode.equals("없음")'>         
+    , WD_MAKEUP F
+</if>    
+WHERE
+    A.REZ_NO = B.REZ_NO
+<if test='whCode != null and !whCode.equals("없음") and hCode != null and !hCode.equals("없음")'>     
+AND
+    B.WH_CODE = C.WH_CODE
+AND
+    B.H_CODE = C.H_CODE
+</if>     
+<if test='sCode != null and !sCode.equals("없음")'>         
+AND
+    B.S_CODE = D.S_CODE
+</if>     
+<if test='dcCode != null and !dcCode.equals("없음") and dNo != null and !dNo.equals("없음")'>        
+AND
+    B.DC_CODE = E.DC_CODE
+AND
+    B.D_NO = E.D_NO
+</if>     
+<if test='mCode != null and !mCode.equals("없음")'>             
+AND
+    B.M_CODE = F.M_CODE
+</if>     
+</select>
+<!-- 리뷰인포 홀 스 드 메 업체 이름 불러오기 -->  
 </mapper>

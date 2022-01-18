@@ -147,7 +147,15 @@ $(document).ready(function(){
                <td style="width:20%; padding: 15px 20px;" class="text-right">
                   <div>${wdReview.regDate}</div>
                </td>
-            </tr>   
+            </tr> 
+            <tr>
+            	<td>
+            	홀 : ${hsdmName.hName }
+            	스튜디오 : ${hsdmName.sName }
+            	드레스 : ${hsdmName.dName }
+            	메이크업 : ${hsdmName.mName }
+            	</td>
+            <tr>  
 
          </thead>
          <tbody>

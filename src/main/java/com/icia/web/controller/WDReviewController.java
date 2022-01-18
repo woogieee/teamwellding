@@ -1,5 +1,6 @@
 package com.icia.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -79,6 +80,8 @@ public class WDReviewController {
         
         totalCount = wdReviewService.ReviewListCount(wdReview);
         
+        ArrayList<String> hallName = new ArrayList<String>();
+        
       logger.debug("[totalCount] = "+totalCount);
       
       if(totalCount > 0) {
@@ -89,9 +92,12 @@ public class WDReviewController {
          wdReview.setStartRow(paging.getStartRow());
          wdReview.setEndRow(paging.getEndRow());
          
+         hallName = wdReviewService.hallNameList();
          list = wdReviewService.ReviewList(wdReview);
 
       }
+      
+      model.addAttribute("hallName",hallName);
       model.addAttribute("list",list);
       model.addAttribute("searchValue", searchValue);
       model.addAttribute("curPage", curPage);
@@ -243,6 +249,7 @@ public class WDReviewController {
       String boardMe = "N";
       WDReview wdReview = null;
       
+      WDReview hsdmName = new WDReview();      
       if(RSeq > 0) 
       {
          wdReview = wdReviewService.ReviewSelect(RSeq);         
@@ -251,8 +258,17 @@ public class WDReviewController {
          {
             boardMe = "Y";
          }      
-         
       }
+      
+      hsdmName.setRezNo(wdReview.getRezNo());
+      
+      hsdmName = wdReviewService.reviewhsdmCodeSet(hsdmName);
+      System.out.println("홀 코드 : "+hsdmName.gethCode());
+      System.out.println("스 코드 : "+hsdmName.getsCode());
+      System.out.println("드 코드 : "+hsdmName.getDcCode());
+      System.out.println("메 코드 : "+hsdmName.getmCode());
+      hsdmName = wdReviewService.reviewInfohsdmName(hsdmName);
+      System.out.println(hsdmName.gethName());
       
       if(wdReview.getReviewFile() != null) 
       {
@@ -262,6 +278,7 @@ public class WDReviewController {
       
       WDUser wdUser = wdUserService.userSelect(cookieUserId);
       
+      model.addAttribute("hsdmName",hsdmName);
       model.addAttribute("wdUser", wdUser);
       model.addAttribute("cookieUserId",cookieUserId);
       model.addAttribute("RSeq", RSeq);
