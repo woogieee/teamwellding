@@ -276,4 +276,20 @@ public class WDReviewService {
 			}
 			return status;
 		}
+		
+		//리뷰 작성처리
+		public int reviewCPT(String rezNo) 
+		{
+			int count = 0;
+			
+			try {
+				count = wdReviewDao.reviewCPT(rezNo);
+			}
+			catch(Exception e)
+			{
+				logger.error("[WDReviewService] reviewCPT Exception",e);
+			}
+			return count;
+			
+		}
 }

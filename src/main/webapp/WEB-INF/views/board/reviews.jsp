@@ -18,7 +18,7 @@ $(document).ready(function(){
       document.bbsForm.submit();
    });
    
-   $("#btnReviewWrite").on("click", function(){
+  /* $("#btnReviewWrite").on("click", function(){
       document.bbsForm.RSeq.value = "";
       var form = $("#bbsForm")[0];
       var formData = new FormData(form);
@@ -67,7 +67,7 @@ $(document).ready(function(){
                   icia.common.error(error);
                }
             });
-   });
+   });*/
 
 });
 
@@ -239,10 +239,6 @@ function fn_list(curPage)
 												<div class="col-lg-3"></div>
 												<div class="col-lg-6"></div>
 												<div class="col-lg-3">
-
-													<button type="button" id="btnReviewWrite"
-														class="main-dark-button3">글쓰기</button>
-
 												</div>
 											</div>
 										</div>
