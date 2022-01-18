@@ -66,10 +66,6 @@ function fn_studioDelete()
 				sCode: $("#studioCode").val()
 			},
 			datatype: "JSON",
-			beforeSend: function(xhr)
-			{
-				xhr.setRequestHeader("AJAX", "true");
-			},
 			success: function(response)
 			{
 				if(response.code == 0)
