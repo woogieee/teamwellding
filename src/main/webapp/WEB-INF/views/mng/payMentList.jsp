@@ -159,6 +159,7 @@ function fn_confirm()
 	            </select>
 	            <select id="searchType" name="searchType" style="font-size: 1rem; width: 8rem; height: 3rem; margin-left:.5rem; ">
 	               <option value="1" <c:if test="${searchType eq '1'}">selected</c:if>>회원아이디</option>
+	               <option value="2" <c:if test="${searchType eq '2'}">selected</c:if>>예약번호</option>
 	            </select>
 	            <input name="searchValue" id="searchValue" class="form-control me-sm-2" style="width:15rem; margin-left:.5rem;" type="text" value="${searchValue}">
 	            <a class="btn my-2 my-sm-0" href="javascript:void(0)" onclick="fn_search()" style="width:7rem; margin-left:.5rem; background-color: rgb(239, 239, 239); border-color:rgb(118, 118, 118);">조회</a>

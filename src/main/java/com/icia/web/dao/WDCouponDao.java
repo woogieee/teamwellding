@@ -21,6 +21,8 @@ public interface WDCouponDao {
 	
 	//쿠폰 조회, 사용가능한 상태나 사용한 상태에 따라서 다르게 불러올 수 있는 쿼리(욱채꺼 수정 ㅡ_ㅡ;;)
 	public List<WDCoupon> couponList(WDCoupon wdCoupon);
+	
+	public int couponInsert(String userId);
 
 }
 

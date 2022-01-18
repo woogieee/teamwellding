@@ -238,10 +238,18 @@ WHERE
 AND	
 	REZ_STATUS = #{rezStatus}
 </if>
-<if test='userId != null and userId != ""'>	
+<if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
+   <choose>
+      <when test='searchType == "1"'>
 AND
-    USER_ID = '%' || #{searchValue} || '%'
-</if>
+    USER_ID LIKE '%' || #{searchValue} || '%'
+      </when>
+      <when test='searchType == "2"'>
+AND
+	REZ_NO = #{searchValue}
+	  </when>
+   </choose>
+</if>   
 </select>
 
 <!-- 해당 유저의 예약 내역이 존재하는지 확인 시작 -->
@@ -623,6 +631,10 @@ FROM
 		<when test='searchType == "1"'>
 				AND
    					 USER_ID LIKE '%' || #{searchValue} || '%'
+   		</when>
+   		<when test='searchType == "2"'>
+				AND
+   					 REZ_NO = #{searchValue}
    		</when>
    	</choose>				 
     </if>

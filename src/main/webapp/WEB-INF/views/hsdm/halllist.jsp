@@ -20,7 +20,12 @@
 			
 			if(wDate.length != 0 && wDate.length != 8)
 			{
-				alert("날짜로 검색하시려면 년,월,일을 전부 입력해주세요.");
+				/*alert("날짜로 검색하시려면 년,월,일을 전부 입력해주세요.");*/
+				Swal.fire({ 
+					icon: 'warning', // Alert 타입 
+					//title: '검색오류입니다.', // Alert 제목
+					text: '날짜로 검색하기를 원하신다면 년, 월, 일을 빠짐없이 전부 입력해주세요.', // Alert 내용
+				});
 				return;
 			}
 		   
@@ -89,7 +94,7 @@
                             <div class="row">
                                 <div class="col-lg-5">
                                     <div class="search-heading">
-                                    	<h4>결혼예정일</h4>
+                                    	<h4 class="let_sp">결혼예정일<span class="span_design"></span></h4>
                                     </div>
                                     <div class="search-heading">
                                         <h4> 웨딩홀 이름 또는 홀 이름으로 검색해 보세요.</h4>

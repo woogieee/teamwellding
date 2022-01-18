@@ -137,7 +137,7 @@ function reviewWrite(rezNo){
                         <table class="table tableWish">
                         <c:choose>
                         <c:when test="${!empty list}">
-                            <tr style="border-top: 3px solid #444;">
+                            <tr style="border-top: 3px solid #444; background: #efefef;">
                                 <th>예약번호</th>
                                 <th>예약날짜</th>
                                 <th>가격</th>
@@ -146,43 +146,47 @@ function reviewWrite(rezNo){
                            <c:forEach var="wdRez" items="${list}" varStatus="status">
                             <tr style="width: 100%;">
                                <!-- 예약번호 -->
-                                <th>
+                                <td>
                                 <div class="col-lg-12" style="text-align:center">
                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})">
                                         <p class="rezview"><c:out value="${wdRez.rezNo}" /></p>
                                     </a>
                                 </div>
-                                </th>
+                                </td>
                                 <!-- 예약날짜 -->
 
-                                  <th>
+                                  <td>
                                   <div class="col-lg-12" style="text-align:center">
-                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})"><p class="rezview">${wdRez.rezDate}</p></a>
+                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})"><p class="rezview" style="color:#555;">${wdRez.rezDate}</p></a>
                                   </div>
-                                  </th>
+                                  </td>
                                   <!-- 금액 -->
-                                <th>
-                                <div class="col-lg-12" style="text-align:center">
-                                   <p class="rezview"><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" /></p>
-                                   <!-- 쿠폰 할인된 금액이 아닌데..? -->
-                                   <button class="rez_btn" onclick="reviewWrite('${wdRez.rezNo}')">글쓰기</button>
+                                <td>
+                                <div class="col-lg-12" style="text-align:center; width: 100%;">
+                                	<div style="width: 50%; float: left; text-align: right;">
+	                                   	<p class="rezview"><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원</p>
+	                               	</div>
+	                               	<div style="width: 50%; float: left; text-align: left; padding-left: 5px;">
+	                                   	<button class="rez_btn">리뷰쓰기</button>
+	                                   	<button class="rez_btn2">작성완료</button>
+	                                </div> 
                                 </div>  
-                                </th>  
+                                </td>  
                               </tr>                         
-                          </c:forEach>
-                          </c:when>
+                       	</c:forEach>
+                       	</c:when>
                         <c:when test="${empty list}">
                         <tr>
-                           <th colspan="3">
+                           <td colspan="3">
                              <div style="text-align: center;">
-                                <img src="../resources/images/icons/exclamation.png" style="width:100px; margin:30px;"/>
-                                <p style="padding-bottom:30px;">결제내역이 없습니다. </p>
-                             </div>
-                           </th>
+                             	<img src="../resources/images/icons/exclamation.png" style="width:100px; margin:30px;"/>
+                       			<p style="padding-bottom:30px;">결제내역이 없습니다. </p>
+                       		</div>
+                           </td>
                         </tr>
-                        </c:when>                          
+                     	</c:when>                          
                      </c:choose>
-                      </table>
+                   	</table>
 
                </div>
                
@@ -191,12 +195,14 @@ function reviewWrite(rezNo){
             </div>
          </div>         
       </div>
+
    		<form name="reviewForm" id="reviewForm">
          <input type="hidden" name="FormRezNo" id="FormRezNo" value="" />
         </form>
          <form name="bbsForm" id="bbsForm" method="post" action="/user/payListView">
             <input type="hidden" name="rezNo" value="" />
          </form>
+
    </div>
 
       <%@ include file="/WEB-INF/views/include/footer.jsp" %>

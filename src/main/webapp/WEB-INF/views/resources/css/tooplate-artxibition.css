@@ -1169,6 +1169,7 @@ banner
    height: 600px;
    overflow: hidden;
    transition: all 0.5s linear;
+   border-radius: 17px;
 }
 
 .sdmimg:hover img
@@ -5856,7 +5857,7 @@ responsive
 {
 	text-align: center;
 	/*border-right: 1px solid lightgray;*/
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: 600;
 	color: #555;
 	padding: 10px;
@@ -6118,6 +6119,38 @@ responsive
     border-right: 5px solid #fff; /* 선 두께 */
     transform: rotate(45deg); /* 각도 */
 }
+
+/*욱채 인덱스 슬라이더*/
+.slick-prev3.slick-arrow{ /* prev 이전 */
+	left: 0%!important;
+	outline: none
+    
+}
+.slick-next3.slick-arrow{ /* next 다음 */
+	right: 3%!important;
+	outline: none
+}
+
+.slick-prev3::after {
+    position: absolute;
+    content: '';
+    width: 36px; /* 사이즈 */
+    height: 36px; /* 사이즈 */
+    border-top: 5px solid #ffc0c8; /* 선 두께 */
+    border-right: 5px solid #ffc0c8; /* 선 두께 */
+    transform: rotate(225deg); /* 각도 */
+}
+
+.slick-next3::after {
+    position: absolute;
+    content: '';
+    width: 36px; /* 사이즈 */
+    height: 36px; /* 사이즈 */
+    border-top: 5px solid #ffc0c8; /* 선 두께 */
+    border-right: 5px solid #ffc0c8; /* 선 두께 */
+    transform: rotate(45deg); /* 각도 */
+}
+/*욱채 인덱스 슬라이더*/
 
 /** 모달띄운거 **/
 .ticket-details-page {
@@ -6706,4 +6739,36 @@ textarea::placeholder {
     letter-spacing: 0.5px;
 }
 
+.rezview
+{
+	font-size: 15px;
+	font-weight: 500;
+	display: inline-block;
+    margin-right: 10px;
+    color: #333;
+}
+
+.rez_btn
+{
+	border: none;
+    font-size: 12px;
+    padding: 5px 8px;
+    font-weight: 600;
+    background: #eb5e42;
+    color: #fff;
+    border-radius: 5px;
+    letter-spacing: -0.5px;
+}
+
+.rez_btn2
+{
+	border: none;
+    font-size: 12px;
+    padding: 5px 8px;
+    font-weight: 600;
+    background: #ccc;
+    color: #fff;
+    border-radius: 5px;
+    letter-spacing: -0.5px;
+}
 /*보현추가 끝*/

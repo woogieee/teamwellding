@@ -19,14 +19,22 @@ $(document).ready(function(){
 			var emailtest = $("#email").val();
 
 			if ($.trim(emailtest).length == 0) {
-				alert('이메일을 입력해주세요');
+				//alert('이메일을 입력해주세요');
+				Swal.fire({ 
+					icon: 'warning',
+					text: '이메일을 입력하세요.'
+				});
 				$("#email").val("");
 				$("#email").focus();
 				return;
 			}
 
 			if (!fn_validateEmail(emailtest)) {
-				alert("이메일을 제대로 입력해주세요.");
+				//alert("이메일을 제대로 입력해주세요.");
+				Swal.fire({ 
+					icon: 'error',
+					text: '이메일을 제대로 입력해주세요.'
+				});
 				$("#email").val("");
 				$("#email").focus();
 				return;
@@ -240,7 +248,8 @@ $(document).ready(function(){
 				gender : $("#gender").val(),
 				nickname : $("#nickname").val(),
 				email : $("#email").val(),
-				uCheck : $("#checkinput").val()
+				uCheck : $("#checkinput").val(),
+				
 			},
 			datatype : "JSON",
 			beforeSend : function(xhr) {
@@ -252,6 +261,7 @@ $(document).ready(function(){
 				{
 					alert("회원가입이 완료되었습니다.");
 					location.href = "/board/login";
+					
 				} 
 				else if (response.code == 400) 
 				{
@@ -283,9 +293,14 @@ $(document).ready(function(){
 
 	$("#btnCC").on("click", function() 
 	{
-		alert("회원가입이 취소되었습니다.");
+		//alert("회원가입이 취소되었습니다.");
+		Swal.fire({ 
+			icon: 'error',
+			text: '회원가입이 취소되었습니다.'
+		});
 		location.href = "/";
 	});
+	
 });
 
 function imnotok() {
@@ -479,7 +494,7 @@ function fn_validateEmail(value) {
 				<div class="button_area">
 					<button class="btn_type1" id="btnReg">가입하기</button>
 					<button class="btn_type2" id="btnCC">취소</button>
-					<input type="hidden" id="pwd" name="pwd" value="" />
+					
 				</div>
 			</dl>
 		</div>

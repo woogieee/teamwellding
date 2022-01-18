@@ -8,7 +8,11 @@
 $(document).ready(function(){
 	<c:choose>
 	   <c:when test="${empty wdReview}">
-	   alert("해당게시물이 존재하지 않습니다.");
+	   //alert("해당게시물이 존재하지 않습니다.");
+		Swal.fire({ 
+			icon: 'question',
+			text: '해당 게시물이 존재하지 않습니다.'
+		});
 	   location.href = "/board/reviews";
 	   </c:when>
 
@@ -22,7 +26,11 @@ $(document).ready(function(){
 	      if($.trim($("#bTitle").val()).length <= 0)
 	      {
 	         //0이라는 말임
-	         alert("제목을 입력하세요.");
+	         //alert("제목을 입력하세요.");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '제목을 입력하세요.'
+			});
 	         $("#bTitle").val("");
 	         $("#bTitle").focus();
 	         $("#btnUpdate").prop("disabled",false);
@@ -42,7 +50,11 @@ $(document).ready(function(){
 	      
 	      if($.trim($("#bContent").val()).length <= 0)
 	      {
-	         alert("내용을 입력하세요");
+	        //alert("내용을 입력하세요");
+			Swal.fire({ 
+				icon: 'warning',
+				text: '내용을 입력하세요.'
+			});
 	         $("#bContent").val("");
 	         $("#bContent").focus();
 	         $("#btnUpdate").prop("disabled",false);
