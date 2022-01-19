@@ -56,44 +56,28 @@ function fn_userUpdate()
 {
    if(icia.common.isEmpty($("#makeupName").val()))
    {
-      //alert("메이크업 이름을 입력해주세요");
-	  Swal.fire({ 
-		  icon: 'warning',
-		  text: '메이크업 이름을 입력해주세요.'
-	  });
+      alert("메이크업 이름을 입력해주세요");
       $("#makeupName").focus();
       return;
    }
    
    if(icia.common.isEmpty($("#makeupLocation").val()))
    {
-      //alert("메이크업 주소를 입력해주세요");
-	  Swal.fire({ 
-		  icon: 'warning',
-		  text: '메이크업 주소를 입력해주세요.'
-	  });
+      alert("메이크업 주소를 입력해주세요");
       $("#makeupLocation").focus();
       return;
    }
    
    if(icia.common.isEmpty($("#makeupnumber").val()))
    {
-      //alert("메이크업 번호를 입력해주세요");
-	  Swal.fire({ 
-		  icon: 'warning',
-		  text: '메이크업 번호를 입력해주세요.'
-	  });
+      alert("메이크업 번호를 입력해주세요");
       $("#makeupnumber").focus();
       return;
    }
    
    if(icia.common.isEmpty($("#makeupprice").val()))
    {
-     // alert("메이크업 금액을 입력해주세요");
-	  Swal.fire({ 
-		  icon: 'warning',
-		  text: '메이크업 금액을 입력해주세요.'
-	  });
+      alert("메이크업 금액을 입력해주세요");
       $("#makeupprice").focus();
       return;
    }
@@ -102,31 +86,19 @@ function fn_userUpdate()
  
    if(icia.common.isEmpty($("#makeupContent").val()))
    {
-      //alert("메이크업 설명을 입력해주세요.");
-	  Swal.fire({ 
-		  icon: 'warning',
-		  text: '메이크업 설명을 입력해주세요.'
-	  });
+      alert("메이크업 설명을 입력해주세요.");
       $("#makeupContent").focus();
       return;
    }
    if(icia.common.isEmpty($("#makeupPlus").val()))
    {
-     // alert("추가 인원당 금액을 입력해주세요");
-	  Swal.fire({ 
-		  icon: 'warning',
-		  text: '메이크업 추가 인원당 금액을 입력해주세요.'
-	  });
+      alert("추가 인원당 금액을 입력해주세요");
       $("#makeupPlus").focus();
       return;
    }
    if(icia.common.isEmpty($("#makeupdiscount").val()))
    {
-      //alert("할인율을 입력해주세요");
-	  Swal.fire({ 
-		  icon: 'warning',
-		  text: '할인율을 입력해주세요.'
-	  });
+      alert("할인율을 입력해주세요");
       $("#makeupdiscount").focus();
       return;
    }

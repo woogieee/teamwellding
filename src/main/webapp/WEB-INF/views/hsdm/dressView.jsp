@@ -23,7 +23,7 @@ $(document).ready(function(){
 	});
 	
 	//드레스 담기 버튼 시작
-	$("#chae").on("click",function(){
+/*	$("#chae").on("click",function(){
 		if(confirm("해당 드레스를 장바구니에 담으시겠습니까?"))
 		{
 			//ajax통신 시작
@@ -78,6 +78,151 @@ $(document).ready(function(){
 		}
 		
 	});
+*/	
+	$("#chae").on("click",function(){
+		Swal.fire({
+			   title: '드레스 선택 완료!',
+			   text: '해당 드레스를 장바구니에 담으시겠습니까?',
+			   icon: 'success',
+			   
+			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+			   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+			   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+			   confirmButtonText: '장바구니에 담기', // confirm 버튼 텍스트 지정
+			   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+			   
+			   reverseButtons: false, // 버튼 순서 거꾸로
+			   
+			}).then(result => {
+				   // 만약 Promise리턴을 받으면,
+				   if (result.isConfirmed) 
+				   { // 만약 모달창에서 confirm 버튼을 눌렀다면
+						//ajax통신 시작
+						$.ajax({
+						type:"POST",
+						url:"/hsdm/dressRezProc",
+						data:
+						{
+							dcCode: $("#dcCode").val(),
+							dNo: $("#dNo").val(),
+							wDate: $("#wDate").val()
+						},
+						datatype:"JSON",
+						beforeSend:function(xhr){
+							xhr.setRequestHeader("AJAX", "true");
+						},
+						success:function(response){
+							if(response.code == 0)
+							{
+								//alert("장바구니에 해당 상품을 담았습니다.");
+								//if(confirm("장바구니로 이동하시겠습니까?"))
+								//{
+								//	location.href = "/user/wishlist";
+								//}
+								Swal.fire({ 
+									icon: 'success',
+									text: '장바구니에 해당 상품을 담았습니다.'
+								}).then((result) => {
+									if (result.isConfirmed) 
+									{ 
+										Swal.fire({ 
+											icon: 'question',
+											text: '장바구니로 이동하시겠습니까?',
+													
+										    showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+										    confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+										    cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+										    confirmButtonText: '장바구니로 이동', // confirm 버튼 텍스트 지정
+										    cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+										    reverseButtons: false // 버튼 순서 거꾸로
+										}).then((result) => {
+											if (result.isConfirmed) 
+											{
+												location.href = "/user/wishlist";
+											}
+											else if (result.isDismissed) 
+										    { // 만약 모달창에서 cancel 버튼을 눌렀다면
+												return;
+										    }
+										});
+									}
+								});
+							}
+							else if(response.code == 403)
+							{
+								//alert("서버와의 연결 상태를 확인해주세요.");
+								Swal.fire({ 
+									icon: 'error',
+									text: '서버와의 연결 상태를 확인해주세요.'
+								}).then(function(){
+									return;
+								});
+							}
+							else if(response.code == 502)
+							{
+								//alert("장바구니에 이미 다른 드레스가 담겨 있습니다.");
+								//if(confirm("장바구니로 이동하시겠습니까?"))
+								//{
+								//	location.href = "/user/wishlist";
+								//}
+								Swal.fire({ 
+									icon: 'warning',
+									text: '장바구니에 이미 다른 드레스가 담겨 있습니다.'
+								}).then((result) => {
+									if (result.isConfirmed) 
+									{ 
+										Swal.fire({ 
+											icon: 'question',
+											text: '장바구니로 이동하시겠습니까?',
+													
+										    showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+										    confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+										    cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+										    confirmButtonText: '장바구니로 이동', // confirm 버튼 텍스트 지정
+										    cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+										    reverseButtons: false // 버튼 순서 거꾸로
+										}).then((result) => {
+											if (result.isConfirmed) 
+											{
+												location.href = "/user/wishlist";
+											}
+											else if (result.isDismissed) 
+										    { // 만약 모달창에서 cancel 버튼을 눌렀다면
+												return;
+										    }
+										});
+									}
+								});
+							}
+							else
+							{
+								//alert("장바구니에 상품을 담는 중 오류가 발생했습니다.");
+								Swal.fire({ 
+									icon: 'error',
+									text: '장바구니에 상품을 담는 중 오류가 발생했습니다.'
+								}).then(function(){
+									return;
+								});
+							}
+						},
+						complete:function(data){
+							icia.common.log(data);
+						},
+						error:function(xhr, status, error)
+						{
+							icia.common.error(error);
+						}
+						});
+						//ajax통신 종료
+				   }
+				   else if (result.isDismissed) 
+				   { // 만약 모달창에서 cancel 버튼을 눌렀다면
+						return;
+				   }
+			});
+	});
+
+	
 	//드레스 담기 버튼 종료
 	
 	$(".banner").on("click", function(){
