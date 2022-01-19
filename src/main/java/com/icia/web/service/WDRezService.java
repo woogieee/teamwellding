@@ -601,12 +601,11 @@ public class WDRezService {
 		
 		return count;
 	}
-	
-	public int MarrydateUpdate(WDRez wdRez)
-	{
+	//장바구니 결혼날짜
+	public int MarrydateUpdate(WDRez wdRez) {
 		int count = 0;
 		
-		try
+		try 
 		{
 			count = wdRezDao.MarrydateUpdate(wdRez);
 		}
@@ -617,4 +616,6 @@ public class WDRezService {
 		
 		return count;
 	}
+	
+	
 }

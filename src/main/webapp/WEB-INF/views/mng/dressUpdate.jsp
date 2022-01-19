@@ -55,33 +55,21 @@ function dressUpdate()
 {
 	if(icia.common.isEmpty($("#dcName").val()))
 	{
-		//alert("드레스 업체명을 입력해주세요");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '드레스 업체명을 입력해주세요.'
-		});
+		alert("드레스 업체명을 입력해주세요");
 		$("#dcName").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#dName").val()))
 	{
-		//alert("드레스명을 입력해주세요");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '드레스명을 입력해주세요.'
-		});
+		alert("드레스명을 입력해주세요");
 		$("#dName").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#dContent").val()))
 	{
-		//alert("드레스 설명을 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '드레스 설명을 입력해주세요.'
-		});
+		alert("드레스 설명을 입력해주세요.");
 		$("#dContent").focus();
 		return;
 	}
