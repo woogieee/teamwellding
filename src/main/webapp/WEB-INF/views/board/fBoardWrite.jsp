@@ -75,11 +75,17 @@ $(document).ready(function(){
          {
             if(response.code == 0)
             {
-               alert("게시물이 등록되었습니다.");
+               //alert("게시물이 등록되었습니다.");
                //리스트 페이지로 돌아갈 때는 가져온 값을 가져가야 하지만,
                //글쓰기를 눌렀을 때는, 가져온 값을 가져가면 내가 쓴 글이 안보임
                //그래서 넣어줘서 보내지 않음
-               location.href = "/board/fBoard";
+               //location.href = "/board/fBoard";
+				Swal.fire({ 
+					icon: 'success',
+					text: '게시물이 등록되었습니다.'
+				}).then(function(){
+					location.href = "/board/fBoard";
+				});
             }
             else if(response.code == 400)
             {

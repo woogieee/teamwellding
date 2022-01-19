@@ -16,11 +16,12 @@ text-align: center;
 }
 /*별점 시작*/
 span.star-prototype, span.star-prototype > * {
-    height: 35px; 
+    height: 34px; 
     /*background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;*/
     background: url(../resources/images/star1234.png) 0 -35px repeat-x;
     width: 170px;
     display: inline-block;
+    vertical-align: middle;
 }
  
 span.star-prototype > * {
@@ -255,21 +256,21 @@ $(document).ready(function(){
                </td>
             </tr>
             <tr>
-               <td style="width:80%; padding: 15px 25px; font-size: 15px; color: #444;">
+               <td style="width:70%; padding: 15px 25px; font-size: 15px; color: #444;">
                	작성자 : <c:out value="${wdReview.UNickName}"/>
                </td>
-               <td style="width:20%; padding: 15px 20px;" class="text-right">
+               <td style="width:30%; padding: 15px 20px;" class="text-right">
                   <div>${wdReview.regDate}</div>
                </td>
             </tr> 
             <tr>
-            	<td>
-            	홀 : ${hsdmName.hName }
-            	스튜디오 : ${hsdmName.sName }
-            	드레스 : ${hsdmName.dName }
-            	메이크업 : ${hsdmName.mName }
+            	<td colspan="2" class="hsdm_choice">
+	            	<p>홀 : <span>${hsdmName.hName }</span></p>
+	            	<p>스튜디오 : <span>${hsdmName.sName }</span></p>
+	            	<p>드레스 : <span>${hsdmName.dName }</span></p>
+	            	<p>메이크업 : <span style="border-right: none;">${hsdmName.mName }</span></p>
             	</td>
-            <tr>  
+            </tr>  
 
          </thead>
          <tbody>
@@ -295,7 +296,7 @@ $(document).ready(function(){
          <tr>
          <td colspan="2">
          <!-- 별점은 여기에  -->
-         	평가 : <span class="star-prototype">${wdReview.RScore }</span>
+         	<p class="star_p">평가 : <span class="star-prototype">${wdReview.RScore }</span></p>
          </td>
          </tr>
          <tr>

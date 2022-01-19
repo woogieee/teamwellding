@@ -6753,6 +6753,44 @@ responsive
 	font-weight: 300;
 }
 
+.tbstyle6
+{
+	font-size: 14px;
+	color: #444;
+	font-weight: 600;
+	text-align: center;
+}
+
+.hsdm_choice
+{
+	width: 100%;
+	padding: 10px 15px;
+	/*text-align: center;*/
+}
+
+.hsdm_choice p
+{
+	font-size: 14px;
+	display: inline-block;
+	padding: 0 10px;
+	
+}
+
+.hsdm_choice span
+{
+	font-weight: 700;
+	border-right: 2px solid #ccc;
+	padding: 0 20px 0 5px;
+
+}
+
+.star_p
+{
+	font-size: 15px;
+    font-weight: 500;
+    color: #555;
+}
+
 
 .shows-events-schedule2 .pagination ul {
   text-align: center;

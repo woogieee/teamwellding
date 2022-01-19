@@ -209,7 +209,7 @@ function fn_list(curPage)
 	                                            </div>
 	                                        </div>
 	                                        <div class="col-lg-2" style="text-align: left;">
-	                                            <div class="divB_tb2 tbstyle5">
+	                                            <div class="divB_tb2 tbstyle6">
 	                                            	<span>${hallName[status.index] }</span>
 	                                            </div>
 	                                        </div>

@@ -267,6 +267,10 @@ public class WDReviewController {
       System.out.println("스 코드 : "+hsdmName.getsCode());
       System.out.println("드 코드 : "+hsdmName.getDcCode());
       System.out.println("메 코드 : "+hsdmName.getmCode());
+      
+      System.out.println("보내는 친구 예약번호 : " + wdReview.getRezNo());
+      hsdmName.setRezNo(wdReview.getRezNo());
+      System.out.println("예약번호 : "+hsdmName.getRezNo());
       hsdmName = wdReviewService.reviewInfohsdmName(hsdmName);
       System.out.println(hsdmName.gethName());
       

@@ -7,8 +7,7 @@
 	<title>Login V2</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="../resources/images/icons/favicon.ico"/>
+
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../resources/vendor/loginvendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -114,41 +113,95 @@ function fn_loginCheck()
 				
 				if(code == 0)
 				{
-					location.href = "/";
+					//location.href = "/";
+					const Toast = Swal.mixin({
+					    toast: true,
+					    position: 'center-center',
+					    showConfirmButton: false,
+					    timer: 1500,
+					    timerProgressBar: true,
+					    didOpen: (toast) => {
+					        toast.addEventListener('mouseenter', Swal.stopTimer)
+					        toast.addEventListener('mouseleave', Swal.resumeTimer)
+					    }
+					});
+					
+					Toast.fire({
+					    icon: 'success',
+					    title: '웰딩에 오신 여러분 환영합니다!'
+					}).then(function(){
+						location.href = "/";
+					});
 				}
 				else
 				{
 					if(code == -1)
 					{
-						alert("비밀번호가 올바르지 않습니다.");
-						$("#userPwd").focus();
+						//alert("비밀번호가 올바르지 않습니다.");
+						//$("#userPwd").focus();
+						Swal.fire({ 
+							icon: 'error',
+							text: '비밀번호가 올바르지 않습니다.'
+						}).then(function(){
+							$("#userPwd").focus();
+						});
 					}
 					else if(code == 404)
 					{
-						alert("아이디와 일치하는 사용자 정보가 없습니다.");
-						$("#userId").focus();
+						//alert("아이디와 일치하는 사용자 정보가 없습니다.");
+						//$("#userId").focus();
+						Swal.fire({ 
+							icon: 'error',
+							text: '아이디와 일치하는 사용자 정보가 없습니다.'
+						}).then(function(){
+							$("#userId").focus();
+						});
 					}
 					else if(code == 400)
 					{
-						alert("파라미터 값이 올바르지 않습니다.");
-						$("#userId").focus();
+						//alert("파라미터 값이 올바르지 않습니다.");
+						//$("#userId").focus();
+						Swal.fire({ 
+							icon: 'error',
+							text: '파라미터 값이 올바르지 않습니다.'
+						}).then(function(){
+							$("#userId").focus();
+						});
 					}
 					else if(code == 403)
 					{
-						alert("이용이 정지된 사용자입니다.");
-						$("#userId").focus();
+						//alert("이용이 정지된 사용자입니다.");
+						//$("#userId").focus();
+						Swal.fire({ 
+							icon: 'error',
+							text: '이용이 정지된 사용자입니다.'
+						}).then(function(){
+							$("#userId").focus();
+						});
 					}
 					else
 					{
-						alert("오류가 발생하였습니다.");
-						$("#userId").focus();
+						//alert("오류가 발생하였습니다.");
+						//$("#userId").focus();
+						Swal.fire({ 
+							icon: 'error',
+							text: '오류가 발생하였습니다.'
+						}).then(function(){
+							$("#userId").focus();
+						});
 					}	
 				}	
 			}
 			else
 			{
-				alert("오류가 발생하였습니다.");
-				$("#userId").focus();
+				//alert("오류가 발생하였습니다.");
+				//$("#userId").focus();
+				Swal.fire({ 
+					icon: 'error',
+					text: '오류가 발생하였습니다.'
+				}).then(function(){
+					$("#userId").focus();
+				});
 			}
 		},
 		complete : function(data) 
@@ -187,41 +240,96 @@ function fn_loginCheck()
 					
 					if(code == 0)
 					{
-						location.href = "/mng/userList";
+						//location.href = "/mng/userList";
+						//location.href = "/";
+						const Toast = Swal.mixin({
+						    toast: true,
+						    position: 'center-center',
+						    showConfirmButton: false,
+						    timer: 1500,
+						    timerProgressBar: true,
+						    didOpen: (toast) => {
+						        toast.addEventListener('mouseenter', Swal.stopTimer)
+						        toast.addEventListener('mouseleave', Swal.resumeTimer)
+						    }
+						});
+						
+						Toast.fire({
+						    icon: 'success',
+						    title: '웰딩에 오신 관리자 여러분 환영합니다!'
+						}).then(function(){
+							location.href = "/";
+						});
 					}
 					else
 					{
 						if(code == -1)
 						{
-							alert("비밀번호가 올바르지 않습니다.");
-							$("#userPwd").focus();
+							//alert("비밀번호가 올바르지 않습니다.");
+							//$("#userPwd").focus();
+							Swal.fire({ 
+								icon: 'error',
+								text: '비밀번호가 올바르지 않습니다.'
+							}).then(function(){
+								$("#userPwd").focus();
+							});
 						}
 						else if(code == 404)
 						{
-							alert("아이디와 일치하는 사용자 정보가 없습니다.");
-							$("#userId").focus();
+							//alert("아이디와 일치하는 사용자 정보가 없습니다.");
+							//$("#userId").focus();
+							Swal.fire({ 
+								icon: 'error',
+								text: '아이디와 일치하는 사용자 정보가 없습니다.'
+							}).then(function(){
+								$("#userId").focus();
+							});
 						}
 						else if(code == 400)
 						{
-							alert("파라미터 값이 올바르지 않습니다.");
-							$("#userId").focus();
+							//alert("파라미터 값이 올바르지 않습니다.");
+							//$("#userId").focus();
+							Swal.fire({ 
+								icon: 'error',
+								text: '파라미터 값이 올바르지 않습니다.'
+							}).then(function(){
+								$("#userId").focus();
+							});
 						}
 						else if(code == 403)
 						{
-							alert("이용이 정지된 관리자입니다.");
-							$("#userId").focus();
+							//alert("이용이 정지된 사용자입니다.");
+							//$("#userId").focus();
+							Swal.fire({ 
+								icon: 'error',
+								text: '이용이 정지된 사용자입니다.'
+							}).then(function(){
+								$("#userId").focus();
+							});
 						}
 						else
 						{
-							alert("오류가 발생하였습니다.");
-							$("#userId").focus();
+							//alert("오류가 발생하였습니다.");
+							//$("#userId").focus();
+							Swal.fire({ 
+								icon: 'error',
+								text: '오류가 발생하였습니다.'
+							}).then(function(){
+								$("#userId").focus();
+							});
 						}	
 					}	
 				}
 				else
 				{
-					alert("오류가 발생하였습니다.");
-					$("#userId").focus();
+					//alert("오류가 발생하였습니다.");
+					//$("#userId").focus();
+					Swal.fire({ 
+						icon: 'error',
+						text: '오류가 발생하였습니다.'
+					}).then(function(){
+						$("#userId").focus();
+					});
 				}
 			},
 			complete : function(data) 
@@ -264,8 +372,16 @@ function plusNum()
 	
 	if(euisooM >= 6)
 	{
-		alert("이제 관리자 계정으로 로그인이 가능합니다.");
-		$("#id2").attr("onclick", "classChange(this);");
+		//alert("이제 관리자 계정으로 로그인이 가능합니다.");
+		//$("#id2").attr("onclick", "classChange(this);");
+		Swal.fire({ 
+			icon: 'info',
+			text: '이제 관리자 계정으로 로그인이 가능합니다.',
+			//closeOnClickOutSide: false
+			allowOutsideClick : false //다른데 클릭 못하게 막기!!!***
+		}).then(function(){
+			$("#id2").attr("onclick", "classChange(this);");
+		});
 	}
 }
 
