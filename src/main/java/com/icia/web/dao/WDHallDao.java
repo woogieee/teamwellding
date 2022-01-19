@@ -55,4 +55,9 @@ public interface WDHallDao {
 	public int weddinghallUpdate(WDHall wdHall);
 	
 	public int hallUpdate(WDHall wdHall);
+	
+	public String maxImgName();
+	
+	//홀 파일 삽입
+	public int hallFileInsert(WDHallFile wdHallFile);
 }
