@@ -134,4 +134,20 @@ public class WDUserService
 		return count;
 	}
 	
+	//예약번호없을때 결혼날짜 변경
+	
+	public int nonRezNumberMarrydateUpdate(WDUser wduser)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdUserDao.nonRezNumberMarrydateUpdate(wduser);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDUserService] nonRezNumberMarrydateUpdate Exception",e);
+		}
+		return count;
+	}
 }

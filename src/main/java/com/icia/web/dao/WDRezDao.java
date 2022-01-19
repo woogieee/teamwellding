@@ -97,6 +97,8 @@ public interface WDRezDao {
 	//해당 날짜에 해당 메이크업 업체 예약 확인
 	public int isMakeUpRez(WDRez wdRez);
 	
-	//장바구니 결혼날짜 변경 시작
+	//장바구니 결혼날짜 변경
 	public int MarrydateUpdate(WDRez wdRez);
+	
+	
 }

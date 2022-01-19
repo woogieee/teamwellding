@@ -192,7 +192,7 @@
 						<value>/mng/studioDelete</value>
 						<value>/mng/studioUpdateProc</value>
 
-
+						<value>/user/marryUpdate</value>
             		</list>
             	</constructor-arg>
             </bean>
