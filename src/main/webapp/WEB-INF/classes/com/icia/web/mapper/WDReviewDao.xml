@@ -338,7 +338,7 @@ FROM
 WHERE
     A.REZ_NO = B.REZ_NO
 AND
-	A.REZ_NO = #{rezNo}
+   A.REZ_NO = #{rezNo}
 </select>
 <!-- 리뷰인포 업체이름 불러오기 전 코드 부터 불러오기 -->
 
@@ -373,24 +373,24 @@ FROM
     , WD_MAKEUP F
 </if>    
 WHERE
-	A.REZ_NO = B.REZ_NO
+   A.REZ_NO = B.REZ_NO
 AND
-	A.REZ_NO = #{rezNo}	
+   A.REZ_NO = #{rezNo}   
 <if test='whCode != null and !whCode.equals("없음") and hCode != null and !hCode.equals("없음")'>     
 AND
     B.WH_CODE = C.WH_CODE
 AND
     B.H_CODE = C.H_CODE
 AND
-	B.WH_CODE = #{whCode}
+   B.WH_CODE = #{whCode}
 AND
-	B.H_CODE = #{hCode}
+   B.H_CODE = #{hCode}
 </if>     
 <if test='sCode != null and !sCode.equals("없음")'>         
 AND
     B.S_CODE = D.S_CODE
 AND
-	B.S_CODE = #{sCode}
+   B.S_CODE = #{sCode}
 </if>     
 <if test='dcCode != null and !dcCode.equals("없음") and dNo != null and !dNo.equals("없음")'>        
 AND
@@ -398,15 +398,15 @@ AND
 AND
     B.D_NO = E.D_NO
 AND
-	B.DC_CODE = #{dcCode}    
+   B.DC_CODE = #{dcCode}    
 AND
-	B.D_NO = #{dNo}	
+   B.D_NO = #{dNo}   
 </if>     
 <if test='mCode != null and !mCode.equals("없음")'>             
 AND
     B.M_CODE = F.M_CODE
 AND
-	B.M_CODE = #{mCode}
+   B.M_CODE = #{mCode}
 </if>     
 </select>
 <!-- 리뷰인포 홀 스 드 메 업체 이름 불러오기 -->  

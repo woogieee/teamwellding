@@ -75,29 +75,53 @@ $(document).ready(function(){
 			{
 				if(response.code == 0)
 				{
-					alert("게시물이 등록되었습니다.");
+					//alert("게시물이 등록되었습니다.");
 					//리스트 페이지로 돌아갈 때는 가져온 값을 가져가야 하지만,
 					//글쓰기를 눌렀을 때는, 가져온 값을 가져가면 내가 쓴 글이 안보임
 					//그래서 넣어줘서 보내지 않음
-					location.href = "/board/reviews";
+					//location.href = "/board/reviews";
+					Swal.fire({ 
+						icon: 'success',
+						text: '게시물이 등록되었습니다.'
+					}).then(function(){
+						location.href = "/board/reviews";
+					});
 				}
 				else if(response.code == 400)
 				{
-					alert("파라미터값이 올바르지 않습니다.");
+					//alert("파라미터값이 올바르지 않습니다.");
 					//버튼 활성화 처리
-					$("#btnWrite").prop("disabled", false);
+					//$("#btnWrite").prop("disabled", false);
+					Swal.fire({ 
+						icon: 'error',
+						text: '파라미터 값이 잘못되었습니다..'
+					}).then(function(){
+						$("#btnWrite").prop("disabled", false); //수정버튼 활성화
+					});
 				}
 				else
 				{
-					alert("게시물 등록 중 오류가 발생했습니다."+response.code);
-					$("#btnWrite").prop("disabled", false);
+					//alert("게시물 등록 중 오류가 발생했습니다."+response.code);
+					//$("#btnWrite").prop("disabled", false);
+					Swal.fire({ 
+						icon: 'error',
+						text: '게시물 등록 중 오류가 발생했습니다.'
+					}).then(function(){
+						$("#btnWrite").prop("disabled", false); //수정버튼 활성화
+					});
 				}
 			},
 			error:function(error)
 			{
 				icia.common.error(error);
-				alert("게시물 등록 중 오류가 발생했습니다. Ajax");
-				$("#btnWrite").prop("disabled", false);
+				//alert("게시물 등록 중 오류가 발생했습니다. Ajax");
+				//$("#btnWrite").prop("disabled", false);
+				Swal.fire({ 
+					icon: 'error',
+					text: '게시물 등록 중 오류가 발생했습니다. Ajax'
+				}).then(function(){
+					$("#btnWrite").prop("disabled", false); //수정버튼 활성화
+				});
 			}
 		});
 		//ajax 통신 끝

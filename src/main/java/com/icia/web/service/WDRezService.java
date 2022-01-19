@@ -601,4 +601,20 @@ public class WDRezService {
 		
 		return count;
 	}
+	
+	public int MarrydateUpdate(WDRez wdRez)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdRezDao.MarrydateUpdate(wdRez);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] MarrydateUpdate Exception", e);
+		}
+		
+		return count;
+	}
 }
