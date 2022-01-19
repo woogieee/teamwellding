@@ -167,8 +167,7 @@ function reviewWrite(rezNo){
 	                                   	<p class="rezview"><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원</p>
 	                               	</div>
 	                               	<div style="width: 50%; float: left; text-align: left; padding-left: 5px;">
-	                                   	<button class="rez_btn">리뷰쓰기</button>
-	                                   	<button class="rez_btn2">작성완료</button>
+	                                   	<button class="rez_btn" onclick="reviewWrite('${wdRez.rezNo}')" >리뷰쓰기</button>
 	                                </div> 
                                 </div>  
                                 </td>  

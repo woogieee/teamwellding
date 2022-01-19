@@ -92,9 +92,16 @@ $(document).ready(function(){
 	         {
 	            if(response.code == 0)
 	            {
-	               alert("게시물이 수정되었습니다.");
-	               document.bbsForm.action = "/board/fBoard";
-	               document.bbsForm.submit();
+	               //alert("게시물이 수정되었습니다.");
+	               //document.bbsForm.action = "/board/fBoard";
+	               //document.bbsForm.submit();
+					Swal.fire({ 
+						icon: 'success',
+						text: '게시물이 수정되었습니다.'
+					}).then(function(){
+		                  document.bbsForm.action = "/board/fBoard";
+		                  document.bbsForm.submit();
+					});
 	            }
 	            else if(response.code == 400)
 	            {
@@ -148,8 +155,14 @@ $(document).ready(function(){
 	         {
 	            if(response.code == 0)
 	            {
-	               alert("첨부파일이 삭제되었습니다.");
-	               $("#fileNameSpan").text("");
+	               //alert("첨부파일이 삭제되었습니다.");
+	              // $("#fileNameSpan").text("");
+					Swal.fire({ 
+						icon: 'success',
+						text: '첨부파일이 삭제되었습니다.'
+					}).then(function(){
+						$("#fileNameSpan").text("")
+					});
 	            }
 	            else if(response.code == 400)
 	            {

@@ -104,7 +104,7 @@ body.dark-theme .page-link.active
           iframe:true, 
           innerWidth:1000,
           innerHeight:700,
-          scrolling:false,
+          scrolling:true,
           onComplete:function()
           {
              $("#colorbox").css("width", "1000px");
@@ -181,7 +181,7 @@ body.dark-theme .page-link.active
          iframe:true, 
          innerWidth:1000,
          innerHeight:800,
-         scrolling:false,
+         scrolling:true,
          onComplete:function()
          {
             $("#colorbox").css("width", "1000px");

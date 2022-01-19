@@ -247,6 +247,7 @@ p {
   line-height: 25px;
   color: #2a2a2a;
   font-weight: 300;
+  cursor: default;
 }
 
 /* 
@@ -3315,6 +3316,8 @@ Shows Events Page
  
    font-family: 'OTWelcomeRA';
    color: rgba(40,30,25,1);
+   
+   cursor: default;
 }
 
 .tickets-page .search-box select {
@@ -4998,6 +5001,7 @@ responsive
 .category2 {
   padding-bottom: 0px;
   text-align: center;
+  cursor: default;
 }
 
 .shows-events-scheduleW {
@@ -5820,12 +5824,14 @@ responsive
 	color: black;
 	font-weight: bold;
 }
-
+/*
 .bc a:focus
 {
 	color: black;
 	font-weight: bold;
-}
+}*/
+
+
 
 .bcline
 {
@@ -6119,6 +6125,106 @@ responsive
     border-right: 5px solid #fff; /* 선 두께 */
     transform: rotate(45deg); /* 각도 */
 }
+
+/*욱채 인덱스 슬라이더
+.slick-prev3.slick-arrow{ 
+	left: 0%!important;
+	outline: none
+    
+}
+.slick-next3.slick-arrow{
+	right: 3%!important;
+	outline: none
+}
+
+.slick-prev3::after {
+    position: absolute;
+    content: '';
+    width: 36px; 
+    height: 36px; 
+    border-top: 5px solid #ffc0c8;
+    border-right: 5px solid #ffc0c8;
+    transform: rotate(225deg);
+}
+
+.slick-next3::after {
+    position: absolute;
+    content: '';
+    width: 36px; 
+    height: 36px;
+    border-top: 5px solid #ffc0c8;
+    border-right: 5px solid #ffc0c8; 
+    transform: rotate(45deg);
+}
+/*욱채 인덱스 슬라이더*/
+
+/** 인덱스 슬라이더이미지 **/
+/****** 보현 슬라이더ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ *******/
+.post-slider3{
+  /*border:1px solid red;*/
+  text-align: center;
+  width: 100%;
+}
+.post-slider3 .post-wrapper3{
+  width:70%;
+  margin:0px auto;
+  /*border:1px dashed red;*/
+}
+.post-slider3 .post-wrapper3 .post3{
+  width:80%;
+  height:auto;
+  display:inline-block;
+}
+
+.post-slider3 .post-wrapper3 .post3 img{
+  width:100%;
+  height:auto;
+  vertical-align: middle;
+}
+
+.slick-arrow{
+  z-index: 999; /* prev버튼은 위치 이동시 이미지 뒤로 숨겨짐 */
+  position:absolute;  /* 원하는 위치에 지정  */
+  top: 50%; 
+  width: 70px;
+  height: 70px; 
+  transform: translateY(-25px);
+  border:none;
+  background: none;
+}
+.slick-prev3.slick-arrow{ /* prev 이전 */
+	left: 0%!important;
+	outline: none
+    
+}
+.slick-next3.slick-arrow{ /* next 다음 */
+	right: 3%!important;
+	outline: none
+}
+
+.slick-prev3::after {
+    position: absolute;
+    content: '';
+    width: 24px; /* 사이즈 */
+    height: 24px; /* 사이즈 */
+    border-top: 5px solid #ff8080; /* 선 두께 */
+    border-right: 5px solid #ff8080; /* 선 두께 */
+    transform: rotate(225deg); /* 각도 */
+    top: 10px;
+}
+
+.slick-next3::after {
+    position: absolute;
+    content: '';
+    width: 24px; /* 사이즈 */
+    height: 24px; /* 사이즈 */
+    border-top: 5px solid #ff8080; /* 선 두께 */
+    border-right: 5px solid #ff8080; /* 선 두께 */
+    transform: rotate(45deg); /* 각도 */
+    top: 10px;
+}
+
+
 
 /** 모달띄운거 **/
 .ticket-details-page {
@@ -6597,6 +6703,23 @@ responsive
 	line-height: 30px;
 }
 
+.tbstyle5 span
+{
+	font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    letter-spacing: -0.5px;
+    line-height: 16px;
+    top: 53%;
+    transform: translateY(-50%);
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .tbstyle
 {
 	font-weight: 600;
@@ -6628,6 +6751,44 @@ responsive
 	font-size: 14px;
 	color: #333;
 	font-weight: 300;
+}
+
+.tbstyle6
+{
+	font-size: 14px;
+	color: #444;
+	font-weight: 600;
+	text-align: center;
+}
+
+.hsdm_choice
+{
+	width: 100%;
+	padding: 10px 15px;
+	/*text-align: center;*/
+}
+
+.hsdm_choice p
+{
+	font-size: 14px;
+	display: inline-block;
+	padding: 0 10px;
+	
+}
+
+.hsdm_choice span
+{
+	font-weight: 700;
+	border-right: 2px solid #ccc;
+	padding: 0 20px 0 5px;
+
+}
+
+.star_p
+{
+	font-size: 15px;
+    font-weight: 500;
+    color: #555;
 }
 
 

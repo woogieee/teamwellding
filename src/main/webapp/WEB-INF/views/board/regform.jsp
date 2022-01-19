@@ -68,12 +68,34 @@ $(document).ready(function(){
 							{
 								if (response.code == 0) 
 								{
-									alert("이메일이 전송 되었습니다.");
+									//alert("이메일이 전송 되었습니다.");
+									const Toast = Swal.mixin({
+									    toast: true,
+									    position: 'center-center',
+									    showConfirmButton: false,
+									    timer: 2000,
+									    timerProgressBar: true,
+									    didOpen: (toast) => {
+									        toast.addEventListener('mouseenter', Swal.stopTimer)
+									        toast.addEventListener('mouseleave', Swal.resumeTimer)
+									    }
+									});
+									
+									Toast.fire({
+									    icon: 'success',
+									    title: '이메일이 전송되었습니다!'
+									});
 								} 
 								else 
 								{
-									alert("이메일 발송실패");
-									$("#btnEmailCheck").prop("disabled", false);
+									//alert("이메일 발송실패");
+									//$("#btnEmailCheck").prop("disabled", false);
+									Swal.fire({ 
+										icon: 'error',
+										text: '이메일 발송 실패!'
+									}).then(function(){
+										$("#btnEmailCheck").prop("disabled", false);
+									});
 								}
 							},
 							complete : function(data) 
@@ -259,23 +281,46 @@ $(document).ready(function(){
 			{
 				if (response.code == 0) 
 				{
-					alert("회원가입이 완료되었습니다.");
-					location.href = "/board/login";
-					
+					//alert("회원가입이 완료되었습니다.");
+					//location.href = "/board/login";
+					Swal.fire({ 
+						icon: 'success',
+						text: '회원가입이 완료되었습니다.'
+					}).then(function(){
+						location.href = "/board/login";
+					});
 				} 
 				else if (response.code == 400) 
 				{
-					alert("회원가입 중 오류가 발생했습니다..");
-					location.href = "/board/regform";
+					//alert("회원가입 중 오류가 발생했습니다..");
+					//location.href = "/board/regform";
+					Swal.fire({ 
+						icon: 'error',
+						text: '회원가입 중 오류가 발생했습니다..'
+					}).then(function(){
+						location.href = "/board/regform";
+					});
 				} 
 				else if (response.code == 500) 
 				{
-					alert("회원가입 중 오류가 발생했습니다.");
-					location.href = "/board/regform";
+					//alert("회원가입 중 오류가 발생했습니다.");
+					//location.href = "/board/regform";
+					Swal.fire({ 
+						icon: 'error',
+						text: '회원가입 중 오류가 발생했습니다.'
+					}).then(function(){
+						location.href = "/board/regform";
+					});
 				} 
 				else {
-					alert("오류가 발생했습니다.");
-					$("#id").focus();
+					//alert("오류가 발생했습니다.");
+					//$("#id").focus();
+					Swal.fire({ 
+						icon: 'error',
+						text: '오류가 발생했습니다.'
+					}).then(function(){
+						$("#id").focus();
+					});
 				}
 			},
 			complete : function(data) 
@@ -297,8 +342,10 @@ $(document).ready(function(){
 		Swal.fire({ 
 			icon: 'error',
 			text: '회원가입이 취소되었습니다.'
+		}).then(function(){
+			location.href = "/";
 		});
-		location.href = "/";
+		
 	});
 	
 });
