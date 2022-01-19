@@ -53,88 +53,56 @@ function fn_userUpdate()
 {
 	if(icia.common.isEmpty($("#whCode").val()))
 	{
-		//alert("웨딩홀을 선택해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '웨딩홀을 선택해주세요.'
-		});
+		alert("웨딩홀을 선택해주세요.");
 		$("#whCode").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hallName").val()))
 	{
-		//alert("홀 이름을 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '홀 이름을 입력해주세요.'
-		});
+		alert("홀 이름을 입력해주세요.");
 		$("#hallName").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hallPrice").val()))
 	{
-		//alert("홀 가격을 입력해주세요");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '홀 가격을 입력해주세요.'
-		});
+		alert("홀 가격을 입력해주세요");
 		$("#hallPrice").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hallFood").val()))
 	{
-		//alert("식비를 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '식비를 입력해주세요.'
-		});
+		alert("식비를 입력해주세요.");
 		$("#hallFood").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hallMin").val()))
 	{
-		//alert("홀 최소인원을 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '홀 최소인원을 입력해주세요.'
-		});
+		alert("홀 최소인원을 입력해주세요.");
 		$("#hallMin").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hallMax").val()))
 	{
-		//alert("홀 최대인원을 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '홀 최대인원을 입력해주세요.'
-		});
+		alert("홀 최대인원을 입력해주세요.");
 		$("#hallMax").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hallContent").val()))
 	{
-		//alert("홀 설명을 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '홀 설명을 입력해주세요.'
-		});
+		alert("홀 설명을 입력해주세요.");
 		$("#hallContent").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hallHDiscount").val()))
 	{
-		//alert("할인율을 입력해주세요");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '할인율을 입력해주세요.'
-		});
+		alert("할인율을 입력해주세요");
 		$("#hallHDiscount").focus();
 		return;
 	}

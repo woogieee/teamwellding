@@ -53,66 +53,42 @@ function fn_userUpdate()
 {
 	if(icia.common.isEmpty($("#studioName").val()))
 	{
-		//alert("스튜디오 이름을 선택해주세요.");
-		  Swal.fire({ 
-			  icon: 'warning',
-			  text: '스튜디오 이름을 입력해주세요.'
-		  });
+		alert("스튜디오 이름을 선택해주세요.");
 		$("#studioName").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#studioPrice").val()))
 	{
-		//alert("스튜디오 가격을 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '스튜디오 가격을 입력해주세요.'
-		});
+		alert("스튜디오 가격을 입력해주세요.");
 		$("#studioPrice").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#studioLocation").val()))
 	{
-		//alert("스튜디오 가격을 입력해주세요");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '스튜디오 주소를 입력해주세요.'
-		});
+		alert("스튜디오 가격을 입력해주세요");
 		$("#studioLocation").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#studioNumber").val()))
 	{
-		//alert("스튜디오 전화번호를 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '스튜디오 전화번호를 입력해주세요.'
-		});
+		alert("스튜디오 전화번호를 입력해주세요.");
 		$("#studioNumber").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#studioContent").val()))
 	{
-		//alert("스튜디오 설명을 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '스튜디오 설명을 입력해주세요.'
-		});
+		alert("스튜디오 설명을 입력해주세요.");
 		$("#studioContent").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#studioDiscount").val()))
 	{
-		//alert("할인율을 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '할인율을 입력해주세요.'
-		});
+		alert("할인율을 입력해주세요.");
 		$("#studioDiscount").focus();
 		return;
 	}

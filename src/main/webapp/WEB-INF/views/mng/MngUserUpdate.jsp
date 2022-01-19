@@ -54,11 +54,7 @@ function fn_userUpdate()
    //비밀번호
    if(icia.common.isEmpty($("#userPwd").val()))
    {
-      //alert("비밀번호를 입력하세요");
-	  Swal.fire({ 
-	  	  icon: 'warning',
-		  text: '비밀번호를 입력해주세요.'
-	  });
+      alert("비밀번호를 입력하세요");
       $("#userPwd").focus();
       return;
    }
@@ -66,11 +62,7 @@ function fn_userUpdate()
    if(!fn_idPwdCheck($("#userPwd").val()))
    {
       //정규표현식이 맞지 않을떄
-      //alert("비밀번호는 영문 대소문자, 숫자 4~12자로 입력해주세요.");
-	  Swal.fire({ 
-	  	  icon: 'error',
-		  text: '비밀번호는 영문 대소문자, 숫자 4~12자로 입력해주세요.'
-	  });
+      alert("비밀번호는 영문 대소문자, 숫자 4~12자로 입력해주세요.");
       $("#userPwd").focus();
       return;
    }
@@ -78,11 +70,7 @@ function fn_userUpdate()
    //이름
    if(icia.common.isEmpty($("#userName").val()))
    {
-      //alert("이름을 입력하세요");
-	  Swal.fire({ 
-	  	  icon: 'warning',
-		  text: '이름을 입력해주세요.'
-	  });
+      alert("이름을 입력하세요");
       $("#userName").focus();
       return;
    }
@@ -90,11 +78,7 @@ function fn_userUpdate()
    //이메일
    if(icia.common.isEmpty($("#userEmail").val()))
    {
-      //alert("이메일을 입력하세요.");
-	  Swal.fire({ 
-	  	  icon: 'warning',
-		  text: '이메일을 입력해주세요.'
-	  });
+      alert("이메일을 입력하세요.");
       $("#userEmail").focus();
       return;
    }
@@ -102,11 +86,7 @@ function fn_userUpdate()
    //닉네임
    if(icia.common.isEmpty($("#userNickname").val()))
    {
-      //alert("닉네임을 입력하세요.");
-	  Swal.fire({ 
-	  	  icon: 'warning',
-		  text: '닉네임을 입력해주세요.'
-	  });
+      alert("닉네임을 입력하세요.");
       $("#userNickname").focus();
       return;
    }
@@ -114,11 +94,7 @@ function fn_userUpdate()
    if(!fn_validateEmail($("#userEmail").val()))
    {
       //정규표현식이 맞지 않을떄
-      //alert("이메일 형식이 올바르지 않습니다.");
-	  Swal.fire({ 
-	  	  icon: 'error',
-		  text: '이메일 형식이 올바르지 않습니다.'
-	  });
+      alert("이메일 형식이 올바르지 않습니다.");
       $("#userEamil").focus();
       return;
    }

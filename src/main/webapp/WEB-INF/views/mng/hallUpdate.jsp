@@ -55,66 +55,42 @@ function hallUpdate()
 {
 	if(icia.common.isEmpty($("#hName").val()))
 	{
-		//alert("업체 이름을 입력해주세요");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '업체 이름을 입력해주세요.'
-		});
+		alert("업체 이름을 입력해주세요");
 		$("#hName").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hPrice").val()))
 	{
-		//alert("홀 가격을 입력해주세요");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '홀 가격을 입력해주세요.'
-		});
+		alert("홀 가격을 입력해주세요");
 		$("#hPrice").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hFood").val()))
 	{
-		//alert("1인당 식사가격을 입력해주세요");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '1인당 식사가격을 입력해주세요.'
-		});
+		alert("1인당 식사가격을 입력해주세요");
 		$("#hFood").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hMin").val()))
 	{
-		//alert("홀 최소인원을 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '홀 최소인원을 입력해주세요.'
-		});
+		alert("홀 최소인원을 입력해주세요.");
 		$("#hMin").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hMax").val()))
 	{
-		//alert("홀 최대인원을 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '홀 최대인원을 입력해주세요.'
-		});
+		alert("홀 최대인원을 입력해주세요.");
 		$("#hMax").focus();
 		return;
 	}
 	
 	if(icia.common.isEmpty($("#hContent").val()))
 	{
-		//alert("홀 설명을 입력해주세요.");
-		Swal.fire({ 
-			icon: 'warning',
-			text: '홀 설명을 입력해주세요.'
-		});
+		alert("홀 설명을 입력해주세요.");
 		$("#hContent").focus();
 		return;
 	}
