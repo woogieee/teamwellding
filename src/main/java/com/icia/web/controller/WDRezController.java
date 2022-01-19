@@ -433,4 +433,6 @@ public class WDRezController {
 		return	"/mng/payMentList";
 	}
 	
+	
+	
 }
