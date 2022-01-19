@@ -11,22 +11,50 @@
 		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital@0;1&family=The+Nautigal&display=swap" rel="stylesheet">
 <script>
     $(document).ready(function(){
-    	var year;
-    	var month;
-    	var day;
-    	
-    	$("#year").change(function(){
-    		year = $("#year option:selected").val();
-    		alert(year);
-    	});
-    	$("#month").change(function(){
-    		month = $("#month option:selected").val();
-    		alert(month);
-    	});
-    	$("#day").change(function(){
-    		day = $("#day option:selected").val();
-    		alert(day);
-    	});
+    	//결혼예정일 수정하기
+    	$("#btnMarry").on("click",function(){
+		   
+			var year = $("#year").val();
+			var month = $("#month").val();
+			var day = $("#day").val();
+			
+			var wDate = year + month + day + "";
+			
+			alert(wDate);
+		   $.ajax({
+			  type:"POST",
+			  url:"/user/",
+			  data:
+			  {
+				  rezNo: <c:out value="${wdRez.rezNo}" />
+			  },
+			  datatype:"JSON",
+			  beforeSend:function(xhr){
+				  xhr.setRequestHeader("AJAX", "true");
+			  },
+			  success:function(response){
+				  if(response.code == 0)
+				  {
+					  $("#year").val(year);
+					  $("#month").val(month);
+					  $("#day").val(day);
+					  
+					  location.href = "/user/wishlist";
+				  }
+				  else
+				  {
+					  alert("오류가 발생했습니당.");
+				  }
+			  },
+			  complete:function(data){
+				  icia.common.log(data);
+			  },
+			  error:function(xhr, status, error)
+			  {
+				  icia.common.error(error);
+			  }
+		   });
+	   });
 
 //장바구니에서 홀 삭제
 <c:if test="${!empty wdRez.whCode}">
@@ -316,8 +344,8 @@ $("#payMent").on("click", function(){
 							<tr>
 								<div class="rez_sta">
 									<h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
-									<h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span>${wdRez.wDate}</span>
-									
+									<h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span id="marryDate">${wdRez.wDate}</span>
+									<input type="hidden" id="dongdong" name="dongdong" value="">
 									<!-- 달력 넣기 -->
 									
 									
@@ -379,7 +407,7 @@ $("#payMent").on("click", function(){
 												<option value="31" <c:if test="${day eq '31'}">selected</c:if>>31</option>
 											</select>
                                         </span>
-									<input type="button" value="적용" />
+									<input type="button" id="btnMarry" name="btnMarry" value="적용" style="border: solid 1px black; background:white; position:relative; color:black;">
 									</h5>
 									<!-- 달력 넣기 끝 -->
 <c:choose>
@@ -649,6 +677,11 @@ $("#payMent").on("click", function(){
       <input type="hidden" name="sCode" value="" />
       <input type="hidden" name="dNo" value="" />
       <input type="hidden" name="mCode" value="" /> 
+</form>
+<form name="marryForm" id="marryForm" method="post">
+	<input type="hidden" name="year" id="year" value="${year}"/>
+	<input type="hidden" name="month" id="month" value="${month}"/>
+	<input type="hidden" name="day" id="day" value="${day}"/>
 </form>
 		<%@ include file="/WEB-INF/views/include/footer.jsp" %>
   </body>
