@@ -21,6 +21,10 @@
     
     <!-- alert창 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+    <!-- 큐알 -->
+    <script type="text/javascript" src="../resources/js/qrcode.js"></script>
+    <script src="../resources/js/jquery-qrcode-0.18.0.js"></script>
   
     
     <!-- 보현폰트 -->

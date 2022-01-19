@@ -41,6 +41,10 @@ public class WDCouponController {
 		
 		return "/board/Coupon";
 	}
-
 	
+	@RequestMapping(value="/board/qrTest")
+	public String qrTest(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	{
+		return "/board/qrTest";
+	}
 }

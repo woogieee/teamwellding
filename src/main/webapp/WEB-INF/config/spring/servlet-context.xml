@@ -191,6 +191,8 @@
 						<value>/mng/makeupComDelete</value>
 						<value>/mng/studioDelete</value>
 						<value>/mng/studioUpdateProc</value>
+						
+						<value>/board/qrTest</value>
 
 
             		</list>
