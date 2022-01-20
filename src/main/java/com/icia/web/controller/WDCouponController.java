@@ -42,9 +42,45 @@ public class WDCouponController {
 		return "/board/Coupon";
 	}
 	
+	//큐알팝업
 	@RequestMapping(value="/board/qrTest")
 	public String qrTest(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
+		
 		return "/board/qrTest";
 	}
+	
+	//신랑측 식권
+	@RequestMapping(value="/board/foodCpnM")
+	public String foodCpnM(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	{
+		
+		return "/board/foodCpnM";
+	}
+	
+	//신랑측 식권2
+	@RequestMapping(value="/board/foodCpnM2")
+	public String foodCpnM2(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	{
+		
+		return "/board/foodCpnM2";
+	}
+	
+	//신부측 식권
+	@RequestMapping(value="/board/foodCpnF")
+	public String foodCpnF(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	{
+		
+		return "/board/foodCpnF";
+	}
+	
+	//신부측 식권2
+	@RequestMapping(value="/board/foodCpnF2")
+	public String foodCpnF2(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	{
+		
+		return "/board/foodCpnF2";
+	}
+	
+	
 }
