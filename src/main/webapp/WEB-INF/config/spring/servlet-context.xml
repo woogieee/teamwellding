@@ -193,6 +193,9 @@
 						<value>/mng/studioUpdateProc</value>
 						
 						<value>/board/qrTest</value>
+						
+						<value>/board/foodCpnM</value>
+						<value>/board/foodCpnF</value>
 
 
             		</list>
