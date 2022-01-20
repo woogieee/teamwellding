@@ -23,7 +23,9 @@
         	   year: $("#year").val(),
         	   month:$("#month").val(),
         	   day: $("#day").val(),
-               rezNo: <c:out value="${wdRez.rezNo}" />
+               rezNo: $("#rezNo").val(),
+           	   wdUser: $("#dongdong").val()
+
            },
            datatype:"JSON",
            beforeSend:function(xhr){
@@ -348,7 +350,6 @@ $("#payMent").on("click", function(){
                         <div class="rez_sta">
                            <h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
                            <h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span id="marryDate">${wdRez.wDate}</span>
-                           <input type="hidden" id="dongdong" name="dongdong" value="">
                            <!-- 달력 넣기 -->
                            
                            
@@ -685,6 +686,8 @@ $("#payMent").on("click", function(){
    <input type="hidden" name="year" id="year" value="${year}"/>
    <input type="hidden" name="month" id="month" value="${month}"/>
    <input type="hidden" name="day" id="day" value="${day}"/>
+   <input type="hidden" name="rezNo" id="rezNo" value="${wdRez.rezNo}" />
+   <input type="hidden" name="dongdong" id="dongdong" value="${wdUser.userId}" />
 </form>
       <%@ include file="/WEB-INF/views/include/footer.jsp" %>
   </body>

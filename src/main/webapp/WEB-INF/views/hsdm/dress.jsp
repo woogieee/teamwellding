@@ -7,8 +7,15 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	$("._searchValue").on('keyup', function(e)
+	{ 
+		if(e.key==='Enter'||e.keyCode===13){
+			$(".btnSearch").trigger("click");
+		}
+	});
+	
 	//조회버튼클릭. 조회항목,조회값,현재커런트페이지에 대한 정보 가져가기
-	$("#btnSearch").on("click", function(){
+	$(".btnSearch").on("click", function(){
 		document.bbsForm.dNo.value = "";
 		document.bbsForm.searchType.value = $("#_searchType").val();
 		document.bbsForm.searchValue.value = $("#_searchValue").val();
@@ -174,11 +181,11 @@ function fn_list(curPage)
                                             </select>
                                         </div>
                                         <div class="col-lg-7">
-                                            <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
+                                            <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue _searchValue" placeholder="조회값을 입력하세요." />
                                         </div>
                                         <div class="col-lg-2">
                                             <fieldset>
-                                            <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                            <button type="button" id="btnSearch" class="btn btnSearch"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                             </fieldset>
                                         </div>
                                         
