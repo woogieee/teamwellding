@@ -227,11 +227,13 @@
                                 <div class="sd_detail_hall">${wdHall.HContent}</div>
                             <ul>    
                                 <li class="price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice}" />원</li>
-                                <li class="dis_price"><span class="discount"><c:out value="${wdHall.hDiscount}" />%</span> <span class="dis-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice * (1-wdHall.hDiscount*0.01)}" />원</span></li>
+                                <li class="dis_price"><span class="discount"><c:out value="${wdHall.hDiscount}" />%</span> <span class="dis-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice * (1-wdHall.hDiscount*0.01)}" />원</span> <br />
+                                <span class="addprice2">* 홀대관료는 식비가 포함되지 않은 가격입니다.</span></li>
                             </ul>
-                            <ul>
-                            	<li classs="price"><span class="price">1인당 식비 : ${wdHall.HFood }(최소인원 : ${wdHall.HMin })</span></li>
-                            </ul>
+                            <div class="addprice_box">
+                            	<span class="addprice">1인당 식비 : &nbsp;<span style="font-weight: 700;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood }" />원</span></span> <br/>
+                            	<span class="addprice">최소인원 : &nbsp;<span style="font-weight: 700;">${wdHall.HMin}명</span></span>
+                            </div>
                             <div class="main-dark-button">
                                 <a href="javascript:void(0)" onclick="fn_view('${wdHall.WHCode}', '${wdHall.HCode}')"> 자세히보기</a>
                             </div>
