@@ -33,21 +33,25 @@
            success:function(response){
               if(response.code == 0)
               {       
-            	  alert("결혼날짜 수정 완료");
-                 location.href = "/user/wishlist";
+            	  Swal.fire({ 
+                      icon: 'warning',
+                      text: '결혼 예정일자가 수정되었습니다.'
+                   }).then(function(){
+                      return;
+                   });
               }
               else if(response.code == 500)
               {
-            	  alert("날짜 똑바로.");
+            	  alert("날짜가 제대로 입력되지 않았습니다.");
             	  return;
               }
               else if(response.code == -1){
-            	  alert("오류");
+            	  alert("오류가 발생했습니다.");
             	  return;
               }
               else
               {
-                 alert("오류가 발생했습니당.");
+                 alert("오류가 발생했습니다.");
               }
            },
            complete:function(data){
