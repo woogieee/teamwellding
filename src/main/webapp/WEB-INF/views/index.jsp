@@ -4,83 +4,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-	<%@ include file="/WEB-INF/views/include/head.jsp" %>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-	<script>
-	$(document).ready(function(){
+   <%@ include file="/WEB-INF/views/include/head.jsp" %>
+   <script>
+   <%
+      if(com.icia.web.util.CookieUtil.getHexValue(request, (String)request.getAttribute("AUTH_COOKIE_NAME")).equals("admin"))
+      {
+   %>
+      location.href = "/mng/userList";
+   <%
+      }
+   %>
+      $(function(){
+         //다른화보보기 슬라이더 - 홀뷰
+         $('.post-wrapper3').slick({
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              autoplay: true,
+              autoplaySpeed : 2000,
+              pauseOnHover : true,
+              prevArrow : "<button type='button' class='slick-prev3'></button>",      // 이전 화살표 모양 설정
+              nextArrow : "<button type='button' class='slick-next3'></button>"      // 다음 화살표 모양 설정
+            });
+      });
+      function fn_view(whCode, hCode)
+      {
+         document.hallForm.WHCode.value = whCode;
+         document.hallForm.HCode.value = hCode;
+         document.hallForm.action = "/hsdm/HallView";  
+         document.hallForm.submit();
+      }
 
-		//다른화보보기 슬라이더
-		$('.post-wrapper').slick({
-			  slidesToShow: 1,
-			  slidesToScroll: 1,
-			  autoplay : true,			// 자동 스크롤 사용 여부
-			  autoplaySpeed : 2000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
-			  pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
-			  prevArrow : "<button type='button' class='slick-prev'></button>",		// 이전 화살표 모양 설정
-			  nextArrow : "<button type='button' class='slick-next'></button>"		// 다음 화살표 모양 설정
-			});	
-	<%
-	   if(com.icia.web.util.CookieUtil.getHexValue(request, (String)request.getAttribute("AUTH_COOKIE_NAME")).equals("admin"))
-	   {
-	%>
-		location.href = "/mng/userList";
-	<%
-	   }
-	%>
-		$(function(){
-			//다른화보보기 슬라이더 - 홀뷰
-			$('.post-wrapper3').slick({
-				  slidesToShow: 1,
-				  slidesToScroll: 1,
-				  autoplay: true,
-				  autoplaySpeed : 2000,
-				  pauseOnHover : true,
-				  prevArrow : "<button type='button' class='slick-prev3'></button>",		// 이전 화살표 모양 설정
-				  nextArrow : "<button type='button' class='slick-next3'></button>"		// 다음 화살표 모양 설정
-				});
-		});
-	   function fn_view(whCode, hCode)
-	   {
-	      document.hallForm.WHCode.value = whCode;
-	      document.hallForm.HCode.value = hCode;
-	      document.hallForm.action = "/hsdm/HallView";  
-	      document.hallForm.submit();
-	   }
-
-	   function fn_view3(bSeq)
-	   {
-	   	document.fBoardForm.bSeq.value = bSeq;
-	   	document.fBoardForm.action = "/board/fBoardView";
-	   	document.fBoardForm.submit();
-	   }
-	   
-	   function fn_view2(eBSeq)
-	   {
-		//alert(eBSeq);
-	   	document.eBoardForm.eBSeq.value = eBSeq;
-	   	document.eBoardForm.action = "/board/eView";
-	   	document.eBoardForm.submit();
-	   }
-	   
+      function fn_view3(bSeq)
+      {
+         document.fBoardForm.bSeq.value = bSeq;
+         document.fBoardForm.action = "/board/fBoardView";
+         document.fBoardForm.submit();
+      }
+      
+      function fn_view2(eBSeq)
+      {
+      //alert(eBSeq);
+         document.eBoardForm.eBSeq.value = eBSeq;
+         document.eBoardForm.action = "/board/eView";
+         document.eBoardForm.submit();
+      }
+      
        $(document).ready(function(){
 
-       	var cookieData = document.cookie;
-       	if(cookieData.indexOf("close=Yes") < 0)
-       	{
-	            var option="width = 500, height = 540, top = 100, left = 200, location = no, menubar = no, status=no,toolbar=no, scrollbars=no, left=70, top=110";
-	            window.open("/popUpRoad", "PopUP", option);
+          var cookieData = document.cookie;
+          if(cookieData.indexOf("close=Yes") < 0)
+          {
+               var option="width = 500, height = 540, top = 100, left = 200, location = no, menubar = no, status=no,toolbar=no, scrollbars=no, left=70, top=110";
+               window.open("/popUpRoad", "PopUP", option);
 
-       	}
+          }
 
        });
-	</script>
+   </script>
 </head> 
     <body>  
     <!-- 메뉴바 시작 -->
-    	<jsp:include page="/WEB-INF/views/include/navigation.jsp" >
-    	<jsp:param name="userName" value="${wdUser.userNickname}" />
-    	</jsp:include>
+       <jsp:include page="/WEB-INF/views/include/navigation.jsp" >
+       <jsp:param name="userName" value="${wdUser.userNickname}" />
+       </jsp:include>
     <!-- 메뉴바 종료 -->
 
     <!-- ***** Main Banner Area Start ***** -->
@@ -102,33 +88,33 @@
        <div class="coming-events2">
         <div class="container">
             <div class="row">
-				<div class="col-lg-12">
-			        <div class="bestWedding">
-			          <h2>Wellding's Best</h2>
-			          <p>Best Wedding Hall</p>
-			        </div>
+            <div class="col-lg-12">
+                 <div class="bestWedding">
+                   <h2>Wellding's Best</h2>
+                   <p>Best Wedding Hall</p>
+                 </div>
                 </div>
                 <c:forEach var="hallList" items="${hall}" varStatus="status">
-	                <div class="col-lg-4" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')">
-	                    <div class="event-item2">
-	                        <div class="thumb2">
-	                             <a href="javascript:void(0)" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')" ><img src="/resources/images/hallrepimage/${hallList.HImgName}" alt=""></a>	              
-	                        </div>
-	                        <div class="down-content2">
-	                            <a href="event-details.html"><h4>${hallList.HName}</h4></a>
-	                            <ul>
-	                                <li class="main_location"><i class="fa fa-map-marker"></i> <p>${hallList.WHLocation}</p></li>
-	                                <li class="main_person"><i class="fa fa-user"></i> ${hallList.HMax}명 수용 가능</li>
-	                                <li class="m_h_price"><i class="fa fa-krw" aria-hidden="true"></i>
-	                                <fmt:formatNumber type="number" maxFractionDigits="3" value="${hallList.HPrice}" />
-	                                </li>
-	                            </ul>
-		                        <div class="main-white-button">
-		                            <a href="javascript:void(0)" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')" >VIEW MORE ▶</a>
-		                        </div>
-	                        </div>
-	                    </div>
-	                </div>
+                   <div class="col-lg-4" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')">
+                       <div class="event-item2">
+                           <div class="thumb2">
+                                <a href="javascript:void(0)" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')" ><img src="/resources/images/hallrepimage/${hallList.HImgName}" alt=""></a>                 
+                           </div>
+                           <div class="down-content2">
+                               <a href="event-details.html"><h4>${hallList.HName}</h4></a>
+                               <ul>
+                                   <li class="main_location"><i class="fa fa-map-marker"></i> <p>${hallList.WHLocation}</p></li>
+                                   <li class="main_person"><i class="fa fa-user"></i> ${hallList.HMax}명 수용 가능</li>
+                                   <li class="m_h_price"><i class="fa fa-krw" aria-hidden="true"></i>
+                                   <fmt:formatNumber type="number" maxFractionDigits="3" value="${hallList.HPrice}" />
+                                   </li>
+                               </ul>
+                              <div class="main-white-button">
+                                  <a href="javascript:void(0)" onclick="fn_view('${hallList.WHCode}', '${hallList.HCode}')" >VIEW MORE ▶</a>
+                              </div>
+                           </div>
+                       </div>
+                   </div>
                 </c:forEach>             
             </div>
         </div>
@@ -141,10 +127,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-			        <div class="category">
-			          <h2>SDM category</h2>
-			          <p>Wedding Collection</p>
-			        </div>
+                 <div class="category">
+                   <h2>SDM category</h2>
+                   <p>Wedding Collection</p>
+                 </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="venue-item">
@@ -159,20 +145,20 @@
                 <div class="col-lg-4">
                     <div class="venue-item">
                         <div class="thumb sdmimg">
-                        	<a href="/hsdm/dress">
-	                            <img src="/resources/images/D10.jpg" width="100%" height="auto">
-	                        	<a class="sdm_title" href="/hsdm/dress">Dress</a>                       	
-                        	</a>
+                           <a href="/hsdm/dress">
+                               <img src="/resources/images/D10.jpg" width="100%" height="auto">
+                              <a class="sdm_title" href="/hsdm/dress">Dress</a>                          
+                           </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="venue-item">
                         <div class="thumb sdmimg">
-                      		<a href="/hsdm/makeUp">
-	                            <img src="/resources/images/M00.jpg" width="100%" height="auto">
-	                        	<a class="sdm_title" href="/hsdm/makeUp">Makeup</a>
-                        	</a>
+                            <a href="/hsdm/makeUp">
+                               <img src="/resources/images/M00.jpg" width="100%" height="auto">
+                              <a class="sdm_title" href="/hsdm/makeUp">Makeup</a>
+                           </a>
                         </div>
                     </div>
                 </div>
@@ -182,29 +168,15 @@
 
     <!--의수 수정 + 준호수정 + 보현수정-->
 
-   
+    <div class="slider">
        <div class="row">
            <div class="col-lg-12">
-		      <div class="category">
-		        <h2>wellding promotion</h2>
-		        <p>Event & Promotion</p>
-		      </div>
+            <div class="category">
+              <h2>wellding promotion</h2>
+              <p>Event & Promotion</p>
+            </div>
            </div>
          </div>  
-<<<<<<< HEAD
-        <div class="col-lg-12">
-				   <div class="post-slider">
-				        <div class="post-wrapper">
-				        	<c:forEach var="eboard" items="${wdEBoard}" varStatus="status">
-				        	<div class="post"><a href="javascript:void(0)" onclick="fn_view2(${eboard.eBSeq})">
-				          		<img src="/resources/board/${eboard.eBImgName}" style="width: 80%; height: 350px;" /></a></div>
-				            </c:forEach>
-				        </div>
-					</div>
-			    </div>
-   
-    
-=======
         <!-- div class="innerbox">
             <ul class="bxslider" style="text-align: center;"> 
              <c:forEach var="eboard" items="${wdEBoard}" varStatus="status">
@@ -217,19 +189,18 @@
         </div-->
    <div class="left-image-hall">        
         <div class="post-slider3">
-       		<div class="post-wrapper3">
-       		<c:forEach var="eboard" items="${wdEBoard}" varStatus="status">
-       			<li>
-       				<a href="javascript:void(0)" onclick="fn_view2(${eboard.eBSeq})">
-         				<div class="post3"><img src="/resources/board/${eboard.eBImgName}" style="width: 100%; height: 350px;" alt="" /></div>
-         			</a>
-         		</li> 
-           	</c:forEach>
-       		</div>
-		</div>
+             <div class="post-wrapper3">
+             <c:forEach var="eboard" items="${wdEBoard}" varStatus="status">
+                <li>
+                   <a href="javascript:void(0)" onclick="fn_view2(${eboard.eBSeq})">
+                     <div class="post3"><img src="/resources/board/${eboard.eBImgName}" style="width: 100%; height: 350px;" alt="" /></div>
+                  </a>
+               </li> 
+              </c:forEach>
+             </div>
+      </div>
         </div>
     </div>
->>>>>>> 9b2ed07b7d63421e00ddbe9275983afe11d76552
       
     <!--의수수정중 끝-->
     
@@ -241,7 +212,7 @@
                 <div class="col-lg-6">
                     <div class="left-content">
                         <!--<iframe width="530" height="300" src="https://www.youtube.com/embed/kqUUPueWUxE?autoplay=1&amp;mute=1" title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-                   		<div style="width:530px; height:300px; background:#000;"><video width="530" height="300" src="/resources/images/video/wedding.mp4" controls autoplay muted loop></video></div>
+                         <div style="width:530px; height:300px; background:#000;"><video width="530" height="300" src="/resources/images/video/wedding.mp4" controls autoplay muted loop></video></div>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -281,8 +252,8 @@
  
    <!-- 게시글 상세 페이지를 위한 폼 -->
    <form name="fBoardForm" id="fBoardForm" method="post">
-			<input type="hidden" name="bSeq" value="" />
-	</form>
+         <input type="hidden" name="bSeq" value="" />
+   </form>
    <!-- 게시글 상세 페이지를 위한 폼 -->
 
    <form name="eBoardForm" id="eBoardForm" method="post">
@@ -291,7 +262,7 @@
 
 
  <!-- *** 욱채수정Footer 시작 *** -->
- 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+    <%@ include file="/WEB-INF/views/include/footer.jsp" %>
  <!-- *** 욱채수정Footer 종료 *** -->
   </body>
 </html>
