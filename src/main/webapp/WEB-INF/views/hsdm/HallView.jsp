@@ -82,7 +82,7 @@ $(document).ready(function(){
 		
 	});*/
 	
-	$("#chae").on("click",function(){
+	$("#chae2").on("click",function(){
 		Swal.fire({
 			   title: '홀 선택 완료!',
 			   text: '해당 홀을 장바구니에 담으시겠습니까?',

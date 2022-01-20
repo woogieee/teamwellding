@@ -6965,6 +6965,7 @@ textarea::placeholder {
 .comment_tr td
 {
 	padding-top: 25px;
+	width:90%;
 }
 
 .comment_tr2 td

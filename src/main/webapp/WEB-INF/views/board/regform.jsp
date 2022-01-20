@@ -13,9 +13,9 @@
 
 $(document).ready(function(){
 
-	$("#btnReg").prop("disabled", true);
+	//$("#btnReg").prop("disabled", true);
 
-		$("#btnEmailCheck").on("click",function(){
+	$("#btnEmailCheck").on("click",function(){
 			var emailtest = $("#email").val();
 
 			if ($.trim(emailtest).length == 0) {
@@ -109,8 +109,9 @@ $(document).ready(function(){
 						});
 			 }
 		});
-
+	
 	$("#id").focus();
+	
 	// 모든 공백 체크 정규식
 	var emptCheck = /\s/g;
 	// 영문 대소문자, 숫자로만 이루어진 4~12자리 정규식
@@ -119,7 +120,7 @@ $(document).ready(function(){
 	$("#id").keyup(function(e) {
 
 		if ($("#id").val().length <= 0) 
-		{
+		{	
 			$('p').eq(0).text("아이디를 입력해 주세요");
 			$('p').eq(0).css('color', 'red');
 			$("#id").focus();
@@ -254,8 +255,27 @@ $(document).ready(function(){
 
 		});
 	});
-	$("#btnReg").on("click", function() {
-
+	
+	
+	$("#btnReg").on("click", function(){
+		
+	      if($.trim($("#id").val()).length <= 0 )
+	      {
+	         //값이 없음
+	        // alert("제목을 입력하세요.");
+				Swal.fire({ 
+					icon: 'warning',
+					title: '정보가 입력되지 않았습니다!',
+					text: '모든 정보를 입력해야 회원가입이 완료됩니다.'
+				});
+	         $("#id").val("");
+	         $("#id").focus();
+	         
+	         $("#btnReg").prop("disabled", true);
+	         return;
+	      }
+	      
+	      
 		$.ajax({
 			type : "POST",
 			url : "/user/regProc",

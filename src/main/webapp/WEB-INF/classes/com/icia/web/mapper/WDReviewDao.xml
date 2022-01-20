@@ -118,7 +118,7 @@ FROM (SELECT
                 AND
                     D.H_NAME LIKE '%' || #{searchValue} || '%'
 </if>                          
-                ORDER BY R_SEQ ASC))
+                ORDER BY R_SEQ DESC))
 WHERE
     RNUM <![CDATA[>=]]> #{startRow}
 AND

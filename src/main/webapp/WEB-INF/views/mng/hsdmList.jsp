@@ -25,10 +25,10 @@
 /*다크모드관련*/
 .btn-toggle
 {
-   background: none;
+	background: none;
     position: absolute;
-    top: 28px;
-    left: 79%;
+    top: 5px;
+    right: 0;
     border: none;
     outline: none;
     color: #ccc;
