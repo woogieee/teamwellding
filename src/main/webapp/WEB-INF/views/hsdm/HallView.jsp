@@ -292,12 +292,21 @@ function fn_view(whCode, hCode)
                     <div class="com_detail">
                         <div class="right-content">
                             
-                            <span>${wdHall.HContent }</span>
-                            <ul>
-                                <li>Tel. ${wdHall.whNumber }</li>
-                            </ul>
+                            <span>${wdHall.HContent }<br /><p style="display:inline-block; padding-top:10px;">${wdHall.whName }&nbsp;Tel. ${wdHall.whNumber }</p></span>
+                            <!--ul>
+                                <li>${wdHall.whName }&nbsp;Tel. ${wdHall.whNumber }</li>
+                            </ul-->
                             
                             <div class="total">
+		                        <div class="det_price2" style="border-bottom: 1px dashed #ccc;">
+		                            <ul>
+		                                <li class="dis_price2">
+			                                <div class="price3">1인당 식비 <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood }" />원 X 최소인원 ${wdHall.HMin }명</div>
+		                                </li>
+		                            </ul>
+		                            <div id="wook"><p>식비 : </p><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood * wdHall.HMin}" />원</div>
+	                            </div>
+	                            
 		                        <div class="det_price2">
 		                            <ul>
 		                                <li class="dis_price2">
@@ -307,13 +316,14 @@ function fn_view(whCode, hCode)
 		                            </ul>
 		                            <div id="wook"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice * (1-wdHall.hDiscount*0.01)}" />원</div>
 	                            </div>
+	                            
 	                        </div>
                         </div>
                         	
                     </div>
                 </div>
                 <div>
-                1인당 식비 : ${wdHall.HFood }원 X ${wdHall.HMin }명 = <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood * wdHall.HMin}" />원
+                1인당 식비 : <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood }" />원 X ${wdHall.HMin }명 = <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood * wdHall.HMin}" />원
                 </div>
                 <div class="col-lg-12 main-dark-button"><a href="#" id="chae">현재 홀 담기</a></div>
                 
