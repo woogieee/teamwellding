@@ -287,7 +287,7 @@ function fn_view(whCode, hCode)
            </div>
            
 
-                <div class="col-lg-12">	
+                <div class="col-lg-12" style="padding: 0;">	
                 <br>
                     <div class="com_detail">
                         <div class="right-content">
@@ -298,45 +298,52 @@ function fn_view(whCode, hCode)
                             </ul-->
                             
                             <div class="total">
-		                        <div class="det_price2" style="border-bottom: 1px dashed #ccc; margin-bottom: 13px;">
-		                            <ul>
-		                                <li class="dis_price2">
-			                                <div class="price3">1인당 식비 <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood }" />원 X 최소인원 ${wdHall.HMin }명</div>
-		                                </li>
-		                            </ul>
-		                            <div id="wook2"><p>식비 </p><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood * wdHall.HMin}" />원</div>
+		                        <div class="det_price2" style="border-bottom: 1px solid #ccc; width: 55%">
+		                        	<div style="padding: 0 25px;">
+		                            	<ul>
+			                                <li class="dis_price2">
+			                            		<div class="discount2"><c:out value="${wdHall.hDiscount}" />%</div>
+				                                <div class="price2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdHall.HPrice}" /></div>
+			                                </li>
+			                            </ul>
+			                            <div id="wook"><p>홀대관료</p><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice * (1-wdHall.hDiscount*0.01)}" />원</div>
+	                            	</div>
+	                            </div>
+                            
+		                        <div class="det_price2" style="border-bottom: 1px solid #ccc; width: 44%">
+		                        	<div style="border-left: 1px solid #ddd; width: 100%; height:57px; padding: 0 25px;">
+			                            <ul>
+			                                <li class="dis_price2">
+				                                <div class="price3">1인당 식비 <p><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood }" />원</p> X 최소인원 <p> ${wdHall.HMin }명</p></div>
+			                                </li>
+			                            </ul>
+			                            <div id="wook2"><p>식비 </p><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood * wdHall.HMin}" />원</div>
+	                            	</div>
 	                            </div>
 	                            
-		                        <div class="det_price2" style="border-bottom: 1px dashed #ccc; margin-bottom: 13px;">
-		                            <ul>
-		                                <li class="dis_price2">
-		                            		<div class="discount2"><c:out value="${wdHall.hDiscount}" />%</div>
-			                                <div class="price2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdHall.HPrice}" /></div>
-		                                </li>
-		                            </ul>
-		                            <div id="wook"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice * (1-wdHall.hDiscount*0.01)}" />원</div>
+		                        <div class="det_price2" style="width: 100%; padding-top: 35px; padding-bottom:10px; padding-right:15px; background: #efefef; border-radius: 13px; margin: 20px 0;">
+		                           <div style="display: inline-block; width:85%; padding-right: 10px;">
+										<ul>
+			                                <li class="dis_price2">
+				                                <div class="price4">홀대관료 <p><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice * (1-wdHall.hDiscount*0.01)}" />원</p> <p style="font-weight:300;">X</p> 식비 <p> <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood * wdHall.HMin}" />명</p></div>
+			                                </li>
+										</ul>
+		                           	 	<div id="wook3"><p>총액 </p><fmt:formatNumber type="number" maxFractionDigits="0" value="${(wdHall.HFood * wdHall.HMin) + (wdHall.HPrice * (1-wdHall.hDiscount*0.01))}" />원</div>
+	                            	</div> 
+									<div style="width:100%; display: inline-block; width:14%; position: relative; top: -17px;">
+			                           <div class="col-lg-12 main-dark-button" style="margin-right:12px;">
+			                           		<a href="#" id="chae2">현재 홀 담기</a>
+			                           </div>
+									</div>
 	                            </div>
-	                            
-		                        <div class="det_price2" style="border-bottom: 1px solid #ccc;">
-		                            <ul>
-		                                <li class="dis_price2">
-			                                <div class="price3">1인당 식비 <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood }" />원 X 최소인원 ${wdHall.HMin }명</div>
-		                                </li>
-		                            </ul>
-		                            <div id="wook2"><p>식비 </p><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood * wdHall.HMin}" />원</div>
-	                            </div>
-	                            
 	                        </div>
                         </div>
                         	
                     </div>
                 </div>
-                <div>
-                1인당 식비 : <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood }" />원 X ${wdHall.HMin }명 = <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood * wdHall.HMin}" />원
-                </div>
-                <div class="col-lg-12 main-dark-button"><a href="#" id="chae">현재 홀 담기</a></div>
+                <!--div class="col-lg-12 main-dark-button" style="margin-right:12px;"><a href="#" id="chae">현재 홀 담기</a></div-->
                 
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="padding: 0;">
                 	<div class="det_navi-hall">
                 		<ul>
                 			<li><a href="javascript:void(0)"><c:out value="${wdHall.whName}" />의 다른 홀 보기</a></li>
