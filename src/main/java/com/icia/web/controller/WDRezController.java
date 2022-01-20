@@ -433,6 +433,7 @@ public class WDRezController {
 		return	"/mng/payMentList";
 	}
 	
+
 	@RequestMapping(value="/user/marryUpdate")
 	@ResponseBody
 	public Response<Object> MarrydateUpdate(HttpServletRequest request, HttpServletResponse response)
@@ -494,7 +495,6 @@ public class WDRezController {
 		}
 		return ajaxResponse;
 	}
-	
 	
 	
 }

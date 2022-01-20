@@ -23,6 +23,21 @@ $(document).ready(function(){
        var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
        window.open("/board/Coupon", "PopUP", option); 
    });
+   
+	$("#qrTest").on("click",function(){
+        var option="width = 540, height = 590, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
+        window.open("/board/qrTest", "PopUP", option); 
+	}); 
+	
+	$("#qrTest1").on("click",function(){
+        var option="width = 340, height = 590, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
+        window.open("/board/foodCpnM", "PopUP", option); 
+	}); 
+	
+	$("#qrTest2").on("click",function(){
+        var option="width = 340, height = 590, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
+        window.open("/board/foodCpnF", "PopUP", option); 
+	}); 
 });
 
 function reviewWrite(rezNo){
@@ -141,6 +156,7 @@ function reviewWrite(rezNo){
                                 <th>예약번호</th>
                                 <th>예약날짜</th>
                                 <th>가격</th>
+                                <th>식권</th>
                             </tr>
 
                            <c:forEach var="wdRez" items="${list}" varStatus="status">
@@ -168,9 +184,16 @@ function reviewWrite(rezNo){
 	                               	</div>
 	                               	<div style="width: 50%; float: left; text-align: left; padding-left: 5px;">
 	                                   	<button class="rez_btn" onclick="reviewWrite('${wdRez.rezNo}')" >리뷰쓰기</button>
+	                                   	<!-- a href="javascript:void(0)" class="rez_btn2" id="qrTest">청첩장 QR</a-->
 	                                </div> 
                                 </div>  
-                                </td>  
+                                </td> 
+                                <td>
+	                               	<div style="width: 100%; float: left; text-align: center; padding-left: 5px;">
+	                                   	<a href="javascript:void(0)" class="rez_btn3" id="qrTest1">신랑측</a>
+	                                   	<a href="javascript:void(0)" class="rez_btn4" id="qrTest2">신부측</a>
+	                                </div> 
+                                </td> 
                               </tr>                         
                        	</c:forEach>
                        	</c:when>
