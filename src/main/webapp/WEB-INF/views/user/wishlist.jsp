@@ -286,7 +286,7 @@ $("#payMent").on("click", function(){
        document.rezForm.submit();
     }
        
-</script>  
+</script>
 </head>
     
 <body>
@@ -330,7 +330,7 @@ $("#payMent").on("click", function(){
                            <a href="/user/userDrop">회원탈퇴</a>
                         </li>
                         <li style="position: absolute; right:50px;">
-                           <div>잔여 포인트 : <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /> Point
+                           <div>보유 포인트 : <span style="color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
                            </div>
                         </li>
                      </ol>
@@ -413,7 +413,7 @@ $("#payMent").on("click", function(){
                                     <option value="31" <c:if test="${day eq '31'}">selected</c:if>>31</option>
                                  </select>
                                         </span>
-                           <input type="button" id="btnMarry" name="btnMarry" value="변경" style="border: solid 1px black; background:white; position:relative; color:black;">
+                           <input type="button" id="btnMarry" name="btnMarry" value="변경" style="border: solid 1px black; background:white; position:relative; color:black; height:25px;">
                            </h5>
                            <!-- 달력 넣기 끝 -->
 <c:choose>
