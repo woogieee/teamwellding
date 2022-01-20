@@ -177,7 +177,7 @@ public class WDUserController
 		wdUser.setUserPwd(userPwd);
 		wdUser.setUserName(userName);
 		wdUser.setUserNumber(phone);
-		wdUser.setMarrtDate(marry);
+		wdUser.setMarrytDate(marry);
 		wdUser.setUserGender(gender);
 		wdUser.setUserNickname(nickName);
 		wdUser.setUserEmail(email);
@@ -242,7 +242,7 @@ public class WDUserController
 				wdUser.setUserPwd(userPwd);
 				wdUser.setUserName(userName);
 				wdUser.setUserNumber(phone);
-				wdUser.setMarrtDate(marry);
+				wdUser.setMarrytDate(marry);
 				wdUser.setUserNickname(nickName);
 				wdUser.setUserEmail(email);
 				

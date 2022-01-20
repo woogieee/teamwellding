@@ -87,6 +87,34 @@ public class WDCouponService {
 		return count;
 	}
 	
+	public int qrCodeMPlus(String rezNo) {
+		
+		int count = 0;
+		
+		try {
+			count = wdCouponDao.qrCodeMPlus(rezNo);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] qrCodeMPlus Exception", e);
+		}
+		return count;
+	}
+	
+	public int qrCodeFPlus(String rezNo) {
+		
+		int count = 0;
+		
+		try {
+			count = wdCouponDao.qrCodeFPlus(rezNo);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] qrCodeFPlus Exception", e);
+		}
+		return count;
+	}
+	
 
 }
 

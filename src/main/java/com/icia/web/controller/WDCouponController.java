@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.icia.web.model.WDCoupon;
 import com.icia.web.service.WDCouponService;
 import com.icia.web.util.CookieUtil;
+import com.icia.web.util.HttpUtil;
 
 @Controller("WDCouponController")
 public class WDCouponController {
@@ -54,6 +55,9 @@ public class WDCouponController {
 	@RequestMapping(value="/board/foodCpnM")
 	public String foodCpnM(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
+		String rezNo = HttpUtil.get(request, "rezNo", "");
+		
+		model.addAttribute("rezNo",rezNo);
 		
 		return "/board/foodCpnM";
 	}
@@ -63,6 +67,10 @@ public class WDCouponController {
 	public String foodCpnM2(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
 		
+		String rezNo = HttpUtil.get(request, "rezNo", "");
+		
+		System.out.println("fhgfhgh : "+rezNo);
+		
 		return "/board/foodCpnM2";
 	}
 	
@@ -70,6 +78,9 @@ public class WDCouponController {
 	@RequestMapping(value="/board/foodCpnF")
 	public String foodCpnF(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
+		String rezNo = HttpUtil.get(request, "rezNo", "");
+		
+		model.addAttribute("rezNo",rezNo);
 		
 		return "/board/foodCpnF";
 	}
