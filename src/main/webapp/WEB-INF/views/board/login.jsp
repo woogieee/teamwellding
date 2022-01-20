@@ -370,17 +370,23 @@ function plusNum()
 {
 	euisooM = euisooM + 1;
 	
-	if(euisooM >= 6)
+	if(euisooM >= 8)
 	{
 		//alert("이제 관리자 계정으로 로그인이 가능합니다.");
 		//$("#id2").attr("onclick", "classChange(this);");
 		Swal.fire({ 
 			icon: 'info',
 			text: '이제 관리자 계정으로 로그인이 가능합니다.',
-			//closeOnClickOutSide: false
 			allowOutsideClick : false //다른데 클릭 못하게 막기!!!***
 		}).then(function(){
+			document.getElementById('id1').classList.remove('selected');
+			document.getElementById('id2').classList.add('selected');
+
 			$("#id2").attr("onclick", "classChange(this);");
+			$('#id2').hasClass('selected');
+		
+			//2번버튼 클릭상태로만들기 ~~! 바로 로그인쌉가능 예이
+			$("#id2").trigger("click");
 		});
 	}
 }

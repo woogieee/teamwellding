@@ -27,8 +27,8 @@
 {
 	background: none;
     position: absolute;
-    top: 28px;
-    left: 79%;
+    top: 5px;
+    right: 0;
     border: none;
     outline: none;
     color: #ccc;
@@ -159,8 +159,8 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                <thead style="border-bottom: 1px solid #c4c2c2;">
                <tr class="table-thead-main" style="background: #ddd;">
                   <th scope="col" style="width:13%;">아이디</th>
-                  <th scope="col" style="width:15%;">이름</th>
-                  <th scope="col" style="width:25%;">닉네임</th>
+                  <th scope="col" style="width:20%;">이름</th>
+                  <th scope="col" style="width:20%;">닉네임</th>
                   <th scope="col" style="width:30%;">이메일</th>
                   <th scope="col" style="width:7%;">상태</th>
                   <th scope="col" style="width:10%;">등록일</th>

@@ -20,11 +20,11 @@
            url:"/user/marryUpdate",
            data:
            {
-        	   year: $("#year").val(),
-        	   month:$("#month").val(),
-        	   day: $("#day").val(),
+              year: $("#year").val(),
+              month:$("#month").val(),
+              day: $("#day").val(),
                rezNo: $("#rezNo").val(),
-           	   wdUser: $("#dongdong").val()
+                 wdUser: $("#dongdong").val()
            },
            datatype:"JSON",
            beforeSend:function(xhr){
@@ -33,7 +33,7 @@
            success:function(response){
               if(response.code == 0)
               {       
-            	  Swal.fire({ 
+                 Swal.fire({ 
                       icon: 'warning',
                       text: '결혼 예정일자가 수정되었습니다.'
                    }).then(function(){
@@ -42,12 +42,12 @@
               }
               else if(response.code == 500)
               {
-            	  alert("날짜가 제대로 입력되지 않았습니다.");
-            	  return;
+                 alert("날짜가 제대로 입력되지 않았습니다.");
+                 return;
               }
               else if(response.code == -1){
-            	  alert("오류가 발생했습니다.");
-            	  return;
+                 alert("오류가 발생했습니다.");
+                 return;
               }
               else
               {

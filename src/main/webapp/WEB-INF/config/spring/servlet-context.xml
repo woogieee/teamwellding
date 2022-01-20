@@ -66,7 +66,7 @@
             			<value>/user/modify</value>
             			<value>/board/check.do</value>
             			<value>/user/emailCheck</value>
-            			
+            			<value>/board/eBoardCoupon</value>
 
             			<value>/board/nBoard</value>
             			<value>/board/eBoard</value>
