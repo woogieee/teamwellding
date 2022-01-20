@@ -69,7 +69,13 @@ public class WDCouponController {
 		
 		String rezNo = HttpUtil.get(request, "rezNo", "");
 		
-		System.out.println("fhgfhgh : "+rezNo);
+		wdCouponService.qrCodeMPlus(rezNo);
+		
+		WDCoupon wdCoupon = null;
+		
+		wdCoupon = wdCouponService.cntSelect(rezNo);
+		
+		model.addAttribute("wdCoupon",wdCoupon);
 		
 		return "/board/foodCpnM2";
 	}
@@ -89,6 +95,16 @@ public class WDCouponController {
 	@RequestMapping(value="/board/foodCpnF2")
 	public String foodCpnF2(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 	{
+		
+		String rezNo = HttpUtil.get(request, "rezNo", "");
+		
+		wdCouponService.qrCodeFPlus(rezNo);
+		
+		WDCoupon wdCoupon = null;
+		
+		wdCoupon = wdCouponService.cntSelect(rezNo);
+		
+		model.addAttribute("wdCoupon",wdCoupon);
 		
 		return "/board/foodCpnF2";
 	}

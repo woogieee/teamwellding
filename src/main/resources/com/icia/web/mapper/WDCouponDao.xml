@@ -249,5 +249,18 @@ WHERE
 </update>
 <!-- 신부측 클릭시 값 증가 -->
 
+<!-- 큐알 숫자 조회 -->
+<select id="cntSelect" parameterType="string" resultMap="WDCouponResultMap">
+SELECT
+    REZ_NO,
+    F_CNT,
+    M_CNT
+FROM
+    WD_QR
+WHERE
+    REZ_NO = #{value}
+</select>
+<!-- 큐알 숫자 조회 -->
+
 
 </mapper>
