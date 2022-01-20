@@ -7,6 +7,7 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <title>이벤트</title>
+
 <script>   
 $(document).ready(function(){
 	$("#btnSearch").on("click", function(){
@@ -37,7 +38,7 @@ function fn_search(){
      document.eBoardForm.submit(); 
 }
 
-function fn_list(curPage)
+function fn_paging(curPage)
 {
 	document.eBoardForm.eBSeq.value = "";
 	document.eBoardForm.curPage.value = curPage;
@@ -133,6 +134,30 @@ function fn_view(eBSeq)
 				<div class="col-lg-1"></div>
 				<div class="col-lg-10">
 					<div class="row">
+					
+						<div class="event-item">
+							<div class="row">
+								<div class="col-lg-8" id="eback">
+										<div class="left-content" style="padding: 25px;">
+											<a href="/board/eBoardCoupon">
+											<h1 class="display-5 fw-bolder" id="etitle">쿠폰 발급 이벤트</h1>
+											<div class="caption_desc"></div>
+											<div class="e_write">admin</div>
+											<div class="e_date">2022.01.01</div></a>
+										</div>
+									</div>
+								
+									<div class="col-lg-4" id="eback2">
+										<div class="thumb" >
+											<a href="/board/eBoardCoupon">
+												<img src="/resources/images/couponbanner.jpg" alt="할인쿠폰" style="border-radius: 4%;">
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+									
+					
 						<c:forEach var="eboard" items="${eBoard}" varStatus="status">
 							<div class="event-item" onclick="fn_view(${eboard.eBSeq})">
 								<div class="row">
@@ -167,7 +192,7 @@ function fn_view(eBSeq)
 										<c:if test="${paging.prevBlockPage gt 0}">	<!-- prevBlockPage이 0 보다 크냐 -->
 										<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${paging.prevBlockPage})">이전</a></li>
 										</c:if>
-										<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+										<c:forEach var="i" begin = "${paging.startPage}" end="${paging.endPage}">
 											<c:choose>
 												<c:when test="${i ne curPage}">
 													<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${i})">${i}</a></li>

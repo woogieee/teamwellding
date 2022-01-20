@@ -4,8 +4,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 	<%@ include file="/WEB-INF/views/include/head.jsp" %>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script>
+	$(document).ready(function(){
+
+		//다른화보보기 슬라이더
+		$('.post-wrapper').slick({
+			  slidesToShow: 1,
+			  slidesToScroll: 1,
+			  autoplay : true,			// 자동 스크롤 사용 여부
+			  autoplaySpeed : 2000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+			  pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+			  prevArrow : "<button type='button' class='slick-prev'></button>",		// 이전 화살표 모양 설정
+			  nextArrow : "<button type='button' class='slick-next'></button>"		// 다음 화살표 모양 설정
+			});	
 	<%
 	   if(com.icia.web.util.CookieUtil.getHexValue(request, (String)request.getAttribute("AUTH_COOKIE_NAME")).equals("admin"))
 	   {
@@ -191,7 +205,7 @@
 
     <!--의수 수정 + 준호수정 + 보현수정-->
 
-    <div class="slider">
+   
        <div class="row">
            <div class="col-lg-12">
 		      <div class="category">
@@ -200,18 +214,18 @@
 		      </div>
            </div>
          </div>  
-        <div class="innerbox">
-            <ul class="bxslider" style="text-align: center;"> 
-             <c:forEach var="eboard" items="${wdEBoard}" varStatus="status">
-                <li><a href=""><a href="javascript:void(0)" onclick="fn_view2(${eboard.eBSeq})">
-                <img src="/resources/board/${eboard.eBImgName}" style="width: 80%; height: 350px;" /></a></li> 
-             </c:forEach>
-                <!--li><img src="resources/images/305.jpg" style="width: 80%; height: 350px;" /></li> 
-                <li><img src="resources/images/608.jpg" style="width: 80%; height: 350px;" /></li--> 
-            </ul>
-        </div>
-        </div>
-    </div>
+        <div class="col-lg-12">
+				   <div class="post-slider">
+				        <div class="post-wrapper">
+				        	<c:forEach var="eboard" items="${wdEBoard}" varStatus="status">
+				        	<div class="post"><a href="javascript:void(0)" onclick="fn_view2(${eboard.eBSeq})">
+				          		<img src="/resources/board/${eboard.eBImgName}" style="width: 80%; height: 350px;" /></a></div>
+				            </c:forEach>
+				        </div>
+					</div>
+			    </div>
+   
+    
       
     <!--의수수정중 끝-->
     
