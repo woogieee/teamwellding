@@ -229,7 +229,7 @@ function fn_validateEmail(value)
 			<dd>
 				<div class="input">
 					<input type="password" id="pwd1" name="pwd1"
-						placeholder="비밀번호를 입력해 주세요" maxlength="20">
+						placeholder="${wdUser.userPwd}" maxlength="20">
 				</div>
 				<p class="msg">비밀번호를 입력해 주세오.</p>
 
@@ -238,7 +238,7 @@ function fn_validateEmail(value)
 			<dd>
 				<div class="input">
 					<input type="password" id="pwd2" name="pwd2"
-						placeholder="비밀번호를 다시 한번 입력해 주세요" maxlength="20">
+						placeholder="${wdUser.userPwd}" maxlength="20">
 				</div>
 				<p class="msg">비밀번호를 다시 입력해 주세요</p>
 			</dd>
@@ -246,14 +246,14 @@ function fn_validateEmail(value)
 			<dt>이름</dt>
 			<dd>
 				<div class="input">
-					<input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
+					<input type="text" id="name" name="name" placeholder="${wdUser.userName}">
 				</div>
 			</dd>
 			
 			<dt>전화번호</dt>
 			<dd>
 				<div class="input">
-					<input type="text" id="number" placeholder="전화번호를 입력해주세요">
+					<input type="text" id="number" placeholder="${wdUser.userNumber}">
 				</div>
 				<p class="msg"></p>
 			</dd>
@@ -261,7 +261,7 @@ function fn_validateEmail(value)
 			<dt>닉네임</dt>
 			<dd>
 				<div class="input">
-					<input type="text" id="nickname" placeholder="닉네임을 입력해주세요">
+					<input type="text" id="nickname" placeholder="${wdUser.userNickname}">
 				</div>
 				<p class="msg">
 				<p class="msg"></p>
@@ -271,17 +271,18 @@ function fn_validateEmail(value)
 			<dd>
 				<div class="input">
 					<input id="email" data-bind="email" type="text"
-						placeholder="이메일을 입력해주세요" value="">
+						placeholder="${wdUser.userEmail}" value="">
 				</div>
 				<p class="msg"></p>
 				
 			<dt>결혼예정일</dt>
 			<dd class="date">
-				<select id="year" class="year">
+				<select id="year" class="year" >
 					<option>년도</option>
 					<option value="2022">2022</option>
 					<option value="2023">2023</option>
-				</select> <select id="month" class="month">
+				</select> 
+				<select id="month" class="month">
 					<option>월</option>
 					<option value="01">1</option>
 					<option value="02">2</option>
@@ -295,7 +296,8 @@ function fn_validateEmail(value)
 					<option value="10">10</option>
 					<option value="11">11</option>
 					<option value="12">12</option>
-				</select> <select id="day" class="day">
+				</select>
+			   <select id="day" class="day">
 					<option>일</option>
 					<option value="01">1</option>
 					<option value="02">2</option>

@@ -22,6 +22,7 @@
         	   year: $("#year").val(),
         	   month:$("#month").val(),
         	   day: $("#day").val(),
+        	   userId : $("userId").val(),
                rezNo: <c:out value="${wdRez.rezNo}" />
            },
            datatype:"JSON",
@@ -347,7 +348,7 @@ $("#payMent").on("click", function(){
                         <div class="rez_sta">
                            <h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
                            <h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span id="marryDate">${wdRez.wDate}</span>
-                           <input type="hidden" id="dongdong" name="dongdong" value="">
+                           <input type="hidden" id="userId" name="userId" value="${wdUser.userId}">
                            <!-- 달력 넣기 -->
                            
                            
