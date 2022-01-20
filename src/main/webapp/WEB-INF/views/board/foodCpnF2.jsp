@@ -63,7 +63,7 @@ html, bady
 <body>
     <div id="led_group" align="center">
     	<!--h5>스프링 & 톰캣</h5-->
-    	<h6>15</h6>
+    	<h6>#{wdCoupon.fCnt }</h6>
     </div>
     
 <script>

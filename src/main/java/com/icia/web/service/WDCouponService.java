@@ -115,6 +115,21 @@ public class WDCouponService {
 		return count;
 	}
 	
+	public WDCoupon cntSelect(String rezNo) {
+		
+		WDCoupon wdCoupon = null;
+		
+		try {
+			wdCoupon = wdCouponDao.cntSelect(rezNo);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] qrCodeFPlus Exception", e);
+		}
+		
+		return wdCoupon;
+	}
+	
 
 }
 

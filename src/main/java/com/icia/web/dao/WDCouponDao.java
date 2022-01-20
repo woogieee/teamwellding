@@ -29,6 +29,8 @@ public interface WDCouponDao {
 	public int qrCodeMPlus(String rezNo);
 	
 	public int qrCodeFPlus(String rezNo);
+	
+	public WDCoupon cntSelect(String rezNo);
 
 }
 
