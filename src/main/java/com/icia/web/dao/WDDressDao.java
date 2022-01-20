@@ -61,5 +61,7 @@ public interface WDDressDao
 	//드레스 수정
 	public int dressUpdate(WDDress wdDress);
 	
+	public String maxImgName();
+	
 	public int dressFileInsert(WDDressFile wdDressFile);
 }

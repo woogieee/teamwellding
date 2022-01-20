@@ -24,10 +24,12 @@ import com.icia.web.model.Response;
 import com.icia.web.model.WDAdmin;
 import com.icia.web.model.WDAdminUser;
 import com.icia.web.model.WDDress;
+import com.icia.web.model.WDDressFile;
 import com.icia.web.model.WDEBoard;
 import com.icia.web.model.WDHall;
 import com.icia.web.model.WDHallFile;
 import com.icia.web.model.WDMakeUp;
+import com.icia.web.model.WDMakeUpFile;
 import com.icia.web.model.WDNBoard;
 import com.icia.web.model.WDStudio;
 import com.icia.web.model.WDStudioFile;
@@ -92,6 +94,14 @@ public class WDAdminIndexController
    //스튜디오 저장경로
    @Value("#{env['upload.save.studio']}")
    private String UPLOAD_SAVE_STUDIO;
+   
+   //드레스 저장경로
+   @Value("#{env['upload.save.dress']}")
+   private String UPLOAD_SAVE_DRESS;
+   
+   //메이크업 저장경로
+   @Value("#{env['upload.save.makeup']}")
+   private String UPLOAD_SAVE_MAKEUP;
 
    //쿠키명
    @Value("#{env['auth.cookie.name']}")
@@ -941,12 +951,10 @@ public class WDAdminIndexController
         maxDCode = "" + dNoPlus;  ///이러면 1000번대로 가면안되눈뎅 ,,,
 
         String dcCode = HttpUtil.get(request, "dcCode", "");
-        String dName = HttpUtil.get(request, "dName", "");
-        long dPrice = HttpUtil.get(request, "dPrice", (long)0);
-        String dContent = HttpUtil.get(request, "dContent", "");
-        long dDiscount = HttpUtil.get(request, "dDiscount", (long)0);
-        
-        System.out.println("############# dNo ############# : " + maxDCode);
+        String dName = HttpUtil.get(request, "dressname", "");
+        long dPrice = HttpUtil.get(request, "dressprice", (long)0);
+        String dContent = HttpUtil.get(request, "dresscontent", "");
+        long dDiscount = HttpUtil.get(request, "dressdiscount", (long)0);
         
         WDDress wdDress = new WDDress();
         wdDress.setDcCode(dcCode);
@@ -956,17 +964,53 @@ public class WDAdminIndexController
         wdDress.setdContent(dContent);
         wdDress.setdDiscount(dDiscount);
         
+        String maxName = wdDressService.maxImgName();
+        maxName = maxName.replace("D", "");
+        maxName = maxName.replace(".jpg", "");
+        maxName = maxName.replace(".png", "");
+        int namePlus = Integer.parseInt(maxName)+1;
+        maxName = "D0"+namePlus; 
+        
+        FileData fileData = HttpUtil.getFile(request, "dressimgname", UPLOAD_SAVE_DRESS,maxName);
+        
+        if(fileData == null)
+        {
+       	 ajaxResponse.setResponse(999, "Not Paremeter");
+       	 return ajaxResponse;
+        }
+        
         
         if(!StringUtil.isEmpty(dName) && !StringUtil.isEmpty(dPrice) && !StringUtil.isEmpty(dContent) && !StringUtil.isEmpty(dDiscount)) 
         {
-           if(wdDressService.dressInsert(wdDress) > 0) 
-           {
-              ajaxResponse.setResponse(0, "Success");
-           }
-           else 
-           {
-              ajaxResponse.setResponse(-1, "Error");
-           }
+        	if(fileData != null && fileData.getFileSize() > 0)
+        	{
+        		WDDressFile wdDressFile = new WDDressFile();
+        		
+        		wdDressFile.setdFileName(fileData.getFileName());
+        		wdDressFile.setdFileOrgName(fileData.getFileOrgName());
+        		wdDressFile.setdFileExt(fileData.getFileExt());
+        		wdDressFile.setdFileSize(fileData.getFileSize());
+        		wdDressFile.setdcCode(wdDress.getDcCode());
+        		wdDressFile.setdFileSeq(1);
+        		
+        		wdDress.setdImgname(fileData.getFileName());
+        		wdDress.setWdDressFile(wdDressFile);
+        	}
+        	try {
+		           if(wdDressService.dressInsert(wdDress) > 0) 
+		           {
+		              ajaxResponse.setResponse(0, "Success");
+		           }
+		           else 
+		           {
+		              ajaxResponse.setResponse(-1, "Error");
+		           }
+     	}
+			catch(Exception e) 
+			{
+				logger.error("[WDAdminIndexController] /mng/dressWrite Exception", e);
+				ajaxResponse.setResponse(500, "Internal Server Error");
+			}
         }
         else 
         {
@@ -1026,7 +1070,7 @@ public class WDAdminIndexController
      
      @RequestMapping(value="/mng/makeupWrite")
      @ResponseBody
-     public Response<Object> makeupWrite(HttpServletRequest request, HttpServletResponse response)
+     public Response<Object> makeupWrite(MultipartHttpServletRequest request, HttpServletResponse response)
      {
         Response<Object> ajaxResponse = new Response<Object>();
         
@@ -1035,13 +1079,22 @@ public class WDAdminIndexController
         int wdMakeupCodePlus = Integer.parseInt(makeupMax)+1;
         makeupMax = "M"+wdMakeupCodePlus;
         
-        String mkName = HttpUtil.get(request, "mkName", "");
-        String mkLocation = HttpUtil.get(request, "mkLocation", "");
-        String mkNumber = HttpUtil.get(request, "mkNumber", "");
-        long mkPrice = HttpUtil.get(request, "mkPrice",(long)0);
-        String mkContent = HttpUtil.get(request,"mkContent", "");
-        long mkPlus = HttpUtil.get(request, "mkPlus",(long)0);
-        long mkDiscount = HttpUtil.get(request, "mkDiscount",(long)0);
+        String mkName = HttpUtil.get(request, "makeupName", "");
+        String mkLocation = HttpUtil.get(request, "makeupLocation", "");
+        String mkNumber = HttpUtil.get(request, "makeupnumber", "");
+        long mkPrice = HttpUtil.get(request, "makeupprice",(long)0);
+        String mkContent = HttpUtil.get(request,"makeupContent", "");
+        long mkPlus = HttpUtil.get(request, "makeupPlus",(long)0);
+        long mkDiscount = HttpUtil.get(request, "makeupdiscount",(long)0);
+        
+        String maxName = wdMakeUpService.maxImgName();
+        maxName = maxName.replace("M", "");
+        maxName = maxName.replace(".jpg", "");
+        maxName = maxName.replace(".png", "");
+        int namePlus = Integer.parseInt(maxName)+1;
+        maxName = "M"+namePlus; 
+        
+        FileData fileData = HttpUtil.getFile(request, "makeupimgname", UPLOAD_SAVE_MAKEUP,maxName);
         
         WDMakeUp wdmakeup = new WDMakeUp();
         
@@ -1059,13 +1112,38 @@ public class WDAdminIndexController
               !StringUtil.isEmpty(mkLocation) && !StringUtil.isEmpty(mkNumber) && !StringUtil.isEmpty(mkPrice) &&
               !StringUtil.isEmpty(mkContent) && !StringUtil.isEmpty(mkDiscount))
         {
-           if(wdMakeUpService.makeupInsert(wdmakeup) > 0)
-           {
-              ajaxResponse.setResponse(0, "Success");
-           }
-           else {
-              ajaxResponse.setResponse(-1, "Error");
-           }
+        	
+        	if(fileData != null && fileData.getFileSize() > 0)
+        	{
+        		WDMakeUpFile wdMakeUpFile = new WDMakeUpFile();
+        		
+        		wdMakeUpFile.setmFileName(fileData.getFileName());
+        		wdMakeUpFile.setmFileOrgName(fileData.getFileOrgName());
+        		wdMakeUpFile.setmFileExt(fileData.getFileExt());
+        		wdMakeUpFile.setmFileSize(fileData.getFileSize());
+        		wdMakeUpFile.setmCode(wdmakeup.getmCode());
+        		wdMakeUpFile.setmFileSeq(1);
+        		
+        		wdmakeup.setmImgName(fileData.getFileName());
+        		wdmakeup.setWdMakeUpFile(wdMakeUpFile);
+        	}
+        	
+        	try {
+		           if(wdMakeUpService.makeupInsert(wdmakeup) > 0) 
+		           {
+		              ajaxResponse.setResponse(0, "Success");
+		           }
+		           else 
+		           {
+		              ajaxResponse.setResponse(-1, "Error");
+		           }
+        	}
+			catch(Exception e) 
+			{
+				logger.error("[WDAdminIndexController] /mng/makeupWrite Exception", e);
+				ajaxResponse.setResponse(500, "Internal Server Error");
+			}
+        	
         }
         else {
            ajaxResponse.setResponse(400, "Not Paremeter");

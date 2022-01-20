@@ -14,6 +14,7 @@ import com.icia.web.dao.WDMakeUpDao;
 import com.icia.web.dao.WDRezDao;
 import com.icia.web.model.WDDress;
 import com.icia.web.model.WDMakeUp;
+import com.icia.web.model.WDMakeUpFile;
 import com.icia.web.model.WDRez;
 
 @Service("wdMakeUpService")
@@ -133,20 +134,23 @@ public class WDMakeUpService
    	}
 	
     //메이크업 글쓰기
-    public int makeupInsert(WDMakeUp wdMakeUp)
+   	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+    public int makeupInsert(WDMakeUp wdMakeUp) throws Exception
     {
        int count = 0;
        
-       try
+       count = wdMakeUpDao.makeupInsert(wdMakeUp);
+       
+       if(count > 0 && wdMakeUp.getWdMakeUpFile() != null)
        {
-          count = wdMakeUpDao.makeupInsert(wdMakeUp);
+    	   WDMakeUpFile wdMakeUpFile = wdMakeUp.getWdMakeUpFile();
+    	   
+    	   wdMakeUpDao.makeupFileInsert(wdMakeUpFile);
        }
-       catch(Exception e)
-       {
-          logger.error("[WDMakeUpService] makeupInsert Exception", e);
-       }
+
        return count;
     }
+    
     //메이크업 마지막 코드 불러오기
     public String makeupMax()
     {
@@ -211,6 +215,20 @@ public class WDMakeUpService
   			logger.error("[WDMakeUpService] onlyMakeupComDelete Exception", e);
   		}
   		return count;
+  	}
+  	
+  	public String maxImgName() {
+  		String imgName = "";
+  		
+  		try {
+  			imgName = wdMakeUpDao.maxImgName();
+  		}
+  		catch(Exception e)
+  		{
+  			logger.error("[WDMakeUpService] maxImgName Exception", e);
+  		}
+  		
+  		return imgName;
   	}
 	
    	

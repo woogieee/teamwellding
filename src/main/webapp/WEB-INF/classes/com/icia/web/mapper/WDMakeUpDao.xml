@@ -239,6 +239,7 @@ WHERE
     M_NAME,
     M_LOCATION,
     M_NUMBER,
+    M_IMGNAME,
     M_PRICE,
     M_CONTENT,
     M_PLUS,
@@ -248,6 +249,7 @@ WHERE
     #{mName},
     #{mLocation},
     #{mNumber},
+    #{mImgName},
     #{mPrice},
     #{mContent},
     #{mPlus},
@@ -306,5 +308,35 @@ WHERE
 </delete>
 <!-- 메이크업 업체 삭제 끝 -->
 
+<!-- 이미지 가장 마지막 번호 가져오기 -->
+<select id="maxImgName" resultType="string">
+SELECT
+    NVL(MAX(M_IMGNAME), 0) M_IMGNAME
+FROM
+    WD_MAKEUP
+</select>
+<!-- 이미지 가장 마지막 번호 가져오기 -->
+
+<!-- 메이크업 파일 등록 -->
+<insert id="makeupFileInsert" parameterType="com.icia.web.model.WDMakeUpFile">
+INSERT INTO WD_MAKEUP_FILE (
+    M_CODE,
+    M_FILE_SEQ,
+    M_FILE_NAME,
+    M_FILE_ORG_NAME,
+    M_FILE_EXT,
+    M_FILE_SIZE,
+    REG_DATE
+) VALUES (
+    #{mCode},
+    #{mFileSeq},
+    #{mFileName},
+    #{mFileOrgName},
+    #{mFileExt},
+    #{mFileSize},
+    SYSDATE
+)
+</insert>
+<!-- 메이크업 파일 등록 -->
 
 </mapper>

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.icia.web.dao.WDDressDao;
 import com.icia.web.dao.WDRezDao;
 import com.icia.web.model.WDDress;
+import com.icia.web.model.WDDressFile;
 import com.icia.web.model.WDHall;
 import com.icia.web.model.WDRez;
 
@@ -186,20 +187,20 @@ public class WDDressService
    		return dcCode;
    	}
    	
-   	//드레스샵 추가 쿼리문
-   	public int dressInsert(WDDress wdDress) 
+   	//드레스 추가 쿼리문
+   	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+   	public int dressInsert(WDDress wdDress) throws Exception
    	{
    		int count = 0;
+   	
+   		count = wdDressDao.dressInsert(wdDress);
    		
-   		try 
+   		if(count > 0 && wdDress.getWdDressFile() != null)
    		{
-   			count = wdDressDao.dressInsert(wdDress);
+   			WDDressFile wdDressFile = wdDress.getWdDressFile();
    			
+   			wdDressDao.dressFileInsert(wdDressFile);
    		}
-		catch(Exception e)
-		{
-			logger.error("[WDDressService] dressInsert Exception", e);
-		}
    		
    		return count;
    	}
@@ -340,6 +341,20 @@ public class WDDressService
 		}
 		
 		return count;
+	}
+	
+	public String maxImgName() {
+		String imgName = "";
+		
+		try {
+			imgName = wdDressDao.maxImgName();
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDDressService] maxImgName Exception", e);
+		}
+		
+		return imgName;
 	}
 	
 }
