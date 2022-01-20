@@ -29,7 +29,7 @@ $(document).ready(function(){
         window.open("/board/qrTest", "PopUP", option); 
 	}); 
 	
-	$("#qrTest1").on("click",function(){
+	/*$("#qrTest1").on("click",function(){
         var option="width = 340, height = 590, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
         window.open("/board/foodCpnM", "PopUP", option); 
 	}); 
@@ -37,8 +37,18 @@ $(document).ready(function(){
 	$("#qrTest2").on("click",function(){
         var option="width = 340, height = 590, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
         window.open("/board/foodCpnF", "PopUP", option); 
-	}); 
+	}); */
 });
+
+function foodCpnM(rezNo){
+    var option="width = 340, height = 590, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
+    window.open("/board/foodCpnM?rezNo="+rezNo, "PopUP", option); 
+}
+
+function foodCpnF(rezNo){
+    var option="width = 340, height = 590, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
+    window.open("/board/foodCpnF?rezNo="+rezNo, "PopUP", option); 
+}
 
 function reviewWrite(rezNo){
 	   document.reviewForm.FormRezNo.value = rezNo;
@@ -190,8 +200,8 @@ function reviewWrite(rezNo){
                                 </td> 
                                 <td>
 	                               	<div style="width: 100%; float: left; text-align: center; padding-left: 5px;">
-	                                   	<a href="javascript:void(0)" class="rez_btn3" id="qrTest1">신랑측</a>
-	                                   	<a href="javascript:void(0)" class="rez_btn4" id="qrTest2">신부측</a>
+	                                   	<a href="javascript:void(0)" class="rez_btn3" id="qrTest1" onclick="foodCpnM('${wdRez.rezNo}')">신랑측</a>
+	                                   	<a href="javascript:void(0)" class="rez_btn4" id="qrTest2" onclick="foodCpnF('${wdRez.rezNo}')">신부측</a>
 	                                </div> 
                                 </td> 
                               </tr>                         

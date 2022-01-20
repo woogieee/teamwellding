@@ -2245,7 +2245,42 @@ About Us Page
     float: right;
     margin-bottom: 15px;
 }
+
+#wook2 p
+{
+	display: inline-block;
+    font-size: 18px;
+    padding-right: 12px;
+    font-weight: 500;
+    color: #666;
+    letter-spacing: -1.2px;
+}
+
+#wook2
+{
+	font-size: 25px;
+    font-weight: 700;
+    color: #000;
+    float : right;
+    border-bottom: none;
+    margin-bottom: 15px;
+}
 /*************/
+.det_price2
+{
+	display: inline-block;
+    width: 100%;
+}
+
+.det_price2 .price3
+{
+	color: #888!important;
+	margin: 0;
+	height: 20px;
+	float: right;
+	font-size: 16px;
+	font-weight: 300;
+}
 
 /*욱채**/
 .det_price2 .price2
@@ -3782,12 +3817,45 @@ Shows Events Page
 	font-size: 22px;
     font-weight: 700;
     color: #000;
+    height: 33px;
 }
 
-.down-content .dis_price
+.down-content .dis-price2
 {
-	height: 33px;
+	font-size: 20px;
+    font-weight: 900;
+    color: #000;
+    height: 20px;
 }
+
+.addprice_box
+{
+	height: 62px;
+    line-height: 20px;
+    margin-top: 15px;
+    background: rgba(255,255,255,0.4);
+    padding: 11px 18px;
+    border-radius: 10px;
+}
+
+.addprice
+{
+	color: #666;
+	margin: 0;
+	height: 20px;
+	font-size: 13px;
+}
+
+.addprice2
+{
+	color: #888;
+	margin: 0;
+	font-size: 12px;
+	letter-spacing: -0.6px;
+	font-weight: 600;
+}
+
+
 
 .sd_adress
 {

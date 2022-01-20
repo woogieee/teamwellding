@@ -352,7 +352,7 @@ function fn_view(dNo)
                 <div class="col-lg-12">
                 	<div class="det_navi3">
                 		<ul>
-                			<li><a href="">스튜디오 추천받기</a></li>
+                			<li><a href="javascript:void(0)">스튜디오 추천받기</a></li>
                 		</ul>
                 	</div>
                 </div>
@@ -379,7 +379,7 @@ function fn_view(dNo)
 				<div class="col-lg-12">
                 	<div class="det_navi3">
                 		<ul>
-                			<li><a href="">드레스 추천받기</a></li>
+                			<li><a href="javascript:void(0)">드레스 추천받기</a></li>
                 		</ul>
                 	</div>
                 </div>

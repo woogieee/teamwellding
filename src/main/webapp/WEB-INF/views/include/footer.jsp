@@ -34,7 +34,7 @@
                         <div class="col-lg-6">
                             <div class="menu">
                                 <ul>
-                                    <li><a href="index.html" class="active">메인페이지</a></li>
+                                    <li><a href="/index" class="active">메인페이지</a></li>
                                     <li><a id="terms" href="/include/Terms" data-lightbox="Terms" data-title="My caption">이용약관</a></li>
                                     <li><a id="policy" href="/include/PrivacyPolicy" data-lightbox="Privacy Policy" data-title="My caption">개인정보처리방침</a></li>
                                     <li><a href="/about/map">오시는 길</a></li> 

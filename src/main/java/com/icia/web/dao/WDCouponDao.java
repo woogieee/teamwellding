@@ -23,6 +23,14 @@ public interface WDCouponDao {
 	public List<WDCoupon> couponList(WDCoupon wdCoupon);
 	
 	public int couponInsert(String userId);
+	
+	public int QRrezNoInsert(String rezNo);
+	
+	public int qrCodeMPlus(String rezNo);
+	
+	public int qrCodeFPlus(String rezNo);
+	
+	public WDCoupon cntSelect(String rezNo);
 
 }
 
