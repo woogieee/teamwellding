@@ -15,7 +15,6 @@ public interface WDCouponDao {
    //결제 시 , 쿠폰 정보를 가져와서 해당 유저의 해당 쿠폰 업데이트
    public int couponStatusUpdate(String userId);
 
-
 	//결제 완료된 내역에서 결제중 쿠폰 정보를 가져오기 시작
 	public WDCoupon couponSelectPayOk(HashMap<String, Object> map);
 	
@@ -32,5 +31,11 @@ public interface WDCouponDao {
 	
 	public WDCoupon cntSelect(String rezNo);
 
+	//해당 계정에 이벤트 쿠폰이 1개 이상 있는지 카운트 
+	public int selectCoupon(String userId);
+	
+	//이벤트 쿠폰 발급하기
+	public WDCoupon downloadCoupon(String userId);
+	
 }
 

@@ -131,5 +131,37 @@ public class WDCouponService {
 	}
 	
 
+	//해당 계정에 이벤트 쿠폰이 1개 이상 있는지 카운트 
+	public int selectCoupon(String userId)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdCouponDao.selectCoupon(userId);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDCouponService] selectCoupon Exception", e);
+		}
+		return count;
+	}
+	
+	//이벤트 쿠폰 발급하기
+	public WDCoupon downloadCoupon(String userId)
+	{
+		WDCoupon wdCoupon = null;
+		
+		try
+		{
+			wdCoupon = wdCouponDao.downloadCoupon(userId);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDCouponService] downloadCoupon Exception", e);
+		}
+		return wdCoupon;
+	}
+	
 }
 
