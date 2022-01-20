@@ -161,8 +161,6 @@ public class WDHallController {
 		   String month = HttpUtil.get(request, "month", "");
 		   String day = HttpUtil.get(request, "day", "");
 		   
-		   System.out.println("year:" + year + "month "+month+"day "+day);
-		   
 		   String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
 		   
 			WDUser wdUser = null;
