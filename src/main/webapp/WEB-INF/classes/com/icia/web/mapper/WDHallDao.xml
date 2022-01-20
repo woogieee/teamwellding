@@ -395,7 +395,8 @@ INSERT INTO WD_HALL (
     H_CONTENT,
     H_IMGNAME,
     REZCOUNT,
-    H_DISCOUNT
+    H_DISCOUNT,
+    H_SUBIMG
 ) VALUES (
     #{WHCode},
     #{HCode},
@@ -407,7 +408,8 @@ INSERT INTO WD_HALL (
     #{HContent},
     #{HImgName},
     #{RezCount},
-    #{hDiscount}
+    #{hDiscount},
+    #{hSubImg}
 )
 </insert>
 <!-- 홀 추가 인서트문 끝 -->

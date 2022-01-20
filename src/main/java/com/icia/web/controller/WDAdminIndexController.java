@@ -30,6 +30,7 @@ import com.icia.web.model.WDHallFile;
 import com.icia.web.model.WDMakeUp;
 import com.icia.web.model.WDNBoard;
 import com.icia.web.model.WDStudio;
+import com.icia.web.model.WDStudioFile;
 import com.icia.web.model.WDUser;
 import com.icia.web.service.WDAdminService;
 import com.icia.web.service.WDAdminUserService;
@@ -87,6 +88,10 @@ public class WDAdminIndexController
    //홀파일저장경로
    @Value("#{env['upload.save.hallsub']}")
    private String UPLOAD_SAVE_HALLSUB;
+   
+   //스튜디오 저장경로
+   @Value("#{env['upload.save.studio']}")
+   private String UPLOAD_SAVE_STUDIO;
 
    //쿠키명
    @Value("#{env['auth.cookie.name']}")
@@ -712,10 +717,10 @@ public class WDAdminIndexController
         	try {
 	            if(wdHallService.hallInsert(wdHall) > 0) {
 	            	if(fileData2 != null && fileData2.getFileSize() > 0) {
-	            		wdHallSubFile1.setHFileName(fileData1.getFileName());
-	            		wdHallSubFile1.setHFileOrgName(fileData1.getFileOrgName());
-	            		wdHallSubFile1.setHFileExt(fileData1.getFileExt());
-	            		wdHallSubFile1.setHFileSize(fileData1.getFileSize());
+	            		wdHallSubFile1.setHFileName(fileData2.getFileName());
+	            		wdHallSubFile1.setHFileOrgName(fileData2.getFileOrgName());
+	            		wdHallSubFile1.setHFileExt(fileData2.getFileExt());
+	            		wdHallSubFile1.setHFileSize(fileData2.getFileSize());
 	            		wdHallSubFile1.setWHCode(wdHall.getWHCode());
 	            		wdHallSubFile1.setHCode(wdHall.getHCode());
 	            		wdHallSubFile1.setHFileSeq(2);
@@ -724,10 +729,10 @@ public class WDAdminIndexController
 	            	}
 	            	if(fileData3 != null && fileData3.getFileSize() > 0)
 	            	{
-	            		wdHallSubFile2.setHFileName(fileData2.getFileName());
-	            		wdHallSubFile2.setHFileOrgName(fileData2.getFileOrgName());
-	            		wdHallSubFile2.setHFileExt(fileData2.getFileExt());
-	            		wdHallSubFile2.setHFileSize(fileData2.getFileSize());
+	            		wdHallSubFile2.setHFileName(fileData3.getFileName());
+	            		wdHallSubFile2.setHFileOrgName(fileData3.getFileOrgName());
+	            		wdHallSubFile2.setHFileExt(fileData3.getFileExt());
+	            		wdHallSubFile2.setHFileSize(fileData3.getFileSize());
 	            		wdHallSubFile2.setWHCode(wdHall.getWHCode());
 	            		wdHallSubFile2.setHCode(wdHall.getHCode());
 	            		wdHallSubFile2.setHFileSeq(subFile+1);
@@ -761,12 +766,11 @@ public class WDAdminIndexController
         return "/mng/plusStudio";
      }
      
-     //스튜디오추가
+     //스튜디오추가 스튜디오첨부파일
      @RequestMapping(value="/mng/studioWrite")
      @ResponseBody
-     public Response<Object> studioWrite(HttpServletRequest request, HttpServletResponse response)
-     {
-        
+     public Response<Object> studioWrite(MultipartHttpServletRequest request, HttpServletResponse response)
+     {    
          Response<Object> ajaxResponse = new Response<Object>();
          
          //가장 큰 웨딩홀 코드를 받아와서 W제거
@@ -783,9 +787,25 @@ public class WDAdminIndexController
          String sNumber = HttpUtil.get(request, "studioNumber", "");
          String sContent = HttpUtil.get(request, "studioNumber","");
          long sDiscount = HttpUtil.get(request, "studioDiscount", (long)0);
+         
+         String maxName = wdStudioService.maxImgName();
+         maxName = maxName.replace("S", "");
+         maxName = maxName.replace(".jpg", "");
+         maxName = maxName.replace(".png", "");
+         int namePlus = Integer.parseInt(maxName)+1;
+         maxName = "S"+namePlus; 
+         
+         FileData fileData = HttpUtil.getFile(request, "studioImg", UPLOAD_SAVE_STUDIO,maxName);
+         
+         if(fileData == null)
+         {
+        	 ajaxResponse.setResponse(999, "Not Paremeter");
+        	 return ajaxResponse;
+         }
         
         
         WDStudio wdStudio = new WDStudio();
+        
         wdStudio.setsCode(maxSCode);
         wdStudio.setsName(sName);
         wdStudio.setsPrice(sPrice);
@@ -793,19 +813,41 @@ public class WDAdminIndexController
         wdStudio.setsNumber(sNumber);
         wdStudio.setsContent(sContent);
         wdStudio.setsDiscount(sDiscount);
+        wdStudio.setsSubImg(0);
         
         
         if(!StringUtil.isEmpty(sName) && !StringUtil.isEmpty(sPrice) && !StringUtil.isEmpty(sLocation) &&
               !StringUtil.isEmpty(sNumber) && !StringUtil.isEmpty(sContent)  && !StringUtil.isEmpty(sDiscount)) 
         {
-           if(wdStudioService.studioInsert(wdStudio) > 0) 
-           {
-              ajaxResponse.setResponse(0, "Success");
-           }
-           else 
-           {
-              ajaxResponse.setResponse(-1, "Error");
-           }
+        	if(fileData != null && fileData.getFileSize() > 0)
+        	{
+        		WDStudioFile wdStudioFile = new WDStudioFile();
+        		
+        		wdStudioFile.setSfileName(fileData.getFileName());
+        		wdStudioFile.setsFileOrgName(fileData.getFileOrgName());
+        		wdStudioFile.setsFileExt(fileData.getFileExt());
+        		wdStudioFile.setsFileSize(fileData.getFileSize());
+        		wdStudioFile.setsCode(wdStudio.getsCode());
+        		wdStudioFile.setsFileSeq(1);
+        		
+        		wdStudio.setsImgname(fileData.getFileName());
+        		wdStudio.setWdStudoiFile(wdStudioFile);
+        	}
+        	try {
+		           if(wdStudioService.studioInsert(wdStudio) > 0) 
+		           {
+		              ajaxResponse.setResponse(0, "Success");
+		           }
+		           else 
+		           {
+		              ajaxResponse.setResponse(-1, "Error");
+		           }
+        	}
+			catch(Exception e) 
+			{
+				logger.error("[WDAdminIndexController] /mng/studioWrite Exception", e);
+				ajaxResponse.setResponse(500, "Internal Server Error");
+			}
         }
         else 
         {
@@ -886,7 +928,7 @@ public class WDAdminIndexController
      //드레스추가
      @RequestMapping(value="/mng/dressWrite")
      @ResponseBody
-     public Response<Object> dressWrite(HttpServletRequest request, HttpServletResponse response)
+     public Response<Object> dressWrite(MultipartHttpServletRequest request, HttpServletResponse response)
      {
         
         Response<Object> ajaxResponse = new Response<Object>();

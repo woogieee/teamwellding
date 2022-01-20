@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.icia.web.model.WDDress;
+import com.icia.web.model.WDDressFile;
 
 @Repository("WDDressDao")
 public interface WDDressDao 
@@ -59,4 +60,6 @@ public interface WDDressDao
 	
 	//드레스 수정
 	public int dressUpdate(WDDress wdDress);
+	
+	public int dressFileInsert(WDDressFile wdDressFile);
 }

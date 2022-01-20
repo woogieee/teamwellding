@@ -164,9 +164,7 @@ function fn_confirm()
 	            <input name="searchValue" id="searchValue" class="form-control me-sm-2" style="width:15rem; margin-left:.5rem;" type="text" value="${searchValue}">
 	            <a class="btn my-2 my-sm-0" href="javascript:void(0)" onclick="fn_search()" style="width:7rem; margin-left:.5rem; background-color: rgb(239, 239, 239); border-color:rgb(118, 118, 118);">조회</a>
 	            <input type="hidden" name="curPage" value="" />
-	            <input type="hidden" name="searchType" value ="${searchType}" />
-	            <input type="hidden" name="searchValue" value="${searchValue}" />
-	            <input type="hidden" name="status" value="${rezStatus}" />
+	            
 	         </form>
 	      </div>
 	      <div class="school_list_excel">
