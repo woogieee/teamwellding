@@ -11,11 +11,6 @@
 		        var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
 		        window.open("/board/Coupon", "PopUP", option); 
 			}); 
-			
-			$("#qrTest").on("click",function(){
-		        var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
-		        window.open("/board/qrTest", "PopUP", option); 
-			}); 
 	   });
 </script>
    <c:set var = "name" value="${param.userName }" />
@@ -32,7 +27,6 @@
                         <a href="/user/wishlist">마이페이지</a>
                         <a href="/loginOut">로그아웃</a>
                         <a href="javascript:void(0)" id="coupon">내 쿠폰</a>
-                        <a href="javascript:void(0)" id="qrTest">내 쿠폰</a>
                     </div>
                 </div>
             </div>

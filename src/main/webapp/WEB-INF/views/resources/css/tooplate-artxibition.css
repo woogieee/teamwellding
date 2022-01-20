@@ -5668,11 +5668,12 @@ responsive
 .about .content ul {
   list-style: none;
   padding: 0;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 300;
 }
 .about .content ul li {
   padding-bottom: 10px;
+  letter-spacing: -0.7px;
 }
 .about .content ul i {
   font-size: 20px;
@@ -6893,9 +6894,33 @@ textarea::placeholder {
 {
 	border: none;
     font-size: 12px;
-    padding: 5px 8px;
+    padding: 6px 8px;
     font-weight: 600;
-    background: #ccc;
+    background: #F39E8D;
+    color: #fff;
+    border-radius: 5px;
+    letter-spacing: -0.5px;
+}
+
+.rez_btn3
+{
+	border: none;
+    font-size: 12px;
+    padding: 6px 8px;
+    font-weight: 600;
+    background: #ef775f;
+    color: #fff;
+    border-radius: 5px;
+    letter-spacing: -0.5px;
+}
+
+.rez_btn4
+{
+	border: none;
+    font-size: 12px;
+    padding: 6px 8px;
+    font-weight: 600;
+    background: #5f8fef;
     color: #fff;
     border-radius: 5px;
     letter-spacing: -0.5px;
