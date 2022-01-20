@@ -197,7 +197,7 @@
 						<value>/board/foodCpnM</value>
 						<value>/board/foodCpnF</value>
 
-
+						<value>/user/marryUpdate</value>
             		</list>
             	</constructor-arg>
             </bean>

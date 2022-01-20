@@ -121,5 +121,15 @@ AND
     U_PWD = #{userPwd}
 </update>
 <!-- 유저 회원 탈퇴 -->
+
+<!-- 예약번호가 없는 상태에서 결혼예정일 업데이트 시작 -->
+<update id="nonRezNumberMarrydateUpdate" parameterType ="com.icia.web.model.WDUser">
+UPDATE WD_USER
+SET
+    U_MARRYDATE = #{marrytDate}
+WHERE
+	USER_ID =  #{userId}
+</update>
+<!-- 예약번호가 없는 상태에서 결혼예정일 업데이트 끝 -->
     
 </mapper>

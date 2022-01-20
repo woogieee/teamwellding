@@ -433,4 +433,68 @@ public class WDRezController {
 		return	"/mng/payMentList";
 	}
 	
+
+	@RequestMapping(value="/user/marryUpdate")
+	@ResponseBody
+	public Response<Object> MarrydateUpdate(HttpServletRequest request, HttpServletResponse response)
+	{
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		
+		Response<Object> ajaxResponse = new Response<Object>();
+		
+		WDUser wdUser = wdUserService.userSelect(cookieUserId);
+		
+		
+		String rezNo = HttpUtil.get(request, "rezNo","");
+		String year = HttpUtil.get(request, "year", "");
+		String month = HttpUtil.get(request, "month", "");
+		String day = HttpUtil.get(request, "day", "");
+		String marry = year + month + day;
+
+		
+		if(StringUtil.isEmpty(rezNo))
+		{
+			wdUser.setMarrytDate(marry);
+			if(marry.length() == 8)
+			{
+				if(wdUserService.nonRezNumberMarrydateUpdate(wdUser) > 0)
+				{
+					ajaxResponse.setResponse(0, "success");
+				}
+				else
+				{
+					ajaxResponse.setResponse(-1, "fail");
+				}				
+			}
+			else
+			{
+				ajaxResponse.setResponse(500, "bad request");
+			}
+		}
+		else
+		{
+			WDRez wdRez = new WDRez();
+			wdRez.setwDate(marry);
+			wdRez.setRezNo(rezNo);
+			wdRez.setUserId(cookieUserId);
+			
+			if(marry.length() == 8)
+			{
+				if(wdRezService.MarrydateUpdate(wdRez) > 0)
+				{
+					ajaxResponse.setResponse(0, "success");
+				}
+				else
+				{
+					ajaxResponse.setResponse(-1, "fail");
+				}	
+			}
+			else {
+				ajaxResponse.setResponse(500, "bad request");
+			}
+		}
+		return ajaxResponse;
+	}
+	
+	
 }
