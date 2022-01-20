@@ -25,7 +25,6 @@
         	   day: $("#day").val(),
                rezNo: $("#rezNo").val(),
            	   wdUser: $("#dongdong").val()
-
            },
            datatype:"JSON",
            beforeSend:function(xhr){
@@ -34,21 +33,25 @@
            success:function(response){
               if(response.code == 0)
               {       
-            	  alert("결혼날짜 수정 완료");
-                 location.href = "/user/wishlist";
+            	  Swal.fire({ 
+                      icon: 'warning',
+                      text: '결혼 예정일자가 수정되었습니다.'
+                   }).then(function(){
+                      return;
+                   });
               }
               else if(response.code == 500)
               {
-            	  alert("날짜 똑바로.");
+            	  alert("날짜가 제대로 입력되지 않았습니다.");
             	  return;
               }
               else if(response.code == -1){
-            	  alert("오류");
+            	  alert("오류가 발생했습니다.");
             	  return;
               }
               else
               {
-                 alert("오류가 발생했습니당.");
+                 alert("오류가 발생했습니다.");
               }
            },
            complete:function(data){
@@ -348,12 +351,11 @@ $("#payMent").on("click", function(){
                         <table class="table tableWish">
                      <tr>
                         <div class="rez_sta">
-                           <h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
-                           <h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span id="marryDate">${wdRez.wDate}</span>
+                           <h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; 
                            <!-- 달력 넣기 -->
                            
                            
-                           <span class="col-lg-4">
+                           <span>
                                            <select id="year" class="year">
                                     <option value="">년도</option>
                                     <option value="2022" <c:if test="${year eq '2022'}">selected</c:if>>2022</option>
@@ -411,7 +413,7 @@ $("#payMent").on("click", function(){
                                     <option value="31" <c:if test="${day eq '31'}">selected</c:if>>31</option>
                                  </select>
                                         </span>
-                           <input type="button" id="btnMarry" name="btnMarry" value="적용" style="border: solid 1px black; background:white; position:relative; color:black;">
+                           <input type="button" id="btnMarry" name="btnMarry" value="변경" style="border: solid 1px black; background:white; position:relative; color:black;">
                            </h5>
                            <!-- 달력 넣기 끝 -->
 <c:choose>

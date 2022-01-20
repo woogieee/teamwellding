@@ -41,7 +41,7 @@ function fn_search(){
      document.eBoardForm.submit(); 
 }
 
-function fn_list(curPage)
+function fn_paging(curPage)
 {
 	document.eBoardForm.eBSeq.value = "";
 	document.eBoardForm.curPage.value = curPage;

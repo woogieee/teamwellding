@@ -103,27 +103,51 @@ public class WDRezController {
 		
 		WDRez wdRez = null;
 		
+		String wDate = null;
+		
+		String year = null;
+		
+		String month = null;
+		
+		String day = null;
+		
 		if(wdUser != null)
 		{	
 			if(StringUtil.equals(wdUser.getStatus(), "Y")) 
 			{
 				WDRez search = new WDRez();
 				//search = wdRezService.rezSelect(wdUser.getUserId());
-				
 				search.setUserId(wdUser.getUserId());
 				//결제상태가 N인 애들만 가져와야 하기 때문에 상태가 N인 애들만 검색할 것!
 				search.setRezStatus("N");
-				
 				//유저 아이디와 N인 상태의 조건으로 검색한 결과를 wdRez에 담음
 				wdRez = wdRezService.rezSelect(search);
+				
+				wDate = wdUser.getMarrytDate();
+				year = wDate.substring(0, 4);
+				month = wDate.substring(4, 6);
+				day = wDate.substring(6, 8);
+				
+				model.addAttribute("wDate", wDate);
+				model.addAttribute("year", year);
+				model.addAttribute("month", month);
+				model.addAttribute("day", day);
 				
 				if(wdRez != null) 
 				{
 					//다시 해당 결과를 가지고 다른 테이블과 조인한 결과를 wdRez객체에 다시 담음
 					wdRez = wdRezService.rezList(wdRez);
 					
+					wDate = wdRez.getwDate();
+					year = wDate.substring(0, 4);
+					month = wDate.substring(4, 6);
+					day = wDate.substring(6, 8);
+					
 					model.addAttribute("wdRez", wdRez);
-
+					model.addAttribute("wDate", wDate);
+					model.addAttribute("year", year);
+					model.addAttribute("month", month);
+					model.addAttribute("day", day);
 				}
 				
 			}
