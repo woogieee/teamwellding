@@ -368,7 +368,7 @@ $(document).ready(function(){
                 <div class="col-lg-12">
                 	<div class="det_navi2">
                 		<ul>
-                			<li><a href=""><c:out value="${wdStudio.sName}" />의 다른 화보 보기</a></li>
+                			<li><a href="javascript:void(0)"><c:out value="${wdStudio.sName}" />의 다른 화보 보기</a></li>
                 		</ul>
                 	</div>
                 </div>

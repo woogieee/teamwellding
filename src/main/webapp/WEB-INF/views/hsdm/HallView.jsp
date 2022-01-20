@@ -309,14 +309,18 @@ function fn_view(whCode, hCode)
 	                            </div>
 	                        </div>
                         </div>
+                        	
                     </div>
+                </div>
+                <div>
+                1인당 식비 : ${wdHall.HFood }원 X ${wdHall.HMin }명 = <fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood * wdHall.HMin}" />원
                 </div>
                 <div class="col-lg-12 main-dark-button"><a href="#" id="chae">현재 홀 담기</a></div>
                 
                 <div class="col-lg-12">
                 	<div class="det_navi-hall">
                 		<ul>
-                			<li><a href=""><c:out value="${wdHall.whName}" />의 다른 홀 보기</a></li>
+                			<li><a href="javascript:void(0)"><c:out value="${wdHall.whName}" />의 다른 홀 보기</a></li>
                 		</ul>
                 	</div>
                 </div>
