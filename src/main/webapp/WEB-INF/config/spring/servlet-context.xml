@@ -176,6 +176,8 @@
 						<value>/mng/WeddingHallDelete</value>
 						<value>/mng/hallUpdate</value>
 						<value>/mng/hallDelete</value>
+						<value>/mng/weddinghallUpdateProc</value>
+						<value>/mng/hallUpdateProc</value>
 						
 						<value>/mng/dressComUpdate</value>
 						<value>/mng/dressComUpdateProc</value>
@@ -189,8 +191,13 @@
 						<value>/mng/makeupComDelete</value>
 						<value>/mng/studioDelete</value>
 						<value>/mng/studioUpdateProc</value>
+						
+						<value>/board/qrTest</value>
+						
+						<value>/board/foodCpnM</value>
+						<value>/board/foodCpnF</value>
 
-
+						<value>/user/marryUpdate</value>
             		</list>
             	</constructor-arg>
             </bean>

@@ -42,7 +42,7 @@ public class WDHallController {
 	   
 	   //파일저장경로
 	   @Value("#{env['upload.save.dir']}")
-	   private String UPLOAD_SAVE_DIR;
+	   private String UPLOAD_SAVE_DIR; 
 	   
 	   @Autowired
 	   private WDHallService wdHallService;

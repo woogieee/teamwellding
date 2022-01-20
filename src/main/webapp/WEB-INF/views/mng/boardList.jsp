@@ -94,11 +94,19 @@ body.dark-theme .page-link.active
 	    
 		if(msg == "Y")
 		{
-			alert("댓글 삭제에 성공했습니다.");
+			//alert("댓글 삭제에 성공했습니다.");
+			Swal.fire({ 
+				icon: 'success', // Alert 타입 
+				text: '댓글 삭제에 성공했습니다.' // Alert 내용
+			});
 		}
 		else if(msg == "N")
 		{
-			alert("댓글 삭제에 실패했습니다.");
+			//alert("댓글 삭제에 실패했습니다.");
+			Swal.fire({ 
+				icon: 'error', // Alert 타입 
+				text: '댓글 삭제에 실패했습니다.' // Alert 내용
+			});
 		}
 		
 	      $(".FboardUpdate").colorbox({

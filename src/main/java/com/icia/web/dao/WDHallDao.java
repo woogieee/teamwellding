@@ -51,4 +51,13 @@ public interface WDHallDao {
 	public int weddingHallDelete(String whCode);
 	
 	public int hallDelete(WDHall wdHall);
+	
+	public int weddinghallUpdate(WDHall wdHall);
+	
+	public int hallUpdate(WDHall wdHall);
+	
+	public String maxImgName();
+	
+	//홀 파일 삽입
+	public int hallFileInsert(WDHallFile wdHallFile);
 }

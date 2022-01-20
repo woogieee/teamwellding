@@ -476,5 +476,69 @@ AND
 </delete>
 <!-- 홀 삭제 -->
 
+<!-- 웨딩홀 업데이트 -->
+<update id="weddinghallUpdate" parameterType="com.icia.web.model.WDHall">
+UPDATE WD_WEDDINGHALL
+SET
+    WH_NAME = #{whName},
+    WH_LOCATION = #{WHLocation},
+    WH_NUMBER = #{whNumber},
+    WH_CONTENT = #{whNumber}
+WHERE
+        WH_CODE = #{WHCode}
+</update>
+<!-- 웨딩홀 업데이트 -->
+
+<!-- 홀 업데이트 -->
+<update id="hallUpdate" parameterType="com.icia.web.model.WDHall">
+UPDATE WD_HALL
+SET
+    H_NAME = #{HName},
+    H_PRICE = #{HPrice},
+    H_FOOD = #{HFood},
+    H_MIN = #{HMin},
+    H_MAX = #{HMax},
+    H_CONTENT = #{HContent}
+WHERE
+        WH_CODE = #{WHCode}
+    AND H_CODE = #{HCode}
+</update>
+<!-- 홀 업데이트 -->
+
+<!-- 이미지 가장 마지막 번호 가져오기 -->
+<select id="maxImgName" resultType="string">
+SELECT
+    NVL(MAX(A.H_IMGNAME), 0) AS H_IMGNAME
+FROM
+    WD_HALL A, WD_WEDDINGHALL B
+WHERE
+    A.WH_CODE = B.WH_CODE
+</select>
+<!-- 이미지 가장 마지막 번호 가져오기 -->
+
+<!-- 홀 파일 삽입 -->
+<insert id="hallFileInsert" parameterType="com.icia.web.model.WDHallFile">
+INSERT INTO WD_HALL_FILE (
+    H_CODE,
+    H_FILE_SEQ,
+    H_FILE_NAME,
+    H_FILE_ORG_NAME,
+    H_FILE_EXT,
+    H_FILE_SIZE,
+    REG_DATE,
+    WH_CODE
+) VALUES (
+    #{HCode},
+    #{HFileSeq},
+    #{HFileName},
+    #{HFileOrgName},
+    #{HFileExt},
+    #{HFileSize},
+    SYSDATE,
+    #{WHCode}
+)
+</insert>
+<!-- 홀 파일 삽입 -->
+
 </mapper>
 

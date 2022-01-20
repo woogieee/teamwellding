@@ -238,10 +238,18 @@ WHERE
 AND	
 	REZ_STATUS = #{rezStatus}
 </if>
-<if test='userId != null and userId != ""'>	
+<if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
+   <choose>
+      <when test='searchType == "1"'>
 AND
-    USER_ID = '%' || #{searchValue} || '%'
-</if>
+    USER_ID LIKE '%' || #{searchValue} || '%'
+      </when>
+      <when test='searchType == "2"'>
+AND
+	REZ_NO = #{searchValue}
+	  </when>
+   </choose>
+</if>   
 </select>
 
 <!-- 해당 유저의 예약 내역이 존재하는지 확인 시작 -->
@@ -624,6 +632,10 @@ FROM
 				AND
    					 USER_ID LIKE '%' || #{searchValue} || '%'
    		</when>
+   		<when test='searchType == "2"'>
+				AND
+   					 REZ_NO = #{searchValue}
+   		</when>
    	</choose>				 
     </if>
     			<if test='rezStatus != null and rezStatus != ""'>
@@ -802,5 +814,17 @@ AND
     REZ_STATUS = 'Y'
 </select>
 <!-- 해당 wDate 날짜에 해당 메이크업 업체 예약되어 있는지 확인 종료 -->
+
+<!-- 장바구니 결혼날짜 변경 시작 -->
+<update id="MarrydateUpdate" parameterType="com.icia.web.model.WDRez">
+UPDATE WD_REZ
+SET
+   WDATE = #{wDate}
+WHERE
+         REZ_NO = #{rezNo}
+    AND  REZ_STATUS = 'N'
+    AND USER_ID = #{userId}
+  </update>
+  <!-- 장바구니 결혼날짜 변경 끝 -->
 
 </mapper>

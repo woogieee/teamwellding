@@ -11,6 +11,9 @@
    <result column="C_START_DATE" property="cStartDate" />
    <result column="C_END_DATE" property="cEndDate" />
    <result column="C_CONTENT" property="cContent" />
+   <result column="REZ_NO" property="rezNo" />
+   <result column="F_CNT" property="fCnt" />
+   <result column="M_CNT" property="mCnt" />
 </resultMap>
 <!-- 쿠폰 resultMap 끝 -->
 
@@ -208,7 +211,7 @@ WHERE
 AND
     C_CODE = '112'
 </select>
-<!-- 이벤트 쿠폰 발급 받은 ID 조회  종료 -->
+<!-- 해당 계정에 이벤트 쿠폰 카운트 종료 -->
 
 <!-- 이벤트 쿠폰 발급받기 시작 -->
 <insert id="downloadCoupon" parameterType="string">
@@ -224,5 +227,66 @@ INSERT INTO wd_coupon (
 </insert>
 <!-- 이벤트 쿠폰 발급받기 시작 -->
 
+<!-- 신규 회원가입 웰컴 쿠폰 시작 -->
+
+<insert id="couponInsert" parameterType="string">
+ INSERT INTO WD_COUPON (
+    USER_ID,
+    C_CODE,
+    C_STATUS
+) VALUES (
+    #{value},
+    '111',
+    'N'
+)
+</insert>
+<!-- 신규 회원가입 웰컴 쿠폰 끝 -->
+
+<!-- 결제 완료시 qr테이블에 값 삽입 -->
+<insert id="QRrezNoInsert" parameterType="string">
+INSERT INTO WD_QR (
+    REZ_NO,
+    F_CNT,
+    M_CNT
+) VALUES (
+    #{value},
+    0,
+    0
+)
+</insert>
+<!-- 결제 완료시 qr테이블에 값 삽입 -->
+
+<!-- 신랑측 클릭시 값 증가 -->
+<update id="qrCodeMPlus" parameterType="string">
+UPDATE WD_QR
+SET
+    M_CNT = M_CNT +1
+WHERE
+    REZ_NO = #{value}
+</update>
+<!-- 신랑측 클릭시 값 증가 -->
+
+<!-- 신부측 클릭시 값 증가 -->
+<update id="qrCodeFPlus" parameterType="string">
+UPDATE WD_QR
+SET
+    F_CNT = F_CNT +1
+WHERE
+    REZ_NO = #{value}
+</update>
+<!-- 신부측 클릭시 값 증가 -->
+
+<!-- 큐알 숫자 조회 -->
+<select id="cntSelect" parameterType="string" resultMap="WDCouponResultMap">
+SELECT
+    REZ_NO,
+    F_CNT,
+    M_CNT
+FROM
+    WD_QR
+WHERE
+    REZ_NO = #{value}
+</select>
+<!-- 큐알 숫자 조회 -->
 
 </mapper>

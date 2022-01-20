@@ -69,6 +69,67 @@ public class WDCouponService {
 		
 		return list;
 	}
+	
+	//신규 회원가입 웰컴 쿠폰
+	public int couponInsert(String userId)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdCouponDao.couponInsert(userId);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] couponInsert Exception 신규회원가입 쿠폰 오류임", e);
+		}
+		
+		return count;
+	}
+	
+	public int qrCodeMPlus(String rezNo) {
+		
+		int count = 0;
+		
+		try {
+			count = wdCouponDao.qrCodeMPlus(rezNo);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] qrCodeMPlus Exception", e);
+		}
+		return count;
+	}
+	
+	public int qrCodeFPlus(String rezNo) {
+		
+		int count = 0;
+		
+		try {
+			count = wdCouponDao.qrCodeFPlus(rezNo);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] qrCodeFPlus Exception", e);
+		}
+		return count;
+	}
+	
+	public WDCoupon cntSelect(String rezNo) {
+		
+		WDCoupon wdCoupon = null;
+		
+		try {
+			wdCoupon = wdCouponDao.cntSelect(rezNo);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] qrCodeFPlus Exception", e);
+		}
+		
+		return wdCoupon;
+	}
+	
 
 	//해당 계정에 이벤트 쿠폰이 1개 이상 있는지 카운트 
 	public int selectCoupon(String userId)

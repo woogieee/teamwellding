@@ -176,16 +176,19 @@ public class WDHallService {
    	}
    	
    	//홀 추가 인서트
-   	public int hallInsert(WDHall wdHall) {
+   	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+   	public int hallInsert(WDHall wdHall) throws Exception
+   	{
    		int count = 0;
    		
-   		try {
-   			count = wdHallDao.hallInsert(wdHall);
+   		count = wdHallDao.hallInsert(wdHall);
+
+   		if(count > 0 && wdHall.getWdHallFile() != null)
+   		{
+   			WDHallFile wdHallFile = wdHall.getWdHallFile();
+   			
+   			wdHallDao.hallFileInsert(wdHallFile);
    		}
-		catch(Exception e)
-		{
-			logger.error("[WDHallService] hallInsert Exception", e);
-		}
    		
    		return count;
    	}
@@ -270,5 +273,61 @@ public class WDHallService {
 		return count;
 		
 	}
+	
+	//웨딩홀 업데이트
+	public int weddinghallUpdate(WDHall wdHall) {
+		
+		int count = 0;
+		
+		try {
+			count = wdHallDao.weddinghallUpdate(wdHall);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] weddinghallUpdate Exception", e);
+		}
+		
+		return count;
+	}
+	
+	//홀 업데이트
+	public int hallUpdate(WDHall wdHall) {
+		
+		int count = 0;
+		
+		try {
+			count = wdHallDao.hallUpdate(wdHall);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] hallUpdate Exception", e);
+		}
+		
+		return count;
+	}
    	
+	//홀 이미지 가장 마지막번호
+	public String maxImgName() {
+		String maxName = "";
+		try {
+			maxName = wdHallDao.maxImgName();
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] maxImgName Exception", e);
+		}
+		return maxName;
+	}
+	
+	public int hallFileInsert(WDHallFile wdHallFile) {
+		int count = 0;
+		try {
+			count = wdHallDao.hallFileInsert(wdHallFile);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] hallFileInsert Exception", e);
+		}
+		return count;
+	}
 }

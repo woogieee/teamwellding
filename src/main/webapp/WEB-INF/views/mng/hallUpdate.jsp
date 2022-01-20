@@ -48,56 +48,74 @@ button:active {
 <script type="text/javascript" src="../resources/js/colorBox.js"></script>
 <script>
 $(document).ready(function(){
-	$("#dcName").focus();
+	$("#hName").focus();
 });
 
-function dressComUpdate()
+function hallUpdate()
 {
-	if(icia.common.isEmpty($("#dcName").val()))
+	if(icia.common.isEmpty($("#hName").val()))
 	{
 		alert("업체 이름을 입력해주세요");
-		$("#dcName").focus();
+		$("#hName").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#dcLocation").val()))
+	if(icia.common.isEmpty($("#hPrice").val()))
 	{
-		alert("업체주소를 입력해주세요");
-		$("#dcLocation").focus();
+		alert("홀 가격을 입력해주세요");
+		$("#hPrice").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#dcNumber").val()))
+	if(icia.common.isEmpty($("#hFood").val()))
 	{
-		alert("업체 전화번호를 입력해주세요");
-		$("#dcNumber").focus();
+		alert("1인당 식사가격을 입력해주세요");
+		$("#hFood").focus();
 		return;
 	}
 	
-	if(icia.common.isEmpty($("#dcContent").val()))
+	if(icia.common.isEmpty($("#hMin").val()))
 	{
-		alert("업체 설명을 입력해주세요.");
-		$("#dcContent").focus();
+		alert("홀 최소인원을 입력해주세요.");
+		$("#hMin").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#hMax").val()))
+	{
+		alert("홀 최대인원을 입력해주세요.");
+		$("#hMax").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#hContent").val()))
+	{
+		alert("홀 설명을 입력해주세요.");
+		$("#hContent").focus();
 		return;
 	}
 	
 	//등록 취소
-	if(!confirm("드레스 업체를 등록 하시겠습니까?"))
+	if(!confirm("홀을 수정하시겠습니까?"))
 	{
 		//NO
 		return;
 	}
 	
 	var formData = {
-			dcName: $("#dcName").val(),
-			dcLocation: $("#dcLocation").val(),
-			dcNumber: $("#dcNumber").val(),
-			dcContent: $("#dcContent").val()
+			whCode: $("#whCode").val(),
+			hCode: $("#hCode").val(),
+			hName: $("#hName").val(),
+			hPrice: $("#hPrice").val(),
+			hFood: $("#hFood").val(),
+			hMin: $("#hMin").val(),
+			hMax: $("#hMax").val(),
+			hContent: $("#hContent").val()
 	};
 	
 	//ajax통신
 	icia.ajax.post({
-		url: "/mng/dressComUpdateProc",
+		url: "/mng/hallUpdateProc",
 		data: formData,
 		success: function(res)
 		{
@@ -105,12 +123,12 @@ function dressComUpdate()
 			
 			if(res.code == 0)
 			{
-				alert("업체수정이 완료되었습니다.");
+				alert("홀 수정이 완료되었습니다.");
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == -1)
 			{
-				alert("업체 수정 중 오류가 발생하였숩니다.");
+				alert("홀 수정 중 오류가 발생하였숩니다.");
 			}
 			else if(res.code == 400)
 			{
@@ -249,7 +267,7 @@ function hallDelete()
 				<tr style="border:none;">
 					<td style="border:none;">
 					      <div class="pop-btn-area" style="display: block; float: right;">
-					         <!--button onclick="WeddingHallUpdate()" class="btn-type01"><span>수정</span></button-->
+					         <button onclick="hallUpdate()" class="btn-type01"><span>수정</span></button>
 					         <button onclick="hallDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
 					         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
 					      </div>

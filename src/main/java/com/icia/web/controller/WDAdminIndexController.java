@@ -15,6 +15,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.icia.common.model.FileData;
 import com.icia.common.util.StringUtil;
@@ -25,6 +26,7 @@ import com.icia.web.model.WDAdminUser;
 import com.icia.web.model.WDDress;
 import com.icia.web.model.WDEBoard;
 import com.icia.web.model.WDHall;
+import com.icia.web.model.WDHallFile;
 import com.icia.web.model.WDMakeUp;
 import com.icia.web.model.WDNBoard;
 import com.icia.web.model.WDStudio;
@@ -77,6 +79,14 @@ public class WDAdminIndexController
     
    @Value("#{env['upload.save.dir']}")
    private String UPLOAD_SAVE_DIR;
+   
+   //홀파일저장경로
+   @Value("#{env['upload.save.hall']}")
+   private String UPLOAD_SAVE_HALL;
+   
+   //홀파일저장경로
+   @Value("#{env['upload.save.hallsub']}")
+   private String UPLOAD_SAVE_HALLSUB;
 
    //쿠키명
    @Value("#{env['auth.cookie.name']}")
@@ -267,7 +277,7 @@ public class WDAdminIndexController
                wdAdminUser.setUserPwd(userPwd);
                wdAdminUser.setUserName(userName);
                wdAdminUser.setUserEmail(userEmail);
-               wdAdminUser.setUserEmail(userNickname);
+               wdAdminUser.setUserNickname(userNickname);
                wdAdminUser.setStatus(status);
                
                if(wdAdminUserService.wdAdmUserUpdate(wdAdminUser) > 0)
@@ -609,7 +619,7 @@ public class WDAdminIndexController
       
       @RequestMapping(value="/mng/hallWrite")
       @ResponseBody
-      public Response<Object> hallWrite(HttpServletRequest request, HttpServletResponse response)
+      public Response<Object> hallWrite(MultipartHttpServletRequest request, HttpServletResponse response)
       {
          
          Response<Object> ajaxResponse = new Response<Object>();
@@ -622,7 +632,39 @@ public class WDAdminIndexController
          long hallMax = HttpUtil.get(request, "hallMax", (long)0);
          String hallContent = HttpUtil.get(request, "hallContent", "");
 //         String hallImgName = HttpUtil.get(request, "hallImgName", "");
-//         FileData fileData = HttpUtil.getFile(request, "hallImgName", UPLOAD_SAVE_DIR);
+         String maxName = wdHallService.maxImgName();
+         maxName = maxName.replace("H", "");
+         maxName = maxName.replace(".jpg", "");
+         maxName = maxName.replace(".png", "");
+         int namePlus = Integer.parseInt(maxName)+1;
+         maxName = "H"+namePlus;
+         
+    	 namePlus++;
+    	 String subImgName1 = maxName+"_1";   
+    	 
+    	 namePlus++;
+    	 String subImgName2 = maxName+"_2";
+         
+         //홀 파일 첨부
+         FileData fileData1 = HttpUtil.getFile(request, "hallImgName1", UPLOAD_SAVE_HALL,maxName);
+         FileData fileData2 = HttpUtil.getFile(request, "hallImgName2", UPLOAD_SAVE_HALLSUB,subImgName1);
+         FileData fileData3 = HttpUtil.getFile(request, "hallImgName3", UPLOAD_SAVE_HALLSUB,subImgName2);
+         
+         int subFile = 0;
+         
+         if(fileData1 == null)
+         {
+        	 ajaxResponse.setResponse(999, "Not Paremeter");
+        	 return ajaxResponse;
+         }
+         if(fileData2 != null) 
+         {
+        	 subFile++;
+         }
+         if(fileData3 != null) {
+        	 subFile++;
+         }
+         
          long hallHDiscount = HttpUtil.get(request, "hallHDiscount", (long)0);
          
          long hCode = wdHallService.maxHCode(whCode)+1;
@@ -640,18 +682,72 @@ public class WDAdminIndexController
          wdHall.setHMax(hallMax);
          wdHall.setHContent(hallContent);
          wdHall.sethDiscount(hallHDiscount);
+         wdHall.sethSubImg(subFile);
          
          
-         if(!StringUtil.isEmpty(whCode) && !StringUtil.isEmpty(hallName) && !StringUtil.isEmpty(hallPrice) && !StringUtil.isEmpty(hallFood)
-               && !StringUtil.isEmpty(hallMin) && !StringUtil.isEmpty(hallMax)&& !StringUtil.isEmpty(hallContent) && !StringUtil.isEmpty(hallHDiscount)) {
-            if(wdHallService.hallInsert(wdHall) > 0) {
-               ajaxResponse.setResponse(0, "Success");
-            }
-            else {
-               ajaxResponse.setResponse(-1, "Error");
-            }
+         if(!StringUtil.isEmpty(whCode) && !StringUtil.isEmpty(hallName) 
+        		 && !StringUtil.isEmpty(hallPrice) && !StringUtil.isEmpty(hallFood)
+               && !StringUtil.isEmpty(hallMin) && !StringUtil.isEmpty(hallMax)
+               && !StringUtil.isEmpty(hallContent) && !StringUtil.isEmpty(hallHDiscount)) 
+         {
+     		WDHallFile wdHallSubFile1 = new WDHallFile();
+     		WDHallFile wdHallSubFile2 = new WDHallFile();
+     		
+        	if(fileData1 != null && fileData1.getFileSize() > 0)
+        	{
+        		WDHallFile wdHallFile = new WDHallFile();
+        		
+        		wdHallFile.setHFileName(fileData1.getFileName());
+        		wdHallFile.setHFileOrgName(fileData1.getFileOrgName());
+        		wdHallFile.setHFileExt(fileData1.getFileExt());
+        		wdHallFile.setHFileSize(fileData1.getFileSize());
+        		wdHallFile.setWHCode(wdHall.getWHCode());
+        		wdHallFile.setHCode(wdHall.getHCode());
+        		wdHallFile.setHFileSeq(1);
+        		
+        		wdHall.setHImgName(fileData1.getFileName());
+        		
+        		wdHall.setWdHallFile(wdHallFile);
+        	}
+        	try {
+	            if(wdHallService.hallInsert(wdHall) > 0) {
+	            	if(fileData2 != null && fileData2.getFileSize() > 0) {
+	            		wdHallSubFile1.setHFileName(fileData1.getFileName());
+	            		wdHallSubFile1.setHFileOrgName(fileData1.getFileOrgName());
+	            		wdHallSubFile1.setHFileExt(fileData1.getFileExt());
+	            		wdHallSubFile1.setHFileSize(fileData1.getFileSize());
+	            		wdHallSubFile1.setWHCode(wdHall.getWHCode());
+	            		wdHallSubFile1.setHCode(wdHall.getHCode());
+	            		wdHallSubFile1.setHFileSeq(2);
+	            		
+	            		wdHallService.hallFileInsert(wdHallSubFile1);
+	            	}
+	            	if(fileData3 != null && fileData3.getFileSize() > 0)
+	            	{
+	            		wdHallSubFile2.setHFileName(fileData2.getFileName());
+	            		wdHallSubFile2.setHFileOrgName(fileData2.getFileOrgName());
+	            		wdHallSubFile2.setHFileExt(fileData2.getFileExt());
+	            		wdHallSubFile2.setHFileSize(fileData2.getFileSize());
+	            		wdHallSubFile2.setWHCode(wdHall.getWHCode());
+	            		wdHallSubFile2.setHCode(wdHall.getHCode());
+	            		wdHallSubFile2.setHFileSeq(subFile+1);
+	            		
+	            		wdHallService.hallFileInsert(wdHallSubFile2);
+	            	}
+	               ajaxResponse.setResponse(0, "Success");
+	            }
+	            else {
+	               ajaxResponse.setResponse(-1, "Error");
+	            }
+        	}
+			catch(Exception e) 
+			{
+				logger.error("[WDAdminIndexController] /mng/hallWrite Exception", e);
+				ajaxResponse.setResponse(500, "Internal Server Error");
+			}
          }
-         else {
+         else 
+         {
             ajaxResponse.setResponse(400, "Not Paremeter");
          }
          
@@ -1563,6 +1659,146 @@ public class WDAdminIndexController
         		   System.out.println("==========이거 값은 얼마냐??==="+dList.getdName());
         		   
         		   if(wdDressService.dressUpdate(dList) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        			   System.out.println("혹시여긴오나몰라44*******************44d와주겠니");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        			   System.out.println("혹시여긴오나몰라55555");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        		   System.out.println("혹시여긴오나몰라6666");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+        	   System.out.println("혹시여긴오나몰라777777");
+			}
+           
+           
+           return res;
+        }
+        
+        //웨딩홀 수정하기
+        @RequestMapping(value="/mng/weddinghallUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> weddinghallUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           String wdName = HttpUtil.get(request, "wdName", "");
+           String wdLocation = HttpUtil.get(request, "wdLocation", "");
+           String wdNumber = HttpUtil.get(request, "wdNumber", "");
+           String wdContent = HttpUtil.get(request, "wdContent", "");
+           String wdCode = HttpUtil.get(request, "wdCode", "");
+           
+           WDHall wdHall = null;
+           
+           System.out.println("혹시여긴오나몰라11111");
+           
+           if(!StringUtil.isEmpty(wdName) && !StringUtil.isEmpty(wdLocation) && !StringUtil.isEmpty(wdNumber) &&
+        		   !StringUtil.isEmpty(wdContent) && !StringUtil.isEmpty(wdCode))
+           {
+        	   System.out.println("혹시여긴오나몰라222222");
+        	   
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   wdHall = wdHallService.onlyWeddingHall(wdCode);
+        	   
+        	   if(wdHall != null)
+        	   {
+        		   System.out.println("여긴타니여긴타니여긴타니??");
+        		   
+        		   //새로운 정보 넣어주기
+        		   wdHall.setWhName(wdName);
+        		   wdHall.setWHLocation(wdLocation);
+        		   wdHall.setWhNumber(wdNumber);
+        		   wdHall.setWhContent(wdContent);
+        		   //dList.setDsContent(dImgname);
+        		   
+        		   if(wdHallService.weddinghallUpdate(wdHall) > 0)
+        		   {
+        			   res.setResponse(0, "Success");
+        			   System.out.println("혹시여긴오나몰라44*******************44d와주겠니");
+        		   }
+        		   else
+        		   {
+        			   res.setResponse(-1, "Fail");
+        			   System.out.println("혹시여긴오나몰라55555");
+        		   }
+        		   
+        	   }
+        	   else
+        	   {
+        		   res.setResponse(400, "Bad Request");
+        		   System.out.println("혹시여긴오나몰라6666");
+        	   }
+           }
+           else 
+			{
+        	   res.setResponse(400, "Bad Request");
+        	   System.out.println("혹시여긴오나몰라777777");
+			}
+           
+           
+           return res;
+        }
+        
+        //홀 수정하기
+        @RequestMapping(value="/mng/hallUpdateProc", method=RequestMethod.POST)
+        @ResponseBody
+        public Response<Object> hallUpdateProc(HttpServletRequest request, HttpServletResponse response)
+        {
+           Response<Object> res = new Response<Object>();
+           
+           //새로입력한 정보 받아오기
+           String whCode = HttpUtil.get(request, "whCode", "");
+           String hCode = HttpUtil.get(request, "hCode", "");
+           String hName = HttpUtil.get(request, "hName", "");
+           long hPrice = HttpUtil.get(request, "hPrice", (long)0);
+           long hFood = HttpUtil.get(request, "hFood", (long)0);
+           long hMin = HttpUtil.get(request, "hMin", (long)0);
+           long hMax = HttpUtil.get(request, "hMax", (long)0);
+           String hContent = HttpUtil.get(request, "hContent", "");
+           //String dImgname = HttpUtil.get(request, "dImgname", "");
+           
+           WDHall wdHall = new WDHall();
+           
+           System.out.println("혹시여긴오나몰라11111");
+           
+           wdHall.setWHCode(whCode);
+           wdHall.setHCode(hCode);
+           
+           if(!StringUtil.isEmpty(whCode) && !StringUtil.isEmpty(hCode) && !StringUtil.isEmpty(hName) && !StringUtil.isEmpty(hContent))
+           {
+        	   System.out.println("혹시여긴오나몰라222222");
+        	   
+        	   //게시글 존재하고, 제목,내용받아옴
+        	   wdHall = wdHallService.WDHallSelect(wdHall);
+        	   
+        	   if(wdHall != null)
+        	   {
+        		   System.out.println("여긴타니여긴타니여긴타니??");
+        		   
+        		   //새로운 정보 넣어주기
+        		   wdHall.setHName(hName);
+        		   wdHall.setHPrice(hPrice);
+        		   wdHall.setHFood(hFood);
+        		   wdHall.setHMin(hMin);
+        		   wdHall.setHMax(hMax);
+        		   wdHall.setHContent(hContent);
+        		   //dList.setDsContent(dImgname);
+        		   
+        		   System.out.println("==========이거 값은 얼마냐??==="+wdHall.getHName());
+        		   
+        		   if(wdHallService.hallUpdate(wdHall) > 0)
         		   {
         			   res.setResponse(0, "Success");
         			   System.out.println("혹시여긴오나몰라44*******************44d와주겠니");

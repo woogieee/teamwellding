@@ -60,7 +60,11 @@ function fn_loginCheck()
 	
 	if($.trim($("#userPwd").val()).length <= 0)
 	{
-		alert("비밀번호를 입력하세요.");
+		//alert("비밀번호를 입력하세요.");
+		Swal.fire({ 
+			icon: 'warning',
+			text: '비밀번호를 입력해주세요.'
+		});
 		$("#userPwd").focus();
 		return;
 	}
@@ -131,13 +135,13 @@ function fn_loginCheck()
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" style="padding-top: 15px;">
 					<span class="login100-form-title p-b-26">
 						<h1 id="logo"><img src="../resources/images/theWellding.png" width="150" height="auto"/></h1>
-						<h2>회원탈퇴</h2>
+						<h2 class="drop_title">회원탈퇴</h2>
 					</span>				
 
-						<h3 style="text-align: center;margin:25px;">비밀번호를 입력하세요</h3>
+						<h3 class="drop_content">회원탈퇴를 원하신다면<br/>비밀번호를 입력해주세요.</h3>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
 						<span class="btn-show-pass">
@@ -147,16 +151,16 @@ function fn_loginCheck()
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button type="button" id="dropBtn" class="login100-form-btn">
+					<div class="container-login100-form-btn2">
+						<div class="wrap-login100-form-btn2">
+							<div class="login100-form-bgbtn2"></div>
+							<button type="button" id="dropBtn" class="login100-form-btn2">
 								탈퇴하기
 							</button>
 						</div>
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button type="button" id="backBtn" class="login100-form-btn">
+						<div class="wrap-login100-form-btn2">
+							<div class="login100-form-bgbtn2"></div>
+							<button type="button" id="backBtn" class="login100-form-btn2">
 								돌아가기
 							</button>
 						</div>

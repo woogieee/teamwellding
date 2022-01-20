@@ -19,6 +19,7 @@ table th, td{
   height: 3rem;
   padding-left: .5rem;
   padding-right: 1rem;
+  text-align: left;
 }
 table th{
   background-color: #e0e4fe;
@@ -235,7 +236,7 @@ function fn_userUpdate()
                 <tr>
                    <th scope="row">할인율</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="makeupdiscount" name="makeupdiscount" placeholder="할인율을 입력해주세요"/>
+                     <input type="number" style="background-color: #fff;" id="makeupdiscount" name="makeupdiscount" placeholder="할인율을 입력해주세요"/>
                   </td>
                </tr>
 

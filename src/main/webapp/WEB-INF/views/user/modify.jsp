@@ -103,15 +103,26 @@
 					xhr.setRequestHeader("AJAX", "true");
 				},
 				success : function(response) {
-					if (response.code == 0) {
-						alert("회원수정이 완료되었습니다");
-						location.href = "/";
-					} else if (response.code == 400) {
-						alert("파라미터 값이 잘못되어 있습니다.");
-						location.href = "/";
-					} else {
-						alert("오류가 발생했습니다");
-						location.href = "/";
+					if(response.code == 0)
+		               {
+		                  alert("회원수정이 완료되었습니다.");
+		                  location.href = "/board/login";
+		               } 
+		               else if(response.code == 400)
+		               {
+		                  alert("회원수정 중 오류가 발생했습니다..");
+		                  $("#pwd1").focus();
+		               }
+		               else if(response.code == 500)
+		               {
+		                  alert("회원수정 중 오류가 발생했습니다.");
+		                  $("#pwd1").focus();
+		               }
+		               else
+		               {
+		                  alert("오류가 발생했습니다.");
+		                  $("#pwd1").focus();
+
 					}
 				},
 				complete : function(data) {
@@ -121,22 +132,34 @@
 					icia.common.error(error);
 				}
 			});
+		
+		      
 		});
 		
 	   $("#btn_cc").on("click", function(){
-			 alert("회원정보수정이 취소되었습니다.");
+			 //alert("회원정보수정이 취소되었습니다.");
+			  Swal.fire({ 
+				  icon: 'warning',
+				  text: '회원정보 수정이 취소되었습니다.'
+			  });
 			 location.href = "/user/wishlist";
 	   });
-	   
- 		
-	  
 	   
 	   $("#cou").on("click",function(){
 		    var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
 		    window.open("/board/Coupon", "PopUP", option); 
-		});   
-	  
+		});  
+	   
 	});
+	   
+	   
+function fn_validateEmail(value)
+{
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  
+  return emailReg.test(value);
+}
+	
 </script>
 
 </head>
@@ -177,6 +200,9 @@
 								</li>
 								<li class="breadcrumb-item active" style="position: relative; top: -2px; margin-left:4px;">
 									<a href="javascript:void(0)" id="modify" style="font-size: large; font-weight: bold; color: #000;">회원정보수정</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/userDrop">회원탈퇴</a>
 								</li>
 							</ol>
 						</nav>

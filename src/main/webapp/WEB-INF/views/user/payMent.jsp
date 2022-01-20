@@ -136,7 +136,7 @@ $(document).ready(function(){
                $("#rezPoint").val(rezPoint);
 
                
-               var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=700,left=100,top=100');
+               var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=650,left=100,top=100');
                
                $("#kakaoForm").submit();
                $("#btnPay").prop("disabled", false);
@@ -181,7 +181,13 @@ function movePage()
    location.href = "/user/payComplete";
 }
 
-</script>  
+</script>
+<style>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+</style>
 </head>
     
 <body>
@@ -230,6 +236,7 @@ function movePage()
                      <tr>
                         <div class="rez_sta">
                            <h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
+						   <h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span>${wdRez.wDate}</span></h5>									
                            <h5 class="rez_number">예약번호&nbsp;&nbsp; <span>${wdRez.rezNo}</span></h5>
                         </div>
                      </tr>

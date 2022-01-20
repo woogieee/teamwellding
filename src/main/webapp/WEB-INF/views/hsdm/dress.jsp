@@ -7,8 +7,15 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	$("._searchValue").on('keyup', function(e)
+	{ 
+		if(e.key==='Enter'||e.keyCode===13){
+			$(".btnSearch").trigger("click");
+		}
+	});
+	
 	//조회버튼클릭. 조회항목,조회값,현재커런트페이지에 대한 정보 가져가기
-	$("#btnSearch").on("click", function(){
+	$(".btnSearch").on("click", function(){
 		document.bbsForm.dNo.value = "";
 		document.bbsForm.searchType.value = $("#_searchType").val();
 		document.bbsForm.searchValue.value = $("#_searchValue").val();
@@ -21,7 +28,11 @@ $(document).ready(function(){
 		
 		if(wDate.length != 0 && wDate.length != 8)
 		{
-			alert("날짜로 검색하시려면 년,월,일을 전부 입력해주세요.");
+			Swal.fire({ 
+				icon: 'warning', // Alert 타입 
+				//title: '검색오류입니다.', // Alert 제목
+				text: '날짜로 검색하기를 원하신다면 년, 월, 일을 빠짐없이 전부 입력해주세요.' // Alert 내용
+			});
 			return;
 		}
 		
@@ -170,11 +181,11 @@ function fn_list(curPage)
                                             </select>
                                         </div>
                                         <div class="col-lg-7">
-                                            <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
+                                            <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue _searchValue" placeholder="조회값을 입력하세요." />
                                         </div>
                                         <div class="col-lg-2">
                                             <fieldset>
-                                            <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                            <button type="button" id="btnSearch" class="btn btnSearch"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                             </fieldset>
                                         </div>
                                         

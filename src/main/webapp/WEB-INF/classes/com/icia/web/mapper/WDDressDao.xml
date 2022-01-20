@@ -91,11 +91,11 @@ FROM (SELECT
  	<choose>
  		<when test='searchType =="1"'>
  			AND 
- 				D_NAME LIKE '%' || #{searchValue} || '%'
+ 				B.DC_NAME LIKE '%' || #{searchValue} || '%'
  		</when>
  		<when test='searchType == "2"'>
  			AND
- 				DC_LOCATION LIKE '%' || #{searchValue} || '%'
+ 				B.DC_LOCATION LIKE '%' || #{searchValue} || '%'
  		</when>
  	</choose>
  </if>                           

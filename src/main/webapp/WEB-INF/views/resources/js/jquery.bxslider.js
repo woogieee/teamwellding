@@ -12,7 +12,7 @@ $(document).ready(function(){
         maxSlider:1,
         moveSlider:1,
         adaptiveHeight:false,
-        autoContorls: true
+        autoContorls: true,
     });
 
 });
