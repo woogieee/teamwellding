@@ -115,7 +115,7 @@ function fn_userUpdate()
 		return;
 	}
 	
-	var formData = {
+	/*var formData = {
 		whCode: $("#whCode").val(),
 		hallName: $("#hallName").val(),
 		hallPrice: $("#hallPrice").val(),
@@ -124,12 +124,26 @@ function fn_userUpdate()
 		hallMax: $("#hallMax").val(),
 		hallContent: $("#hallContent").val(),
 		hallHDiscount: $("#hallHDiscount").val()
-	};
+	};*/
+	
+    var form = $("#regForm")[0];
+    //폼 자체의 타입으로 보내기 위한 객체 생성.
+    var formData = new FormData(form);
 	
 	//ajax통신
-	icia.ajax.post({
+	$.ajax({
+		type:"POST",
+		enctype:'multipart/form-data',
 		url: "/mng/hallWrite",
 		data: formData,
+        processData:false,      //formData를 String으로 변환하지 않음
+        contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
+        cache:false,
+        timeout:600000,
+        beforeSend:function(xhr)
+        {
+           xhr.setRequestHeader("AJAX", "true");
+        },
 		success: function(res)
 		{
 			icia.common.log(res);
@@ -153,6 +167,13 @@ function fn_userUpdate()
 				///칼라박스 내용이 잘못됬다는거니까 칼라박스를 닫게하자
 				fn_colorbox_close();
 			}
+			else if(res.code == 500){
+				alert("홀 등록 중 오류가 발생하였습니다.");
+			}
+			else if(res.code == 999){
+				alert("메인이미지를 등록해주세요.");
+				return;
+			}
 		},
 		complete: function(data)
 		{
@@ -175,14 +196,13 @@ function fn_userUpdate()
 <div class="layerpopup" style="width:1123px; margin:auto;">
    <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">웨딩홀 추가</h1>
    <div class="layer-cont">
-      <form name="regForm" id="regForm" method="post">
+      <form name="regForm" id="regForm" method="post" enctype="multipart/form-data">
          <table>
             <tbody>
-
                <tr>
                   <th scope="row">웨딩홀 이름</th>
                   <td>
-                     <select id="whCode" class="whCode">
+                     <select id="whCode" name="whCode" class="whCode">
                      	<option>웨딩홀 이름</option>
                      	<c:forEach var="list" items="${HCodeName }">
                      	<option value="${list.WHCode }">${list.whName }</option>
@@ -229,7 +249,9 @@ function fn_userUpdate()
                <tr>
                   <th scope="row">홀 대표 이미지</th>
                   <td>
-                  	<input type="file" style="background-color: #fff;" id="hallImgName" name="hallImgName" />
+                  	<input type="file" style="background-color: #fff; width='50px'; float:left;" id="hallImgName1" name="hallImgName1" /><br>
+                  	<input type="file" style="background-color: #fff; width='50px'; float:left;" id="hallImgName2" name="hallImgName2" /><br>
+                  	<input type="file" style="background-color: #fff; width='50px'; float:left;" id="hallImgName3" name="hallImgName3" />
                   </td>
                </tr>
                <tr>

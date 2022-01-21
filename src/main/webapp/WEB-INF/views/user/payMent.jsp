@@ -136,7 +136,7 @@ $(document).ready(function(){
                $("#rezPoint").val(rezPoint);
 
                
-               var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=575,left=100,top=100');
+               var win = window.open('', 'kakaoPopUp', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=540,height=650,left=100,top=100');
                
                $("#kakaoForm").submit();
                $("#btnPay").prop("disabled", false);
@@ -235,8 +235,8 @@ input::-webkit-inner-spin-button {
                         <table class="table tableWish">
                      <tr>
                         <div class="rez_sta">
-                           <h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
-						   <h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span>${wdRez.wDate}</span></h5>									
+                           
+						   <h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span>${year}-${month}-${day}</span></h5>									
                            <h5 class="rez_number">예약번호&nbsp;&nbsp; <span>${wdRez.rezNo}</span></h5>
                         </div>
                      </tr>
@@ -418,13 +418,13 @@ input::-webkit-inner-spin-button {
 	                     <c:forEach var="coupon" items="${couponList}" varStatus="status">
 	                        <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
 	                     </c:forEach>
-	                     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						할인금액 <input type="text" name="couponValue" id="couponValue" style="width:100px;" value="" readonly>
 	      
 	                     <!-- <button name="couponSelect" id="couponSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
                      </div>
                      <div>
-                     	잔여 포인트 : <span name="pointBox" id="pointBox" style="display:inline-block; width:90px;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
+                     	보유 포인트 :<span name="pointBox" id="pointBox" style="display:inline-block; width:90px; color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
                      <span><input type="number" name="pointValue" id="pointValue" style="width:100px" value="" min="0" max="${wdUser.userPoint}"></span>
                      	<!-- <button name="pointSelect" id="pointSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
 					 </div>

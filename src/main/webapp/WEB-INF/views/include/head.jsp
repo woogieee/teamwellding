@@ -21,6 +21,10 @@
     
     <!-- alert창 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+    <!-- 큐알 -->
+    <script type="text/javascript" src="../resources/js/qrcode.js"></script>
+    <script src="../resources/js/jquery-qrcode-0.18.0.js"></script>
   
     
     <!-- 보현폰트 -->
@@ -31,6 +35,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script:400" rel="stylesheet">
 	
 	<!-- 의수 -->
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

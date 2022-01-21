@@ -395,7 +395,8 @@ INSERT INTO WD_HALL (
     H_CONTENT,
     H_IMGNAME,
     REZCOUNT,
-    H_DISCOUNT
+    H_DISCOUNT,
+    H_SUBIMG
 ) VALUES (
     #{WHCode},
     #{HCode},
@@ -407,7 +408,8 @@ INSERT INTO WD_HALL (
     #{HContent},
     #{HImgName},
     #{RezCount},
-    #{hDiscount}
+    #{hDiscount},
+    #{hSubImg}
 )
 </insert>
 <!-- 홀 추가 인서트문 끝 -->
@@ -504,6 +506,41 @@ WHERE
     AND H_CODE = #{HCode}
 </update>
 <!-- 홀 업데이트 -->
+
+<!-- 이미지 가장 마지막 번호 가져오기 -->
+<select id="maxImgName" resultType="string">
+SELECT
+    NVL(MAX(A.H_IMGNAME), 0) AS H_IMGNAME
+FROM
+    WD_HALL A, WD_WEDDINGHALL B
+WHERE
+    A.WH_CODE = B.WH_CODE
+</select>
+<!-- 이미지 가장 마지막 번호 가져오기 -->
+
+<!-- 홀 파일 삽입 -->
+<insert id="hallFileInsert" parameterType="com.icia.web.model.WDHallFile">
+INSERT INTO WD_HALL_FILE (
+    H_CODE,
+    H_FILE_SEQ,
+    H_FILE_NAME,
+    H_FILE_ORG_NAME,
+    H_FILE_EXT,
+    H_FILE_SIZE,
+    REG_DATE,
+    WH_CODE
+) VALUES (
+    #{HCode},
+    #{HFileSeq},
+    #{HFileName},
+    #{HFileOrgName},
+    #{HFileExt},
+    #{HFileSize},
+    SYSDATE,
+    #{WHCode}
+)
+</insert>
+<!-- 홀 파일 삽입 -->
 
 </mapper>
 

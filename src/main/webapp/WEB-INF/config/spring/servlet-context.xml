@@ -66,7 +66,7 @@
             			<value>/user/modify</value>
             			<value>/board/check.do</value>
             			<value>/user/emailCheck</value>
-            			
+            			<value>/board/eBoardCoupon</value>
 
             			<value>/board/nBoard</value>
             			<value>/board/eBoard</value>
@@ -191,8 +191,13 @@
 						<value>/mng/makeupComDelete</value>
 						<value>/mng/studioDelete</value>
 						<value>/mng/studioUpdateProc</value>
+						
+						<value>/board/qrTest</value>
+						
+						<value>/board/foodCpnM</value>
+						<value>/board/foodCpnF</value>
 
-
+						<value>/user/marryUpdate</value>
             		</list>
             	</constructor-arg>
             </bean>

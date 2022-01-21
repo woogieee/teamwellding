@@ -137,9 +137,18 @@
 		});
 		
 	   $("#btn_cc").on("click", function(){
-			 alert("회원정보수정이 취소되었습니다.");
+			 //alert("회원정보수정이 취소되었습니다.");
+			  Swal.fire({ 
+				  icon: 'warning',
+				  text: '회원정보 수정이 취소되었습니다.'
+			  });
 			 location.href = "/user/wishlist";
 	   });
+	   
+	   $("#cou").on("click",function(){
+		    var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
+		    window.open("/board/Coupon", "PopUP", option); 
+		});  
 	   
 	});
 	   

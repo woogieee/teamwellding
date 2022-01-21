@@ -1,5 +1,6 @@
 package com.icia.web.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -291,5 +292,49 @@ public class WDReviewService {
 			}
 			return count;
 			
+		}
+		
+		//리뷰게시판 홀 이름 불러오기
+		public ArrayList<String> hallNameList() {
+			ArrayList<String> hallName = new ArrayList<String>();
+			
+			try {
+				hallName = wdReviewDao.hallNameList();
+			}
+			catch(Exception e)
+			{
+				logger.error("[WDReviewService] hallNameList Exception",e);
+			}
+			
+			
+			return hallName;
+		}
+		
+		//업체 불러오기전 코드 부터 불러오기
+		public WDReview reviewhsdmCodeSet(WDReview wdReview) {
+			
+			try {
+				wdReview = wdReviewDao.reviewhsdmCodeSet(wdReview);
+			}
+			catch(Exception e)
+			{
+				logger.error("[WDReviewService] reviewhsdmCodeSet Exception",e);
+			}
+			
+			return wdReview;				
+		}
+		
+		//업체이름 불러오기
+		public WDReview reviewInfohsdmName(WDReview wdReview) {
+			
+			try {
+				wdReview = wdReviewDao.reviewInfohsdmName(wdReview);
+			}
+			catch(Exception e)
+			{
+				logger.error("[WDReviewService] reviewInfohsdmName Exception",e);
+			}
+			
+			return wdReview;				
 		}
 }

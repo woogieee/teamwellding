@@ -81,21 +81,21 @@ AND
 <select id="rezSelect" parameterType="com.icia.web.model.WDRez" resultMap="WDRezDaoResultMap">
 SELECT
     REZ_NO,
-    WH_CODE,
-    H_CODE,
-    S_CODE,
-    DC_CODE,
-    D_NO,
-    M_CODE,
-    M_PLUS_NUM,
-    REZ_STATUS,
-    REZ_DATE,
-    WDATE,
-    USER_ID,
-    REZ_FULL_PRICE,
-    C_CODE,
-    REZ_POINT,
-    S_DATE
+    NVL(WH_CODE,'')AS WH_CODE,
+    NVL(H_CODE,'')AS H_CODE,
+    NVL(S_CODE,'')AS S_CODE,
+    NVL(DC_CODE,'')AS DC_CODE,
+    NVL(D_NO,'')AS D_NO,
+    NVL(M_CODE,'')AS M_CODE,
+    NVL(M_PLUS_NUM,'')AS M_PLUS_NUM,
+    NVL(REZ_STATUS,'N')AS REZ_STATUS,
+    NVL(TO_CHAR(REZ_DATE,'YYYY.MM.DD HH24:MI:SS'), '')AS REZ_DATE, 
+    NVL(WDATE,'')AS WDATE,
+    NVL(USER_ID,'')AS USER_ID,
+    NVL(REZ_FULL_PRICE,0)AS REZ_FULL_PRICE,
+    NVL(C_CODE,'')AS C_CODE,
+    NVL(REZ_POINT,0)AS REZ_POINT,
+    NVL(S_DATE,'')AS S_DATE
 FROM
     WD_REZ
 WHERE   
@@ -814,5 +814,17 @@ AND
     REZ_STATUS = 'Y'
 </select>
 <!-- 해당 wDate 날짜에 해당 메이크업 업체 예약되어 있는지 확인 종료 -->
+
+<!-- 장바구니 결혼날짜 변경 시작 -->
+<update id="MarrydateUpdate" parameterType="com.icia.web.model.WDRez">
+UPDATE WD_REZ
+SET
+   WDATE = #{wDate}
+WHERE
+         REZ_NO = #{rezNo}
+    AND  REZ_STATUS = 'N'
+    AND USER_ID = #{userId}
+  </update>
+  <!-- 장바구니 결혼날짜 변경 끝 -->
 
 </mapper>

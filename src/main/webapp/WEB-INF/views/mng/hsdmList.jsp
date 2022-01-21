@@ -25,10 +25,10 @@
 /*다크모드관련*/
 .btn-toggle
 {
-   background: none;
+	background: none;
     position: absolute;
-    top: 28px;
-    left: 79%;
+    top: 5px;
+    right: 0;
     border: none;
     outline: none;
     color: #ccc;
@@ -122,12 +122,12 @@ body.dark-theme .page-link.active
      $(".studio_modal").colorbox({
             iframe:true, 
             innerWidth:1000,
-            innerHeight:600,
+            innerHeight:650,
             scrolling:false,
             onComplete:function()
             {
                $("#colorbox").css("width", "1000px");
-               $("#colorbox").css("height", "600px");
+               $("#colorbox").css("height", "650px");
                $("#colorbox").css("border-radius", "10px");
                
                $('html').css("overflow","hidden");
@@ -239,12 +239,12 @@ body.dark-theme .page-link.active
      $(".dress_modal").colorbox({
          iframe:true, 
          innerWidth:1000,
-         innerHeight:800,
+         innerHeight:600,
          scrolling:false,
          onComplete:function()
          {
             $("#colorbox").css("width", "1000px");
-            $("#colorbox").css("height", "800px");
+            $("#colorbox").css("height", "600px");
             $("#colorbox").css("border-radius", "10px");
             
             $('html').css("overflow","hidden");

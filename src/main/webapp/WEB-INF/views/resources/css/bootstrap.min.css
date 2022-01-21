@@ -224,8 +224,8 @@ button {
 }
 
 button:focus {
-	outline: 1px dotted;
-	outline: 5px auto -webkit-focus-ring-color
+	/*outline: 1px dotted;
+	outline: 5px auto -webkit-focus-ring-color*/
 }
 
 button, input, optgroup, select, textarea {
@@ -1648,6 +1648,7 @@ pre code {
 	padding: 10px;/*10px 30px 10px 30px;*/
 	/*vertical-align: top;*/
 	border-top: 1px solid #dedede;
+	cursor: default;
 }
 
 .table thead th {
@@ -1831,7 +1832,8 @@ pre code {
 }
 
 .table-active, .table-active>td, .table-active>th {
-	background-color: rgba(0, 0, 0, .075)
+	/*background-color: rgba(0, 0, 0, .075)*/
+	cursor: default;
 }
 
 .table-hover .table-active:hover {

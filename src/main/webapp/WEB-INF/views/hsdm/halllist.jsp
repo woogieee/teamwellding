@@ -8,8 +8,15 @@
 	<script>
 	//리스트에서 리스트 다시 조회하지?
 	 $(document).ready(function(){
+		 
+		$("._searchValue").on('keyup', function(e)
+		{ 
+			if(e.key==='Enter'||e.keyCode===13){
+				$(".btnSearch").trigger("click");
+			}
+		});
 	   
-	   $("#btnSearch").on("click",function(){
+	   $(".btnSearch").on("click",function(){
 		   document.hallForm.WHCode.value = "";
 		   document.hallForm.HCode.value = "";
 		   
@@ -173,11 +180,11 @@
 									         </select>
                                         </div>
                                         <div class="col-lg-7">
-                                            <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
+                                            <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue _searchValue" placeholder="조회값을 입력하세요." />
                                         </div>
                                         <div class="col-lg-2">
                                             <fieldset>
-                                            <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                            <button type="button" id="btnSearch" class="btn btnSearch"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                      
                                             </fieldset>
                                         </div> 
@@ -220,8 +227,13 @@
                                 <div class="sd_detail_hall">${wdHall.HContent}</div>
                             <ul>    
                                 <li class="price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice}" />원</li>
-                                <li class="dis_price"><span class="discount"><c:out value="${wdHall.hDiscount}" />%</span> <span class="dis-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice * (1-wdHall.hDiscount*0.01)}" />원</span></li>
+                                <li class="dis_price"><span class="discount"><c:out value="${wdHall.hDiscount}" />%</span> <span class="dis-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HPrice * (1-wdHall.hDiscount*0.01)}" />원</span> <br />
+                                <span class="addprice2">* 홀대관료는 식비가 포함되지 않은 가격입니다.</span></li>
                             </ul>
+                            <div class="addprice_box">
+                            	<span class="addprice">1인당 식비 : &nbsp;<span style="font-weight: 700;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdHall.HFood }" />원</span></span> <br/>
+                            	<span class="addprice">최소인원 : &nbsp;<span style="font-weight: 700;">${wdHall.HMin}명</span></span>
+                            </div>
                             <div class="main-dark-button">
                                 <a href="javascript:void(0)" onclick="fn_view('${wdHall.WHCode}', '${wdHall.HCode}')"> 자세히보기</a>
                             </div>

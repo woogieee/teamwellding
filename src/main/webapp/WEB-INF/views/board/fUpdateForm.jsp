@@ -92,39 +92,76 @@ $(document).ready(function(){
 	         {
 	            if(response.code == 0)
 	            {
-	               alert("게시물이 수정되었습니다.");
-	               document.bbsForm.action = "/board/fBoard";
-	               document.bbsForm.submit();
+	               //alert("게시물이 수정되었습니다.");
+	               //document.bbsForm.action = "/board/fBoard";
+	               //document.bbsForm.submit();
+					Swal.fire({ 
+						icon: 'success',
+						text: '게시물이 수정되었습니다.'
+					}).then(function(){
+		                  document.bbsForm.action = "/board/fBoard";
+		                  document.bbsForm.submit();
+					});
 	            }
 	            else if(response.code == 400)
 	            {
-	               alert("파라미터값이 잘못되었습니다.");
-	               $("#btnUpdate").prop("disabled", false); //수정버튼 활성화
+	               //alert("파라미터값이 잘못되었습니다.");
+	               //$("#btnUpdate").prop("disabled", false); //수정버튼 활성화
+					Swal.fire({ 
+						icon: 'error',
+						text: '파라미터값이 잘못되었습니다.'
+					}).then(function(){
+						$("#btnUpdate").prop("disabled", false); //수정버튼 활성화
+					});
 	            }
 	            else if(response.code == 401)
 	            {
 	               //내 게시물이 아니야
-	               alert("해당 사용자의 게시물이 아닙니다.");
-	               location.href = "/board/fBoard";
+	               //alert("해당 사용자의 게시물이 아닙니다.");
+	              // location.href = "/board/fBoard";
+					Swal.fire({ 
+						icon: 'error',
+						text: '해당 사용자의 게시물이 아닙니다.'
+					}).then(function(){
+						location.href = "/board/fBoard";
+					});
 	            }
 	            else if(response.code == 404)
 	            {
 	               //수정해야되는데 게시물이 없어
-	               alert("게시물을 찾을 수 없습니다.");
-	               location.href = "/board/fBoard";
+	               //alert("게시물을 찾을 수 없습니다.");
+	               //location.href = "/board/fBoard";
+					Swal.fire({ 
+						icon: 'error',
+						text: '게시물을 찾을 수 없습니다.'
+					}).then(function(){
+						location.href = "/board/fBoard";
+					});
 	            }
 	            else
 	            {
 	               //500번 여기야 여기
-	               alert("게시물 수정 중 오류가 발생했습니다.");
-	               $("#btnUpdate").prop("disabled", false); //수정버튼 활성화
+	               //alert("게시물 수정 중 오류가 발생했습니다.");
+	               //$("#btnUpdate").prop("disabled", false); //수정버튼 활성화
+					Swal.fire({ 
+						icon: 'error',
+						text: '게시물 수정 중 오류가 발생했습니다.'
+					}).then(function(){
+						$("#btnUpdate").prop("disabled", false); //수정버튼 활성화
+					});
 	            }
 	         },
 	         error: function(error)
 	         {
 	            icia.common.error(error);
-	            alert("게시물 수정 중 오류가 발생하였습니다.");
-	            $("#btnUpdate").prop("disabled", false); //수정버튼 활성화
+	            //alert("게시물 수정 중 오류가 발생하였습니다.");
+	            //$("#btnUpdate").prop("disabled", false); //수정버튼 활성화
+				Swal.fire({ 
+					icon: 'error',
+					text: '게시물 수정 중 오류가 발생했습니다.'
+				}).then(function(){
+					$("#btnUpdate").prop("disabled", false); //수정버튼 활성화
+				});
 	         }
 	      });
 	   });
@@ -148,38 +185,74 @@ $(document).ready(function(){
 	         {
 	            if(response.code == 0)
 	            {
-	               alert("첨부파일이 삭제되었습니다.");
-	               $("#fileNameSpan").text("");
+	               //alert("첨부파일이 삭제되었습니다.");
+	              // $("#fileNameSpan").text("");
+					Swal.fire({ 
+						icon: 'success',
+						text: '첨부파일이 삭제되었습니다.'
+					}).then(function(){
+						$("#fileNameSpan").text("");
+					});
 	            }
 	            else if(response.code == 400)
 	            {
-	               alert("파라미터 값이 잘못되었습니다.");
-	               $("#btnFileDelete").prop("disabled", false); //수정버튼 활성화
+	               //alert("파라미터 값이 잘못되었습니다.");
+	               //$("#btnFileDelete").prop("disabled", false); //수정버튼 활성화
+					Swal.fire({ 
+						icon: 'error',
+						text: '파라미터 값이 잘못되었습니다.'
+					}).then(function(){
+						$("#btnFileDelete").prop("disabled", false); //수정버튼 활성화
+					});
 	            }
 	            else if(response.code == 401)
 	            {
 	               //내 게시물이 아니야
-	               alert("해당 사용자의 첨부파일이 아닙니다.");
-	               location.href = "/board/list";
+	               //alert("해당 사용자의 첨부파일이 아닙니다.");
+	               //location.href = "/board/list";
+					Swal.fire({ 
+						icon: 'error',
+						text: '해당 사용자의 첨부파일이 아닙니다.'
+					}).then(function(){
+						location.href = "/board/list";
+					});
 	            }
 	            else if(response.code == 404)
 	            {
 	               //수정해야되는데 게시물이 없어
-	               alert("게시물을 찾을 수 없습니다.");
-	               location.href = "/board/list";
+	               //alert("게시물을 찾을 수 없습니다.");
+	               //location.href = "/board/list";
+					Swal.fire({ 
+						icon: 'error',
+						text: '게시물을 찾을 수 없습니다.'
+					}).then(function(){
+						location.href = "/board/list";
+					});
 	            }
 	            else
 	            {
 	               //500번 여기야 여기
-	               alert("첨부파일 삭제 중 오류가 발생했습니다.");
-	               $("#btnFileDelete").prop("disabled", false); //수정버튼 활성화
+	               //alert("첨부파일 삭제 중 오류가 발생했습니다.");
+	               //$("#btnFileDelete").prop("disabled", false); //수정버튼 활성화
+					Swal.fire({ 
+						icon: 'error',
+						text: '첨부파일 삭제 중 오류가 발생했습니다.'
+					}).then(function(){
+						$("#btnFileDelete").prop("disabled", false); //수정버튼 활성화
+					});
 	            }
 	         },
 	         error: function(error)
 	         {
 	            icia.common.error(error);
-	            alert("첨부파일 삭제 중 오류가 발생하였습니다.");
-	            $("#btnFileDelete").prop("disabled", false); //수정버튼 활성화
+	            //alert("첨부파일 삭제 중 오류가 발생하였습니다.");
+	            //$("#btnFileDelete").prop("disabled", false); //수정버튼 활성화
+				Swal.fire({ 
+					icon: 'error',
+					text: '첨부파일 삭제 중 오류가 발생했습니다.'
+				}).then(function(){
+					$("#btnFileDelete").prop("disabled", false); //수정버튼 활성화
+				});
 	         }
 	      });
 	   });   

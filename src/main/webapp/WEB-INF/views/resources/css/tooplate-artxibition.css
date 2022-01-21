@@ -247,6 +247,7 @@ p {
   line-height: 25px;
   color: #2a2a2a;
   font-weight: 300;
+  cursor: default;
 }
 
 /* 
@@ -2244,8 +2245,98 @@ About Us Page
     float: right;
     margin-bottom: 15px;
 }
-/*************/
 
+#wook p
+{
+	display: inline-block;
+    font-size: 18px;
+    padding-right: 12px;
+    font-weight: 400;
+    color: #666;
+    letter-spacing: -1.2px;
+}
+
+#wook2 p
+{
+	display: inline-block;
+    font-size: 18px;
+    padding-right: 12px;
+    font-weight: 400;
+    color: #666;
+    letter-spacing: -1.2px;
+}
+
+#wook3 p
+{
+	display: inline-block;
+    font-size: 18px;
+    padding-right: 12px;
+    font-weight: 400;
+    color: #666;
+    letter-spacing: -1.2px;
+}
+
+#wook2
+{
+	font-size: 25px;
+    font-weight: 700;
+    color: #000;
+    float : right;
+    border-bottom: none;
+    margin-bottom: 15px;
+}
+
+#wook3
+{
+	font-size: 32px;
+    font-weight: 700;
+    color: #000;
+    float : right;
+    border-bottom: none;
+    margin-bottom: 15px;
+}
+/*************/
+.det_price2
+{
+	display: inline-block;
+   /* padding-right: 30px;
+    padding-left: 25px;*/
+}
+
+.det_price2 .price3
+{
+	color: #888!important;
+	margin: 0;
+	height: 20px;
+	float: right;
+	font-size: 15px;
+	font-weight: 300;
+}
+
+.det_price2 .price3 p
+{
+	font-weight: 600;
+	display: inline-block;
+    color: #444;
+}
+
+.det_price2 .price4
+{
+	color: #888!important;
+	margin: 0;
+	height: 20px;
+	float: right;
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.det_price2 .price4 p
+{
+	font-weight: 500;
+	display: inline-block;
+	font-size: 17px;
+    color: #444;
+}
 /*욱채**/
 .det_price2 .price2
 {
@@ -2290,6 +2381,11 @@ About Us Page
 
 #chae{
 	float:right;
+}
+
+#chae2{
+	float:right;
+	padding: 25px;
 }
 
 /*****************/
@@ -3315,6 +3411,8 @@ Shows Events Page
  
    font-family: 'OTWelcomeRA';
    color: rgba(40,30,25,1);
+   
+   cursor: default;
 }
 
 .tickets-page .search-box select {
@@ -3779,12 +3877,45 @@ Shows Events Page
 	font-size: 22px;
     font-weight: 700;
     color: #000;
+    height: 33px;
 }
 
-.down-content .dis_price
+.down-content .dis-price2
 {
-	height: 33px;
+	font-size: 20px;
+    font-weight: 900;
+    color: #000;
+    height: 20px;
 }
+
+.addprice_box
+{
+	height: 62px;
+    line-height: 20px;
+    margin-top: 15px;
+    background: rgba(255,255,255,0.8);
+    padding: 11px 18px;
+    border-radius: 10px;
+}
+
+.addprice
+{
+	color: #666;
+	margin: 0;
+	height: 20px;
+	font-size: 13px;
+}
+
+.addprice2
+{
+	color: #888;
+	margin: 0;
+	font-size: 12px;
+	letter-spacing: -0.6px;
+	font-weight: 600;
+}
+
+
 
 .sd_adress
 {
@@ -4998,6 +5129,7 @@ responsive
 .category2 {
   padding-bottom: 0px;
   text-align: center;
+  cursor: default;
 }
 
 .shows-events-scheduleW {
@@ -5664,11 +5796,12 @@ responsive
 .about .content ul {
   list-style: none;
   padding: 0;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 300;
 }
 .about .content ul li {
   padding-bottom: 10px;
+  letter-spacing: -0.7px;
 }
 .about .content ul i {
   font-size: 20px;
@@ -5820,12 +5953,14 @@ responsive
 	color: black;
 	font-weight: bold;
 }
-
+/*
 .bc a:focus
 {
 	color: black;
 	font-weight: bold;
-}
+}*/
+
+
 
 .bcline
 {
@@ -6120,7 +6255,72 @@ responsive
     transform: rotate(45deg); /* 각도 */
 }
 
+/*욱채 인덱스 슬라이더
+.slick-prev3.slick-arrow{ 
+	left: 0%!important;
+	outline: none
+    
+}
+.slick-next3.slick-arrow{
+	right: 3%!important;
+	outline: none
+}
+
+.slick-prev3::after {
+    position: absolute;
+    content: '';
+    width: 36px; 
+    height: 36px; 
+    border-top: 5px solid #ffc0c8;
+    border-right: 5px solid #ffc0c8;
+    transform: rotate(225deg);
+}
+
+.slick-next3::after {
+    position: absolute;
+    content: '';
+    width: 36px; 
+    height: 36px;
+    border-top: 5px solid #ffc0c8;
+    border-right: 5px solid #ffc0c8; 
+    transform: rotate(45deg);
+}
 /*욱채 인덱스 슬라이더*/
+
+/** 인덱스 슬라이더이미지 **/
+/****** 보현 슬라이더ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ *******/
+.post-slider3{
+  /*border:1px solid red;*/
+  text-align: center;
+  width: 100%;
+}
+.post-slider3 .post-wrapper3{
+  width:70%;
+  margin:0px auto;
+  /*border:1px dashed red;*/
+}
+.post-slider3 .post-wrapper3 .post3{
+  width:80%;
+  height:auto;
+  display:inline-block;
+}
+
+.post-slider3 .post-wrapper3 .post3 img{
+  width:100%;
+  height:auto;
+  vertical-align: middle;
+}
+
+.slick-arrow{
+  z-index: 999; /* prev버튼은 위치 이동시 이미지 뒤로 숨겨짐 */
+  position:absolute;  /* 원하는 위치에 지정  */
+  top: 50%; 
+  width: 70px;
+  height: 70px; 
+  transform: translateY(-25px);
+  border:none;
+  background: none;
+}
 .slick-prev3.slick-arrow{ /* prev 이전 */
 	left: 0%!important;
 	outline: none
@@ -6134,23 +6334,26 @@ responsive
 .slick-prev3::after {
     position: absolute;
     content: '';
-    width: 36px; /* 사이즈 */
-    height: 36px; /* 사이즈 */
-    border-top: 5px solid #ffc0c8; /* 선 두께 */
-    border-right: 5px solid #ffc0c8; /* 선 두께 */
+    width: 24px; /* 사이즈 */
+    height: 24px; /* 사이즈 */
+    border-top: 5px solid #ff8080; /* 선 두께 */
+    border-right: 5px solid #ff8080; /* 선 두께 */
     transform: rotate(225deg); /* 각도 */
+    top: 10px;
 }
 
 .slick-next3::after {
     position: absolute;
     content: '';
-    width: 36px; /* 사이즈 */
-    height: 36px; /* 사이즈 */
-    border-top: 5px solid #ffc0c8; /* 선 두께 */
-    border-right: 5px solid #ffc0c8; /* 선 두께 */
+    width: 24px; /* 사이즈 */
+    height: 24px; /* 사이즈 */
+    border-top: 5px solid #ff8080; /* 선 두께 */
+    border-right: 5px solid #ff8080; /* 선 두께 */
     transform: rotate(45deg); /* 각도 */
+    top: 10px;
 }
-/*욱채 인덱스 슬라이더*/
+
+
 
 /** 모달띄운거 **/
 .ticket-details-page {
@@ -6629,6 +6832,23 @@ responsive
 	line-height: 30px;
 }
 
+.tbstyle5 span
+{
+	font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    letter-spacing: -0.5px;
+    line-height: 16px;
+    top: 53%;
+    transform: translateY(-50%);
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .tbstyle
 {
 	font-weight: 600;
@@ -6660,6 +6880,44 @@ responsive
 	font-size: 14px;
 	color: #333;
 	font-weight: 300;
+}
+
+.tbstyle6
+{
+	font-size: 14px;
+	color: #444;
+	font-weight: 600;
+	text-align: center;
+}
+
+.hsdm_choice
+{
+	width: 100%;
+	padding: 10px 15px;
+	/*text-align: center;*/
+}
+
+.hsdm_choice p
+{
+	font-size: 14px;
+	display: inline-block;
+	padding: 0 10px;
+	
+}
+
+.hsdm_choice span
+{
+	font-weight: 700;
+	border-right: 2px solid #ccc;
+	padding: 0 20px 0 5px;
+
+}
+
+.star_p
+{
+	font-size: 15px;
+    font-weight: 500;
+    color: #555;
 }
 
 
@@ -6707,6 +6965,7 @@ textarea::placeholder {
 .comment_tr td
 {
 	padding-top: 25px;
+	width:90%;
 }
 
 .comment_tr2 td
@@ -6764,9 +7023,33 @@ textarea::placeholder {
 {
 	border: none;
     font-size: 12px;
-    padding: 5px 8px;
+    padding: 6px 8px;
     font-weight: 600;
-    background: #ccc;
+    background: #F39E8D;
+    color: #fff;
+    border-radius: 5px;
+    letter-spacing: -0.5px;
+}
+
+.rez_btn3
+{
+	border: none;
+    font-size: 12px;
+    padding: 6px 8px;
+    font-weight: 600;
+    background: #ef775f;
+    color: #fff;
+    border-radius: 5px;
+    letter-spacing: -0.5px;
+}
+
+.rez_btn4
+{
+	border: none;
+    font-size: 12px;
+    padding: 6px 8px;
+    font-weight: 600;
+    background: #5f8fef;
     color: #fff;
     border-radius: 5px;
     letter-spacing: -0.5px;
