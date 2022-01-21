@@ -210,7 +210,7 @@ function fn_list(curPage)
 	                                        </div>
 	                                        <div class="col-lg-2" style="text-align: left;">
 	                                            <div class="divB_tb2 tbstyle6">
-	                                            	<span>${hallName[status.index] }</span>
+	                                            	<span>${review.hName }</span>
 	                                            </div>
 	                                        </div>
 	                                        

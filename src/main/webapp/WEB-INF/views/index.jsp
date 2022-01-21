@@ -34,10 +34,10 @@
          document.hallForm.submit();
       }
 
-      function fn_view3(bSeq)
+      function fn_view3(RSeq)
       {
-         document.fBoardForm.bSeq.value = bSeq;
-         document.fBoardForm.action = "/board/fBoardView";
+         document.fBoardForm.RSeq.value = RSeq;
+         document.fBoardForm.action = "/board/reviewInfo";
          document.fBoardForm.submit();
       }
       
@@ -267,12 +267,12 @@
                           <div class="text-button"><a href="/board/reviews"><span id="plusssss">더 보기</span></a></div>
                         <div class="lisylebox">
                             <ul class="listyle">
-                               <c:forEach var="fboard" items="${wdFBoard}" varStatus="status"> 
+                               <c:forEach var="review" items="${wdReviewList}" varStatus="status"> 
                                 <li>
                                     <div class="board">
-                                        <div class="btitle active"><a href="javascript:void(0)" onclick="fn_view3(${fboard.bSeq})"><c:out value="${fboard.bTitle}"/></a></div>
-                                        <div class="bwriter"><p><c:out value="${fboard.userId}"/></p></div>
-                                        <div class="bdate"><p><c:out value="${fboard.regDate}"/></p></div>
+                                        <div class="btitle active"><a href="javascript:void(0)" onclick="fn_view3(${review.RSeq})"><c:out value="${review.RTitle}"/></a></div>
+                                        <div class="bwriter"><p><c:out value="${review.UNickName}"/></p></div>
+                                        <div class="bdate"><p><c:out value="${review.regDate}"/></p></div>
                                     </div>
                                 </li>
                                </c:forEach> 
@@ -294,7 +294,7 @@
  
    <!-- 게시글 상세 페이지를 위한 폼 -->
    <form name="fBoardForm" id="fBoardForm" method="post">
-         <input type="hidden" name="bSeq" value="" />
+         <input type="hidden" name="RSeq" value="" />
    </form>
    <!-- 게시글 상세 페이지를 위한 폼 -->
 
