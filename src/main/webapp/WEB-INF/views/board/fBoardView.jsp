@@ -362,7 +362,7 @@ function commentDelete(cSeq){
 }
 
 function commentUpdate(cSeq,tagId){
-	
+
 
 	
 	if (!$("#updateComment").length > 0) 
@@ -533,6 +533,9 @@ function commentUpdate(cSeq,tagId){
 						<tr>
 							<td colspan="2" style="text-align: center">	
 								<div style="padding: 30px 20px; text-align: left; font-size: 16px;">
+								<c:if test="${!empty wdFBoard.wdBoardFile}">
+			                        <img src="../resources/upload/${wdFBoard.wdBoardFile.fileName }" style="width: 50%;" /> <br />
+			                    </c:if>
 										<c:out value="${wdFBoard.bContent}" />
 								</div>
 							</td>

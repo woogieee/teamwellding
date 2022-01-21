@@ -76,7 +76,8 @@ SELECT
     R_READ_CNT,
     REG_DATE,
     R_SCORE_STAR,
-    REZ_NO
+    REZ_NO,
+    H_NAME
 FROM (SELECT
             ROWNUM RNUM,
             R_SEQ,
@@ -88,7 +89,8 @@ FROM (SELECT
             R_READ_CNT,
             REG_DATE,
             R_SCORE_STAR,
-            REZ_NO
+            REZ_NO,
+            H_NAME
         FROM ( SELECT
                     A.R_SEQ,
                     A.USER_ID,
@@ -99,22 +101,21 @@ FROM (SELECT
                     NVL(A.R_READ_CNT, 0) R_READ_CNT,
                     NVL(TO_CHAR(A.REG_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') REG_DATE,
                     NVL(A.R_SCORE_STAR, 0), R_SCORE_STAR,
-                    A.REZ_NO
+                    A.REZ_NO,
+                    NVL(D.H_NAME, '없음') H_NAME
                 FROM
-                    WD_REVIEW A, WD_USER B, WD_REZ C
-<if test='searchValue != null and searchValue != ""'>                     
-                    , WD_HALL D
-</if>                    
+                    WD_REVIEW A, WD_USER B, WD_REZ C, WD_HALL D
+               
                 WHERE
                     A.USER_ID = B.USER_ID
                 AND
                     A.REZ_NO = C.REZ_NO
-<if test='searchValue != null and searchValue != ""'>                      
-                AND
-                    C.WH_CODE = D.WH_CODE
-                AND
-                    C.H_CODE =  D.H_CODE
                   
+                AND
+                    C.WH_CODE = D.WH_CODE(+)
+                AND
+                    C.H_CODE =  D.H_CODE(+)
+<if test='searchValue != null and searchValue != ""'>                      
                 AND
                     D.H_NAME LIKE '%' || #{searchValue} || '%'
 </if>                          
@@ -310,17 +311,21 @@ WHERE
 <!-- 리뷰 작성처리 -->
 
 <!-- 리뷰게시판 홀 이름 보여주기 쿼리문 -->
-<select id="hallNameList" resultType="string">
-SELECT
-    NVL(H_NAME, '없음') H_NAME
-FROM
-    WD_HALL A, WD_REZ B
-WHERE
-    A.WH_CODE = B.WH_CODE
+<select id="hallNameList" parameterType="string" resultType="string">
+SELECT NVL(A.H_NAME, '없음') H_NAME
+FROM WD_REVIEW C, WD_REZ B LEFT OUTER JOIN WD_HALL A
+    ON ( A.WH_CODE = B.WH_CODE AND A.H_CODE = B.H_CODE )
+WHERE 
+    B.REZ_NO = C.REZ_NO
 AND
-    A.H_CODE = B.H_CODE
+    B.REZ_NO = #{value}
 AND
     B.REVIEW_STATUS = 'Y'
+
+<!-- SELECT NVL(A.H_NAME, '없음') H_NAME
+FROM WD_REZ B LEFT OUTER JOIN WD_HALL A
+    ON ( A.WH_CODE = B.WH_CODE AND A.H_CODE = B.H_CODE )
+WHERE B.REVIEW_STATUS = 'Y'-->
 </select>    
 <!-- 리뷰게시판 홀 이름 보여주기 쿼리문 -->  
 
