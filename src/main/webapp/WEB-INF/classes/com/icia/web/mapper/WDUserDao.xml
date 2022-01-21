@@ -132,4 +132,17 @@ WHERE
 </update>
 <!-- 예약번호가 없는 상태에서 결혼예정일 업데이트 끝 -->
     
+ <!--  이메일로 아이디찾기 시작-->
+ <select id="findId" parameterType ="string" resultMap="userResultMap">
+     SELECT
+    
+    USER_ID 
+   
+FROM
+    WD_USER
+WHERE
+    U_EMAIL = #{value}
+
+ </select>
+ <!--  이메일로 아이디찾기 끝-->
 </mapper>

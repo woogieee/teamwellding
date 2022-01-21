@@ -229,7 +229,7 @@ function fn_validateEmail(value)
 			<dd>
 				<div class="input">
 					<input type="password" id="pwd1" name="pwd1"
-						placeholder="${wdUser.userPwd}" maxlength="20">
+						value="${wdUser.userPwd}" maxlength="20">
 				</div>
 				<p class="msg">비밀번호를 입력해 주세오.</p>
 
@@ -238,7 +238,7 @@ function fn_validateEmail(value)
 			<dd>
 				<div class="input">
 					<input type="password" id="pwd2" name="pwd2"
-						placeholder="${wdUser.userPwd}" maxlength="20">
+						value="${wdUser.userPwd}" maxlength="20">
 				</div>
 				<p class="msg">비밀번호를 다시 입력해 주세요</p>
 			</dd>

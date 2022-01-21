@@ -1,7 +1,7 @@
 
 package com.icia.web.dao;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 import com.icia.web.model.WDUser;
 
@@ -25,5 +25,8 @@ public interface WDUserDao
 	
 	//장바구니 예약번호가 없는 상태에서 결혼예정일 업데이트
 	public int nonRezNumberMarrydateUpdate(WDUser wduser);
+	
+	//이메일로 아이디 찾기
+	public List<WDUser> findId(String userEmail);
 	
 }

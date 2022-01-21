@@ -1,6 +1,8 @@
 package com.icia.web.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -121,6 +123,7 @@ public class WDUserController
 		}
 	}
 	
+
 	//중복아이디 체크
 		@RequestMapping(value="/user/idCheck", method=RequestMethod.POST)
 		@ResponseBody
@@ -325,6 +328,48 @@ public class WDUserController
 		return ajaxResponse;
 	}
 	
+	//아이디 찾기
+	@RequestMapping(value = "/user/FindingId")
+	public String FindingId(HttpServletRequest request, HttpServletResponse response)
+	{
+		return "/user/FindingId";
+	}
+	
+	//이메일로 아이디찾기
+	@RequestMapping(value="/user/FindingIdProc")
+	@ResponseBody
+	public Response<Object> FindingIdEmailCheck(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	{
+		Response<Object> ajaxResponse = new Response<Object>();
+		
+		String userEmail = HttpUtil.get(request, "userEmail", "");
+		
+		List<WDUser> wduser = null;
+		
+		String userId = HttpUtil.get(request, "userId", "");
+		
+		wduser = wduserService.findId(userEmail);
+		
+		int i;
+		for(i =0;i<wduser.size();i++) 
+		{
+			System.out.println("wduser :"+wduser.get(i).getUserId());
+		}
+		
+		System.out.println("==============" + wduser);
+		
+			if(wduser.size() > 0)
+			{
+				ajaxResponse.setResponse(0, "Success",wduser);
+				System.out.println("당신의 이메일" + wduser);	
+			}
+		else
+			{
+			ajaxResponse.setResponse(100, "fail");
+			}
+		
+		return ajaxResponse;
+	}
 	
 
 }
