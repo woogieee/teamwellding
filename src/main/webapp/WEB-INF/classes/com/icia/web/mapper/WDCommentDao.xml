@@ -128,7 +128,7 @@ WHERE
 
 
 <!-- 댓글 전부 불러오기 시작 -->
-<select id="commentTotalSelect" resultMap="WDFBoardCommentResultMap">
+<select id="commentTotalSelect" parameterType="hashMap" resultMap="WDFBoardCommentResultMap">
 SELECT
     PARENT_SEQ,
     COMMENT_SEQ,
@@ -163,9 +163,9 @@ FROM(
                     ORDER BY
                         PARENT_SEQ ASC, COMMENT_SEQ ASC))
 WHERE
-    RNUM <![CDATA[>=]]> 1
+    RNUM <![CDATA[>=]]> #{startRow}
 AND
-    RNUM <![CDATA[<=]]> 20
+    RNUM <![CDATA[<=]]> #{endRow}
 </select>
 <!-- 댓글 전부 불러오기 종료 -->
 

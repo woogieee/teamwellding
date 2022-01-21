@@ -452,6 +452,12 @@ function plusNum()
 						<a class="txt2" href="/board/regform">
 							회원가입하기
 						</a>
+						<a class="txt2" href="/user/FindingId">
+							아이디
+						</a>
+						<a class="txt2" href="/board/regform">
+							비밀번호 찾기
+						</a>
 					</div>
 						<input type="button" onclick="plusNum()" value="d" style="width: 50px; height: 50px; background-color: white; color: white; cursor: default;"/>
 				</form>
