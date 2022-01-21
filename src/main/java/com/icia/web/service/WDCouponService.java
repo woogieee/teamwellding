@@ -87,6 +87,81 @@ public class WDCouponService {
 		return count;
 	}
 	
+	public int qrCodeMPlus(String rezNo) {
+		
+		int count = 0;
+		
+		try {
+			count = wdCouponDao.qrCodeMPlus(rezNo);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] qrCodeMPlus Exception", e);
+		}
+		return count;
+	}
+	
+	public int qrCodeFPlus(String rezNo) {
+		
+		int count = 0;
+		
+		try {
+			count = wdCouponDao.qrCodeFPlus(rezNo);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] qrCodeFPlus Exception", e);
+		}
+		return count;
+	}
+	
+	public WDCoupon cntSelect(String rezNo) {
+		
+		WDCoupon wdCoupon = null;
+		
+		try {
+			wdCoupon = wdCouponDao.cntSelect(rezNo);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] qrCodeFPlus Exception", e);
+		}
+		
+		return wdCoupon;
+	}
+	
 
+	//해당 계정에 이벤트 쿠폰이 1개 이상 있는지 카운트 
+	public int selectCoupon(String userId)
+	{
+		int count = 0;
+		
+		try
+		{
+			count = wdCouponDao.selectCoupon(userId);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDCouponService] selectCoupon Exception", e);
+		}
+		return count;
+	}
+	
+	//이벤트 쿠폰 발급하기
+	public WDCoupon downloadCoupon(String userId)
+	{
+		WDCoupon wdCoupon = null;
+		
+		try
+		{
+			wdCoupon = wdCouponDao.downloadCoupon(userId);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDCouponService] downloadCoupon Exception", e);
+		}
+		return wdCoupon;
+	}
+	
 }
 

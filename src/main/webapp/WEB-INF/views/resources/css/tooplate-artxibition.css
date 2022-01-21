@@ -2245,8 +2245,98 @@ About Us Page
     float: right;
     margin-bottom: 15px;
 }
-/*************/
 
+#wook p
+{
+	display: inline-block;
+    font-size: 18px;
+    padding-right: 12px;
+    font-weight: 400;
+    color: #666;
+    letter-spacing: -1.2px;
+}
+
+#wook2 p
+{
+	display: inline-block;
+    font-size: 18px;
+    padding-right: 12px;
+    font-weight: 400;
+    color: #666;
+    letter-spacing: -1.2px;
+}
+
+#wook3 p
+{
+	display: inline-block;
+    font-size: 18px;
+    padding-right: 12px;
+    font-weight: 400;
+    color: #666;
+    letter-spacing: -1.2px;
+}
+
+#wook2
+{
+	font-size: 25px;
+    font-weight: 700;
+    color: #000;
+    float : right;
+    border-bottom: none;
+    margin-bottom: 15px;
+}
+
+#wook3
+{
+	font-size: 32px;
+    font-weight: 700;
+    color: #000;
+    float : right;
+    border-bottom: none;
+    margin-bottom: 15px;
+}
+/*************/
+.det_price2
+{
+	display: inline-block;
+   /* padding-right: 30px;
+    padding-left: 25px;*/
+}
+
+.det_price2 .price3
+{
+	color: #888!important;
+	margin: 0;
+	height: 20px;
+	float: right;
+	font-size: 15px;
+	font-weight: 300;
+}
+
+.det_price2 .price3 p
+{
+	font-weight: 600;
+	display: inline-block;
+    color: #444;
+}
+
+.det_price2 .price4
+{
+	color: #888!important;
+	margin: 0;
+	height: 20px;
+	float: right;
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.det_price2 .price4 p
+{
+	font-weight: 500;
+	display: inline-block;
+	font-size: 17px;
+    color: #444;
+}
 /*욱채**/
 .det_price2 .price2
 {
@@ -2291,6 +2381,11 @@ About Us Page
 
 #chae{
 	float:right;
+}
+
+#chae2{
+	float:right;
+	padding: 25px;
 }
 
 /*****************/
@@ -3782,12 +3877,45 @@ Shows Events Page
 	font-size: 22px;
     font-weight: 700;
     color: #000;
+    height: 33px;
 }
 
-.down-content .dis_price
+.down-content .dis-price2
 {
-	height: 33px;
+	font-size: 20px;
+    font-weight: 900;
+    color: #000;
+    height: 20px;
 }
+
+.addprice_box
+{
+	height: 62px;
+    line-height: 20px;
+    margin-top: 15px;
+    background: rgba(255,255,255,0.8);
+    padding: 11px 18px;
+    border-radius: 10px;
+}
+
+.addprice
+{
+	color: #666;
+	margin: 0;
+	height: 20px;
+	font-size: 13px;
+}
+
+.addprice2
+{
+	color: #888;
+	margin: 0;
+	font-size: 12px;
+	letter-spacing: -0.6px;
+	font-weight: 600;
+}
+
+
 
 .sd_adress
 {
@@ -6837,6 +6965,7 @@ textarea::placeholder {
 .comment_tr td
 {
 	padding-top: 25px;
+	width:90%;
 }
 
 .comment_tr2 td

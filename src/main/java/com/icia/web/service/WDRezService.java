@@ -319,6 +319,8 @@ public class WDRezService {
 
 		count = wdRezDao.rezUpdatePay(wdRez);
 		
+		wdCouponDao.QRrezNoInsert(wdRez.getRezNo());
+		
 		if(count > 0) 
 		{
 			logger.debug("[여긴타니!!!!!1????]");
@@ -340,11 +342,14 @@ public class WDRezService {
 		return count;
 	}
 	
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
 	public int rezUpdatePayNoC(WDRez wdRez) throws Exception
 	{
 		int count = 0;
 		
 		count = wdRezDao.rezUpdatePay(wdRez);
+		
+		wdCouponDao.QRrezNoInsert(wdRez.getRezNo());
 		
 		if(count > 0) 
 		{

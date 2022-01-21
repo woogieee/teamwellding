@@ -30,10 +30,12 @@ import com.icia.web.model.User;
 import com.icia.web.model.WDEBoard;
 import com.icia.web.model.WDFBoard;
 import com.icia.web.model.WDHall;
+import com.icia.web.model.WDReview;
 import com.icia.web.model.WDUser;
 import com.icia.web.service.WDEBoardService;
 import com.icia.web.service.WDFBoardService;
 import com.icia.web.service.WDHallService;
+import com.icia.web.service.WDReviewService;
 import com.icia.web.service.WDUserService;
 import com.icia.web.util.CookieUtil;
 
@@ -66,6 +68,9 @@ public class IndexController
 	//이벤트 서비스
 	@Autowired
 	private WDEBoardService wdEBoardService;
+	
+	@Autowired
+	private WDReviewService wdReviewService;
 	
 	//자유게시판 서비스
 	@Autowired
@@ -130,11 +135,15 @@ public class IndexController
 		fSearch.setStartRow(11);
 		fSearch.setEndRow(15);
 		
-		List<WDFBoard> wdFBoard = null;
+		List<WDReview> wdReviewList = null;
 		
-		wdFBoard = wdFBoardService.fBoardList(fSearch);
+		WDReview wdReview = new WDReview();
+		wdReview.setStartRow(1);
+		wdReview.setEndRow(5);
+		
+		wdReviewList = wdReviewService.ReviewList(wdReview);
 				
-		model.addAttribute("wdFBoard", wdFBoard);
+		model.addAttribute("wdReviewList", wdReviewList);
 		
 		return "/index";
 	}

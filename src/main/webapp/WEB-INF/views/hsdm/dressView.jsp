@@ -307,7 +307,7 @@ function fn_view(dNo)
                 <div class="col-lg-12">
                 	<div class="det_navi">
                 		<ul>
-                			<li><a href=""><c:out value="${wdDress.dcName}" />의 다른 드레스 보기</a></li>
+                			<li><a href="javascript:void(0)"><c:out value="${wdDress.dcName}" />의 다른 드레스 보기</a></li>
                 		</ul>
                 	</div>
                 </div>
@@ -347,8 +347,8 @@ function fn_view(dNo)
 
 <form name="bbsForm" id="bbsForm" method="post">
    <input type="hidden" name="dNo" value="${dNo}" />
-   <input type="hidden" name="searchType" value="${searchType}" />
-   <input type="hidden" name="searchValue" value="${searchValue}" />
+   <input type="hidden" name="searchType" id="_searchType" value="${searchType}" />
+   <input type="hidden" name="searchValue" id="_searchValue" value="${searchValue}" />
    <input type="hidden" name="curPage" value="${curPage}" />
 </form>
 

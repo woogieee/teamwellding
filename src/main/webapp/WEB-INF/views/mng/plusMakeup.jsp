@@ -111,69 +111,64 @@ function fn_userUpdate()
       return;
    }
    
-   var formData = {
-		   
-      mkName: $("#makeupName").val(),
-      mkLocation: $("#makeupLocation").val(),
-      mkNumber: $("#makeupnumber").val(),
-      mkImgname :$("#makeupimgname").val(),
-      mkPrice : $("#makeupprice").val(),
-      mkContent: $("#makeupContent").val(),
-      mkPlus : $("#makeupPlus").val(),
-      mkDiscount : $("#makeupdiscount").val()
-      
-   				};
-   
-   
-   	
-   //ajax통신
-   icia.ajax.post({
-      url: "/mng/makeupWrite",
-      data: {
-		   
-          mkName: $("#makeupName").val(),
-          mkLocation: $("#makeupLocation").val(),
-          mkNumber: $("#makeupnumber").val(),
-          mkImgname :$("#makeupimgname").val(),
-          mkPrice : $("#makeupprice").val(),
-          mkContent: $("#makeupContent").val(),
-          mkPlus : $("#makeupPlus").val(),
-          mkDiscount : $("#makeupdiscount").val()
-          
+   var form = $("#regForm")[0];
+   //폼 자체의 타입으로 보내기 위한 객체 생성.
+   var formData = new FormData(form);
+	
+	//ajax통신
+	$.ajax({
+		type:"POST",
+		enctype:'multipart/form-data',
+		url: "/mng/makeupWrite",
+		data: formData,
+       processData:false,      //formData를 String으로 변환하지 않음
+       contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
+       cache:false,
+       timeout:600000,
+       beforeSend:function(xhr)
+       {
+          xhr.setRequestHeader("AJAX", "true");
        },
-      success: function(res)
-      {
-         icia.common.log(res);
-         
-         if(res.code == 0)
-         {
-            alert("메이크업 등록이 완료되었습니다.");
-            fn_colorbox_close(parent.fn_pageInit);
-         }
-         else if(res.code == -1)
-         {
-            alert("메이크업 등록 중 오류가 발생하였숩니다.");
-         }
-         else if(res.code == 400)
-         {
-            alert("파라미터 값이 잘못되었습니다.");
-         }
-         else if(res.code == 404)
-         {
-            alert("오류가 발생하였습니다.");
-            ///칼라박스 내용이 잘못됬다는거니까 칼라박스를 닫게하자
-            fn_colorbox_close();
-         }
-      },
-      complete: function(data)
-      {
-         icia.common.log(data);
-      },
-      error: function(xhr, status, error)
-      {
-         icia.common.error(error);
-      }
-   });
+		success: function(res)
+		{
+			icia.common.log(res);
+			
+			if(res.code == 0)
+			{
+				alert("메이크업 업체 등록이 완료되었습니다.");
+				fn_colorbox_close(parent.fn_pageInit);
+			}
+			else if(res.code == -1)
+			{
+				alert("메이크업 업체 등록 중 오류가 발생하였숩니다.");
+			}
+			else if(res.code == 400)
+			{
+				alert("파라미터 값이 잘못되었습니다.");
+			}
+			else if(res.code == 404)
+			{
+				alert("오류가 발생하였습니다.");
+				///칼라박스 내용이 잘못됬다는거니까 칼라박스를 닫게하자
+				fn_colorbox_close();
+			}
+			else if(res.code == 500){
+				alert("메이크업 업체 등록 중 오류가 발생하였습니다.");
+			}
+			else if(res.code == 999){
+				alert("메인이미지를 등록해주세요.");
+				return;
+			}
+		},
+		complete: function(data)
+		{
+			icia.common.log(data);
+		},
+		error: function(xhr, status, error)
+		{
+			icia.common.error(error);
+		}
+	});
    
 }
 
@@ -186,10 +181,9 @@ function fn_userUpdate()
 <div class="layerpopup" style="width:1123px; margin:auto;">
    <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">메이크업 추가</h1>
    <div class="layer-cont">
-      <form name="regForm" id="regForm" method="post">
+      <form name="regForm" id="regForm" method="post" enctype="multipart/form-data">
          <table>
             <tbody>
-
                <tr>
                   <th scope="row">메이크업 이름</th>
                   <td>

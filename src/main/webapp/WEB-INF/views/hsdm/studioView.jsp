@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
+
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -368,7 +369,7 @@ $(document).ready(function(){
                 <div class="col-lg-12">
                 	<div class="det_navi2">
                 		<ul>
-                			<li><a href=""><c:out value="${wdStudio.sName}" />의 다른 화보 보기</a></li>
+                			<li><a href="javascript:void(0)"><c:out value="${wdStudio.sName}" />의 다른 화보 보기</a></li>
                 		</ul>
                 	</div>
                 </div>

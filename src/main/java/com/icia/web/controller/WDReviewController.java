@@ -80,7 +80,6 @@ public class WDReviewController {
         
         totalCount = wdReviewService.ReviewListCount(wdReview);
         
-        ArrayList<String> hallName = new ArrayList<String>();
         
       logger.debug("[totalCount] = "+totalCount);
       
@@ -92,12 +91,9 @@ public class WDReviewController {
          wdReview.setStartRow(paging.getStartRow());
          wdReview.setEndRow(paging.getEndRow());
          
-         hallName = wdReviewService.hallNameList();
          list = wdReviewService.ReviewList(wdReview);
-
       }
       
-      model.addAttribute("hallName",hallName);
       model.addAttribute("list",list);
       model.addAttribute("searchValue", searchValue);
       model.addAttribute("curPage", curPage);

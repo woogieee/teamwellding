@@ -18,18 +18,16 @@
 </resultMap>
 <!-- 드레스 resultMap 끝 -->
 
-<!-- 첨부파일 
 <resultMap id="WDDressFileMap" type="com.icia.web.model.WDDressFile">
 	<id column="D_SEQ" property="dSeq" />
-	<id column="D_CODE" property="dCode" />
+	<id column="DC_CODE" property="dcCode" />
 	<result column="D_FILE_SEQ" property="dFileSeq" />
-	<result column="D_FILE_NAME" property="dfileName" />
+	<result column="D_FILE_NAME" property="dFileName" />
 	<result column="D_FILE_ORG_NAME" property="dFileOrgName" />
 	<result column="D_FILE_EXT" property="dFileExt" />
 	<result column="D_FILE_SIZE" property="dFileSize" />
 	<result column="REG_DATE" property="regDate" />
 </resultMap>
- 첨부파일 -->
 
 <!-- 드레스 조회 시작 -->
 <select id="dressList" parameterType="com.icia.web.model.WDDress" resultMap="WDDressResultMap">
@@ -91,11 +89,11 @@ FROM (SELECT
  	<choose>
  		<when test='searchType =="1"'>
  			AND 
- 				D_NAME LIKE '%' || #{searchValue} || '%'
+ 				B.DC_NAME LIKE '%' || #{searchValue} || '%'
  		</when>
  		<when test='searchType == "2"'>
  			AND
- 				DC_LOCATION LIKE '%' || #{searchValue} || '%'
+ 				B.DC_LOCATION LIKE '%' || #{searchValue} || '%'
  		</when>
  	</choose>
  </if>                           
@@ -365,6 +363,7 @@ INSERT INTO WD_DRESS (
     DC_CODE,
     D_NO,
     D_NAME,
+    D_IMGNAME,
     D_PRICE,
     D_CONTENT,
     D_DISCOUNT
@@ -372,6 +371,7 @@ INSERT INTO WD_DRESS (
     #{dcCode},
     #{dNo},
     #{dName},
+    #{dImgname},
     #{dPrice},
     #{dContent},
     #{dDiscount}
@@ -450,5 +450,36 @@ AND
     D_NO = #{dNo}
 </update>
 <!-- 드레스 수정 끝 -->
+
+<!-- 이미지 가장 마지막 번호 가져오기 -->
+<select id="maxImgName" resultType="string">
+SELECT
+    NVL(MAX(D_IMGNAME), 0) D_IMGNAME
+FROM
+    WD_DRESS
+</select>
+<!-- 이미지 가장 마지막 번호 가져오기 -->
+
+<!-- 드레스 파일 삽입 -->
+<insert id="dressFileInsert" parameterType="com.icia.web.model.WDDressFile">
+INSERT INTO WD_DRESS_FILE (
+    DC_CODE,
+    D_FILE_SEQ,
+    D_FILE_NAME,
+    D_FILE_ORG_NAME,
+    D_FILE_EXT,
+    D_FILE_SIZE,
+    REG_DATE
+) VALUES (
+    #{dcCode},
+    #{dFileSeq},
+    #{dFileName},
+    #{dFileOrgName},
+    #{dFileExt},
+    #{dFileSize},
+    SYSDATE
+)
+</insert>
+<!-- 드레스 파일 삽입 -->
 
 </mapper>

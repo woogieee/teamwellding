@@ -60,6 +60,14 @@ public class PayMentController
 		WDRez search = new WDRez();
 		List<WDCoupon> couponList = null;
 		
+		String wDate = null;
+		
+		String year = null;
+		
+		String month = null;
+		
+		String day = null;
+		
 		//의수 쿠폰 수정, 상태가 N인 애들만 목록에 나타남
 		WDCoupon wdCoupon = new WDCoupon();
 		wdCoupon.setUserId(wdUser.getUserId());
@@ -83,8 +91,19 @@ public class PayMentController
 				search.setRezStatus("N");
 				WDRez wdRez = wdRezService.rezSelect(search);
 				wdRez = wdRezService.rezList(wdRez);
+				
+				wDate = wdRez.getwDate();
+				year = wDate.substring(0, 4);
+				month = wDate.substring(4, 6);
+				day = wDate.substring(6, 8);
+				
 				model.addAttribute("wdRez", wdRez);
 				model.addAttribute("wdUser",wdUser);
+				
+				model.addAttribute("wDate", wDate);
+				model.addAttribute("year", year);
+				model.addAttribute("month", month);
+				model.addAttribute("day", day);
 			}
 			else 
 			{
