@@ -1,5 +1,6 @@
 package com.icia.web.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -24,7 +25,7 @@ public interface WDCommentDao {
 	public int commentListCount(long parentSeq);
 	
 	//댓글 전부 불러오기 
-	public List<WDComment> commentTotalSelect();
+	public List<WDComment> commentTotalSelect(HashMap<String, Object> map);
 	
 	//댓글 총 수 가져오기 
 	public int commentTotalCnt();
