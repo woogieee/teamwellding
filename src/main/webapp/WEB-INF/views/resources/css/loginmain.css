@@ -99,6 +99,17 @@ p {
 .mTab li.selected a { font-weight:bold; color:#444b59; border-color:#667084; background-color:#fff; }
 
 
+.cssPlease1
+{
+	padding-left: 75px;
+	padding-top: 20px;
+}
+.cssPlease2
+{
+	float: left;
+	margin-right: 15px;
+    padding-right: 15px;
+}
 
 /*---------------------------------------------*/
 input {

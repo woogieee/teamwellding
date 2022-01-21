@@ -145,4 +145,18 @@ WHERE
 
  </select>
  <!--  이메일로 아이디찾기 끝-->
+ 
+ <!-- 비밀번호찾기 시작-->
+<update id="findPwd" parameterType ="com.icia.web.model.WDUser">
+UPDATE WD_USER
+SET
+    U_PWD = #{userPwd}
+WHERE
+    USER_ID = #{userId}
+AND
+    U_NAME = #{userName}
+AND
+    U_EMAIL = #{userEmail}
+</update>
+ <!-- 비밀번호찾기 종료-->
 </mapper>

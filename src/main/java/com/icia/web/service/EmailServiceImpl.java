@@ -67,4 +67,42 @@ public class EmailServiceImpl implements EmailService
 		
 		return check;
 	}
+
+	@Override
+	public String pwdMail(EmailDTO dto) {
+
+       char[] tmp = new char[8];
+			for(int i=0; i<tmp.length; i++) {
+				int div = (int) Math.floor( Math.random() * 2 );
+				
+				if(div == 0) { // 0이면 숫자로
+					tmp[i] = (char) (Math.random() * 10 + '0') ;
+				}else { //1이면 알파벳
+					tmp[i] = (char) (Math.random() * 26 + 'A') ;
+				}
+			}
+		
+		String tpwd = new String(tmp);
+			
+		try
+		{
+			MimeMessage msg = mailSenderGoogle.createMimeMessage(); //이메일 객체
+			//수신자 정보
+			msg.addRecipient(RecipientType.TO, new InternetAddress(dto.getReceiveMail()));
+			//발신자 이메일주소, 이름
+			msg.addFrom(new InternetAddress[] {
+				new InternetAddress(dto.getSenderMail(), dto.getSenderName())
+			});
+			
+			msg.setSubject("웰딩(Wellding) 임시비밀번호 입니다.", "utf-8"); //제목
+			msg.setText("임시비밀번호는  [ " + tpwd + " ] 입니다." , "utf-8"); //텍스트
+			mailSenderGoogle.send(msg); //이메일 발신
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}	
+		
+		return tpwd;
+	}
 }

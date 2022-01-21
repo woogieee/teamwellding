@@ -66,25 +66,7 @@
                      <value>/user/modify</value>
                      <value>/board/check.do</value>
                      <value>/user/emailCheck</value>
-                     
-            	<constructor-arg>
-            		<value>#{env['auth.cookie.name']}</value>
-            	</constructor-arg>
-            	<constructor-arg>
-            		<value>#{env['ajax.header.name']}</value>
-            	</constructor-arg>
-            	<constructor-arg> <!-- 인증체크 제외 URL 설정 -->
-            		<list>
-            			<value>/index</value>
-            			<value>/board/login</value>
-            			<value>/board/regform</value>
-            			<value>/user/loginOut</value>
-            			<value>/user/regProc</value>
-            			<value>/user/idCheck</value>
-            			<value>/user/modify</value>
-            			<value>/board/check.do</value>
-            			<value>/user/emailCheck</value>
-            			<value>/board/eBoardCoupon</value>
+                     <value>/board/eBoardCoupon</value>
 
                      <value>/board/nBoard</value>
                      <value>/board/eBoard</value>
@@ -176,7 +158,7 @@
                       <value>/mng/nBoardDelete</value>
 
                   
-                  <value>/mng/eBoardUpdate</value>
+                  	  <value>/mng/eBoardUpdate</value>
                       <value>/mng/eBoardUpdateProc</value>
                       <value>/mng/plusEBoard</value>
                       <value>/mng/eBoardWrite</value>
@@ -217,6 +199,10 @@
 
                   <value>/user/marryUpdate</value>
                   <value>/user/FindingId</value>
+                  <value>/user/FindingIdProc</value>
+                  <value>/user/FindingPwd</value>
+                  <value>/board/tpwd.do</value>
+                  
                   </list>
                </constructor-arg>
             </bean>
