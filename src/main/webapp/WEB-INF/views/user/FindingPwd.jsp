@@ -62,7 +62,32 @@ function fn_findCheck()
 		document.contact.receiveMail.value = $("#email").val();
 		
 		var emailtest = $("#email").val();
+		var id = $("#id").val();
+		var name = $("#name").val();
 
+		
+		if ($.trim(id).length == 0) {
+			//alert('이메일을 입력해주세요');
+			Swal.fire({ 
+				icon: 'warning',
+				text: '아이디를 입력하세요.'
+			});
+			$("#id").val("");
+			$("#id").focus();
+			return;
+		}
+		
+		if ($.trim(name).length == 0) {
+			//alert('이메일을 입력해주세요');
+			Swal.fire({ 
+				icon: 'warning',
+				text: '이름을 입력하세요.'
+			});
+			$("#name").val("");
+			$("#name").focus();
+			return;
+		}
+		
 		if ($.trim(emailtest).length == 0) {
 			//alert('이메일을 입력해주세요');
 			Swal.fire({ 
@@ -73,6 +98,9 @@ function fn_findCheck()
 			$("#email").focus();
 			return;
 		}
+		
+		
+		
 
 		if (!fn_validateEmail(emailtest)) {
 			//alert("이메일을 제대로 입력해주세요.");
