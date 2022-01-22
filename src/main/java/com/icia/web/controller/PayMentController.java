@@ -173,6 +173,7 @@ public class PayMentController
 	      
 	      if(wdUser != null) 
 	      {
+	    	  //Y
 	         if(StringUtil.equals(wdUser.getStatus(), "Y")) 
 	         {
 	            WDRez search = new WDRez();
@@ -277,5 +278,14 @@ public class PayMentController
 		
 		return ajaxResponse;
 	}
+	
+	@RequestMapping(value="/user/payCancelList")
+	   public String payCancelList(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	   {
+
+	      
+	      return "/user/payCancelList";
+	   }
+	
 
 }

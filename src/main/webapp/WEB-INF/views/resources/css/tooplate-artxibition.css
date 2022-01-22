@@ -7012,7 +7012,7 @@ textarea::placeholder {
 	font-size: 15px;
 	font-weight: 500;
 	display: inline-block;
-    margin-right: 10px;
+    margin-right: 5px;
     color: #333;
     line-height: 32px;
 }
@@ -7022,6 +7022,15 @@ textarea::placeholder {
 	font-weight: 600;
 	cursor: pointer;
 	line-height: 16px;
+}
+
+.rezview3
+{
+	font-size: 13px;
+	font-weight: 300;
+	display: inline-block;
+    color: #333;
+    line-height: 32px;
 }
 
 .rezview2:after 

@@ -15,10 +15,10 @@ $(document).ready(function(){
 	    var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
 	    window.open("/board/Coupon", "PopUP", option);
 	});
-	
+/*	
 	$("#btnCancel").on("click", function(){
-		var result = confirm("환불을 요청하시겠습니까?");
-		if(result)
+		//var result = confirm("환불을 요청하시겠습니까?");
+		if(confirm("환불을 요청하시겠습니까?") == true)
 		{
 			icia.ajax.post({
 				url: "/user/payCancel",
@@ -36,11 +36,108 @@ $(document).ready(function(){
 					}
 				},
 			});
+			
+			$.ajax({
+				type: "POST",
+				url: "/user/payCancel",
+				data: {
+					rezNo : <c:out value="${wdRez.rezNo}" />
+				},
+				datatype: "JSON",
+				beforeSend : function(xhr){
+		            xhr.setRequestHeader("AJAX", "true");
+		        },
+				success: function(response)
+				{
+					icia.common.log(response);
+					
+					if(response.code == 0)
+					{
+						alert("환불 요청에 성공했습니다.");
+						location.href="/user/payList";
+					}
+				},
+				complete : function(data) 
+				{ 
+					icia.common.log(data);
+				},
+				error : function(xhr, status, error) 
+				{
+					icia.common.error(error);
+				}
+			});
 		}
 		else
 		{
 			alert("요청이 취소되었습니다.");
 		}
+
+	});*/
+	
+	$("#btnCancel").on("click", function(){
+		Swal.fire({
+			   title: '환불을 요청하시겠습니까?',
+			   text: '환불 요청 후 취소가 되지 않으니 신중하게 결정해주세요.',
+			   icon: 'success',
+			   
+			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+			   confirmButtonColor: '#d33', // confrim 버튼 색깔 지정
+			   cancelButtonColor: '#3085d6', // cancel 버튼 색깔 지정
+			   confirmButtonText: '환불요청', // confirm 버튼 텍스트 지정
+			   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+			   
+			   reverseButtons: false, // 버튼 순서 거꾸로
+			   
+			}).then(result => {
+				   // 만약 Promise리턴을 받으면,
+				   if (result.isConfirmed) 
+				   { // 만약 모달창에서 confirm 버튼을 눌렀다면
+						$.ajax({
+							type: "POST",
+							url: "/user/payCancel",
+							data: {
+								rezNo : <c:out value="${wdRez.rezNo}" />
+							},
+							datatype: "JSON",
+							beforeSend : function(xhr){
+					            xhr.setRequestHeader("AJAX", "true");
+					        },
+							success: function(response)
+							{
+								icia.common.log(response);
+								
+								if(response.code == 0)
+								{
+									//alert("환불 요청에 성공했습니다.");
+									//location.href="/user/payList";
+									Swal.fire({ 
+										icon: 'success',
+										text: '환불 요청에 성공했습니다.'
+									}).then(function(){
+										location.href="/user/payList";
+									});
+								}
+							},
+							complete : function(data) 
+							{ 
+								icia.common.log(data);
+							},
+							error : function(xhr, status, error) 
+							{
+								icia.common.error(error);
+							}
+						});
+				   }
+				   else if (result.isDismissed) 
+				   { // 만약 모달창에서 cancel 버튼을 눌렀다면
+						Swal.fire({ 
+							icon: 'warning',
+							text: '환불요청을 취소하셨습니다.'
+						}).then(function(){
+							return;
+						});
+				   }
+			});
 
 	});
 
@@ -77,6 +174,9 @@ $(document).ready(function(){
 								</li>
 								<li class="breadcrumb-item" >
 									<a style="font-size: large; font-weight: bold;">결제내역</a>
+								</li>
+								<li class="breadcrumb-item" >
+									<a a href="/user/payCancelList">취소내역</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>

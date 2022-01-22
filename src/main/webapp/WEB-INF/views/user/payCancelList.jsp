@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp" %>
 
 <!DOCTYPE html>
@@ -162,10 +162,10 @@ function reviewWrite(rezNo){
 									<a href="/user/wishlist">장바구니</a>
 								</li>
 								<li class="breadcrumb-item" >
-									<a style="font-size: large; font-weight: bold;">결제내역</a>
+									<a href="/user/payList">결제내역</a>
 								</li>
 								<li class="breadcrumb-item" >
-									<a a href="/user/payCancelList">취소내역</a>
+									<a style="font-size: large; font-weight: bold;">취소내역</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
@@ -192,6 +192,7 @@ function reviewWrite(rezNo){
                         <c:choose>
                         <c:when test="${!empty list}">
                             <tr style="border-top: 3px solid #444; background: #efefef;">
+                            	<th>상태</th>
                                 <th>예약번호</th>
                                 <th>예약날짜</th>
                                 <th>가격</th>
@@ -200,6 +201,13 @@ function reviewWrite(rezNo){
 
                            <c:forEach var="wdRez" items="${list}" varStatus="status">
                             <tr style="width: 100%;">
+                               <!-- 예약번호 -->
+                                  <td>
+                                  <div class="col-lg-12" style="text-align:center">
+                                     <p class="rezview3">취소요청중</p>
+                                  </div>
+                                  </td>
+                                
                                <!-- 예약번호 -->
                                 <td>
                                 <div class="col-lg-12" style="text-align:center">
@@ -246,8 +254,8 @@ function reviewWrite(rezNo){
                        		</div>
                            </td>
                         </tr>
-                     	</c:when>                          
-                     </c:choose>
+                     	<!--/c:when>                          
+                     </c:choose-->
                    	</table>
 
                </div>
