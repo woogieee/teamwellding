@@ -14,8 +14,7 @@ import com.icia.common.util.FileUtil;
 import com.icia.web.dao.WDEBoardDao;
 import com.icia.web.model.WDBoardFile;
 import com.icia.web.model.WDEBoard;
-import com.icia.web.model.WDFBoard;
-import com.icia.web.model.WDNBoard;
+import com.icia.web.model.WDEBoardFile;
 
 @Service("wdEBoardService")
 public class WDEBoardService 
@@ -25,9 +24,9 @@ public class WDEBoardService
 	@Autowired
 	private WDEBoardDao wdEBoardDao;
 	
-	//파일저장 디렉토리
-    @Value("#{env['upload.save.dir2']}")
-    private String UPLOAD_SAVE_DIR2;
+	//파일 저장경로
+	@Value("#{env['upload.save.event']}") 
+	private String UPLOAD_SAVE_EVENT;
 	
 	//총 게시물 수
 	public long eBoardListCount(WDEBoard wdEBoard)
@@ -66,9 +65,11 @@ public class WDEBoardService
 	public int eBoardInsert(WDEBoard wdEBoard) throws Exception
 	 {
 		 int count = 0;
-		 try {
-		 count = wdEBoardDao.eBoardInsert(wdEBoard);
-		 	 }
+		 
+		 try
+		 {
+			 count = wdEBoardDao.eBoardInsert(wdEBoard);
+		 }
 		 catch(Exception e)
 		 {
 			 logger.error("[WDNBoardService] nBoardInsert Exception", e);
@@ -92,7 +93,7 @@ public class WDEBoardService
 		 return count;
 	 }
 	 
-	 //이벤트 글쓰기 삭제
+	 //이벤트 글쓰기 삭제(관리자)
 	 public int eBoardDelete(long bSeq)
 	 {
 		 int count = 0;
@@ -126,38 +127,55 @@ public class WDEBoardService
 		}
 	
 	//이벤트 글 첨부파일 조회(관리자)
-	public WDBoardFile eBoardFileSelect(long bSeq)
+	public WDEBoardFile eBoardFileSelect(long eBSeq)
 	{
-		WDBoardFile wdBoardFile = null;
+		WDEBoardFile wdEBoardFile = null;
 		
 		try
 		{
-			wdBoardFile = wdEBoardDao.eBoardFileSelect(bSeq);
+			wdEBoardFile = wdEBoardDao.eBoardFileSelect(eBSeq);
 		}
 		catch(Exception e)
 		{
 			logger.error("[WDEBoardService] eBoardFileSelect Exception", e);
 		}
 		
-		return wdBoardFile;
+		return wdEBoardFile;
 	}
 	
 	//이벤트 글 첨부파일 삽입(관리자)
-	public int boardFileInsert(WDBoardFile wdBoardFile)
+	public int eBoardFileInsert(WDEBoardFile wdEBoardFile)
 	{
 		int count = 0;
 		
 		try
 		{
-			count = wdEBoardDao.boardFileInsert(wdBoardFile);
+			count = wdEBoardDao.eBoardFileInsert(wdEBoardFile);
 		}
 		catch(Exception e)
 		{
-			logger.error("[WDEBoardService] boardFileInsert Exception", e);
+			logger.error("[WDEBoardService] eBoardFileInsert Exception", e);
 		}
 		
 		return count;
 	}
+	
+	//이벤트 글 첨부파일 DB삽입(관리자)
+		public int eBoardFileUpdate(WDEBoard wdEBoard)
+		{
+			int count = 0;
+			
+			try
+			{
+				count = wdEBoardDao.eBoardFileUpdate(wdEBoard);
+			}
+			catch(Exception e)
+			{
+				logger.error("[WDEBoardService] eBoardFileInsert Exception", e);
+			}
+			
+			return count;
+		}
 	
 	//게시물 조회
 	   public WDEBoard eBoardSelect(long eBSeq) 
@@ -199,6 +217,21 @@ public class WDEBoardService
 		   return wdEBoard;
 	   }
 	   
+	 //이벤트 이미지 가장 넘버링
+		public String maxImgName() {
+		
+		String maxName = "";
+			
+		try 
+		{
+			maxName = wdEBoardDao.maxImgName();
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDHallService] maxImgName Exception", e);
+		}
+			return maxName;
+		}
 }
 	
 

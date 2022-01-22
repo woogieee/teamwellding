@@ -79,42 +79,48 @@ function fn_userUpdate()
 		return;
 	}
 	
-	var formData = {
-			adminId: $("#adminId").val(),
-			eBTitle: $("#bTitle").val(),
-			eBContent: $("#bContent").val()
-	};
+	var form = $("#regForm")[0];
+    //폼 자체의 타입으로 보내기 위한 객체 생성.
+    var formData = new FormData(form);
 	
-	//ajax통신
-	icia.ajax.post({
+	$.ajax({
+		type:"POST",
+		enctype:'multipart/form-data',
 		url: "/mng/eBoardWrite",
 		data: formData,
+		async : false,			//비동기 여부
+        processData:false,      //Data를 contentTpye에 맞게 변환
+        contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
+        cache:false,
+        timeout:600000,
+        beforeSend:function(xhr) //XHR Header를 포함해서 HTTP Request를 하기전에 호출됩니다.
+        {
+           xhr.setRequestHeader("AJAX", "true");
+        },
 		success: function(res)
 		{
 			icia.common.log(res);
 			
 			if(res.code == 0)
 			{
-				alert("게시글 등록이 완료되었습니다.");
+				alert("이벤트 게시물 등록이 완료되었습니다.");
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == -1)
 			{
-				alert("게시글 등록 중 오류가 발생하였숩니다.");
+				alert("이벤트 게시물  제목과 내용이 등록되지 않았습니다.");
 			}
-			else if(res.code == 400)
+			else if(res.code == -2)
 			{
-				alert("파라미터 값이 잘못되었습니다.");
+				alert("이벤트 게시물 이미지가 등록되지 않았습니다.");
 			}
-			else if(res.code == 404)
+			else if(res.code == -400)
 			{
-				alert("오류가 발생하였습니다.");
-				///칼라박스 내용이 잘못됬다는거니까 칼라박스를 닫게하자
-				fn_colorbox_close();
+				alert("알 수 없는 오류 입니다.");
 			}
-			else
+			else if(res.code == 500)
 			{
-				alert("게시물 등록중 오류발생 500");
+				alert("게시물 등록 중 오류가 발생했습니다.");
 			}
 		},
 		complete: function(data)
@@ -138,7 +144,7 @@ function fn_userUpdate()
 <div class="layerpopup" style="width:1123px; margin:auto;">
    <h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e9e9ed;">이벤트 게시글 추가</h1>
    <div class="layer-cont">
-      <form name="regForm" id="regForm" method="post">
+      <form name="regForm" id="regForm" method="post" enctype="multipart/form-data" >
          <table>
             <tbody>
                <tr>
@@ -158,7 +164,7 @@ function fn_userUpdate()
          </table>
       
       <div class="pop-btn-area" style="float: right;">
-      	 
+      	 <input type="file" id="img" name="img" /><br>
          <button onclick="fn_userUpdate()" class="btn-type01"><span>등록</span></button>
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
       </div>
