@@ -623,4 +623,20 @@ public class WDRezService {
 	}
 	
 	
+	//결제 취소 신청&취소완료된 내역 가져오기
+	public List<WDRez> rezSelectStatusNotNY(String userId)
+	{
+		List<WDRez> list = null;
+		
+		try 
+		{
+			list = wdRezDao.rezSelectStatusNotNY(userId);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] rezSelectStatusNotNY Exception", e);
+		}
+		
+		return list;
+	}
 }

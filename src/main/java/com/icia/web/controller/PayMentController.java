@@ -279,13 +279,44 @@ public class PayMentController
 		return ajaxResponse;
 	}
 	
-	@RequestMapping(value="/user/payCancelList")
-	   public String payCancelList(ModelMap model, HttpServletRequest request, HttpServletResponse response)
-	   {
-
-	      
-	      return "/user/payCancelList";
-	   }
 	
+	
+	@RequestMapping(value="/user/payCancelList")
+   public String paycancelList(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+   {
+      String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+      
+      
+      WDUser wdUser = wdUserService.userSelect(cookieUserId);
+      
+      List<WDRez> list = null;
+
+      
+      
+      if(wdUser != null) 
+      {
+
+         if(StringUtil.equals(wdUser.getStatus(), "Y")) 
+         {
+            
+            list = wdRezService.rezSelectStatusNotNY(wdUser.getUserId());
+            
+            
+            model.addAttribute("list", list);
+            model.addAttribute("wdUser",wdUser);
+         }
+         else 
+         {
+            return "/";
+         }
+      }
+      else 
+      {
+         return "/";
+      }
+      
+      return "/user/payCancelList";
+   }
+
 
 }
