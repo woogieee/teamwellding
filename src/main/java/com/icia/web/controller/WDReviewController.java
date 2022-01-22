@@ -65,8 +65,6 @@ public class WDReviewController {
         
       String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
       WDUser wdUser = wdUserService.userSelect(cookieUserId);
-      
-      System.out.println("이거아아아아 : "+searchValue);
         
         List<WDReview> list = null;
         WDReview wdReview = new WDReview();
@@ -93,11 +91,11 @@ public class WDReviewController {
          wdReview.setEndRow(paging.getEndRow());
          
          hallName = wdReviewService.hallNameList();
+         
          list = wdReviewService.ReviewList(wdReview);
 
       }
       
-      model.addAttribute("hallName",hallName);
       model.addAttribute("list",list);
       model.addAttribute("searchValue", searchValue);
       model.addAttribute("curPage", curPage);

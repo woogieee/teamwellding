@@ -310,7 +310,7 @@ WHERE
 <!-- 리뷰 작성처리 -->
 
 <!-- 리뷰게시판 홀 이름 보여주기 쿼리문 -->
-<select id="hallNameList" resultType="string">
+<select id="hallNameList" parameterType="com.icia.web.model.WDReview" resultType="string">
 SELECT
     NVL(H_NAME, '없음') H_NAME
 FROM
