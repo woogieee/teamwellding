@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp" %>
 
 <!DOCTYPE html>
@@ -162,10 +162,10 @@ function reviewWrite(rezNo){
 									<a href="/user/wishlist">장바구니</a>
 								</li>
 								<li class="breadcrumb-item" >
-									<a style="font-size: large; font-weight: bold;">결제내역</a>
+									<a href="/user/payList">결제내역</a>
 								</li>
 								<li class="breadcrumb-item" >
-									<a a href="/user/payCancelList">취소내역</a>
+									<a style="font-size: large; font-weight: bold;">취소내역</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
@@ -192,19 +192,26 @@ function reviewWrite(rezNo){
                         <c:choose>
                         <c:when test="${!empty list}">
                             <tr style="border-top: 3px solid #444; background: #efefef;">
+                            	<th>상태</th>
                                 <th>예약번호</th>
                                 <th>예약날짜</th>
                                 <th>가격</th>
-                                <th>식권</th>
                             </tr>
 
                            <c:forEach var="wdRez" items="${list}" varStatus="status">
                             <tr style="width: 100%;">
                                <!-- 예약번호 -->
+                                  <td>
+                                  <div class="col-lg-12" style="text-align:center">
+                                     <p class="rezview3">${wdRez.rezStatus}</p>
+                                  </div>
+                                  </td>
+                                
+                               <!-- 예약번호 -->
                                 <td>
                                 <div class="col-lg-12" style="text-align:center">
                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})">
-                                        <p class="rezview rezview2"><c:out value="${wdRez.rezNo}" /></p><p class="rezview3">(<!-- 취소요청중${wdRez.rezStatus}-->)</p>
+                                        <p class="rezview rezview2"><c:out value="${wdRez.rezNo}" /></p><p class="rezview3"></p>
                                     </a>
                                 </div>
                                 </td>
@@ -222,17 +229,7 @@ function reviewWrite(rezNo){
                                 	<div style="width: 55%; float: left; text-align: right;">
 	                                   	<p class="rezview"><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원</p>
 	                               	</div>
-	                               	<div style="width: 45%; float: left; text-align: left; padding-left: 3px; margin-top: 3px;">
-	                                   	<button class="rez_btn" onclick="reviewWrite('${wdRez.rezNo}')" >리뷰쓰기</button>
-	                                   	<!-- a href="javascript:void(0)" class="rez_btn2" id="qrTest">청첩장 QR</a-->
-	                                </div> 
                                 </div>  
-                                </td> 
-                                <td>
-	                               	<div style="width: 100%; float: left; text-align: center; padding-left: 5px;">
-	                                   	<a href="javascript:void(0)" class="rez_btn3" id="qrTest1" onclick="foodCpnM('${wdRez.rezNo}')">신랑측</a>
-	                                   	<a href="javascript:void(0)" class="rez_btn4" id="qrTest2" onclick="foodCpnF('${wdRez.rezNo}')">신부측</a>
-	                                </div> 
                                 </td> 
                               </tr>                         
                        	</c:forEach>

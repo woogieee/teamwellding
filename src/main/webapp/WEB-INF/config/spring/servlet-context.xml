@@ -203,6 +203,8 @@
                   <value>/user/FindingPwd</value>
                   <value>/board/tpwd.do</value>
                   
+                  <value>/user/payCancelList</value>
+                  
                   </list>
                </constructor-arg>
             </bean>

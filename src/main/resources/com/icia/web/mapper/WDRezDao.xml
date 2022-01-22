@@ -826,5 +826,37 @@ WHERE
     AND USER_ID = #{userId}
   </update>
   <!-- 장바구니 결혼날짜 변경 끝 -->
+  
+  
+  
+<!-- 결제 취소 신청&취소완료된 내역 가져오기 -->
+<select id="rezSelectStatusNotNY" parameterType="string" resultMap="WDRezDaoResultMap">
+SELECT
+     REZ_NO,
+    NVL(WH_CODE, '') AS WH_CODE,
+    NVL(H_CODE, '') AS H_CODE,
+    NVL(S_CODE, '') AS S_CODE,
+    NVL(DC_CODE, '') AS DC_CODE,
+    NVL(D_NO, '') AS D_NO,
+    NVL(M_CODE, '') AS M_CODE,
+    NVL(M_PLUS_NUM, 0) AS M_PLUS_NUM,
+    NVL(REZ_STATUS, 'Y') AS REZ_STATUS,
+    NVL(TO_CHAR(REZ_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') AS REZ_DATE,
+    NVL(WDATE, '') AS WDATE,
+    USER_ID,
+    NVL(REZ_FULL_PRICE, 0) AS REZ_FULL_PRICE,
+    NVL(C_CODE, '') AS C_CODE,
+    NVL(REZ_POINT, 0) AS REZ_POINT,
+    NVL(S_DATE, '') AS S_DATE
+FROM
+    WD_REZ
+WHERE   
+   1 = 1
+AND
+    USER_ID = #{value}   
+AND
+   REZ_STATUS NOT IN ('N','Y')
+</select>
+<!-- 결제 취소 신청&취소완료된 내역 가져오기 -->
 
 </mapper>
