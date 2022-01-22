@@ -78,7 +78,7 @@ function makeCode()
 	
 	if(!elText.value)
 	{
-		alert("InPut a Text");
+		//alert("InPut a Text");
 		elText.focus();
 		return;
 	}

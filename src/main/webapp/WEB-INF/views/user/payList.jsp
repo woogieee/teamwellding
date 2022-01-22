@@ -175,7 +175,7 @@ function reviewWrite(rezNo){
                                 <td>
                                 <div class="col-lg-12" style="text-align:center">
                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})">
-                                        <p class="rezview"><c:out value="${wdRez.rezNo}" /></p>
+                                        <p class="rezview rezview2"><c:out value="${wdRez.rezNo}" /></p>
                                     </a>
                                 </div>
                                 </td>
@@ -183,16 +183,16 @@ function reviewWrite(rezNo){
 
                                   <td>
                                   <div class="col-lg-12" style="text-align:center">
-                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})"><p class="rezview" style="color:#555;">${wdRez.rezDate}</p></a>
+                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})"><p class="rezview rezview2" style="color:#555;">${wdRez.rezDate}</p></a>
                                   </div>
                                   </td>
                                   <!-- 금액 -->
                                 <td>
                                 <div class="col-lg-12" style="text-align:center; width: 100%;">
-                                	<div style="width: 50%; float: left; text-align: right;">
+                                	<div style="width: 55%; float: left; text-align: right;">
 	                                   	<p class="rezview"><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원</p>
 	                               	</div>
-	                               	<div style="width: 50%; float: left; text-align: left; padding-left: 5px;">
+	                               	<div style="width: 45%; float: left; text-align: left; padding-left: 3px; margin-top: 3px;">
 	                                   	<button class="rez_btn" onclick="reviewWrite('${wdRez.rezNo}')" >리뷰쓰기</button>
 	                                   	<!-- a href="javascript:void(0)" class="rez_btn2" id="qrTest">청첩장 QR</a-->
 	                                </div> 

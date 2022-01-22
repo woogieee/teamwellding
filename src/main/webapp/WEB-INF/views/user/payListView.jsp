@@ -15,6 +15,7 @@ $(document).ready(function(){
 	    var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
 	    window.open("/board/Coupon", "PopUP", option);
 	});
+	
 	$("#btnCancel").on("click", function(){
 		var result = confirm("환불을 요청하시겠습니까?");
 		if(result)
@@ -42,6 +43,8 @@ $(document).ready(function(){
 		}
 
 	});
+
+	
 });
 </script>
 </head>
@@ -95,7 +98,7 @@ $(document).ready(function(){
 					<div class="col-lg-10 lineListMypage">
 					
 						
-                        <table class="table tableWish">
+                        <table class="table tableWish" style="border-bottom:2px solid #555!important;">
                         <tr>
 								<div class="rez_sta">
 									<h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
@@ -292,25 +295,80 @@ $(document).ready(function(){
 					<div class="col-lg-10">
 					<!-- 쿠폰 가져오기 -->
 					<div class="col-lg-10">
-					</div>
-                                <tr>
-                                    <!-- 총가격 -->
-                                    <th colspan="3">
-                                    <div class="col-lg-12" style="text-align:center">
-                                    	총 금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice + wdCoupon.cPrice + wdRez.rezPoint}" />원
-                                    	<c:if test="${!empty wdCoupon.cPrice}"> - 쿠폰할인금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdCoupon.cPrice}" />원</c:if>
-                                    	<c:if test="${0 ne wdRez.rezPoint}"> - 포인트할인금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezPoint}" />원</c:if>
-                                    	 = 결제금액 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원
+					</div><!-- 
+								<tr>
+									<td colspan="7"><br /></td>
+								</tr>
+                                <tr style="border-top: 2px solid #333!important;">
+                                    				총가격
+                                    <th colspan="7" style="padding: 30px 0;">
+                                    <div class="last_pay" style="text-align:center">
+                                    	<p>
+                                    	총 금액 <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice + wdCoupon.cPrice + wdRez.rezPoint}" />원</span>
+                                    	<c:if test="${!empty wdCoupon.cPrice}"> - 쿠폰할인금액 <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdCoupon.cPrice}" />원</span></c:if>
+                                    	<c:if test="${0 ne wdRez.rezPoint}"> - 포인트할인금액 <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezPoint}" />원</span></c:if>
+                                    	 = 결제금액 <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원</span>
+                                    	</p>
                                     </div>
-                                    </th>
-
-                                    <th colspan="4">
-			                        <div style="text-align: center;">
-										<button id="btnCancel" title="환불요청" style="border: solid 1px black; background:white; position:relative; color:black;">환불요청</button>
+			                        <div class="cancel_place" style="text-align: center;">
+										<button id="btnCancel" class="btn_paycancel">환불요청</button>
 									</div>
                                     </th>
-                                 </tr>
+                                 </tr> -->
                         </table>
+                        
+<!-- /////////////// -->
+                  <div class="rez_sum">
+					<div class="last_pay">
+	                     <dl class="sumbox1">
+	                        <dt class="sumsec">총 금액</dt>
+	                        <dd class="sumpay1" id="preP">
+	                           <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice + wdCoupon.cPrice + wdRez.rezPoint}" />원
+	                        </dd>
+	                     </dl>
+	                <c:if test="${!empty wdCoupon.cPrice}">     
+	                     <dl class="sumbox3">
+	                        <dt class="pam">-</dt>
+	                     </dl>
+	                     
+	                     <dl class="sumbox1">
+	                        <dt class="sumsec">쿠폰 할인금액</dt>
+	                        <dd class="sumpay2" id="saleP">
+	                           <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezPoint}" />원</span>
+	                        </dd>
+	                     </dl>
+	                 </c:if>    
+	                 <c:if test="${0 ne wdRez.rezPoint}">
+	                     <dl class="sumbox3">
+	                        <dt class="pam">-</dt>
+	                     </dl>
+	                     
+	                     <dl class="sumbox1">
+	                        <dt class="sumsec">포인트 할인금액</dt>
+	                        <dd class="sumpay2" id="saleP">
+	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezPoint}" />원
+	                        </dd>
+	                     </dl>
+	                  </c:if>
+	                     
+	                     <dl class="sumbox3">
+	                        <dt class="pam">=</dt>
+	                     </dl>
+	                     
+	                     <dl class="sumbox1">
+	                        <dt class="sumsec">총 결제금액</dt>
+	                        <dd class="sumpay3" id="saleP">
+	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원
+	                        </dd>
+	                     </dl>
+	                     
+	                     <dl class="cancel_place">
+	                     	<button type="button" id="btnCancel" class="btn_paycancel">환불요청</button>
+	                     </dl>
+					</div>
+
+                  </div>
+<!-- ///////////////// -->
 
 					</div>
 					
