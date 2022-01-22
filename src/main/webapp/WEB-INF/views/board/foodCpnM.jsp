@@ -62,7 +62,7 @@ html, bady
 <body>
     <div id="led_group" align="center">
     	<!--h5>스프링 & 톰캣</h5-->
-    	<input type="hidden" value="http://f49a-106-243-194-229.ngrok.io/board/foodCpnM2?rezNo=${rezNo }" id="led_text" />
+    	<input type="hidden" value="http://5d00-106-243-194-229.ngrok.io/board/foodCpnM2?rezNo=${rezNo }" id="led_text" />
     	<div id="qrcode"></div>
     </div>
     
@@ -78,7 +78,7 @@ function makeCode()
 	
 	if(!elText.value)
 	{
-		alert("InPut a Text");
+		//alert("InPut a Text");
 		elText.focus();
 		return;
 	}

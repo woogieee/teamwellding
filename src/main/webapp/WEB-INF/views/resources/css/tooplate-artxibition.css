@@ -1862,10 +1862,11 @@ footer span{
 .menu a{
    text-decoration: none;/*a href 밑줄 등 글자 꾸밈 없음*/
 }
+
 .menu a:after {/*after 가상요소*/
    display:block;/*a요소를 블록 요소라고 선언*/
    content: '';/*comtent안은 밑줄 디자인을 위해 비워두세요.*/
-   border-bottom: solid 2px #fff;
+   border-bottom: solid 2px #ef775f;
    transform: scaleX(0);/*크기를 0으로 줌으로써 평상시엔 밑줄 없음*/
    transition: transform 250ms ease-in-out; /*변형 방식*/
 }
@@ -1945,7 +1946,7 @@ footer p.copyright {
 
 .sub-footer {
   border-top: 1px solid #e4e4e4;
-  margin-top: 30px;
+  margin-top: 60px;
   padding-top: 30px;
 }
 
@@ -6025,8 +6026,9 @@ responsive
 
 .chamgo
 {
-	font-size: 10px;
-	color: #a8a8a8;
+	font-size: 12px;
+    color: #8a8a8a;
+    font-weight: 550;
 }
 
 .HpriceTd
@@ -6050,8 +6052,8 @@ responsive
 
 #xPrice
 {
-	font-weight: none;
-	font-size: 10px;
+	font-weight: 600;
+	font-size: 13px;
 	color: #a8a8a8;
 	text-decoration: line-through;
 }
@@ -6064,6 +6066,7 @@ responsive
 #discountSpan
 {
 	color: #f85151;
+	font-size: 14px;
 }
 
 .HpriceTd .Hpc
@@ -6105,8 +6108,10 @@ responsive
 
 .bcItem h5
 {
-	color: black;
+	color: #444;
 	font-weight: bold;
+	font-size: 16px;
+	cursor: default;
 }
 
 /* 마이페이지 관련 종료 */
@@ -6633,7 +6638,7 @@ responsive
 	border-bottom: 1px solid #ccc;
 	text-align: center;
 	width: 100%;
-	height: 100px;
+	/*height: 100px;*/
 	padding: 24px 0;
 	margin-bottom: 40px;
 }
@@ -6668,7 +6673,15 @@ responsive
 	font-size: 20px;
 	font-weight: 600;
 	padding-top: 3px;
-	color: #f85151
+	color: #f85151;
+}
+
+.sumpay3
+{
+	font-size: 30px;
+	font-weight: 600;
+	/*padding-top: 3px;*/
+	color: #ff4e0d;
 }
 
 .sumbox2
@@ -6965,6 +6978,7 @@ textarea::placeholder {
 .comment_tr td
 {
 	padding-top: 25px;
+	width:90%;
 }
 
 .comment_tr2 td
@@ -7002,8 +7016,39 @@ textarea::placeholder {
 	font-size: 15px;
 	font-weight: 500;
 	display: inline-block;
-    margin-right: 10px;
+    margin-right: 5px;
     color: #333;
+    line-height: 32px;
+}
+
+.rezview2
+{
+	font-weight: 600;
+	cursor: pointer;
+	line-height: 16px;
+}
+
+.rezview3
+{
+	font-size: 14px;
+	font-weight: 600;
+	display: inline-block;
+    line-height: 32px;
+}
+
+.rezview2:after 
+{
+	/*after 가상요소*/
+   display:block;/*a요소를 블록 요소라고 선언*/
+   content: '';/*comtent안은 밑줄 디자인을 위해 비워두세요.*/
+   border-bottom: solid 2px #ef775f;
+   transform: scaleX(0);/*크기를 0으로 줌으로써 평상시엔 밑줄 없음*/
+   transition: transform 250ms ease-in-out; /*변형 방식*/
+}
+
+.rezview2:hover:after 
+{
+   transform: scaleX(1);/*a 속성에 hover시 after를 기존 크기로 변경*/
 }
 
 .rez_btn
@@ -7052,5 +7097,57 @@ textarea::placeholder {
     color: #fff;
     border-radius: 5px;
     letter-spacing: -0.5px;
+}
+
+.last_pay
+{
+	display: inline-block;
+	height: 50px;
+}
+
+.last_pay p
+{
+	font-size: 16px;
+    line-height: 36px;
+    color: #2a2a2a;
+    font-weight: 300;
+    cursor: default;
+}
+
+.last_pay span
+{
+	font-weight: 600;
+}
+
+.cancel_place
+{
+	display: inline-block;
+	padding-left: 10px;
+}
+
+/*
+.btn_paycancel
+{
+	border: none;
+    background: #ff8080;
+    position: relative;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+}*/
+
+.btn_paycancel
+{
+	border: none;
+    background: #ff8f78;
+    position: relative;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 20px 22px;
+    border-radius: 13px;
+    top: -18px;
 }
 /*보현추가 끝*/

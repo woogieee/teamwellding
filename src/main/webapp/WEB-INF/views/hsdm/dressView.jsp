@@ -347,8 +347,8 @@ function fn_view(dNo)
 
 <form name="bbsForm" id="bbsForm" method="post">
    <input type="hidden" name="dNo" value="${dNo}" />
-   <input type="hidden" name="searchType" value="${searchType}" />
-   <input type="hidden" name="searchValue" value="${searchValue}" />
+   <input type="hidden" name="searchType" id="_searchType" value="${searchType}" />
+   <input type="hidden" name="searchValue" id="_searchValue" value="${searchValue}" />
    <input type="hidden" name="curPage" value="${curPage}" />
 </form>
 

@@ -79,18 +79,44 @@ function reviewWrite(rezNo){
 					}
 					else if(code == 400)
                     {
-                       alert("예약내역이 없거나 결제가 완료되지 않아 리뷰 작성이 불가능합니다.");
+                       //alert("예약내역이 없거나 결제가 완료되지 않아 리뷰 작성이 불가능합니다.");
+							Swal.fire({ 
+								icon: 'error',
+								text: '예약내역이 없거나 결제가 완료되지 않아 리뷰 작성이 불가능합니다.'
+							}).then(function(){
+								return;
+							});
                     }
                     else if(code == 401)
                     {
-                       alert("아직 결혼식이 진행되지 않아 리뷰 작성이 불가능 합니다.");
+                       //alert("아직 결혼식이 진행되지 않아 리뷰 작성이 불가능 합니다.");
+						Swal.fire({ 
+							icon: 'warning',
+							text: '아직 결혼식이 진행되지 않아 리뷰 작성이 불가능 합니다.'
+						}).then(function(){
+							return;
+						});
                     }
-                    else if(code == 501){
-                    	alert("이미 리뷰를 작성하였습니다.")
+                    else if(code == 501)
+                    {
+                    	//alert("이미 리뷰를 작성하였습니다.");
+						Swal.fire({ 
+							icon: 'warning',
+							text: '이미 리뷰를 작성하였습니다.'
+						}).then(function(){
+							return;
+						});
                     }
-                    else{
-				  		alert("오류가 발생하였습니다.");
-						$("#userId").focus();
+                    else
+                    {
+				  		//alert("오류가 발생하였습니다.");
+						//$("#userId").focus();
+						Swal.fire({ 
+							icon: 'error',
+							text: '오류가 발생하였습니다.'
+						}).then(function(){
+							$("#userId").focus();
+						});
                     }
 
 				}
@@ -132,11 +158,11 @@ function reviewWrite(rezNo){
 						<h2 style="font-family: 'Bitter'; margin-top: 50px; padding-left: 10px;">결제내역</h2>
 						<nav class="bcItem">
 							<ol class="breadcrumb bc" >
-								<li class="breadcrumb-item active">
-									<a href="/user/wishlist">장바구니</a>
+								<li class="breadcrumb-item active" >
+									<a style="font-size: large; font-weight: bold;">결제내역</a>
 								</li>
 								<li class="breadcrumb-item" >
-									<a style="font-size: large; font-weight: bold;">결제내역</a>
+									<a a href="/user/payCancelList">취소내역</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
@@ -175,7 +201,7 @@ function reviewWrite(rezNo){
                                 <td>
                                 <div class="col-lg-12" style="text-align:center">
                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})">
-                                        <p class="rezview"><c:out value="${wdRez.rezNo}" /></p>
+                                        <p class="rezview rezview2"><c:out value="${wdRez.rezNo}" /></p>
                                     </a>
                                 </div>
                                 </td>
@@ -183,16 +209,17 @@ function reviewWrite(rezNo){
 
                                   <td>
                                   <div class="col-lg-12" style="text-align:center">
-                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})"><p class="rezview" style="color:#555;">${wdRez.rezDate}</p></a>
+                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})"><p class="rezview rezview2" style="color:#555;">${wdRez.rezDate}</p></a>
                                   </div>
                                   </td>
+                                  
                                   <!-- 금액 -->
                                 <td>
                                 <div class="col-lg-12" style="text-align:center; width: 100%;">
-                                	<div style="width: 50%; float: left; text-align: right;">
+                                	<div style="width: 55%; float: left; text-align: right;">
 	                                   	<p class="rezview"><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원</p>
 	                               	</div>
-	                               	<div style="width: 50%; float: left; text-align: left; padding-left: 5px;">
+	                               	<div style="width: 45%; float: left; text-align: left; padding-left: 3px; margin-top: 3px;">
 	                                   	<button class="rez_btn" onclick="reviewWrite('${wdRez.rezNo}')" >리뷰쓰기</button>
 	                                   	<!-- a href="javascript:void(0)" class="rez_btn2" id="qrTest">청첩장 QR</a-->
 	                                </div> 

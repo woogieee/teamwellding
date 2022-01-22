@@ -21,7 +21,7 @@ public class WDDress implements Serializable
 	private String searchType;		//검색타입(1:이름, 2:제목, 3:내용)
 	private String searchValue;		//검색 값
 	
-	private WDHallFile wdDressFile;
+	private WDDressFile wdDressFile;
 	
 	private long startRow;			//시작 rownum
 	private long endRow;			//끝 rownum
@@ -251,12 +251,12 @@ public class WDDress implements Serializable
 	}
 
 
-	public WDHallFile getWdDressFile() {
+	public WDDressFile getWdDressFile() {
 		return wdDressFile;
 	}
 
 
-	public void setWdDressFile(WDHallFile wdDressFile) {
+	public void setWdDressFile(WDDressFile wdDressFile) {
 		this.wdDressFile = wdDressFile;
 	}
 

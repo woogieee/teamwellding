@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.icia.web.model.WDStudio;
+import com.icia.web.model.WDStudioFile;
 
 @Repository("WDStudioDao")
 public interface WDStudioDao 
@@ -41,4 +42,8 @@ public interface WDStudioDao
 	
 	//스튜디오 수정
 	public int studioUpdateProc(WDStudio wdStudio);
+	
+	public int studioFileInsert(WDStudioFile wdStudioFile);
+	
+	public String maxImgName();
 }

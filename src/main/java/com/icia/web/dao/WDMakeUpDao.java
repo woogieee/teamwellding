@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.icia.web.model.WDMakeUp;
+import com.icia.web.model.WDMakeUpFile;
 
 @Repository("WDMakeUpDao")
 public interface WDMakeUpDao 
@@ -38,6 +39,9 @@ public interface WDMakeUpDao
  	
  	//메이크업 업체 삭제
  	public int onlyMakeupComDelete(String mCode);
-
+ 	
+ 	public String maxImgName();
+ 	
+ 	public int makeupFileInsert(WDMakeUpFile wdMakeUpFile);
 	
 }

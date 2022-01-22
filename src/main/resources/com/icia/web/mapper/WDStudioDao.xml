@@ -285,7 +285,8 @@ INSERT INTO WD_STUDIO (
     S_NUMBER,
     S_IMGNAME,
     S_CONTENT,
-    S_DISCOUNT
+    S_DISCOUNT,
+    S_SUBIMG
 ) VALUES (
     #{sCode},
     #{sName},
@@ -294,7 +295,8 @@ INSERT INTO WD_STUDIO (
     #{sNumber},
     #{sImgname},
     #{sContent},
-    #{sDiscount}
+    #{sDiscount},
+    #{sSubImg}
 )
 </insert>
 <!-- 스튜디오 추가 인서트문 끝 -->
@@ -334,4 +336,35 @@ WHERE
     S_CODE = #{sCode}
 </update>
 <!-- 스튜디오 모달 끝 -->
+
+<!-- 스튜디오 등록 -->
+<insert id="studioFileInsert" parameterType="com.icia.web.model.WDStudioFile">
+INSERT INTO WD_STUDIO_FILE (
+    S_CODE,
+    S_FILE_SEQ,
+    S_FILE_NAME,
+    S_FILE_ORG_NAME,
+    S_FILE_EXT,
+    S_FILE_SIZE,
+    REG_DATE
+) VALUES (
+    #{sCode},
+    #{sFileSeq},
+    #{sfileName},
+    #{sFileOrgName},
+    #{sFileExt},
+    #{sFileSize},
+    SYSDATE
+)
+</insert>
+<!-- 스튜디오 등록 -->
+
+<!-- 이미지 가장 마지막 번호 가져오기 -->
+<select id="maxImgName" resultType="string">
+SELECT
+    NVL(MAX(S_IMGNAME), 0) S_IMGNAME
+FROM
+    WD_STUDIO
+</select>
+<!-- 이미지 가장 마지막 번호 가져오기 -->
 </mapper>
