@@ -24,7 +24,8 @@
                 <div class="col-lg-6 col-sm-6">
                     <div class="text-button ourperson">
 
-                        <a href="/user/wishlist">마이페이지</a>
+						 <a href="/user/wishlist">장바구니</a>
+                        <a href="/user/payList">마이페이지</a>
                         <a href="/loginOut">로그아웃</a>
                         <a href="javascript:void(0)" id="coupon">내 쿠폰</a>
                     </div>

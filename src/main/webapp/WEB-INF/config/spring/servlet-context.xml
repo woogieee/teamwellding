@@ -204,6 +204,9 @@
                   <value>/board/tpwd.do</value>
                   
                   <value>/user/payCancelList</value>
+                  <value>/user/payCancelListView</value>
+                  <value>/user/payCancelListView2</value>
+                  
                   
                   </list>
                </constructor-arg>

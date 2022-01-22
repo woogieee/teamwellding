@@ -14,134 +14,7 @@ $(document).ready(function(){
 	$("#cou").on("click", function(){
 	    var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
 	    window.open("/board/Coupon", "PopUP", option);
-	});
-/*	
-	$("#btnCancel").on("click", function(){
-		//var result = confirm("환불을 요청하시겠습니까?");
-		if(confirm("환불을 요청하시겠습니까?") == true)
-		{
-			icia.ajax.post({
-				url: "/user/payCancel",
-				data: {
-					rezNo : <c:out value="${wdRez.rezNo}" />
-				},
-				success: function(response)
-				{
-					icia.common.log(response);
-					
-					if(response.code == 0)
-					{
-						alert("환불 요청에 성공했습니다.");
-						location.href="/user/payList";
-					}
-				},
-			});
-			
-			$.ajax({
-				type: "POST",
-				url: "/user/payCancel",
-				data: {
-					rezNo : <c:out value="${wdRez.rezNo}" />
-				},
-				datatype: "JSON",
-				beforeSend : function(xhr){
-		            xhr.setRequestHeader("AJAX", "true");
-		        },
-				success: function(response)
-				{
-					icia.common.log(response);
-					
-					if(response.code == 0)
-					{
-						alert("환불 요청에 성공했습니다.");
-						location.href="/user/payList";
-					}
-				},
-				complete : function(data) 
-				{ 
-					icia.common.log(data);
-				},
-				error : function(xhr, status, error) 
-				{
-					icia.common.error(error);
-				}
-			});
-		}
-		else
-		{
-			alert("요청이 취소되었습니다.");
-		}
-
-	});*/
-	
-	$("#btnCancel").on("click", function(){
-		Swal.fire({
-			   title: '환불을 요청하시겠습니까?',
-			   text: '환불 요청 후 취소가 되지 않으니 신중하게 결정해주세요.',
-			   icon: 'success',
-			   
-			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-			   confirmButtonColor: '#d33', // confrim 버튼 색깔 지정
-			   cancelButtonColor: '#3085d6', // cancel 버튼 색깔 지정
-			   confirmButtonText: '환불요청', // confirm 버튼 텍스트 지정
-			   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-			   
-			   reverseButtons: false, // 버튼 순서 거꾸로
-			   
-			}).then(result => {
-				   // 만약 Promise리턴을 받으면,
-				   if (result.isConfirmed) 
-				   { // 만약 모달창에서 confirm 버튼을 눌렀다면
-						$.ajax({
-							type: "POST",
-							url: "/user/payCancel",
-							data: {
-								rezNo : <c:out value="${wdRez.rezNo}" />
-							},
-							datatype: "JSON",
-							beforeSend : function(xhr){
-					            xhr.setRequestHeader("AJAX", "true");
-					        },
-							success: function(response)
-							{
-								icia.common.log(response);
-								
-								if(response.code == 0)
-								{
-									//alert("환불 요청에 성공했습니다.");
-									//location.href="/user/payList";
-									Swal.fire({ 
-										icon: 'success',
-										text: '환불 요청에 성공했습니다.'
-									}).then(function(){
-										location.href="/user/payList";
-									});
-								}
-							},
-							complete : function(data) 
-							{ 
-								icia.common.log(data);
-							},
-							error : function(xhr, status, error) 
-							{
-								icia.common.error(error);
-							}
-						});
-				   }
-				   else if (result.isDismissed) 
-				   { // 만약 모달창에서 cancel 버튼을 눌렀다면
-						Swal.fire({ 
-							icon: 'warning',
-							text: '환불요청을 취소하셨습니다.'
-						}).then(function(){
-							return;
-						});
-				   }
-			});
-
-	});
-
-	
+	});	
 });
 </script>
 </head>
@@ -170,10 +43,10 @@ $(document).ready(function(){
 						<nav class="bcItem">
 							<ol class="breadcrumb bc" >
 								<li class="breadcrumb-item active" >
-									<a style="font-size: large; font-weight: bold;">결제내역</a>
+									<a href="/user/payList">결제내역</a>
 								</li>
 								<li class="breadcrumb-item" >
-									<a href="/user/payCancelList">취소내역</a>
+									<a style="font-size: large; font-weight: bold;">취소내역</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
@@ -216,7 +89,7 @@ $(document).ready(function(){
                                 <th>가격</th>
                             </tr>
                             
-<c:if test="${wdRez.rezStatus eq 'Y'}">
+<c:if test="${wdRez.rezStatus eq 'C' or wdRez.rezStatus eq 'D'}">
                             <!-- 홀 -->
 	<c:if test="${!empty wdRez.whCode}">
                             
@@ -392,26 +265,8 @@ $(document).ready(function(){
 					<div class="col-lg-10">
 					<!-- 쿠폰 가져오기 -->
 					<div class="col-lg-10">
-					</div><!-- 
-								<tr>
-									<td colspan="7"><br /></td>
-								</tr>
-                                <tr style="border-top: 2px solid #333!important;">
-                                    				총가격
-                                    <th colspan="7" style="padding: 30px 0;">
-                                    <div class="last_pay" style="text-align:center">
-                                    	<p>
-                                    	총 금액 <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice + wdCoupon.cPrice + wdRez.rezPoint}" />원</span>
-                                    	<c:if test="${!empty wdCoupon.cPrice}"> - 쿠폰할인금액 <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdCoupon.cPrice}" />원</span></c:if>
-                                    	<c:if test="${0 ne wdRez.rezPoint}"> - 포인트할인금액 <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezPoint}" />원</span></c:if>
-                                    	 = 결제금액 <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원</span>
-                                    	</p>
-                                    </div>
-			                        <div class="cancel_place" style="text-align: center;">
-										<button id="btnCancel" class="btn_paycancel">환불요청</button>
-									</div>
-                                    </th>
-                                 </tr> -->
+					</div>
+					
                         </table>
                         
 <!-- /////////////// -->
@@ -457,10 +312,6 @@ $(document).ready(function(){
 	                        <dd class="sumpay3" id="saleP">
 	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원
 	                        </dd>
-	                     </dl>
-	                     
-	                     <dl class="cancel_place">
-	                     	<button type="button" id="btnCancel" class="btn_paycancel">환불요청</button>
 	                     </dl>
 					</div>
 

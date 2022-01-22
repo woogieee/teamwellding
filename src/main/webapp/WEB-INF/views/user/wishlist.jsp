@@ -311,23 +311,11 @@ $("#payMent").on("click", function(){
                <div class="col-lg-1">
                </div>
                <div class="col-lg-10">
-                  <h2 style="font-family: 'Bitter', serif; margin-top: 50px; padding-left: 10px;">My Page</h2>
+                  <h2 style="font-family: 'Bitter', serif; margin-top: 50px; padding-left: 10px;">Shopping Basket</h2>
                   <nav class="bcItem">
                      <ol class="breadcrumb bc" >
                         <li class="breadcrumb-item active">
                            <h5>장바구니</h5>
-                        </li>
-                        <li class="breadcrumb-item">
-                           <a href="/user/payList">결제내역</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                           <a href="javascript:void(0)" id="cou" class="cou">쿠폰보유현황</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                           <a href="/user/modify">회원정보수정</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                           <a href="/user/userDrop">회원탈퇴</a>
                         </li>
                         <li style="position: absolute; right:50px;">
                            <div>보유 포인트 : <span style="color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
