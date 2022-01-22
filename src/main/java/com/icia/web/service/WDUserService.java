@@ -1,5 +1,7 @@
 package com.icia.web.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,6 +150,38 @@ public class WDUserService
 		{
 			logger.error("[WDUserService] nonRezNumberMarrydateUpdate Exception",e);
 		}
+		return count;
+	}
+	
+	//이메일로 아이디 찾기
+	public List<WDUser> findId(String userEmail)
+	{
+		List<WDUser> wduser = null;
+		
+		try
+		{
+			wduser = wdUserDao.findId(userEmail);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDUserService] findId Exception",e);
+		}
+		return wduser;
+	}
+	
+	//비밀번호 찾기
+	public int findPwd(WDUser wduser)
+	{		
+		int count = 0;
+		
+		try {
+			count = wdUserDao.findPwd(wduser);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDUserService] findPwd Exception",e);
+		}
+		
 		return count;
 	}
 }

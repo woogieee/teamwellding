@@ -106,6 +106,43 @@ public class EmailController
 		return ajaxResponse;
 	}
 	
+	@RequestMapping("/board/tpwd.do")
+	@ResponseBody
+	public Response<Object> tpwd(EmailDTO dto, Model model,HttpServletRequest request)
+	{
+		Response<Object> ajaxResponse = new Response<Object>();
+		
+		String userId = HttpUtil.get(request, "id","");
+		String userName = HttpUtil.get(request, "name", "");
+		String userEmail = HttpUtil.get(request, "email", "");
+		
+		WDUser wdUser = new WDUser(); 
+		
+		try
+		{
+			wdUser.setUserId(userId);;
+			wdUser.setUserName(userName);
+			wdUser.setUserEmail(userEmail);
+			
+			String pwdTemp = emailService.pwdMail(dto);
+			
+			wdUser.setUserPwd(pwdTemp);
+			if(wduserService.findPwd(wdUser) > 0)
+			{
+				ajaxResponse.setResponse(0, "Success");
+			}
+			else {
+				ajaxResponse.setResponse(-1, "Fail");
+			}			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			ajaxResponse.setResponse(-1, "Fail");
+		}
+		
+		return ajaxResponse;
+	}
 	
 	
 }

@@ -34,10 +34,10 @@
          document.hallForm.submit();
       }
 
-      function fn_view3(bSeq)
+      function fn_view3(RSeq)
       {
-         document.fBoardForm.bSeq.value = bSeq;
-         document.fBoardForm.action = "/board/fBoardView";
+         document.fBoardForm.RSeq.value = RSeq;
+         document.fBoardForm.action = "/board/reviewInfo";
          document.fBoardForm.submit();
       }
       
@@ -60,47 +60,6 @@
           }
 
        });
-       
-
-         (function() {
-           var w = window;
-           if (w.ChannelIO) {
-             return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
-           }
-           var ch = function() {
-             ch.c(arguments);
-           };
-           ch.q = [];
-           ch.c = function(args) {
-             ch.q.push(args);
-           };
-           w.ChannelIO = ch;
-           function l() {
-             if (w.ChannelIOInitialized) {
-               return;
-             }
-             w.ChannelIOInitialized = true;
-             var s = document.createElement('script');
-             s.type = 'text/javascript';
-             s.async = true;
-             s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-             s.charset = 'UTF-8';
-             var x = document.getElementsByTagName('script')[0];
-             x.parentNode.insertBefore(s, x);
-           }
-           if (document.readyState === 'complete') {
-             l();
-           } else if (window.attachEvent) {
-             window.attachEvent('onload', l);
-           } else {
-             window.addEventListener('DOMContentLoaded', l, false);
-             window.addEventListener('load', l, false);
-           }
-         })();
-         ChannelIO('boot', {
-           "pluginKey": "bbd5d963-74f6-4e11-b6b5-c295137656c1"
-         });
-     
        
    </script>
 </head> 
@@ -267,12 +226,12 @@
                           <div class="text-button"><a href="/board/reviews"><span id="plusssss">더 보기</span></a></div>
                         <div class="lisylebox">
                             <ul class="listyle">
-                               <c:forEach var="fboard" items="${wdFBoard}" varStatus="status"> 
+                               <c:forEach var="review" items="${wdReviewList}" varStatus="status"> 
                                 <li>
                                     <div class="board">
-                                        <div class="btitle active"><a href="javascript:void(0)" onclick="fn_view3(${fboard.bSeq})"><c:out value="${fboard.bTitle}"/></a></div>
-                                        <div class="bwriter"><p><c:out value="${fboard.userId}"/></p></div>
-                                        <div class="bdate"><p><c:out value="${fboard.regDate}"/></p></div>
+                                        <div class="btitle active"><a href="javascript:void(0)" onclick="fn_view3(${review.RSeq})"><c:out value="${review.RTitle}"/></a></div>
+                                        <div class="bwriter"><p><c:out value="${review.UNickName}"/></p></div>
+                                        <div class="bdate"><p><c:out value="${review.regDate}"/></p></div>
                                     </div>
                                 </li>
                                </c:forEach> 
@@ -294,7 +253,7 @@
  
    <!-- 게시글 상세 페이지를 위한 폼 -->
    <form name="fBoardForm" id="fBoardForm" method="post">
-         <input type="hidden" name="bSeq" value="" />
+         <input type="hidden" name="RSeq" value="" />
    </form>
    <!-- 게시글 상세 페이지를 위한 폼 -->
 

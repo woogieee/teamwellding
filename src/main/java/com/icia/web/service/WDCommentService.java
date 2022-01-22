@@ -1,5 +1,6 @@
 package com.icia.web.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -113,13 +114,13 @@ public class WDCommentService {
 	}	
 	
 	//댓글 전부 불러오기 시작
-	public List<WDComment> commentTotalSelect()
+	public List<WDComment> commentTotalSelect(HashMap<String, Object> map)
 	{
 		List<WDComment> list = null;
 		
 		try 
 		{
-			list = wdCommentDao.commentTotalSelect();
+			list = wdCommentDao.commentTotalSelect(map);
 		}
 		catch(Exception e) 
 		{

@@ -1,6 +1,7 @@
 package com.icia.web.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -181,10 +182,15 @@ public class WDAdminFRBoardController {
     	   
     	   cPaging.addParam("curPage", curPage);
     	   
+    	   HashMap<String, Object> map = new HashMap<String, Object>();
+    	   
+    	   map.put("startRow", cPaging.getStartRow());
+    	   map.put("endRow", cPaging.getEndRow());
+    	   
     	   wdComment.setStartRow(cPaging.getStartRow());
     	   wdComment.setEndRow(cPaging.getEndRow());
     	   
-    	   cList = wdCommentService.commentTotalSelect();
+    	   cList = wdCommentService.commentTotalSelect(map);
        }
        
 
