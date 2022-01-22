@@ -101,4 +101,6 @@ public interface WDRezDao {
 	public int MarrydateUpdate(WDRez wdRez);
 	
 	
+	//결제 취소 신청&취소완료된 내역 가져오기
+	public List<WDRez> rezSelectStatusNotNY(String userId);
 }
