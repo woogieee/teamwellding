@@ -158,7 +158,7 @@
                       <value>/mng/nBoardDelete</value>
 
                   
-                  <value>/mng/eBoardUpdate</value>
+                  	  <value>/mng/eBoardUpdate</value>
                       <value>/mng/eBoardUpdateProc</value>
                       <value>/mng/plusEBoard</value>
                       <value>/mng/eBoardWrite</value>
@@ -199,6 +199,10 @@
 
                   <value>/user/marryUpdate</value>
                   <value>/user/FindingId</value>
+                  <value>/user/FindingIdProc</value>
+                  <value>/user/FindingPwd</value>
+                  <value>/board/tpwd.do</value>
+                  
                   </list>
                </constructor-arg>
             </bean>

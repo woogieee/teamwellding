@@ -29,4 +29,7 @@ public interface WDUserDao
 	//이메일로 아이디 찾기
 	public List<WDUser> findId(String userEmail);
 	
+	//비밀번호찾기
+	public int findPwd(WDUser wduser);
+	
 }

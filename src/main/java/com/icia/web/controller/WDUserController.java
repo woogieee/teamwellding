@@ -335,6 +335,14 @@ public class WDUserController
 		return "/user/FindingId";
 	}
 	
+	//비밀번호 찾기
+	@RequestMapping(value="/user/FindingPwd")
+	public String FindingPwd(HttpServletRequest request, HttpServletResponse response)
+	{
+		return "/user/FindingPwd";
+	}
+	
+	
 	//이메일로 아이디찾기
 	@RequestMapping(value="/user/FindingIdProc")
 	@ResponseBody

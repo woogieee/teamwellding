@@ -168,4 +168,20 @@ public class WDUserService
 		}
 		return wduser;
 	}
+	
+	//비밀번호 찾기
+	public int findPwd(WDUser wduser)
+	{		
+		int count = 0;
+		
+		try {
+			count = wdUserDao.findPwd(wduser);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDUserService] findPwd Exception",e);
+		}
+		
+		return count;
+	}
 }
