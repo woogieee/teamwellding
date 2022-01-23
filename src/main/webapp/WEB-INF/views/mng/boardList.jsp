@@ -76,7 +76,7 @@ body.dark-theme .page-link.active
 	            iframe:true, 
 	            innerWidth:1235,
 	            innerHeight:500,
-	            scrolling:false,
+	            scrolling:true,
 	            onComplete:function()
 	            {
 	               $("#colorbox").css("width", "1235px");
