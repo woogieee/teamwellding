@@ -6,6 +6,13 @@
 <meta charset="UTF-8">
 <title>웨딩플래너 상세보기</title>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
+<script>
+$(document).ready(function(){
+	$("#form-submit").on("click", function(){
+		$("#form-submit").attr("disabled", true);
+	});
+});
+</script>
 </head>
 <body>
 <c:if test="${!empty wdExpert}">
@@ -42,6 +49,13 @@
                         <form id="contact" action="/board/send.do?eCode=${wdExpert.eCode}" method="post">
                           <div class="row">
                           
+                            <!-- 확인차 받는 플래너이름 -->
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <input name="receiverName" type="text" id="receiverName" value="${wdExpert.eName} 플래너" />
+                              </fieldset>
+                            </div>
+                            <!-- 끝 -->
   
                             <div class="col-lg-12">
                               <fieldset>
