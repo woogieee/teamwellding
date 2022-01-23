@@ -53,9 +53,9 @@ $(function(){
 	$("#btn_cc").on("click", function(){
 		    Swal.fire({ 
 			icon: 'warning',
-			text: '아이디 찾기가 취소되었습니다.'
+			text: '로그인 페이지로 돌아갑니다.'
 		  }).then(function(){
-			  location.href = "/";
+			  location.href = "/board/login";
 		  });
 		 
   });
@@ -93,16 +93,29 @@ function fn_findCheck()
 	        {
 	        	if(response.code == 0)
 	        			{
-	        			$("#gusdkqkqh").append("<ul class='cssPlease1'>보유 아이디 목록</ul>");
-	        			for(i=0;i<=response.data.length;i++)
-	        				{
-	        					$("#gusdkqkqh").append("<li class='cssPlease2'>"+response.data[i].userName+response.data[i].userId+" "+"</li>");
-	        				}
+			        		Swal.fire({ 
+			        			icon: 'success',
+			        			title: '아이디 검색 완료!',
+			        			text: '입력하신 이메일주소로 아이디를 찾았습니다.'
+			        		}).then(function(){
+			        			$("#Findbtn").prop("disabled", true); //버튼비활성화
+			        			$("#gusdkqkqh").append("<ul class='cssPlease1'>보유 아이디 목록</ul>");
+			        			for(i=0;i<=response.data.length;i++)
+		        				{
+		        					$("#gusdkqkqh").append("<li class='cssPlease2'>"+response.data[i].userName+response.data[i].userId+" "+"</li>");
+		        				}
+			        		});
+		        			//$("#gusdkqkqh").append("<ul class='cssPlease1'>보유 아이디 목록</ul>");
+		        			//for(i=0;i<=response.data.length;i++)
+		        			//	{
+		        			//		$("#gusdkqkqh").append("<li class='cssPlease2'>"+response.data[i].userName+response.data[i].userId+" "+"</li>");
+		        			//	}
+		        			//$("#Findbtn").prop("disabled", true);
 	        			}
-	        	 else if(response.code == 100)
+/* 	        	 else if(response.code == 100)
 	     		{
 	     		 alert("가입된 이메일이 없습니다");
-	     		}
+	     		} */
 	        }
 	       
 		});

@@ -48,12 +48,14 @@ $(function(){
 	});
 	
 	$("#btn_cc").on("click", function(){
-		    Swal.fire({ 
-			icon: 'warning',
-			text: '아이디 찾기가 취소되었습니다.'
-		  });
-		 location.href = "/";
-  });
+	    Swal.fire({ 
+		icon: 'warning',
+		text: '로그인 페이지로 돌아갑니다.'
+	  }).then(function(){
+		  location.href = "/board/login";
+	  });
+	 
+	});
   
 });
 	
