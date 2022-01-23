@@ -157,9 +157,9 @@ function fn_coupon()
 								<div style="padding: 10px">
 									<div class="e_imgbox" style="position:relative;">
 										<img src="/resources/images/couponbg5.jpg" style="width: 1000px;">
-										<div style="position:absolute; top: 43%; left: 25%; width: 50%;">
+										<div style="position:absolute; top: 41%; left: 25%; width: 50%;">
 											<a a href="javascript:void(0);" style="cursor:default;"><img src="/resources/images/couponimg.png" style="cursor:default;"></a>
-											<a a href="javascript:void(0);" onclick="fn_coupon();"><img src="/resources/images/download.png"></a>
+											<a a href="javascript:void(0);" onclick="fn_coupon();"><img src="/resources/images/download.png" style="margin-top: 10px;"></a>
 										</div>
 										<br/>
 										웰딩에서 준비한 쿠폰이벤트! 웰딩 회원이라면 모두 발급 가능합니다 ^^
