@@ -227,6 +227,15 @@ $(document).ready(function(){
 									}
 								});
 							}
+							else if(response.code == 500)
+							{
+								Swal.fire({ 
+									icon: 'error',
+									text: '로그인이 필요합니다.'
+								}).then(function(){
+									return;
+								});
+							}
 							else
 							{
 								//alert("장바구니에 상품을 담는 중 오류가 발생했습니다.");
@@ -327,7 +336,9 @@ function fn_view(dNo)
 	                            <div class="dis-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdMakeup.mPrice * (1-wdMakeup.mDiscount*0.01)}" />원</div>
                             </div>
                             <div class="banner3">
-                                <img src="../resources/images/vip.png" width="100%">
+                            	<a href="/board/specialist">
+                                	<img src="../resources/images/vip.png" width="100%">
+                            	</a>
                             </div>
                            <!---- 추가인원계산할때 쓸거-->
                             <div class="quantity-content">

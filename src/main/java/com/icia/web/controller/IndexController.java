@@ -174,6 +174,15 @@ public class IndexController
 		
 		model.addAttribute("wdUser", wdUser);
 		
+		String wDate = wdUser.getMarrytDate();
+		String year = wDate.substring(0, 4);
+		String month = wDate.substring(4, 6);
+		String day = wDate.substring(6, 8);
+		
+		model.addAttribute("year", year);
+		model.addAttribute("month", month);
+		model.addAttribute("day", day);
+		
 		
 		return "/user/modify";
 	}

@@ -226,21 +226,18 @@ public class WDUserController
 		String marry = year + month + day;
 		String nickName = HttpUtil.get(request, "nickname");
 		String email = HttpUtil.get(request, "email");
-		
-		System.out.println("현아누나바보");
-		
+				
 		
 		WDUser wdUser = null;
 		wdUser = wduserService.userSelect(cookieUserId);
 		System.out.println("아이디 : "+ wdUser.getUserId());
 		if(!StringUtil.isEmpty(wdUser.getUserId())) 
 		{
-			
+
 			
 			if(!StringUtil.isEmpty(userPwd) && !StringUtil.isEmpty(userName) && !StringUtil.isEmpty(phone) &&
 					!StringUtil.isEmpty(marry) && !StringUtil.isEmpty(nickName) && !StringUtil.isEmpty(email)) 
 				{
-				
 			
 				wdUser.setUserPwd(userPwd);
 				wdUser.setUserName(userName);
