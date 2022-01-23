@@ -16,12 +16,14 @@ public class EmailServiceImpl implements EmailService
 	@Inject
 	JavaMailSender mailSenderGoogle;
 	
+	//전문가에게 이메일보내기 !
 	@Override
 	public void sendMail(EmailDTO dto) 
 	{
 		try
 		{
 			MimeMessage msg = mailSenderGoogle.createMimeMessage(); //이메일 객체
+			
 			//수신자 정보
 			msg.addRecipient(RecipientType.TO, new InternetAddress(dto.getReceiveMail()));
 			//발신자 이메일주소, 이름
@@ -29,10 +31,16 @@ public class EmailServiceImpl implements EmailService
 				new InternetAddress(dto.getSenderMail(), dto.getSenderName())
 			});
 			
-			msg.setSubject("[ "+dto.getSenderName()+" ]님의 견적요청", "utf-8"); //제목
-			msg.setText(dto.getSenderName() + " 님의 연락처 : "+ dto.getSenderNumber() +
+			//메일제목
+			msg.setSubject("[ "+dto.getSenderName()+" ]님의 견적요청", "utf-8"); 
+			
+			//메일내용
+			msg.setText("[ " + dto.getReceiverName() + " ]님에게 요청하는 견적내용입니다. \r\n \r\n" + 
+					"고객명 : " + dto.getSenderName() + 
+					dto.getSenderName() + " 님의 연락처 : "+ dto.getSenderNumber() +
 					"\n\r" + dto.getSenderName() + " 님의 메일주소 : " + dto.getSenderMail() + 
-					"\n\r" + "\r\n 요청사항: " + dto.getMessage(), "utf-8"); //텍스트
+					"\n\r" + "\r\n <요청사항> \r\n" + dto.getMessage(), "utf-8");
+			
 			mailSenderGoogle.send(msg); //이메일 발신
 		}
 		catch(Exception e)
@@ -40,7 +48,8 @@ public class EmailServiceImpl implements EmailService
 			e.printStackTrace();
 		}
 	}
-
+	
+	//회원가입시 이메일인증번호 보내기!
 	@Override
 	public int checkMail(EmailDTO dto) {
 		double randomVal = Math.random();
@@ -68,6 +77,7 @@ public class EmailServiceImpl implements EmailService
 		return check;
 	}
 
+	//임시 비밀번호 보내기
 	@Override
 	public String pwdMail(EmailDTO dto) {
 

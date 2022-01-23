@@ -34,27 +34,59 @@ function fn_coupon()
   	  {
   		  if(response.code == 0)
   		  {
-  			  alert("쿠폰이 정상적으로 발급되었습니다.");
-  			  location.href = "/board/eBoard";
+  			  //alert("쿠폰이 정상적으로 발급되었습니다.");
+  			  //location.href = "/board/eBoard";
+				Swal.fire({ 
+					icon: 'success',
+					text: '쿠폰이 정상적으로 발급되었습니다!'
+				}).then(function(){
+					//location.href = "/board/eBoard";
+				       var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
+				       window.open("/board/Coupon", "PopUP", option);
+				});
   		  }
   		  else if(response.code == -1)
   		  {
-  			  alert("쿠폰 발급 중에 오류가 발생했습니다.");
+  			  //alert("쿠폰 발급 중에 오류가 발생했습니다.");
+				Swal.fire({ 
+					icon: 'error',
+					text: '쿠폰 발급 중에 오류가 발생했습니다.'
+				}).then(function(){
+					return;
+				});
   		  }
   		  else if(response.code == 401)
   		  {
-  			  alert("이미 쿠폰을 발급받으셨습니다.");
-  			  location.href = "/";
+  			  //alert("이미 쿠폰을 발급받으셨습니다.");
+  			  //location.href = "/";
+				Swal.fire({ 
+					icon: 'warning',
+					text: '이미 쿠폰을 발급받으셨습니다.'
+				}).then(function(){
+					return;
+				});
   		  }
   		  else if(response.code == 400)
   		  {
   			  //count가 0보다 작을 때
-  			  alert("사용자 정보가 없습니다. 로그인 되어있는지 확인해주세요.");
-  			  location.href ="/board/login";
+  			  //alert("사용자 정보가 없습니다. 로그인 되어있는지 확인해주세요.");
+  			  //location.href ="/board/login";
+				Swal.fire({ 
+					icon: 'error',
+					text: '사용자 정보가 없습니다. 로그인 되어있는지 확인해주세요.'
+				}).then(function(){
+					location.href ="/board/login";
+				});
   		  }
   		  else
   		  {
-  			  alert("알 수 없는 접근 방식입니다.");
+  			  //alert("알 수 없는 접근 방식입니다.");
+				Swal.fire({ 
+					icon: 'error',
+					text: '알 수 없는 접근 방식입니다.'
+				}).then(function(){
+					return;
+				});
   		  }
   	  },
   	  complete:function(data)
