@@ -34,27 +34,60 @@ function fn_coupon()
   	  {
   		  if(response.code == 0)
   		  {
-  			  alert("쿠폰이 정상적으로 발급되었습니다.");
-  			  location.href = "/board/eBoard";
+  			  //alert("쿠폰이 정상적으로 발급되었습니다.");
+  			  //location.href = "/board/eBoard";
+				Swal.fire({ 
+					icon: 'success',
+					text: '쿠폰이 정상적으로 발급되었습니다!'
+				}).then(function(){
+					//location.href = "/board/eBoard";
+				       var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
+				       window.open("/board/Coupon", "PopUP", option);
+				});
   		  }
   		  else if(response.code == -1)
   		  {
-  			  alert("쿠폰 발급 중에 오류가 발생했습니다.");
+  			  //alert("쿠폰 발급 중에 오류가 발생했습니다.");
+				Swal.fire({ 
+					icon: 'error',
+					text: '쿠폰 발급 중에 오류가 발생했습니다.'
+				}).then(function(){
+					return;
+				});
   		  }
   		  else if(response.code == 401)
   		  {
-  			  alert("이미 쿠폰을 발급받으셨습니다.");
-  			  location.href = "/";
+  			  //alert("이미 쿠폰을 발급받으셨습니다.");
+  			  //location.href = "/";
+				Swal.fire({ 
+					icon: 'warning',
+					text: '이미 쿠폰을 발급받으셨습니다.'
+				}).then(function(){
+				       var option="width = 1000, height = 500, top = 100, left = 200, location = no, menubar = no, scrollbars=no";
+				       window.open("/board/Coupon", "PopUP", option);
+				});
   		  }
   		  else if(response.code == 400)
   		  {
   			  //count가 0보다 작을 때
-  			  alert("사용자 정보가 없습니다. 로그인 되어있는지 확인해주세요.");
-  			  location.href ="/board/login";
+  			  //alert("사용자 정보가 없습니다. 로그인 되어있는지 확인해주세요.");
+  			  //location.href ="/board/login";
+				Swal.fire({ 
+					icon: 'error',
+					text: '사용자 정보가 없습니다. 로그인 되어있는지 확인해주세요.'
+				}).then(function(){
+					location.href ="/board/login";
+				});
   		  }
   		  else
   		  {
-  			  alert("알 수 없는 접근 방식입니다.");
+  			  //alert("알 수 없는 접근 방식입니다.");
+				Swal.fire({ 
+					icon: 'error',
+					text: '알 수 없는 접근 방식입니다.'
+				}).then(function(){
+					return;
+				});
   		  }
   	  },
   	  complete:function(data)
@@ -101,7 +134,7 @@ function fn_coupon()
 					<thead>
 						<tr class="dongdong2">
 							<td style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600;">
-								<c:out value="신년쿠폰 발급 이벤트" />
+								<c:out value="쿠폰 발급 이벤트" />
 							</td>
 
 							<td style="width: 40%; padding-right: 25px; color: #444; font-size: 16px;" class="text-right">2022.01.01</td>
@@ -123,11 +156,13 @@ function fn_coupon()
 							<td colspan="2" style="width: 100%; border-bottom: 1px solid #555;">
 								<div style="padding: 10px">
 									<div class="e_imgbox" style="position:relative;">
-										<img src="/resources/images/couponbg2.jpg" style="width: 1000px;">
-										<div style="position:absolute; top: 37%; left: 25%; width: 50%;">
-											<a a href="javascript:void(0);" onclick="fn_coupon();"><img src="/resources/images/couponimg.png"></a>
-											<a a href="javascript:void(0);" onclick="fn_coupon();"><img src="/resources/images/download.png"></a>
+										<img src="/resources/images/couponbg5.jpg" style="width: 1000px;">
+										<div style="position:absolute; top: 41%; left: 25%; width: 50%;">
+											<a a href="javascript:void(0);" style="cursor:default;"><img src="/resources/images/couponimg.png" style="cursor:default;"></a>
+											<a a href="javascript:void(0);" onclick="fn_coupon();"><img src="/resources/images/download.png" style="margin-top: 10px;"></a>
 										</div>
+										<br/>
+										웰딩에서 준비한 쿠폰이벤트! 웰딩 회원이라면 모두 발급 가능합니다 ^^
 									</div>
 								</div>
 							</td>
