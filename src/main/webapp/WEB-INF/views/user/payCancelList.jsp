@@ -131,7 +131,7 @@ $(document).ready(function(){
 
                                   <td>
                                   <div class="col-lg-12" style="text-align:center">
-                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})"><p class="rezview rezview2" style="color:#555;">${wdRez.rezDate}</p></a>
+                                    <p class="rezview rezview4" style="color:#555;">${wdRez.rezDate}</p>
                                   </div>
                                   </td>
                                   

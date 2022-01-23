@@ -7028,6 +7028,13 @@ textarea::placeholder {
 	line-height: 16px;
 }
 
+.rezview
+{
+	font-weight: 600;
+	cursor: default;
+	line-height: 16px;
+}
+
 .rezview3
 {
 	font-size: 14px;
