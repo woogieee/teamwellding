@@ -399,11 +399,11 @@ function plusNum()
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-26">
-						<h1 id="logo"><img src="../resources/images/theWellding.png" width="150" height="auto" onclick="fn_index()" style="cursor: pointer;" /></h1>
+					<span class="login100-form-title" style="padding-bottom: 10px;">
+						<h1 id="logo"><img src="../resources/images/theWellding.png" width="140" height="auto" onclick="fn_index()" style="cursor: pointer; padding-bottom: 10px;" /></h1>
 
 					</span>
-					<span class="login100-form-title p-b-48">
+					<span class="login100-form-title" style="padding-bottom: 40px;">
 						<!-- <i class="zmdi zmdi-font"></i> -->
 						<div class="mTab eTab">
 							<ul>
@@ -444,21 +444,32 @@ function plusNum()
 					</div>
 					
 
-					<div class="text-center p-t-115">
+					<div class="text-center" style="padding-top: 40px;">
 						<span class="txt1">
-							Wellding에 처음이세요?
+							Wellding에 처음이세요?&nbsp;
 						</span>
 
 						<a class="txt2" href="/board/regform">
 							회원가입하기
 						</a>
-						<a class="txt2" href="/user/FindingId">
-							아이디
-						</a>
-						<a class="txt2" href="/user/FindingPwd">
-							비밀번호 찾기
-						</a>
 					</div>
+					
+					<div class="text-center" style="padding-top: 5px;">
+						<span class="txt1">
+							아이디 혹은 비밀번호를 잊으셨나요? &nbsp;
+						</span>
+
+
+							<a class="txt2" href="/user/FindingId">
+								아이디 찾기
+							</a>
+							<a style="cursor:default; color: #888;">&nbsp;&nbsp;or&nbsp;&nbsp; </a>
+							<a class="txt2" href="/user/FindingPwd">
+								비밀번호 찾기
+							</a>
+
+					</div>
+					
 						<input type="button" onclick="plusNum()" value="d" style="width: 50px; height: 50px; background-color: white; color: white; cursor: default;"/>
 				</form>
 			</div>

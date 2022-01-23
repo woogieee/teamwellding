@@ -134,7 +134,7 @@ function fn_findCheck()
 						{
 							if (response.code == 0) 
 							{
-								alert("이욱채 짱짱귀요미");
+								//alert("이욱채 짱짱귀요미");
 								/*const Toast = Swal.mixin({
 								    toast: true,
 								    position: 'center-center',
@@ -145,16 +145,23 @@ function fn_findCheck()
 								        toast.addEventListener('mouseenter', Swal.stopTimer)
 								        toast.addEventListener('mouseleave', Swal.resumeTimer)
 								    }
-								});*/
+								});
 								
-								/*Toast.fire({
+								Toast.fire({
 								    icon: 'success',
 								    title: '이메일로  임시비밀번호를 전송하였습니다!'
 								});*/
+								Swal.fire({ 
+									icon: 'success',
+									title: '임시비밀번호 발송 완료!',
+									text: '입력하신 이메일 주소로 임시 비밀번호를 발송했습니다. 로그인 후 마이페이지에서 비밀번호를 바꿔주세요!'
+								}).then(function(){
+									location.href="/board/login";
+								});
 							} 
 							else 
 							{
-								alert("실패!");
+								//alert("실패!");
 								//alert("이메일 발송실패");
 								//$("#btnEmailCheck").prop("disabled", false);
 								/*Swal.fire({ 
@@ -163,6 +170,12 @@ function fn_findCheck()
 								}).then(function(){
 									$("#Findbtn").prop("disabled", false);
 								});*/
+								Swal.fire({ 
+									icon: 'error',
+									title: '이메일 발송실패,,'
+								}).then(function(){
+									return;
+								});
 							}
 						},
 						complete : function(data) 

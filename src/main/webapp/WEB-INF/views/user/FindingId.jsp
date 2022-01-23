@@ -54,8 +54,10 @@ $(function(){
 		    Swal.fire({ 
 			icon: 'warning',
 			text: '아이디 찾기가 취소되었습니다.'
+		  }).then(function(){
+			  location.href = "/";
 		  });
-		 location.href = "/";
+		 
   });
   
 });
@@ -64,9 +66,16 @@ function fn_findCheck()
 {
 	if($.trim($("#userEmail").val()).length <= 0)
 	{
- 	alert("입력하세요.");
- 	$("#userEmail").focus();
- 	return;
+	 	//alert("입력하세요.");
+	 	//$("#userEmail").focus();
+	 	//return;
+		Swal.fire({ 
+			icon: 'warning',
+			text: '이메일을 입력하세요.'
+		}).then(function(){
+			$("#userEmail").focus();
+		 	return;
+		});
  	}
 	var i = 0;
 	

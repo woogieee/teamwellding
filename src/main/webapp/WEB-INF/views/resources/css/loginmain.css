@@ -177,6 +177,7 @@ iframe {
   color: #444b59;
   line-height: 1.5;
   border-bottom: 1px solid #444b59;
+  font-weight: 600;
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -209,7 +210,7 @@ iframe {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-  padding: 77px 55px 33px 55px;
+  padding: 62px 55px 33px 55px;
 
   box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
@@ -383,7 +384,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 33px;
+  padding-top: 40px;
 }
 
 .wrap-login100-form-btn {
