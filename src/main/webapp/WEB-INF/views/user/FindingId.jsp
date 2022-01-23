@@ -44,7 +44,7 @@ $(function(){
 	
 	$("#Findbtn").on("click", function(){
 		
-		$("#idbox").css("display", "block");
+		$("#idbox").css("display", "block"); //아이디찾기버튼 클릭시 박스보이게하기
 		fn_findCheck();	
 	});
 	
@@ -143,8 +143,8 @@ function fn_findCheck()
 	       
 		});
 		
-		}
 	}
+}
 </script>
 </head>
 <body>
