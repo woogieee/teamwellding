@@ -190,6 +190,12 @@ function fn_eBoardDelete()
                   </td>
                </tr>
                <tr>
+                   <th scope="row">이미지</th>
+                  <td>
+                  	 <img src="/resources/board/${eBoard.eBImgName}">
+                  </td>
+               </tr>
+               <tr>
                   <th scope="row">제목</th>
                   <td>
                      <input type="text" style="background-color: #fff;" id="bTitle" name="bTitle" value="${eBoard.eBTitle}"/>

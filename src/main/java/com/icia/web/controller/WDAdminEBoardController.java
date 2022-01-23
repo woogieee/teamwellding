@@ -22,8 +22,8 @@ import com.icia.common.util.StringUtil;
 import com.icia.web.model.Paging;
 import com.icia.web.model.Response;
 import com.icia.web.model.WDAdmin;
-import com.icia.web.model.WDBoardFile;
 import com.icia.web.model.WDEBoard;
+import com.icia.web.model.WDEBoardFile;
 import com.icia.web.model.WDNBoard;
 import com.icia.web.service.WDAdminService;
 import com.icia.web.service.WDEBoardService;
@@ -44,7 +44,8 @@ public class WDAdminEBoardController {
 	private String AUTH_COOKIE_NAME;
 	
 	//파일 저장경로
-	@Value("#{env['upload.save.dir2']}") private String UPLOAD_SAVE_DIR2;
+	@Value("#{env['upload.save.event']}") 
+	private String UPLOAD_SAVE_EVENT;
 	
 	@Autowired
 	private WDEBoardService wdEBoardService;
@@ -199,48 +200,94 @@ public class WDAdminEBoardController {
   //공지사항 게시글 추가하기!!
     @RequestMapping(value="/mng/eBoardWrite")
     @ResponseBody
-    public Response<Object> eBoardWrite(Model model, HttpServletRequest request, HttpServletResponse response)
+    public Response<Object> eBoardWrite(MultipartHttpServletRequest request, HttpServletResponse response)
     {
         Response<Object> ajaxResponse = new Response<Object>();
         
-        String adminId = HttpUtil.get(request, "adminId", "");
-        String eBTitle = HttpUtil.get(request, "eBTitle", "");
-        String eBContent = HttpUtil.get(request, "eBContent", "");
-        
+        String eBTitle = HttpUtil.get(request, "bTitle", "");
+        String eBContent = HttpUtil.get(request, "bContent", "");
+        String name = wdEBoardService.maxImgName();
+        name = name.replace("E", "");
+        name = name.replace(".jpg", "");
+        name = name.replace(".png", "");
+        int namePlus = Integer.parseInt(name)+1;
+        name = "E0"+namePlus;
+        FileData fileData = HttpUtil.getFile(request, "img", UPLOAD_SAVE_EVENT,name);
+        int count = 0;
+            
         //쿠키 조회
         String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
-       //관리자 닉네임
+        //관리자 닉네임
         WDAdmin wdAdmin = wdAdminService.wdAdminSelect(cookieUserId);
         
     	WDEBoard wdEBoard = new WDEBoard();
     	
-    	wdEBoard.setAdminId(cookieUserId);
-    	wdEBoard.seteBTitle(eBTitle);
-    	wdEBoard.seteBContent(eBContent);
+    	System.out.println("=======================================================");
+    	System.out.println("name :" + name);
+    	System.out.println("eBTitle : " + eBTitle);
+    	System.out.println("eBContent : " + eBContent);
+    	System.out.println("=======================================================");
     	
-    
+    	//게시물 제목과 내용이 비어있을 경우
         if(!StringUtil.isEmpty(eBTitle) && !StringUtil.isEmpty(eBContent))
         {
-        	try
+        	wdEBoard.setAdminId(cookieUserId);
+        	wdEBoard.seteBTitle(eBTitle);
+        	wdEBoard.seteBContent(eBContent);
+        	
+        	if(!StringUtil.isEmpty(fileData))
         	{
-        		if(wdEBoardService.eBoardInsert(wdEBoard) > 0)
-            	{
-            		ajaxResponse.setResponse(0, "Success");
-            	}
-            	else
-            	{
-            		ajaxResponse.setResponse(-1, "Error");
-            	}
+        		System.out.println("================================================");
+				System.out.println("fileData : " + fileData.getFileName());
+				System.out.println("================================================");
+        		
+        		WDEBoardFile wdEBoardFile = new WDEBoardFile();
+        		
+        		wdEBoardFile.setFileName(fileData.getFileName());
+        		wdEBoardFile.setFileOrgName(fileData.getFileOrgName());
+        		wdEBoardFile.setFileExt(fileData.getFileExt());
+        		wdEBoardFile.setFileSize(fileData.getFileSize());
+        		
+        		wdEBoard.setWdEBoardFile(wdEBoardFile);
+        		
+        		try
+        		{
+        			if(wdEBoardService.eBoardInsert(wdEBoard) > 0)
+        			{
+        				wdEBoard.seteBImgName(wdEBoardFile.getFileName());
+        				
+        				wdEBoardService.eBoardFileInsert(wdEBoardFile);
+        				System.out.println("=========================================================================");
+        				System.out.println("이미지 이름 : " + wdEBoard.geteBImgName());
+        				System.out.println("=========================================================================");
+        				
+        				//EBoardFile 이미지 이름을 EBoard 이미지 이름을 DB에 넣기
+        				wdEBoardService.eBoardFileUpdate(wdEBoard);
+        				
+        				ajaxResponse.setResponse(0, "Successs");
+        				
+        				wdEBoardService.eBoardFileInsert(wdEBoardFile);
+        				
+        			}
+        			else
+        			{
+        				ajaxResponse.setResponse(500, "Internal Server Error");
+        			}
+        		}
+        		catch(Exception e)
+        		{
+        			logger.error("[WDAdminEBoardContorller] eBoardWrite Exception", e);
+        			ajaxResponse.setResponse(400, "Server Error");
+        		}
         	}
-        	catch(Exception e)
-      	  	{
-      		  logger.error("[WDAdminIndexController] /mng/nBoardWrite Exception", e);
-      		  ajaxResponse.setResponse(500, "Internal server Error");
-      	  	}
+        	else
+        	{
+        		ajaxResponse.setResponse(-2, "Not found BoardFile");
+        	}
         }
-        else 
+        else
         {
-           ajaxResponse.setResponse(400, "Not Paremeter");
+        	ajaxResponse.setResponse(-1, "Not found Board");
         }
 
         return ajaxResponse;
