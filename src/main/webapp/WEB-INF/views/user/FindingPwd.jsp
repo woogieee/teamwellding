@@ -50,7 +50,7 @@ $(function(){
 	$("#btn_cc").on("click", function(){
 		    Swal.fire({ 
 			icon: 'warning',
-			text: '아이디 찾기가 취소되었습니다.'
+			text: '비밀번호 찾기가 취소되었습니다.'
 		  });
 		 location.href = "/";
   });
@@ -134,7 +134,7 @@ function fn_findCheck()
 						{
 							if (response.code == 0) 
 							{
-								alert("이욱채 짱짱귀요미");
+								alert("임시 비밀번호를 메일로 전송하였습니다");
 								/*const Toast = Swal.mixin({
 								    toast: true,
 								    position: 'center-center',
@@ -154,7 +154,7 @@ function fn_findCheck()
 							} 
 							else 
 							{
-								alert("실패!");
+								alert("일치하는 정보가 없습니다");
 								//alert("이메일 발송실패");
 								//$("#btnEmailCheck").prop("disabled", false);
 								/*Swal.fire({ 

@@ -64,10 +64,11 @@ function fn_findCheck()
 {
 	if($.trim($("#userEmail").val()).length <= 0)
 	{
- 	alert("입력하세요.");
+ 	alert("이메일을 입력하세요.");
  	$("#userEmail").focus();
  	return;
  	}
+	$("#Findbtn").prop("disabled", true);
 	var i = 0;
 	
 		$.ajax({
@@ -76,6 +77,7 @@ function fn_findCheck()
 			data : {
 				userEmail : $("#userEmail").val()
 			},
+		
 			datatype : "JSON",
 			beforeSend : function(xhr){
 	            xhr.setRequestHeader("AJAX", "true");
