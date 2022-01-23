@@ -158,10 +158,7 @@ function reviewWrite(rezNo){
 						<h2 style="font-family: 'Bitter'; margin-top: 50px; padding-left: 10px;">결제내역</h2>
 						<nav class="bcItem">
 							<ol class="breadcrumb bc" >
-								<li class="breadcrumb-item active">
-									<a href="/user/wishlist">장바구니</a>
-								</li>
-								<li class="breadcrumb-item" >
+								<li class="breadcrumb-item active" >
 									<a style="font-size: large; font-weight: bold;">결제내역</a>
 								</li>
 								<li class="breadcrumb-item" >
@@ -204,7 +201,7 @@ function reviewWrite(rezNo){
                                 <td>
                                 <div class="col-lg-12" style="text-align:center">
                                     <a href="javascript:void(0)" onclick="fn_view(${wdRez.rezNo})">
-                                        <p class="rezview rezview2"><c:out value="${wdRez.rezNo}" /></p><p class="rezview3">(<!-- 취소요청중${wdRez.rezStatus}-->)</p>
+                                        <p class="rezview rezview2"><c:out value="${wdRez.rezNo}" /></p>
                                     </a>
                                 </div>
                                 </td>
