@@ -145,7 +145,7 @@ function fn_view(eBSeq)
 										<div class="left-content" style="padding: 25px;">
 											<a href="/board/eBoardCoupon">
 											<h1 class="display-5 fw-bolder" id="etitle">쿠폰 발급 이벤트</h1>
-											<div class="caption_desc"></div>
+											<div class="caption_desc">웰딩에서 준비한 쿠폰이벤트! 웰딩 회원이라면 모두 발급 가능합니다 ^^</div>
 											<div class="e_write">admin</div>
 											<div class="e_date">2022.01.01</div></a>
 										</div>

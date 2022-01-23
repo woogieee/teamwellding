@@ -59,7 +59,8 @@ $(document).ready(function(){
 					icon: 'error',
 					text: '포인트 사용범위를 초과하였습니다.'
 				}).then(function(){
-					$(this).val("");
+					$("#pointValue").val("");
+					$("#pointValue").fucus();
 				});
     	  }
       });
@@ -80,13 +81,15 @@ $(document).ready(function(){
 				}).then(function(){
 					return;
 				});
-				return;
+				
+				//return;
+				
 		  }
 	     
 	     var pointMax = ${wdUser.userPoint} - point;
 	     
 	     //총액
-	     var aftPPn = Math.round(${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)});
+	     var aftPPn = Math.round(${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice * (1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)});
 	     
 	  	  if(aftPPn < point)
 		  {
@@ -94,8 +97,10 @@ $(document).ready(function(){
 					icon: 'error',
 					text: '사용하시는 포인트가 총 주문금액보다 많습니다.'
 				}).then(function(){
-					return;
+					$("#pointValue").val("");
+					$("#pointValue").focus();
 				});
+				
 				return;
 		  }
 	     
