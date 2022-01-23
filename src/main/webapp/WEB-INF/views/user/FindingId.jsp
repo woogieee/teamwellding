@@ -68,7 +68,7 @@ function fn_findCheck()
  	$("#userEmail").focus();
  	return;
  	}
-	$("#Findbtn").prop("disabled", true);
+	
 	var i = 0;
 	
 		$.ajax({
@@ -86,6 +86,7 @@ function fn_findCheck()
 	        {
 	        	if(response.code == 0)
 	        			{
+	        			$("#Findbtn").prop("disabled", true);
 	        			$("#gusdkqkqh").append("<ul class='cssPlease1'>보유 아이디 목록</ul>");
 	        			for(i=0;i<=response.data.length;i++)
 	        				{
@@ -95,6 +96,9 @@ function fn_findCheck()
 	        	 else if(response.code == 100)
 	     		{
 	     		 alert("가입된 이메일이 없습니다");
+	     		 $("#userEmail").val("");
+	     		$("#userEmail").focus();
+	     		$("Findbtn").prop("disabled", false);
 	     		}
 	        }
 	       

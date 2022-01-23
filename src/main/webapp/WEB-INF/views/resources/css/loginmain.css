@@ -43,6 +43,17 @@ body, html {
  
 }
 
+.id_list
+{
+	font-weight : 600;
+}
+
+.cssPlease1
+{
+	font-weight : 700;
+	font-size: 20px;
+}
+
 /*---------------------------------------------*/
 a {
 	font-family: Poppins-Regular;
@@ -89,7 +100,7 @@ p {
 .mTab { margin:0 0 5px; }
 .mTab ul { display:-webkit-flex; display:-ms-flexbox; display:-ms-flex; display:flex; position:relative; height:53px; width: 300px;
             margin:auto;}
-.mTab li {  -webkit-flex:1; -ms-flex:1; flex:1; position:relative; border:1px solid #e2e5ea; box-sizing:border-box; overflow:hidden;}
+.mTab li {  -webkit-flex:1; -ms-flex:1; flex:1; position:relative; box-sizing:border-box; overflow:hidden;} /* border:1px solid #e2e5ea;*/
 .mTab li + li { margin-left:-1px; }
 .mTab li:first-child { border-radius:10px 0 0 10px; }
 .mTab li:last-child { border-radius: 0px 10px  10px 0px; }
