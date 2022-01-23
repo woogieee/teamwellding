@@ -334,7 +334,7 @@ body.dark-theme .page-link.active
       <div class="col-lg-12">
          <div class="hsdm_nav">
                 <ul class="hsdm_menu">
-                    <li class="hsem_li sel" id="id1" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">자유게시판</a></li>
+                    <li class="hsem_li sel" id="id1" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">노하우공유</a></li>
                     <li class="hsem_li" id="id2" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">리뷰게시판</a></li>
                     <li class="hsem_li" id="id3" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">댓글관리</a></li>                
                 </ul>              
@@ -420,23 +420,23 @@ body.dark-theme .page-link.active
 		<div id="review">
 		   <ul>
 			  <li class="wdhth2">
-				 <div class="wdhtitle2" style="width:9%;"><p>게시물<br/>번호</p></div><!-- bSeq -->
+				 <div class="wdhtitle2" style="width:7%;"><p>게시물<br/>번호</p></div><!-- bSeq -->
 				 <div class="wdhtitle2" style="width:9%;"><p>아이디</p></div><!-- userId -->
 				 <div class="wdhtitle2" style="width:32%;"><p>제목</p></div><!-- bTitle -->
 				 <div class="wdhtitle2" style="width:33%;"><p>내용</p></div><!-- bContent -->
-				 <div class="wdhtitle2" style="width:8%;"><p>조회수</p></div><!-- bReadCnt -->
-				 <div class="wdhtitle2" style="width:8%;"><p>등록일</p></div><!-- regDate -->
+				 <div class="wdhtitle2" style="width:5%;"><p>조회수</p></div><!-- bReadCnt -->
+				 <div class="wdhtitle2" style="width:13%;"><p>등록일</p></div><!-- regDate -->
 			  </li>
 			  <c:forEach var="review" items="${rList}" varStatus="status">
 			  <li class="wdhtd2">
-				 <div class="wdhcon2" style="width:9%;"><p>${review.RSeq}</p></div>
+				 <div class="wdhcon2" style="width:7%;"><p>${review.RSeq}</p></div>
 				 <div class="wdhcon2" style="width:9%;"><p>${review.userId}</p></div>
 				 <a href="/mng/mngReviewUpdate?RSeq=${review.RSeq}" name="RboardUpdate" class="RboardUpdate">
 					<div class="wdhcon2 mngReviewUpdate" style="width:32%; border-right: 1px solid #dedede;" href="/mng/mngReviewUpdate?RSeq=${review.RSeq}"><p style="cursor: pointer; font-weight: bold;">${review.RTitle}</p></div>
 				 </a>
 				 <div class="wdhcon2" style="width:33%;"><p>${review.RContent}</p></div>
-				 <div class="wdhcon2" style="width:8%;"><p>${review.RReadCnt}</p></div>
-				 <div class="wdhcon2" style="width:8%;"><p>${review.regDate}</p></div>
+				 <div class="wdhcon2" style="width:5%;"><p>${review.RReadCnt}</p></div>
+				 <div class="wdhcon2" style="width:13%;"><p>${review.regDate}</p></div>
 			  </li>
 			  </c:forEach>
 		   </ul>
