@@ -184,7 +184,7 @@ function fn_findCheck()
 						</div>
 						<div class="gusdkqkqh2">
 							<a class="txt2" href="/board/login">로그인</a>
-							<a style="cursor:default; color: #888;">&nbsp;&nbsp;or&nbsp;&nbsp; </a>
+							<p style="cursor:default; color: #888; display: inline-block;">&nbsp;&nbsp;or&nbsp;&nbsp; </p>
 							<a class="txt2" href="/user/FindingPwd">비밀번호 찾기</a>
 						</div>
 					</div>

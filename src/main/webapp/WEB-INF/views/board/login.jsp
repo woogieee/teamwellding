@@ -463,7 +463,7 @@ function plusNum()
 							<a class="txt2" href="/user/FindingId">
 								아이디 찾기
 							</a>
-							<a style="cursor:default; color: #888;">&nbsp;&nbsp;or&nbsp;&nbsp; </a>
+							<p style="cursor:default; color: #888; display: inline-block;">&nbsp;&nbsp;or&nbsp;&nbsp; </p>
 							<a class="txt2" href="/user/FindingPwd">
 								비밀번호 찾기
 							</a>
