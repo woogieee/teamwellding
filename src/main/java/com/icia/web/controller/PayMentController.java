@@ -317,6 +317,95 @@ public class PayMentController
       
       return "/user/payCancelList";
    }
+	
+	@RequestMapping(value="/user/payCancelListView")
+	public String payCancelListView(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	{
+	      String rezNo = HttpUtil.get(request, "rezNo", "");
+	      String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+	      WDUser wdUser = wdUserService.userSelect(cookieUserId);
+	      
+	      WDRez wdRez = null;
+	      //List<WDRez> wdRez = null;
+	      WDCoupon wdCoupon = null;
+	      
+	      if(wdUser != null) 
+	      {
+	         if(StringUtil.equals(wdUser.getStatus(), "Y")) 
+	         {
+	            WDRez search = new WDRez();
+	            search.setUserId(wdUser.getUserId());
+	            search.setRezNo(rezNo);
+	            
+	            search.setRezStatus("C");
+	            
+	            wdRez = wdRezService.rezSelect(search);
+	            wdRez = wdRezService.rezList(wdRez);
+	            
+	            if(wdRez != null) 
+	            {
+	               HashMap<String, Object> map = new HashMap<String, Object>();
+	               map.put("userId", wdRez.getUserId());
+	               map.put("rezNo", wdRez.getRezNo());
+	               
+	               wdCoupon = wdCouponService.couponSelectPayOk(map);
+	               
+	               model.addAttribute("wdRez", wdRez);
+	               model.addAttribute("wdCoupon", wdCoupon);
+	               model.addAttribute("wdUser",wdUser);
+	            }
+	         }
+
+	         
+	      }
+	      
+		return "/user/payCancelListView";
+	}
+	
+	
+	@RequestMapping(value="/user/payCancelListView2")
+	public String payCancelListView2(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	{
+	      String rezNo = HttpUtil.get(request, "rezNo", "");
+	      String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+	      WDUser wdUser = wdUserService.userSelect(cookieUserId);
+	      
+	      WDRez wdRez = null;
+	      //List<WDRez> wdRez = null;
+	      WDCoupon wdCoupon = null;
+	      
+	      if(wdUser != null) 
+	      {
+	         if(StringUtil.equals(wdUser.getStatus(), "Y")) 
+	         {
+	            WDRez search = new WDRez();
+	            search.setUserId(wdUser.getUserId());
+	            search.setRezNo(rezNo);
+	            
+	            search.setRezStatus("D");
+	            
+	            wdRez = wdRezService.rezSelect(search);
+	            wdRez = wdRezService.rezList(wdRez);
+	            
+	            if(wdRez != null) 
+	            {
+	               HashMap<String, Object> map = new HashMap<String, Object>();
+	               map.put("userId", wdRez.getUserId());
+	               map.put("rezNo", wdRez.getRezNo());
+	               
+	               wdCoupon = wdCouponService.couponSelectPayOk(map);
+	               
+	               model.addAttribute("wdRez", wdRez);
+	               model.addAttribute("wdCoupon", wdCoupon);
+	               model.addAttribute("wdUser",wdUser);
+	            }
+	         }
+
+	         
+	      }
+	      
+		return "/user/payCancelListView2";
+	}
 
 
 }

@@ -6026,8 +6026,9 @@ responsive
 
 .chamgo
 {
-	font-size: 10px;
-	color: #a8a8a8;
+	font-size: 12px;
+    color: #8a8a8a;
+    font-weight: 550;
 }
 
 .HpriceTd
@@ -6051,8 +6052,8 @@ responsive
 
 #xPrice
 {
-	font-weight: none;
-	font-size: 10px;
+	font-weight: 600;
+	font-size: 13px;
 	color: #a8a8a8;
 	text-decoration: line-through;
 }
@@ -6065,6 +6066,7 @@ responsive
 #discountSpan
 {
 	color: #f85151;
+	font-size: 14px;
 }
 
 .HpriceTd .Hpc
@@ -6106,8 +6108,10 @@ responsive
 
 .bcItem h5
 {
-	color: black;
+	color: #444;
 	font-weight: bold;
+	font-size: 16px;
+	cursor: default;
 }
 
 /* 마이페이지 관련 종료 */
@@ -7024,12 +7028,18 @@ textarea::placeholder {
 	line-height: 16px;
 }
 
+.rezview
+{
+	font-weight: 600;
+	cursor: default;
+	line-height: 16px;
+}
+
 .rezview3
 {
-	font-size: 13px;
-	font-weight: 300;
+	font-size: 14px;
+	font-weight: 600;
 	display: inline-block;
-    color: #333;
     line-height: 32px;
 }
 
