@@ -38,7 +38,13 @@
 
 	
 $(function(){
+	
+	//idbox 안보이게하기
+	$("#idbox").css("display", "none");
+	
 	$("#Findbtn").on("click", function(){
+		
+		$("#idbox").css("display", "block");
 		fn_findCheck();	
 	});
 	
@@ -59,6 +65,10 @@ $(function(){
 		  });
 		 
   });
+	
+	
+	
+	
   
 });
 	
@@ -76,8 +86,11 @@ function fn_findCheck()
 			$("#userEmail").focus();
 		 	return;
 		});
+
  	}
-	var i = 0;
+	else
+	{
+		var i = 0;
 	
 		$.ajax({
 			type : "POST",
@@ -85,6 +98,7 @@ function fn_findCheck()
 			data : {
 				userEmail : $("#userEmail").val()
 			},
+		
 			datatype : "JSON",
 			beforeSend : function(xhr){
 	            xhr.setRequestHeader("AJAX", "true");
@@ -92,33 +106,44 @@ function fn_findCheck()
 	        success : function(response)
 	        {
 	        	if(response.code == 0)
-	        			{
-			        		Swal.fire({ 
-			        			icon: 'success',
-			        			title: '아이디 검색 완료!',
-			        			text: '입력하신 이메일주소로 아이디를 찾았습니다.'
-			        		}).then(function(){
-			        			$("#Findbtn").prop("disabled", true); //버튼비활성화
-			        			$("#gusdkqkqh").append("<ul class='cssPlease1'>보유 아이디 목록</ul>");
-			        			for(i=0;i<=response.data.length;i++)
-		        				{
-		        					$("#gusdkqkqh").append("<li class='cssPlease2'>"+response.data[i].userName+response.data[i].userId+" "+"</li>");
-		        				}
-			        		});
-		        			//$("#gusdkqkqh").append("<ul class='cssPlease1'>보유 아이디 목록</ul>");
-		        			//for(i=0;i<=response.data.length;i++)
-		        			//	{
-		        			//		$("#gusdkqkqh").append("<li class='cssPlease2'>"+response.data[i].userName+response.data[i].userId+" "+"</li>");
-		        			//	}
-		        			//$("#Findbtn").prop("disabled", true);
-	        			}
-/* 	        	 else if(response.code == 100)
+       			{
+	        		Swal.fire({ 
+	        			icon: 'success',
+	        			title: '아이디 검색 완료!',
+	        			text: '입력하신 이메일주소로 아이디를 찾았습니다.'
+	        		}).then(function(){
+	        			$("#Findbtn").prop("disabled", true); //버튼비활성화
+	        			$("#gusdkqkqh2").append("<ul class='cssPlease3'>입력한 이메일 주소로 가입된 아이디입니다.</ul>");
+	        			for(i=0;i<=response.data.length;i++)
+        				{
+        					$("#gusdkqkqh2").append("<li class='cssPlease2'>"+response.data[i].userName+response.data[i].userId+"</li>");
+        				}
+	        			$("#gusdkqkqh2").append("입니다");
+	        			
+	        		});
+        			//$("#gusdkqkqh").append("<ul class='cssPlease1'>보유 아이디 목록</ul>");
+        			//for(i=0;i<=response.data.length;i++)
+        			//	{
+        			//		$("#gusdkqkqh").append("<li class='cssPlease2'>"+response.data[i].userName+response.data[i].userId+" "+"</li>");
+        			//	}
+        			//$("#Findbtn").prop("disabled", true);
+       			}
+ 	        	else if(response.code == 100)
 	     		{
-	     		 alert("가입된 이메일이 없습니다");
-	     		} */
+	     		 	//alert("가입된 이메일이 없습니다");
+	 	   		    Swal.fire({ 
+	 	   			icon: 'error',
+	 	   			text: '가입된 이메일이 없습니다.'
+	 	   		  }).then(function(){
+	 	   			  return;
+	 	   		  });
+	     		}
+
 	        }
 	       
 		});
+		
+		}
 	}
 </script>
 </head>
@@ -128,19 +153,16 @@ function fn_findCheck()
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-26">
+					<span class="login100-form-title">
 						<h1 id="logo"><img src="../resources/images/theWellding.png" width="150" height="auto" onclick="fn_index()" style="cursor: pointer;" /></h1>
-
 					</span>
-					<div>
-							<ul>
-                     		</ul>
-                     	</div>
-					<span class="login100-form-title p-b-48">
+
+					<span class="login100-form-title" style="padding-bottom: 30px;">
 						<!-- <i class="zmdi zmdi-font"></i> -->
 						
 						<div class="mTab eTab">	
 								<ol id="gusdkqkqh">
+									<h3>아이디 찾기</h3>
 									<p class="id_list">회원정보에 등록한 이메일을 입력해주세요</p>	
 								</ol>
 						</div>
@@ -153,20 +175,34 @@ function fn_findCheck()
 						</span>
 						<input class="input100" type="text" name="userEmail" id="userEmail" >
 						<span class="focus-input100" data-placeholder="Email"></span>
+						
 					</div>
+					
+					<div id="idbox">
+						<div id="gusdkqkqh2">
+							<div id="id_li_box"></div>
+						</div>
+						<div class="gusdkqkqh2">
+							<a class="txt2" href="/board/login">로그인</a>
+							<a style="cursor:default; color: #888;">&nbsp;&nbsp;or&nbsp;&nbsp; </a>
+							<a class="txt2" href="/user/FindingPwd">비밀번호 찾기</a>
+						</div>
+					</div>
+					
+					
 					
 					
 							<div class="container-login100-form-btn2">
 						<div class="wrap-login100-form-btn2">
 							<div class="login100-form-bgbtn2"></div>
 							<button type="button" id="Findbtn" class="login100-form-btn2" >
-								찾기
+								아이디 찾기
 							</button>
 						</div>
 						<div class="wrap-login100-form-btn2">
 							<div class="login100-form-bgbtn2"></div>
 							<button type="button" id="btn_cc"" class="login100-form-btn2">
-								돌아가기
+								취소
 							</button>
 						</div>
 						

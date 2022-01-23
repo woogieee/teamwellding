@@ -399,7 +399,7 @@ function plusNum()
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form">
-					<span class="login100-form-title" style="padding-bottom: 10px;">
+					<span class="login100-form-title">
 						<h1 id="logo"><img src="../resources/images/theWellding.png" width="140" height="auto" onclick="fn_index()" style="cursor: pointer; padding-bottom: 10px;" /></h1>
 
 					</span>
@@ -409,7 +409,7 @@ function plusNum()
 							<ul>
 								
                         <li id="id1" class="selected" onclick="classChange(this)"><a href="javascript:void(0)">회원</a></li>
-                        <li id="id2" onclick="classChange(this)"><a href="javascript:void(0)" >관리자</a></li>
+                        <li id="id2" onclick="classChange(this)" style="border-left:none; border-right: none;"><a href="javascript:void(0)" >관리자</a></li>
                         <li id="id3" onclick="classChange(this)"><a href="javascript:void(0)" >전문가</a></li>
 								<!-- <li class="selected"><a href="#" onclick="changeLogin('3', 'F', 'F');">전문가</a></li> -->
 							</ul>
@@ -444,7 +444,7 @@ function plusNum()
 					</div>
 					
 
-					<div class="text-center" style="padding-top: 40px;">
+					<div class="text-center" style="padding-top: 50px;">
 						<span class="txt1">
 							Wellding에 처음이세요?&nbsp;
 						</span>
