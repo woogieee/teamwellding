@@ -231,7 +231,7 @@ function fn_validateEmail(value)
 					<input type="password" id="pwd1" name="pwd1"
 						value="${wdUser.userPwd}" maxlength="20">
 				</div>
-				<p class="msg">비밀번호를 입력해 주세오.</p>
+				<p class="msg">비밀번호를 입력해 주세요.</p>
 
 			</dd>
 			<dt>비밀번호 확인</dt>
@@ -246,14 +246,14 @@ function fn_validateEmail(value)
 			<dt>이름</dt>
 			<dd>
 				<div class="input">
-					<input type="text" id="name" name="name" placeholder="${wdUser.userName}">
+					<input type="text" id="name" name="name" value="${wdUser.userName}">
 				</div>
 			</dd>
 			
 			<dt>전화번호</dt>
 			<dd>
 				<div class="input">
-					<input type="text" id="number" placeholder="${wdUser.userNumber}">
+					<input type="text" id="number" value="${wdUser.userNumber}">
 				</div>
 				<p class="msg"></p>
 			</dd>
@@ -261,7 +261,7 @@ function fn_validateEmail(value)
 			<dt>닉네임</dt>
 			<dd>
 				<div class="input">
-					<input type="text" id="nickname" placeholder="${wdUser.userNickname}">
+					<input type="text" id="nickname" value="${wdUser.userNickname}">
 				</div>
 				<p class="msg">
 				<p class="msg"></p>
@@ -271,7 +271,7 @@ function fn_validateEmail(value)
 			<dd>
 				<div class="input">
 					<input id="email" data-bind="email" type="text"
-						placeholder="${wdUser.userEmail}" value="">
+						value="${wdUser.userEmail}" value="">
 				</div>
 				<p class="msg"></p>
 				
