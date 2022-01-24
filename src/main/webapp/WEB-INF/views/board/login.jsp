@@ -452,12 +452,7 @@ function plusNum()
 						<a class="txt2" href="/board/regform">
 							회원가입하기
 						</a>
-						<a class="txt2" href="/user/FindingId">
-							아이디
-						</a>
-						<a class="txt2" href="/user/FindingPwd">
-							비밀번호 찾기
-						</a>
+						
 					</div>
 					
 					<div class="text-center" style="padding-top: 5px;">
