@@ -184,7 +184,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                <c:if test="${!empty eBoard}">
                <c:forEach items="${eBoard}" var="eboard" varStatus="status">
                <tr>
-               	   <td>${eboard.eBSeq}</td>
+               	   <td><a href="/mng/eBoardUpdate?eBSeq=${eboard.eBSeq}" name="eBoardUpdate" class="eBoardUpdate">${eboard.eBSeq}</a></td>
                    <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;">
                    	<a href="/mng/eBoardUpdate?eBSeq=${eboard.eBSeq}" name="eBoardUpdate" class="eBoardUpdate">${eboard.eBTitle}</a>
                    </th>

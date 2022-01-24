@@ -37,5 +37,8 @@ public interface WDCouponDao {
 	//이벤트 쿠폰 발급하기
 	public WDCoupon downloadCoupon(String userId);
 	
+	//결제 취소인 내역에서 결제중 쿠폰 정보를 가져오기 시작
+	public WDCoupon couponSelectCancelOk(HashMap<String, Object> map);
+	
 }
 

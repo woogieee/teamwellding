@@ -1,5 +1,7 @@
 package com.icia.web.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -142,7 +144,6 @@ public class WDAdminEBoardController {
     	Response<Object> res = new Response<Object>();
         
         long eBSeq = HttpUtil.get(request, "eBSeq", (long)0);
-        String adminId = HttpUtil.get(request, "adminId", "");
         String eBTitle = HttpUtil.get(request, "eBTitle", "");
         String eBContent = HttpUtil.get(request, "eBContent", "");
         
@@ -167,6 +168,7 @@ public class WDAdminEBoardController {
      		   
      		   if(wdEBoardService.eBoardUpdate(wdEBoard) > 0)
      		   {
+     			  
      			   res.setResponse(0, "Success");
      		   }
      		   else
@@ -197,7 +199,7 @@ public class WDAdminEBoardController {
     	return "/mng/plusEBoard";
     }
     
-  //공지사항 게시글 추가하기!!
+    //이벤트 게시글 추가하기!!
     @RequestMapping(value="/mng/eBoardWrite")
     @ResponseBody
     public Response<Object> eBoardWrite(MultipartHttpServletRequest request, HttpServletResponse response)
@@ -332,5 +334,98 @@ public class WDAdminEBoardController {
  	   
  	   return ajaxResponse;
     }
+    
+    //이벤트 게시판 이미지 수정 
+    /*@RequestMapping(value ="/mng/eBoardImgUpdate")
+    @ResponseBody
+    public Response<Object> eBoardImgUpdate(MultipartHttpServletRequest request, HttpServletResponse response)
+    {
+    	Response<Object> ajaxResponse = new Response<Object>();
+    	
+    	String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+    	long bSeq = HttpUtil.get(request, "eBSeq", (long) 0);
+    	long eBSeq = HttpUtil.get(request, "bSeq", (long) 0);
+    	long count = 0;
+    	
+    	WDEBoard wdEBoard = new WDEBoard();
+    	
+    	System.out.println("================================================");
+		System.out.println("eBSeq : " + eBSeq);
+		System.out.println("================================================");
+ 
+    	String imgName = wdEBoardService.searchImgName(eBSeq);
+    	//기존 이미지 번호 문자열로 갖고오기
+    	FileData fileData = HttpUtil.getFile(request, "img", UPLOAD_SAVE_EVENT, imgName); 	
+    	//혹시 몰라 setMethod로 값 넣어줌
+    	fileData.setFileName(imgName);
+    	
+    	System.out.println("================================================");
+		System.out.println("fileData : " + fileData.getFileName());
+		System.out.println("================================================");
+    	
+		//fileData에 값이 있는지 없는지 확인
+    	if(fileData != null && fileData.getFileSize() > 0)
+    	{
+    		//기존 이미지 파일 삭제 건 수가 0보다 크다면
+    		if(wdEBoardService.eBoardFileDelete(eBSeq) > 0)
+    		{
+    			// eBoard에 있는 이미지가 삭제되었다면 eventFile에 있는 이미지도 같이 삭제
+    			wdEBoardService.eventFileDelete(fileData.getFileName());
+    			
+    			//기존에 있는 이미지 확장자 이름 제거
+    			imgName = imgName.replace(".jpg", "");
+                imgName = imgName.replace(".png", "");
+    			
+    			WDEBoardFile wdEBoardFile = new WDEBoardFile();
+        		
+        		wdEBoardFile.setFileName(imgName);
+        		wdEBoardFile.setFileOrgName(fileData.getFileOrgName());
+        		wdEBoardFile.setFileExt(fileData.getFileExt());
+        		wdEBoardFile.setFileSize(fileData.getFileSize());
+        		
+        		wdEBoard.setWdEBoardFile(wdEBoardFile);
+
+        		System.out.println("================================================");
+				System.out.println("wdEBoardFile : " + wdEBoardFile.getFileName());
+				System.out.println("================================================");
+        
+        		//새로운 이미지 파일 추가
+        		if(wdEBoardService.eBoardFileInsert(wdEBoardFile) > 0)
+        		{
+        			// wdEBoardFile에 저장한 이미지 이름을 wdEBoard 이미지 이름에 덫씌우기
+        			wdEBoard.seteBImgName(wdEBoardFile.getFileName());
+    				// wdEBoardFile db에 이미지 이름 추가
+    				wdEBoardService.eBoardFileInsert(wdEBoardFile);
+    				System.out.println("=========================================================================");
+    				System.out.println("이미지 이름 : " + wdEBoard.geteBImgName());
+    				System.out.println("=========================================================================");
+    				
+    				wdEBoard.seteBImgName(imgName);
+    				wdEBoard.seteBSubImgName(imgName);
+    				
+    				//EBoardFile 이미지 이름을 EBoard 이미지 이름을 db에 넣기
+    				wdEBoardService.eBoardFileUpdate(wdEBoard);
+    				
+    				ajaxResponse.setResponse(0, "Success");
+        		}
+        		else
+        		{
+        			ajaxResponse.setResponse(400, "Not Execute img ");
+        		}
+    		}    	
+    		else
+    		{
+    			ajaxResponse.setResponse(405, "Not Execute delete img");
+    		}
+    	}
+    	else
+    	{
+    		ajaxResponse.setResponse(404, "이미지를 수정하지 않았습니다.");
+    	}
+    		
+    	
+    		
+    	return ajaxResponse;
+    }*/
     
 }

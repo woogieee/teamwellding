@@ -61,6 +61,7 @@ $(document).ready(function(){
 				}).then(function(){
 					$("#pointValue").val("");
 					$("#pointValue").fucus();
+
 				});
     	  }
       });
@@ -108,7 +109,7 @@ $(document).ready(function(){
 	     
 	     document.getElementById("pointBox").innerHTML = pointMax;
 	     
-	     var ddong = ${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))} + parseInt(price) + Number(point);
+	     var ddong = Math.round(${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))}) + parseInt(price) + Number(point);
 	           
 	     ddong = ddong.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 	     

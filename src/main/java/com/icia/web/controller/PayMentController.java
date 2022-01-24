@@ -195,6 +195,7 @@ public class PayMentController
 	               model.addAttribute("wdRez", wdRez);
 	               model.addAttribute("wdCoupon", wdCoupon);
 	               model.addAttribute("wdUser",wdUser);
+	               
 	            }
 	         }
 	      }
@@ -345,17 +346,17 @@ public class PayMentController
 	            if(wdRez != null) 
 	            {
 	               HashMap<String, Object> map = new HashMap<String, Object>();
+	               map.put("rezStatus", 'C');
 	               map.put("userId", wdRez.getUserId());
 	               map.put("rezNo", wdRez.getRezNo());
 	               
-	               wdCoupon = wdCouponService.couponSelectPayOk(map);
+	               wdCoupon = wdCouponService.couponSelectCancelOk(map);
 	               
 	               model.addAttribute("wdRez", wdRez);
 	               model.addAttribute("wdCoupon", wdCoupon);
 	               model.addAttribute("wdUser",wdUser);
 	            }
 	         }
-
 	         
 	      }
 	      
@@ -390,10 +391,11 @@ public class PayMentController
 	            if(wdRez != null) 
 	            {
 	               HashMap<String, Object> map = new HashMap<String, Object>();
+	               map.put("rezStatus", 'D');
 	               map.put("userId", wdRez.getUserId());
 	               map.put("rezNo", wdRez.getRezNo());
 	               
-	               wdCoupon = wdCouponService.couponSelectPayOk(map);
+	               wdCoupon = wdCouponService.couponSelectCancelOk(map);
 	               
 	               model.addAttribute("wdRez", wdRez);
 	               model.addAttribute("wdCoupon", wdCoupon);

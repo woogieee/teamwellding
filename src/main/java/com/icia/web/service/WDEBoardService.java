@@ -108,9 +108,9 @@ public class WDEBoardService
 		 }
 		 return count;
 	 }
-	 
-	//이벤트 글 첨부파일 삭제(관리자)
-		public int eBoardFileDelete(long bSeq)
+	
+	 //이벤트 글(eBoard) 첨부파일 삭제(관리자)
+	 	public int eBoardFileDelete(long bSeq)
 		{
 			int count = 0;
 			
@@ -121,6 +121,23 @@ public class WDEBoardService
 			catch(Exception e)
 			{
 				logger.error("[WDEBoardService] eBoardFileDelete Exception", e);
+			}
+			
+			return count;
+		}
+	 	
+	 	//이벤트 글(eventFile) 첨부파일 삭제(관리자)
+	 	public int eventFileDelete(String fileName)
+		{
+			int count = 0;
+			
+			try
+			{
+				count = wdEBoardDao.eventFileDelete(fileName);
+			}
+			catch(Exception e)
+			{
+				logger.error("[WDEBoardService] eventFileDelete Exception", e);
 			}
 			
 			return count;
@@ -228,10 +245,27 @@ public class WDEBoardService
 		}
 		catch(Exception e) 
 		{
-			logger.error("[WDHallService] maxImgName Exception", e);
+			logger.error("[WDEBoardService] maxImgName Exception", e);
 		}
 			return maxName;
 		}
+		
+		 //이벤트 이미지 넘버 조회
+		public String searchImgName(long eBSeq) {
+		
+		String imgName = "";
+			
+		try 
+		{
+			imgName = wdEBoardDao.searchImgName(eBSeq);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDEBoardService] searchImgName Exception", e);
+		}
+			return imgName;
+		}	
+
 }
 	
 

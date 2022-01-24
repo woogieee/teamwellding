@@ -48,6 +48,7 @@ $(function(){
 	});
 	
 	$("#btn_cc").on("click", function(){
+
 	    Swal.fire({ 
 		icon: 'warning',
 		text: '로그인 페이지로 돌아갑니다.'
@@ -55,6 +56,7 @@ $(function(){
 		  location.href = "/board/login";
 	  });
 	});
+
   
 });
 	
@@ -147,6 +149,7 @@ function fn_findCheck()
 								        toast.addEventListener('mouseenter', Swal.stopTimer)
 								        toast.addEventListener('mouseleave', Swal.resumeTimer)
 								    }
+
 								});
 								
 								Toast.fire({
@@ -173,6 +176,7 @@ function fn_findCheck()
 								}).then(function(){
 									$("#Findbtn").prop("disabled", false);
 								});*/
+
 								Swal.fire({ 
 									icon: 'error',
 									title: '이메일 발송실패,,'

@@ -184,7 +184,7 @@ function fn_confirm()
 	            <c:if test="${!empty list}">
 	            <c:forEach  var="payment" items="${list}" varStatus="status">
 	            <tr>
-	                <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;"><a href="/mng/MngUserUpdate?userId=${payment.userId}" name="userUpdate" class="userUpdate">${payment.userId}</a></th>
+	                <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;">${payment.userId}</th>
 	                <td>${payment.rezNo}</td>
 	                <td>
 	                <c:if test="${!empty payment.hCode}">H</c:if>
@@ -211,7 +211,7 @@ function fn_confirm()
 			
 			<c:if test="${paging.prevBlockPage gt 0}">
 	        <!-- 이전 블럭이 있다는 뜻임, 이전 블럭 페이지가 0보다 크면. -->
-	         	<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${paging.prevBlockPage})">이전블럭</a></li>
+	         	<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${paging.prevBlockPage})">이전</a></li>
 			</c:if>
 			
 	   		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
@@ -228,7 +228,7 @@ function fn_confirm()
                   <!-- 페이지 종료 -->
                   <!--  다음 블럭 시작 -->
                   <c:if test="${paging.nextBlockPage gt 0}">
-                     <a href="javascript:void(0)" class="btn2 btn-primary" onclick="fn_paging(${paging.nextBlockPage})" title="다음 블럭">&raquo;</a>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_paging(${paging.nextBlockPage})">다음</a></li>
                </c:if>
                   <!--  다음 블럭 종료 -->
             </c:if>
