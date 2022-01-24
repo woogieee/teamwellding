@@ -195,6 +195,7 @@ public class PayMentController
 	               model.addAttribute("wdRez", wdRez);
 	               model.addAttribute("wdCoupon", wdCoupon);
 	               model.addAttribute("wdUser",wdUser);
+	               
 	            }
 	         }
 	      }
