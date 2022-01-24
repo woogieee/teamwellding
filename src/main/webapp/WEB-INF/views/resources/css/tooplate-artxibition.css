@@ -7052,13 +7052,6 @@ textarea::placeholder {
 	line-height: 16px;
 }
 
-.rezview
-{
-	font-weight: 600;
-	cursor: default;
-	line-height: 16px;
-}
-
 .rezview3
 {
 	font-size: 14px;
@@ -7182,9 +7175,11 @@ textarea::placeholder {
     top: -18px;
 }
 
+
 #receiverName
 {
 	font-weight: 800;
     color: #333;
 }
+
 /*보현추가 끝*/
