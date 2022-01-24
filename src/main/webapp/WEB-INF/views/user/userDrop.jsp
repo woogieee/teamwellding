@@ -65,8 +65,9 @@ function fn_loginCheck()
 			icon: 'warning',
 			text: '비밀번호를 입력해주세요.'
 		});
+		
 		$("#userPwd").focus();
-		return;
+		
 	}
 	
 	$.ajax({
@@ -90,29 +91,55 @@ function fn_loginCheck()
 				
 				if(code == 0)
 				{
-					alert("회원 탈퇴가 완료되었습니다.");
-					location.href = "/";
+					//alert("회원 탈퇴가 완료되었습니다.");
+					//location.href = "/";
+					Swal.fire({ 
+						icon: 'success',
+						text: '회원 탈퇴가 완료되었습니다.'
+					}).then(function(){
+						location.href = "/";
+					});
 				}
 				else if(code == 404)
 				{
-					alert("비밀번호를 입력하세요");
+					//alert("비밀번호를 입력하세요");
+					//$("#userPwd").focus();
+					Swal.fire({ 
+						icon: 'warning',
+						text: '비밀번호를 입력해주세요.'
+					});
+					
 					$("#userPwd").focus();
 				}
 				else if(code == 400)
 				{
-					alert("비밀번호가 일치하지 않습니다.");
-					$("#userPwd").focus();;
+					//alert("비밀번호가 일치하지 않습니다.");
+					
+					Swal.fire({ 
+						icon: 'warning',
+						text: '비밀번호가 일치하지 않습니다.'
+					});
+										
+					$("#userPwd").focus();
 				}
 				else
 				{
-					alert("오류가 발생하였습니다.");
+					//alert("오류가 발생하였습니다.");
+					Swal.fire({ 
+						icon: 'error',
+						text: '오류가 발생하였습니다.'
+					});
 					$("#userPwd").focus();
 				}	
 					
 			}
 			else
 			{
-				alert("오류가 발생하였습니다.");
+				//alert("오류가 발생하였습니다.");
+				Swal.fire({ 
+					icon: 'error',
+					text: '오류가 발생하였습니다.'
+				});
 				$("#userId").focus();
 			}
 		},

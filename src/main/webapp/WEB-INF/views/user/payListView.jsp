@@ -431,7 +431,7 @@ $(document).ready(function(){
 	                     <dl class="sumbox1">
 	                        <dt class="sumsec">쿠폰 할인금액</dt>
 	                        <dd class="sumpay2" id="saleP">
-	                           <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezPoint}" />원</span>
+	                           <fmt:formatNumber type="number" maxFractionDigits="3" value="${wdCoupon.cPrice}" />원</span>
 	                        </dd>
 	                     </dl>
 	                 </c:if>    

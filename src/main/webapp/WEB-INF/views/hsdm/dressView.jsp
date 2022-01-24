@@ -194,6 +194,15 @@ $(document).ready(function(){
 									}
 								});
 							}
+							else if(response.code == 500)
+							{
+								Swal.fire({ 
+									icon: 'error',
+									text: '로그인이 필요합니다.'
+								}).then(function(){
+									return;
+								});
+							}
 							else
 							{
 								//alert("장바구니에 상품을 담는 중 오류가 발생했습니다.");
@@ -297,7 +306,9 @@ function fn_view(dNo)
 	                            <div class="dis-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdDress.dPrice * (1-wdDress.dDiscount*0.01)}" />원</div>
                             </div>
                             <div class="banner">
-                                <img src="../resources/images/tour.png" width="100%">
+                            	<a href="/board/specialist">
+	                                <img src="../resources/images/tour.png" width="100%">                            	
+                            	</a>
                             </div>
                             <div class="main-dark-button2"><a href="#" id="chae">이 드레스 담기</a></div>
                         </div>

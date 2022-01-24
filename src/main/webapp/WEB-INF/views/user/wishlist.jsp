@@ -344,7 +344,7 @@ $("#payMent").on("click", function(){
                            
                            
                            <span>
-                                           <select id="year" class="year">
+                                 <select id="year" class="year">
                                     <option value="">년도</option>
                                     <option value="2022" <c:if test="${year eq '2022'}">selected</c:if>>2022</option>
                                     <option value="2023" <c:if test="${year eq '2023'}">selected</c:if>>2023</option>
