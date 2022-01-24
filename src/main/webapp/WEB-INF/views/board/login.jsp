@@ -409,7 +409,7 @@ function plusNum()
 							<ul>
 								
                         <li id="id1" class="selected" onclick="classChange(this)"><a href="javascript:void(0)">회원</a></li>
-                        <li id="id2" onclick="classChange(this)" style="border-left:none; border-right: none;"><a href="javascript:void(0)" >관리자</a></li>
+                        <li id="id2" onclick="classChange(this)" style="border-left:none; /*border-right: none;*/"><a href="javascript:void(0)" >관리자</a></li>
                         <!-- li id="id3" onclick="classChange(this)"><a href="javascript:void(0)" >전문가</a></li-->
 								<!-- <li class="selected"><a href="#" onclick="changeLogin('3', 'F', 'F');">전문가</a></li> -->
 							</ul>
