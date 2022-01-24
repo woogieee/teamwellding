@@ -68,11 +68,62 @@ function fn_eBoardUpdate()
 	}
 	
 	//수정 취소
+
 	if(!confirm("게시글을 수정하시겠습니까?"))
 	{
 		//NO
 		return;
 	}
+	
+	/* var form = $("#regForm")[0];
+    //폼 자체의 타입으로 보내기 위한 객체 생성.
+    var formData2 = new FormData(form);
+	
+	$.ajax({
+		type:"POST",
+		enctype:'multipart/form-data',
+		url: "/mng/eBoardImgUpdate",
+		data: formData2,
+		async : false,			//비동기 여부
+        processData:false,      //Data를 contentTpye에 맞게 변환
+        contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
+        cache:false,
+        timeout:600000,
+        beforeSend:function(xhr) //XHR Header를 포함해서 HTTP Request를 하기전에 호출됩니다.
+        {
+           xhr.setRequestHeader("AJAX", "true");
+        },
+		success: function(res)
+		{
+			icia.common.log(res);
+			
+			if(res.code == 0)
+			{
+				alert("이벤트 게시물 이미지가 수정되었습니다.");
+				fn_colorbox_close(parent.fn_pageInit);
+			}
+			else if(res.code == 1)
+			{
+				alert("이벤트 게시물 이미지가 변경되었습니다.");
+			}
+			else if(res.code == -400)
+			{
+				alert("이벤트 게시물 이미지가 등록되지 않았습니다.");
+			}
+			else if(res.code == -405)
+			{
+				alert("이벤트 게시물 이미지 수정 중 오류가 발생했습니다.");
+			}
+		},
+		complete: function(data)
+		{
+			icia.common.log(data);
+		},
+		error: function(xhr, status, error)
+		{
+			icia.common.error(error);
+		}
+	}); */
 	
 	var formData = {
 			eBSeq: $("#bSeq").val(),
@@ -92,6 +143,7 @@ function fn_eBoardUpdate()
 			if(res.code == 0)
 			{
 				alert("게시물이 수정되었습니다.");
+				
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == -1)
@@ -118,7 +170,6 @@ function fn_eBoardUpdate()
 			icia.common.error(error);
 		}
 	});
-	
 }
 
 function fn_eBoardDelete()
@@ -168,6 +219,7 @@ function fn_eBoardDelete()
 </script>
 </head>
 <body>
+
 <div class="container">
     <div class="row" style="width: 100%; text-align: center;">
     	<div class="col-lg-12">

@@ -213,7 +213,7 @@ WHERE
 <!-- (관리자ver) 이벤트 글 첨부파일 등록 종료 -->
 
 <!-- (관리자ver) 이벤트 글 삭제 시작 -->
-<delete id="eBoardDelete">
+<delete id="eBoardDelete" parameterType="int">
 DELETE FROM WD_EBOARD
     WHERE
         B_SEQ = #{value}
@@ -221,12 +221,22 @@ DELETE FROM WD_EBOARD
 <!-- (관리자ver) 이벤트 글 삭제 끝 -->
 
 <!-- (관리자ver) 게시물 첨부파일 삭제 시작 -->
-<delete id="eBoardFileDelete" parameterType="long">
-DELETE FROM WD_BOARD_FILE
+<delete id="eventFileDelete" parameterType="string">
+DELETE FROM WD_EVENT_FILE
 WHERE
-        B_SEQ = #{value}
+        EB_FILE_NAME = #{value}
 </delete>
 <!-- (관리자ver) 게시물 첨부파일 삭제 종료 -->
+
+<!-- (관리자ver) 게시물(eBoard) 첨부파일 삭제 시작 -->
+<delete id="eBoardFileDelete" parameterType="long">
+UPDATE WD_EBOARD
+SET
+    B_IMGNAME = ''
+WHERE
+    B_SEQ = #{value}
+</delete>
+<!-- (관리자ver) 게시물(eBoard) 첨부파일 삭제 종료 -->
 
 <!-- 이벤트 게시물 이미지 넘버링 시작 -->
 <select id="maxImgName" parameterType="int" resultType="string">
@@ -236,5 +246,16 @@ FROM
     WD_EBOARD
 </select>
 <!-- 이벤트 게시물 이미지 넘버링 끝 -->
+
+<!-- 이벤트 게시물 이미지 넘버링 조회 -->
+<select id="searchImgName" parameterType="long" resultType ="string">
+SELECT
+    NVL((B_IMGNAME),'') AS B_IMGNAME
+FROM
+    WD_EBOARD
+WHERE 
+	B_SEQ = #{value}
+</select>
+<!-- 이벤트 게시물 이미지 넘버링 조회 끝 -->
 
 </mapper>

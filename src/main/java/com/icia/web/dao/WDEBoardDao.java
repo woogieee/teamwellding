@@ -40,10 +40,16 @@ public interface WDEBoardDao
 	//게시물 삭제
 	public int eBoardDelete(long bSeq);
 	
-	//게시물 첨부파일 삭제
-	public int eBoardFileDelete(long eBSeq);
+	//게시물(eBoard) 첨부파일 삭제
+	public int eBoardFileDelete(long bSeq);
+	
+	//게시물(eventFile) 첨부파일 삭제
+	public int eventFileDelete(String fileName);
 	
 	//게시물 첨부파일 이미지 네임
 	public String maxImgName();
+	
+	//게시물 첨부파일 이미지 네임 조회
+	public String searchImgName(long eBSeq);
 	
 }
