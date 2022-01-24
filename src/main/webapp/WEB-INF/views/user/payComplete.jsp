@@ -89,7 +89,7 @@ $(document).ready(function() {
                </div>
                   <div class="rez_sum">
                      <button type="button" id="btnComplete" class="btn btn-primary" title="결제내역보러가기" style="border: solid 1px black; background:white; position:relative; top:4px; color:black;">결제내역 보러가기</button>
-                     <button type="button" id="btnMyPage" class="btn btn-primary" title="장바구니" style="border: solid 1px black; background:white; position:relative; top:4px; color:black;">장바구니</button>
+                     <!--button type="button" id="btnMyPage" class="btn btn-primary" title="장바구니" style="border: solid 1px black; background:white; position:relative; top:4px; color:black;">장바구니</button-->
                   </div>
                </div>
                

@@ -6650,12 +6650,12 @@ responsive
 .rez_sum
 {
 	margin-top: 30px;
-	border-top: 1px solid #ccc;
+	/*border-top: 1px solid #ccc;*/
 	border-bottom: 1px solid #ccc;
 	text-align: center;
 	width: 100%;
 	/*height: 100px;*/
-	padding: 24px 0;
+	padding: 0 0 60px 0;
 	margin-bottom: 40px;
 }
 
