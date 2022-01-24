@@ -136,6 +136,7 @@ $(document).ready(function(){
 
                                   <td>
                                   <div class="col-lg-12" style="text-align:center">
+
                                     <p class="rezview rezview4" style="color:#555;">${wdRez.rezDate}</p>
                                   </div>
                                   </td>

@@ -271,6 +271,7 @@ function fn_validateEmail(value)
 			<dd>
 				<div class="input">
 					<input id="email" data-bind="email" type="text"
+
 						value="${wdUser.userEmail}" value="">
 				</div>
 				<p class="msg"></p>
