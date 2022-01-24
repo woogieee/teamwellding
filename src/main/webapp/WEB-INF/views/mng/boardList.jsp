@@ -420,7 +420,6 @@ body.dark-theme .page-link.active
 		<div id="review">
 		   <ul>
 			  <li class="wdhth2">
-<<<<<<< HEAD
 				 <div class="wdhtitle2" style="width:9%;"><p>게시물<br/>번호</p></div><!-- bSeq -->
 				 <div class="wdhtitle2" style="width:9%;"><p>아이디</p></div><!-- userId -->
 				 <div class="wdhtitle2" style="width:32%;"><p>제목</p></div><!-- bTitle -->

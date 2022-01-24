@@ -109,7 +109,7 @@ $(document).ready(function(){
 	     
 	     document.getElementById("pointBox").innerHTML = pointMax;
 	     
-	     var ddong = ${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))} + parseInt(price) + Number(point);
+	     var ddong = Math.round(${wdRez.hPrice - (wdRez.hPrice *(1- wdRez.hDiscount*0.01)) + wdRez.sPrice - (wdRez.sPrice *(1- wdRez.sDiscount*0.01)) + wdRez.dPrice - (wdRez.dPrice *(1- wdRez.dDiscount*0.01)) + wdRez.mPrice - (wdRez.mPrice *(1- wdRez.mDiscount*0.01))}) + parseInt(price) + Number(point);
 	           
 	     ddong = ddong.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 	     
@@ -514,11 +514,7 @@ input::-webkit-inner-spin-button {
                      <div>
                      	보유 포인트 :<span name="pointBox" id="pointBox" style="display:inline-block; width:90px; color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
                      <span>
-<<<<<<< HEAD
-                     <input type="number" name="pointValue" id="pointValue" style="width:100px" value="" min="0" max="${wdUser.userPoint}" />
-=======
                      <input type="number" name="pointValue" id="pointValue" style="width:100px" value="0" min="0" max="${wdUser.userPoint}" />
->>>>>>> 91d4d20567b171a9a0c2d85cf936714b974c795e
                      <!--<input type="text" name="pointValue" id="pointValue" style="width:100px" value="" min="0" max="${wdUser.userPoint}" onkeyup="inputNumberFormat(this);" />-->
                      </span>
                      	<!-- <button name="pointSelect" id="pointSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
