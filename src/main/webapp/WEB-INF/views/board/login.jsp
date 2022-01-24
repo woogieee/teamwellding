@@ -256,7 +256,7 @@ function fn_loginCheck()
 						
 						Toast.fire({
 						    icon: 'success',
-						    title: '웰딩에 오신 관리자 여러분 환영합니다!'
+						    title: '관리자님 환영합니다!'
 						}).then(function(){
 							location.href = "/";
 						});
@@ -347,7 +347,7 @@ function fn_loginCheck()
 function classChange(id){
 	   document.getElementById('id1').classList.remove('selected');
 	   document.getElementById('id2').classList.remove('selected');
-	   document.getElementById('id3').classList.remove('selected');
+	   //document.getElementById('id3').classList.remove('selected');
 	   id.setAttribute('class','selected');
 	   
 	    if($('#id1').hasClass('selected')){
@@ -356,9 +356,9 @@ function classChange(id){
 	     if($('#id2').hasClass('selected')){
 	    	 loginModCheck = 2;
 	     }
-	     if($('#id3').hasClass('selected')){
-	    	 loginModCheck = 3;
-	     }
+	     //if($('#id3').hasClass('selected')){
+	    //	 loginModCheck = 3;
+	     //}
 	}
 
 function fn_index()
@@ -409,8 +409,8 @@ function plusNum()
 							<ul>
 								
                         <li id="id1" class="selected" onclick="classChange(this)"><a href="javascript:void(0)">회원</a></li>
-                        <li id="id2" onclick="classChange(this)" style="border-left:none; border-right: none;"><a href="javascript:void(0)" >관리자</a></li>
-                        <!-- li id="id3" onclick="classChange(this)"><a href="javascript:void(0)" >전문가</a></li-->
+                        <li id="id2" onclick="classChange(this)"><a href="javascript:void(0)" >관리자</a></li>
+                        <!-- <li id="id3" onclick="classChange(this)"><a href="javascript:void(0)" >전문가</a></li>-->
 								<!-- <li class="selected"><a href="#" onclick="changeLogin('3', 'F', 'F');">전문가</a></li> -->
 							</ul>
 						</div>
@@ -451,12 +451,6 @@ function plusNum()
 
 						<a class="txt2" href="/board/regform">
 							회원가입하기
-						</a>
-						<a class="txt2" href="/user/FindingId">
-							아이디
-						</a>
-						<a class="txt2" href="/user/FindingPwd">
-							비밀번호 찾기
 						</a>
 					</div>
 					
