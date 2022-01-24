@@ -120,25 +120,18 @@ p {
 	padding-left: 75px;
 	padding-top: 20px;
 }
+
 .cssPlease2
 {
-	float: left;
-	margin-right: 15px;
-    padding-right: 15px;
-	font-weight : 700;
-	font-size: 20px;
-}
-.cssPlease2
-{
-	/*float: left;
-	margin-right: 15px;
-    padding-right: 15px;*/
-    display: inline-block;
+	display: inline-block;
     padding: 0 8px 0 8px;
-    margin-top: 10px;
+    margin-top: 12px;
     cursor: default;
     letter-spacing: -0.4px;
     border-right: 2px solid #999;
+    font-weight: 600;
+    font-size: 16px;
+    color: #333;
 }
 
 .cssPlease2:last-child
@@ -150,10 +143,11 @@ p {
 {
 	padding-top: 28px;
 	font-weight : 700;
-	font-size: 16px;
+	font-size: 14px;
 	margin-bottom: 0;
 	cursor: default;
 	letter-spacing: -0.4px;
+	color: #555;
 }
 
 #id_li_box
@@ -164,7 +158,8 @@ p {
 
 .gusdkqkqh2
 {
-	padding-top: 15px;
+	padding-top: 18px;
+	width: 100%;
 }
 
 #gusdkqkqh h3
