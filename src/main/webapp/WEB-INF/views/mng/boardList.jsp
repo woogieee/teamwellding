@@ -27,8 +27,8 @@
 {
 	background: none;
     position: absolute;
-    top: 28px;
-    left: 79%;
+    top: 5px;
+    right: 0;
     border: none;
     outline: none;
     color: #ccc;
@@ -94,19 +94,12 @@ body.dark-theme .page-link.active
 	    
 		if(msg == "Y")
 		{
-			//alert("댓글 삭제에 성공했습니다.");
-			Swal.fire({ 
-				icon: 'success', // Alert 타입 
-				text: '댓글 삭제에 성공했습니다.' // Alert 내용
-			});
+			alert("댓글 삭제에 성공했습니다.");
+
 		}
 		else if(msg == "N")
 		{
-			//alert("댓글 삭제에 실패했습니다.");
-			Swal.fire({ 
-				icon: 'error', // Alert 타입 
-				text: '댓글 삭제에 실패했습니다.' // Alert 내용
-			});
+			alert("댓글 삭제에 실패했습니다.");
 		}
 		
 	      $(".FboardUpdate").colorbox({
@@ -352,24 +345,26 @@ body.dark-theme .page-link.active
       <div class="col-lg-12" width="100%">
       <div id="fboard">
          <ul>
-            <li class="wdhth">
-               <div class="wdhtitle" style="width:9%;"><p>게시물번호</p></div><!-- bSeq -->
-               <div class="wdhtitle" style="width:9%;"><p>아이디</p></div><!-- userId -->
-               <div class="wdhtitle" style="width:32%;"><p>제목</p></div><!-- bTitle -->
-               <div class="wdhtitle" style="width:33%;"><p>내용</p></div><!-- bContent -->
-               <div class="wdhtitle" style="width:8%;"><p>조회수</p></div><!-- bReadCnt -->
-               <div class="wdhtitle" style="width:8%;"><p>등록일</p></div><!-- regDate -->
+            <li class="wdhth2">
+               <div class="wdhtitle2" style="width:6%;"><p>게시물<br /> 번호</p></div><!-- bSeq -->
+               <div class="wdhtitle2" style="width:12%;"><p>아이디</p></div><!-- userId -->
+               <div class="wdhtitle2" style="width:32%;"><p>제목</p></div><!-- bTitle -->
+               <div class="wdhtitle2" style="width:33%;"><p>내용</p></div><!-- bContent -->
+               <div class="wdhtitle2" style="width:8%;"><p>조회수</p></div><!-- bReadCnt -->
+               <div class="wdhtitle2" style="width:8.5%;"><p>등록일</p></div><!-- regDate -->
             </li>
             <c:forEach var="fList" items="${fList}" varStatus="status">
-            <li class="wdhtd">
-               <div class="wdhcon" style="width:9%;"><p>${fList.bSeq}</p></div>
-               <div class="wdhcon" style="width:9%;"><p>${fList.userId}</p></div>
+            <li class="wdhtd2">
+               <div class="wdhcon2" style="width:6%;"><p>${fList.bSeq}</p></div>
+               <div class="wdhcon2" style="width:12%;"><p>${fList.userId}</p></div>
                <a href="/mng/mngFboardUpdate?bSeq=${fList.bSeq}" name="FboardUpdate" class="FboardUpdate">
-               	<div class="wdhcon FboardUpdate" style="width:32%; border-right: 1px solid #dedede;"><p style="font-weight: bold;">${fList.bTitle}</p></div>
+	               <div class="wdhcon2 FboardUpdate" style="width:32%; border-right: 1px solid #dedede;">
+	               		<p style="font-weight: bold; cursor: pointer;">${fList.bTitle}</p>
+	               </div> 
                </a>
-               <div class="wdhcon" style="width:33%;"><p>${fList.bContent}</p></div>
-               <div class="wdhcon" style="width:8%;"><p>${fList.bReadCnt}</p></div>
-               <div class="wdhcon" style="width:8%;"><p>${fList.regDate}</p></div>
+               <div class="wdhcon2 listcon" style="width:33%;"><p>${fList.bContent}</p></div>
+               <div class="wdhcon2" style="width:8%;"><p>${fList.bReadCnt}</p></div>
+               <div class="wdhcon2" style="width:8.5%;"><p>${fList.regDate}</p></div>
             </li>
             </c:forEach>
          </ul>
@@ -424,24 +419,24 @@ body.dark-theme .page-link.active
       <div class="col-lg-12" width="100%">
 		<div id="review">
 		   <ul>
-			  <li class="wdhth">
-				 <div class="wdhtitle" style="width:9%;"><p>게시물번호</p></div><!-- bSeq -->
-				 <div class="wdhtitle" style="width:9%;"><p>아이디</p></div><!-- userId -->
-				 <div class="wdhtitle" style="width:32%;"><p>제목</p></div><!-- bTitle -->
-				 <div class="wdhtitle" style="width:33%;"><p>내용</p></div><!-- bContent -->
-				 <div class="wdhtitle" style="width:8%;"><p>조회수</p></div><!-- bReadCnt -->
-				 <div class="wdhtitle" style="width:8%;"><p>등록일</p></div><!-- regDate -->
+			  <li class="wdhth2">
+				 <div class="wdhtitle2" style="width:9%;"><p>게시물<br/>번호</p></div><!-- bSeq -->
+				 <div class="wdhtitle2" style="width:9%;"><p>아이디</p></div><!-- userId -->
+				 <div class="wdhtitle2" style="width:32%;"><p>제목</p></div><!-- bTitle -->
+				 <div class="wdhtitle2" style="width:33%;"><p>내용</p></div><!-- bContent -->
+				 <div class="wdhtitle2" style="width:8%;"><p>조회수</p></div><!-- bReadCnt -->
+				 <div class="wdhtitle2" style="width:8%;"><p>등록일</p></div><!-- regDate -->
 			  </li>
 			  <c:forEach var="review" items="${rList}" varStatus="status">
-			  <li class="wdhtd">
-				 <div class="wdhcon" style="width:9%;"><p>${review.RSeq}</p></div>
-				 <div class="wdhcon" style="width:9%;"><p>${review.userId}</p></div>
+			  <li class="wdhtd2">
+				 <div class="wdhcon2" style="width:9%;"><p>${review.RSeq}</p></div>
+				 <div class="wdhcon2" style="width:9%;"><p>${review.userId}</p></div>
 				 <a href="/mng/mngReviewUpdate?RSeq=${review.RSeq}" name="RboardUpdate" class="RboardUpdate">
-					<div class="wdhcon mngReviewUpdate" style="width:32%; border-right: 1px solid #dedede;" href="/mng/mngReviewUpdate?RSeq=${review.RSeq}"><p style="font-weight: bold;">${review.RTitle}</p></div>
+					<div class="wdhcon2 mngReviewUpdate" style="width:32%; border-right: 1px solid #dedede;" href="/mng/mngReviewUpdate?RSeq=${review.RSeq}"><p style="cursor: pointer; font-weight: bold;">${review.RTitle}</p></div>
 				 </a>
-				 <div class="wdhcon" style="width:33%;"><p>${review.RContent}</p></div>
-				 <div class="wdhcon" style="width:8%;"><p>${review.RReadCnt}</p></div>
-				 <div class="wdhcon" style="width:8%;"><p>${review.regDate}</p></div>
+				 <div class="wdhcon2" style="width:33%;"><p>${review.RContent}</p></div>
+				 <div class="wdhcon2" style="width:8%;"><p>${review.RReadCnt}</p></div>
+				 <div class="wdhcon2" style="width:8%;"><p>${review.regDate}</p></div>
 			  </li>
 			  </c:forEach>
 		   </ul>
@@ -496,22 +491,22 @@ body.dark-theme .page-link.active
       <div class="col-lg-12" width="100%">
       <div id="comment">
          <ul>
-            <li class="wdhth">
-               <div class="wdhtitle" style="width:7%;"><p>게시글번호</p></div><!-- parentSeq -->
-               <div class="wdhtitle" style="width:7%;"><p>댓글번호</p></div><!-- commentSeq -->
-               <div class="wdhtitle" style="width:49%;"><p>내용</p></div><!-- wdFboardComment -->
-               <div class="wdhtitle" style="width:16%;"><p>닉네임</p></div><!-- uNickName -->
-               <div class="wdhtitle" style="width:14%;"><p>등록일</p></div><!-- regDate -->
-               <div class="wdhtitle" style="width:6%;"><p></p></div>
+            <li class="wdhth2">
+               <div class="wdhtitle2" style="width:7%;"><p>게시글<br/>번호</p></div><!-- parentSeq -->
+               <div class="wdhtitle2" style="width:7%;"><p>댓글번호</p></div><!-- commentSeq -->
+               <div class="wdhtitle2" style="width:49%;"><p>내용</p></div><!-- wdFboardComment -->
+               <div class="wdhtitle2" style="width:16%;"><p>닉네임</p></div><!-- uNickName -->
+               <div class="wdhtitle2" style="width:14%;"><p>등록일</p></div><!-- regDate -->
+               <div class="wdhtitle2" style="width:6.5%;"><p>삭제</p></div>
             </li>
             <c:forEach var="comment" items="${cList}" varStatus="status">
-            <li class="wdhtd">
-               <div class="wdhcon" style="width:7%;"><p>${comment.parentSeq}</p></div>
-               <div class="wdhcon" style="width:7%;"><p>${comment.commentSeq}</p></div>
-               <div class="wdhcon" style="width:49%;"><p>${comment.wdFBoardComment}</p></div>
-               <div class="wdhcon" style="width:16%;"><p>${comment.uNickName}</p></div>
-               <div class="wdhcon" style="width:14%;"><p>${comment.regDate}</p></div>
-               <div class="wdhcon" style="width:6%;">
+            <li class="wdhtd2">
+               <div class="wdhcon2" style="width:7%;"><p>${comment.parentSeq}</p></div>
+               <div class="wdhcon2" style="width:7%;"><p>${comment.commentSeq}</p></div>
+               <div class="wdhcon2" style="width:49%;"><p>${comment.wdFBoardComment}</p></div>
+               <div class="wdhcon2" style="width:16%;"><p>${comment.uNickName}</p></div>
+               <div class="wdhcon2" style="width:14%;"><p>${comment.regDate}</p></div>
+               <div class="wdhcon2" style="width:6.5%;">
                		<p>
                			<a href="/mng/boardList?parentSeq=${comment.parentSeq}&&commentSeq=${comment.commentSeq}" name="CommentDel" class="w-btn-red delBtnWish" Style="background-color: rgba(0,0,0,0);" >x</a>
                		</p>

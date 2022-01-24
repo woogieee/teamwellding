@@ -51,10 +51,16 @@ $(document).ready(function(){
       //포인트 사용범위 제한
       $("#pointValue").keyup(function(){
     	  var val = $(this).val();
-    	  if(val < 0 || val > ${wdUser.userPoint})
+    	  if((val < 0) || (val > ${wdUser.userPoint}))
     	  {
-    		  alert("범위를 초과하였습니다.");
-    		  $(this).val("");
+    		  //alert("범위를 초과하였습니다.");
+    		  //$(this).val("");
+				Swal.fire({ 
+					icon: 'error',
+					text: '포인트 사용범위를 초과하였습니다.'
+				}).then(function(){
+					$(this).val("");
+				});
     	  }
       });
 	      
@@ -144,27 +150,57 @@ $(document).ready(function(){
             else if(response.code == 500)
             {
             	//해당 날짜에 해당 홀이 이미 결제되어있음
-            	alert("이미 해당 날짜에 결제된 홀이 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
+            	//alert("이미 해당 날짜에 결제된 홀이 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
+				Swal.fire({ 
+					icon: 'warning',
+					text: '이미 해당 날짜에 결제된 홀이 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.'
+				}).then(function(){
+					return;
+				});
             }
             else if(response.code == 501)
             {
             	//해당 날짜에 해당 스튜디오가 이미 결제되어있음
-            	alert("이미 해당 날짜에 결제된 스튜디오가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
+            	//alert("이미 해당 날짜에 결제된 스튜디오가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
+				Swal.fire({ 
+					icon: 'warning',
+					text: '이미 해당 날짜에 결제된 스튜디오가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.'
+				}).then(function(){
+					return;
+				});
             }
             else if(response.code == 502)
             {
             	//해당 날짜에 해당 드레스가 이미 결제되어있음
-            	alert("이미 해당 날짜에 결제된 드레스가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
+            	//alert("이미 해당 날짜에 결제된 드레스가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
+				Swal.fire({ 
+					icon: 'warning',
+					text: '이미 해당 날짜에 결제된 드레스가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.'
+				}).then(function(){
+					return;
+				});
             }
             else if(response.code == 503)
             {
             	//해당 날짜에 해당 메이크업 업체가 이미 결제되어있음
-            	alert("이미 해당 날짜에 결제된 메이크업 업체가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
+            	//alert("이미 해당 날짜에 결제된 메이크업 업체가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.");
+				Swal.fire({ 
+					icon: 'warning',
+					text: '이미 해당 날짜에 결제된 메이크업 업체가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.'
+				}).then(function(){
+					return;
+				});
             }
             else
             {
-               alert("오류가 발생하였습니다.");
-               $("#btnPay").prop("disabled", false);
+               ///alert("오류가 발생하였습니다.");
+               //$("#btnPay").prop("disabled", false);
+				Swal.fire({ 
+					icon: 'error',
+					text: '오류가 발생했습니다.'
+				}).then(function(){
+					return;
+				});
             }
          },
          error: function(error)
@@ -181,6 +217,29 @@ function movePage()
    location.href = "/user/payComplete";
 }
 
+//인풋박스 입력시 세자리마다 컴마찍는 함수
+    function comma(str) {
+        str = String(str);
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    }
+
+    function uncomma(str) {
+        str = String(str);
+        return str.replace(/[^\d]+/g, '');
+    } 
+    
+    function inputNumberFormat(obj) {
+        obj.value = comma(uncomma(obj.value));
+    }
+    
+    function inputOnlyNumberFormat(obj) {
+        obj.value = onlynumber(uncomma(obj.value));
+    }
+    
+    function onlynumber(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
+	}
 </script>
 <style>
 input::-webkit-outer-spin-button,
@@ -235,8 +294,8 @@ input::-webkit-inner-spin-button {
                         <table class="table tableWish">
                      <tr>
                         <div class="rez_sta">
-                           <h5 class="rez_date">예약일자 &nbsp;&nbsp; <span>${wdRez.rezDate}</span></h5>
-						   <h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span>${wdRez.wDate}</span></h5>									
+                           
+						   <h5 class="rez_date">결혼예정일자 &nbsp;&nbsp; <span>${year}-${month}-${day}</span></h5>									
                            <h5 class="rez_number">예약번호&nbsp;&nbsp; <span>${wdRez.rezNo}</span></h5>
                         </div>
                      </tr>
@@ -418,14 +477,17 @@ input::-webkit-inner-spin-button {
 	                     <c:forEach var="coupon" items="${couponList}" varStatus="status">
 	                        <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
 	                     </c:forEach>
-	                     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						할인금액 <input type="text" name="couponValue" id="couponValue" style="width:100px;" value="" readonly>
 	      
 	                     <!-- <button name="couponSelect" id="couponSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
                      </div>
                      <div>
-                     	잔여 포인트 : <span name="pointBox" id="pointBox" style="display:inline-block; width:90px;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
-                     <span><input type="number" name="pointValue" id="pointValue" style="width:100px" value="" min="0" max="${wdUser.userPoint}"></span>
+                     	보유 포인트 :<span name="pointBox" id="pointBox" style="display:inline-block; width:90px; color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
+                     <span>
+                     <input type="number" name="pointValue" id="pointValue" style="width:100px" value="" min="0" max="${wdUser.userPoint}" />
+                     <!--<input type="text" name="pointValue" id="pointValue" style="width:100px" value="" min="0" max="${wdUser.userPoint}" onkeyup="inputNumberFormat(this);" />-->
+                     </span>
                      	<!-- <button name="pointSelect" id="pointSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
 					 </div>
                      </div>

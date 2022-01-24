@@ -15,7 +15,7 @@
 </resultMap>
 
 <!-- 첨부파일 resultMap 시작 -->
-<resultMap id="WDBFileResultMap" type="com.icia.web.model.WDBoardFile">
+<resultMap id="WDEFileResultMap" type="com.icia.web.model.WDEBoardFile">
     <id column="B_SEQ" property="bSeq" />
     <id column="B_FILE_SEQ" property="fileSeq" />
     <result column="B_FILE_ORG_NAME" property="fileOrgName" />
@@ -130,7 +130,7 @@ UPDATE WD_EBOARD
 <!-- 게시물 조회수 증가 종료 -->
 
 <!-- 게시물 이미지 파일 조회 시작 -->
-<select id="eBoardFileSelect" parameterType="string" resultMap="WDBFileResultMap">
+<select id="eBoardFileSelect" parameterType="string" resultMap="WDEFileResultMap">
 SELECT
     B_SEQ,
     NVL(B_IMGNAME,''),
@@ -179,14 +179,14 @@ WHERE
 <!-- (관리자ver) 이벤트 글 수정 끝 -->
 
 <!-- (관리자ver) 이벤트 글 첨부파일 등록 시작 -->
-<insert id="boardFileInsert" parameterType="com.icia.web.model.WDBoardFile">
-INSERT INTO WD_BOARD_FILE (
-    B_SEQ,
-    B_FILE_SEQ,
-    B_FILE_NAME,
-    B_FILE_ORG_NAME,
-    B_FILE_EXT,
-    B_FILE_SIZE,
+<insert id="eBoardFileInsert" parameterType="com.icia.web.model.WDEBoardFile">
+INSERT INTO WD_EVENT_FILE (
+    EB_SEQ,
+    EB_FILE_SEQ,
+    EB_FILE_NAME,
+    EB_FILE_ORG_NAME,
+    EB_FILE_EXT,
+    EB_FILE_SIZE,
     REG_DATE
 ) VALUES (
     #{bSeq},
@@ -198,11 +198,22 @@ INSERT INTO WD_BOARD_FILE (
     SYSDATE
 )
 </insert>
-<!-- 첨부파일 등록 종료 -->
+
+<!-- (관리자ver) 이벤트 글 첨부파일 DB 등록 시작 -->
+<update id="eBoardFileUpdate" parameterType="com.icia.web.model.WDEBoard">
+UPDATE WD_EBOARD
+SET
+    B_IMGNAME = #{eBImgName},
+    B_SUBIMGNAME = #{eBImgName}
+WHERE
+    B_SEQ = #{eBSeq}
+</update>
+<!-- (관리자ver) 이벤트 글 첨부파일 DB 등록 종료 -->
+
 <!-- (관리자ver) 이벤트 글 첨부파일 등록 종료 -->
 
 <!-- (관리자ver) 이벤트 글 삭제 시작 -->
-<delete id="eBoardDelete">
+<delete id="eBoardDelete" parameterType="int">
 DELETE FROM WD_EBOARD
     WHERE
         B_SEQ = #{value}
@@ -210,11 +221,42 @@ DELETE FROM WD_EBOARD
 <!-- (관리자ver) 이벤트 글 삭제 끝 -->
 
 <!-- (관리자ver) 게시물 첨부파일 삭제 시작 -->
-<delete id="eBoardFileDelete" parameterType="long">
-DELETE FROM WD_BOARD_FILE
+<delete id="eventFileDelete" parameterType="string">
+DELETE FROM WD_EVENT_FILE
 WHERE
-        B_SEQ = #{value}
+        EB_FILE_NAME = #{value}
 </delete>
 <!-- (관리자ver) 게시물 첨부파일 삭제 종료 -->
+
+<!-- (관리자ver) 게시물(eBoard) 첨부파일 삭제 시작 -->
+<delete id="eBoardFileDelete" parameterType="long">
+UPDATE WD_EBOARD
+SET
+    B_IMGNAME = ''
+WHERE
+    B_SEQ = #{value}
+</delete>
+<!-- (관리자ver) 게시물(eBoard) 첨부파일 삭제 종료 -->
+
+<!-- 이벤트 게시물 이미지 넘버링 시작 -->
+<select id="maxImgName" parameterType="int" resultType="string">
+SELECT
+    NVL(MAX(B_IMGNAME),'') AS B_IMGNAME
+FROM
+    WD_EBOARD
+</select>
+<!-- 이벤트 게시물 이미지 넘버링 끝 -->
+
+<!-- 이벤트 게시물 이미지 넘버링 조회 -->
+<select id="searchImgName" parameterType="long" resultType ="string">
+SELECT
+    NVL((B_IMGNAME),'') AS B_IMGNAME
+FROM
+    WD_EBOARD
+WHERE 
+	B_SEQ = #{value}
+</select>
+<!-- 이벤트 게시물 이미지 넘버링 조회 끝 -->
+
 
 </mapper>

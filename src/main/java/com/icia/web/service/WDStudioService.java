@@ -12,8 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.icia.web.dao.WDRezDao;
 import com.icia.web.dao.WDStudioDao;
+import com.icia.web.model.WDHall;
+import com.icia.web.model.WDHallFile;
 import com.icia.web.model.WDRez;
 import com.icia.web.model.WDStudio;
+import com.icia.web.model.WDStudioFile;
 
 @Service("WDStudioService")
 public class WDStudioService 
@@ -164,21 +167,22 @@ public class WDStudioService
   	}
   	
 	//스튜디오 삽입
-	public int studioInsert(WDStudio wdStudio) {
-		
-		int count = 0;
-		
-		try {
-			count = wdStudioDao.studioInsert(wdStudio);
-		}
-  		catch(Exception e) 
-  		{
-			logger.error("[WDStudioService] studioInsert Exception", e);
-  		}
-		
-		return count;
-		
-	}
+   	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+   	public int studioInsert(WDStudio wdStudio) throws Exception
+   	{
+   		int count = 0;
+   		
+   		count = wdStudioDao.studioInsert(wdStudio);
+
+   		if(count > 0 && wdStudio.getWdStudoiFile() != null)
+   		{
+   			WDStudioFile wdStudioFile = wdStudio.getWdStudoiFile();
+   			
+   			wdStudioDao.studioFileInsert(wdStudioFile);
+   		}
+   		
+   		return count;
+   	}
 	
 	//스튜디오 삭제
 	public int studioDelete(String sCode)
@@ -230,4 +234,18 @@ public class WDStudioService
 		
 		return count;
 	}
+	
+	public String maxImgName() {
+		
+		String maxName = "";
+		try {
+			maxName = wdStudioDao.maxImgName();
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDStudioService] maxImgName Exception", e);
+		}
+		return maxName;
+	}
+	
 }
