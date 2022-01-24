@@ -42,16 +42,34 @@
               }
               else if(response.code == 500)
               {
-                 alert("날짜가 제대로 입력되지 않았습니다.");
-                 return;
+                 //alert("날짜가 제대로 입력되지 않았습니다.");
+                 //return;
+                  Swal.fire({ 
+                      icon: 'warning',
+                      text: '날짜가 제대로 입력되지 않았습니다.'
+                   }).then(function(){
+                      return;
+                   });
               }
               else if(response.code == -1){
-                 alert("오류가 발생했습니다.");
-                 return;
+                // alert("오류가 발생했습니다.");
+                 //return;
+                  Swal.fire({ 
+                      icon: 'warning',
+                      text: '오류가 발생했습니다.'
+                   }).then(function(){
+                      return;
+                   });
               }
               else
               {
-                 alert("오류가 발생했습니다.");
+                 ///alert("오류가 발생했습니다.");
+                  Swal.fire({ 
+                      icon: 'warning',
+                      text: '오류가 발생했습니다.'
+                   }).then(function(){
+                      return;
+                   });
               }
            },
            complete:function(data){
@@ -66,7 +84,7 @@
 
 //장바구니에서 홀 삭제
 <c:if test="${!empty wdRez.whCode}">
-       $("#delBtnWishH").on("click", function(){
+ /*      $("#delBtnWishH").on("click", function(){
           if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
           {
              //ajax통신 시작
@@ -105,14 +123,86 @@
             });
              //ajax통신 종료
           }
+      });*/
+      
+      $("#delBtnWishH").on("click", function(){
+  		Swal.fire({
+			   text: '정말 장바구니에서 해당 상품을 삭제하시겠습니까?',
+			   icon: 'success',
+			   
+			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+			   confirmButtonColor: '#d33', // confrim 버튼 색깔 지정
+			   cancelButtonColor: '#3085d6', // cancel 버튼 색깔 지정
+			   confirmButtonText: '삭제', // confirm 버튼 텍스트 지정
+			   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+			   
+			   reverseButtons: false, // 버튼 순서 거꾸로
+			   
+			}).then(result => {
+				   // 만약 Promise리턴을 받으면,
+				   if (result.isConfirmed) 
+				   { // 만약 모달창에서 confirm 버튼을 눌렀다면
+			             //ajax통신 시작
+			             $.ajax({
+			            type:"POST",
+			            url:"/user/updateHproc",
+			            data:
+			            {
+			               rezNo: <c:out value="${wdRez.rezNo}" />
+			            },
+			            datatype:"JSON",
+			            beforeSend:function(xhr){
+			               xhr.setRequestHeader("AJAX", "true");
+			            },
+			            success:function(response){
+			               if(response.code == 0)
+			               {			                  
+								Swal.fire({ 
+									icon: 'success',
+									text: '장바구니에서 해당 상품을 제거했습니다.'
+								}).then(function(){
+									//업데이트가 성공하면 해당 tr 삭제
+					                   $("#wishH").remove();
+					                   location.href = "/user/wishlist";
+								});
+			               }
+			               else
+			               {
+			                  //alert("게시물 삭제 중 오류가 발생했습니다.");
+								Swal.fire({ 
+									icon: 'error',
+									text: '게시물 삭제 중 오류가 발생했습니다.'
+								}).then(function(){
+									//업데이트가 성공하면 해당 tr 삭제
+					                   return;
+								});
+			               }
+			            },
+			            complete:function(data){
+			               icia.common.log(data);
+			            },
+			            error:function(xhr, status, error)
+			            {
+			               icia.common.error(error);
+			            }
+			            });
+			             //ajax통신 종료
+				   }
+				   else if (result.isDismissed) 
+				   { // 만약 모달창에서 cancel 버튼을 눌렀다면
+						return;
+				   }
+				   
+			});
       });
+      
        //삭제버튼 클릭 종료
 </c:if>
 //장바구니에서 홀 삭제
 
 //장바구니에서 스튜디오 삭제
 <c:if test="${!empty wdRez.sCode}">
-       $("#delBtnWishS").on("click", function(){
+      /* $("#delBtnWishS").on("click", function(){
           if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
           {
              //ajax통신 시작
@@ -150,7 +240,78 @@
             });
              //ajax통신 종료
           }
-      });
+      });*/
+       
+       $("#delBtnWishS").on("click", function(){
+     		Swal.fire({
+ 			   text: '정말 장바구니에서 해당 상품을 삭제하시겠습니까?',
+ 			   icon: 'success',
+ 			   
+ 			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+ 			   confirmButtonColor: '#d33', // confrim 버튼 색깔 지정
+ 			   cancelButtonColor: '#3085d6', // cancel 버튼 색깔 지정
+ 			   confirmButtonText: '삭제', // confirm 버튼 텍스트 지정
+ 			   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+ 			   
+ 			   reverseButtons: false, // 버튼 순서 거꾸로
+ 			   
+ 			}).then(result => {
+ 				   // 만약 Promise리턴을 받으면,
+ 				   if (result.isConfirmed) 
+ 				   { // 만약 모달창에서 confirm 버튼을 눌렀다면
+ 			             //ajax통신 시작
+				           $.ajax({
+				          type:"POST",
+				          url:"/user/updateSproc",
+				          data:
+				          {
+				             rezNo: <c:out value="${wdRez.rezNo}" />
+				          },
+				          datatype:"JSON",
+				          beforeSend:function(xhr){
+				             xhr.setRequestHeader("AJAX", "true");
+				          },
+ 			            success:function(response){
+ 			               if(response.code == 0)
+ 			               {			                  
+ 								Swal.fire({ 
+ 									icon: 'success',
+ 									text: '장바구니에서 해당 상품을 제거했습니다.'
+ 								}).then(function(){
+ 									//업데이트가 성공하면 해당 tr 삭제
+ 									 $("#wishS").remove();
+ 					                   location.href = "/user/wishlist";
+ 								});
+ 			               }
+ 			               else
+ 			               {
+ 			                  //alert("게시물 삭제 중 오류가 발생했습니다.");
+ 								Swal.fire({ 
+ 									icon: 'error',
+ 									text: '게시물 삭제 중 오류가 발생했습니다.'
+ 								}).then(function(){
+ 									//업데이트가 성공하면 해당 tr 삭제
+ 					                   return;
+ 								});
+ 			               }
+ 			            },
+ 			            complete:function(data){
+ 			               icia.common.log(data);
+ 			            },
+ 			            error:function(xhr, status, error)
+ 			            {
+ 			               icia.common.error(error);
+ 			            }
+ 			            });
+ 			             //ajax통신 종료
+ 				   }
+ 				   else if (result.isDismissed) 
+ 				   { // 만약 모달창에서 cancel 버튼을 눌렀다면
+ 						return;
+ 				   }
+ 				   
+ 			});
+       });
        //삭제버튼 클릭 종료
 </c:if>
 //장바구니에서 스튜디오 삭제 종료
@@ -158,7 +319,7 @@
 
 //장바구니에서 드레스 삭제
 <c:if test="${!empty wdRez.dNo}">
-       $("#delBtnWishD").on("click", function(){
+      /*$("#delBtnWishD").on("click", function(){
           if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
           {
              //ajax통신 시작
@@ -196,14 +357,85 @@
             });
              //ajax통신 종료
           }
-      });
+      });*/
+      
+      $("#delBtnWishD").on("click", function(){
+   		Swal.fire({
+			   text: '정말 장바구니에서 해당 상품을 삭제하시겠습니까?',
+			   icon: 'success',
+			   
+			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+			   confirmButtonColor: '#d33', // confrim 버튼 색깔 지정
+			   cancelButtonColor: '#3085d6', // cancel 버튼 색깔 지정
+			   confirmButtonText: '삭제', // confirm 버튼 텍스트 지정
+			   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+			   
+			   reverseButtons: false, // 버튼 순서 거꾸로
+			   
+			}).then(result => {
+				   // 만약 Promise리턴을 받으면,
+				   if (result.isConfirmed) 
+				   { // 만약 모달창에서 confirm 버튼을 눌렀다면
+			             //ajax통신 시작
+			             $.ajax({
+			            type:"POST",
+			            url:"/user/updateDproc",
+			            data:
+			            {
+			               rezNo: <c:out value="${wdRez.rezNo}" />
+			            },
+			            datatype:"JSON",
+			            beforeSend:function(xhr){
+			               xhr.setRequestHeader("AJAX", "true");
+			            },
+			            success:function(response){
+			               if(response.code == 0)
+			               {			                  
+								Swal.fire({ 
+									icon: 'success',
+									text: '장바구니에서 해당 상품을 제거했습니다.'
+								}).then(function(){
+									//업데이트가 성공하면 해당 tr 삭제
+									$("#wishD").remove();
+					                   location.href = "/user/wishlist";
+								});
+			               }
+			               else
+			               {
+			                  //alert("게시물 삭제 중 오류가 발생했습니다.");
+								Swal.fire({ 
+									icon: 'error',
+									text: '게시물 삭제 중 오류가 발생했습니다.'
+								}).then(function(){
+									//업데이트가 성공하면 해당 tr 삭제
+					                   return;
+								});
+			               }
+			            },
+			            complete:function(data){
+			               icia.common.log(data);
+			            },
+			            error:function(xhr, status, error)
+			            {
+			               icia.common.error(error);
+			            }
+			            });
+			             //ajax통신 종료
+				   }
+				   else if (result.isDismissed) 
+				   { // 만약 모달창에서 cancel 버튼을 눌렀다면
+						return;
+				   }
+				   
+			});
+     });
        //삭제버튼 클릭 종료
 </c:if>
 //장바구니에서 드레스 삭제 종료
 
 //장바구니에서 메이크업 삭제
 <c:if test="${!empty wdRez.mCode}">
-       $("#delBtnWishM").on("click", function(){
+       /*$("#delBtnWishM").on("click", function(){
           if(confirm("정말 장바구니에서 해당 상품을 삭제하시겠습니까?"))
           {
              //ajax통신 시작
@@ -241,7 +473,78 @@
             });
              //ajax통신 종료
           }
-      });
+      });*/
+      
+      $("#delBtnWishM").on("click", function(){
+     		Swal.fire({
+  			   text: '정말 장바구니에서 해당 상품을 삭제하시겠습니까?',
+  			   icon: 'success',
+  			   
+  			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+  			   confirmButtonColor: '#d33', // confrim 버튼 색깔 지정
+  			   cancelButtonColor: '#3085d6', // cancel 버튼 색깔 지정
+  			   confirmButtonText: '삭제', // confirm 버튼 텍스트 지정
+  			   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+  			   
+  			   reverseButtons: false, // 버튼 순서 거꾸로
+  			   
+  			}).then(result => {
+  				   // 만약 Promise리턴을 받으면,
+  				   if (result.isConfirmed) 
+  				   { // 만약 모달창에서 confirm 버튼을 눌렀다면
+  			             //ajax통신 시작
+			             $.ajax({
+			            type:"POST",
+			            url:"/user/updateMproc",
+			            data:
+			            {
+			               rezNo: <c:out value="${wdRez.rezNo}" />
+			            },
+			            datatype:"JSON",
+			            beforeSend:function(xhr){
+			               xhr.setRequestHeader("AJAX", "true");
+			            },
+  			            success:function(response){
+  			               if(response.code == 0)
+  			               {			                  
+  								Swal.fire({ 
+  									icon: 'success',
+  									text: '장바구니에서 해당 상품을 제거했습니다.'
+  								}).then(function(){
+  									//업데이트가 성공하면 해당 tr 삭제
+  									$("#wishM").remove();
+  				                  	location.href = "/user/wishlist";
+  								});
+  			               }
+  			               else
+  			               {
+  			                  //alert("게시물 삭제 중 오류가 발생했습니다.");
+  								Swal.fire({ 
+  									icon: 'error',
+  									text: '게시물 삭제 중 오류가 발생했습니다.'
+  								}).then(function(){
+  									//업데이트가 성공하면 해당 tr 삭제
+  					                   return;
+  								});
+  			               }
+  			            },
+  			            complete:function(data){
+  			               icia.common.log(data);
+  			            },
+  			            error:function(xhr, status, error)
+  			            {
+  			               icia.common.error(error);
+  			            }
+  			            });
+  			             //ajax통신 종료
+  				   }
+  				   else if (result.isDismissed) 
+  				   { // 만약 모달창에서 cancel 버튼을 눌렀다면
+  						return;
+  				   }
+  				   
+  			});
+       });
        //삭제버튼 클릭 종료
 </c:if>
 //장바구니에서 메이크업 삭제 종료
