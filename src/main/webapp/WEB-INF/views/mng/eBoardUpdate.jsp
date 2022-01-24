@@ -225,7 +225,7 @@ function fn_eBoardDelete()
     	<div class="col-lg-12">
     
 		<div class="layerpopup" style="width:1123px; margin:auto;">
-			<h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">공지사항 게시글 수정</h1>
+			<h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">이벤트 게시글 수정</h1>
 		   <div class="layer-cont">
 		      <form name="regForm" id="regForm" method="post">
 		         <table>
