@@ -163,5 +163,22 @@ public class WDCouponService {
 		return wdCoupon;
 	}
 	
+	//결제 취소인 내역에서 결제중 쿠폰 정보를 가져오기 시작
+	public WDCoupon couponSelectCancelOk(HashMap<String, Object> map) 
+	{
+		WDCoupon wdCoupon = null;
+		
+		try 
+		{
+			wdCoupon =  wdCouponDao.couponSelectCancelOk(map);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDCouponService] couponSelectCancelOk Exception", e);
+		}
+		
+		return wdCoupon;
+	}
+	
 }
 
