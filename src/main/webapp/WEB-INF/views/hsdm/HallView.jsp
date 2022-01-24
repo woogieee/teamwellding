@@ -199,6 +199,15 @@ $(document).ready(function(){
 									}
 								});
 							}
+							else if(response.code == 500)
+							{
+								Swal.fire({ 
+									icon: 'error',
+									text: '로그인이 필요합니다.'
+								}).then(function(){
+									return;
+								});
+							}
 							else
 							{
 								//alert("장바구니에 상품을 담는 중 오류가 발생했습니다.");

@@ -36,8 +36,8 @@ import com.icia.web.util.HttpUtil;
 @Controller("wdAdminEBoardController")
 public class WDAdminEBoardController {
 	
-	private static final long LIST_COUNT = 5;
-	private static final long PAGE_COUNT = 5;
+	private static final long LIST_COUNT = 10;
+	private static final long PAGE_COUNT = 3;
 	
 	private static Logger logger = LoggerFactory.getLogger(WDAdminEBoardController.class);
 

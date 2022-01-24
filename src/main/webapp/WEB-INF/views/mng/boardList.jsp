@@ -76,7 +76,7 @@ body.dark-theme .page-link.active
 	            iframe:true, 
 	            innerWidth:1235,
 	            innerHeight:500,
-	            scrolling:false,
+	            scrolling:true,
 	            onComplete:function()
 	            {
 	               $("#colorbox").css("width", "1235px");
@@ -334,7 +334,7 @@ body.dark-theme .page-link.active
       <div class="col-lg-12">
          <div class="hsdm_nav">
                 <ul class="hsdm_menu">
-                    <li class="hsem_li sel" id="id1" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">자유게시판</a></li>
+                    <li class="hsem_li sel" id="id1" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">노하우공유</a></li>
                     <li class="hsem_li" id="id2" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">리뷰게시판</a></li>
                     <li class="hsem_li" id="id3" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">댓글관리</a></li>                
                 </ul>              
@@ -420,6 +420,7 @@ body.dark-theme .page-link.active
 		<div id="review">
 		   <ul>
 			  <li class="wdhth2">
+<<<<<<< HEAD
 				 <div class="wdhtitle2" style="width:9%;"><p>게시물<br/>번호</p></div><!-- bSeq -->
 				 <div class="wdhtitle2" style="width:9%;"><p>아이디</p></div><!-- userId -->
 				 <div class="wdhtitle2" style="width:32%;"><p>제목</p></div><!-- bTitle -->
@@ -437,6 +438,7 @@ body.dark-theme .page-link.active
 				 <div class="wdhcon2" style="width:33%;"><p>${review.RContent}</p></div>
 				 <div class="wdhcon2" style="width:8%;"><p>${review.RReadCnt}</p></div>
 				 <div class="wdhcon2" style="width:8%;"><p>${review.regDate}</p></div>
+
 			  </li>
 			  </c:forEach>
 		   </ul>

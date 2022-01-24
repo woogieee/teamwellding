@@ -32,7 +32,7 @@ $(document).ready(function(){
 			//alert("예약할 연도를 입력해주세요.");
 			Swal.fire({ 
 				icon: 'warning',
-				text: '예약한 연도를 입력하세요.'
+				text: '예약할 연도를 입력하세요.'
 			});
 			return;
 		}
@@ -216,6 +216,15 @@ $(document).ready(function(){
 										    }
 										});
 									}
+								});
+							}
+							else if(response.code == 500)
+							{
+								Swal.fire({ 
+									icon: 'error',
+									text: '로그인이 필요합니다.'
+								}).then(function(){
+									return;
 								});
 							}
 							else

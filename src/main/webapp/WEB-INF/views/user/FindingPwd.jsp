@@ -48,12 +48,15 @@ $(function(){
 	});
 	
 	$("#btn_cc").on("click", function(){
-		    Swal.fire({ 
-			icon: 'warning',
-			text: '아이디 찾기가 취소되었습니다.'
-		  });
-		 location.href = "/";
-  });
+
+	    Swal.fire({ 
+		icon: 'warning',
+		text: '로그인 페이지로 돌아갑니다.'
+	  }).then(function(){
+		  location.href = "/board/login";
+	  });
+	});
+
   
 });
 	
@@ -134,7 +137,8 @@ function fn_findCheck()
 						{
 							if (response.code == 0) 
 							{
-								alert("이욱채 짱짱귀요미");
+								//alert("이욱채 짱짱귀요미");
+								//alert("임시 비밀번호를 메일로 전송하였습니다");
 								/*const Toast = Swal.mixin({
 								    toast: true,
 								    position: 'center-center',
@@ -145,16 +149,25 @@ function fn_findCheck()
 								        toast.addEventListener('mouseenter', Swal.stopTimer)
 								        toast.addEventListener('mouseleave', Swal.resumeTimer)
 								    }
-								});*/
+
+								});
 								
-								/*Toast.fire({
+								Toast.fire({
 								    icon: 'success',
 								    title: '이메일로  임시비밀번호를 전송하였습니다!'
 								});*/
+								Swal.fire({ 
+									icon: 'success',
+									title: '임시비밀번호 발송 완료!',
+									text: '입력하신 이메일 주소로 임시 비밀번호를 발송했습니다. 로그인 후 마이페이지에서 비밀번호를 바꿔주세요!'
+								}).then(function(){
+									location.href="/board/login";
+								});
 							} 
 							else 
 							{
-								alert("실패!");
+								//alert("실패!");
+								//alert("일치하는 정보가 없습니다");
 								//alert("이메일 발송실패");
 								//$("#btnEmailCheck").prop("disabled", false);
 								/*Swal.fire({ 
@@ -163,6 +176,13 @@ function fn_findCheck()
 								}).then(function(){
 									$("#Findbtn").prop("disabled", false);
 								});*/
+
+								Swal.fire({ 
+									icon: 'error',
+									title: '이메일 발송실패,,'
+								}).then(function(){
+									return;
+								});
 							}
 						},
 						complete : function(data) 
@@ -187,7 +207,7 @@ function fn_validateEmail(value) {
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-					<span class="login100-form-title p-b-26">
+					<span class="login100-form-title">
 						<h1 id="logo"><img src="../resources/images/theWellding.png" width="150" height="auto" onclick="fn_index()" style="cursor: pointer;" /></h1>
 
 					</span>
@@ -195,29 +215,30 @@ function fn_validateEmail(value) {
 							<ul>
                      		</ul>
                      	</div>
-					<span class="login100-form-title p-b-48">
+					<span class="login100-form-title">
 						<!-- <i class="zmdi zmdi-font"></i> -->
 						
 						<div class="mTab eTab">	
 								<ol id="gusdkqkqh">
-									<p class="id_list">비밀번호 찾기</p>	
+									<h3>비밀번호 찾기</h3>
+									<p class="id_list">아이디와 이름, 가입하신 이메일 주소를 입력해주세요.</p>	
 								</ol>
 						</div>
 					</span>
 					<div>
 					<form id="contact" name="contact" method="post">
 					
-						<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+						<div class="wrap-input1002 validate-input" data-validate = "Valid email is: a@b.c">
 							<input id="id" name="id" data-bind="id" type="text" class="input100" value="">
 							<span class="focus-input100" data-placeholder="ID"></span>
 						</div>
 						
-						<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+						<div class="wrap-input1002 validate-input" data-validate = "Valid email is: a@b.c">
 							<input id="name" name="name" data-bind="name" type="text" class="input100" value="">
 							<span class="focus-input100" data-placeholder="NAME"></span>
 						</div>
 						
-						<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+						<div class="wrap-input1002 validate-input" data-validate = "Valid email is: a@b.c">
 							<input id="email" name="email" data-bind="email" type="text"  class="input100" value="">
 							<span class="focus-input100" data-placeholder="EMAIL"></span>							
 						</div>	
@@ -229,7 +250,7 @@ function fn_validateEmail(value) {
 					</div>
 						
 					
-							<div class="container-login100-form-btn2">
+					<div class="container-login100-form-btn3">
 						<div class="wrap-login100-form-btn2">
 							<div class="login100-form-bgbtn2"></div>
 							<button type="button" id="Findbtn" onclick="fn_findCheck()" class="login100-form-btn2" >

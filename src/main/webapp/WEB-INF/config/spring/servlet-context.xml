@@ -75,7 +75,8 @@
                      <value>/board/fBoard</value>
                      <value>/hsdm/halllist</value>  
                      <value>/hsdm/dress</value>
-                  <value>/hsdm/HallView</value>
+                  	 <value>/hsdm/HallView</value>
+
                      <value>/imokay</value>
                      <value>/board/fBoardWrite</value>
                      <value>/board/fBoardView</value>
@@ -90,13 +91,20 @@
 
                      <value>/include/PrivacyPolicy</value>
                      <value>/include/Terms</value>
-                  <value>/user/wishlist</value>
+
+                     <value>/user/wishlist</value>
 
                                    
                       <value>/hsdm/makeUp</value>
                      <value>/hsdm/dressView</value>   
                      <value>/hsdm/studioView</value> 
-                     <value>/hsdm/makeupView</value> 
+
+                     <value>/hsdm/makeupView</value>
+                     <value>/hsdm/hallRezProc</value>
+                     <value>/hsdm/studioRezProc</value>
+                     <value>/hsdm/makeUpRezProc</value>
+                     <value>/hsdm/dressRezProc</value>
+
                      
                      <value>/board/specialist</value> 
                      <value>/board/gosu</value>
@@ -163,7 +171,6 @@
                       <value>/mng/plusEBoard</value>
                       <value>/mng/eBoardWrite</value>
                       <value>/mng/eBoardImgUpdate</value>
-                 
                       <value>/mng/eBoardDelete</value>
 
                       <value>/mng/mngFboardUpdate</value>
@@ -180,6 +187,7 @@
                   <value>/mng/weddinghallUpdateProc</value>
                   <value>/mng/hallUpdateProc</value>
                   
+
                   <value>/mng/dressComUpdate</value>
                   <value>/mng/dressComUpdateProc</value>
                   <value>/mng/dressComDelete</value>
@@ -207,7 +215,9 @@
                   <value>/user/payCancelList</value>
                   <value>/user/payCancelListView</value>
                   <value>/user/payCancelListView2</value>
-                  
+
+                  <value>/board/reviewInfo</value>
+
                   
                   </list>
                </constructor-arg>
