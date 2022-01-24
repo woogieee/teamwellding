@@ -123,10 +123,14 @@ public class WDRezController {
 				//유저 아이디와 N인 상태의 조건으로 검색한 결과를 wdRez에 담음
 				wdRez = wdRezService.rezSelect(search);
 				
+				System.out.println("wdRez.getMarryDate"+wdUser.getMarrytDate());
+				
 				wDate = wdUser.getMarrytDate();
 				year = wDate.substring(0, 4);
 				month = wDate.substring(4, 6);
 				day = wDate.substring(6, 8);
+				
+				
 				
 				model.addAttribute("wDate", wDate);
 				model.addAttribute("year", year);
@@ -137,13 +141,26 @@ public class WDRezController {
 				{
 					//다시 해당 결과를 가지고 다른 테이블과 조인한 결과를 wdRez객체에 다시 담음
 					wdRez = wdRezService.rezList(wdRez);
-					
-					wDate = wdRez.getwDate();
-					year = wDate.substring(0, 4);
-					month = wDate.substring(4, 6);
-					day = wDate.substring(6, 8);
-					
 					model.addAttribute("wdRez", wdRez);
+					
+					if(wdRez.getwDate() != null && wdRez.getwDate() != "") 
+					{
+						wDate = wdRez.getwDate();
+						
+						System.out.println("wDate : "+wDate);
+						
+						year = wDate.substring(0, 4);
+						month = wDate.substring(4, 6);
+						day = wDate.substring(6, 8);						
+					}
+					else 
+					{
+						wDate = wdUser.getMarrytDate();
+						year = wDate.substring(0, 4);
+						month = wDate.substring(4, 6);
+						day = wDate.substring(6, 8);
+					}
+					
 					model.addAttribute("wDate", wDate);
 					model.addAttribute("year", year);
 					model.addAttribute("month", month);
