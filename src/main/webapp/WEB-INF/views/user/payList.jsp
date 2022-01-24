@@ -41,12 +41,12 @@ $(document).ready(function(){
 });
 
 function foodCpnM(rezNo){
-    var option="width = 340, height = 590, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
+    var option="width = 340, height = 601, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
     window.open("/board/foodCpnM?rezNo="+rezNo, "PopUP", option); 
 }
 
 function foodCpnF(rezNo){
-    var option="width = 340, height = 590, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
+    var option="width = 340, height = 601, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
     window.open("/board/foodCpnF?rezNo="+rezNo, "PopUP", option); 
 }
 
