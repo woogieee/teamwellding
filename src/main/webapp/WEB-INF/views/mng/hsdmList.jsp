@@ -180,7 +180,7 @@ body.dark-theme .page-link.active
      $(".hall_modal").colorbox({
          iframe:true, 
          innerWidth:1000,
-         innerHeight:800,
+         innerHeight:750,
          scrolling:true,
          onComplete:function()
          {
