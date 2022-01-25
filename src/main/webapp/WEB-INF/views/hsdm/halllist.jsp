@@ -104,7 +104,7 @@
                                     	<h4 class="let_sp">결혼예정일<span class="span_design"></span></h4>
                                     </div>
                                     <div class="search-heading">
-                                        <h4> 웨딩홀 이름 또는 홀 이름으로 검색해 보세요.</h4>
+                                        <h4> 웨딩홀 업체 이름 또는 홀 이름으로 검색해 보세요.</h4>
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
@@ -175,7 +175,7 @@
                                         <div class="col-lg-3">
 									         <select name="_searchType" id="_searchType">
 									            <option value="">조회 항목</option>
-									            <option value="1" <c:if test="${searchType eq '1'}">selected</c:if>>웨딩홀 이름</option>
+									            <option value="1" <c:if test="${searchType eq '1'}">selected</c:if>>웨딩홀 업체 명</option>
 									            <option value="2" <c:if test="${searchType eq '2'}">selected</c:if>>홀 이름</option>
 									         </select>
                                         </div>
