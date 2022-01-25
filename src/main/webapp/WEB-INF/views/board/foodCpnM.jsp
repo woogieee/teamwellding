@@ -30,8 +30,8 @@ html, bady
 
 #qrcode
 {
-	width: 90px; 
-	height:90px; 
+	width: 150px; 
+	height:150px; 
 	margin-top:15px;
 	position: relative;
 	top: 350px;
@@ -68,8 +68,8 @@ html, bady
     
 <script>
 var qrcode = new QRCode(document.getElementById("qrcode"),{
-	width: 90,
-	height: 90
+	width: 150,
+	height: 150
 });
 
 function makeCode()

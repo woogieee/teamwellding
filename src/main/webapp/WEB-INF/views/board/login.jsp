@@ -256,7 +256,7 @@ function fn_loginCheck()
                   
                   Toast.fire({
                       icon: 'success',
-                      title: '웰딩에 오신 관리자 여러분 환영합니다!'
+                      title: '관리자님 환영합니다!'
                   }).then(function(){
                      location.href = "/";
                   });

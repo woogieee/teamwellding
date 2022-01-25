@@ -174,10 +174,10 @@ function reviewWrite(rezNo){
 									<a href="/user/userDrop">회원탈퇴</a>
 								</li>
 								
-                        <li style="position: absolute; right:50px;">
-                           <div>보유 포인트 : <span style="color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
-                           </div>
-                        </li>
+		                        <li style="position: absolute; right:50px;">
+		                           <div>보유 포인트 : <span style="color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
+		                           </div>
+		                        </li>
 							</ol>
 						</nav>
 					</div>

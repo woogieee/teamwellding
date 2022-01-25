@@ -264,7 +264,7 @@ function fn_userUpdate()
             </tbody>
          </table>
       </form>
-      <div class="pop-btn-area" style="float: right;">
+      <div class="pop-btn-area" style="float: right; padding-bottom:50px;">
          <button onclick="fn_userUpdate()" class="btn-type01"><span>등록</span></button>
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
       </div>
