@@ -88,7 +88,7 @@
                      <value>/board/updateProc</value>
                      <value>/board/commentDelete</value>
                      <value>/board/commentUpdate</value>
-
+					 <value>/board/CommentProc</value>
                      <value>/include/PrivacyPolicy</value>
                      <value>/include/Terms</value>
 
