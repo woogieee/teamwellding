@@ -66,7 +66,7 @@ $(function(){
 		 
   });
 	
-  
+  //풀받기위한 글쓰기
 });
 	
 function fn_findCheck()
