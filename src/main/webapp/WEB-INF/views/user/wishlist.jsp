@@ -555,8 +555,36 @@ $("#cou").on("click",function(){
 });    
 
 $("#payMent").on("click", function(){
-
-   
+	
+	var today = new Date();   
+	
+	var year = today.getFullYear(); // 년도
+	var month = today.getMonth() + 1;  // 월
+	var date = today.getDate();  // 날짜
+	
+	month = "0"+month;	
+	today = year + month + date;
+	
+	var wyear = $("#year").val();
+	var wmonth = $("#month").val();
+	var wdate = $("#day").val();
+	
+	var wdate = wyear + wmonth + wdate;
+	
+	today = Number(today);
+	wdate = Number(wdate);
+	
+	if(wdate < today)
+	{
+		Swal.fire({ 
+			icon: 'warning',
+			text: '결혼날짜를 다시 확인해주세요.'
+		}).then(function(){
+			return;
+		});
+		return;
+	}
+	
    document.rezForm.action = "/user/payMent";
    document.rezForm.submit();
 });
@@ -653,7 +681,7 @@ $("#payMent").on("click", function(){
                                     <option value="2023" <c:if test="${year eq '2023'}">selected</c:if>>2023</option>
                                  </select>
                                         
-                                            <select id="month" class="month">
+                                 <select id="month" class="month">
                                     <option value="">월</option>
                                     <option value="01" <c:if test="${month eq '01'}">selected</c:if>>1</option>
                                     <option value="02" <c:if test="${month eq '02'}">selected</c:if>>2</option>
@@ -669,7 +697,7 @@ $("#payMent").on("click", function(){
                                     <option value="12" <c:if test="${month eq '12'}">selected</c:if>>12</option>
                                  </select>
                                         
-                                           <select id="day" class="day">
+                                 <select id="day" class="day">
                                     <option value="">일</option>
                                     <option value="01" <c:if test="${day eq '01'}">selected</c:if>>1</option>
                                     <option value="02" <c:if test="${day eq '02'}">selected</c:if>>2</option>
