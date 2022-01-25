@@ -124,6 +124,13 @@ public class EmailController
 			wdUser.setUserName(userName);
 			wdUser.setUserEmail(userEmail);
 			
+			WDUser tempUser = null;
+			tempUser = wduserService.findPwdSelectUser(wdUser);
+			if(tempUser == null) {
+				ajaxResponse.setResponse(400, "Bad Request");
+				return ajaxResponse;
+			}
+			
 			String pwdTemp = emailService.pwdMail(dto);
 			
 			wdUser.setUserPwd(pwdTemp);
