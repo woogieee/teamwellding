@@ -166,7 +166,7 @@ public class WDReviewController {
       String hiBbsContent = HttpUtil.get(request, "hiBbsContent", "");
       double rScore = HttpUtil.get(request, "starScore", (double)0);
       String rezNo = HttpUtil.get(request, "rezNo", "");
-      
+            
       WDReview wdReviewRez = null;
       wdReviewRez = wdReviewService.rezCheck(rezNo);      
       
@@ -275,6 +275,9 @@ public class WDReviewController {
       }
       
       WDUser wdUser = wdUserService.userSelect(cookieUserId);
+      
+      String content = wdReview.getRContent().replaceAll("<br/>", "\r\n");
+      wdReview.setRContent(content);
       
       model.addAttribute("hsdmName",hsdmName);
       model.addAttribute("wdUser", wdUser);

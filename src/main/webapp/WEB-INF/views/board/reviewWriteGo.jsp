@@ -52,6 +52,9 @@ $(document).ready(function(){
 			return;
 		}
 		
+		var str = $("#hiBbsContent").val().replace(/(?:\r\n|\r|\n)/g,'<br>');
+		$("#hiBbsContent").val(str);
+		
 		//ajax 통신으로 갈 것!
 		//기존에는 키와 속성을 쌍으로 보냈음. 근데 이제는 form객체를 통으로 보낼 것
 		//id가 writeForm이라고 하는 애의 0번째 값 여러개의 writeForm이 있을 수 있으니깐
