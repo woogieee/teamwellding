@@ -140,12 +140,10 @@ $(document).ready(function(){
 			});
 
 	});
-
 	
 });
 </script>
 </head>
-    
 <body>
     <jsp:include page="/WEB-INF/views/include/navigation.jsp" >
     <jsp:param name="userName" value="${wdUser.userNickname}" />
@@ -458,10 +456,13 @@ $(document).ready(function(){
 	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="${wdRez.rezFullPrice}" />원
 	                        </dd>
 	                     </dl>
-	                     
+	                     <c:set var="today" value="<%=new java.util.Date()%>" />
+	                     <c:set var="date"><fmt:formatDate value="${today}" pattern="yyyyMMdd" /></c:set>
+	                     <c:if test="${wdRez.wDate ge date}">
 	                     <dl class="cancel_place">
 	                     	<button type="button" id="btnCancel" class="btn_paycancel">환불요청</button>
 	                     </dl>
+	                     </c:if>
 					</div>
 
                   </div>
