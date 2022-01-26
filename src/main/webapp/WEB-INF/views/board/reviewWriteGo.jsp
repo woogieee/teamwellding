@@ -6,6 +6,7 @@
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <script>
 $(document).ready(function(){
+
 	
 	//우선 페이지 로딩되었을 때 해당 란에 커서가 가게 해야 함.
 	$("#hiBbsTitle").focus();
@@ -128,6 +129,12 @@ $(document).ready(function(){
 	});
 	
 });
+
+var str = document.getElementById("hiBbsContent").value;
+
+str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
+document.getElementById("hiBbsContent").innerHTML = str;
 </script>
 </head>
 <body>
@@ -183,7 +190,7 @@ $(document).ready(function(){
 		      
 		      <input type="text" name="hiBbsTitle" id="hiBbsTitle" maxlength="100" style="ime-mode:active;" class="form-control mb-2" placeholder="제목을 입력해주세요." required />
 		      <div class="form-group">
-		         <textarea class="form-control" rows="10" name="hiBbsContent" id="hiBbsContent" style="ime-mode:active;" placeholder="내용을 입력해주세요" required></textarea>
+		         <textarea class="form-control" rows="10" name="hiBbsContent" id="hiBbsContent" style="ime-mode:active; white-space:pre-wrap;" placeholder="내용을 입력해주세요" required></textarea>
 		      </div>
 		      <input type="file" id="hiBbsFile" name="hiBbsFile" class="form-control mb-2"  placeholder="파일을 선택하세요." required style="/*display: none;*/"/>
 별점을 선택해 주세요 : <select id="starScore" name="starScore">
