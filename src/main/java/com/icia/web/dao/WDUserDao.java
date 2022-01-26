@@ -32,4 +32,6 @@ public interface WDUserDao
 	//비밀번호찾기
 	public int findPwd(WDUser wduser);
 	
+	public WDUser findPwdSelectUser(WDUser wdUser);
+	
 }

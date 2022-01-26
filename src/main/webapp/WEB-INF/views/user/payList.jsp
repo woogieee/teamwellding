@@ -41,12 +41,12 @@ $(document).ready(function(){
 });
 
 function foodCpnM(rezNo){
-    var option="width = 340, height = 601, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
+    var option="width = 340, height = 590, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
     window.open("/board/foodCpnM?rezNo="+rezNo, "PopUP", option); 
 }
 
 function foodCpnF(rezNo){
-    var option="width = 340, height = 601, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
+    var option="width = 340, height = 590, top = 140, left = 520, location = no, menubar = no, scrollbars=no";
     window.open("/board/foodCpnF?rezNo="+rezNo, "PopUP", option); 
 }
 
@@ -174,10 +174,10 @@ function reviewWrite(rezNo){
 									<a href="/user/userDrop">회원탈퇴</a>
 								</li>
 								
-                        <li style="position: absolute; right:50px;">
-                           <div>보유 포인트 : <span style="color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
-                           </div>
-                        </li>
+		                        <li style="position: absolute; right:50px;">
+		                           <div>보유 포인트 : <span style="color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
+		                           </div>
+		                        </li>
 							</ol>
 						</nav>
 					</div>

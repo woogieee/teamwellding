@@ -205,7 +205,7 @@ $(document).ready(function(){
 									icon: 'error',
 									text: '로그인이 필요합니다.'
 								}).then(function(){
-									return;
+									location.href="/board/login";
 								});
 							}
 							else
