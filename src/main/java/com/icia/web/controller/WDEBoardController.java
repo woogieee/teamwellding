@@ -175,6 +175,9 @@ public class WDEBoardController
 			{
 				eBoard = wdEBoardService.eView(eBSeq);
 			}
+			
+			String content = eBoard.geteBContent().replaceAll("<br>", "\r\n");
+			eBoard.seteBContent(content);
 	
 			model.addAttribute("eBSeq", eBSeq);
 			model.addAttribute("eBoard", eBoard);

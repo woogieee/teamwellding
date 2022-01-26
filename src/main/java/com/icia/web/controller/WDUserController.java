@@ -231,33 +231,38 @@ public class WDUserController
 		WDUser wdUser = null;
 		wdUser = wduserService.userSelect(cookieUserId);
 		System.out.println("아이디 : "+ wdUser.getUserId());
+		
 		if(!StringUtil.isEmpty(wdUser.getUserId())) 
 		{
-
-			
 			if(!StringUtil.isEmpty(userPwd) && !StringUtil.isEmpty(userName) && !StringUtil.isEmpty(phone) &&
 					!StringUtil.isEmpty(marry) && !StringUtil.isEmpty(nickName) && !StringUtil.isEmpty(email)) 
-				{
-			
+			{
 				wdUser.setUserPwd(userPwd);
 				wdUser.setUserName(userName);
 				wdUser.setUserNumber(phone);
 				wdUser.setMarrytDate(marry);
 				wdUser.setUserNickname(nickName);
 				wdUser.setUserEmail(email);
-				
-					if(wduserService.userUpdate(wdUser) > 0) {
-						ajaxResponse.setResponse(0, "Success");
-					}
-					else {
-						ajaxResponse.setResponse(500, "Bad Request");
-					}
+			
+				if(wduserService.userUpdate(wdUser) > 0) 
+				{
+					ajaxResponse.setResponse(0, "Success");
 				}
-				else {
-					ajaxResponse.setResponse(400, "Bad Request");
-				}	
+				else 
+				{
+					//유저정보 업뎃실패
+					ajaxResponse.setResponse(500, "Bad Request");
+				}
+			}
+			else 
+			{
+				//pw,이름,번호,결혼날짜,닉네임,이메일 중 하나라도 못받아오면 오류
+				ajaxResponse.setResponse(400, "Bad Request");
+			}	
 		}
-		else {
+		else 
+		{
+			//아이디 못받아옴
 			ajaxResponse.setResponse(500, "Bad Request");
 		}
 		
