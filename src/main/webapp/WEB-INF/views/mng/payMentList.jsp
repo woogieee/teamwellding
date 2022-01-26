@@ -44,14 +44,18 @@ button:focus
 }
 /*다크모드 */
 body {  color: #efefef; background: #121212;} 
-a { color: #809fff; } 
+a 
+{ 
+	color: red;
+    font-weight: 600; 
+} 
 td,th {color: #eee;}
 span {color: #efefef;}
 p{color: #efefef;}
 .page-link
 {
 	background: #555!important;
-    border: none;
+   /* border: none;*/
 }
 /* Dark Mode 아닐떄 */ 
 body.dark-theme { color: #222; background: #fff; } 
@@ -172,12 +176,12 @@ function fn_confirm()
 	         <table class="table table-hover" style="border:1px solid #c4c2c2;">
 	            <thead style="border-bottom: 1px solid #c4c2c2;">
 	            <tr class="table-thead-main" style="background: #ddd;">
-	               <th scope="col" style="width:15%;">아이디</th>
-	               <th scope="col">예약번호</th>
-	               <th scope="col">상품</th>
-	               <th scope="col">가격</th>
-	               <th scope="col">상태</th>
-	               <th scope="col">관리</th>
+	               <th scope="col" style="width:20%;">아이디</th>
+	               <th scope="col" style="width:15%;">예약번호</th>
+	               <th scope="col" style="width:15%;">상품</th>
+	               <th scope="col" style="width:15%;">가격</th>
+	               <th scope="col" style="width:15%;">상태</th>
+	               <th scope="col" style="width:20%;">취소승인 관리</th>
 	               
 	            </tr>
 	            </thead>

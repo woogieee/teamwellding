@@ -18,13 +18,14 @@ table th, td{
   height: 4rem;
   padding-left: .5rem;
   padding-right: 1rem;
+  text-align: left;
 }
 table th{
   background-color: #e9e9ed;
   width: 250px;
 }
 input[type=text], input[type=password]{
-  height:2rem;
+
   width: 100%;
   border-radius: .2rem;
   border: .2px solid rgb(204,204,204);

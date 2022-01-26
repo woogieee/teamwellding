@@ -163,10 +163,10 @@ public class WDReviewController {
       
       String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
       String hiBbsTitle = HttpUtil.get(request, "hiBbsTitle", "");
-      String hiBbsContent = HttpUtil.get(request, "hiBbsContent", "");
+      String hiBbsContent2 = HttpUtil.get(request, "hiBbsContent2", "");
       double rScore = HttpUtil.get(request, "starScore", (double)0);
       String rezNo = HttpUtil.get(request, "rezNo", "");
-      
+            
       WDReview wdReviewRez = null;
       wdReviewRez = wdReviewService.rezCheck(rezNo);      
       
@@ -176,12 +176,12 @@ public class WDReviewController {
       
       FileData fileData = HttpUtil.getFile(request, "hiBbsFile", UPLOAD_SAVE_DIR);
       if(wdReviewRez != null) {
-         if(!StringUtil.isEmpty(hiBbsTitle) && !StringUtil.isEmpty(hiBbsContent)) 
+         if(!StringUtil.isEmpty(hiBbsTitle) && !StringUtil.isEmpty(hiBbsContent2)) 
          {
             WDReview wdReview = new WDReview();
             wdReview.setUserId(cookieUserId);
             wdReview.setRTitle(hiBbsTitle);
-            wdReview.setRContent(hiBbsContent);
+            wdReview.setRContent(hiBbsContent2);
             wdReview.setRezNo(wdReviewRez.getRezNo());
             wdReview.setWDate(wdReviewRez.getWDate());
             wdReview.setRScore(rScore);
@@ -275,6 +275,9 @@ public class WDReviewController {
       }
       
       WDUser wdUser = wdUserService.userSelect(cookieUserId);
+      
+      String content = wdReview.getRContent().replaceAll("<br>", "\r\n");
+      wdReview.setRContent(content);
       
       model.addAttribute("hsdmName",hsdmName);
       model.addAttribute("wdUser", wdUser);

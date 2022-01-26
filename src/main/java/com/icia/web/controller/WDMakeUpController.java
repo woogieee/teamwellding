@@ -61,7 +61,7 @@ public class WDMakeUpController
 	private WDUserService wdUserService;
 	
 	private static final int LIST_COUNT = 9;
-	private static final int PAGE_COUNT = 2;
+	private static final int PAGE_COUNT = 3;
 	
 	//메이크업 업체 불러와서 화면에 보여주는 메소드
 	@RequestMapping(value="/hsdm/makeUp")

@@ -20,7 +20,10 @@
   /* width: 120px;*/
 }
 
-
+table td
+{
+	text-align: left;
+}
 
 /*다크모드관련*/
 .btn-toggle
@@ -53,7 +56,7 @@ p{color: #efefef;}
 .page-link
 {
    background: #555!important;
-    border: none;
+    /*border: none;*/
 }
 /* Dark Mode 아닐떄 */ 
 body.dark-theme { color: #222; background: #fff; } 
@@ -84,12 +87,12 @@ body.dark-theme .page-link.active
       $(".weddingHall_modal").colorbox({
           iframe:true, 
           innerWidth:1000,
-          innerHeight:600,
+          innerHeight:650,
           scrolling:false,
           onComplete:function()
           {
              $("#colorbox").css("width", "1000px");
-             $("#colorbox").css("height", "600px");
+             $("#colorbox").css("height", "650px");
              $("#colorbox").css("border-radius", "10px");
              
              $('html').css("overflow","hidden");
@@ -103,12 +106,12 @@ body.dark-theme .page-link.active
       $(".hall_modal2").colorbox({
           iframe:true, 
           innerWidth:1000,
-          innerHeight:700,
+          innerHeight:780,
           scrolling:true,
           onComplete:function()
           {
              $("#colorbox").css("width", "1000px");
-             $("#colorbox").css("height", "700px");
+             $("#colorbox").css("height", "780px");
              $("#colorbox").css("border-radius", "10px");
              
              $('html').css("overflow","hidden");
@@ -122,12 +125,12 @@ body.dark-theme .page-link.active
      $(".studio_modal").colorbox({
             iframe:true, 
             innerWidth:1000,
-            innerHeight:650,
-            scrolling:false,
+            innerHeight:750,
+            scrolling:true,
             onComplete:function()
             {
                $("#colorbox").css("width", "1000px");
-               $("#colorbox").css("height", "650px");
+               $("#colorbox").css("height", "750px");
                $("#colorbox").css("border-radius", "10px");
                
                $('html').css("overflow","hidden");
@@ -142,12 +145,12 @@ body.dark-theme .page-link.active
 	$(".studiomodal").colorbox({
             iframe:true, 
             innerWidth:1200,
-            innerHeight:600,
+            innerHeight:700,
             scrolling:false,
             onComplete:function()
             {
                $("#colorbox").css("width", "1200px");
-               $("#colorbox").css("height", "600px");
+               $("#colorbox").css("height", "700px");
                $("#colorbox").css("border-radius", "10px");
                
                $('html').css("overflow","hidden");
@@ -196,36 +199,16 @@ body.dark-theme .page-link.active
          }  
    });
      
-     //메이크업모달
-     $(".makeup_modal").colorbox({
-         iframe:true, 
-         innerWidth:1000,
-         innerHeight:800,
-         scrolling:false,
-         onComplete:function()
-         {
-            $("#colorbox").css("width", "1000px");
-            $("#colorbox").css("height", "800px");
-            $("#colorbox").css("border-radius", "10px");
-            
-            $('html').css("overflow","hidden");
-         } , 
-         onClosed: function()
-         {
-           $('html').css("overflow","auto");
-         }  
-   });
-     
      //dresscom_modal & dress_modal
      $(".dresscom_modal").colorbox({
          iframe:true, 
          innerWidth:1000,
-         innerHeight:500,
+         innerHeight:550,
          scrolling:false,
          onComplete:function()
          {
             $("#colorbox").css("width", "1000px");
-            $("#colorbox").css("height", "500px");
+            $("#colorbox").css("height", "550px");
             $("#colorbox").css("border-radius", "10px");
             
             $('html').css("overflow","hidden");
@@ -239,12 +222,12 @@ body.dark-theme .page-link.active
      $(".dress_modal").colorbox({
          iframe:true, 
          innerWidth:1000,
-         innerHeight:600,
+         innerHeight:650,
          scrolling:false,
          onComplete:function()
          {
             $("#colorbox").css("width", "1000px");
-            $("#colorbox").css("height", "600px");
+            $("#colorbox").css("height", "650px");
             $("#colorbox").css("border-radius", "10px");
             
             $('html').css("overflow","hidden");
@@ -258,12 +241,12 @@ body.dark-theme .page-link.active
      $(".dresscom_modal2").colorbox({
          iframe:true, 
          innerWidth:1100,
-         innerHeight:600,
+         innerHeight:650,
          scrolling:false,
          onComplete:function()
          {
             $("#colorbox").css("width", "1100px");
-            $("#colorbox").css("height", "600px");
+            $("#colorbox").css("height", "650px");
             $("#colorbox").css("border-radius", "10px");
             
             $('html').css("overflow","hidden");
@@ -277,12 +260,12 @@ body.dark-theme .page-link.active
      $(".dress_modal2").colorbox({
          iframe:true, 
          innerWidth:1000,
-         innerHeight:800,
+         innerHeight:770,
          scrolling:false,
          onComplete:function()
          {
             $("#colorbox").css("width", "1000px");
-            $("#colorbox").css("height", "800px");
+            $("#colorbox").css("height", "770px");
             $("#colorbox").css("border-radius", "10px");
             
             $('html').css("overflow","hidden");
@@ -292,16 +275,37 @@ body.dark-theme .page-link.active
            $('html').css("overflow","auto");
          }  
    });
-     //메이크업
+     
+	     //메이크업모달
+	     $(".makeup_modal").colorbox({
+	         iframe:true, 
+	         innerWidth:1000,
+	         innerHeight:900,
+	         scrolling:true,
+	         onComplete:function()
+	         {
+	            $("#colorbox").css("width", "1000px");
+	            $("#colorbox").css("height", "900px");
+	            $("#colorbox").css("border-radius", "10px");
+	            
+	            $('html').css("overflow","hidden");
+	         } , 
+	         onClosed: function()
+	         {
+	           $('html').css("overflow","auto");
+	         }  
+	   });
+	     
+     //메이크업 수정
          $(".makeupUpdate").colorbox({
                iframe:true, 
-               innerWidth:1235,
-               innerHeight:600,
-               scrolling:false,
+               innerWidth:1000,
+               innerHeight:780,
+               scrolling:true,
                onComplete:function()
                {
-                  $("#colorbox").css("width", "1235px");
-                  $("#colorbox").css("height", "600px");
+                  $("#colorbox").css("width", "1000px");
+                  $("#colorbox").css("height", "780px");
                   $("#colorbox").css("border-radius", "10px");
                   
                   $('html').css("overflow","hidden");
@@ -527,25 +531,24 @@ function classChange(id){
             </li>
             </c:forEach>
          </ul>
-
+      
       <div class="row">
          <div class="col-lg-12">
-               <div class="ticket-item2 gosu_modal" href="/mng/plusHall" style="float: right; margin-right: 30px;" >
-                   <div class="down-content2">
-                       <div class="main-dark-button btn_go" style="margin-top: 0;">
-                           <a href="/mng/plusHall" class="hall_modal" >홀 추가</a>
-                       </div>    
-                    </div>
-                </div>
-         
-                  <div class="ticket-item2 gosu_modal" href="/mng/plusWHall" style="float: right; margin-right: 10px;">
-                      <div class="down-content2">
-                          <div class="main-dark-button btn_go" style="margin-top: 0;">
-                              <a href="/mng/plusWHall" class="wdhall_modal" >웨딩홀 추가</a>
-                          </div>    
-                       </div>
-                  </div>
-         </div>
+               <div>
+                  <form id="subscribe" action="" method="get">
+                     <div class="row" style="width: 100%;">
+                        <div class="col-lg-12">
+                           <div class="gosu_modal" href="/mng/plusDress">
+                              <a href="/mng/plusHall" id="btnWrite" class="hall_modal hsdm_btn" style="margin-right:30px;">홀 추가</a>
+                            </div>
+                            <div class="gosu_modal" href="/mng/plusDressCom">
+                              <a href="/mng/plusWHall" id="btnWrite" class="wdhall_modal hsdm_btn" style="margin-right: 10px;">웨딩업체 추가</a>
+                           </div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
       </div>
 
          <div class="row">
@@ -597,7 +600,7 @@ function classChange(id){
             </li>
             <c:forEach var="studioList" items="${sList}" varStatus="status">
             <li class="wdhtd">
-               <div class="wdhcon" style="width:14%;"><p><a class="studiomodal" href="/mng/updateStudio?sCode=${studioList.sCode}">${studioList.sName }</a></p></div>
+               <div class="wdhcon" style="width:14%;"><p><a class="studiomodal" href="/mng/updateStudio?sCode=${studioList.sCode}" style="font-weight:800;">${studioList.sName }</a></p></div>
                <div class="wdhcon" style="width:18%;"><p>${studioList.sLocation }</p></div>
                <div class="wdhcon" style="width:12%;"><p>${studioList.sNumber }</p></div>
                <div class="wdhcon" style="width:9%;"><p>${studioList.sPrice }</p></div>
@@ -608,16 +611,18 @@ function classChange(id){
             </c:forEach>
          </ul>
 
-      <div>
-            <div class="col-lg-12" style="text-align: right;">
+      <div class="row">
+         <div class="col-lg-12">
                <div>
-                    <div class="ticket-item2 gosu_modal" href="/mng/plusStudio">
-                        <div class="down-content2">
-                            <div class="main-dark-button btn_go wookhall" style="display: inline-block; margin-top: 0; margin-right:20px;">
-                                <a href="/mng/plusStudio" class="studio_modal" >스튜디오 추가</a>
-                            </div>
-                         </div>
-                    </div>
+                  <form id="subscribe" action="" method="get">
+                     <div class="row" style="width: 100%;">
+                        <div class="col-lg-12">
+                            <div class="gosu_modal" href="/mng/plusDressCom">
+                              <a href="/mng/plusStudio" id="btnWrite" class="studio_modal hsdm_btn" style="margin-right: 10px;">스튜디오 추가</a>
+                           </div>
+                        </div>
+                     </div>
+                  </form>
                </div>
             </div>
       </div>
@@ -695,10 +700,10 @@ function classChange(id){
                   <form id="subscribe" action="" method="get">
                      <div class="row" style="width: 100%;">
                         <div class="col-lg-12">
-                           <div gosu_modal" href="/mng/plusDress">
+                           <div class="gosu_modal" href="/mng/plusDress">
                               <a href="/mng/plusDress" id="btnWrite" class="dress_modal hsdm_btn" style="margin-right: 30px;">드레스 추가</a>
                             </div>
-                            <div gosu_modal" href="/mng/plusDressCom">
+                            <div class="gosu_modal" href="/mng/plusDressCom">
                               <a href="/mng/plusDressCom" id="btnWrite" class="dresscom_modal hsdm_btn" style="margin-right: 10px;">업체 추가</a>
                            </div>
                         </div>
@@ -780,85 +785,61 @@ function classChange(id){
             </c:forEach>
          </ul>
 
-     
-
-
-         <div class="row">
-              <div class="col-lg-10" style="left:43%;">
-                <div class="pagination">
-               <ul class="pagination justify-content-center">
-                  <c:if test="${!empty mPaging}">
-                     <c:if test="${mPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${mPaging.prevBlockPage})">이전</a></li>
-                     </c:if>
-                     <c:forEach var="i" begin="${mPaging.startPage}" end="${mPaging.endPage}">
-                        <c:choose>
-                           <c:when test="${i ne curPage}">
-                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${i})">${i}</a></li>
-                           </c:when>
-                           <c:otherwise>
-                              <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
-                           </c:otherwise>
-                        </c:choose>
-                     </c:forEach>
-                     <c:if test="${mPaging.nextBlockPage gt 0}">         
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${mPaging.nextBlockPage})">다음</a></li>
-                     </c:if>       
-                  </c:if> 
-                     <form name="bbsFormM" id="bbsFormM" method="post">
-                        <input type="hidden" name="hsdmCheck" value="4" />
-                        <input type="hidden" name="curPage" value="${curPage}" />
-                     </form>
-               </ul>
-                  </div>
-              </div>
-
-              
-            <div class="col-lg-1">
-               <div>
-            <div class="col-lg-12" style="text-align: right;">
-               <div>
-                    <div class="ticket-item2 gosu_modal" href="/mng/plusMakeup">
-                        <div class="down-content2">
-                            <div class="main-dark-button btn_go wookhall" style="display: inline-block; margin-top: 0;">
-                                <a href="/mng/plusMakeup" class="studio_modal" style="width: 85px;" >메이크업 추가</a>
-                            </div>    
-                         </div>
-                    </div>
-               </div>
-            </div>
-		</div>
-                        </div>
-                     </div>
-                  </form>
-               </div>
-            </div>
-           </div>
-            <div class="col-lg-1">
+      <div class="row">
+         <div class="col-lg-12">
                <div>
                   <form id="subscribe" action="" method="get">
                      <div class="row" style="width: 100%;">
                         <div class="col-lg-12">
-                              
+                           <div gosu_modal" href="/mng/plusDress">
+                              <a href="/mng/plusMakeup" class="studio_modal hsdm_btn" id="btnWrite"style="margin-right: 30px;">메이크업 추가</a>
+                            </div>
                         </div>
                      </div>
                   </form>
                </div>
             </div>
-           </div>
-              
       </div>
 
-         </div>   
-
-      </div>
-   </div>
+         <div class="row">
+              <div class="col-lg-10" style="left:43%;">
+                <div class="pagination">
+	               <ul class="pagination justify-content-center">
+	                  <c:if test="${!empty mPaging}">
+	                     <c:if test="${mPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
+	                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${mPaging.prevBlockPage})">이전</a></li>
+	                     </c:if>
+	                     <c:forEach var="i" begin="${mPaging.startPage}" end="${mPaging.endPage}">
+	                        <c:choose>
+	                           <c:when test="${i ne curPage}">
+	                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${i})">${i}</a></li>
+	                           </c:when>
+	                           <c:otherwise>
+	                              <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
+	                           </c:otherwise>
+	                        </c:choose>
+	                     </c:forEach>
+	                     <c:if test="${mPaging.nextBlockPage gt 0}">         
+	                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingM(${mPaging.nextBlockPage})">다음</a></li>
+	                     </c:if>       
+	                  </c:if> 
+	                     <form name="bbsFormM" id="bbsFormM" method="post">
+	                        <input type="hidden" name="hsdmCheck" value="4" />
+	                        <input type="hidden" name="curPage" value="${curPage}" />
+	                     </form>
+	               </ul>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
       <!-- 메이크업 끝 -->
 
 	  <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">       
 		<input type="hidden" name="curPage" value="" />
       </form>
-  </div>
+	  </div>	
+	</div>
 </div>
 
    <%@ include file="/WEB-INF/views/include/footer3.jsp" %>

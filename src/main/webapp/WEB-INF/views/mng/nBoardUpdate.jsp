@@ -68,7 +68,7 @@ function fn_nBoardUpdate()
 	}
 	
 	//수정 취소
-	if(!confirm("회원정보를 수정하시겠습니까?"))
+	if(!confirm("게시글을 수정하시겠습니까?"))
 	{
 		//NO
 		return;
@@ -168,56 +168,56 @@ function fn_nBoardDelete()
 </script>
 </head>
 <body>
-
-<div class="layerpopup" style="width:1123px; margin:auto; margin-top:5%;">
-	<h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">공지사항 게시글 수정</h1>
-   <div class="layer-cont">
-      <form name="regForm" id="regForm" method="post">
-         <table>
-            <tbody>
-            	<tr>
-                  <th scope="row">글 번호</th>
-                  <td>
-                  	${nBList.bSeq}
-                     <input type="hidden" id="bSeq" name="bSeq" value="${nBList.bSeq}"/>
-                  </td>
-            	</tr>
-               <tr>
-                  <th scope="row">작성자</th>
-                  <td>
-                  	${nBList.adminId}
-                     <input type="hidden" id="adminId" name="adminId" value="${nBList.adminId}"/>
-                  </td>
-               </tr>
-               <tr>
-                  <th scope="row">제목</th>
-                  <td>
-                     <input type="text" style="background-color: #fff;" id="bTitle" name="bTitle" value="${nBList.bTitle}"/>
-                  </td>
-               </tr>
-               <tr>
-                   <th scope="row">내용</th>
-                  <td>
-                  	 <textarea class="form-control" rows="3" name="bContent" id="bContent"style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px;" required>${nBList.bContent}</textarea>
-                  </td>
-               </tr>
-               <tr>
-                  <th scope="row">등록일</th>
-                  <td>
-                  ${nBList.regDate}
-                  </td>
-               </tr>
-            </tbody>
-         </table>
-      </form>
-      <div class="pop-btn-area" style="float: right;">
-         <button onclick="fn_nBoardUpdate()" class="btn-type01"><span>수정</span></button>
-         <button onclick="fn_nBoardDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
-         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
-      </div>
-   </div>
+<div class="container">
+			<div class="layerpopup" style="width:100%; margin:auto; margin-top:5%;">
+				<h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe; text-align: center;">공지사항 게시글 수정</h1>
+			   <div class="layer-cont">
+			      <form name="regForm" id="regForm" method="post">
+			         <table>
+			            <tbody>
+			            	<tr>
+			                  <th scope="row">글 번호</th>
+			                  <td>
+			                  	${nBList.bSeq}
+			                     <input type="hidden" id="bSeq" name="bSeq" value="${nBList.bSeq}"/>
+			                  </td>
+			            	</tr>
+			               <tr>
+			                  <th scope="row">작성자</th>
+			                  <td>
+			                  	${nBList.adminId}
+			                     <input type="hidden" id="adminId" name="adminId" value="${nBList.adminId}"/>
+			                  </td>
+			               </tr>
+			               <tr>
+			                  <th scope="row">제목</th>
+			                  <td>
+			                     <input type="text" style="background-color: #fff;" id="bTitle" name="bTitle" value="${nBList.bTitle}"/>
+			                  </td>
+			               </tr>
+			               <tr>
+			                   <th scope="row">내용</th>
+			                  <td>
+			                  	 <textarea class="form-control" rows="3" name="bContent" id="bContent"style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px;" required>${nBList.bContent}</textarea>
+			                  </td>
+			               </tr>
+			               <tr>
+			                  <th scope="row">등록일</th>
+			                  <td>
+			                  ${nBList.regDate}
+			                  </td>
+			               </tr>
+			            </tbody>
+			         </table>
+			      </form>
+			      <div class="pop-btn-area" style="float: right;">
+			         <button onclick="fn_nBoardUpdate()" class="btn-type01"><span>수정</span></button>
+			         <button onclick="fn_nBoardDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
+			         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
+			      </div>
+			   </div>
+			</div>
 </div>
-
 
 	<%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>

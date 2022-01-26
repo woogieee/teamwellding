@@ -194,6 +194,9 @@ public class WDFBoardController
 		
 		WDUser wdUser = wdUserService.userSelect(cookieUserId);
 		
+		String content = wdFBoard.getbContent().replaceAll("<br>", "\r\n");
+		wdFBoard.setbContent(content);
+		
 		model.addAttribute("wdUser", wdUser);
 		model.addAttribute("cookieUserId",cookieUserId);
 		model.addAttribute("bSeq", bSeq);
