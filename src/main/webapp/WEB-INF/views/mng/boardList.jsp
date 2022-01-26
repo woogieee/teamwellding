@@ -75,12 +75,12 @@ body.dark-theme .page-link.active
 	      $(".mngReviewUpdate").colorbox({
 	            iframe:true, 
 	            innerWidth:1235,
-	            innerHeight:500,
+	            innerHeight:620,
 	            scrolling:true,
 	            onComplete:function()
 	            {
 	               $("#colorbox").css("width", "1235px");
-	               $("#colorbox").css("height", "500px");
+	               $("#colorbox").css("height", "620px");
 	               $("#colorbox").css("border-radius", "10px");
 	               
 	               $('html').css("overflow","hidden");
@@ -443,7 +443,7 @@ body.dark-theme .page-link.active
 		   </ul>
   
 		   <div class="row">
-				<div class="col-lg-10" style="left:43%;">
+				<div class="col-lg-10" style="left:46%;">
 				  <div class="pagination">
 				 <ul class="pagination justify-content-center">
 					<c:if test="${!empty rPaging}">

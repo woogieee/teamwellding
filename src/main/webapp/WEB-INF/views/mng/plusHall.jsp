@@ -254,26 +254,26 @@ function fn_userUpdate()
                   	<input type="file" style="background-color: #fff; float:left;" id="hallImgName2" name="hallImgName2" /><br>
                   	<input type="file" style="background-color: #fff; float:left;" id="hallImgName3" name="hallImgName3" />-->
                   	
-<div class="filebox bs3-primary" style="margin-top: 6px;">
-    <input class="upload-name" value="파일선택" disabled="disabled">
-
-    <label for="hallImgName1">업로드</label> 
-    <input type="file" id="hallImgName1" name="hallImgName1" class="upload-hidden"> 
-</div>
-
-<div class="filebox bs3-primary">
-    <input class="upload-name" value="파일선택" disabled="disabled">
-
-    <label for="hallImgName2">업로드</label> 
-    <input type="file" id="hallImgName2" name="hallImgName2" class="upload-hidden"> 
-</div>
-
-<div class="filebox bs3-primary" style="margin-bottom: 6px;">
-    <input class="upload-name" value="파일선택" disabled="disabled">
-
-    <label for="hallImgName3">업로드</label> 
-    <input type="file" id="hallImgName3" name="hallImgName3" class="upload-hidden"> 
-</div>
+					<div class="filebox bs3-primary" style="margin-top: 6px;">
+					    <input class="upload-name" value="파일선택" disabled="disabled">
+					
+					    <label for="hallImgName1">업로드</label> 
+					    <input type="file" id="hallImgName1" name="hallImgName1" class="upload-hidden"> 
+					</div>
+					
+					<div class="filebox bs3-primary">
+					    <input class="upload-name" value="파일선택" disabled="disabled">
+					
+					    <label for="hallImgName2">업로드</label> 
+					    <input type="file" id="hallImgName2" name="hallImgName2" class="upload-hidden"> 
+					</div>
+					
+					<div class="filebox bs3-primary" style="margin-bottom: 6px;">
+					    <input class="upload-name" value="파일선택" disabled="disabled">
+					
+					    <label for="hallImgName3">업로드</label> 
+					    <input type="file" id="hallImgName3" name="hallImgName3" class="upload-hidden"> 
+					</div>
                   	
                   </td>
                </tr>

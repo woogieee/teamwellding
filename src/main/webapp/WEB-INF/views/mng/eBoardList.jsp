@@ -71,13 +71,13 @@ body.dark-theme .eBoardUpdate {color: #333;}
 $(document).ready(function(){
       $(".eBoardUpdate").colorbox({
             iframe:true, 
-            innerWidth:1235,
-            innerHeight:600,
+            innerWidth:1150,
+            innerHeight:750,
             scrolling:true,
             onComplete:function()
             {
-               $("#colorbox").css("width", "1235px");
-               $("#colorbox").css("height", "600px");
+               $("#colorbox").css("width", "1150px");
+               $("#colorbox").css("height", "750px");
                $("#colorbox").css("border-radius", "10px");
                
                $('html').css("overflow","hidden");
@@ -90,13 +90,13 @@ $(document).ready(function(){
       
       $(".plusEBoard").colorbox({
           iframe:true, 
-          innerWidth:1235,
-          innerHeight:450,
+          innerWidth:1150,
+          innerHeight:550,
           scrolling:false,
           onComplete:function()
           {
-             $("#colorbox").css("width", "1235px");
-             $("#colorbox").css("height", "450px");
+             $("#colorbox").css("width", "1150px");
+             $("#colorbox").css("height", "550px");
              $("#colorbox").css("border-radius", "10px");
              
              $('html').css("overflow","hidden");

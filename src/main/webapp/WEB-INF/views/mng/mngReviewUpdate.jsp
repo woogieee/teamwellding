@@ -130,7 +130,7 @@ $(document).ready(function(){
 		            <tr>
 		               <td colspan="2">
 			               <div style="padding:10px">
-			               	<div>
+			               	<div style="white-space: pre-line;">
 			               	<c:if test="${!empty wdReview.reviewFile}">
 			               	<img src="../resources/upload/${wdReview.reviewFile.rFileName }">
 			               	<br>

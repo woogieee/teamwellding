@@ -222,79 +222,76 @@ function fn_eBoardDelete()
 
 <div class="container">
     <div class="row" style="width: 100%; text-align: center;">
-    	<div class="col-lg-12">
-    
-		<div class="layerpopup" style="width:1123px; margin:auto;">
-			<h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">이벤트 게시글 수정</h1>
-		   <div class="layer-cont">
-		      <form name="regForm" id="regForm" method="post">
-		         <table>
-		            <tbody>
-		            	<tr>
-		                  <th scope="row">글 번호</th>
-		                  <td style="text-align: left;">
-		                  	${eBoard.eBSeq}
-		                     <input type="hidden" id="bSeq" name="bSeq" value="${eBoard.eBSeq}"/>
-		                  </td>
-		            	</tr>
-		               <tr>
-		                  <th scope="row">작성자</th>
-		                  <td style="text-align: left;">
-		                  	${eBoard.adminId}
-		                     <input type="hidden" id="adminId" name="adminId" value="${eBoard.adminId}"/>
-		                  </td>
-		               </tr>
-		               <tr>
-		                   <th scope="row">이미지</th>
-		                  <td>
-		                  	 <img src="/resources/board/${eBoard.eBImgName}" style="width:100%; height: auto;">
-		                  </td>
-		               </tr>
-		               <tr>
-		                  <th scope="row">제목</th>
-		                  <td>
-		                     <input type="text" style="background-color: #fff; font-size: 15px; color: #444; padding-left: 7px;" id="bTitle" name="bTitle" value="${eBoard.eBTitle}"/>
-		                  </td>
-		               </tr>
-		               <tr>
-		                   <th scope="row">내용</th>
-		                  <td>
-		                  	 <textarea class="form-control" rows="3" name="bContent" id="bContent"style="ime-mode: active; resize: none; width:100%; float:left; height:76px; font-size:14px;" required>${eBoard.eBContent}</textarea>
-		                  </td>
-		               </tr>
-		               <tr>
-		                  <th scope="row">등록일</th>
-		                  <td style="text-align: left;">
-		                  ${eBoard.regDate}
-		                  </td>
-		               </tr>
-		            </tbody>
-		         </table>
-		      </form>
-		      
-			<table style="border:none;">
-				<tr style="border:none;">
-					<td style="border:none;">
-					      <div class="pop-btn-area" style="display: block; float: right;">
-					         <button onclick="fn_eBoardUpdate()" class="btn-type01"><span>수정</span></button>
-					         <button onclick="fn_eBoardDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
-					         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
-					      </div>
-					   </div>
-					</td>
-				</tr>
-			</table>
-		      <!-- 미안한데 이거 안먹어서 바꿈 -->
-		      <!-- div class="pop-btn-area" style="float: right;">
-		         <button onclick="fn_eBoardUpdate()" class="btn-type01"><span>수정</span></button>
-		         <button onclick="fn_eBoardDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
-		         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
-		      </div-->
-		   </div>
-		   <div style="width: 100%; height: 50px; position: relative; display: block; margin-bottom: 80px;"></div>
-		
-		</div>
-		</div>
+			<div class="layerpopup" style="width:100%; margin:auto;">
+				<h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">이벤트 게시글 수정</h1>
+			   <div class="layer-cont">
+			      <form name="regForm" id="regForm" method="post">
+			         <table>
+			            <tbody>
+			            	<tr>
+			                  <th scope="row">글 번호</th>
+			                  <td style="text-align: left;">
+			                  	${eBoard.eBSeq}
+			                     <input type="hidden" id="bSeq" name="bSeq" value="${eBoard.eBSeq}"/>
+			                  </td>
+			            	</tr>
+			               <tr>
+			                  <th scope="row">작성자</th>
+			                  <td style="text-align: left;">
+			                  	${eBoard.adminId}
+			                     <input type="hidden" id="adminId" name="adminId" value="${eBoard.adminId}"/>
+			                  </td>
+			               </tr>
+			               <tr>
+			                   <th scope="row">이미지</th>
+			                  <td>
+			                  	 <img src="/resources/board/${eBoard.eBImgName}" style="width:100%; height: auto;">
+			                  </td>
+			               </tr>
+			               <tr>
+			                  <th scope="row">제목</th>
+			                  <td>
+			                     <input type="text" style="background-color: #fff; font-size: 15px; color: #444; padding-left: 7px;" id="bTitle" name="bTitle" value="${eBoard.eBTitle}"/>
+			                  </td>
+			               </tr>
+			               <tr>
+			                   <th scope="row">내용</th>
+			                  <td>
+			                  	 <textarea class="form-control" rows="8" name="bContent" id="bContent"style="ime-mode: active; resize: none; width:100%; float:left; font-size:14px;" required>${eBoard.eBContent}</textarea>
+			                  </td>
+			               </tr>
+			               <tr>
+			                  <th scope="row">등록일</th>
+			                  <td style="text-align: left;">
+			                  ${eBoard.regDate}
+			                  </td>
+			               </tr>
+			            </tbody>
+			         </table>
+			      </form>
+			      
+				<table style="border:none;">
+					<tr style="border:none;">
+						<td style="border:none;">
+						      <div class="pop-btn-area" style="display: block; float: right;">
+						         <button onclick="fn_eBoardUpdate()" class="btn-type01"><span>수정</span></button>
+						         <button onclick="fn_eBoardDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
+						         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
+						      </div>
+						   </div>
+						</td>
+					</tr>
+				</table>
+			      <!-- 미안한데 이거 안먹어서 바꿈 -->
+			      <!-- div class="pop-btn-area" style="float: right;">
+			         <button onclick="fn_eBoardUpdate()" class="btn-type01"><span>수정</span></button>
+			         <button onclick="fn_eBoardDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
+			         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
+			      </div-->
+			   </div>
+			   <div style="width: 100%; height: 50px; position: relative; display: block; margin-bottom: 80px;"></div>
+			
+			</div>
 	</div>
 </div>
 
