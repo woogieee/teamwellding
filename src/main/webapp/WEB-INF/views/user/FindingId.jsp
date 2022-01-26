@@ -43,8 +43,6 @@ $(function(){
 	$("#idbox").css("display", "none");
 	
 	$("#Findbtn").on("click", function(){
-		
-		$("#idbox").css("display", "block"); //아이디찾기버튼 클릭시 박스보이게하기
 		fn_findCheck();	
 	});
 	
@@ -114,8 +112,7 @@ function fn_findCheck()
 	        			for(i=0;i<=response.data.length;i++)
         				{
 	        				$("#gusdkqkqh2").append("<li class='cssPlease2'>"+response.data[i].userName+response.data[i].userId+"</li>");
-        				}
-	        			
+        				}	        			
 	        		});
         			//$("#gusdkqkqh").append("<ul class='cssPlease1'>보유 아이디 목록</ul>");
         			//for(i=0;i<=response.data.length;i++)
@@ -123,6 +120,7 @@ function fn_findCheck()
         			//		$("#gusdkqkqh").append("<li class='cssPlease2'>"+response.data[i].userName+response.data[i].userId+" "+"</li>");
         			//	}
         			//$("#Findbtn").prop("disabled", true);
+        			$("#idbox").css("display", "block"); //아이디찾기버튼 클릭시 박스보이게하기
        			}
  	        	else if(response.code == 100)
 	     		{
@@ -133,6 +131,7 @@ function fn_findCheck()
 	 	   		  }).then(function(){
 	 	   			  return;
 	 	   		  });
+	 	   		   return;
 	     		}
 
 	        }

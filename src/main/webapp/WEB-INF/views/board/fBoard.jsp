@@ -21,6 +21,20 @@ $(document).ready(function(){
    });
    
    $("#btnWrite").on("click",function(){
+	   <%
+	   if(com.icia.web.util.CookieUtil.getCookie(request, (String)request.getAttribute("AUTH_COOKIE_NAME")) == null)
+	   {
+		%>
+		Swal.fire({ 
+			icon: 'warning',
+			text: '로그인이 되어있지 않습니다.'
+		}).then(function(){
+			location.href = "/board/login";
+		});
+		return;
+		<%
+	   }
+		%>
       document.bbsForm.bSeq.value = "";
       document.bbsForm.action = "/board/fBoardWrite";
       document.bbsForm.submit();

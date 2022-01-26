@@ -163,7 +163,15 @@ function fn_findCheck()
 								}).then(function(){
 									location.href="/board/login";
 								});
-							} 
+							}
+							else if(response.code == 400){
+								Swal.fire({ 
+									icon: 'error',
+									title: '존재하지 않는 유저정보 입니다.'
+								}).then(function(){
+									return;
+								});
+							}
 							else 
 							{
 								//alert("실패!");
