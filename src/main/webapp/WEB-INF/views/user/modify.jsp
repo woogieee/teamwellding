@@ -105,23 +105,50 @@
 				success : function(response) {
 					if(response.code == 0)
 		               {
-		                  alert("회원수정이 완료되었습니다.");
-		                  location.href = "/board/login";
+		                  //alert("회원수정이 완료되었습니다.");
+		                  //location.href = "/board/login";
+							Swal.fire({ 
+								icon: 'success',
+								text: '회원수정이 완료되었습니다.'
+							}).then(function(){
+								location.href = "/user/payList";
+							});
 		               } 
 		               else if(response.code == 400)
 		               {
-		                  alert("회원수정 중 오류가 발생했습니다..");
-		                  $("#pwd1").focus();
+		                  //alert("회원수정 중 오류가 발생했습니다..");
+		                  //$("#pwd1").focus();
+							Swal.fire({ 
+								icon: 'error',
+								text: '회원수정 중 오류가 발생했습니다..'
+							}).then(function(){
+								$("#pwd1").focus();
+								return;
+							});
 		               }
 		               else if(response.code == 500)
 		               {
-		                  alert("회원수정 중 오류가 발생했습니다.");
-		                  $("#pwd1").focus();
+		                  //alert("회원수정 중 오류가 발생했습니다.");
+		                 // $("#pwd1").focus();
+							Swal.fire({ 
+								icon: 'error',
+								text: '회원수정 중 오류가 발생했습니다..'
+							}).then(function(){
+								$("#pwd1").focus();
+								return;
+							});
 		               }
 		               else
 		               {
-		                  alert("오류가 발생했습니다.");
-		                  $("#pwd1").focus();
+		                  //alert("오류가 발생했습니다.");
+		                  ///$("#pwd1").focus();
+							Swal.fire({ 
+								icon: 'error',
+								text: '회원수정 중 오류가 발생했습니다..'
+							}).then(function(){
+								$("#pwd1").focus();
+								return;
+							});
 
 					}
 				},

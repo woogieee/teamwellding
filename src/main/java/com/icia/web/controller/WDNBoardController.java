@@ -123,6 +123,9 @@ public class WDNBoardController
 			//하이보드객체에다가 방금 한 하이보드서비스에 있는 보드뷰 받아올거야 ~!
 		}
 		
+		String content = nBoard.getbContent().replaceAll("<br>", "\r\n");
+	    nBoard.setbContent(content);
+		
 		model.addAttribute("bSeq", bSeq);
 		model.addAttribute("nBoard", nBoard);
 		model.addAttribute("searchType", searchType);

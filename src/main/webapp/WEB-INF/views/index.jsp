@@ -15,13 +15,13 @@
       }
    %>
       $(function(){
-         //다른화보보기 슬라이더 - 홀뷰
+         //이벤트 슬라이더
          $('.post-wrapper3').slick({
               slidesToShow: 1,
               slidesToScroll: 1,
-              autoplay: true,
-              autoplaySpeed : 2000,
-              pauseOnHover : true,
+              autoplay: true, //자동넘김
+              autoplaySpeed : 3000, //페이징 속도
+              pauseOnHover : true, //마우스 올리면 움직임
               prevArrow : "<button type='button' class='slick-prev3'></button>",      // 이전 화살표 모양 설정
               nextArrow : "<button type='button' class='slick-next3'></button>"      // 다음 화살표 모양 설정
             });
