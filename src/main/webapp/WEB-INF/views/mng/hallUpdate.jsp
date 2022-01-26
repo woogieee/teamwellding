@@ -217,7 +217,7 @@ function hallDelete()
 		         <table>
 		            <tbody>
 		               <tr>
-		                  <th scope="row">홀 번호</th>
+		                  <th scope="row">홀 전화번호</th>
 		                  <td>
 		                  	<input type="hidden" id="whCode" name="whCode" value="${wdHall.WHCode }">
 		                  	${wdHall.HCode}
