@@ -111,6 +111,8 @@ function dressComUpdate()
          {
             alert("업체가 수정되었습니다.");
             fn_colorbox_close(parent.fn_pageInit);
+            
+            top.window.location.reload(true); //부모창 리프레시
          }
          else if(res.code == 400)
          {
@@ -162,6 +164,8 @@ function dressComDelete()
             {
                alert("업체가 삭제되었습니다.");
                fn_colorbox_close(parent.fn_pageInit);
+               
+               top.window.location.reload(true); //부모창 리프레시
             }
             else if(res.code == 400)
             {
