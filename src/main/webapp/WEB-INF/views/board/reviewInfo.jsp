@@ -280,7 +280,7 @@ $(document).ready(function(){
             <tr>
                <td colspan="2" style="text-align:center">
 	               <div style="padding:10px">
-	               	<div style="width: 100%; height: auto;">
+	               	<div style="width: 100%; height: auto; white-space: pre-line">
 	               	<c:if test="${!empty wdReview.reviewFile}">
 	               	<img src="../resources/upload/${wdReview.reviewFile.rFileName }" style="width: 100%; height: auto; padding: 30px;">
 	               	<br>

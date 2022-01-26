@@ -541,7 +541,7 @@ function classChange(id){
                   <div class="ticket-item2 gosu_modal" href="/mng/plusWHall" style="float: right; margin-right: 10px;">
                       <div class="down-content2">
                           <div class="main-dark-button btn_go" style="margin-top: 0;">
-                              <a href="/mng/plusWHall" class="wdhall_modal" >웨딩홀 추가</a>
+                              <a href="/mng/plusWHall" class="wdhall_modal" >웨딩홀업체 추가</a>
                           </div>    
                        </div>
                   </div>
