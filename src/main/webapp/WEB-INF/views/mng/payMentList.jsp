@@ -51,7 +51,7 @@ p{color: #efefef;}
 .page-link
 {
 	background: #555!important;
-    border: none;
+   /* border: none;*/
 }
 /* Dark Mode 아닐떄 */ 
 body.dark-theme { color: #222; background: #fff; } 

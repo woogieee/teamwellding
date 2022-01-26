@@ -73,7 +73,8 @@
 	
 	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap-theme.min.css">
 	<link type="text/css" href="../resources/css/jquery.colorbox.css" rel="stylesheet" />
-	
+	<link rel="stylesheet" href="../resources/css/inputFile.css">	<!-- 파일업로드 css-->
+	<script src="../resources/js/inputFile.js"></script> <!-- 파일업로드js -->
 	
 	
 

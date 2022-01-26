@@ -18,9 +18,11 @@ table th, td{
   height: 4rem;
   padding-left: .5rem;
   padding-right: 1rem;
+  text-align: left;
 }
 table th{
   background-color: #e0e4fe;
+  
 }
 input[type=text], input[type=password]{
   height:2rem;
@@ -207,7 +209,13 @@ function fn_userUpdate()
                <tr>
                   <th scope="row">스튜디오 대표 이미지</th>
                   <td>
-                  	<input type="file" style="background-color: #fff; width='50px'; float:left;" id="studioImg" name="studioImg" /><br>
+                  	<!--input type="file" style="background-color: #fff; width='50px'; float:left;" id="studioImg" name="studioImg" /><br-->
+					<div class="filebox bs3-primary">
+					    <input class="upload-name" value="파일선택" disabled="disabled">
+					
+					    <label for="studioImg">업로드</label> 
+					    <input type="file" id="studioImg" name="studioImg" class="upload-hidden"> 
+					</div>
                   </td>
                </tr>
                <tr>
@@ -220,7 +228,7 @@ function fn_userUpdate()
             </tbody>
          </table>
       </form>
-      <div class="pop-btn-area" style="float: right;">
+      <div class="pop-btn-area" style="float: right; margin-bottom: 70px;">
          <button onclick="fn_userUpdate()" class="btn-type01"><span>등록</span></button>
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
       </div>

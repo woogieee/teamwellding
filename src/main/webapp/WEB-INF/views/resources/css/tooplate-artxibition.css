@@ -6234,6 +6234,8 @@ responsive
   width:100%;
   height:auto;
   vertical-align: middle;
+  
+  max-height: 800px;
 }
 
 .slick-arrow{

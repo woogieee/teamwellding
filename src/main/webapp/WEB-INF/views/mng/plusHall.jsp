@@ -18,12 +18,13 @@ table th, td{
   height: 4rem;
   padding-left: .5rem;
   padding-right: 1rem;
+  text-align: left;
 }
 table th{
   background-color: #e0e4fe;
 }
 input[type=text], input[type=password]{
-  height:2rem;
+
   width: 100%;
   border-radius: .2rem;
   border: .2px solid rgb(204,204,204);
@@ -249,9 +250,31 @@ function fn_userUpdate()
                <tr>
                   <th scope="row">홀 대표 이미지</th>
                   <td>
-                  	<input type="file" style="background-color: #fff; width='50px'; float:left;" id="hallImgName1" name="hallImgName1" /><br>
-                  	<input type="file" style="background-color: #fff; width='50px'; float:left;" id="hallImgName2" name="hallImgName2" /><br>
-                  	<input type="file" style="background-color: #fff; width='50px'; float:left;" id="hallImgName3" name="hallImgName3" />
+<!--                   	<input type="file" style="background-color: #fff; float:left;" id="hallImgName1" name="hallImgName1" /><br>
+                  	<input type="file" style="background-color: #fff; float:left;" id="hallImgName2" name="hallImgName2" /><br>
+                  	<input type="file" style="background-color: #fff; float:left;" id="hallImgName3" name="hallImgName3" />-->
+                  	
+<div class="filebox bs3-primary" style="margin-top: 6px;">
+    <input class="upload-name" value="파일선택" disabled="disabled">
+
+    <label for="hallImgName1">업로드</label> 
+    <input type="file" id="hallImgName1" name="hallImgName1" class="upload-hidden"> 
+</div>
+
+<div class="filebox bs3-primary">
+    <input class="upload-name" value="파일선택" disabled="disabled">
+
+    <label for="hallImgName2">업로드</label> 
+    <input type="file" id="hallImgName2" name="hallImgName2" class="upload-hidden"> 
+</div>
+
+<div class="filebox bs3-primary" style="margin-bottom: 6px;">
+    <input class="upload-name" value="파일선택" disabled="disabled">
+
+    <label for="hallImgName3">업로드</label> 
+    <input type="file" id="hallImgName3" name="hallImgName3" class="upload-hidden"> 
+</div>
+                  	
                   </td>
                </tr>
                <tr>
