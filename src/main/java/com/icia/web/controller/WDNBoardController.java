@@ -135,4 +135,38 @@ public class WDNBoardController
 		
 		return "/board/nBoardView";
 	}
+	
+	//코로나 공지사항
+	@RequestMapping(value="/board/covid")
+	public String covid(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	{
+		/*********상단에 닉넴 보여주기 시작*********/
+		//쿠키 확인
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		
+		//로그인 했을 때와 안했을 때를 구분해서 페이지를 보여주려 함.
+		//로그인 체크용. 0 => 로그인 x, 혹은 없는 계정; 1 => 로그인 정보 있는 계정
+		int loginS = 0;
+		WDUser wdUser = null;
+		
+		if(wdUserService.wdUserIdCount(cookieUserId) >0) 
+		{
+			//쿠키 아이디로 된 유저 정보가 db에 존재함.
+			wdUser = wdUserService.userSelect(cookieUserId);
+			if(wdUser != null) 
+			{
+				//객체가 비어있지 않으면 보여줄 유저의 정보를 담은 객체를 넘기고, 로그인 상태에 1을 넣어줌.
+				loginS = 1;
+				model.addAttribute("wdUser", wdUser);
+			}
+		}
+		else 
+		{
+			loginS = 0;
+		}
+		/**********상단에 닉넴 보여주기 끝***********/
+		
+		return "/board/covid";
+	}
+	
 }

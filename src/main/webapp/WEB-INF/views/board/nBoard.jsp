@@ -125,6 +125,17 @@ function fn_list(curPage)
                                 </thead>
                                 <tbody>
                                     <c:if test="${!empty list}">
+                                    <tr style="border-bottom:">
+                                         <td style="text-align:center">
+                                            <a href="/board/covid"><span style="background:pink; border-radius:7px; color:white; width:100%;">공지</span></a>
+                                         </td>
+                                         <td style="text-align:left">
+                                         	<a href="/board/covid">COVID-19관련 공지사항</a>
+                                         </td>
+                                         <td style="text-align:center">admin</td>
+                                         <td style="text-align:center">2022.01.26 16:30</td>
+                                         <td style="text-align:center">9874</td>
+                                    </tr>
                                        <c:forEach var="hiBoard" items="${list}" varStatus="status">   
                                             <tr>
                                                 <td style="text-align:center">
@@ -140,7 +151,7 @@ function fn_list(curPage)
                                                 <td style="text-align:center"><fmt:formatNumber type="number" maxFractionDigits="3" value="${hiBoard.bReadCnt}" /></td>
                                             </tr>
                                        </c:forEach>
-                                    </c:if>      
+                                    </c:if>
                                 </tbody>
                             </table>
                         </li>
