@@ -68,7 +68,7 @@ function fn_nBoardUpdate()
 	}
 	
 	//수정 취소
-	if(!confirm("회원정보를 수정하시겠습니까?"))
+	if(!confirm("게시글을 수정하시겠습니까?"))
 	{
 		//NO
 		return;
