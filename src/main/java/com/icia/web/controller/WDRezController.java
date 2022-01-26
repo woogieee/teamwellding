@@ -537,5 +537,40 @@ public class WDRezController {
 		return ajaxResponse;
 	}
 	
+	//결제 취소 리스트에 상세내역 불러오기
+	@RequestMapping(value ="/mng/detailView")
+	public String detailView(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	{
+		//예약번호 불러오기
+		String rezNo = HttpUtil.get(request, "rezNo", "");
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		
+		System.out.println("======================================================================");
+		System.out.println("rezNo : " + rezNo);
+		System.out.println("======================================================================");
+		
+		WDRez wdRez = new WDRez();
+		
+		
+			//예약 번호가 있는 경우
+			if(rezNo != null)
+			{
+				//쿼리문 if절 비교할 파라미터 삽입
+				wdRez = wdRezService.listSelect(rezNo);
+				
+				//쿼리문 if절 비교해서 예약한 상품들만 가져오기
+				wdRez = wdRezService.rezList(wdRez);
+				
+			}
+			else
+			{
+				return "/";
+			}
+		
+			
+		model.addAttribute("wdRez", wdRez);
+		
+		return "/mng/detailView";
+	}
 	
 }

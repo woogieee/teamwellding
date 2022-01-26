@@ -284,12 +284,6 @@ function fn_eBoardDelete()
 					</td>
 				</tr>
 			</table>
-		      <!-- 미안한데 이거 안먹어서 바꿈 -->
-		      <!-- div class="pop-btn-area" style="float: right;">
-		         <button onclick="fn_eBoardUpdate()" class="btn-type01"><span>수정</span></button>
-		         <button onclick="fn_eBoardDelete()" class="btn-type01" style="margin-left: 1rem;"><span>삭제</span></button>
-		         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
-		      </div-->
 		   </div>
 		   <div style="width: 100%; height: 50px; position: relative; display: block; margin-bottom: 80px;"></div>
 		

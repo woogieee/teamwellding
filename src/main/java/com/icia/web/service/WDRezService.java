@@ -639,4 +639,21 @@ public class WDRezService {
 		
 		return list;
 	}
+	
+	//결제 취소 리스트에서 홀스드메 내역 가져오기
+	public WDRez detailView(String rezNo)
+	{
+		WDRez wdRez = null;
+
+		try
+		{
+			wdRez = wdRezDao.detailView(rezNo);
+		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] detailView Exception", e);
+		}
+		
+		return wdRez;
+	}
 }

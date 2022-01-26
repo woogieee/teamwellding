@@ -164,7 +164,7 @@
                       <value>/mng/nBoardWrite</value>
                  
                       <value>/mng/nBoardDelete</value>
-
+					  <value>/mng/detailView</value>
                   
                   	  <value>/mng/eBoardUpdate</value>
                       <value>/mng/eBoardUpdateProc</value>
