@@ -184,4 +184,16 @@ public class WDUserService
 		
 		return count;
 	}
+	
+	public WDUser findPwdSelectUser(WDUser wdUser) {
+		WDUser tempUser = null; 		
+		try {
+			tempUser = wdUserDao.findPwdSelectUser(wdUser);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDUserService] findPwdSelectUser Exception",e);
+		}
+		return tempUser;
+	}
 }

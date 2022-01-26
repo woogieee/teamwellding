@@ -683,7 +683,6 @@ public class WDAdminIndexController
          long hallHDiscount = HttpUtil.get(request, "hallHDiscount", (long)0);
          
          long hCode = wdHallService.maxHCode(whCode)+1;
-         
          String HCode = ""+hCode;
          
          WDHall wdHall = new WDHall();

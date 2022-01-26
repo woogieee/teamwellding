@@ -159,4 +159,30 @@ AND
     U_EMAIL = #{userEmail}
 </update>
  <!-- 비밀번호찾기 종료-->
+
+<!-- 비밀번호 찾기 전 3개다 일치하는 유저가 있는지 확인 -->
+<select id="findPwdSelectUser" parameterType ="com.icia.web.model.WDUser" resultMap="userResultMap">
+SELECT
+    USER_ID,
+    U_PWD,
+    U_NAME,
+    U_NICKNAME,
+    U_NUMBER,
+    U_EMAIL,
+    U_GENDER,
+    U_STATUS,
+    REG_DATE,
+    U_MARRYDATE,
+    U_POINT,
+    U_CHECK
+FROM
+    WD_USER
+WHERE
+    USER_ID = #{userId}
+AND
+    U_NAME = #{userName}
+AND
+    U_EMAIL = #{userEmail}
+</select>
+<!-- 비밀번호 찾기 전 3개다 일치하는 유저가 있는지 확인 -->
 </mapper>
