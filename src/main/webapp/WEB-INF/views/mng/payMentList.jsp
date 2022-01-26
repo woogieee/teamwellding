@@ -71,11 +71,11 @@ body.dark-theme .page-link.active
 <script>
 
 $(document).ready(function(){
-    $(".userUpdate").colorbox({
+    $(".detailView").colorbox({
           iframe:true, 
           innerWidth:1235,
           innerHeight:500,
-          scrolling:false,
+          scrolling:true,
           onComplete:function()
           {
              $("#colorbox").css("width", "1235px");
@@ -88,6 +88,7 @@ $(document).ready(function(){
 	          {
 	            $('html').css("overflow","auto");
 	          }  
+        
     });
     
 	    //다크모드
@@ -189,7 +190,7 @@ function fn_confirm()
 	            <c:forEach  var="payment" items="${list}" varStatus="status">
 	            <tr>
 	                <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;">${payment.userId}</th>
-	                <td>${payment.rezNo}</td>
+	                <td><a href="/mng/detailView?rezNo=${payment.rezNo}" class ="detailView" name ="detailView">${payment.rezNo}</a></td>	             
 	                <td>
 	                <c:if test="${!empty payment.hCode}">H</c:if>
 	                <c:if test="${!empty payment.sCode}">S</c:if>
@@ -209,7 +210,7 @@ function fn_confirm()
 	            </c:if>
 	            </tbody>
 	         </table>
-	         
+	               
       <ul class="pagination justify-content-center">
 		<c:if test="${!empty paging}">
 			

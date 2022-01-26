@@ -53,44 +53,44 @@ $(document).ready(function(){
 
 function dressUpdate()
 {
-   if(icia.common.isEmpty($("#dcName").val()))
-   {
-      alert("드레스 업체명을 입력해주세요");
-      $("#dcName").focus();
-      return;
-   }
-   
-   if(icia.common.isEmpty($("#dName").val()))
-   {
-      alert("드레스명을 입력해주세요");
-      $("#dName").focus();
-      return;
-   }
-   
-   if(icia.common.isEmpty($("#dContent").val()))
-   {
-      alert("드레스 설명을 입력해주세요.");
-      $("#dContent").focus();
-      return;
-   }
-   
-   //등록 취소
-   if(!confirm("드레스 업체를 등록 하시겠습니까?"))
-   {
-      //NO
-      return;
-   }
-   
+	if(icia.common.isEmpty($("#dcName").val()))
+	{
+		alert("드레스 업체명을 입력해주세요");
+		$("#dcName").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#dName").val()))
+	{
+		alert("드레스명을 입력해주세요");
+		$("#dName").focus();
+		return;
+	}
+	
+	if(icia.common.isEmpty($("#dContent").val()))
+	{
+		alert("드레스 설명을 입력해주세요.");
+		$("#dContent").focus();
+		return;
+	}
+	
+	//등록 취소
+	if(!confirm("드레스 업체를 등록 하시겠습니까?"))
+	{
+		//NO
+		return;
+	}
+	
     var form = $("#regForm")[0];
     //폼 자체의 타입으로 보내기 위한 객체 생성.
     var formData = new FormData(form);
-   
-   //ajax통신
-   $.ajax({
-      type:"POST",
-      enctype:'multipart/form-data',
-      url: "/mng/dressUpdateProc",
-      data: formData,
+	
+	//ajax통신
+	$.ajax({
+		type:"POST",
+		enctype:'multipart/form-data',
+		url: "/mng/dressUpdateProc",
+		data: formData,
         processData:false,      //formData를 String으로 변환하지 않음
         contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
         cache:false,
@@ -99,40 +99,40 @@ function dressUpdate()
         {
            xhr.setRequestHeader("AJAX", "true");
         },
-      success: function(res)
-      {
-         icia.common.log(res);
-         
-         if(res.code == 0)
-         {
-            alert("드레스 정보가 수정되었습니다.");
-            fn_colorbox_close(parent.fn_pageInit);
-            top.window.location.reload(true);
-         }
-         else if(res.code == 400)
-         {
-            alert("파라미터값이 올바지않습르니다.");
-         }
-         else if(res.code == 404)
-         {
-            alert("드레스 정보를 찾을 수 없습니다.");
-            fn_colorbox_close();
-         }
-         else
-         {
-            alert("드레스 정보 수정 중 오류가 발생했습니다.");
-            fn_colorbox_close();
-         }
-      },
-      complete: function(data)
-      {
-         icia.common.log(data);
-      },
-      error: function(xhr, status, error)
-      {
-         icia.common.error(error);
-      }
-   });
+		success: function(res)
+		{
+			icia.common.log(res);
+			
+			if(res.code == 0)
+			{
+				alert("드레스 정보가 수정되었습니다.");
+				top.window.location.reload(true);
+				fn_colorbox_close(parent.fn_pageInit);
+			}
+			else if(res.code == 400)
+			{
+				alert("파라미터값이 올바지않습르니다.");
+			}
+			else if(res.code == 404)
+			{
+				alert("드레스 정보를 찾을 수 없습니다.");
+				fn_colorbox_close();
+			}
+			else
+			{
+				alert("드레스 정보 수정 중 오류가 발생했습니다.");
+				fn_colorbox_close();
+			}
+		},
+		complete: function(data)
+		{
+			icia.common.log(data);
+		},
+		error: function(xhr, status, error)
+		{
+			icia.common.error(error);
+		}
+	});
 }
 
 function dressDelete()

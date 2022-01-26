@@ -102,6 +102,12 @@ function fn_userUpdate()
       return;
    }
    
+	if($("#makeupdiscount").val() >= 90 || $("#makeupdiscount").val() <= 1){
+		alert("할인율을 제대로 입력해주세요");
+		$("#makeupdiscount").focus();
+		return;
+	}
+   
    
    //등록 취소
    if(!confirm("메이크업을 등록 하시겠습니까?"))

@@ -94,6 +94,12 @@ function fn_userUpdate()
 		$("#studioDiscount").focus();
 		return;
 	}
+	
+	if($("#studioDiscount").val() >= 90 || $("#studioDiscount").val() <= 1){
+		alert("할인율을 제대로 입력해주세요");
+		$("#studioDiscount").focus();
+		return;
+	}
 
 	
 	//등록 취소
