@@ -7,6 +7,7 @@
 <script>
 $(document).ready(function(){
 	$("#hiBbsContent2").css("display", "none");
+
 	
 	//우선 페이지 로딩되었을 때 해당 란에 커서가 가게 해야 함.
 	$("#hiBbsTitle").focus();
@@ -133,6 +134,12 @@ $(document).ready(function(){
 	});
 	
 });
+
+var str = document.getElementById("hiBbsContent").value;
+
+str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
+document.getElementById("hiBbsContent").innerHTML = str;
 </script>
 </head>
 <body>
