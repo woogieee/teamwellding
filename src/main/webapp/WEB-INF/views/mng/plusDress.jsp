@@ -93,6 +93,12 @@ function fn_userUpdate()
 		$("#dressdiscount").focus();
 		return;
 	}
+	
+	if($("#dressdiscount").val() >= 90 || $("#dressdiscount").val() <= 1){
+		alert("할인율을 제대로 입력해주세요");
+		$("#dressdiscount").focus();
+		return;
+	}
 
 
 	

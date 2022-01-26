@@ -81,20 +81,24 @@ function dressUpdate()
 		return;
 	}
 	
-	var formData = {
-			dcCode: $("#dcCode").val(),
-			dNo: $("#dNo").val(),
-			dcName: $("#dcName").val(),
-			dName: $("#dName").val(),
-			//dcLocation: $("#dImgname").val(),
-			dContent: $("#dContent").val(),
-			dPrice: $("#dPrice").val()
-	};
+    var form = $("#regForm")[0];
+    //폼 자체의 타입으로 보내기 위한 객체 생성.
+    var formData = new FormData(form);
 	
 	//ajax통신
-	icia.ajax.post({
+	$.ajax({
+		type:"POST",
+		enctype:'multipart/form-data',
 		url: "/mng/dressUpdateProc",
 		data: formData,
+        processData:false,      //formData를 String으로 변환하지 않음
+        contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
+        cache:false,
+        timeout:600000,
+        beforeSend:function(xhr)
+        {
+           xhr.setRequestHeader("AJAX", "true");
+        },
 		success: function(res)
 		{
 			icia.common.log(res);
@@ -102,6 +106,7 @@ function dressUpdate()
 			if(res.code == 0)
 			{
 				alert("드레스 정보가 수정되었습니다.");
+				top.window.location.reload(true);
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == 400)
