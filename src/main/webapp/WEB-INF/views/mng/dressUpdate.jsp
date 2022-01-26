@@ -91,6 +91,7 @@ function dressUpdate()
 		enctype:'multipart/form-data',
 		url: "/mng/dressUpdateProc",
 		data: formData,
+		async: false,			//아마 이러면 모달이 확정적으로 석세스 넘어가지 않을까?
         processData:false,      //formData를 String으로 변환하지 않음
         contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
         cache:false,
