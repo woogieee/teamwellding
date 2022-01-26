@@ -995,16 +995,18 @@ public class WDAdminIndexController
         		wdDress.setdImgname(fileData.getFileName());
         		wdDress.setWdDressFile(wdDressFile);
         	}
-        	try {
-		           if(wdDressService.dressInsert(wdDress) > 0) 
-		           {
-		              ajaxResponse.setResponse(0, "Success");
-		           }
-		           else 
-		           {
-		              ajaxResponse.setResponse(-1, "Error");
-		           }
-     	}
+        	
+        	try 
+        	{
+	           if(wdDressService.dressInsert(wdDress) > 0) 
+	           {
+	        	   ajaxResponse.setResponse(0, "Success");
+	           }
+	           else 
+	           {
+	              ajaxResponse.setResponse(-1, "Error");
+	           }
+        	}
 			catch(Exception e) 
 			{
 				logger.error("[WDAdminIndexController] /mng/dressWrite Exception", e);
