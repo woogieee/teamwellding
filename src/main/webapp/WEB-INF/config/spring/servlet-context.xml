@@ -108,6 +108,7 @@
                      
                      <value>/board/specialist</value> 
                      <value>/board/gosu</value>
+                     <value>/board/gosu2</value>
                      
                      <value>/kakao/pay</value>
                        <value>/kakao/payReady</value>
