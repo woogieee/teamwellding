@@ -172,7 +172,7 @@ public class WDMakeUpController
 		String day = HttpUtil.get(request, "day", "");
 		String wDate = year+month+day;
 		
-		
+		System.out.println(wDate+"=============================______________++++++++++++++");
 		//로그인 했을 때와 안했을 때를 구분해서 페이지를 보여주려 함.
 		//로그인 체크용. 0 => 로그인 x, 혹은 없는 계정; 1 => 로그인 정보 있는 계정
 		int loginS = 0;
@@ -248,6 +248,7 @@ public class WDMakeUpController
 	   int mPlusNum = HttpUtil.get(request, "mPlusNum", 0);
 	   
 	   String wDate = HttpUtil.get(request, "wDate", "");
+	   System.out.println(wDate+"Proc++++++++++++++++++++++++======================");
 	   
 	   //존재하는 유저인지부터 체크
 	   WDUser wdUser = null;

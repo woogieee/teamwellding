@@ -18,6 +18,7 @@ table th, td{
   height: 4rem;
   padding-left: .5rem;
   padding-right: 1rem;
+  text-align: left;
 }
 table th{
   background-color: #e9e9ed;
@@ -159,13 +160,24 @@ function fn_userUpdate()
                   <textarea class="form-control" rows="10" name="bContent" id="bContent" style="ime-mode: active; resize: none; width:100%; float:left; height:140px; font-size:14px; padding:7px;" placeholder="내용을 입력해주세요" required></textarea>
                   </td>
                </tr>
+               
+               <tr>
+               	  <th scope="row">이미지 첨부</th>
+               	  <td>
+					<div class="filebox bs3-primary">
+					    <input class="upload-name" value="파일선택" disabled="disabled">
+					
+					    <label for="img">업로드</label> 
+					    <input type="file" id="img" name="img" class="upload-hidden"> 
+					</div>
+               	  </td>
+               </tr>
 
             </tbody>
          </table>
       
 
       <div class="pop-btn-area" style="float: right;">
-      	 <input type="file" id="img" name="img" /><br>
          <button onclick="fn_userUpdate()" class="btn-type01"><span>등록</span></button>
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
          

@@ -413,7 +413,7 @@ $(document).ready(function(){
                         </table>
                         
 <!-- /////////////// -->
-                  <div class="rez_sum">
+                  <div class="rez_sum2">
 					<div class="last_pay">
 	                     <dl class="sumbox1">
 	                        <dt class="sumsec">총 금액</dt>

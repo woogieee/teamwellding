@@ -859,4 +859,74 @@ AND
 </select>
 <!-- 결제 취소 신청&취소완료된 내역 가져오기 -->
 
+<!-- 결제내역 관리페이지에서 홀스드메 상세내역 보기  시작-->
+<select id="detailView" parameterType="string" resultMap ="WDRezDaoResultMap">
+SELECT
+    R.REZ_NO,
+    NVL(R.WH_CODE,'')AS WH_CODE ,
+    NVL(R.H_CODE,'')AS H_CODE,
+    NVL(R.S_CODE,'')AS S_CODE,
+    NVL(R.DC_CODE,'')AS DC_CODE,
+    NVL(R.D_NO,'')AS D_NO,
+    NVL(R.M_CODE,'')AS M_CODE,
+<if test='whCode != null and whCode != "" and hCode != null and hCode != ""'>
+    NVL(W.WH_NAME,'')AS WH_NAME,
+    NVL(H.H_NAME,'')AS H_NAME,
+</if>    
+<if test='sCode != null and sCode != ""'>
+    NVL(S.S_NAME,'')AS S_NAME,
+</if>    
+<if test='mCode != null and mCode != ""'>
+    NVL(M.M_NAME,'')AS M_NAME,
+</if>
+<if test='dcCode != null and dcCode != "" and dNo != null and dNo != ""'>        
+    NVL(C.DC_NAME,'')AS DC_NAME,
+    NVL(D.D_NAME,'')AS D_NAME,
+</if>
+     R.USER_ID
+FROM 
+<if test='whCode != null and whCode != "" and hCode != null and hCode != ""'>    
+    WD_HALL H, 
+    WD_WEDDINGHALL W, 
+</if>
+<if test='sCode != null and sCode != ""'>
+    WD_STUDIO S, 
+</if>    
+<if test='mCode != null and mCode != ""'>
+    WD_MAKEUP M, 
+</if>
+<if test='dcCode != null and dcCode != "" and dNo != null and dNo != ""'>    
+    WD_DRESS D, 
+    WD_DRESS_COM C,
+</if>
+    WD_REZ R
+WHERE    
+	R.REZ_NO = #{rezNo}
+<if test='whCode != null and whCode != "" and hCode != null and hCode != ""'>
+AND
+    H.WH_CODE = W.WH_CODE
+AND    
+    R.WH_CODE = H.WH_CODE
+AND
+    R.H_CODE = H.H_CODE
+</if>    
+<if test='sCode != null and sCode != ""'>
+AND
+    R.S_CODE = S.S_CODE
+</if>
+<if test='dcCode != null and dcCode != "" and dNo != null and dNo != ""'>
+AND
+    D.DC_CODE = C.DC_CODE
+AND
+   R.DC_CODE = D.DC_CODE
+AND
+    R.D_NO = D.D_NO
+</if>    
+<if test='mCode != null and mCode != ""'>
+AND
+    R.M_CODE = M.M_CODE
+</if>    
+</select>
+<!-- 결제내역 관리페이지에서 홀스드메 상세내역 보기  종료-->
+
 </mapper>

@@ -20,6 +20,11 @@ $(document).ready(function(){
 	   //게시물이 존재하면
 	   $("#bTitle").focus();
 	   
+		$("#btnList").on("click",function(){
+			document.bbsForm.action = "/board/reviews";
+			document.bbsForm.submit();			
+		});
+	   
 	   $("#btnUpdate").on("click", function(){
 	      $("#btnUpdate").prop("disabled", true); //수정버튼 비활성화
 	      
@@ -335,8 +340,9 @@ $(document).ready(function(){
 				
 		      <div class="form-group row">
 		         <div class="col-sm-12">
-		            <button type="button" id="btnList" class="w-btn w-btn-green2" title="리스트">리스트</button>
+		            <!--button type="button" id="btnList" class="w-btn w-btn-green2" title="리스트">리스트</button-->
 		            <button type="button" id="btnUpdate" class="w-btn w-btn-green" title="저장">저장</button>
+		            <button type="button" id="btnList" class="w-btn w-btn-green2" title="리스트" style="float:right; margin-right: 10px;">리스트</button>
 		         </div>
 		      </div>
 		      

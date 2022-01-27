@@ -7,7 +7,6 @@
 <style>
 html, body{
   color:  #525252;
-  height: 100%;
 }
 table{
   width:100%;
@@ -16,14 +15,14 @@ table{
 table th, td{
   border-right: 1px solid #c4c2c2;
   border-bottom: 1px solid #c4c2c2;
-  height: 3rem;
+  height: 4rem;
   padding-left: .5rem;
   padding-right: 1rem;
   text-align: left;
 }
 table th{
   background-color: #e0e4fe;
- 
+  
 }
 input[type=text], input[type=password]{
   height:2rem;
@@ -103,6 +102,12 @@ function fn_userUpdate()
       return;
    }
    
+	if($("#makeupdiscount").val() >= 90 || $("#makeupdiscount").val() <= 1){
+		alert("할인율을 제대로 입력해주세요");
+		$("#makeupdiscount").focus();
+		return;
+	}
+   
    
    //등록 취소
    if(!confirm("메이크업을 등록 하시겠습니까?"))
@@ -121,6 +126,7 @@ function fn_userUpdate()
 		enctype:'multipart/form-data',
 		url: "/mng/makeupWrite",
 		data: formData,
+		async: false,			//아마 이러면 모달이 확정적으로 석세스 넘어가지 않을까?
        processData:false,      //formData를 String으로 변환하지 않음
        contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
        cache:false,
@@ -136,6 +142,7 @@ function fn_userUpdate()
 			if(res.code == 0)
 			{
 				alert("메이크업 업체 등록이 완료되었습니다.");
+				top.window.location.reload(true);
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == -1)
@@ -199,13 +206,19 @@ function fn_userUpdate()
                <tr>
                    <th scope="row">메이크업 전화번호</th>
                   <td>
-                     <input type="text" style="background-color: #fff;" id="makeupnumber" name="makeupnumber" placeholder="메이크업 번호를 입력해주세요"/>
+                     <input type="text" style="background-color: #fff;" id="makeupnumber" name="makeupnumber" placeholder="업체 전화번호를 입력해주세요"/>
                   </td>
                </tr>
                 <tr>
                    <th scope="row">대표 이미지</th>
                   <td>
-                     <input type="file" style="background-color: #fff;" id="makeupimgname" name="makeupimgname" />
+                     <!--input type="file" style="background-color: #fff;" id="makeupimgname" name="makeupimgname" /-->
+					<div class="filebox bs3-primary">
+					    <input class="upload-name" value="파일선택" disabled="disabled">
+					
+					    <label for="makeupimgname">업로드</label> 
+					    <input type="file" id="makeupimgname" name="makeupimgname" class="upload-hidden"> 
+					</div>
                   </td>
                </tr>
                

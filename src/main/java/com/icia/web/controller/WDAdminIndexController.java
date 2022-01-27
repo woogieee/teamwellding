@@ -329,15 +329,14 @@ public class WDAdminIndexController
     	  
     	  //관리가가 새로 입력한 정보들 받기
     	  String mCode = HttpUtil.get(request, "mCode", "");
-    	  String mkName = HttpUtil.get(request, "mName");
-          String mkLocation = HttpUtil.get(request, "mLocation");
-          String mkNumber = HttpUtil.get(request, "mNumber");
-          long mkPrice = HttpUtil.get(request, "mPrice",(long)0);
-          String mkContent = HttpUtil.get(request,"mContent");
-          long mkPlus = HttpUtil.get(request, "mPlus",(long)0);
-          long mkDiscount = HttpUtil.get(request, "mDiscount",(long)0);
+    	  String mkName = HttpUtil.get(request, "makeupName", "");
+          String mkLocation = HttpUtil.get(request, "makeupLocation", "");
+          String mkNumber = HttpUtil.get(request, "makeupnumber", "");
+          long mkPrice = HttpUtil.get(request, "makeupprice",(long)0);
+          String mkContent = HttpUtil.get(request,"makeupContent", "");
+          long mkPlus = HttpUtil.get(request, "makeupPlus",(long)0);
+          long mkDiscount = HttpUtil.get(request, "makeupdiscount",(long)0);
       
-          System.out.println("**********mCode : " + mCode);
           
           if(!StringUtil.isEmpty(mCode) && !StringUtil.isEmpty(mkName) &&
                   !StringUtil.isEmpty(mkLocation) && !StringUtil.isEmpty(mkNumber) && !StringUtil.isEmpty(mkPrice) &&
@@ -595,10 +594,10 @@ public class WDAdminIndexController
          //해당 숫자앞에 다시 W를 추가하여 숫자와 붙여서 문자열로 만듬
          maxWHCode = "W"+whCodePlus;
          
-         String whName = HttpUtil.get(request, "whName", "");
-         String WHLocation = HttpUtil.get(request, "WHLocation", "");
-         String whNumber = HttpUtil.get(request, "whNumber", "");
-         String whContent = HttpUtil.get(request, "whContent", "");
+         String whName = HttpUtil.get(request, "weddinghallName", "");
+         String WHLocation = HttpUtil.get(request, "weddinghallLocation", "");
+         String whNumber = HttpUtil.get(request, "weddinghallNumber", "");
+         String whContent = HttpUtil.get(request, "weddinghallContent", "");
          
          WDHall wdHall = new WDHall();
          wdHall.setWHCode(maxWHCode);
@@ -892,10 +891,10 @@ public class WDAdminIndexController
         
         Response<Object> ajaxResponse = new Response<Object>();
         
-        String dcName = HttpUtil.get(request, "dcName", "");
-        String dcLocation = HttpUtil.get(request, "dcLocation", "");
-        String dcNumber = HttpUtil.get(request, "dcNumber", "");
-        String dcContent = HttpUtil.get(request, "dcContent", "");
+        String dcName = HttpUtil.get(request, "dresscomName", "");
+        String dcLocation = HttpUtil.get(request, "dresscomlocation", "");
+        String dcNumber = HttpUtil.get(request, "dresscomnumber", "");
+        String dcContent = HttpUtil.get(request, "dresscomcontent", "");
         
         //가장 큰 드레스샵 코드를 받아와서 D제거
         String maxDCCode = wdDressService.maxDCCode();
@@ -995,16 +994,18 @@ public class WDAdminIndexController
         		wdDress.setdImgname(fileData.getFileName());
         		wdDress.setWdDressFile(wdDressFile);
         	}
-        	try {
-		           if(wdDressService.dressInsert(wdDress) > 0) 
-		           {
-		              ajaxResponse.setResponse(0, "Success");
-		           }
-		           else 
-		           {
-		              ajaxResponse.setResponse(-1, "Error");
-		           }
-     	}
+        	
+        	try 
+        	{
+	           if(wdDressService.dressInsert(wdDress) > 0) 
+	           {
+	        	   ajaxResponse.setResponse(0, "Success");
+	           }
+	           else 
+	           {
+	              ajaxResponse.setResponse(-1, "Error");
+	           }
+        	}
 			catch(Exception e) 
 			{
 				logger.error("[WDAdminIndexController] /mng/dressWrite Exception", e);

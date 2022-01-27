@@ -18,9 +18,11 @@ table th, td{
   height: 4rem;
   padding-left: .5rem;
   padding-right: 1rem;
+  text-align: left;
 }
 table th{
   background-color: #e0e4fe;
+  
 }
 input[type=text], input[type=password]{
   height:2rem;
@@ -92,6 +94,12 @@ function fn_userUpdate()
 		$("#studioDiscount").focus();
 		return;
 	}
+	
+	if($("#studioDiscount").val() >= 90 || $("#studioDiscount").val() <= 1){
+		alert("할인율을 제대로 입력해주세요");
+		$("#studioDiscount").focus();
+		return;
+	}
 
 	
 	//등록 취소
@@ -111,6 +119,7 @@ function fn_userUpdate()
 		enctype:'multipart/form-data',
 		url: "/mng/studioWrite",
 		data: formData,
+		async: false,			//아마 이러면 모달이 확정적으로 석세스 넘어가지 않을까?
         processData:false,      //formData를 String으로 변환하지 않음
         contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
         cache:false,
@@ -126,6 +135,7 @@ function fn_userUpdate()
 			if(res.code == 0)
 			{
 				alert("스튜디오 등록이 완료되었습니다.");
+				top.window.location.reload(true);
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == -1)
@@ -207,7 +217,13 @@ function fn_userUpdate()
                <tr>
                   <th scope="row">스튜디오 대표 이미지</th>
                   <td>
-                  	<input type="file" style="background-color: #fff; width='50px'; float:left;" id="studioImg" name="studioImg" /><br>
+                  	<!--input type="file" style="background-color: #fff; width='50px'; float:left;" id="studioImg" name="studioImg" /><br-->
+					<div class="filebox bs3-primary">
+					    <input class="upload-name" value="파일선택" disabled="disabled">
+					
+					    <label for="studioImg">업로드</label> 
+					    <input type="file" id="studioImg" name="studioImg" class="upload-hidden"> 
+					</div>
                   </td>
                </tr>
                <tr>
@@ -220,7 +236,7 @@ function fn_userUpdate()
             </tbody>
          </table>
       </form>
-      <div class="pop-btn-area" style="float: right;">
+      <div class="pop-btn-area" style="float: right; margin-bottom: 70px;">
          <button onclick="fn_userUpdate()" class="btn-type01"><span>등록</span></button>
          <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
       </div>

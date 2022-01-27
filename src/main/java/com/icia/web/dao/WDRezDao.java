@@ -103,4 +103,7 @@ public interface WDRezDao {
 	
 	//결제 취소 신청&취소완료된 내역 가져오기
 	public List<WDRez> rezSelectStatusNotNY(String userId);
+	
+	//결제 내역 리스트에서 홀스드메 상세 보기
+	public WDRez detailView(String rezNo);
 }

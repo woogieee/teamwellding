@@ -2058,7 +2058,7 @@ About Us Page
 	text-align: center;
 }
 .hibixbi{
-	width : 350px;
+	width : 550px;
 	height : 50px;
 	/*margin-left : 30px;*/
 	display: inline-block;
@@ -6234,6 +6234,8 @@ responsive
   width:100%;
   height:auto;
   vertical-align: middle;
+  
+  max-height: 800px;
 }
 
 .slick-arrow{
@@ -6649,14 +6651,26 @@ responsive
 
 .rez_sum
 {
-	margin-top: 30px;
-	/*border-top: 1px solid #ccc;*/
-	border-bottom: 1px solid #ccc;
-	text-align: center;
-	width: 100%;
-	/*height: 100px;*/
-	padding: 0 0 60px 0;
-	margin-bottom: 40px;
+	margin-top: 35px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    width: 100%;
+    height: 125px;
+    padding: 35px 0 35px 0;
+    margin-bottom: 40px;
+}
+
+.rez_sum2
+{
+	margin-top: 35px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    width: 100%;
+    height: 133px;
+    padding: 35px 0 35px 0;
+    margin-bottom: 40px;
 }
 
 .Rez_s1

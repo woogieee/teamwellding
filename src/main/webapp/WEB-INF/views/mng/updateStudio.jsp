@@ -71,6 +71,7 @@ function fn_studioDelete()
 				if(response.code == 0)
 				{
 					alert("스튜디오가 삭제되었습니다.");
+					top.window.location.reload(true);
 					fn_colorbox_close(parent.fn_pageInit);
 				}
 				else if(response.code == 400)
@@ -144,22 +145,27 @@ function fn_studioUpdate()
 		return;
 	}
 	
-	var formData = {
-		sCode : $("#studioCode").val(),
-		sName : $("#studioName").val(),
-		sPrice : $("#studioPrice").val(),
-		sLocation : $("#studioLocation").val(),
-		sNumber : $("#studioNumber").val(),
-		sContent : $("#studioContent").val(),
-		sDiscount : $("#studioDiscount").val()	
-	};
+    var form = $("#regForm")[0];
+    //폼 자체의 타입으로 보내기 위한 객체 생성.
+    var formData = new FormData(form);
 	
 	if(confirm("정말 수정하시겠습니까?") == true)
 	{
+		//ajax통신
 		$.ajax({
-			type: "POST",
+			type:"POST",
+			enctype:'multipart/form-data',
 			url: "/mng/studioUpdateProc",
 			data: formData,
+			async: false,			//아마 이러면 모달이 확정적으로 석세스 넘어가지 않을까?
+	        processData:false,      //formData를 String으로 변환하지 않음
+	        contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
+	        cache:false,
+	        timeout:600000,
+	        beforeSend:function(xhr)
+	        {
+	           xhr.setRequestHeader("AJAX", "true");
+	        },
 			success: function(res)
 			{
 				icia.common.log(res);
@@ -167,6 +173,7 @@ function fn_studioUpdate()
 				if(res.code == 0)
 				{
 					alert("정보 수정이 완료되었습니다.");
+					top.window.location.reload(true);
 					fn_colorbox_close(parent.fn_pageInit);
 				}
 				else if(res.code == -1)

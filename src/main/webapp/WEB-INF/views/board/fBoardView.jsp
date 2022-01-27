@@ -521,7 +521,7 @@ function commentUpdate(cSeq,tagId){
 						<tr>
 							<td colspan="2" style="text-align: center; padding-bottom: 10px; background:#efefef;">
 								<!-- 첨부파일은 있을 때만 보여주면 됨 -->
-									<div style="width: 100%; border:none; font-size: 14px; text-align: right; padding-right: 10px; padding-top: 10px;">
+									<div style="width: 100%; border:none; font-size: 14px; text-align: right; padding-right: 10px;">
 										<!-- GET방식으로 넘어감 --> 
 										<a href="/board/download?bSeq=${wdFBoard.wdBoardFile.bSeq}" style="color: #0080ff;">
 											[첨부파일]&nbsp; ${wdFBoard.wdBoardFile.fileOrgName}
