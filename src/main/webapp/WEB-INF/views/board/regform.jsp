@@ -273,6 +273,7 @@ $(document).ready(function(){
 	         $("#btnReg").prop("disabled", true);
 	         return;
 	      }
+	    var inputValue = $("input[name='gender']:checked").val();
 	      
 	      
 		$.ajax({
@@ -286,7 +287,7 @@ $(document).ready(function(){
 				year : $("#year").val(),
 				month : $("#month").val(),
 				day : $("#day").val(),
-				gender : $("#gender").val(),
+				gender : inputValue,
 				nickname : $("#nickname").val(),
 				email : $("#email").val(),
 				uCheck : $("#checkinput").val(),
@@ -527,11 +528,11 @@ function fn_validateEmail(value) {
 
 				<dt>성별</dt>
 				<dd class="two_selector">
-					<label class="selector"><input type="radio" name="gender" id="gender" value="M">
+					<label class="selector"><input type="radio" name="gender" value="M">
 						<span>남자</span>
 					</label> 
 					<label class="selector">
-						<input type="radio" name="gender" id="gender" value="F">
+						<input type="radio" name="gender" value="F">
 						<span>여자</span>
 					</label>
 				</dd>
