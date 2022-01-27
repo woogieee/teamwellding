@@ -433,6 +433,7 @@ function fn_view(dNo)
    <input type="hidden" name="searchType" value="${searchType}" />
    <input type="hidden" name="searchValue" value="${searchValue}" />
    <input type="hidden" name="curPage" value="${curPage}" />
+   <input type="hidden" name="wDate" id="wDate" value="${wDate}" />
 </form>
 
 <form name="bbsForm_studio" id="bbsForm_studio" method="post">
@@ -447,7 +448,6 @@ function fn_view(dNo)
    <input type="hidden" name="searchType" value="${searchType}" />
    <input type="hidden" name="searchValue" value="${searchValue}" />
    <input type="hidden" name="curPage" value="${curPage}" />
-   <input type="hidden" name="wDate" value="${wDate}" />
 </form>
 
     
