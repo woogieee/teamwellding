@@ -8,7 +8,6 @@
 	<script>
 	//리스트에서 리스트 다시 조회하지?
 	 $(document).ready(function(){
-		 
 		$("._searchValue").on('keyup', function(e)
 		{ 
 			if(e.key==='Enter'||e.keyCode===13){
