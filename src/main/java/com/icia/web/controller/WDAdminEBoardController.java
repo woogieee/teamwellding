@@ -143,9 +143,9 @@ public class WDAdminEBoardController {
     {
     	Response<Object> res = new Response<Object>();
         
-        long eBSeq = HttpUtil.get(request, "eBSeq", (long)0);
-        String eBTitle = HttpUtil.get(request, "eBTitle", "");
-        String eBContent = HttpUtil.get(request, "eBContent", "");
+        long eBSeq = HttpUtil.get(request, "bSeq", (long)0);
+        String eBTitle = HttpUtil.get(request, "bTitle", "");
+        String eBContent = HttpUtil.get(request, "bContent", "");
         
         WDEBoard wdEBoard = null;
         

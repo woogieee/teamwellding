@@ -108,23 +108,27 @@ function fn_userUpdate()
 	   {
 	      //NO
 	      return;
-	   }   
-	   var formData = {
-		   mCode : $("#mCode").val(),
-			mName: $("#makeupName").val(),
-			mLocation: $("#makeupLocation").val(),
-			mNumber: $("#makeupnumber").val(),
-			mPrice : $("#makeupprice").val(),
-			mContent: $("#makeupContent").val(),
-			mPlus : $("#makeupPlus").val(),
-		    mDiscount : $("#makeupdiscount").val()
-		      
-			   };
+	   } 
+	   
+	    var form = $("#regForm")[0];
+	    //폼 자체의 타입으로 보내기 위한 객체 생성.
+	    var formData = new FormData(form);
    
-   //ajax통신
-   icia.ajax.post({
-      url: "/mng/makeupupdateProc",
-      data: formData,
+	//ajax통신
+	$.ajax({
+		type:"POST",
+		enctype:'multipart/form-data',
+		url: "/mng/makeupupdateProc",
+		data: formData,
+		async: false,			//아마 이러면 모달이 확정적으로 석세스 넘어가지 않을까?
+        processData:false,      //formData를 String으로 변환하지 않음
+        contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
+        cache:false,
+        timeout:600000,
+        beforeSend:function(xhr)
+        {
+           xhr.setRequestHeader("AJAX", "true");
+        },
       success: function(res)
       {
          icia.common.log(res);
@@ -132,6 +136,7 @@ function fn_userUpdate()
          if(res.code == 0)
          {
             alert("정보 수정이 완료되었습니다.");
+            top.window.location.reload(true);
             fn_colorbox_close(parent.fn_pageInit);
          }
          else if(res.code == -1)
@@ -182,6 +187,7 @@ function makeupComDelete()
 				if(res.code == 0)
 				{
 					alert("업체가 삭제되었습니다.");
+					top.window.location.reload(true);
 					fn_colorbox_close(parent.fn_pageInit);
 				}
 				else if(res.code == 400)

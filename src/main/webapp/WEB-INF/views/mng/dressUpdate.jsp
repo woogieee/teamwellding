@@ -159,6 +159,7 @@ function dressDelete()
             if(res.code == 0)
             {
                alert("드레스가 삭제되었습니다.");
+				top.window.location.reload(true);
                fn_colorbox_close(parent.fn_pageInit);
             }
             else if(res.code == 400)
