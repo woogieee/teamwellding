@@ -60,7 +60,7 @@ $(document).ready(function(){
                	작성자 : admin
                </td>
                <td style="width: 40%; padding-right: 20px; font-size: 15px; color: #666;" class="text-right">
-                  <div> 조회 : 9874</div>
+                  <div> 조회 : 0</div>
                </td>
               </tr>
          </thead>
