@@ -413,13 +413,13 @@ public class WDStudioController
 	   {
 		   Response<Object> ajaxResponse = new Response<Object>();
 		   
-		   String sName = HttpUtil.get(request, "sName", "");
-		   long sPrice = HttpUtil.get(request, "sPrice", (long)0);
-		   String sLocation = HttpUtil.get(request, "sLocation", "");
-		   String sNumber = HttpUtil.get(request, "sNumber", "");
-		   String sContent = HttpUtil.get(request, "sContent", "");
-		   long sDiscount = HttpUtil.get(request, "sDiscount", (long)0);
-		   String sCode = HttpUtil.get(request, "sCode", "");
+		   String sName = HttpUtil.get(request, "studioName", "");
+		   long sPrice = HttpUtil.get(request, "studioPrice", (long)0);
+		   String sLocation = HttpUtil.get(request, "studioLocation", "");
+		   String sNumber = HttpUtil.get(request, "studioNumber", "");
+		   String sContent = HttpUtil.get(request, "studioContent", "");
+		   long sDiscount = HttpUtil.get(request, "studioDiscount", (long)0);
+		   String sCode = HttpUtil.get(request, "studioCode", "");
 		   String adminId = HttpUtil.get(request, "adminId", "");
 		   
 		   if(!StringUtil.isEmpty(sCode))

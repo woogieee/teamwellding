@@ -119,6 +119,7 @@ function fn_userUpdate()
 		enctype:'multipart/form-data',
 		url: "/mng/studioWrite",
 		data: formData,
+		async: false,			//아마 이러면 모달이 확정적으로 석세스 넘어가지 않을까?
         processData:false,      //formData를 String으로 변환하지 않음
         contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
         cache:false,
@@ -134,6 +135,7 @@ function fn_userUpdate()
 			if(res.code == 0)
 			{
 				alert("스튜디오 등록이 완료되었습니다.");
+				top.window.location.reload(true);
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == -1)

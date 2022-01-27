@@ -176,7 +176,7 @@ function fn_pageInit() //서치타입과 서치밸유에대한 설정
                    <td>${user.userName}</td>
                    <td>${user.userNickname}</td>
                    <td>${user.userEmail}</td>
-                   <td><c:if test="${user.status == 'Y'}">정상</c:if><c:if test="${user.status == 'N'}">정지</c:if></td>
+                   <td><c:if test="${user.status == 'Y'}">정상</c:if><c:if test="${user.status == 'N'}">정지</c:if><c:if test="${user.status == 'D'}">탈퇴</c:if></td>
                    <td>${user.regDate}</td>
                </tr>
                </c:forEach>
