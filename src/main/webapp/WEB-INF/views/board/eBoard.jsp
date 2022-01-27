@@ -135,26 +135,26 @@ function fn_view(eBSeq)
 					</div>
 				</div>
 
-				<div class="col-lg-1"></div>
-				<div class="col-lg-10">
+				<!--div class="col-lg-1"></div-->
+				<div class="col-lg-12">
 					<div class="row">
 					
 						<div class="event-item">
 							<div class="row">
-								<div class="col-lg-8" id="eback">
+								<div class="col-lg-7" id="eback">
 										<div class="left-content" style="padding: 25px;">
 											<a href="/board/eBoardCoupon">
-											<h1 class="display-5 fw-bolder" id="etitle">쿠폰 발급 이벤트</h1>
+											<h1 class="display-5 fw-bolder" id="etitle">[★] 쿠폰 발급 이벤트</h1>
 											<div class="caption_desc">웰딩에서 준비한 쿠폰이벤트! 웰딩 회원이라면 모두 발급 가능합니다 ^^</div>
 											<div class="e_write">admin</div>
 											<div class="e_date">2022.01.01</div></a>
 										</div>
 									</div>
 								
-									<div class="col-lg-4" id="eback2">
+									<div class="col-lg-5" id="eback2">
 										<div class="thumb" >
 											<a href="/board/eBoardCoupon">
-												<img src="/resources/images/couponbanner.jpg" alt="할인쿠폰" style="border-radius: 4%;">
+												<img src="/resources/images/ccc.png" alt="할인쿠폰" style="border-radius: 4%;">
 											</a>
 										</div>
 									</div>
@@ -165,7 +165,7 @@ function fn_view(eBSeq)
 						<c:forEach var="eboard" items="${eBoard}" varStatus="status">
 							<div class="event-item" onclick="fn_view(${eboard.eBSeq})">
 								<div class="row">
-									<div class="col-lg-8" id="eback">
+									<div class="col-lg-7" id="eback">
 										<div class="left-content" style="padding: 25px;">
 											<h1 class="display-5 fw-bolder" id="etitle">${eboard.eBTitle}</h1>
 											<div class="caption_desc">${eboard.eBContent}</div>
@@ -173,7 +173,7 @@ function fn_view(eBSeq)
 											<div class="e_date">${eboard.regDate}</div>
 										</div>
 									</div>
-									<div class="col-lg-4" id="eback2">
+									<div class="col-lg-5" id="eback2">
 										<div class="thumb">
 											<img src="/resources/board/${eboard.eBImgName}" alt="" style="border-radius: 4%;">
 										</div>
@@ -186,7 +186,7 @@ function fn_view(eBSeq)
 						
 					</div>
 				</div>
-					<div class="col-lg-1"></div>
+					<!-- div class="col-lg-1"></div-->
 
 
 						<div class="col-lg-12">

@@ -249,6 +249,9 @@ public class WDAdminFRBoardController {
 		   }
 	   }
 	   
+	   String content = wdReview.getRContent().replaceAll("<br>", "\r\n");
+	   wdReview.setRContent(content);
+	   
 	   return "/mng/mngReviewUpdate";
    }
    

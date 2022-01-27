@@ -325,7 +325,7 @@ a{ text-decoration: none; color: inherit; }
 }
 .bdate
 {
-  width: 65px;
+  width: 70px;
   float: right;
   font-size: 13px;
   padding: 0;
@@ -6234,6 +6234,8 @@ responsive
   width:100%;
   height:auto;
   vertical-align: middle;
+  
+  max-height: 800px;
 }
 
 .slick-arrow{

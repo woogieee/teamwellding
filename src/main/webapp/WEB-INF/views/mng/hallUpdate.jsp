@@ -102,21 +102,23 @@ function hallUpdate()
 		return;
 	}
 	
-	var formData = {
-			whCode: $("#whCode").val(),
-			hCode: $("#hCode").val(),
-			hName: $("#hName").val(),
-			hPrice: $("#hPrice").val(),
-			hFood: $("#hFood").val(),
-			hMin: $("#hMin").val(),
-			hMax: $("#hMax").val(),
-			hContent: $("#hContent").val()
-	};
+    var form = $("#regForm")[0];
+    //폼 자체의 타입으로 보내기 위한 객체 생성.
+    var formData = new FormData(form);
 	
 	//ajax통신
-	icia.ajax.post({
+	$.ajax({
+		type:"POST",
 		url: "/mng/hallUpdateProc",
 		data: formData,
+        processData:false,      //formData를 String으로 변환하지 않음
+        contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
+        cache:false,
+        timeout:600000,
+        beforeSend:function(xhr)
+        {
+           xhr.setRequestHeader("AJAX", "true");
+        },
 		success: function(res)
 		{
 			icia.common.log(res);
@@ -217,7 +219,7 @@ function hallDelete()
 		         <table>
 		            <tbody>
 		               <tr>
-		                  <th scope="row">홀 전화번호</th>
+		                  <th scope="row">홀 번호</th>
 		                  <td>
 		                  	<input type="hidden" id="whCode" name="whCode" value="${wdHall.WHCode }">
 		                  	${wdHall.HCode}

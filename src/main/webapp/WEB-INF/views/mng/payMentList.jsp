@@ -44,14 +44,18 @@ button:focus
 }
 /*다크모드 */
 body {  color: #efefef; background: #121212;} 
-a { color: #809fff; } 
+a 
+{ 
+	color: red;
+    font-weight: 600; 
+} 
 td,th {color: #eee;}
 span {color: #efefef;}
 p{color: #efefef;}
 .page-link
 {
 	background: #555!important;
-    border: none;
+   /* border: none;*/
 }
 /* Dark Mode 아닐떄 */ 
 body.dark-theme { color: #222; background: #fff; } 
@@ -67,11 +71,11 @@ body.dark-theme .page-link.active
 <script>
 
 $(document).ready(function(){
-    $(".userUpdate").colorbox({
+    $(".detailView").colorbox({
           iframe:true, 
           innerWidth:1235,
           innerHeight:500,
-          scrolling:false,
+          scrolling:true,
           onComplete:function()
           {
              $("#colorbox").css("width", "1235px");
@@ -84,6 +88,7 @@ $(document).ready(function(){
 	          {
 	            $('html').css("overflow","auto");
 	          }  
+        
     });
     
 	    //다크모드
@@ -171,12 +176,12 @@ function fn_confirm()
 	         <table class="table table-hover" style="border:1px solid #c4c2c2;">
 	            <thead style="border-bottom: 1px solid #c4c2c2;">
 	            <tr class="table-thead-main" style="background: #ddd;">
-	               <th scope="col" style="width:15%;">아이디</th>
-	               <th scope="col">예약번호</th>
-	               <th scope="col">상품</th>
-	               <th scope="col">가격</th>
-	               <th scope="col">상태</th>
-	               <th scope="col">관리</th>
+	               <th scope="col" style="width:20%;">아이디</th>
+	               <th scope="col" style="width:15%;">예약번호</th>
+	               <th scope="col" style="width:15%;">상품</th>
+	               <th scope="col" style="width:15%;">가격</th>
+	               <th scope="col" style="width:15%;">상태</th>
+	               <th scope="col" style="width:20%;">취소승인 관리</th>
 	               
 	            </tr>
 	            </thead>
@@ -185,7 +190,7 @@ function fn_confirm()
 	            <c:forEach  var="payment" items="${list}" varStatus="status">
 	            <tr>
 	                <th scope="row" class="table-thead-sub" style="border: 1px solid #c4c2c2;">${payment.userId}</th>
-	                <td>${payment.rezNo}</td>
+	                <td><a href="/mng/detailView?rezNo=${payment.rezNo}" class ="detailView" name ="detailView">${payment.rezNo}</a></td>	             
 	                <td>
 	                <c:if test="${!empty payment.hCode}">H</c:if>
 	                <c:if test="${!empty payment.sCode}">S</c:if>
@@ -205,7 +210,7 @@ function fn_confirm()
 	            </c:if>
 	            </tbody>
 	         </table>
-	         
+	               
       <ul class="pagination justify-content-center">
 		<c:if test="${!empty paging}">
 			

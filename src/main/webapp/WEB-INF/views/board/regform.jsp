@@ -49,8 +49,7 @@ $(document).ready(function(){
 				//document.contact.action = "/board/check.do";
 				//document.contact.submit();
 				var form = $("#contact")[0];
-				var formData = new FormData(
-						form);
+				var formData = new FormData(form);
 
 				$.ajax({
 							type : "POST",

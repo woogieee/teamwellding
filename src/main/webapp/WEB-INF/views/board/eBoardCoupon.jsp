@@ -134,7 +134,7 @@ function fn_coupon()
 					<thead>
 						<tr class="dongdong2">
 							<td style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600;">
-								<c:out value="쿠폰 발급 이벤트" />
+								[★] 쿠폰 발급 이벤트
 							</td>
 
 							<td style="width: 40%; padding-right: 25px; color: #444; font-size: 16px;" class="text-right">2022.01.01</td>
