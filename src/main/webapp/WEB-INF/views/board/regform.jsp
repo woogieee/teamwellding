@@ -114,7 +114,7 @@ $(document).ready(function(){
 	// 모든 공백 체크 정규식
 	var emptCheck = /\s/g;
 	// 영문 대소문자, 숫자로만 이루어진 4~12자리 정규식
-	var idPwCheck = /^[a-zA-Z0-9]{3,12}$/;
+	var idPwCheck = /^[a-zA-Z0-9]{4,11}$/;
 
 	$("#id").keyup(function(e) {
 
@@ -273,6 +273,7 @@ $(document).ready(function(){
 	         $("#btnReg").prop("disabled", true);
 	         return;
 	      }
+	    var inputValue = $("input[name='gender']:checked").val();
 	      
 	      
 		$.ajax({
@@ -286,7 +287,7 @@ $(document).ready(function(){
 				year : $("#year").val(),
 				month : $("#month").val(),
 				day : $("#day").val(),
-				gender : $("#gender").val(),
+				gender : inputValue,
 				nickname : $("#nickname").val(),
 				email : $("#email").val(),
 				uCheck : $("#checkinput").val(),
@@ -527,11 +528,11 @@ function fn_validateEmail(value) {
 
 				<dt>성별</dt>
 				<dd class="two_selector">
-					<label class="selector"><input type="radio" name="gender" id="gender" value="M">
+					<label class="selector"><input type="radio" name="gender" value="M">
 						<span>남자</span>
 					</label> 
 					<label class="selector">
-						<input type="radio" name="gender" id="gender" value="F">
+						<input type="radio" name="gender" value="F">
 						<span>여자</span>
 					</label>
 				</dd>

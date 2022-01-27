@@ -7196,4 +7196,44 @@ textarea::placeholder {
     color: #333;
 }
 
+#mail_receive
+{
+	top: 200px;
+    background: #fff;
+    position: absolute;
+    display: block;
+    width: 700px;
+    height: 480px;
+    z-index: 999;
+}
+
+.close_box
+{
+	position: relative;
+    top: 40px;
+    left: 0px;
+    float: left;
+}
+
+.receive_ok
+{
+	position: relative;
+    top: -5px;
+    left: 20px;
+}
+
+.pink_boxx
+{
+	line-height: 30px;
+    background: #ff4e0d;
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+
 /*보현추가 끝*/

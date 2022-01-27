@@ -95,6 +95,16 @@ $(document).ready(function(){
                               </fieldset>
                             </div>
                             
+   							<div id="mail_receive">
+   								<div class="receive_ok">
+   									<img src="../resources/images/icons/check.png" style="width:80px; margin-bottom:20px; margin-top:10px; filter: invert(36%) sepia(89%) saturate(1883%) hue-rotate(351deg) brightness(100%) contrast(110%);">
+   									<p style="color:#ff4e0d; font-weight: 800;">${wdExpert.eName} ${message}<br/><span style="color: #666; font-weight: 400;">조금만 기다려주시면 24시간 이내에 견적 회신 드리겠습니다.</span></p>
+   								</div>
+   								<div class="close_box">
+   									<button onclick="fn_colorbox_close()" id="form-submit" class="main-dark-button2">닫기</button>
+   								</div>
+   							</div>
+                            
                           </div>
                         </form>
                     </div>
