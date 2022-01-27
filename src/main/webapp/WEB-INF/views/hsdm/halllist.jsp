@@ -184,7 +184,7 @@
                                         </div>
                                         <div class="col-lg-2">
                                             <fieldset>
-                                            <button type="button" id="btnSearch" class="btn btnSearch"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                            <button type="button" name="btnSearch" id="btnSearch" class="btn btnSearch"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                      
                                             </fieldset>
                                         </div> 

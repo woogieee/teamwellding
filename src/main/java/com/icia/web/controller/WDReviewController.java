@@ -52,7 +52,7 @@ public class WDReviewController {
    private WDUserService wdUserService;
    
    private static final int LIST_COUNT = 10;    //한페이지의 게시물 수
-   private static final int PAGE_COUNT = 5;      //페이징 수
+   private static final int PAGE_COUNT = 3;      //페이징 수
    
 
    @RequestMapping(value = "/board/reviews")
