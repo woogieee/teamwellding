@@ -64,7 +64,7 @@ $(function(){
 		 
   });
 	
-  
+  //풀받기위한 글쓰기
 });
 	
 function fn_findCheck()
@@ -111,7 +111,7 @@ function fn_findCheck()
 	        			$("#gusdkqkqh2").append("<ul class='cssPlease3'>입력한 이메일 주소로 가입된 아이디입니다.</ul>");
 	        			for(i=0;i<=response.data.length;i++)
         				{
-	        				$("#gusdkqkqh2").append("<li class='cssPlease2'>"+response.data[i].userName+response.data[i].userId+"</li>");
+		        				$("#gusdkqkqh2").append("<li class='cssPlease2'>"+response.data[i].userName+response.data[i].userId+"</li>");	        					
         				}	        			
 	        		});
         			//$("#gusdkqkqh").append("<ul class='cssPlease1'>보유 아이디 목록</ul>");
