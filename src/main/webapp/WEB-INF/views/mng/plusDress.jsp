@@ -93,6 +93,12 @@ function fn_userUpdate()
 		$("#dressdiscount").focus();
 		return;
 	}
+	
+	if($("#dressdiscount").val() >= 90 || $("#dressdiscount").val() <= 1){
+		alert("할인율을 제대로 입력해주세요");
+		$("#dressdiscount").focus();
+		return;
+	}
 
 
 	
@@ -113,6 +119,7 @@ function fn_userUpdate()
 		enctype:'multipart/form-data',
 		url: "/mng/dressWrite",
 		data: formData,
+		async: false,			//아마 이러면 모달이 확정적으로 석세스 넘어가지 않을까?
         processData:false,      //formData를 String으로 변환하지 않음
         contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
         cache:false,
@@ -128,6 +135,7 @@ function fn_userUpdate()
 			if(res.code == 0)
 			{
 				alert("드레스 등록이 완료되었습니다.");
+				top.window.location.reload(true);
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == -1)
@@ -209,7 +217,7 @@ function fn_userUpdate()
                   <th scope="row">드레스 대표 이미지</th>
                   <td>
                   	<!--input type="file" style="background-color: #fff;" id="dressimgname" name="dressimgname" /-->
-					<div class="filebox bs3-primary">
+					<div class="filebox bs3-primary preview-image">
 					    <input class="upload-name" value="파일선택" disabled="disabled">
 					
 					    <label for="dressimgname">업로드</label> 

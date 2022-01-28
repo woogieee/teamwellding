@@ -94,6 +94,12 @@ function fn_userUpdate()
 		$("#studioDiscount").focus();
 		return;
 	}
+	
+	if($("#studioDiscount").val() >= 90 || $("#studioDiscount").val() <= 1){
+		alert("할인율을 제대로 입력해주세요");
+		$("#studioDiscount").focus();
+		return;
+	}
 
 	
 	//등록 취소
@@ -113,6 +119,7 @@ function fn_userUpdate()
 		enctype:'multipart/form-data',
 		url: "/mng/studioWrite",
 		data: formData,
+		async: false,			//아마 이러면 모달이 확정적으로 석세스 넘어가지 않을까?
         processData:false,      //formData를 String으로 변환하지 않음
         contentType:false,      //content-type 헤더가 multipart/form-data로 전송한다는 것
         cache:false,
@@ -128,6 +135,7 @@ function fn_userUpdate()
 			if(res.code == 0)
 			{
 				alert("스튜디오 등록이 완료되었습니다.");
+				top.window.location.reload(true);
 				fn_colorbox_close(parent.fn_pageInit);
 			}
 			else if(res.code == -1)
@@ -210,7 +218,7 @@ function fn_userUpdate()
                   <th scope="row">스튜디오 대표 이미지</th>
                   <td>
                   	<!--input type="file" style="background-color: #fff; width='50px'; float:left;" id="studioImg" name="studioImg" /><br-->
-					<div class="filebox bs3-primary">
+					<div class="filebox bs3-primary preview-image">
 					    <input class="upload-name" value="파일선택" disabled="disabled">
 					
 					    <label for="studioImg">업로드</label> 

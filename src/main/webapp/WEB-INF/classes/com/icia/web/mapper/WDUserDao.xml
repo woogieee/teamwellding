@@ -142,9 +142,14 @@ FROM
     WD_USER
 WHERE
     U_EMAIL = #{value}
+AND
+     
+    U_STATUS NOT IN ('D')
 
  </select>
  <!--  이메일로 아이디찾기 끝-->
+ 
+
  
  <!-- 비밀번호찾기 시작-->
 <update id="findPwd" parameterType ="com.icia.web.model.WDUser">

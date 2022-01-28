@@ -20,6 +20,11 @@ $(document).ready(function(){
 	   //게시물이 존재하면
 	   $("#bTitle").focus();
 	   
+		$("#btnList").on("click",function(){
+			document.bbsForm.action = "/board/reviews";
+			document.bbsForm.submit();			
+		});
+	   
 	   $("#btnUpdate").on("click", function(){
 	      $("#btnUpdate").prop("disabled", true); //수정버튼 비활성화
 	      
@@ -317,7 +322,12 @@ $(document).ready(function(){
 		      <div class="form-group">
 		         <textarea class="form-control" rows="10" name="bContent" id="bContent" style="ime-mode:active;" placeholder="내용을 입력해주세요" required>${wdReview.RContent}</textarea>
 		      </div>
-		      <input type="file" name="hiBbsFile" id="hiBbsFile" class="form-control mb-2" placeholder="파일을 선택하세요." required />
+      		<div class="filebox bs3-primary preview-image" style="margin-bottom: 6px;">
+			    <input class="upload-name" value="파일선택" disabled="disabled">
+			
+			    <label for="hiBbsFile">업로드</label> 
+			    <input type="file" id="hiBbsFile" name="hiBbsFile" class="upload-hidden"> 
+			</div>
 		      별점을 선택해 주세요 : <select id="starScore" name="starScore">
 		      	<option>5</option>
 		      	<option>4</option>
@@ -335,8 +345,9 @@ $(document).ready(function(){
 				
 		      <div class="form-group row">
 		         <div class="col-sm-12">
-		            <button type="button" id="btnList" class="w-btn w-btn-green2" title="리스트">리스트</button>
+		            <!--button type="button" id="btnList" class="w-btn w-btn-green2" title="리스트">리스트</button-->
 		            <button type="button" id="btnUpdate" class="w-btn w-btn-green" title="저장">저장</button>
+		            <button type="button" id="btnList" class="w-btn w-btn-green2" title="리스트" style="float:right; margin-right: 10px;">리스트</button>
 		         </div>
 		      </div>
 		      

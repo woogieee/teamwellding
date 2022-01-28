@@ -100,6 +100,7 @@ body.dark-theme .page-link.active
           onClosed: function()
           {
             $('html').css("overflow","auto");
+            location.reload(); 
           }  
    });
       
@@ -395,6 +396,10 @@ body.dark-theme .page-link.active
         document.bbsFormM.submit();
      });
      
+     
+    /* $(".hsdm_btn").on("click", function(){
+    	 location.reload();
+     });*/
  });
 function fn_search()
 {
@@ -466,6 +471,12 @@ function classChange(id){
            $("#hall").hide();
         }
 }*/
+
+function reloadPage() 
+{
+    location.reload(); 
+}
+
 </script>
 </head>
 <body id="school_list" class="light-theme || dark-theme">  
