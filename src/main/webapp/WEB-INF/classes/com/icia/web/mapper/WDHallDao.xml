@@ -260,20 +260,37 @@ AND
 <!-- 홀 개수 체크 시작 -->
 <select id="WDHallListCount" parameterType="com.icia.web.model.WDHall" resultType="long">
 SELECT
-    COUNT(A.H_CODE) CNT
-FROM
-    WD_HALL A, WD_WEDDINGHALL B
-WHERE
-    A.WH_CODE = B.WH_CODE
+    COUNT(H_CODE) AS CNT
+            FROM(SELECT
+                    A.WH_CODE WH_CODE,
+                    A.H_CODE H_CODE,
+                    NVL(A.H_NAME, '') H_NAME,
+                    NVL(B.WH_NAME, '') WH_NAME,
+                
+                    CONCAT(A.WH_CODE, A.H_CODE) AS WDH
+                FROM
+                    WD_HALL A, WD_WEDDINGHALL B
+                WHERE 
+                    A.WH_CODE = B.WH_CODE)
+WHERE 1 = 1 
+AND    
+    WDH NOT IN (SELECT
+          CONCAT(WH_CODE, H_CODE) AS WDH
+                FROM
+                    WD_REZ
+                WHERE
+                     WDATE LIKE #{wDate}
+                AND
+                    REZ_STATUS = 'Y') 
 <if test='searchType != null and searchType != "" and searchValue != null and searchValue != ""'>
    	<choose> 
    		 <when test='searchType == "1"'> 
 AND
-     B.WH_NAME LIKE '%' || #{searchValue} || '%'
+     WH_NAME LIKE '%' || #{searchValue} || '%'
         </when>
       	<when test='searchType == "2"'>
 AND
-    A.H_NAME LIKE '%' || #{searchValue} || '%'
+     H_NAME LIKE '%' || #{searchValue} || '%'
    		</when>
 	</choose>
 </if>
