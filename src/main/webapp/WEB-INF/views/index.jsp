@@ -223,7 +223,7 @@
                             <p>Wellding Reviews</p>
                           </div>
                           
-                          <div class="text-button"><a href="/board/reviews"><span id="plusssss">더 보기</span></a></div>
+                          <div class="text-button"><a href="/board/login"><span id="plusssss">더 보기</span></a></div>
                         <div class="lisylebox">
                             <ul class="listyle">
                                <c:forEach var="review" items="${wdReviewList}" varStatus="status"> 

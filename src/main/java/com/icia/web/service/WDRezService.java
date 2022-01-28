@@ -673,4 +673,40 @@ public class WDRezService {
 		
 		return count;
 	}
+	
+   	////예약날짜 불러오기
+   	public String onlyWDate(String rezNo) 
+   	{
+   		String wDate = "";
+   		
+   		try 
+   		{
+   			wDate = wdRezDao.onlyWDate(rezNo);
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] onlyWDate Exception", e);
+		}
+   		
+   		return wDate;
+   	}
+   	
+   	////스튜디오날짜 불러오기
+   	public String onlySDate(String rezNo) 
+   	{
+   		String sDate = "";
+   		
+   		try 
+   		{
+   			sDate = wdRezDao.onlySDate(rezNo);
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] onlySDate Exception", e);
+		}
+   		
+   		return sDate;
+   	}
+	
+	
 }

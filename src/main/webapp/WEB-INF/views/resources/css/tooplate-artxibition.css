@@ -1064,7 +1064,7 @@ banner
 ---------------------------------------------
 */
 .bestWedding {
-  padding-bottom: 20px;
+  padding-bottom: 35px;
 }
 .bestWedding h2 {
   font-size: 14px;
@@ -1577,7 +1577,9 @@ Coming Events
   background-color: #ffffff;/*rgb(240,238,236);*/
   padding: 120px 0px;
   position: relative;
-  background: linear-gradient(-45deg, #fff 25%, #f5e8e6 0, #f5e8e6 50%, #fff 0, #fff 75%, #f5e8e6 0);
+  background: linear-gradient(-45deg, #fff 25%, #ece7ed 0, #ece7ed 50%, #fff 0, #fff 75%, #ece7ed 0);
+  /*linear-gradient(-45deg, #fff 25%, #eae9ec 0, #eae9ec 50%, #fff 0, #fff 75%, #eae9ec 0); 
+  linear-gradient(-45deg, #fff 25%, #f5e8e6 0, #f5e8e6 50%, #fff 0, #fff 75%, #f5e8e6 0);*/
   background-size: 7px 7px;
 }
 

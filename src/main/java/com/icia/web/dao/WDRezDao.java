@@ -109,4 +109,8 @@ public interface WDRezDao {
 	
 	//회원 삭제 시 결제내역 조회, WDATE가 현재 날짜보다 큰 결제 숫자 가져오기 시작
 	public int checkRezWdate(String userId);
+	
+	//예약날짜,스튜디오날짜 불러오기
+	public String onlyWDate(String rezNo);
+	public String onlySDate(String rezNo);
 }

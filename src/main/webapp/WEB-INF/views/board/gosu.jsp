@@ -9,8 +9,7 @@
 <script>
 $(document).ready(function(){
 	$("#form-submit").on("click", function(){
-		$("#mail_receive").css("display", "block");
-		//$("#form-submit").attr("disabled", true);
+		$("#form-submit").attr("disabled", true);
 		
 	});
 });
@@ -88,7 +87,7 @@ $(document).ready(function(){
                               <fieldset>
 
                               	<input type="hidden" name="receiveMail" id="receiveMail" value="${wdExpert.eEmail}"/> <!-- 메일을 받을 플래너의 메일주소 -->
-                              	<button onclick="fn_colorbox_close()" id="form-submit1" class="main-dark-button2">닫기</button>
+                              	<button onclick="fn_colorbox_close()" id="form-submit" class="main-dark-button2">닫기</button>
                                 <button type="submit" id="form-submit" class="main-dark-button">견적 요청하기</button>
                                 
                               	<span style="color:blue;">${message}</span>

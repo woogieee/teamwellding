@@ -944,4 +944,24 @@ AND
 </select>
 <!-- 회원 삭제 시 결제내역 조회, WDATE가 현재 날짜보다 큰 결제 숫자 가져오기 시작 -->
 
+<!-- 예약날짜,스튜디오날짜 불러오기 시작 -->
+<select id="onlyWDate" resultType="string">
+SELECT
+    WDATE
+FROM
+    WD_REZ
+WHERE
+    REZ_NO = #{rezNo}
+</select>
+
+<select id="onlySDate" resultType="string">
+SELECT
+    S_DATE
+FROM
+    WD_REZ
+WHERE
+    REZ_NO = #{rezNo}
+</select>
+<!-- 예약날짜,스튜디오날짜 불러오기 끝 -->
+
 </mapper>
