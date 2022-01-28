@@ -31,13 +31,6 @@ $(function(){
       document.bbsForm.action = "/board/nBoard";
       document.bbsForm.submit();
    });
-	//조회창 엔터키 테스트
-	$("#_searchValue").on("keypress", function(e){
-		if(e.which == 13)
-		{
-			fn_search(searchValue);
-		}
-	});
 });
 //제목 눌럿을때 view 페이지 가기
 function fn_view(bSeq)
@@ -55,16 +48,6 @@ function fn_list(curPage)
 	document.bbsForm.curPage.value = curPage;
 	document.bbsForm.action = "/board/nBoard";
 	document.bbsForm.submit();
-}
-//엔터키 테스트
-function fn_search(searchValue)
-{
-	document.bbsForm.bSeq.value = "" ; //네임 사용
-    document.bbsForm.searchType.value = $("#_searchType").val();
-    document.bbsForm.searchValue.value = $("#_searchType").val();
-    document.bbsForm.curPage.value = 1;
-    document.bbsForm.action = "/board/nBoard";
-    document.bbsForm.submit();
 }
 </script>
 
