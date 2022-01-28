@@ -109,6 +109,8 @@ function dressUpdate()
 				alert("드레스 정보가 수정되었습니다.");
 				top.window.location.reload(true);
 				fn_colorbox_close(parent.fn_pageInit);
+				
+				top.window.location.reload(true); //부모창리프레시
 			}
 			else if(res.code == 400)
 			{
