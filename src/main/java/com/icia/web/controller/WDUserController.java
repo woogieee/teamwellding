@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.icia.common.util.StringUtil;
 import com.icia.web.model.Response;
+import com.icia.web.model.WDRez;
 import com.icia.web.model.WDUser;
 import com.icia.web.service.WDCouponService;
+import com.icia.web.service.WDRezService;
 import com.icia.web.service.WDUserService;
 import com.icia.web.util.CookieUtil;
 import com.icia.web.util.HttpUtil;
@@ -39,6 +41,9 @@ public class WDUserController
 	
 	@Autowired
 	private WDCouponService wdcouponservice;
+	
+	@Autowired
+	private WDRezService wdRezService;
 	
 	@RequestMapping(value="/imokay", method=RequestMethod.POST)
 	@ResponseBody
@@ -306,26 +311,47 @@ public class WDUserController
 		String cookieUserId = CookieUtil.getHexValue(request,  AUTH_COOKIE_NAME);
 		String userPwd = HttpUtil.get(request, "userPwd", "");
 		
-		WDUser wdUser = new WDUser();
-		
-		wdUser.setUserId(cookieUserId);
-		wdUser.setUserPwd(userPwd);
-		if(!StringUtil.isEmpty(userPwd)) {
-			if(wduserService.userDrop(wdUser) > 0) {
-				ajaxResponse.setResponse(0, "Success");
-				if(CookieUtil.getCookie(request, AUTH_COOKIE_NAME) != null)
+		WDUser user = wduserService.userSelect(cookieUserId);
+		if(user != null) 
+		{
+			int cnt = wdRezService.checkRezWdate(user.getUserId());
+			if(cnt <= 0) 
+			{
+				System.out.println(cnt);
+				//cnt가 0이면, 결제한 결제내역의 결혼예정일이 현재 날짜보다 큰게 없음
+				//즉, 결제한 결혼식이 이미 다 진행이 된 것!
+				//그럼 삭제 쌉가능
+				WDUser wdUser = new WDUser();
+				
+				wdUser.setUserId(cookieUserId);
+				wdUser.setUserPwd(userPwd);
+				if(!StringUtil.isEmpty(userPwd)) 
 				{
-					CookieUtil.deleteCookie(request, response, "/", AUTH_COOKIE_NAME);
+					if(wduserService.userDrop(wdUser) > 0) 
+					{
+						ajaxResponse.setResponse(0, "Success");
+						if(CookieUtil.getCookie(request, AUTH_COOKIE_NAME) != null)
+						{
+							CookieUtil.deleteCookie(request, response, "/", AUTH_COOKIE_NAME);
+						}
+					}
+					else 
+					{
+						ajaxResponse.setResponse(400, "Bad parameter");
+					}
+				}
+				else 
+				{
+					ajaxResponse.setResponse(404, "Bad parameter");
 				}
 			}
-			else {
-				ajaxResponse.setResponse(400, "Bad parameter");
+			else 
+			{
+				//현재 날짜보다 WDATE가 큰 결제내역이 존재함.
+				//결혼식을 위해 결제를 했는데 회원을 탈퇴하려고 해? ㄴㄴ, 돈 냈으니까 취소하든 결혼하든 하고 탈퇴해라잉
+				ajaxResponse.setResponse(511, "Rez Exist not finished");
 			}
 		}
-		else {
-			ajaxResponse.setResponse(404, "Bad parameter");
-		}
-		
 		
 		return ajaxResponse;
 	}

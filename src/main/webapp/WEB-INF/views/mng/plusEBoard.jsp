@@ -164,7 +164,7 @@ function fn_userUpdate()
                <tr>
                	  <th scope="row">이미지 첨부</th>
                	  <td>
-					<div class="filebox bs3-primary">
+					<div class="filebox bs3-primary preview-image">
 					    <input class="upload-name" value="파일선택" disabled="disabled">
 					
 					    <label for="img">업로드</label> 
