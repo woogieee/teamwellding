@@ -174,6 +174,7 @@ function fn_loginCheck()
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
+						<input hidden="hidden" />
 						<input class="input100" type="password" name="userPwd" id="userPwd" >
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
