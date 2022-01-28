@@ -559,27 +559,10 @@ public class WDRezController {
 		String wMonth = wdDate.substring(4,6);
 		String wDay = wdDate.substring(6);
 		wdDate = wYear + "년 " + wMonth + "월 " + wDay + "일";
-		
-		
-		String stDate = wdRezService.onlySDate(rezNo);
-		
-		String sYear = stDate.substring(0,4);
-		String sMonth = stDate.substring(4,6);
-		String sDay = stDate.substring(6);
-		stDate = sYear + "년 " + sMonth + "월 " + sDay + "일";
-		
+
 		System.out.println("======================================================================");
 		System.out.println("wdDate************* : " + wdDate);
 		System.out.println("======================================================================");
-		
-		System.out.println("======================================================================");
-		System.out.println("stDate************* : " + stDate);
-		System.out.println("======================================================================");
-		
-		/*wdRez.setwDate(wdDate);
-		wdRez.setsDate(stDate);*/
-		
-		
 		
 			//예약 번호가 있는 경우
 			if(rezNo != null)
@@ -590,8 +573,28 @@ public class WDRezController {
 				//쿼리문 if절 비교해서 예약한 상품들만 가져오기
 				wdRez = wdRezService.rezList(wdRez);
 				
+				//결혼날짜 셋팅,,
 				wdRez.setwDate(wdDate);
-				wdRez.setsDate(stDate);
+				
+				//스튜디오 있으면 스튜디오 날짜셋팅
+				if(wdRez.getsCode() != null && wdRez.getsCode() != "")
+				{
+					String stDate = wdRezService.onlySDate(rezNo);
+					
+					String sYear = stDate.substring(0,4);
+					String sMonth = stDate.substring(4,6);
+					String sDay = stDate.substring(6);
+					stDate = sYear + "년 " + sMonth + "월 " + sDay + "일";
+					
+					System.out.println("======================================================================");
+					System.out.println("stDate************* : " + stDate);
+					System.out.println("======================================================================");
+					
+					wdRez.setsDate(stDate);
+					
+					model.addAttribute("stDate", stDate);
+				}
+
 				
 			}
 			else
@@ -602,7 +605,7 @@ public class WDRezController {
 			
 		model.addAttribute("wdRez", wdRez);
 		model.addAttribute("wdDate", wdDate);
-		model.addAttribute("stDate", stDate);
+		
 		
 		return "/mng/detailView";
 	}
