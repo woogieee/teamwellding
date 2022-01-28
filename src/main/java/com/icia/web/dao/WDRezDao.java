@@ -106,4 +106,7 @@ public interface WDRezDao {
 	
 	//결제 내역 리스트에서 홀스드메 상세 보기
 	public WDRez detailView(String rezNo);
+	
+	//회원 삭제 시 결제내역 조회, WDATE가 현재 날짜보다 큰 결제 숫자 가져오기 시작
+	public int checkRezWdate(String userId);
 }

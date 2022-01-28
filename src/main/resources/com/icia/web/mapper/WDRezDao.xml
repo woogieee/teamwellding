@@ -929,4 +929,19 @@ AND
 </select>
 <!-- 결제내역 관리페이지에서 홀스드메 상세내역 보기  종료-->
 
+<!-- 회원 삭제 시 결제내역 조회, WDATE가 현재 날짜보다 큰 결제 숫자 가져오기 시작 -->
+<select id="checkRezWdate" parameterType="string" resultType="int">
+SELECT 
+    COUNT(REZ_NO) AS COUNT
+FROM
+    WD_REZ
+WHERE
+    USER_ID = #{value}
+AND
+    REZ_STATUS NOT IN ('N', 'D')
+AND
+    TO_NUMBER(WDATE) >= TO_NUMBER(TO_CHAR(SYSDATE, 'YYYYMMDD'))
+</select>
+<!-- 회원 삭제 시 결제내역 조회, WDATE가 현재 날짜보다 큰 결제 숫자 가져오기 시작 -->
+
 </mapper>

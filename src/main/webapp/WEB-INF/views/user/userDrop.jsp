@@ -122,6 +122,15 @@ function fn_loginCheck()
 										
 					$("#userPwd").focus();
 				}
+				else if(code == 511)
+				{
+					Swal.fire({ 
+						icon: 'warning',
+						text: '진행되지 않은 결제내역이 존재하여 아이디를 삭제할 수 없습니다.'
+					}).then(function(){
+						location.href = "/user/payList";
+					});
+				}
 				else
 				{
 					//alert("오류가 발생하였습니다.");
