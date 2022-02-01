@@ -47,6 +47,8 @@ FROM
 WHERE
     PARENT_SEQ = #{value}
 AND
+    A.C_STATUS IN('Y', 'N')
+AND
     A.USER_ID = B.USER_ID
 ORDER BY A.REG_DATE DESC))
 WHERE
@@ -74,13 +76,15 @@ INSERT INTO WD_COMMENT (
     WD_FBOARD_COMMENT,
     REG_DATE,
     PARENT_SEQ,
-    COMMENT_SEQ
+    COMMENT_SEQ,
+    C_STATUS
 ) VALUES (
     #{userId},
     #{wdFBoardComment},
     SYSDATE,
     #{parentSeq},
-    #{commentSeq}
+    #{commentSeq},
+    'Y'
 )
 </insert>
 <!-- 댓글 등록 끝 -->
@@ -189,5 +193,29 @@ AND
     COMMENT_SEQ = #{commentSeq}
 </delete>
 <!-- 관리자 페이지에서 댓글 삭제 종료 -->
+
+<!-- 댓글 신고하기 시작 -->
+<update id="commentReport" parameterType="com.icia.web.model.WDComment">
+UPDATE WD_COMMENT
+SET
+    C_STATUS = 'N'
+WHERE
+        PARENT_SEQ = #{parentSeq}
+    AND COMMENT_SEQ = #{commentSeq}
+    AND C_STATUS = 'Y'
+</update>
+<!-- 댓글 신고하기 끝 -->
+
+<!-- 신고댓글 승인 시작 -->
+<update id="commentReportAllow" parameterType="com.icia.web.model.WDComment">
+UPDATE WD_COMMENT
+SET
+    C_STATUS = 'R'
+WHERE
+        PARENT_SEQ = #{parentSeq}
+    AND COMMENT_SEQ = #{commentSeq}
+    AND C_STATUS = 'N'
+</update>
+<!-- 신고댓글 승인 끝 -->
 
 </mapper>
