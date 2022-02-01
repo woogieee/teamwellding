@@ -566,6 +566,9 @@ function commentUpdate(cSeq,tagId){
 												<button type="button" class="btn btn-secondary btnCommentD" onclick="commentDelete(${comment.commentSeq})" style="margin-rignt:10px;">삭제</button>
 												<button type="button" class="btn btn-secondary btnCommentU" onclick="commentUpdate(${comment.commentSeq},'update${comment.commentSeq }')">수정</button>
 											</c:if>
+											<c:if test="${cookieUserId ne comment.userId}">
+											<button type="button" class="btn btn-secondary btnCommentD" onclick="commentReport(${comment.commentSeq})" style="margin-rignt:10px;">신고</button>
+											</c:if>
 										</td>
 									</tr>
 									<tr>
