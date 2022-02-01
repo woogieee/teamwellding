@@ -473,6 +473,7 @@ function commentUpdate(cSeq,tagId){
 	}
     
 }
+
 </script>
 </head>
 <body>

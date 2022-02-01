@@ -219,6 +219,9 @@
 
                   <value>/board/reviewInfo</value>
                   <value>/board/covid</value>
+                  
+                  <value>/board/commentReport</value>
+                  <value>/board/commentReportAllow</value>
 
                   
                   </list>

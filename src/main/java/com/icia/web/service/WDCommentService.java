@@ -163,4 +163,32 @@ public class WDCommentService {
 		
 		return cnt;
 	}
+	
+	//댓글 신고버튼 클릭
+	public int commentReport(WDComment wdComment) {
+		int count = 0;
+		
+		try {
+			count = wdCommentDao.commentReport(wdComment);
+		}
+		catch(Exception e) {
+			logger.error("[WDCommentService] commentReport Exception", e);
+		}	
+		
+		return count;
+	}
+	
+	//관리자 댓글신고 확인
+	public int commentReportAllow(WDComment wdComment) {
+		int count = 0;
+		
+		try {
+			count = wdCommentDao.commentReportAllow(wdComment);
+		}
+		catch(Exception e) {
+			logger.error("[WDCommentService] commentReportAllow Exception", e);
+		}	
+		
+		return count;
+	}
 }
