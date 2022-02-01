@@ -33,4 +33,10 @@ public interface WDCommentDao {
 	//관리자 페이지에서 댓글 삭제 시작
 	public int commentDelAdm(WDComment wdComment);
 	
+	//댓글 신고하기
+	public int commentReport(WDComment wdComment);
+	
+	//관리자 페이지에서 댓글 신고승인하기
+	public int commentReportAllow(WDComment wdComment);
+	
 }
