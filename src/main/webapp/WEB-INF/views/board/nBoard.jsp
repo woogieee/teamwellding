@@ -31,13 +31,6 @@ $(function(){
       document.bbsForm.action = "/board/nBoard";
       document.bbsForm.submit();
    });
-	//조회창 엔터키 테스트
-	$("#_searchValue").on("keypress", function(e){
-		if(e.which == 13)
-		{
-			fn_search(searchValue);
-		}
-	});
 });
 //제목 눌럿을때 view 페이지 가기
 function fn_view(bSeq)
@@ -55,16 +48,6 @@ function fn_list(curPage)
 	document.bbsForm.curPage.value = curPage;
 	document.bbsForm.action = "/board/nBoard";
 	document.bbsForm.submit();
-}
-//엔터키 테스트
-function fn_search(searchValue)
-{
-	document.bbsForm.bSeq.value = "" ; //네임 사용
-    document.bbsForm.searchType.value = $("#_searchType").val();
-    document.bbsForm.searchValue.value = $("#_searchType").val();
-    document.bbsForm.curPage.value = 1;
-    document.bbsForm.action = "/board/nBoard";
-    document.bbsForm.submit();
 }
 </script>
 
@@ -142,20 +125,22 @@ function fn_search(searchValue)
                                 </thead>
                                 <tbody>
                                     <c:if test="${!empty list}">
-                                    <tr style="border-bottom:">
+                                    <tr>
                                          <td style="text-align:center">
-                                            <a href="/board/covid"><span style="background:pink; border-radius:7px; color:white; width:100%;">공지</span></a>
+                                         	<div class="pink_boxx">
+                                            	<a href="/board/covid"><span style="color:white;">공지</span></a>
+                                         	</div>
                                          </td>
-                                         <td style="text-align:left">
+                                         <td style="text-align:left; height: 30px; line-height: 30px;">
                                          	<a href="/board/covid">COVID-19관련 공지사항</a>
                                          </td>
-                                         <td style="text-align:center">admin</td>
-                                         <td style="text-align:center">2022.01.26 16:30</td>
-                                         <td style="text-align:center">0</td>
+                                         <td style="text-align:center; height: 30px; line-height: 30px;">admin</td>
+                                         <td style="text-align:center; height: 30px; line-height: 30px;">2021.12.29 15:29</td>
+                                         <td style="text-align:center; height: 30px; line-height: 30px;">-</td>
                                     </tr>
                                        <c:forEach var="hiBoard" items="${list}" varStatus="status">   
                                             <tr>
-                                                <td style="text-align:center">
+                                                <td style="text-align:center;">
                                                     <a href="javascript:void(0)" onclick="fn_view(${hiBoard.bSeq})">
                                                         <c:out value="${hiBoard.bSeq}" />
                                                     </a>

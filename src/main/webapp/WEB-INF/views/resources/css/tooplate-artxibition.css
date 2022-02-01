@@ -1064,7 +1064,7 @@ banner
 ---------------------------------------------
 */
 .bestWedding {
-  padding-bottom: 20px;
+  padding-bottom: 35px;
 }
 .bestWedding h2 {
   font-size: 14px;
@@ -1577,7 +1577,9 @@ Coming Events
   background-color: #ffffff;/*rgb(240,238,236);*/
   padding: 120px 0px;
   position: relative;
-  background: linear-gradient(-45deg, #fff 25%, #f5e8e6 0, #f5e8e6 50%, #fff 0, #fff 75%, #f5e8e6 0);
+  background: linear-gradient(-45deg, #fff 25%, #ece7ed 0, #ece7ed 50%, #fff 0, #fff 75%, #ece7ed 0);
+  /*linear-gradient(-45deg, #fff 25%, #eae9ec 0, #eae9ec 50%, #fff 0, #fff 75%, #eae9ec 0); 
+  linear-gradient(-45deg, #fff 25%, #f5e8e6 0, #f5e8e6 50%, #fff 0, #fff 75%, #f5e8e6 0);*/
   background-size: 7px 7px;
 }
 
@@ -7195,5 +7197,45 @@ textarea::placeholder {
 	font-weight: 800;
     color: #333;
 }
+
+#mail_receive
+{
+	top: 200px;
+    background: #fff;
+    position: absolute;
+    display: block;
+    width: 700px;
+    height: 480px;
+    z-index: 999;
+}
+
+.close_box
+{
+	position: relative;
+    top: 40px;
+    left: 0px;
+    float: left;
+}
+
+.receive_ok
+{
+	position: relative;
+    top: -5px;
+    left: 20px;
+}
+
+.pink_boxx
+{
+	line-height: 30px;
+    background: #ff4e0d;
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
 
 /*보현추가 끝*/

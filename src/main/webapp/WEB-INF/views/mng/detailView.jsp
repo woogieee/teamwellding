@@ -50,8 +50,10 @@ button:active {
 </script>
 </head>
 <body>
-
-<div class="layerpopup" style="width:1123px; margin:auto;">
+<div class="container">
+    <div class="row">
+       <div class="col-lg-12">  
+		<div class="layerpopup" style="width:100%; margin:auto;">
 			<h1 style="font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1.6rem; padding: .5rem 0 .5rem 1rem; background-color: #e0e4fe;">예약 내용 상세보기</h1>
 		   <div class="layer-cont">
 		      <form name="regForm" id="regForm" method="post">
@@ -64,11 +66,19 @@ button:active {
 		                  </td>
 		            	</tr>
 		            	<tr>
+		                  <th scope="row">결혼날짜</th>
+		                  <td style="text-align: left;">
+		                  	${wdRez.wDate}
+		                  </td>
+		            	</tr>
+		            	
+		            	<tr>
 		                  <th scope="row">아이디</th>
 		                  <td style="text-align: left;">
 		                  	${wdRez.userId}	    
 		                  </td>
 		            	</tr>
+<c:if test="${!empty wdRez.whName}">
 		            	<tr>
 		                  <th scope="row">웨딩홀 업체명</th>
 		                  <td style="text-align: left;">
@@ -81,45 +91,57 @@ button:active {
 		                  	${wdRez.hName}	                  
 		                  </td>
 		               </tr>
+</c:if> 
+<c:if test="${!empty wdRez.sName}">
 		               <tr>
 		                  <th scope="row">스튜디오 이름</th>
 		                  <td>
-		                    ${wdRez.sName} 
+		                    ${wdRez.sName} (스튜디오 촬영일: ${wdRez.sDate})
 		                  </td>
+		                </tr>
+</c:if>
+<c:if test="${!empty wdRez.dcName}">
 		               <tr>
 		                  <th scope="row">드레스 업체명</th>
 		                  <td style="text-align: left;">
 		                  	${wdRez.dcName}	                  
 		                  </td>
 		               </tr>
+</c:if>
+<c:if test="${!empty wdRez.dName}">
 		               <tr>
 		                  <th scope="row">드레스명</th>
 		                  <td style="text-align: left;">
 		                  	${wdRez.dName}	                  
 		                  </td>
 		               </tr>
+</c:if>
+<c:if test="${!empty wdRez.mName}">
 		               <tr>
 		                  <th scope="row">메이크업 업체명</th>
 		                  <td style="text-align: left;">
 		                  	${wdRez.mName}	                  
 		                  </td>
-		               </tr>	           
+		               </tr>
+</c:if>         
 		            </tbody>
 		         </table>
 		      </form>
 		  </div>
 	</div>
 	
-	<table style="border:none;">
+			<table style="border:none; margin-bottom: 60px;">
 				<tr style="border:none;">
 					<td style="border:none;">
 					      <div class="pop-btn-area" style="display: block; float: right;">					        
 					         <button onclick="fn_colorbox_close()" id="colorboxClose" class="btn-type01" style="margin-left: 1rem;"><span>닫기</span></button>
 					      </div>
-					   </div>
 					</td>
 				</tr>
 			</table>
+		</div>
+	</div>
+</div>
 
 <%@ include file="/WEB-INF/views/include/footer3.jsp" %>
 </body>

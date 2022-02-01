@@ -213,7 +213,7 @@ function fn_userUpdate()
                    <th scope="row">대표 이미지</th>
                   <td>
                      <!--input type="file" style="background-color: #fff;" id="makeupimgname" name="makeupimgname" /-->
-					<div class="filebox bs3-primary">
+					<div class="filebox bs3-primary preview-image">
 					    <input class="upload-name" value="파일선택" disabled="disabled">
 					
 					    <label for="makeupimgname">업로드</label> 

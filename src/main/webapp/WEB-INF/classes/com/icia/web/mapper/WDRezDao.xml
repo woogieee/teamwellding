@@ -929,4 +929,39 @@ AND
 </select>
 <!-- 결제내역 관리페이지에서 홀스드메 상세내역 보기  종료-->
 
+<!-- 회원 삭제 시 결제내역 조회, WDATE가 현재 날짜보다 큰 결제 숫자 가져오기 시작 -->
+<select id="checkRezWdate" parameterType="string" resultType="int">
+SELECT 
+    COUNT(REZ_NO) AS COUNT
+FROM
+    WD_REZ
+WHERE
+    USER_ID = #{value}
+AND
+    REZ_STATUS NOT IN ('N', 'D')
+AND
+    TO_NUMBER(WDATE) >= TO_NUMBER(TO_CHAR(SYSDATE, 'YYYYMMDD'))
+</select>
+<!-- 회원 삭제 시 결제내역 조회, WDATE가 현재 날짜보다 큰 결제 숫자 가져오기 시작 -->
+
+<!-- 예약날짜,스튜디오날짜 불러오기 시작 -->
+<select id="onlyWDate" resultType="string">
+SELECT
+    WDATE
+FROM
+    WD_REZ
+WHERE
+    REZ_NO = #{rezNo}
+</select>
+
+<select id="onlySDate" resultType="string">
+SELECT
+    S_DATE
+FROM
+    WD_REZ
+WHERE
+    REZ_NO = #{rezNo}
+</select>
+<!-- 예약날짜,스튜디오날짜 불러오기 끝 -->
+
 </mapper>

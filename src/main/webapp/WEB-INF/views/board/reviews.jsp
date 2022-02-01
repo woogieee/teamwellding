@@ -8,7 +8,15 @@
 
 <script>
 $(document).ready(function(){
-   $("#btnSearch").on("click", function(){
+	
+	$("._searchValue").on('keyup', function(e)
+	{ 
+		if(e.key=='Enter'||e.keyCode==13){
+			$(".btnSearch").trigger("click");
+		}
+	});
+	
+   $(".btnSearch").on("click", function(){
       //새로 조회버튼을 누를 때에는 신규로 넣은 값을 가져가야 함.
       document.bbsForm.RSeq.value = 0;
 
@@ -144,11 +152,12 @@ function fn_list(curPage)
                                                         </select>
                                                     </div>
                                                     <div class="col-lg-7">
-                                                        <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue" placeholder="조회값을 입력하세요." />
+                                                    	<input hidden="hidden" />
+                                                        <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue _searchValue" placeholder="조회값을 입력하세요." />
                                                     </div>
                                                     <div class="col-lg-2">
                                                         <fieldset>
-                                                        <button type="button" id="btnSearch" class="btn"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
+                                                        <button type="button" id="btnSearch" class="btn btnSearch"><img class="imgNav" src="/resources/images/icons/search.jpg" width="auto" height="22px"></button>
                                                         </fieldset>
                                                     </div>
                                                 </div>

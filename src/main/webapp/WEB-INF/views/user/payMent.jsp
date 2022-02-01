@@ -184,6 +184,7 @@ $(document).ready(function(){
 					icon: 'warning',
 					text: '이미 해당 날짜에 결제된 홀이 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.'
 				}).then(function(){
+					$("#btnPay").prop("disabled", false);
 					return;
 				});
             }
@@ -195,6 +196,7 @@ $(document).ready(function(){
 					icon: 'warning',
 					text: '이미 해당 날짜에 결제된 스튜디오가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.'
 				}).then(function(){
+					$("#btnPay").prop("disabled", false);
 					return;
 				});
             }
@@ -206,6 +208,7 @@ $(document).ready(function(){
 					icon: 'warning',
 					text: '이미 해당 날짜에 결제된 드레스가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.'
 				}).then(function(){
+					$("#btnPay").prop("disabled", false);
 					return;
 				});
             }
@@ -217,6 +220,7 @@ $(document).ready(function(){
 					icon: 'warning',
 					text: '이미 해당 날짜에 결제된 메이크업 업체가 장바구니에 있습니다. 장바구니에서 제거 후 결제를 진행해주세요.'
 				}).then(function(){
+					$("#btnPay").prop("disabled", false);
 					return;
 				});
             }
@@ -228,6 +232,7 @@ $(document).ready(function(){
 					icon: 'error',
 					text: '오류가 발생했습니다.'
 				}).then(function(){
+					$("#btnPay").prop("disabled", false);
 					return;
 				});
             }

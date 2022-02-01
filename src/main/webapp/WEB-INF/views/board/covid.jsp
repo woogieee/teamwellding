@@ -48,11 +48,14 @@ $(document).ready(function(){
       <table class="table">
          <thead>
             <tr class="dongdong2">
-               <td style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600;">
-                  "코로나19 예방조치 안내"
+               <td style="width: 60%; padding-left: 25px; font-size: 18px; color: #222; font-weight: 600; height: 55px; line-height: 55px;">
+               	<div class="pink_boxx">
+                  	<a href="/board/covid"><span style="color:white;">공지</span></a>
+               	</div>
+                  	&nbsp;코로나19 예방조치 안내
                </td>
                <td scope="col" style="width: 40%; padding-right: 25px; color: #444; font-size: 16px;" class="text-right">
-                                        2022.01.26 16:30
+                   2021.12.29 &nbsp;15:29
                </td>
             </tr>
             <tr style="height: 46px;">
@@ -60,7 +63,7 @@ $(document).ready(function(){
                	작성자 : admin
                </td>
                <td style="width: 40%; padding-right: 20px; font-size: 15px; color: #666;" class="text-right">
-                  <div> 조회 : 0</div>
+                 
                </td>
               </tr>
          </thead>

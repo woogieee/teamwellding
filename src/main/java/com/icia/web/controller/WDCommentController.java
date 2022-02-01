@@ -110,4 +110,41 @@ public class WDCommentController {
 		
 		return ajaxResponse;
 	}
+	
+	//댓글 신고
+	@RequestMapping(value="/board/commentReport", method=RequestMethod.POST)
+	@ResponseBody
+	public Response<Object> commentReport(MultipartHttpServletRequest request, HttpServletResponse response){
+		
+		Response<Object> ajaxResponse = new Response<Object>();
+		
+		String cookieUserId = CookieUtil.getHexValue(request, AUTH_COOKIE_NAME);
+		long parentSeq = HttpUtil.get(request, "bSeq", (long)0);
+		long commentSeq = HttpUtil.get(request, "cSeq", (long)0);
+		
+		WDComment wdComment = new WDComment();
+		
+		wdComment.setParentSeq(parentSeq);
+		wdComment.setCommentSeq(commentSeq);
+		wdComment.setUserId(cookieUserId);
+
+		if(!StringUtil.isEmpty(cookieUserId)) {
+			if(wdComment.getParentSeq() != 0 && wdComment.getCommentSeq() != 0) {
+				if(wdCommentService.commentUpdate(wdComment) > 0) {
+					ajaxResponse.setResponse(0, "Success");
+				}
+				else {
+					ajaxResponse.setResponse(-1, "Internal Server Error");
+				}
+			}
+			else {
+				ajaxResponse.setResponse(404, "Bad Request: No parameter");
+			}
+		}
+		else {
+			ajaxResponse.setResponse(400, "Bad Request");
+		}
+		
+		return ajaxResponse;
+	}
 }

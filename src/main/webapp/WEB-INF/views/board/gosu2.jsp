@@ -9,7 +9,8 @@
 <script>
 $(document).ready(function(){
 	$("#form-submit").on("click", function(){
-		$("#form-submit").attr("disabled", true);
+		$("#mail_receive").css("display", "block");
+		//$("#form-submit").attr("disabled", true);
 		
 	});
 });
@@ -87,12 +88,22 @@ $(document).ready(function(){
                               <fieldset>
 
                               	<input type="hidden" name="receiveMail" id="receiveMail" value="${wdExpert.eEmail}"/> <!-- 메일을 받을 플래너의 메일주소 -->
-                              	<button onclick="fn_colorbox_close()" id="form-submit" class="main-dark-button2">닫기</button>
+                              	<button onclick="fn_colorbox_close()" id="form-submit1" class="main-dark-button2">닫기</button>
                                 <button type="submit" id="form-submit" class="main-dark-button">견적 요청하기</button>
                                 
                               	<span style="color:blue;">${message}</span>
                               </fieldset>
                             </div>
+                            
+   							<div id="mail_receive">
+   								<div class="receive_ok">
+   									<img src="../resources/images/icons/check.png" style="width:80px; margin-bottom:20px; margin-top:10px; filter: invert(36%) sepia(89%) saturate(1883%) hue-rotate(351deg) brightness(100%) contrast(110%);">
+   									<p style="color:#ff4e0d; font-weight: 800;">${wdExpert.eName} ${message}<br/><span style="color: #666; font-weight: 400;">조금만 기다려주시면 24시간 이내에 견적 회신 드리겠습니다.</span></p>
+   								</div>
+   								<div class="close_box">
+   									<button onclick="fn_colorbox_close()" id="form-submit" class="main-dark-button2">닫기</button>
+   								</div>
+   							</div>
                             
                           </div>
                         </form>

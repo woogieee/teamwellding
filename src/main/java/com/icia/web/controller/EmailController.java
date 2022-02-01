@@ -46,7 +46,7 @@ public class EmailController
 		{
 			emailService.sendMail(dto); //이메일발송
 			System.out.println("여긴타니111111111");
-			model.addAttribute("message", "이메일이 발송되었습니다.");
+			model.addAttribute("message", " 플래너에게 이메일 발송이 완료되었습니다.");
 		}
 		catch(Exception e)
 		{
@@ -56,7 +56,7 @@ public class EmailController
 		}
 		
 		System.out.println("여긴타니33333333");
-		return "/board/gosu";
+		return "/board/gosu2";
 	}
 
 	

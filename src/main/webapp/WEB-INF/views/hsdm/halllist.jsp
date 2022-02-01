@@ -8,10 +8,9 @@
 	<script>
 	//리스트에서 리스트 다시 조회하지?
 	 $(document).ready(function(){
-		 
 		$("._searchValue").on('keyup', function(e)
 		{ 
-			if(e.key==='Enter'||e.keyCode===13){
+			if(e.key=='Enter'||e.keyCode==13){
 				$(".btnSearch").trigger("click");
 			}
 		});
@@ -180,6 +179,7 @@
 									         </select>
                                         </div>
                                         <div class="col-lg-7">
+                                        	<input hidden="hidden" />
                                             <input type="text" name="_searchValue" id="_searchValue" value="${searchValue}" maxlength="25" class="svalue _searchValue" placeholder="조회값을 입력하세요." />
                                         </div>
                                         <div class="col-lg-2">

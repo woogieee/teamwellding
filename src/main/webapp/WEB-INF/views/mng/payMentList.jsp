@@ -73,13 +73,13 @@ body.dark-theme .page-link.active
 $(document).ready(function(){
     $(".detailView").colorbox({
           iframe:true, 
-          innerWidth:1235,
-          innerHeight:500,
+          innerWidth:1200,
+          innerHeight:700,
           scrolling:true,
           onComplete:function()
           {
-             $("#colorbox").css("width", "1235px");
-             $("#colorbox").css("height", "500px");
+             $("#colorbox").css("width", "1200px");
+             $("#colorbox").css("height", "700px");
              $("#colorbox").css("border-radius", "10px");
              
              $('html').css("overflow","hidden");

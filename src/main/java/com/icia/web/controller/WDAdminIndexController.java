@@ -781,7 +781,7 @@ public class WDAdminIndexController
      {    
          Response<Object> ajaxResponse = new Response<Object>();
          
-         //가장 큰 웨딩홀 코드를 받아와서 W제거
+         //가장 큰 웨딩홀 코드를 받아와서 s제거
          String maxSCode = wdStudioService.maxSCode();
          maxSCode = maxSCode.replace("S", "");      
          //W 제거 후 남은 숫자를 int 형으로 바꿔서 1을 더해줌

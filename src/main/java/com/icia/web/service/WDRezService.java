@@ -656,4 +656,57 @@ public class WDRezService {
 		
 		return wdRez;
 	}
+	
+	//회원 삭제 시 결제내역 조회, WDATE가 현재 날짜보다 큰 결제 숫자 가져오기 시작
+	public int checkRezWdate(String userId) 
+	{
+		int count = 0;
+		
+		try 
+		{
+			count = wdRezDao.checkRezWdate(userId);
+		}
+		catch(Exception e) 
+		{
+			logger.error("[WDRezService] checkRezWdate Exception", e);
+		}
+		
+		return count;
+	}
+	
+   	////예약날짜 불러오기
+   	public String onlyWDate(String rezNo) 
+   	{
+   		String wDate = "";
+   		
+   		try 
+   		{
+   			wDate = wdRezDao.onlyWDate(rezNo);
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] onlyWDate Exception", e);
+		}
+   		
+   		return wDate;
+   	}
+   	
+   	////스튜디오날짜 불러오기
+   	public String onlySDate(String rezNo) 
+   	{
+   		String sDate = "";
+   		
+   		try 
+   		{
+   			sDate = wdRezDao.onlySDate(rezNo);
+   		}
+		catch(Exception e)
+		{
+			logger.error("[WDRezService] onlySDate Exception", e);
+		}
+   		
+   		return sDate;
+   	}
+	
+	
 }

@@ -122,6 +122,15 @@ function fn_loginCheck()
 										
 					$("#userPwd").focus();
 				}
+				else if(code == 511)
+				{
+					Swal.fire({ 
+						icon: 'warning',
+						text: '진행되지 않은 결제내역이 존재하여 아이디를 삭제할 수 없습니다.'
+					}).then(function(){
+						location.href = "/user/payList";
+					});
+				}
 				else
 				{
 					//alert("오류가 발생하였습니다.");
@@ -174,6 +183,7 @@ function fn_loginCheck()
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
+						<input hidden="hidden" />
 						<input class="input100" type="password" name="userPwd" id="userPwd" >
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
