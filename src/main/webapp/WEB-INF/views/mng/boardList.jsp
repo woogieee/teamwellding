@@ -132,32 +132,52 @@ body.dark-theme .page-link.active
 	         document.getElementById('id1').classList.remove('sel');
 	         document.getElementById('id2').classList.remove('sel');
 	         document.getElementById('id3').classList.remove('sel');
+	         document.getElementById('id4').classList.remove('sel');
 	         document.getElementById('id${frCheck}').className += ' sel';  
 	        
 	         $("#fboard").show();
 	         $("#review").hide();
 	         $("#comment").hide();
+	         $("#commentReport").hide();
 	      }
 	     else if(frCheck == 2){
 	         document.getElementById('id1').classList.remove('sel');
 	         document.getElementById('id2').classList.remove('sel');
 	         document.getElementById('id3').classList.remove('sel');
+	         document.getElementById('id4').classList.remove('sel');
 	         document.getElementById('id${frCheck}').className += ' sel';  
 	        
 	         $("#review").show();
 	         $("#fboard").hide();
 	         $("#comment").hide();
+	         $("#commentReport").hide();
 	      }
 	     else if(frCheck == 3)
 	     {
 	    	 document.getElementById('id1').classList.remove('sel');
 	         document.getElementById('id2').classList.remove('sel');
 	         document.getElementById('id3').classList.remove('sel');
+	         document.getElementById('id4').classList.remove('sel');
 	         document.getElementById('id${frCheck}').className += ' sel';  
 	        
 	         $("#review").hide();
 	         $("#fboard").hide();
 	         $("#comment").show();
+	         $("#commentReport").hide();
+	     }
+	     else if(frCheck == 4)
+	     {
+	    	 document.getElementById('id1').classList.remove('sel');
+	         document.getElementById('id2').classList.remove('sel');
+	         document.getElementById('id3').classList.remove('sel');
+	         document.getElementById('id4').classList.remove('sel');
+	         document.getElementById('id${frCheck}').className += ' sel';  
+	        
+	         $("#commentReport").show();
+	         $("#review").hide();
+	         $("#fboard").hide();
+	         $("#comment").hide();
+	         
 	     }
 		
 		$("#id1").on("click", function(){
@@ -185,6 +205,11 @@ body.dark-theme .page-link.active
 	        document.bbsFormC.submit();
 	     });
 		
+	     $("#id4").on("click", function(){
+		        document.bbsFormS.curPage.value = 1;
+		        //document.bbsFormD.action = "/mng/hsdmList";
+		        document.bbsFormS.submit();
+		     });
 	});
 	     
 	     /*$("#delBtnC").on("click",function(){
@@ -336,7 +361,8 @@ body.dark-theme .page-link.active
                 <ul class="hsdm_menu">
                     <li class="hsem_li sel" id="id1" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">노하우공유</a></li>
                     <li class="hsem_li" id="id2" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">리뷰게시판</a></li>
-                    <li class="hsem_li" id="id3" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">댓글관리</a></li>                
+                    <li class="hsem_li" id="id3" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">댓글관리</a></li>    
+                     <li class="hsem_li" id="id4" onclick="classChange(this)"><a class="hsem_a" href="javascript:void(0)">신고관리</a></li>                
                 </ul>              
          </div>
       </div>
@@ -560,9 +586,86 @@ body.dark-theme .page-link.active
          </div>
       </div>
       <!-- 댓글 끝 -->
-    	
+      
+       <!-- 댓글 신고 시작 -->
+      <div class="col-lg-12" width="100%">
+      <div id="commentReport">
+         <ul>
+            <li class="wdhth2">
+               <div class="wdhtitle2" style="width:7%;"><p>게시글<br/>번호</p></div><!-- parentSeq -->
+               <div class="wdhtitle2" style="width:7%;"><p>댓글번호</p></div><!-- commentSeq -->
+               <div class="wdhtitle2" style="width:49%;"><p>내용</p></div><!-- wdFboardComment -->
+               <div class="wdhtitle2" style="width:16%;"><p>닉네임</p></div><!-- uNickName -->
+               <div class="wdhtitle2" style="width:14%;"><p>등록일</p></div><!-- regDate -->
+               <div class="wdhtitle2" style="width:6.5%;"><p>신고 상태</p></div>
+            </li>
+            <c:forEach var="comment" items="${cList}" varStatus="status">
+            <li class="wdhtd2">
+               <div class="wdhcon2" style="width:7%;"><p>${comment.parentSeq}</p></div>
+               <div class="wdhcon2" style="width:7%;"><p>${comment.commentSeq}</p></div>
+               <div class="wdhcon2" style="width:49%;"><p>${comment.wdFBoardComment}</p></div>
+               <div class="wdhcon2" style="width:16%;"><p>${comment.uNickName}</p></div>
+               <div class="wdhcon2" style="width:14%;"><p>${comment.regDate}</p></div>
+               <div class="wdhcon2" style="width:6.5%;">
+               		<p>
+               			<a href="/mng/boardList?parentSeq=${comment.parentSeq}&&commentSeq=${comment.commentSeq}" name="CommentDel" class="w-btn-red delBtnWish" Style="background-color: rgba(0,0,0,0);" >x</a>
+               		</p>
+               </div>
+            </li>
+            </c:forEach>
+         </ul>
+
+         <div class="row">
+              <div class="col-lg-10" style="left:43%;">
+                <div class="pagination">
+               <ul class="pagination justify-content-center">
+                  <c:if test="${!empty cPaging}">
+                     <c:if test="${cPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingC(${cPaging.prevBlockPage})">이전</a></li>
+                     </c:if>
+                     <c:forEach var="i" begin="${cPaging.startPage}" end="${cPaging.endPage}">
+                        <c:choose>
+                           <c:when test="${i ne curPage}">
+                              <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingC(${i})">${i}</a></li>
+                           </c:when>
+                           <c:otherwise>
+                              <li class="page-item active"><a class="page-link" href="javascript:void(0)" style="cursor:default">${i}</a></li>
+                           </c:otherwise>
+                        </c:choose>
+                     </c:forEach>
+                     <c:if test="${cPaging.nextBlockPage gt 0}">         
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingC(${cPaging.nextBlockPage})">다음</a></li>
+                     </c:if>       
+                  </c:if> 
+                     <form name="bbsFormS" id="bbsFormS" method="post">
+                        <input type="hidden" name="frCheck" value="4" />
+                        <input type="hidden" name="curPage" value="${curPage}" />
+               		</form>
+               </ul>
+                  </div>
+              </div>
+            <div class="col-lg-1">
+               <!--div>
+                    <div class="ticket-item2 gosu_modal" href="/mng/plusStudio">
+                        <div class="down-content2">
+                            <div class="main-dark-button btn_go wookhall">
+                                <a href="/mng/plusStudio" class="studio_modal" >스튜디오 추가</a>
+                            </div>    
+                         </div>
+                    </div>
+               </div-->
+            </div>
+           </div>
+         </div>
+      </div>
+      <!-- 댓글 신고 끝 -->
+      
+   
+      
     </div>
+    
 </div>
+
 
 		 <form class="d-flex" name="searchForm" id="searchForm" method="post" style="place-content: flex-end;">
 		 <input type="hidden" name="curPage" value="" />
