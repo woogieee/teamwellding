@@ -338,6 +338,47 @@ body.dark-theme .page-link.active
 	   
 	   fn_search();      
 	}
+	
+	function report(parentSeq,commentSeq)
+	{
+		  $.ajax({
+		         type : "POST",
+		         url : "/mng/report",
+		         data : {
+		            pSeq : parentSeq,
+		            cSeq : commentSeq            
+		         },
+		         datatype : "JSON",
+		         beforeSend : function(xhr) {
+		            xhr.setRequestHeader("AJAX", "true");
+		         },
+		         success : function(response) 
+		         {
+		            if (response.code == 0) 
+		            {
+		               alert("숨김처리가 완료되었습니다.");
+		               document.bbsFormS.action = "/mng/boardList";
+		               document.bbsFormS.submit();
+		            } 
+		            else if (response.code == 400) 
+		            {
+		               alert("존재하지않는 댓글입니다.");
+		            } 
+		            else {
+		               alert("오류가 발생했습니다.");
+		            }
+		         },
+		         complete : function(data) 
+		         {
+		            icia.common.log(data);
+		         },
+		         error : function(xhr, status, error) 
+		         {
+		            icia.common.error(error);
+		         }
+
+		      });
+	}
 
 </script>
 <meta charset="UTF-8">
@@ -599,7 +640,10 @@ body.dark-theme .page-link.active
                <div class="wdhtitle2" style="width:14%;"><p>등록일</p></div><!-- regDate -->
                <div class="wdhtitle2" style="width:6.5%;"><p>신고 상태</p></div>
             </li>
-            <c:forEach var="comment" items="${cList}" varStatus="status">
+              
+            <c:forEach var="comment" items="${dList}" varStatus="status">
+            
+            
             <li class="wdhtd2">
                <div class="wdhcon2" style="width:7%;"><p>${comment.parentSeq}</p></div>
                <div class="wdhcon2" style="width:7%;"><p>${comment.commentSeq}</p></div>
@@ -608,10 +652,13 @@ body.dark-theme .page-link.active
                <div class="wdhcon2" style="width:14%;"><p>${comment.regDate}</p></div>
                <div class="wdhcon2" style="width:6.5%;">
                		<p>
-               			<a href="/mng/boardList?parentSeq=${comment.parentSeq}&&commentSeq=${comment.commentSeq}" name="CommentDel" class="w-btn-red delBtnWish" Style="background-color: rgba(0,0,0,0);" >x</a>
+               			<a href="javascript:void(0)" name="CommentR" onclick="report(${comment.parentSeq},${comment.commentSeq})" class="w-btn-red delBtnWish" Style="background-color: rgba(0,0,0,0);" >숨김</a>
                		</p>
+               		
+               		
                </div>
             </li>
+          
             </c:forEach>
          </ul>
 
@@ -619,11 +666,11 @@ body.dark-theme .page-link.active
               <div class="col-lg-10" style="left:43%;">
                 <div class="pagination">
                <ul class="pagination justify-content-center">
-                  <c:if test="${!empty cPaging}">
-                     <c:if test="${cPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingC(${cPaging.prevBlockPage})">이전</a></li>
+                  <c:if test="${!empty dPaging}">
+                     <c:if test="${dPaging.prevBlockPage gt 0}">   <!-- prevBlockPage이 0 보다 크냐 -->
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingC(${dPaging.prevBlockPage})">이전</a></li>
                      </c:if>
-                     <c:forEach var="i" begin="${cPaging.startPage}" end="${cPaging.endPage}">
+                     <c:forEach var="i" begin="${dPaging.startPage}" end="${dPaging.endPage}">
                         <c:choose>
                            <c:when test="${i ne curPage}">
                               <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingC(${i})">${i}</a></li>
@@ -633,8 +680,8 @@ body.dark-theme .page-link.active
                            </c:otherwise>
                         </c:choose>
                      </c:forEach>
-                     <c:if test="${cPaging.nextBlockPage gt 0}">         
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingC(${cPaging.nextBlockPage})">다음</a></li>
+                     <c:if test="${dPaging.nextBlockPage gt 0}">         
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="fn_pagingC(${dPaging.nextBlockPage})">다음</a></li>
                      </c:if>       
                   </c:if> 
                      <form name="bbsFormS" id="bbsFormS" method="post">

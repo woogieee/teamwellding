@@ -222,6 +222,7 @@
                   
                   <value>/board/commentReport</value>
                   <value>/board/commentReportAllow</value>
+                  <value>/mng/report</value>
 
                   
                   </list>

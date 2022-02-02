@@ -39,4 +39,11 @@ public interface WDCommentDao {
 	//관리자 페이지에서 댓글 신고승인하기
 	public int commentReportAllow(WDComment wdComment);
 	
+	//신고 댓글 불러오기
+	public List<WDComment> ReportcommentTotalSelect(WDComment wdComment);
+	
+	//신고 댓글 총 수 가져오기
+	public int ReportcommentTotalCnt();
+	
+	
 }
