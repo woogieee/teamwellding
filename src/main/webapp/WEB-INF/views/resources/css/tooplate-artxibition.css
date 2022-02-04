@@ -6675,6 +6675,17 @@ responsive
     margin-bottom: 40px;
 }
 
+.rez_sum3
+{
+	margin-top: 25px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    width: 100%;
+    height: 125px;
+    padding: 15px 0 35px 0;
+    margin-bottom: 40px;
+}
+
 .Rez_s1
 {
 	width: 50%;
@@ -7235,6 +7246,138 @@ textarea::placeholder {
     border-radius: 5px;
     font-weight: 600;
     font-size: 14px;
+}
+
+.top_btn
+{
+	    position: fixed !important;
+    z-index: 10000000 !important;
+    display: block !important;
+    width: 60px;
+    height: 60px;
+    background: white;
+    bottom: 24px;
+    right: 24px !important;
+    border-radius: 25px;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: 3px 5px 16px 2px rgb(100 100 100 / 25%);
+}
+
+.ttt
+{
+	width: 62px;
+    height: 62px;
+    /* vertical-align: middle; */
+    display: inline-block;
+    position: relative;
+    line-height: 62px;
+}
+
+.ttt::after
+{
+	position: absolute;
+    content: '';
+    width: 24px;
+    height: 24px;
+    border-top: 5px solid #e9967a;
+    border-right: 5px solid #e9967a;
+    transform: rotate(-45deg);
+    bottom: 13px;
+    left: 18px;
+}
+
+.kakaopay_btn
+{
+	border: solid 1px black;
+    background: white;
+    position: relative;
+    top: -18px;
+    color: black;
+    text-shadow: none;
+    border-radius: 10px;
+    outline: none;
+    padding: 15px 18px;
+    position: relative;
+    top: -14px;
+}
+
+
+.select_cnc
+{
+	text-align: center;
+    width: 100%;
+    background: #efefef;
+    border-radius: 7px;
+    height: 85px;
+    line-height: 85px;
+}
+
+.select_coupon
+{
+	display: inline-block;
+	padding-right: 20px;
+}
+
+.select_coupon input
+{
+	outline: none;
+    border: 1px solid #aaa;
+    border-radius: 4px!important;
+    height: 35px!important;
+    width:120px;
+}
+
+.select_coupon select
+{
+	/*border-top: none;
+	border-left: none;
+	border-right: none;
+	background: #efefef;*/
+}
+
+.select_point
+{
+	display: inline-block;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.select_point input
+{
+	width: 120px;
+    height: 35px;
+}
+
+.selectcnc_btn
+{
+	display: inline-block;
+    display: inline-block;
+    height: 40px;
+}
+
+.selectcnc_btn button
+{
+	border: none;
+    background: #ff5d24;
+    position: relative;
+    color: #fff;
+    width: 70px;
+    height: 100%;
+    vertical-align: middle;
+    border-radius: 5px;
+    line-height: 40px;
+    font-size: 15px;
+}
+
+.select_line
+{
+	height: 15px;
+    width: 2px;
+    position: relative;
+    display: inline-block;
+    background: #aaa;
+    top: 2px;
 }
 
 

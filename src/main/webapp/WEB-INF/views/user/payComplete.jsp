@@ -84,10 +84,10 @@ $(document).ready(function() {
                <div class="col-lg-10">
                </div>
                <div style="text-align: center;">
-               <img src="../resources/images/icons/check.png" style="width:100px; margin-bottom:70px;">
+               <img src="../resources/images/icons/check.png" style="width:100px; margin-bottom:50px;">
                <p style="font-size:xx-large; font-weight:500;">결제가 완료 되었습니다.</p>
                </div>
-                  <div class="rez_sum">
+                  <div class="rez_sum3">
                      <button type="button" id="btnComplete" class="btn btn-primary" title="결제내역보러가기" style="border: solid 1px black; background:white; position:relative; top:4px; color:black;">결제내역 보러가기</button>
                      <!--button type="button" id="btnMyPage" class="btn btn-primary" title="장바구니" style="border: solid 1px black; background:white; position:relative; top:4px; color:black;">장바구니</button-->
                   </div>
