@@ -7380,5 +7380,17 @@ textarea::placeholder {
     top: 2px;
 }
 
+.kakaopay_btnnn
+{
+	border: 0px;
+    background: none;
+    position: relative;
+    top: -18px;
+    width: 130px;
+    height: 54px;
+    background: #FFEB00;
+    border-radius: 35px;
+}
+
 
 /*보현추가 끝*/

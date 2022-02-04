@@ -519,7 +519,7 @@ input::-webkit-inner-spin-button {
 	                     <div class="select_line"></div>
 	                     <!-- 포인트 가져오기 -->
 	                     <div class="select_point">
-	                     	보유포인트 :<span name="pointBox" id="pointBox" style="display:inline-block; width:90px; color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
+	                     	보유포인트 :&nbsp;<span name="pointBox" id="pointBox" style="display:inline-block; width:90px; color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
 		                     <span>
 		                     	<span style="color: #999; font-weight: 300;">/</span> 사용포인트&nbsp;<input type="number" name="pointValue" id="pointValue" style="width:130px" value="0" min="0" max="${wdUser.userPoint}" />&nbsp;point
 		                     	<!--<input type="text" name="pointValue" id="pointValue" style="width:100px" value="" min="0" max="${wdUser.userPoint}" onkeyup="inputNumberFormat(this);" />-->
@@ -569,7 +569,7 @@ input::-webkit-inner-spin-button {
                      <!-- 총 주문금액 변수 i에 넣어서  totalAmount 에 넣어주기-->
                      <fmt:parseNumber var="i" type="number" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)}" />
                      <!-- 카카오 페이 버튼 추가 -->
-                     <button type="button" id="btnPay" style="border:0px; background:none; position:relative; top:-18px;" title="카카오페이">
+                     <button id="btnPay" class="kakaopay_btnnn" title="카카오페이">
                      <img src="../resources/images/icons/kakaoPay.png" style="width: 80px;">
                      </button>
                   </div>
