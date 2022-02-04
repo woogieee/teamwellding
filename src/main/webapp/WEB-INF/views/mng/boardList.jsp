@@ -638,12 +638,11 @@ body.dark-theme .page-link.active
                <div class="wdhtitle2" style="width:49%;"><p>내용</p></div><!-- wdFboardComment -->
                <div class="wdhtitle2" style="width:16%;"><p>닉네임</p></div><!-- uNickName -->
                <div class="wdhtitle2" style="width:14%;"><p>등록일</p></div><!-- regDate -->
-               <div class="wdhtitle2" style="width:6.5%;"><p>신고 상태</p></div>
+               <div class="wdhtitle2" style="width:6.5%;"><p>숨김 여부</p></div>
             </li>
               
             <c:forEach var="comment" items="${dList}" varStatus="status">
-            
-            
+            <c:if test="${comment.status eq 'N'}">
             <li class="wdhtd2">
                <div class="wdhcon2" style="width:7%;"><p>${comment.parentSeq}</p></div>
                <div class="wdhcon2" style="width:7%;"><p>${comment.commentSeq}</p></div>
@@ -652,13 +651,25 @@ body.dark-theme .page-link.active
                <div class="wdhcon2" style="width:14%;"><p>${comment.regDate}</p></div>
                <div class="wdhcon2" style="width:6.5%;">
                		<p>
-               			<a href="javascript:void(0)" name="CommentR" onclick="report(${comment.parentSeq},${comment.commentSeq})" class="w-btn-red delBtnWish" Style="background-color: rgba(0,0,0,0);" >숨김</a>
-               		</p>
-               		
-               		
+               			<a href="javascript:void(0)" name="CommentR" onclick="report(${comment.parentSeq},${comment.commentSeq})" class="w-btn-red delBtnWish" Style="background-color: rgba(0,0,0,0);font-size:15px;" >처리 대기</a>
+               		</p>	
                </div>
             </li>
-          
+            </c:if>
+            <c:if test="${comment.status eq 'R'}">
+            <li class="wdhtd2">
+               <div class="wdhcon2" style="width:7%;"><p>${comment.parentSeq}</p></div>
+               <div class="wdhcon2" style="width:7%;"><p>${comment.commentSeq}</p></div>
+               <div class="wdhcon2" style="width:49%;"><p>${comment.wdFBoardComment}</p></div>
+               <div class="wdhcon2" style="width:16%;"><p>${comment.uNickName}</p></div>
+               <div class="wdhcon2" style="width:14%;"><p>${comment.regDate}</p></div>
+               <div class="wdhcon2" style="width:6.5%;">
+               		<p>
+               			<a href="javascript:void(0)" class="w-btn-red delBtnWish" Style="background-color: rgba(0,0,0,0);font-size:15px;" >숨김 완료</a>
+               		</p>	
+               </div>
+            </li>
+            </c:if>
             </c:forEach>
          </ul>
 

@@ -11,6 +11,7 @@
 	<result column="REG_DATE" property="regDate" />
 	<result column="U_NICKNAME" property="uNickName" />
 	<result column="U_EMAIL" property="uEmail" />
+	<result column="C_STATUS" property="status" />
 </resultMap>
 <!-- 댓글 resultMap 끝 -->
 
@@ -230,7 +231,8 @@ SELECT
     WD_FBOARD_COMMENT,
     REG_DATE,
     U_NICKNAME,
-    U_EMAIL
+    U_EMAIL,
+    C_STATUS
 FROM(
         SELECT
             ROWNUM RNUM,
@@ -240,7 +242,8 @@ FROM(
             WD_FBOARD_COMMENT,
             REG_DATE,
             U_NICKNAME,
-            U_EMAIL
+            U_EMAIL,
+            C_STATUS
             FROM(
                     SELECT
                         A.PARENT_SEQ,
@@ -249,11 +252,12 @@ FROM(
                         NVL(A.WD_FBOARD_COMMENT, '') WD_FBOARD_COMMENT,
                         NVL(TO_CHAR(A.REG_DATE, 'YYYY.MM.DD HH24:MI:SS'), '') REG_DATE,
                         NVL(B.U_NICKNAME, '') U_NICKNAME,
-                        NVL(B.U_EMAIL, '') U_EMAIL
+                        NVL(B.U_EMAIL, '') U_EMAIL,
+                        NVL(A.C_STATUS, '') C_STATUS
                     FROM
                         WD_COMMENT A, WD_USER B
                     WHERE
-                   		C_STATUS = 'N'
+                   		C_STATUS IN ('N','R')
   					AND
                         A.USER_ID = B.USER_ID
                     ORDER BY

@@ -172,7 +172,7 @@ $(document).ready(function(){
             
             <div class="form-group row">
                <div class="col-sm-12">
-                  <button type="button" id="btnList" class="w-btn w-btn-green2" title="리스트">리스트</button>
+                  <button type="button" id="btnList" class="w-btn w-btn-green2" title="리스트" style="float: right; margin-left: 10px;">리스트</button>
                   <button type="button" id="btnWrite" class="w-btn w-btn-green" title="저장">저장</button>
                </div>
             </div>
