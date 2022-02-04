@@ -18,6 +18,8 @@ public class WDComment implements Serializable{
 	private long startRow;
 	private long endRow;
 	
+	private String status;
+	
 	public WDComment() {
 		parentSeq = 0;
 		commentSeq = 0;
@@ -29,6 +31,8 @@ public class WDComment implements Serializable{
 		uEmail = "";
 		startRow = 0;
 		endRow = 0;
+		
+		status = "";
 	}
 
 	public long getParentSeq() {
@@ -102,5 +106,15 @@ public class WDComment implements Serializable{
 	public void setEndRow(long endRow) {
 		this.endRow = endRow;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 	
 }

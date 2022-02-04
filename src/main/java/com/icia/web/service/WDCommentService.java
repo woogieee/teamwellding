@@ -130,6 +130,23 @@ public class WDCommentService {
 		return list;
 	}
 	
+	//신고 댓글 불러오기 
+		public List<WDComment> ReportcommentTotalSelect(WDComment wdComment)
+		{
+			List<WDComment> list = null;
+			
+			try 
+			{
+				list = wdCommentDao.ReportcommentTotalSelect(wdComment);
+			}
+			catch(Exception e) 
+			{
+				logger.error("[WDCommentService] ReportcommentTotalSelect Exception", e);
+			}
+			
+			return list;
+		}
+	
 	//댓글 총 수 가져오기 시작
 	public int commentTotalCnt() 
 	{
@@ -146,6 +163,26 @@ public class WDCommentService {
 		
 		return count;
 	}
+	
+	//신고 댓글 총 수 가져오기 시작
+		public int ReportcommentTotalCnt() 
+		{
+			int count = 0;
+			
+			try 
+			{
+				count = wdCommentDao.ReportcommentTotalCnt();
+			}
+			catch(Exception e) 
+			{
+				logger.error("[WDCommentService] ReportcommentTotalCnt Exception", e);
+			}
+			
+			return count;
+		}
+	
+	
+	
 
 	//관리자 페이지에서 댓글 삭제 시작
 	public int commentDelAdm(WDComment wdComment) 
@@ -162,5 +199,33 @@ public class WDCommentService {
 		}
 		
 		return cnt;
+	}
+	
+	//댓글 신고버튼 클릭
+	public int commentReport(WDComment wdComment) {
+		int count = 0;
+		
+		try {
+			count = wdCommentDao.commentReport(wdComment);
+		}
+		catch(Exception e) {
+			logger.error("[WDCommentService] commentReport Exception", e);
+		}	
+		
+		return count;
+	}
+	
+	//관리자 댓글신고 확인
+	public int commentReportAllow(WDComment wdComment) {
+		int count = 0;
+		
+		try {
+			count = wdCommentDao.commentReportAllow(wdComment);
+		}
+		catch(Exception e) {
+			logger.error("[WDCommentService] commentReportAllow Exception", e);
+		}	
+		
+		return count;
 	}
 }

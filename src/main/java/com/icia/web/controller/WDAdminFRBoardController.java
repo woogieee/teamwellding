@@ -67,16 +67,20 @@ public class WDAdminFRBoardController {
 	   long fboardCnt = 0;
 	   long rboardCnt = 0;
 	   long cboardCnt = 0;
+	   long dboardCnt = 0;
+
 	   
 	   //자유게시판 리스트를 조회할 때 쓸 객체 선언
 	   WDFBoard wdFBoard = new WDFBoard();
 	   WDReview wdReview = new WDReview();
 	   WDComment wdComment = new WDComment();
+	   WDComment wdCommentR = new WDComment();
 	   
 	   //결과가 보여질 배열 객체 선언
 	   List<WDFBoard> fList = null;
 	   List<WDReview> rList = null;
 	   List<WDComment> cList = null;
+	   List<WDComment> dList = null;
 	   
 	   //페이징 처리 어디서 했는지 확인용
 	   int frCheck = HttpUtil.get(request, "frCheck", 1);
@@ -110,6 +114,7 @@ public class WDAdminFRBoardController {
        Paging fPaging = null;
        Paging rPaging = null;
        Paging cPaging = null;
+       Paging dPaging = null;
        
        if(!StringUtil.isEmpty(searchType) && !StringUtil.isEmpty(searchValue)) 
 		{
@@ -127,7 +132,8 @@ public class WDAdminFRBoardController {
        fboardCnt = wdFBoardService.fBoardListCount(wdFBoard);
        rboardCnt = wdReviewService.ReviewListCount(wdReview);
        cboardCnt = wdCommentService.commentTotalCnt();
-       
+       dboardCnt = wdCommentService.ReportcommentTotalCnt();
+    		   
        //자유게시판 페이징
        if(fboardCnt > 0) 
        {
@@ -193,6 +199,21 @@ public class WDAdminFRBoardController {
     	   cList = wdCommentService.commentTotalSelect(map);
        }
        
+       if(dboardCnt >0) 
+       {
+    	   dPaging = new Paging("/mng/boardList", dboardCnt, 20, 5, curPage, "curPage");
+    	   
+    	   dPaging.addParam("curPage", curPage);
+    	   
+    	  
+    	   
+    	   
+    	   wdCommentR.setStartRow(dPaging.getStartRow());
+    	   wdCommentR.setEndRow(dPaging.getEndRow());
+    	   
+    	   dList = wdCommentService.ReportcommentTotalSelect(wdCommentR);
+       }
+       
 
        
        model.addAttribute("wdAdmin",wdAdmin);
@@ -207,6 +228,9 @@ public class WDAdminFRBoardController {
        model.addAttribute("curPage", curPage);
        model.addAttribute("msg", msg);
        model.addAttribute("frCheck", frCheck);
+       model.addAttribute("dList", dList);
+       model.addAttribute("dPaging",dPaging);
+       
        
        return "/mng/boardList";
    }
@@ -375,5 +399,47 @@ public class WDAdminFRBoardController {
    		}
    		return modelAndView;
    	}
-
+   	
+   	
+ 	@RequestMapping("/mng/report")
+ 	@ResponseBody
+ 	public Response<Object> report(HttpServletRequest request, HttpServletResponse response)
+ 	{
+ 		Response<Object> ajaxResponse = new Response<Object>();
+ 		
+ 		
+         long pSeq = HttpUtil.get(request, "pSeq", (long)0);
+ 		 long cSeq = HttpUtil.get(request, "cSeq", (long)0);
+ 		 
+ 		 System.out.println("오는지" + pSeq);
+ 		 System.out.println("오는지" + cSeq);
+ 		 
+ 		 if(pSeq != 0 && cSeq != 0)
+ 		 {
+ 			WDComment wdcomment = new WDComment();
+ 			
+ 			wdcomment.setParentSeq(pSeq);
+ 			wdcomment.setCommentSeq(cSeq);
+ 			
+ 			
+ 			
+ 			if(wdCommentService.commentReportAllow(wdcomment) > 0)
+ 			{
+ 				ajaxResponse.setResponse(0, "success");
+ 			}
+ 			else
+ 			{
+ 				ajaxResponse.setResponse(-1, "error");
+ 				
+ 			}
+ 			
+ 		 }
+ 		 else
+ 		 {
+ 			ajaxResponse.setResponse(400, "Bad Request");
+ 		 }
+ 		
+ 		return ajaxResponse;
+ 	}
+   
 }
