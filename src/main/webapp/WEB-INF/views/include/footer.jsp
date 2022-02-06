@@ -65,6 +65,10 @@
   </div>
 </div>
 </footer>
+
+<a href="#" class="top_btn">
+	<div class="ttt"></div>
+</a>
 <!-- 욱채 수정 푸터 종료 -->
 
 
@@ -93,12 +97,13 @@
     <script src="../resources/js/accordions.js"></script>
     <script src="../resources/js/owl-carousel.js"></script>
 
-    <script>
+<script>
 function termsofuse(){
    $('#MoaModal .modal-content').load("/Termsofuse");
    $('#MoaModal').modal();
 }
 </script>
+
     
 
 
