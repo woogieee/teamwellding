@@ -91,6 +91,14 @@ function fn_userUpdate()
       return;
    }
    
+   //포인트
+   if(icia.common.isEmpty($("#userPoint").val()))
+   {
+      alert("포인트를 입력하세요.");
+      $("#userPoint").focus();
+      return;
+   }
+   
    if(!fn_validateEmail($("#userEmail").val()))
    {
       //정규표현식이 맞지 않을떄
@@ -223,7 +231,13 @@ function fn_idPwdCheck(val)
                <tr>
                   <th scope="row">등록일</th>
                   <td>${wdAdminUser.regDate}</td>
+                  <th scope="row">포인트</th>
+                  <td>
+                  <input type="text" id="userPoint" name="userPoint" value="${wdAdminUser.userPoint}" style="font-size:1rem;" maxlength="50" placeholder="포인트" />
+                  </td>
                </tr>
+
+
 
             </tbody>
          </table>

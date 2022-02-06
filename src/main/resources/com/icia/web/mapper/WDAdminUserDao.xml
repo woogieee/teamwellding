@@ -109,7 +109,8 @@ SET
     U_PWD = #{userPwd},
     U_NAME = #{userName},
     U_NICKNAME = #{userNickname},
-    U_STATUS = #{status}
+    U_STATUS = #{status},
+    U_POINT = #{userPoint}
 WHERE
     USER_ID = #{userId}
 </update>

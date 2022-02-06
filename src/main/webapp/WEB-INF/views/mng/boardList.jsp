@@ -95,11 +95,12 @@ body.dark-theme .page-link.active
 		if(msg == "Y")
 		{
 			alert("댓글 삭제에 성공했습니다.");
-
+			$("#msg").val("");
 		}
 		else if(msg == "N")
 		{
 			alert("댓글 삭제에 실패했습니다.");
+			$("#msg").val("");
 		}
 		
 	      $(".FboardUpdate").colorbox({

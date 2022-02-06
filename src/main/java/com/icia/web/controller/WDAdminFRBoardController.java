@@ -407,7 +407,6 @@ public class WDAdminFRBoardController {
  	{
  		Response<Object> ajaxResponse = new Response<Object>();
  		
- 		
          long pSeq = HttpUtil.get(request, "pSeq", (long)0);
  		 long cSeq = HttpUtil.get(request, "cSeq", (long)0);
  		 

@@ -279,9 +279,13 @@ public class WDAdminIndexController
          String userEmail = HttpUtil.get(request, "userEmail");
          String userNickname = HttpUtil.get(request, "userNickname");
          String status = HttpUtil.get(request, "status");
+         String uPoint = HttpUtil.get(request, "userPoint");
+         int userPoint = Integer.parseInt(uPoint);
          
          if(!StringUtil.isEmpty(userId) && !StringUtil.isEmpty(userPwd) && !StringUtil.isEmpty(userName) && 
-               !StringUtil.isEmpty(userNickname) && !StringUtil.isEmpty(userEmail) && !StringUtil.isEmpty(status))
+               !StringUtil.isEmpty(userNickname) && !StringUtil.isEmpty(userEmail) && !StringUtil.isEmpty(status)
+            && !StringUtil.isEmpty(userPoint)
+        		 )
          {
             //500번 오류 막기위한 처리 (주소치고오는 애들 막아주기)
             WDAdminUser wdAdminUser = wdAdminUserService.wdAdminUserSelect(userId);
@@ -294,6 +298,7 @@ public class WDAdminIndexController
                wdAdminUser.setUserEmail(userEmail);
                wdAdminUser.setUserNickname(userNickname);
                wdAdminUser.setStatus(status);
+               wdAdminUser.setUserPoint(userPoint);
                
                if(wdAdminUserService.wdAdmUserUpdate(wdAdminUser) > 0)
                {
