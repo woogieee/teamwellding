@@ -111,7 +111,7 @@
 								icon: 'success',
 								text: '회원수정이 완료되었습니다.'
 							}).then(function(){
-								location.href = "/user/payList";
+								location.href = "/user/modify";
 							});
 		               } 
 		               else if(response.code == 400)
