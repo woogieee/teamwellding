@@ -501,33 +501,39 @@ input::-webkit-inner-spin-button {
                      <div class="col-lg-1"></div>
                      <div class="col-lg-1"></div>
                      <div class="col-lg-10">
-                     <div class="col-lg-10" style="text-align: right; max-width:100%;">
-                     <!-- 쿠폰 가져오기 -->
-                     <div>
-						쿠폰 
-	                     <select name="couponChoice" id="couponChoice" style="width:100px;">
-	                        <option value="0">선택</option>
-	                        
-	                     <c:forEach var="coupon" items="${couponList}" varStatus="status">
-	                        <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
-	                     </c:forEach>
-	                     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						할인금액 <input type="text" name="couponValue" id="couponValue" style="width:100px;" value="" readonly>
-	      
-	                     <!-- <button name="couponSelect" id="couponSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
+                     <div class="select_cnc">
+	                     <!-- 쿠폰 가져오기 -->
+	                     <div class="select_coupon">
+							쿠폰 
+		                     <select name="couponChoice" id="couponChoice" style="width:120px;">
+		                        <option value="0">선택</option>
+		                        
+		                     <c:forEach var="coupon" items="${couponList}" varStatus="status">
+		                        <option value="${coupon.cPrice}" value2="${coupon.cCode}">${coupon.cName}</option>
+		                     </c:forEach>
+		                     </select>&nbsp;&nbsp;&nbsp;
+							할인금액 <input type="text" name="couponValue" id="couponValue" value="" readonly>
+		      
+		                     <!-- <button name="couponSelect" id="couponSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
+	                     </div>
+	                     <div class="select_line"></div>
+	                     <!-- 포인트 가져오기 -->
+	                     <div class="select_point">
+	                     	보유포인트 :&nbsp;<span name="pointBox" id="pointBox" style="display:inline-block; width:90px; color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
+		                     <span>
+		                     	<span style="color: #999; font-weight: 300;">/</span> 사용포인트&nbsp;<input type="number" name="pointValue" id="pointValue" style="width:130px" value="0" min="0" max="${wdUser.userPoint}" />&nbsp;point
+		                     	<!--<input type="text" name="pointValue" id="pointValue" style="width:100px" value="" min="0" max="${wdUser.userPoint}" onkeyup="inputNumberFormat(this);" />-->
+		                     </span>
+	                     	<!-- <button name="pointSelect" id="pointSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
+						 </div>
+						 
+						 <!-- 적용버튼 -->
+	                     <div class="selectcnc_btn">
+	                     	<button name="couponSelect" id="couponSelect">적용</button>
+	                     </div>
+						 
                      </div>
-                     <div>
-                     	보유 포인트 :<span name="pointBox" id="pointBox" style="display:inline-block; width:90px; color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
-                     <span>
-                     <input type="number" name="pointValue" id="pointValue" style="width:100px" value="0" min="0" max="${wdUser.userPoint}" />
-                     <!--<input type="text" name="pointValue" id="pointValue" style="width:100px" value="" min="0" max="${wdUser.userPoint}" onkeyup="inputNumberFormat(this);" />-->
-                     </span>
-                     	<!-- <button name="pointSelect" id="pointSelect" style="border: solid 1px black; background:white; position:relative; color:black;">적용</button> -->
-					 </div>
-                     </div>
-                     <div style="text-align: right; max-width:98%; padding-top:5px; ">
-                     <button name="couponSelect" id="couponSelect" style="border: solid 1px black; background:white; position:relative; color:black; width:90px;">적용</button>
-                     </div>
+
 
 <c:if test="${!empty wdRez.whCode or !empty wdRez.sCode or !empty wdRez.dNo or !empty wdRez.mCode or !empty wdRez.mPlusNum}">
                   <div class="rez_sum">
@@ -563,7 +569,7 @@ input::-webkit-inner-spin-button {
                      <!-- 총 주문금액 변수 i에 넣어서  totalAmount 에 넣어주기-->
                      <fmt:parseNumber var="i" type="number" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)}" />
                      <!-- 카카오 페이 버튼 추가 -->
-                     <button type="button" id="btnPay" style="border:0px; background:none; position:relative; top:-18px;" title="카카오페이">
+                     <button id="btnPay" class="kakaopay_btnnn" title="카카오페이">
                      <img src="../resources/images/icons/kakaoPay.png" style="width: 80px;">
                      </button>
                   </div>

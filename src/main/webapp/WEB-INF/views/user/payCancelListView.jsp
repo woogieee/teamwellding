@@ -46,13 +46,16 @@ $(document).ready(function(){
 									<a href="/user/payList">결제내역</a>
 								</li>
 								<li class="breadcrumb-item" >
-									<a style="font-size: large; font-weight: bold;">취소내역</a>
+									<a href="/user/payCancelList" style="font-size: large; font-weight: bold;">취소내역</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="/user/modify">회원정보수정</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/userDrop">회원탈퇴</a>
 								</li>
 							</ol>
 						</nav>

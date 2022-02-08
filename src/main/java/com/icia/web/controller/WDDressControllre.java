@@ -251,7 +251,7 @@ public class WDDressControllre
 		   
 		   WDRez wdRez = null;
 		   
-		   wdUser = wdUserService.userSelect(cookieUserId);
+		   wdUser = wdUserService.userSelect(cookieUserId); //쿠키랑확인해야하니깡
 		   
 		   if(wdUser != null) 
 		   {

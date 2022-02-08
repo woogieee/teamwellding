@@ -111,7 +111,7 @@
 								icon: 'success',
 								text: '회원수정이 완료되었습니다.'
 							}).then(function(){
-								location.href = "/user/payList";
+								location.href = "/user/modify";
 							});
 		               } 
 		               else if(response.code == 400)
@@ -216,11 +216,11 @@ function fn_validateEmail(value)
 						<h2 style="font-family: 'Bitter', serif; margin-top: 50px; padding-left: 10px;">My Page</h2>
 						<nav class="bcItem">
 							<ol class="breadcrumb bc" style="background: #feede8;">
-								<li class="breadcrumb-item">
-									<a href="/user/wishlist" id="basket">장바구니</a>
+								<li class="breadcrumb-item" >
+									<a href="/user/payList">결제내역</a>
 								</li>
-								<li class="breadcrumb-item">
-									<a href="/user/payList"  id="payment">결제내역</a>
+								<li class="breadcrumb-item" >
+									<a href="/user/payCancelList">취소내역</a>
 								</li>
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" id="cou">쿠폰보유현황</a>

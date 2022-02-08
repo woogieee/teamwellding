@@ -648,7 +648,7 @@ $("#payMent").on("click", function(){
                         <li class="breadcrumb-item active">
                            <h5>장바구니</h5>
                         </li>
-                        <li style="position: absolute; right:50px;">
+                        <li style="position: absolute; right:25px;">
                            <div>보유 포인트 : <span style="color:red;"><fmt:formatNumber type="number" maxFractionDigits="0" value="${wdUser.userPoint}" /></span> Point
                            </div>
                         </li>
@@ -983,7 +983,7 @@ $("#payMent").on("click", function(){
                      <!-- 총 주문금액 변수 i에 넣어서  totalAmount 에 넣어주기-->
                      <fmt:parseNumber var="i" type="number" value="${wdRez.hPrice *(1- wdRez.hDiscount*0.01) + (wdRez.hFood * wdRez.hMin) + wdRez.sPrice *(1- wdRez.sDiscount*0.01) + wdRez.dPrice *(1- wdRez.dDiscount*0.01) + wdRez.mPrice *(1- wdRez.mDiscount*0.01)+ (wdRez.mPlus*wdRez.mPlusNum)}" />
                      <!-- 카카오 페이 버튼 추가 -->
-                     <button type="button" id="payMent" style="border: solid 1px black; background:white; position:relative; top:-18px; color:black;" class="btn btn-primary" title="결제페이지로 이동">결제페이지로 이동</button>
+                     <button id="payMent" class="kakaopay_btn" title="결제페이지로 이동">결제페이지로 이동</button>
                   </div>
 </c:if>
 </c:if>
