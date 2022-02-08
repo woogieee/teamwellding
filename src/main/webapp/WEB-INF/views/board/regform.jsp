@@ -114,7 +114,7 @@ $(document).ready(function(){
 	// 모든 공백 체크 정규식
 	var emptCheck = /\s/g;
 	// 영문 대소문자, 숫자로만 이루어진 4~12자리 정규식
-	var idPwCheck = /^[a-zA-Z0-9]{4,11}$/;
+	var idPwCheck = /^[a-zA-Z0-9]{4,12}$/;
 
 	$("#id").keyup(function(e) {
 
