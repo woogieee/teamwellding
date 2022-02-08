@@ -168,7 +168,7 @@ $(document).ready(function(){
 						<nav class="bcItem">
 							<ol class="breadcrumb bc" >
 								<li class="breadcrumb-item active" >
-									<a style="font-size: large; font-weight: bold;">결제내역</a>
+									<a href="/user/payList" style="font-size: large; font-weight: bold;">결제내역</a>
 								</li>
 								<li class="breadcrumb-item" >
 									<a href="/user/payCancelList">취소내역</a>
@@ -178,6 +178,9 @@ $(document).ready(function(){
 								</li>
 								<li class="breadcrumb-item">
 									<a href="/user/modify">회원정보수정</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/user/userDrop">회원탈퇴</a>
 								</li>
 							</ol>
 						</nav>
