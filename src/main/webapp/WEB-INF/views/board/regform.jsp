@@ -115,6 +115,7 @@ $(document).ready(function(){
 	var emptCheck = /\s/g;
 	// 영문 대소문자, 숫자로만 이루어진 4~12자리 정규식
 	var idPwCheck = /^[a-zA-Z0-9]{4,12}$/;
+	var pwCheck = /^[a-zA-Z0-9]{4,12}$/;
 
 	$("#id").keyup(function(e) {
 
@@ -150,7 +151,8 @@ $(document).ready(function(){
 
 	});
 
-	$("#pwd1").keydown(function(e) 
+	//$("#pwd1").keydown(function(e) 
+	$("#pwd1").keyup(function(e) 
 	{
 
 		if ($("#pwd1").val().length <= 0) 
@@ -170,7 +172,7 @@ $(document).ready(function(){
 			return;
 		}
 
-		else if (!idPwCheck.test($("#pwd1").val())) 
+		else if (!pwCheck.test($("#pwd1").val())) 
 		{
 			$('p').eq(1).text("비밀번호는 영문 대소문자와 숫자로 4~12자리 입니다.");
 			$('p').eq(1).css('color', 'red');
