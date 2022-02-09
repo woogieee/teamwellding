@@ -162,7 +162,7 @@ document.getElementById("hiBbsContent").innerHTML = str;
                     <div class="section-heading">
                         <div class="category2">
                             <h2>Sharing your experiences</h2>
-                            <p>RIVIEW</p>
+                            <p>Review</p>
                         </div>
                     </div>
                 </div>
