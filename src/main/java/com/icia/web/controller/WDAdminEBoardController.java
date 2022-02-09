@@ -303,7 +303,7 @@ public class WDAdminEBoardController {
  	   Response<Object> ajaxResponse = new Response<Object>();
        
  	  long bSeq = HttpUtil.get(request, "bSeq", (long)0);
-       System.out.println("************** eBSeq: " + bSeq);
+       System.out.println("************** 여긴타니111????eBSeq: " + bSeq);
  	   
  	   if(bSeq > 0) 
  	   {
@@ -311,10 +311,8 @@ public class WDAdminEBoardController {
  		   
  		   if(eBoard != null) 
  		   {
- 			 
 			   if(wdEBoardService.eBoardDelete(bSeq) > 0)
 			   {
-				  
 				   ajaxResponse.setResponse(0, "Success");
 			   }
 			   else
