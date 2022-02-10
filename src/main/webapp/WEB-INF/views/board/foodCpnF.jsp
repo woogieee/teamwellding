@@ -62,7 +62,7 @@ html, bady
 <body>
     <div id="led_group" align="center">
     	<!--h5>스프링 & 톰캣</h5-->
-    	<input type="hidden" value="http://cc89-106-243-194-229.ngrok.io/board/foodCpnF2?rezNo=${rezNo }" id="led_text" />
+    	<input type="hidden" value="http://ef5b-106-243-194-229.ngrok.io/board/foodCpnF2?rezNo=${rezNo }" id="led_text" />
     	<div id="qrcode"></div>
     </div>
     
